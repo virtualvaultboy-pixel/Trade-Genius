@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+<title>Trade Genius — Bibliothèque</title>
+  <meta name="description" content="Apprends la bourse de zéro. Pas de pub, pas de gourous, juste de la pédagogie pour devenir investisseur.">
+  <meta name="author" content="Deponchy Studio">
+  <meta property="og:title" content="Trade Genius">
+  <meta property="og:description" content="Apprends la bourse de zéro. Pas de pub, pas de gourous, juste de la pédagogie.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="icon-512.png">
+  <meta property="og:url" content="https://virtualvaultboy-pixel.github.io/Trade-Genius/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+<!-- ═══════════════════════════════════════════════════════════════════
+  TRADE GENIUS — BIBLIOTHÈQUE (M5)
+  ───────────────────────────────────────────────────────────────────
+  Design B+C : Duolingo-feel, jeunes, mobile-first.
+  3 vues : Catégories → Grille fiches → Détail plein écran.
+  Storage : tradegenius_m5_bookmarks, tradegenius_m5_viewed
+═══════════════════════════════════════════════════════════════════ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+:root {
+  --bg: #0a0a0c;
+  --bg-2: #111114;
+  --bg-3: #1a1a1f;
+  --surface: rgba(255,255,255,0.04);
+  --surface-2: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.1);
+  --border-strong: rgba(255,255,255,0.18);
+  --text: #f5f3ef;
+  --text-dim: #b8b3ad;
+  --text-faint: #6a6864;
+  --acid: #bef264;
+  --clay: #d4a574;
+  --purple: #a78bfa;
+  --green: #4ade80;
+  --red: #f87171;
+  --blue: #7dd3fc;
+  --pink: #f9a8d4;
+  --amber: #fcd34d;
+  --teal: #5eead4;
+  --font-d: 'Inter', sans-serif;
+  --font-h: 'Bricolage Grotesque', serif;
+  --font-m: 'JetBrains Mono', monospace;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--font-d); font-size: 14px; line-height: 1.5;
+  overflow-x: hidden;
+}
+body { min-height: 100vh; min-height: 100dvh; }
+
+/* ═══════════ HEADER ═══════════ */
+.lib-head {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 14px 10px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.lib-back {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none; cursor: pointer;
+  flex-shrink: 0;
+}
+.lib-back:active { background: var(--surface-2); }
+.lib-title-wrap { flex: 1; min-width: 0; }
+.lib-eyebrow {
+  font-family: var(--font-m); font-size: 9px;
+  letter-spacing: 0.18em; font-weight: 700;
+  text-transform: uppercase;
+  color: var(--acid);
+}
+.lib-title {
+  font-family: var(--font-h); font-size: 18px;
+  font-weight: 800; letter-spacing: -0.02em;
+  line-height: 1.05;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* ═══════════ VIEWS ═══════════ */
+.view { display: none; padding-bottom: 40px; }
+.view.active { display: block; animation: viewIn 0.28s var(--ease); }
+@keyframes viewIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ════════════════════ VIEW 1 : CATÉGORIES ════════════════════ */
+.intro-block {
+  margin: 16px 14px 6px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, rgba(190,242,100,0.08) 0%, rgba(190,242,100,0.02) 100%);
+  border: 1px solid rgba(190,242,100,0.2);
+  border-radius: 14px;
+}
+.intro-hello {
+  font-family: var(--font-m); font-size: 9.5px;
+  color: var(--acid); letter-spacing: 0.16em;
+  font-weight: 700; text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.intro-text {
+  color: var(--text); font-size: 13.5px;
+  line-height: 1.5; font-weight: 500;
+}
+.intro-text strong { color: var(--acid); }
+
+/* Progress */
+.progress-block {
+  margin: 14px 14px 0;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex; align-items: center; gap: 12px;
+}
+.progress-icon {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(190,242,100,0.14);
+  border: 1px solid rgba(190,242,100,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px; flex-shrink: 0;
+}
+.progress-text { flex: 1; }
+.progress-label {
+  font-family: var(--font-m); font-size: 9px;
+  letter-spacing: 0.12em; color: var(--text-faint);
+  font-weight: 700; text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.progress-stat {
+  font-family: var(--font-h); font-size: 14px;
+  font-weight: 700; color: var(--text);
+}
+.progress-stat strong { color: var(--acid); }
+.progress-bar {
+  margin-top: 6px;
+  height: 4px;
+  background: var(--surface-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--acid), var(--green));
+  transition: width 0.6s var(--ease);
+  border-radius: 999px;
+}
+
+/* Search */
+.search-wrap { padding: 14px 14px 6px; position: relative; }
+.search-input {
+  width: 100%;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 38px 12px 38px;
+  color: var(--text);
+  font-family: var(--font-d); font-size: 14px;
+  -webkit-appearance: none;
+}
+.search-input:focus { outline: 0; border-color: var(--border-strong); }
+.search-ico {
+  position: absolute; left: 26px; top: 50%; transform: translateY(-50%);
+  color: var(--text-faint); pointer-events: none; font-size: 14px;
+}
+.search-clear {
+  position: absolute; right: 22px; top: 50%; transform: translateY(-50%);
+  background: var(--surface); border: 0; color: var(--text-dim);
+  width: 22px; height: 22px; border-radius: 50%;
+  display: none; align-items: center; justify-content: center;
+  font-size: 13px; cursor: pointer;
+}
+.search-clear.show { display: flex; }
+
+/* Section label */
+.section-label {
+  margin: 22px 18px 10px;
+  font-family: var(--font-m); font-size: 10px;
+  letter-spacing: 0.18em; font-weight: 700;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+
+/* CATEGORY TILES */
+.cats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 0 14px;
+}
+.cat-tile {
+  position: relative;
+  aspect-ratio: 1.05 / 1;
+  border-radius: 18px;
+  padding: 14px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: transform 0.18s var(--ease);
+}
+.cat-tile:active { transform: scale(0.96); }
+.cat-tile::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--cat-color), transparent 60%);
+  opacity: 0.18;
+  pointer-events: none;
+}
+.cat-tile::after {
+  content: '';
+  position: absolute; right: -15px; top: -15px;
+  width: 70px; height: 70px;
+  border-radius: 50%;
+  background: var(--cat-color);
+  opacity: 0.08;
+  pointer-events: none;
+}
+.cat-emoji {
+  font-size: 36px;
+  line-height: 1;
+  margin-bottom: auto;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+  position: relative; z-index: 1;
+}
+.cat-name {
+  font-family: var(--font-h); font-size: 15px;
+  font-weight: 800; letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--text);
+  position: relative; z-index: 1;
+}
+.cat-count {
+  font-family: var(--font-m); font-size: 10px;
+  font-weight: 700; letter-spacing: 0.08em;
+  color: var(--cat-color);
+  margin-top: 4px;
+  text-transform: uppercase;
+  position: relative; z-index: 1;
+}
+
+/* Quick access (search results / popular) */
+.fiches-flat {
+  padding: 0 14px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+/* ════════════════════ VIEW 2 : GRID FICHES (catégorie) ════════════════════ */
+.cat-banner {
+  margin: 14px 14px 4px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+  position: relative; overflow: hidden;
+}
+.cat-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--cat-color, var(--acid)) 0%, transparent 70%);
+  opacity: 0.12;
+}
+.cat-banner-emoji {
+  font-size: 38px; line-height: 1;
+  position: relative; z-index: 1;
+}
+.cat-banner-info { position: relative; z-index: 1; flex: 1; }
+.cat-banner-label {
+  font-family: var(--font-m); font-size: 9.5px;
+  letter-spacing: 0.18em; color: var(--cat-color, var(--acid));
+  font-weight: 700; text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.cat-banner-title {
+  font-family: var(--font-h); font-size: 19px;
+  font-weight: 800; letter-spacing: -0.02em;
+}
+
+.fiches-grid {
+  padding: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.fiche-card {
+  position: relative;
+  border-radius: 16px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, var(--bg-2), var(--bg-3));
+  cursor: pointer;
+  display: flex; flex-direction: column;
+  min-height: 140px;
+  overflow: hidden;
+  transition: transform 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+.fiche-card:active { transform: scale(0.97); border-color: var(--border-strong); }
+.fiche-card.viewed::after {
+  content: '✓';
+  position: absolute; top: 8px; right: 10px;
+  width: 16px; height: 16px;
+  background: rgba(190,242,100,0.18);
+  border: 1px solid var(--acid);
+  border-radius: 50%;
+  color: var(--acid);
+  font-size: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+}
+.fiche-emoji {
+  font-size: 28px; line-height: 1;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+}
+.fiche-name {
+  font-family: var(--font-h); font-size: 13px;
+  font-weight: 700; letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.fiche-tldr {
+  font-size: 11px; color: var(--text-dim);
+  line-height: 1.35;
+  margin-top: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.fiche-bm-mini {
+  position: absolute; top: 8px; right: 10px;
+  color: var(--acid);
+  font-size: 12px;
+}
+
+/* Flat list (when searching) */
+.fiche-card.flat {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  min-height: auto;
+  padding: 14px;
+}
+.fiche-card.flat .fiche-emoji {
+  font-size: 32px;
+  margin: 0;
+  flex-shrink: 0;
+}
+.fiche-card.flat .fiche-content { flex: 1; min-width: 0; }
+.fiche-card.flat .fiche-name { font-size: 14.5px; margin-bottom: 2px; }
+.fiche-card.flat .fiche-tldr {
+  font-size: 12px;
+  -webkit-line-clamp: 2;
+}
+.fiche-card.flat .fiche-cat-pill {
+  margin-top: 5px;
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.05);
+  font-family: var(--font-m); font-size: 8.5px;
+  letter-spacing: 0.1em; font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* ════════════════════ VIEW 3 : DÉTAIL FICHE ════════════════════ */
+.detail-hero {
+  position: relative;
+  margin: 14px 14px 0;
+  padding: 22px 20px 24px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.detail-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--cat-color), transparent 65%);
+  opacity: 0.22;
+  pointer-events: none;
+}
+.detail-hero::after {
+  content: '';
+  position: absolute; right: -40px; bottom: -40px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: var(--cat-color);
+  opacity: 0.07;
+  pointer-events: none;
+}
+.detail-hero-tag {
+  position: relative; z-index: 1;
+  display: inline-block;
+  font-family: var(--font-m); font-size: 9px;
+  letter-spacing: 0.15em; font-weight: 700;
+  color: var(--cat-color);
+  background: rgba(255,255,255,0.06);
+  padding: 4px 9px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.detail-hero-emoji {
+  font-size: 56px; line-height: 1;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+  position: relative; z-index: 1;
+}
+.detail-hero-name {
+  position: relative; z-index: 1;
+  font-family: var(--font-h); font-size: 24px;
+  font-weight: 800; letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.detail-hero-tldr {
+  position: relative; z-index: 1;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+.detail-hero-tldr strong { color: var(--text); font-weight: 600; }
+
+.detail-bm-btn {
+  position: absolute; top: 14px; right: 14px;
+  z-index: 2;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--text-dim);
+  font-size: 17px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.detail-bm-btn.on { color: var(--acid); border-color: var(--acid); }
+
+/* Hero stat (chiffre clé en gros) */
+.hero-stat {
+  margin: 14px 14px 0;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--bg-2), var(--bg-3));
+  border: 1px solid var(--border);
+  display: flex; align-items: center; gap: 14px;
+}
+.hero-stat-icon {
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  background: var(--cat-color);
+  opacity: 0.85;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.hero-stat-text { flex: 1; min-width: 0; }
+.hero-stat-lbl {
+  font-family: var(--font-m); font-size: 9px;
+  letter-spacing: 0.15em; font-weight: 700;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  margin-bottom: 1px;
+}
+.hero-stat-val {
+  font-family: var(--font-h); font-size: 20px;
+  font-weight: 800; letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+/* Section block */
+.det-section {
+  margin: 16px 14px 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.det-section-head {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 8px;
+}
+.det-section-icon {
+  width: 26px; height: 26px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.05);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+.det-section-title {
+  font-family: var(--font-h); font-size: 14px;
+  font-weight: 700; letter-spacing: -0.01em;
+  color: var(--text);
+}
+.det-section-body {
+  font-size: 13px; line-height: 1.55;
+  color: var(--text-dim);
+}
+.det-section-body strong { color: var(--text); font-weight: 600; }
+.det-section-body em { color: var(--purple); font-style: normal; font-weight: 500; }
+
+/* Metrics grid in detail */
+.det-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 4px;
+}
+.det-metric {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 11px;
+}
+.det-metric-lbl {
+  font-family: var(--font-m); font-size: 9px;
+  letter-spacing: 0.1em; font-weight: 600;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.det-metric-val {
+  font-family: var(--font-m); font-size: 13px;
+  font-weight: 700; color: var(--text);
+}
+.det-metric-val.up { color: var(--green); }
+.det-metric-val.down { color: var(--red); }
+.det-metric-val.acid { color: var(--acid); }
+
+/* Pros / Cons cards side by side */
+.det-pros-cons {
+  margin: 16px 14px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.pc-card {
+  border-radius: 14px;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.pc-card.pros {
+  background: linear-gradient(135deg, rgba(74,222,128,0.08), rgba(74,222,128,0.02));
+  border-color: rgba(74,222,128,0.25);
+}
+.pc-card.cons {
+  background: linear-gradient(135deg, rgba(248,113,113,0.07), rgba(248,113,113,0.02));
+  border-color: rgba(248,113,113,0.25);
+}
+.pc-head {
+  display: flex; align-items: center; gap: 7px;
+  margin-bottom: 8px;
+}
+.pc-emoji { font-size: 16px; }
+.pc-title {
+  font-family: var(--font-h); font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.pc-card.pros .pc-title { color: var(--green); }
+.pc-card.cons .pc-title { color: var(--red); }
+.pc-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.pc-list li {
+  position: relative;
+  padding-left: 17px;
+  font-size: 12.5px; line-height: 1.4;
+  color: var(--text-dim);
+}
+.pc-list li::before {
+  position: absolute; left: 0; top: 1px;
+  font-size: 11px;
+  font-family: var(--font-m); font-weight: 700;
+}
+.pc-card.pros li::before { content: '✓'; color: var(--green); }
+.pc-card.cons li::before { content: '✗'; color: var(--red); }
+.pc-list strong { color: var(--text); font-weight: 600; }
+
+/* VS callout */
+.det-vs {
+  margin: 16px 14px 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(167,139,250,0.07), rgba(167,139,250,0.02));
+  border: 1px solid rgba(167,139,250,0.2);
+}
+.det-vs-head {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 6px;
+}
+.det-vs-emoji { font-size: 18px; }
+.det-vs-title {
+  font-family: var(--font-h); font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--purple);
+}
+.det-vs-body {
+  font-size: 13px; line-height: 1.55;
+  color: var(--text-dim);
+}
+.det-vs-body strong { color: var(--text); font-weight: 600; }
+.det-vs-body em { color: var(--purple); font-style: normal; font-weight: 500; }
+
+/* Footer note */
+.det-note {
+  margin: 16px 14px 0;
+  padding: 10px 14px;
+  font-size: 11px;
+  color: var(--text-faint);
+  font-style: italic;
+  text-align: center;
+}
+
+/* "Comment ouvrir" — section action plus visible */
+.det-section-how {
+  background: linear-gradient(135deg, rgba(190,242,100,0.06), rgba(190,242,100,0.01));
+  border-color: rgba(190,242,100,0.22);
+}
+.det-section-how .det-section-icon {
+  background: rgba(190,242,100,0.15);
+}
+.det-section-how .det-section-title {
+  color: var(--acid);
+}
+
+/* Empty state */
+.lib-empty {
+  text-align: center;
+  padding: 40px 24px;
+  color: var(--text-faint);
+  font-size: 13px;
+  font-style: italic;
+}
+.lib-empty-emoji {
+  font-size: 42px;
+  margin-bottom: 12px;
+  display: block;
+  opacity: 0.6;
+}
+
+/* Disclaimer footer */
+.lib-disclaimer {
+  margin: 28px 14px 0;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  font-size: 11px; line-height: 1.5;
+  color: var(--text-faint);
+  text-align: center;
+}
+.lib-disclaimer strong { color: var(--text-dim); font-weight: 600; }
+
+/* Favoris ★ shortcut button on home */
+.fav-shortcut {
+  display: flex; align-items: center; gap: 10px;
+  margin: 12px 14px 0;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, rgba(190,242,100,0.06), rgba(190,242,100,0.01));
+  border: 1px solid rgba(190,242,100,0.18);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.fav-shortcut:active { background: rgba(190,242,100,0.08); }
+.fav-shortcut-emoji {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: rgba(190,242,100,0.14);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  color: var(--acid);
+}
+.fav-shortcut-text { flex: 1; }
+.fav-shortcut-label {
+  font-family: var(--font-h); font-size: 14px;
+  font-weight: 700; color: var(--text);
+}
+.fav-shortcut-count {
+  font-size: 11.5px; color: var(--text-dim);
+  margin-top: 1px;
+}
+.fav-shortcut-arrow { color: var(--text-faint); font-size: 14px; }
+
+#version-badge {
+  position: fixed; bottom: 8px; right: 8px;
+  background: rgba(0,0,0,0.5);
+  color: var(--text-faint);
+  font-family: var(--font-m); font-size: 9px;
+  padding: 3px 7px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  z-index: 100;
+  backdrop-filter: blur(6px);
+}
+
+@media (max-width: 360px) {
+  .lib-title { font-size: 16px; }
+  .cat-emoji { font-size: 32px; }
+  .cat-name { font-size: 14px; }
+  .detail-hero-name { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+
+<header class="lib-head">
+  <a class="lib-back" id="head-back" onclick="navBack()" aria-label="Retour">←</a>
+  <div class="lib-title-wrap">
+    <div class="lib-eyebrow" id="head-eyebrow">BIBLIOTHÈQUE</div>
+    <div class="lib-title" id="head-title">Tes placements</div>
+  </div>
+</header>
+
+<!-- ════════════════════ VIEW 1 : ACCUEIL CATÉGORIES ════════════════════ -->
+<div class="view active" id="view-home">
+  <div class="intro-block">
+    <div class="intro-hello">★ NIVEAU SUIVANT</div>
+    <div class="intro-text">Tu sais trader. <strong>Maintenant apprends à mettre ton argent</strong> au bon endroit, légalement et fiscalement.</div>
+  </div>
+
+  <div class="progress-block">
+    <div class="progress-icon">📚</div>
+    <div class="progress-text">
+      <div class="progress-label">Ta découverte</div>
+      <div class="progress-stat"><strong id="prog-num">0</strong> / <span id="prog-total">26</span> fiches lues</div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <div class="search-wrap">
+    <span class="search-ico">🔍</span>
+    <input type="search" id="search-input" class="search-input" placeholder="Rechercher (PEA, SCPI, fiscalité...)" autocomplete="off" />
+    <button class="search-clear" id="search-clear" onclick="clearSearch()" aria-label="Effacer">✕</button>
+  </div>
+
+  <div id="home-default">
+    <div class="fav-shortcut" id="fav-shortcut" onclick="openFavorites()" style="display:none;">
+      <div class="fav-shortcut-emoji">★</div>
+      <div class="fav-shortcut-text">
+        <div class="fav-shortcut-label">Mes favoris</div>
+        <div class="fav-shortcut-count" id="fav-shortcut-count">0 fiches</div>
+      </div>
+      <div class="fav-shortcut-arrow">→</div>
+    </div>
+
+    <div class="section-label">Explore par thème</div>
+    <div class="cats-grid" id="cats-grid"></div>
+  </div>
+
+  <div id="home-search" style="display:none;">
+    <div class="section-label">Résultats</div>
+    <div class="fiches-flat" id="search-results"></div>
+  </div>
+
+  <div class="lib-disclaimer">
+    <strong>Info générale · non personnalisée.</strong><br>
+    Avant tout placement, consulte un conseiller indépendant.
+  </div>
+</div>
+
+<!-- ════════════════════ VIEW 2 : GRID FICHES D'UNE CATÉGORIE ════════════════════ -->
+<div class="view" id="view-cat">
+  <div class="cat-banner" id="cat-banner">
+    <div class="cat-banner-emoji" id="cat-banner-emoji">📚</div>
+    <div class="cat-banner-info">
+      <div class="cat-banner-label" id="cat-banner-label">CATÉGORIE</div>
+      <div class="cat-banner-title" id="cat-banner-title">Titre</div>
+    </div>
+  </div>
+  <div class="fiches-grid" id="cat-fiches-grid"></div>
+</div>
+
+<!-- ════════════════════ VIEW 3 : FAVORIS ════════════════════ -->
+<div class="view" id="view-favs">
+  <div class="cat-banner" style="--cat-color: var(--acid);">
+    <div class="cat-banner-emoji">★</div>
+    <div class="cat-banner-info">
+      <div class="cat-banner-label">FAVORIS</div>
+      <div class="cat-banner-title">Tes incontournables</div>
+    </div>
+  </div>
+  <div class="fiches-grid" id="favs-grid"></div>
+</div>
+
+<!-- ════════════════════ VIEW 4 : DÉTAIL FICHE ════════════════════ -->
+<div class="view" id="view-detail">
+  <div id="detail-content"></div>
+  <div class="lib-disclaimer">
+    <strong>Info générale.</strong> Avant un placement réel, consulte un conseiller.
+  </div>
+</div>
+
+<script>
+/* ═══════════ FICHES DATA ═══════════ */
+const FICHES = [
+  // ═════════ ENVELOPPES ═════════
+  { id: 'pea', cat: 'enveloppe', icon: '🇪🇺',
+    name: 'PEA',
+    fullName: 'Plan d\'Épargne en Actions',
+    tag: 'ENVELOPPE · ACTIONS EUROPE',
+    tldr: 'Le compte-titres <strong>défiscalisé</strong> pour investir en actions européennes.',
+    hero: { lbl: 'Plafond', val: '150 000 €' },
+    what: 'Un PEA est un <strong>compte spécial</strong> où tu peux acheter des actions européennes et certains ETF. La <em>différence majeure avec un compte-titres normal</em> : si tu attends 5 ans avant de retirer, tu ne paies <strong>aucun impôt</strong> sur tes gains (juste 17.2% de prélèvements sociaux). C\'est un cadeau fiscal énorme de l\'État pour encourager l\'investissement long terme.',
+    how: '<strong>Où l\'ouvrir</strong> : banque en ligne (Boursobank, Fortuneo, Bourse Direct) → <em>frais bas, choix large</em>. Banque traditionnelle = à éviter (frais élevés).<br><br><strong>Étapes</strong> :<br>1. Choisir un courtier (Bourse Direct = -%-% frais, recommandé débutants)<br>2. Ouvrir en ligne (15 min, RIB + pièce d\'identité)<br>3. Virer des euros sur le PEA<br>4. Acheter ton premier ETF (ex: <em>Amundi MSCI World UCITS</em>, éligible PEA) ou des actions Europe<br><br><strong>Ticket de départ</strong> : aucun minimum légal. Tu peux commencer avec <strong>50-100 €/mois</strong>.',
+    forWho: 'Tu veux <strong>investir en actions</strong> de zone Europe sur le <em>long terme</em> (5+ ans) avec une fiscalité douce.',
+    metrics: [
+      { lbl: 'Plafond', val: '150k €' },
+      { lbl: 'Min', val: 'Aucun' },
+      { lbl: 'Durée', val: '5 ans+' },
+      { lbl: 'Rendement', val: '6-8%/an', cls: 'up' },
+    ],
+    fisca: 'Avant 5 ans : <strong>flat tax 30%</strong> + clôture forcée. Après 5 ans : <strong>exonération d\'impôt</strong> (seul PS 17.2% restent). <em>La vraie magie du PEA.</em>',
+    pros: ['<strong>Zéro impôt</strong> sur les plus-values après 5 ans', 'Pas de fiscalité sur les <strong>dividendes</strong> tant qu\'ils restent dedans', 'Plafond élevé (150k€)', 'Retrait après 5 ans <strong>sans clôture</strong>'],
+    cons: ['<strong>Limité à l\'Europe</strong> (et ETF UCITS éligibles)', 'Pas de crypto ni d\'actions US directes', 'Retrait avant 5 ans = <strong>clôture</strong>', '<strong>1 PEA par personne</strong>'],
+    vs: '<strong>vs CTO</strong> : moins flexible mais énorme avantage fiscal après 5 ans. ETF World éligible PEA = combo gagnant (diversification mondiale + fiscalité PEA).',
+    note: 'Rendement basé sur historique CAC 40 + dividendes. Pas garanti.',
+  },
+  { id: 'pea-pme', cat: 'enveloppe', icon: '🏭',
+    name: 'PEA-PME',
+    fullName: 'PEA pour PME européennes',
+    tag: 'ENVELOPPE · PME EUROPE',
+    tldr: 'Variante du PEA pour <strong>petites et moyennes entreprises</strong> européennes.',
+    hero: { lbl: 'Plafond', val: '225 000 €' },
+    what: 'C\'est un <strong>PEA "spécial PME"</strong>. Mêmes règles fiscales (exonération après 5 ans), mais tu ne peux y mettre que des <strong>actions/obligations de petites entreprises</strong> européennes (ETI/PME). Plus risqué — les PME font parfois faillite — mais plus dynamique en cas de succès. Le plafond <em>se cumule</em> avec ton PEA classique (jusqu\'à 225k€ total).',
+    how: '<strong>Où l\'ouvrir</strong> : mêmes courtiers que le PEA classique (Bourse Direct, Boursobank). À ouvrir <em>après</em> avoir bien rempli ton PEA classique.<br><br><strong>Étapes</strong> :<br>1. Choisir un courtier (vérifier qu\'il propose le PEA-PME — pas toutes les banques le font)<br>2. Ouvrir en ligne<br>3. Investir via des <strong>fonds PEA-PME</strong> ou des actions individuelles de PME cotées<br><br><strong>Conseil</strong> : préfère un <em>fonds diversifié PME</em> plutôt qu\'une action isolée (le risque de défaut est réel).',
+    forWho: 'Tu as <strong>déjà un PEA classique</strong> et tu veux diversifier sur des PME. Profil offensif.',
+    metrics: [
+      { lbl: 'Plafond', val: '225k €' },
+      { lbl: 'Min', val: 'Aucun' },
+      { lbl: 'Durée', val: '5 ans+' },
+      { lbl: 'Risque', val: 'Élevé', cls: 'down' },
+    ],
+    fisca: 'Identique au PEA : flat tax 30% avant 5 ans, <strong>exonération après 5 ans</strong> (sauf PS 17.2%).',
+    pros: ['Plafond <strong>cumulé avec PEA</strong> classique', 'Investissement dans des <strong>PME en croissance</strong>', 'Mêmes avantages fiscaux que PEA'],
+    cons: ['PME = <strong>risque plus élevé</strong> que blue chips', 'Liquidité parfois <em>faible</em>', 'Offre limitée chez certaines banques'],
+    vs: '<strong>vs PEA</strong> : à ouvrir <em>après</em> avoir bien rempli un PEA classique.',
+  },
+  { id: 'cto', cat: 'enveloppe', icon: '📈',
+    name: 'CTO',
+    fullName: 'Compte-Titres Ordinaire',
+    tag: 'ENVELOPPE · MARCHÉS MONDIAUX',
+    tldr: 'Le compte-titres <strong>universel et flexible</strong>. Aucun plafond, accès à tout.',
+    hero: { lbl: 'Plafond', val: 'Aucun' },
+    what: 'C\'est le <strong>compte d\'investissement "standard"</strong>. Tu peux y acheter <em>tout ce qui se trade</em> dans le monde : actions US (Apple, Tesla, Nvidia), actions japonaises, obligations, ETF spécialisés, etc. Aucune limite de montant, aucune contrainte géographique. La contrepartie : <strong>tu paies 30% d\'impôts</strong> sur tes gains (flat tax), même après 10 ans.',
+    how: '<strong>Où l\'ouvrir</strong> : courtiers en ligne (Trade Republic, DEGIRO, Interactive Brokers, Bourse Direct) → <em>frais ultra-bas</em>.<br><br><strong>Étapes</strong> :<br>1. Choisir un courtier (Trade Republic = 1€/ordre, design moderne)<br>2. Ouvrir le compte en ligne (15-30 min)<br>3. Virer des euros<br>4. Acheter ce que tu veux<br><br><strong>Stratégie pro</strong> : remplis ton <em>PEA en premier</em>, puis utilise le CTO uniquement pour ce que le PEA ne permet pas (actions US directes, ETF spécialisés, etc.).',
+    forWho: 'Tu veux investir sur des actions <strong>US</strong>, japonaises, émergents, obligations, etc. Tu acceptes la flat tax.',
+    metrics: [
+      { lbl: 'Plafond', val: 'Aucun' },
+      { lbl: 'Min', val: 'Aucun' },
+      { lbl: 'Liquidité', val: 'Totale', cls: 'acid' },
+      { lbl: 'Rendement', val: '4-8%/an', cls: 'up' },
+    ],
+    fisca: '<strong>Flat tax 30%</strong> (12.8% IR + 17.2% PS) sur les gains réalisés à la vente. Option barème IR si plus favorable.',
+    pros: ['<strong>Zéro contrainte</strong>, zéro plafond, zéro zone géographique', 'Accès direct aux <strong>marchés US</strong>', '<strong>Retrait immédiat</strong> sans pénalité'],
+    cons: ['<strong>Flat tax 30%</strong> dès le 1er euro', 'Dividendes US imposés en plus (retenue 15-30%)', 'Toujours préférer PEA si possible'],
+    vs: '<strong>vs PEA</strong> : utilise CTO uniquement pour ce que le PEA ne permet pas (US directs, obligations, certains ETF).',
+    note: 'Rendement S&P 500 historique 7-10%/an net de frais.',
+  },
+  { id: 'av', cat: 'enveloppe', icon: '🏦',
+    name: 'Assurance-Vie',
+    fullName: 'Assurance-Vie (AV)',
+    tag: 'ENVELOPPE · MULTI-SUPPORTS',
+    tldr: 'L\'enveloppe <strong>multi-objectifs</strong> : sécurisé (fonds €) + dynamique (UC). Top pour succession.',
+    hero: { lbl: 'Avantage majeur', val: 'Après 8 ans' },
+    what: 'Le placement le plus utilisé en France. Malgré son nom, ce <strong>n\'est pas une assurance "décès"</strong> — c\'est un <em>compte d\'épargne avec fiscalité préférentielle</em>. Tu y mets ton argent dans 2 types de supports : <strong>fonds euros</strong> (capital garanti, 2-3%/an) ou <strong>unités de compte (UC)</strong> (actions, ETF, immo, plus risqué mais plus rentable). Après 8 ans, la fiscalité devient très douce. C\'est aussi <em>l\'outil n°1 pour transmettre du patrimoine</em> sans droits de succession.',
+    how: '<strong>Où l\'ouvrir</strong> : <strong>EN LIGNE uniquement</strong> (Linxea, Boursobank, Yomoni, Nalo) → frais d\'entrée 0%, frais de gestion 0.5-0.7%/an. <em>JAMAIS en agence bancaire</em> : frais d\'entrée 3-5%, gestion 1%+/an.<br><br><strong>Étapes</strong> :<br>1. Comparer 2-3 contrats en ligne (Linxea Avenir 2 est une référence)<br>2. Ouvrir en ligne (souscription 100-1000 € minimum selon contrat)<br>3. Choisir la <strong>répartition</strong> fonds €/UC selon ton profil<br>4. Mettre en place un <strong>versement mensuel auto</strong> (50-200 €)<br><br><strong>Astuce</strong> : ouvre <em>même avec 100 €</em> aujourd\'hui pour <strong>démarrer le compteur des 8 ans</strong>.',
+    forWho: 'Tu veux un <strong>placement mixte</strong> (sécurisé + dynamique) avec fiscalité douce après 8 ans. Indispensable pour la <em>succession</em>.',
+    metrics: [
+      { lbl: 'Plafond', val: 'Aucun' },
+      { lbl: 'Min', val: '50-1000 €' },
+      { lbl: 'Durée', val: '8 ans+' },
+      { lbl: 'Rendement', val: '2-6%/an', cls: 'up' },
+    ],
+    fisca: '<strong>Avant 8 ans</strong> : flat tax 30%. <strong>Après 8 ans</strong> : abattement 4 600 €/an (9 200 € couple) sur les gains + taux 7.5%. <em>Succession : 152 500 € par bénéficiaire hors droits.</em>',
+    pros: ['<strong>Fonds euros</strong> = capital garanti, 2-3%/an', '<strong>UC</strong> (actions, ETF, immo) pour booster', 'Fiscalité douce après 8 ans', '<strong>Outil n°1 de succession</strong>'],
+    cons: ['<strong>Frais souvent élevés</strong> (entrée, gestion, UC)', 'Fonds euros en <strong>baisse</strong> depuis 10 ans', 'Méfiance des contrats <em>vendus en banque</em>'],
+    vs: '<strong>vs PEA</strong> : AV plus diversifiée mais frais plus élevés. <strong>Préfère un contrat en ligne</strong> (Linxea, Boursobank, Yomoni) plutôt qu\'en agence.',
+  },
+  { id: 'per', cat: 'enveloppe', icon: '👴',
+    name: 'PER',
+    fullName: 'Plan Épargne Retraite',
+    tag: 'ENVELOPPE · RETRAITE',
+    tldr: '<strong>Déduis tes versements de tes impôts</strong> maintenant. Argent bloqué jusqu\'à la retraite.',
+    hero: { lbl: 'Réduction d\'impôt', val: 'Immédiate' },
+    what: 'Un compte d\'épargne <strong>spécial retraite</strong>. Particularité unique : tu peux <strong>déduire tes versements de ton revenu imposable</strong>. Exemple : tu gagnes 50k€/an et tu verses 5k€ sur ton PER → tu n\'es imposé que sur 45k€. Si tu es <em>fortement imposé</em> (TMI 30%+), c\'est très avantageux. Inconvénient : l\'argent est <strong>bloqué jusqu\'à ta retraite</strong> (sauf cas exceptionnels comme l\'achat de ta résidence principale).',
+    how: '<strong>Où l\'ouvrir</strong> : courtiers en ligne (Linxea Spirit PER, Yomoni, Nalo) → frais bas, gestion pilotée auto possible.<br><br><strong>Étapes</strong> :<br>1. Vérifier ton TMI (tranche marginale d\'imposition) — si ≤ 11%, <strong>laisse tomber</strong>, ouvre une AV à la place<br>2. Choisir un PER en ligne (éviter les banques traditionnelles, frais x3)<br>3. Ouvrir et verser (souvent 500-1000 € min)<br>4. <strong>Déclarer les versements</strong> sur ta déclaration d\'impôts (case spécifique) → l\'État rembourse une partie<br><br><strong>Stratégie</strong> : verse en décembre pour <em>réduire les impôts de l\'année suivante</em>.',
+    forWho: 'Tu es <strong>fortement imposé</strong> (TMI ≥ 30%) et tu veux économiser des impôts maintenant. <em>Inutile si TMI ≤ 11%</em>.',
+    metrics: [
+      { lbl: 'Plafond/an', val: '10% revenus' },
+      { lbl: 'Blocage', val: 'Retraite' },
+      { lbl: 'Réduction IR', val: 'Oui', cls: 'acid' },
+      { lbl: 'Rendement', val: '3-6%/an' },
+    ],
+    fisca: '<strong>Versements déductibles</strong> du revenu imposable. Exemple : TMI 30%, tu verses 5000 € → <strong>1500 € d\'impôts économisés</strong>. À la sortie : capital ou rente, imposé normalement.',
+    pros: ['<strong>Économie d\'impôt immédiate</strong>', 'Force à épargner long terme', 'Sortie en capital possible depuis 2019', 'Déblocage pour <strong>achat résidence principale</strong>'],
+    cons: ['Argent <strong>bloqué</strong> jusqu\'à la retraite (~25 ans)', 'Imposition à la sortie', 'Frais souvent élevés', '<strong>Inutile si TMI bas</strong>'],
+    vs: '<strong>vs Assurance-vie</strong> : PER = déduction immédiate mais blocage. AV = liquidité totale et douce après 8 ans. <em>PER pour TMI haute, AV pour les autres.</em>',
+  },
+
+  // ═════════ ÉPARGNE ═════════
+  { id: 'livret-a', cat: 'epargne', icon: '💸',
+    name: 'Livret A',
+    fullName: 'Livret A',
+    tag: 'ÉPARGNE · LIQUIDE · GARANTI',
+    tldr: 'Le placement <strong>universel et liquide</strong>. Ton matelas de sécurité.',
+    hero: { lbl: 'Taux', val: '3.00%' },
+    what: 'Le placement <strong>n°1 en France</strong>. Tu déposes de l\'argent, l\'État te garantit ton capital + un taux fixe (3% en 2024). Tu peux retirer <em>à tout moment, sans frais, sans impôts</em>. Limite : 22 950 € max. C\'est pas un placement pour s\'enrichir (le taux est souvent inférieur à l\'inflation), c\'est un <strong>matelas de sécurité</strong> : 3-6 mois de dépenses dispo immédiatement en cas de coup dur.',
+    how: '<strong>Où l\'ouvrir</strong> : <em>n\'importe quelle banque française</em>. Aucune différence — le taux est fixé par l\'État.<br><br><strong>Étapes</strong> :<br>1. Demander à ta banque (souvent en ligne, 2 min)<br>2. Verser de l\'argent quand tu veux<br>3. Mettre en place un <strong>virement auto mensuel</strong> (ex: 100-300 €/mois)<br><br><strong>Conseil</strong> : <em>1 seul Livret A par personne</em> (la banque vérifie en interbancaire). Ouvrir avant tout autre placement = ta base de sécurité.',
+    forWho: '<strong>Tout le monde</strong>. Ton épargne de précaution (3-6 mois de dépenses). Sans risque, toujours dispo.',
+    metrics: [
+      { lbl: 'Plafond', val: '22 950 €' },
+      { lbl: 'Taux', val: '3.00%', cls: 'acid' },
+      { lbl: 'Liquidité', val: 'Immédiate', cls: 'acid' },
+      { lbl: 'Risque', val: 'Zéro', cls: 'acid' },
+    ],
+    fisca: '<strong>Exonéré d\'impôts</strong>. Aucune fiscalité. Net = brut.',
+    pros: ['<strong>Capital garanti à 100%</strong> par l\'État', 'Retrait <strong>instantané</strong>', 'Aucun frais', '<strong>Net d\'impôts</strong>'],
+    cons: ['Rendement <strong>inférieur à l\'inflation</strong>', 'Plafond limité', '1 par personne'],
+    vs: 'La <strong>base de toute épargne</strong>. Avant tout autre placement, garnis ton Livret A.',
+  },
+  { id: 'ldds', cat: 'epargne', icon: '🌱',
+    name: 'LDDS',
+    fullName: 'Livret Développement Durable',
+    tag: 'ÉPARGNE · LIQUIDE · GARANTI',
+    tldr: 'Frère jumeau du Livret A. <strong>Cumulable</strong>.',
+    hero: { lbl: 'Plafond cumulé', val: '34 950 €' },
+    what: 'C\'est <strong>exactement le même fonctionnement</strong> que le Livret A (même taux 3%, même garantie, même liquidité). La seule différence : <em>plafond plus bas</em> (12k€) et <em>il finance officiellement la transition écologique</em>. Son intérêt : <strong>se cumule</strong> avec le Livret A → 22 950 + 12 000 = 34 950 € au total défiscalisés.',
+    how: '<strong>Où l\'ouvrir</strong> : <em>n\'importe quelle banque française</em>, taux fixé par l\'État.<br><br><strong>Étapes</strong> :<br>1. Avoir <strong>déjà rempli ton Livret A</strong> (priorité)<br>2. Ouvrir le LDDS dans la même banque (2 min en ligne)<br>3. Continuer à verser dessus<br><br><strong>Conseil</strong> : <em>1 LDDS par personne</em>, idem Livret A. Stratégie : Livret A puis LDDS puis LEP si éligible.',
+    forWho: 'Tu as <strong>rempli ton Livret A</strong> et tu veux continuer à épargner sans fiscalité.',
+    metrics: [
+      { lbl: 'Plafond', val: '12 000 €' },
+      { lbl: 'Taux', val: '3.00%', cls: 'acid' },
+      { lbl: 'Liquidité', val: 'Immédiate', cls: 'acid' },
+      { lbl: 'Risque', val: 'Zéro', cls: 'acid' },
+    ],
+    fisca: '<strong>Exonéré d\'impôts</strong>, comme le Livret A.',
+    pros: ['Cumulable Livret A → <strong>34 950 €</strong> défiscalisés', 'Capital garanti', 'Retrait immédiat'],
+    cons: ['Plafond plus bas (12k€)', 'Rendement < inflation'],
+    vs: 'Toujours <strong>après</strong> le Livret A, jamais à la place.',
+  },
+  { id: 'lep', cat: 'epargne', icon: '🛟',
+    name: 'LEP',
+    fullName: 'Livret Épargne Populaire',
+    tag: 'ÉPARGNE · LIQUIDE · GARANTI',
+    tldr: 'Pour <strong>revenus modestes</strong>. Meilleur taux du marché.',
+    hero: { lbl: 'Taux', val: '4.00%' },
+    what: 'Un livret réglementé <strong>réservé aux foyers modestes</strong>. Même fonctionnement que le Livret A, mais <strong>taux supérieur</strong> (4% vs 3% en 2024). Plafond plus bas (10k€). Vérification annuelle de tes revenus par la banque (revenu fiscal de référence sous ~22 000 € pour 1 part). Si tes revenus augmentent et dépassent → la banque te demande de fermer.',
+    how: '<strong>Où l\'ouvrir</strong> : ta banque habituelle. Mais beaucoup de gens éligibles <em>ne savent pas qu\'ils le sont</em>.<br><br><strong>Étapes</strong> :<br>1. Vérifier ton éligibilité (regarde ton avis d\'imposition : revenu fiscal de référence ligne 25)<br>2. Demander l\'ouverture à ta banque<br>3. Fournir une <strong>copie de ton avis d\'imposition</strong><br>4. Verser jusqu\'à 10k€ → 4% net d\'impôts<br><br><strong>Conseil priorité absolue</strong> : si tu es éligible, <em>remplis-le AVANT tout autre placement</em>. C\'est le meilleur taux garanti du marché.',
+    forWho: 'Revenu fiscal sous le plafond (~22 000 € pour 1 part). <strong>Bois ce calice</strong>, c\'est rare et précieux.',
+    metrics: [
+      { lbl: 'Plafond', val: '10 000 €' },
+      { lbl: 'Taux', val: '4.00%', cls: 'acid' },
+      { lbl: 'Liquidité', val: 'Immédiate', cls: 'acid' },
+      { lbl: 'Risque', val: 'Zéro', cls: 'acid' },
+    ],
+    fisca: '<strong>Exonéré d\'impôts</strong> intégralement.',
+    pros: ['<strong>Meilleur taux réglementé</strong> (Livret A + 0.5-1 pt)', 'Net d\'impôts', 'Capital garanti'],
+    cons: ['Soumis à <strong>plafond de revenus</strong>', 'Clôture si tes revenus dépassent', 'Plafond 10k€'],
+    vs: 'Si tu es éligible, <strong>c\'est ta priorité absolue</strong> avant le Livret A.',
+  },
+  { id: 'pel', cat: 'epargne', icon: '🏠',
+    name: 'PEL',
+    fullName: 'Plan Épargne Logement',
+    tag: 'ÉPARGNE · BLOQUÉ',
+    tldr: 'Pour <strong>financer un achat immobilier</strong>. Taux figé.',
+    hero: { lbl: 'Taux 2024', val: '2.25%' },
+    what: 'Un livret <strong>spécialisé immobilier</strong>. Tu y verses un montant fixe chaque mois (min 45€/mois). Le taux est <em>verrouillé à l\'ouverture</em> pour toute la durée. Avantage principal : après 4 ans, tu peux obtenir un <strong>prêt immobilier à taux préférentiel</strong> de la banque. Inconvénient : le taux 2024 (2.25%) est <em>peu attractif</em> par rapport au Livret A (3% net). Le PEL n\'a plus vraiment d\'intérêt sauf pour le prêt.',
+    how: '<strong>Où l\'ouvrir</strong> : ta banque (un seul PEL par personne, dans une seule banque).<br><br><strong>Étapes</strong> :<br>1. Demander à ta banque (versement min 225 €)<br>2. Mettre en place un <strong>virement mensuel obligatoire</strong> (min 45 €/mois)<br>3. Tenir <strong>4 ans minimum</strong> (sinon perte des avantages)<br>4. À l\'achat immo, négocier le prêt PEL<br><br><strong>Conseil 2024</strong> : <em>réfléchir avant d\'ouvrir</em>. Avec les taux actuels, un Livret A + une AV est souvent plus efficace.',
+    forWho: 'Tu prévois un achat immobilier dans <strong>5+ ans</strong>. Tu veux verrouiller un taux pour ton prêt futur.',
+    metrics: [
+      { lbl: 'Plafond', val: '61 200 €' },
+      { lbl: 'Taux 2024', val: '2.25%' },
+      { lbl: 'Durée min', val: '4 ans' },
+      { lbl: 'Min mens.', val: '45 €' },
+    ],
+    fisca: '<strong>Flat tax 30%</strong> dès le 1er euro pour PEL ouverts après 2018.',
+    pros: ['Possibilité de <strong>prêt à taux préférentiel</strong>', 'Taux <strong>verrouillé</strong> à l\'ouverture', 'Discipline d\'épargne'],
+    cons: ['<strong>Bloqué 4 ans minimum</strong>', 'Taux 2024 <strong>peu attractif</strong> (vs 3% Livret A net)', 'Versement mensuel obligatoire'],
+    vs: '<strong>vs Livret A</strong> : PEL utile uniquement si tu vises vraiment l\'achat. Sinon Livret A est mieux.',
+  },
+
+  // ═════════ IMMOBILIER ═════════
+  { id: 'scpi', cat: 'immo', icon: '🏢',
+    name: 'SCPI',
+    fullName: 'SCPI — Pierre Papier',
+    tag: 'IMMOBILIER · INDIRECT',
+    tldr: 'Tu achètes <strong>des parts d\'une société immobilière</strong>. Loyers redistribués trimestriellement.',
+    hero: { lbl: 'Rendement', val: '4-6%/an' },
+    what: 'Une SCPI est une <strong>société qui possède un parc immobilier</strong> (bureaux, commerces, logements). Tu achètes des <em>parts</em> de cette société, et tu reçois ta quote-part des loyers chaque trimestre. C\'est l\'<strong>immobilier sans les emmerdes</strong> : pas de locataires à gérer, pas de travaux, pas de notaire. À partir de quelques centaines d\'euros, tu deviens "propriétaire" d\'une fraction d\'un parc de 100M€+.',
+    how: '<strong>Où acheter</strong> : <em>conseillers en gestion de patrimoine en ligne</em> (Louve Invest, La Centrale des SCPI, Linxea) → frais d\'entrée souvent <strong>négociés à -50%</strong> vs banques.<br><br><strong>Étapes</strong> :<br>1. Comparer les SCPI (Corum, Iroko, Remake Live = très bonnes notes)<br>2. Souscrire en ligne (180-1000 € la part)<br>3. Premier loyer reçu après <strong>3-6 mois de carence</strong><br>4. Recevoir tes loyers trimestriellement par virement<br><br><strong>Astuce fiscale</strong> : tu peux <em>acheter des SCPI dans une AV</em> → revenus locatifs taxés selon la fiscalité AV (beaucoup plus douce que IR + PS).',
+    forWho: 'Tu veux investir dans l\'<strong>immobilier sans gérer de locataires</strong>, avec <em>quelques milliers d\'euros</em>.',
+    metrics: [
+      { lbl: 'Ticket min', val: '180-1k €' },
+      { lbl: 'Rendement', val: '4-6%/an', cls: 'up' },
+      { lbl: 'Liquidité', val: 'Faible', cls: 'down' },
+      { lbl: 'Durée', val: '8-15 ans' },
+    ],
+    fisca: 'Revenus fonciers <strong>imposés au barème IR</strong> + PS 17.2%. À détenir dans une AV pour fiscalité plus douce.',
+    pros: ['Immobilier <strong>à petit ticket</strong>', '<strong>Zéro gestion</strong>', 'Loyers <strong>trimestriels</strong>', 'Possibilité d\'emprunter (effet de levier)'],
+    cons: ['<strong>Frais d\'entrée élevés</strong> (8-12%)', 'Liquidité limitée (marché secondaire)', 'Fiscalité <strong>lourde</strong>', 'Risque immo (vacance, baisse)'],
+    vs: '<strong>vs immo direct</strong> : SCPI = zéro tracas, ticket faible. Mais frais d\'entrée mordent.',
+  },
+  { id: 'lmnp', cat: 'immo', icon: '🛏️',
+    name: 'LMNP',
+    fullName: 'Loueur Meublé Non Pro',
+    tag: 'IMMOBILIER · DIRECT · MEUBLÉ',
+    tldr: 'Acheter et louer <strong>meublé</strong>. Statut fiscal très avantageux.',
+    hero: { lbl: 'Avantage', val: 'Amortissement' },
+    what: 'Tu <strong>achètes un appartement, tu le meubles</strong>, et tu le loues (étudiants, touristes via Airbnb, salariés en mobilité). Tu deviens "Loueur Meublé Non Professionnel" — un statut fiscal très puissant. <em>Le truc magique</em> : tu peux <strong>amortir comptablement le bien</strong> (faire comme s\'il perdait de la valeur chaque année), ce qui te permet de <em>déclarer presque zéro revenu imposable</em> pendant 10-15 ans, alors que tu touches des vrais loyers.',
+    how: '<strong>Où acheter</strong> : marché immobilier classique (PAP, SeLoger, agents immo). Ou opérateurs spécialisés en LMNP géré (résidences étudiantes, EHPAD).<br><br><strong>Étapes</strong> :<br>1. <strong>Étudier le marché local</strong> (rendement net visé : 5-7%/an)<br>2. Acheter (apport ~10-20%, crédit immo sur 20-25 ans)<br>3. <strong>Meubler complètement</strong> (liste légale : lit, table, chaises, vaisselle, etc.)<br>4. Déclarer le début d\'activité via formulaire <strong>P0i</strong> auprès de l\'INPI<br>5. Embaucher un <strong>comptable LMNP</strong> (~500-1000 €/an, indispensable pour régime réel)<br>6. Trouver des locataires (PAP, plateformes spécialisées étudiants)',
+    forWho: 'Tu veux un investissement immobilier <strong>en direct</strong>, optimisation fiscale (amortissement). Budget 100k+ €.',
+    metrics: [
+      { lbl: 'Ticket', val: '80-200k €' },
+      { lbl: 'Rendement brut', val: '4-8%/an', cls: 'up' },
+      { lbl: 'Engagement', val: '10+ ans' },
+      { lbl: 'Gestion', val: 'Lourde', cls: 'down' },
+    ],
+    fisca: 'Statut <strong>BIC</strong>. Régime réel = tu amortis le bien → revenus locatifs <em>quasi non imposés</em> 10-15 ans. <strong>Le statut fiscal le plus avantageux</strong> de l\'immo locatif.',
+    pros: ['<strong>Optimisation fiscale puissante</strong>', 'Tu <strong>possèdes</strong> le bien (levier crédit, plus-value)', 'Rendement brut élevé', 'Souplesse (Airbnb, étudiants...)'],
+    cons: ['<strong>Gestion lourde</strong>', 'Ticket d\'entrée élevé', 'Risque vacance, dégradations', 'Comptable nécessaire (500-1000 €/an)'],
+    vs: '<strong>vs nu (location classique)</strong> : LMNP infiniment plus avantageux. <strong>vs SCPI</strong> : rendement supérieur mais beaucoup plus chronophage.',
+  },
+
+  // ═════════ MARCHÉS ═════════
+  { id: 'etf', cat: 'marche', icon: '🌍',
+    name: 'ETF',
+    fullName: 'ETF — Trackers indiciels',
+    tag: 'MARCHÉ · DIVERSIFIÉ',
+    tldr: 'Un <strong>fonds qui réplique un indice</strong> (S&P 500, MSCI World...). Frais ultra-bas.',
+    hero: { lbl: 'Frais/an', val: '0.05-0.30%' },
+    what: 'Un ETF (Exchange Traded Fund) est <strong>un panier d\'actions automatique</strong>. Au lieu d\'acheter 500 actions une par une pour copier le S&P 500, tu achètes <em>1 part d\'ETF S&P 500</em> et tu possèdes <strong>une fraction des 500 entreprises d\'un coup</strong>. Tu touches les dividendes, tu suis la performance, le tout pour <em>0.05-0.30% de frais par an</em>. C\'est la révolution des 20 dernières années en investissement.',
+    how: '<strong>Où acheter</strong> : sur un <strong>PEA</strong> (privilégier, fiscalité top), un <strong>CTO</strong> ou via une <strong>AV en ligne</strong>.<br><br><strong>Étapes</strong> :<br>1. Ouvrir un PEA (Bourse Direct, Boursobank)<br>2. Chercher un <strong>ETF éligible PEA</strong> (ex: <em>Amundi MSCI World UCITS ETF — code PWLD</em>)<br>3. Passer un ordre d\'achat (1 part = 25-50 € env.)<br>4. Mettre en place un <strong>DCA mensuel</strong> (100-300 €/mois automatique)<br>5. <em>Oublier</em>. Vraiment.<br><br><strong>ETF débutant à connaître</strong> : MSCI World (1500+ actions mondiales), S&P 500 (500 plus grosses US), CAC 40 (France). <em>Vérifier "UCITS"</em> = compatible PEA.',
+    forWho: '<strong>Le placement n°1 pour tous</strong>. Diversification d\'un fonds, sans payer un gérant actif.',
+    metrics: [
+      { lbl: 'Frais/an', val: '0.05-0.30%', cls: 'acid' },
+      { lbl: 'Rendement', val: '7-10%/an', cls: 'up' },
+      { lbl: 'Min', val: 'Prix 1 part' },
+      { lbl: 'Liquidité', val: 'Totale', cls: 'acid' },
+    ],
+    fisca: 'Selon l\'enveloppe : <strong>PEA</strong> (exo après 5 ans), <strong>CTO</strong> (flat tax 30%), <strong>AV</strong>. ETF éligibles PEA : MSCI World, S&P 500 (vérifier "UCITS" et synthétique).',
+    pros: ['<strong>1 ETF World = 1500+ entreprises</strong>', 'Frais ultra-bas (30x moins que fonds actifs)', 'Battent <strong>80% des gérants actifs</strong> sur 10 ans', 'Achat/revente facile'],
+    cons: ['Tu suis l\'indice — <strong>aucune chance de surperformer</strong>', 'Volatilité (-30 à -50% possible en bear)', 'Risque de change si non couvert'],
+    vs: '<strong>vs actions individuelles</strong> : ETF = diversification auto, idéal long terme passif. <em>Stratégie pro : 80% ETF + 20% picks</em>.',
+    note: 'Rendement S&P 500 historique. Pas garanti.',
+  },
+  { id: 'obligations', cat: 'marche', icon: '📜',
+    name: 'Obligations',
+    fullName: 'Obligations',
+    tag: 'MARCHÉ · TAUX FIXES',
+    tldr: 'Tu <strong>prêtes de l\'argent</strong> à un État/entreprise. Coupon fixe.',
+    hero: { lbl: 'Rendement', val: '3-8%/an' },
+    what: 'Une obligation, c\'est <strong>un prêt</strong>. L\'État français (OAT) ou une entreprise (Apple, LVMH) emprunte de l\'argent → tu lui prêtes via une obligation → ils te paient un <strong>intérêt fixe (coupon)</strong> chaque année, et te remboursent le capital à l\'échéance (5 ans, 10 ans, 30 ans). C\'est <em>moins rentable que les actions</em> mais <em>beaucoup plus stable</em>. Indispensable pour <strong>équilibrer un portefeuille</strong>.',
+    how: '<strong>Où acheter</strong> : très compliqué <em>en direct</em> pour un particulier (montants minimum 10k+). Préfère les <strong>ETF obligataires</strong> ou les <strong>fonds obligataires</strong> via PEA-PME, AV ou CTO.<br><br><strong>Étapes</strong> :<br>1. Choisir un ETF obligataire selon ton profil :<br>&nbsp;&nbsp;• <strong>Sécurité max</strong> : ETF obligations d\'État Europe (ex: iShares EUR Govt Bond)<br>&nbsp;&nbsp;• <strong>Plus rentable</strong> : ETF obligations corporate (ex: iShares Euro Corporate Bond)<br>2. Acheter via ton CTO ou AV<br>3. Réinvestir les coupons<br><br><strong>Stratégie débutant</strong> : 20-30% du portefeuille en ETF obligataire, le reste en ETF actions.',
+    forWho: 'Tu veux <strong>sécuriser une partie de ton patrimoine</strong> tout en générant plus que les livrets. <em>Équilibrer un portefeuille</em>.',
+    metrics: [
+      { lbl: 'OAT (État)', val: '3-4%/an' },
+      { lbl: 'Corporate', val: '4-8%/an', cls: 'up' },
+      { lbl: 'Risque', val: 'Faible-moyen' },
+      { lbl: 'Durée', val: '2-30 ans' },
+    ],
+    fisca: 'Coupons imposés à la <strong>flat tax 30%</strong> en CTO. Souvent via <strong>ETF obligataires</strong>.',
+    pros: ['Rendement <strong>connu à l\'avance</strong>', 'Moins volatile que les actions', 'Diversifie un portefeuille', '<strong>OAT</strong> = quasi sans risque'],
+    cons: ['Rendement plus faible long terme', '<strong>Risque de défaut</strong> sur corporate', 'Sensible aux <strong>taux d\'intérêt</strong>', 'Préférer ETF obligataires'],
+    vs: '<strong>vs Actions</strong> : moins rentable mais beaucoup plus stable. <em>Allocation classique : "100 - âge" en actions, le reste en obligations</em>.',
+  },
+  { id: 'crypto', cat: 'marche', icon: '🔶',
+    name: 'Crypto',
+    fullName: 'Crypto — Bitcoin, Ethereum',
+    tag: 'MARCHÉ · NUMÉRIQUE · RISQUÉ',
+    tldr: 'Actifs numériques décentralisés. <strong>Très volatile</strong>. Spéculation pure.',
+    hero: { lbl: 'Volatilité', val: 'Extrême' },
+    what: 'Les cryptos sont des <strong>monnaies/actifs numériques</strong> qui fonctionnent <em>sans banque ni gouvernement</em>. Bitcoin est le plus connu (2009, plafond 21M d\'unités max → rareté). Ethereum permet en plus de faire tourner des "smart contracts". Le marché est <strong>extrêmement volatile</strong> : Bitcoin a fait +1000% en 2017, -85% en 2018, +1500% en 2020-21, -75% en 2022. <em>À traiter comme une mise spéculative, pas un placement safe</em>.',
+    how: '<strong>Où acheter</strong> : plateformes régulées <strong>PSAN en France</strong> (Coinhouse, Bitpanda, Paymium) → 100% légal. Ou plateformes internationales (Binance, Kraken) → à déclarer obligatoirement (form 3916-bis).<br><br><strong>Étapes</strong> :<br>1. Choisir une plateforme PSAN (recommandé débutants)<br>2. Créer un compte (KYC : pièce identité + justificatif)<br>3. <strong>Acheter Bitcoin et/ou Ethereum d\'abord</strong> (éviter altcoins exotiques)<br>4. <strong>Sécuriser</strong> : transférer sur un <em>wallet hardware</em> si gros montants (Ledger, Trezor — 80€)<br>5. <strong>Déclarer aux impôts</strong> en cas de retrait en euros<br><br><strong>Règle d\'or</strong> : <em>jamais plus de 5-10% de ton patrimoine</em>. Et accepte de tout perdre.',
+    forWho: 'Tu acceptes une <strong>volatilité extrême</strong> (-70% possible). Pas plus de <strong>5-10% de ton patrimoine</strong>. Profil offensif.',
+    metrics: [
+      { lbl: 'Volatilité', val: 'Extrême', cls: 'down' },
+      { lbl: 'Min', val: '~10 €' },
+      { lbl: 'Liquidité', val: 'Totale 24/7', cls: 'acid' },
+      { lbl: 'Régul.', val: 'PSAN (FR)' },
+    ],
+    fisca: '<strong>Flat tax 30%</strong> sur les <em>retraits en euros</em> (crypto↔crypto non taxé). Déclaration obligatoire : <strong>formulaire 3916-bis</strong> pour comptes étrangers. <em>Non-déclaration : amende 750 €/compte.</em>',
+    pros: ['Potentiel de <strong>rendement extrême</strong> (x10, x100)', 'Liquidité 24/7', 'Diversification', 'Bitcoin = <strong>21M unités max</strong>'],
+    cons: ['<strong>Volatilité destructrice</strong> (-70 à -90%)', 'Risque de <strong>perte totale</strong> (hack, scam)', 'Pas de garantie', 'Complexité technique (wallets, clés)'],
+    vs: '<strong>vs actions</strong> : potentiel supérieur mais risque infiniment plus grand. <em>Ne traite jamais crypto comme "safe" — c\'est de la spéculation.</em>',
+  },
+
+  // ═════════ ASSURANCE ═════════
+  { id: 'mutuelle', cat: 'assurance', icon: '🏥',
+    name: 'Mutuelle santé',
+    fullName: 'Mutuelle santé',
+    tag: 'ASSURANCE · SANTÉ',
+    tldr: 'Complète les remboursements de la <strong>Sécurité sociale</strong>.',
+    hero: { lbl: 'Coût mensuel', val: '30-150 €' },
+    what: 'En France, la <strong>Sécu rembourse 70% en moyenne</strong> des soins courants. Les 30% restants (+ les soins coûteux non remboursés comme lunettes, dentaire, hospitalisation) sont à ta charge. La <em>mutuelle santé</em> couvre ce reste. <strong>Indispensable</strong> sauf si tu veux risquer 5 000-20 000 € de reste à charge en cas de pépin grave.',
+    how: '<strong>Où souscrire</strong> :<br>• <strong>Salarié</strong> : ton entreprise <em>doit</em> te proposer une mutuelle (depuis 2016), et payer <strong>50% minimum</strong>. C\'est <em>obligatoire</em>, prends-la sauf cas spécial (conjoint qui te couvre déjà).<br>• <strong>Indépendant / étudiant / retraité</strong> : assurance individuelle.<br><br><strong>Étapes (cas individuel)</strong> :<br>1. Comparer en ligne (Alan, Lemonade, Wemind = modernes, transparents)<br>2. Demander 2-3 devis selon ton profil (jeune sans souci = mini, parent = renforcé)<br>3. Souscrire en ligne (10 min)<br>4. Vérifier le <strong>100% santé</strong> : lunettes, dentaire et audio sans reste à charge garantis<br><br><strong>Astuce</strong> : <em>compare tous les 3 ans</em>, les tarifs grimpent.',
+    forWho: 'Tout le monde. Salarié = mutuelle d\'entreprise (50% payée par l\'employeur). Indépendant/étudiant/retraité = individuelle.',
+    metrics: [
+      { lbl: 'Coût/mois', val: '30-150 €' },
+      { lbl: 'Sécu', val: '70-100%' },
+      { lbl: 'Compl.', val: 'Variable' },
+      { lbl: 'Salariés', val: 'Obligatoire', cls: 'acid' },
+    ],
+    fisca: '<strong>Mutuelle d\'entreprise obligatoire</strong> : part employeur exonérée pour toi. Salarial imposable depuis 2014. Frais individuels non déductibles.',
+    pros: ['Couvre ce que la <strong>Sécu ne rembourse pas</strong>', 'Mutuelle entreprise = <strong>moitié payée par l\'employeur</strong>', 'Tiers payant chez la plupart des pros'],
+    cons: ['Coût qui peut être <strong>élevé</strong> avec l\'âge', '<strong>100% santé</strong> à vérifier', 'Comparer essentiel (Alan, Lemonade, Wemind)'],
+    vs: '<strong>Ne jamais s\'en passer.</strong> Une opération sans mutuelle = 5 000 à 20 000 € de reste à charge.',
+  },
+  { id: 'prevoyance', cat: 'assurance', icon: '🛡️',
+    name: 'Prévoyance',
+    fullName: 'Prévoyance',
+    tag: 'ASSURANCE · INCAPACITÉ',
+    tldr: 'Te couvre si tu deviens <strong>incapable de travailler</strong>. Vitale pour indépendants.',
+    hero: { lbl: 'Priorité', val: 'Indépendants' },
+    what: 'La prévoyance, c\'est l\'assurance qui te <strong>verse un revenu de remplacement</strong> si tu ne peux plus travailler (maladie longue, accident, invalidité). Et un capital à ta famille en cas de décès. Les <em>salariés</em> ont souvent une couverture de base via l\'employeur. Les <strong>indépendants</strong>, eux, ont juste la Sécu (qui paie peu et tard) → <em>prévoyance privée est quasi indispensable</em>.',
+    how: '<strong>Où souscrire</strong> :<br>• <strong>Indépendant / TNS</strong> : contrats <em>loi Madelin</em> (Generali, Swiss Life, April, Maaf Pro) → cotisations déductibles du revenu pro<br>• <strong>Salarié</strong> : compléter la couverture entreprise si besoin (Boursorama Vie, contrats individuels)<br><br><strong>Étapes</strong> :<br>1. <strong>Faire le point sur ta couverture actuelle</strong> (employeur, mutuelle, etc.)<br>2. Estimer tes besoins : combien il te faut/mois si tu es arrêté 6 mois ?<br>3. Demander 2-3 devis (un courtier en prévoyance peut aider)<br>4. <strong>Lire les exclusions</strong> (sports extrêmes, maladies préexistantes, etc.)<br>5. Vérifier le <em>délai de carence</em> (15-90 jours avant indemnisation)<br><br><strong>Conseil indépendants</strong> : <em>ne lésine pas sur les garanties d\'invalidité</em>. C\'est là que ça fait mal.',
+    forWho: '<strong>Indépendants, freelances, professions libérales</strong>. Aussi salariés sans bonne couverture entreprise.',
+    metrics: [
+      { lbl: 'Coût/mois', val: '30-200 €' },
+      { lbl: 'Indemnité', val: 'Variable' },
+      { lbl: 'Carence', val: '15-90 j' },
+      { lbl: 'Priorité', val: 'Indép.', cls: 'acid' },
+    ],
+    fisca: 'Indépendant en <strong>loi Madelin</strong> : cotisations <em>déductibles</em> du revenu pro. Salarié : non déductible (sauf cas).',
+    pros: ['<strong>Sécurité financière</strong> en cas d\'arrêt long', 'Capital décès pour la famille', 'Indispensable si tu es <strong>seul revenu du foyer</strong>', 'Loi Madelin = avantage fiscal indépendants'],
+    cons: ['Coût récurrent qui paraît <strong>"perdu"</strong>', 'Délais de carence à vérifier', 'Contrats complexes (lire exclusions)'],
+    vs: '<strong>Indispensable pour indépendants.</strong> Salariés avec bonne couverture entreprise + conjoint qui travaille : moins prioritaire.',
+  },
+  { id: 'av-deces', cat: 'assurance', icon: '⚰️',
+    name: 'Assurance décès',
+    fullName: 'Assurance décès',
+    tag: 'ASSURANCE · DÉCÈS',
+    tldr: 'Verse un <strong>capital aux bénéficiaires</strong> en cas de décès. <em>Pas un placement.</em>',
+    hero: { lbl: 'Pour', val: 'Personnes à charge' },
+    what: 'Une assurance "<strong>au cas où tu meurs</strong>". Tu paies une cotisation mensuelle, et <em>si</em> tu décèdes pendant la durée du contrat, ta famille reçoit un capital (ex: 100k€, 300k€). Si tu vis jusqu\'à la fin du contrat, <strong>les cotisations sont perdues</strong> (c\'est l\'idée — comme une assurance auto). À <em>ne pas confondre avec l\'assurance-vie</em> (qui est un placement, pas une assurance).',
+    how: '<strong>Où souscrire</strong> : compagnies d\'assurance (AXA, Generali, MAAF, Crédit Agricole, etc.) ou en ligne (Direct Assurance, Lemonade).<br><br><strong>Étapes</strong> :<br>1. Évaluer le capital nécessaire (revenus de ton conjoint en cas de décès, études des enfants, crédit immobilier en cours)<br>2. Demander 3-4 devis (les prix varient énormément selon âge, fumeur/non, santé)<br>3. <strong>Remplir un questionnaire de santé</strong> (obligatoire, sois honnête)<br>4. Désigner précisément les <strong>bénéficiaires</strong> (clause type : "mon conjoint, à défaut mes enfants nés et à naître")<br>5. Renouveler tous les ans<br><br><strong>Cas typique</strong> : couple avec 2 enfants + crédit maison 200k€ → assurance décès 150-300k€ pour le conjoint principal.',
+    forWho: 'Tu as <strong>des personnes à charge</strong> (enfants, conjoint sans revenus, emprunt). Protéger leur niveau de vie.',
+    metrics: [
+      { lbl: 'Coût/mois', val: '15-100 €' },
+      { lbl: 'Capital', val: '50k-500k €' },
+      { lbl: 'Durée', val: 'Limitée' },
+      { lbl: 'Épargne', val: 'Aucune', cls: 'down' },
+    ],
+    fisca: 'Capital aux bénéficiaires : <strong>exonéré de droits de succession</strong> selon montant et âge. <em>Cotisations perdues si tu ne décèdes pas.</em>',
+    pros: ['<strong>Protection de la famille</strong>', 'Capital exonéré (152 500 €/bénéficiaire avant 70 ans)', 'Cotisation faible pour gros capital'],
+    cons: ['<strong>Aucune épargne</strong> — c\'est de l\'assurance pure', 'Cotisations perdues si tu vis', 'À ne pas confondre avec <strong>assurance-vie</strong>'],
+    vs: 'À ne <strong>pas confondre avec l\'assurance-vie</strong> (qui est un placement). Ici c\'est juste une couverture.',
+  },
+
+  // ═════════ FISCALITÉ ═════════
+  { id: 'pfu', cat: 'fiscalite', icon: '🧾',
+    name: 'Flat tax 30%',
+    fullName: 'Flat tax 30% (PFU)',
+    tag: 'FISCALITÉ · CAPITAL',
+    tldr: 'Le <strong>PFU</strong> : 30% sur tes plus-values mobilières. La règle par défaut depuis 2018.',
+    hero: { lbl: 'Taux', val: '30%' },
+    what: 'Depuis 2018, quand tu vends des actions, des cryptos, des obligations, ou que tu fais un retrait d\'assurance-vie avant 8 ans, <strong>tu paies 30%</strong> sur tes gains : 12.8% d\'impôt sur le revenu + 17.2% de prélèvements sociaux. C\'est <em>simple, automatique, retenu à la source</em>. Tu peux <em>choisir</em> d\'être imposé au barème classique de l\'IR si c\'est plus favorable (utile pour les TMI 0% ou 11%).',
+    how: '<strong>Comment ça s\'applique</strong> :<br>1. Tu vends des actions, fais un gain de 1000 € → <strong>300 € de flat tax</strong> automatiquement<br>2. Ton courtier prélève et reverse au fisc<br>3. Tu déclares juste le montant total annuel sur ta déclaration<br><br><strong>Comment opter pour le barème IR</strong> (utile si TMI ≤ 11%) :<br>• Sur ta déclaration de revenus annuelle, <strong>cocher la case 2OP</strong><br>• Option <em>globale</em> : s\'applique à TOUS tes revenus mobiliers de l\'année<br>• Compare chaque année (calculateur sur impots.gouv.fr)<br><br><strong>Astuce</strong> : pour <em>éviter la flat tax</em>, utilise des enveloppes défiscalisées : <strong>PEA (5 ans+) ou AV (8 ans+)</strong>.',
+    forWho: 'Toi, dès que tu vends en plus-value sur CTO, AV avant 8 ans, crypto, obligations, etc.',
+    metrics: [
+      { lbl: 'Total', val: '30%', cls: 'down' },
+      { lbl: 'IR', val: '12.8%' },
+      { lbl: 'PS', val: '17.2%' },
+      { lbl: 'Option barème', val: 'Possible' },
+    ],
+    fisca: '<strong>12.8% IR + 17.2% PS = 30%</strong>. Option <em>barème IR</em> possible si plus favorable (TMI 11%). Option globale annuelle.',
+    pros: ['<strong>Simplicité</strong> (taux unique)', 'Avantageux pour <strong>TMI 30%+</strong>', 'Application automatique'],
+    cons: ['<strong>Cher pour les petits revenus</strong> (TMI 0% ou 11%)', 'Pas d\'abattement de durée', 'Tax sur les gains nominaux (inflation incluse)'],
+    vs: 'Si TMI ≤ 11% : <strong>opter pour le barème</strong> peut sauver des impôts. À calculer chaque année.',
+  },
+  { id: 'ifi', cat: 'fiscalite', icon: '🏰',
+    name: 'IFI',
+    fullName: 'IFI — Impôt sur la Fortune Immobilière',
+    tag: 'FISCALITÉ · PATRIMOINE',
+    tldr: 'Impôt sur ton <strong>patrimoine immobilier</strong> au-dessus de 1.3M €.',
+    hero: { lbl: 'Seuil', val: '1.3M €' },
+    what: 'Depuis 2018, l\'ancien ISF a été remplacé par l\'IFI : <strong>seul le patrimoine immobilier</strong> est taxé au-delà de 1.3M €. Tes actions, AV, livrets sont <em>exclus</em>. Tu déclares chaque année la valeur de ta résidence principale (avec abattement 30%), de tes biens locatifs, de tes parts de SCPI, etc. Plus tu accumules en immo, plus tu payes. Concerne <em>peu de gens</em> (les patrimoines élevés).',
+    how: '<strong>Comment savoir si tu es concerné</strong> :<br>1. Liste tout ton patrimoine immobilier au 1er janvier<br>2. Applique l\'abattement 30% sur la résidence principale<br>3. Déduis tes dettes immobilières (crédits restants)<br>4. Si total > 1.3M € → <strong>IFI à payer</strong><br><br><strong>Comment déclarer</strong> :<br>• Sur ta déclaration annuelle d\'impôts (sur impots.gouv.fr), <strong>formulaire 2042-IFI</strong><br>• Estimer ses biens (un notaire ou agent immo peut t\'aider)<br>• Payer en même temps que l\'IR<br><br><strong>Stratégies de réduction</strong> :<br>• Investir dans certaines <em>SCPI fiscales</em> (Pinel, Malraux, déficit foncier)<br>• Faire des <strong>donations à enfants en démembrement</strong> (nue-propriété sort de l\'assiette)<br>• Privilégier les actions/AV plutôt que l\'immo si tu approches du seuil',
+    forWho: 'Tu possèdes <strong>plus de 1.3M € en immobilier</strong> (RP + locatif + SCPI). Seuil par foyer fiscal.',
+    metrics: [
+      { lbl: 'Seuil', val: '1.3M €' },
+      { lbl: 'Min', val: '0.5%' },
+      { lbl: 'Max', val: '1.5%' },
+      { lbl: 'Abat. RP', val: '30%', cls: 'acid' },
+    ],
+    fisca: 'Sur <strong>patrimoine immo net</strong> au 1er janvier. RP : abattement 30%. SCPI, parts immo, terrains inclus.',
+    pros: ['Concerne <strong>seulement les hauts patrimoines</strong>', 'Abattement 30% sur résidence principale', 'Actifs financiers <strong>exclus</strong>'],
+    cons: ['Charge annuelle si patrimoine > 1.3M €', 'Calcul complexe (SCPI, démembrement)', 'Renforce le biais "actions > immo" pour gros patrimoines'],
+    vs: 'L\'IFI <strong>n\'existe pas</strong> sur le patrimoine financier. Argument fort en faveur des actions/AV pour les gros patrimoines.',
+  },
+  { id: 'abattement-av', cat: 'fiscalite', icon: '🎁',
+    name: 'Abattement AV 8 ans',
+    fullName: 'Abattement Assurance-vie après 8 ans',
+    tag: 'FISCALITÉ · ASSURANCE-VIE',
+    tldr: '<strong>4 600 € par an</strong> de gains exonérés. <em>9 200 €</em> pour un couple.',
+    hero: { lbl: 'Abattement célib.', val: '4 600 €/an' },
+    what: 'Quand ton assurance-vie a <strong>plus de 8 ans</strong>, tu peux retirer de l\'argent et <em>les premiers 4 600 € de gains par an sont totalement exonérés d\'impôt</em> (9 200 € pour un couple). Au-delà : taux préférentiel 7.5% (versements ≤ 150k€). C\'est <strong>la raison principale</strong> qui rend l\'AV imbattable pour la fiscalité long terme. Le <em>capital reste toujours retirable sans impôt</em>, c\'est seulement la part des gains qui est concernée.',
+    how: '<strong>Comment l\'utiliser</strong> :<br>1. Ton AV a <strong>plus de 8 ans</strong> → l\'abattement s\'active automatiquement<br>2. Tu veux retirer 10 000 € : ton contrat calcule la part "capital" vs "gains" (au prorata du contrat)<br>3. Si la part de gains dans ce retrait < 4 600 €/an → <strong>zéro impôt</strong><br>4. Au-delà des 4 600 € de gains/an : 7.5% d\'IR + 17.2% de PS<br><br><strong>Stratégie optimale</strong> :<br>• <strong>Ouvre une AV maintenant</strong>, même avec 100 €, pour démarrer le compteur des 8 ans<br>• Verse régulièrement<br>• Après 8 ans, fais des <em>retraits annuels < 4 600 €/an de gains</em> pour piocher gratuitement<br><br><strong>Astuce couple</strong> : avoir <em>2 contrats séparés</em> = 2 abattements de 4 600 € (au lieu de 9 200 € sur 1 contrat = idem mais flexibilité).',
+    forWho: 'Tu as une AV ouverte depuis 8+ ans et tu fais des retraits partiels.',
+    metrics: [
+      { lbl: 'Célib.', val: '4 600 €', cls: 'acid' },
+      { lbl: 'Couple', val: '9 200 €', cls: 'acid' },
+      { lbl: 'IR après', val: '7.5%' },
+      { lbl: 'PS', val: '17.2%' },
+    ],
+    fisca: 'Sur les <strong>gains uniquement</strong>. Tu peux retirer <strong>tout ton capital sans impôt</strong> tant que les gains retirés < 4 600 €/an. Au-delà, IR à <strong>7.5%</strong> (versements ≤ 150k €).',
+    pros: ['<strong>4 600 €/an de gains exonérés</strong>', 'Taux préférentiel 7.5% au-delà', '<strong>Pas de plafond de retrait</strong>'],
+    cons: ['Disponible <strong>après 8 ans</strong> seulement', 'Sur versements > 150k €, IR 12.8%'],
+    vs: 'C\'est <strong>la raison principale</strong> d\'ouvrir une AV jeune : démarrer le compteur 8 ans <em>au plus tôt</em>.',
+  },
+  { id: 'donations', cat: 'fiscalite', icon: '🎀',
+    name: 'Donations',
+    fullName: 'Donations & Succession',
+    tag: 'FISCALITÉ · TRANSMISSION',
+    tldr: 'Les <strong>abattements légaux</strong> pour transmettre ton patrimoine.',
+    hero: { lbl: 'Par enfant', val: '100 000 €' },
+    what: 'En France, l\'État te <strong>laisse transmettre une certaine somme à tes héritiers sans impôt</strong>. Chaque parent peut donner <strong>100 000 € par enfant tous les 15 ans</strong> sans aucune taxe. Au-delà : droits de donation 5% à 45%. <em>Petit secret puissant</em> : si tu désignes des bénéficiaires sur une <strong>assurance-vie</strong>, ils reçoivent <strong>152 500 € chacun sans droits</strong> à ton décès (versements faits avant tes 70 ans). En cumulant ces 2 dispositifs, un couple peut transmettre <em>plusieurs centaines de milliers d\'euros</em> sans impôts.',
+    how: '<strong>Stratégie n°1 — Donations de son vivant</strong> :<br>1. Aller chez un <strong>notaire</strong> (frais 200-500 € pour acte authentique)<br>2. Donner jusqu\'à <strong>100 000 € par parent par enfant</strong><br>3. Déclarer aux impôts (formulaire 2735 ou via notaire)<br>4. Renouveler tous les 15 ans<br><br><strong>Stratégie n°2 — Assurance-vie</strong> :<br>1. Ouvrir une AV jeune (avant 70 ans pour bénéficier des 152 500 €/bénéficiaire)<br>2. <strong>Bien rédiger la clause bénéficiaire</strong> (peut être un proche, ami, association)<br>3. Au décès, le capital sort hors succession<br><br><strong>Astuce avancée — Démembrement</strong> :<br>• Donner la <em>nue-propriété</em> d\'un bien (l\'enfant en devient propriétaire à terme) tout en gardant l\'<em>usufruit</em> (jouissance, loyers)<br>• Réduit la valeur taxable de la donation (très efficace pour gros patrimoines)',
+    forWho: 'Tu veux transmettre du patrimoine à enfants, conjoint, neveux. <strong>Renouvelables tous les 15 ans</strong>.',
+    metrics: [
+      { lbl: 'Enfant', val: '100k €', cls: 'acid' },
+      { lbl: 'P-enfants', val: '31 865 €' },
+      { lbl: 'Renouv.', val: '15 ans' },
+      { lbl: 'AV bénéf.', val: '152 500 €', cls: 'acid' },
+    ],
+    fisca: '<strong>100 000 € par parent par enfant</strong> tous les 15 ans sans fiscalité. Au-delà : droits 5% à 45%. <em>AV : 152 500 €/bénéficiaire avant 70 ans.</em>',
+    pros: ['<strong>Transmettre beaucoup sans impôts</strong>', 'Renouvelable tous les 15 ans', '<strong>AV bonus</strong> pour les bénéficiaires'],
+    cons: ['Une fois donné, c\'est <strong>irrévocable</strong>', 'Doit être déclaré', '<strong>Démembrement</strong> plus complexe'],
+    vs: 'Combiné <strong>AV (152k€)</strong> et donations tous les 15 ans, un couple peut transmettre <strong>plusieurs centaines de k€ sans impôts</strong>.',
+  },
+
+  // ═════════ CONCEPTS ═════════
+  { id: 'interets-composes', cat: 'concept', icon: '⚡',
+    name: 'Intérêts composés',
+    fullName: 'Intérêts composés',
+    tag: 'CONCEPT · MAGIQUE',
+    tldr: 'Tes intérêts <strong>génèrent eux-mêmes des intérêts</strong>. 8e merveille du monde.',
+    hero: { lbl: '10k€ à 7% / 30 ans', val: '76 000 €' },
+    what: 'Imagine que tu places 1000 € à 10%/an. La <strong>1ère année</strong>, tu gagnes 100 € → tu as 1100 €. La <strong>2ème année</strong>, tu gagnes 10% de 1100 € (pas de 1000 €) = 110 € → tu as 1210 €. Et ainsi de suite. Tes <em>intérêts produisent eux-mêmes des intérêts</em>. Au bout de 30 ans, 1000 € → 17 449 €, alors qu\'en intérêts simples ça aurait fait 4000 €. <strong>C\'est cette magie qui transforme des petits montants en gros patrimoines</strong>, à condition d\'avoir du temps.',
+    how: '<strong>Comment l\'activer dans ta vie</strong> :<br>1. <strong>Investir le plus tôt possible</strong> (même 20 €/mois à 20 ans bat 200 €/mois à 40 ans, à terme)<br>2. <strong>Ne jamais retirer</strong> les gains : les laisser se composer<br>3. <strong>Réinvestir les dividendes</strong> (chercher des ETF "capitalisants" ou "Acc" pour automatiser)<br>4. <strong>Choisir un placement avec un rendement décent</strong> :<br>&nbsp;&nbsp;• 3% (Livret A) → temps de doublement : 24 ans<br>&nbsp;&nbsp;• 7% (ETF World) → 10 ans<br>&nbsp;&nbsp;• 10% (S&P 500 historique) → 7 ans<br>5. <strong>Tenir bon</strong> en cas de crise : la composition fonctionne sur la durée<br><br><strong>Règle des 72</strong> : pour savoir en combien d\'années ton capital double, divise 72 par le taux. Ex: 72/8 = 9 ans pour doubler à 8%/an.',
+    forWho: '<strong>Tout le monde</strong>. LE concept qui justifie d\'investir tôt même petits montants.',
+    metrics: [
+      { lbl: '10 ans', val: '20k €' },
+      { lbl: '20 ans', val: '40k €', cls: 'up' },
+      { lbl: '30 ans', val: '76k €', cls: 'acid' },
+      { lbl: 'Effet', val: 'Exponentiel', cls: 'acid' },
+    ],
+    fisca: 'Concept mathématique, pas un placement.',
+    pros: ['<strong>Capital double tous les "72/taux"</strong> ans (règle des 72)', 'À 7% → x2 en 10 ans', 'À 10% → x2 en 7 ans', 'Plus tu commences tôt, <strong>plus l\'effet est énorme</strong>'],
+    cons: ['Nécessite <strong>du temps</strong> (visible après 10+ ans)', '<strong>Marche dans l\'autre sens</strong> aussi (frais composés)', 'Discipline : ne pas retirer'],
+    vs: '<strong>Démonstration</strong> : 100 € investis à 20 ans à 8%/an = 4 660 € à 65 ans. À 30 ans = 2 160 € à 65 ans. <em>10 ans de retard divisent par 2.</em>',
+  },
+  { id: 'diversification', cat: 'concept', icon: '🎯',
+    name: 'Diversification',
+    fullName: 'Diversification',
+    tag: 'CONCEPT · STRATÉGIE',
+    tldr: '<strong>Ne pas mettre tous ses œufs dans le même panier</strong>. La seule "free lunch" du marché.',
+    hero: { lbl: 'Bénéfice', val: 'Réduction du risque' },
+    what: 'Si tu mets 100% de ton épargne sur <em>une seule action</em> et que l\'entreprise fait faillite, tu perds tout. Si tu répartis sur 1500 entreprises (ETF World), pour tout perdre il faudrait que <strong>1500 entreprises mondiales fassent faillite simultanément</strong> — extrêmement improbable. La <em>diversification</em> consiste à répartir tes œufs dans plusieurs paniers : <strong>par actif</strong> (actions, obligations, immo, cash), <strong>par géographie</strong> (France, US, Asie), <strong>par secteur</strong> (tech, santé, finance). Ça réduit drastiquement le risque <em>sans réduire le rendement à long terme</em>.',
+    how: '<strong>Niveau 1 (débutant)</strong> :<br>• <strong>1 ETF MSCI World</strong> dans un PEA → tu détiens déjà 1500+ entreprises, 23 pays. Diversification quasi parfaite pour les actions.<br><br><strong>Niveau 2 (intermédiaire)</strong> — allocation classique :<br>• 70% ETF actions mondiales (World ou S&P 500)<br>• 20% ETF obligations<br>• 10% cash / Livret A<br><br><strong>Niveau 3 (avancé)</strong> :<br>• 50% ETF actions mondiales<br>• 15% ETF obligations<br>• 10% SCPI ou immobilier direct<br>• 10% or / matières premières<br>• 5% crypto (max)<br>• 10% cash<br><br><strong>Rebalancement</strong> : 1 fois par an, revends ce qui a trop monté et rachète ce qui a baissé pour <strong>revenir à ton allocation cible</strong>. Discipline pure.',
+    forWho: '<strong>Tout investisseur</strong>, débutant comme avancé.',
+    metrics: [
+      { lbl: 'Actifs', val: 'Mix' },
+      { lbl: 'Géo', val: 'Mondial' },
+      { lbl: 'Secteurs', val: 'Variés' },
+      { lbl: 'Risque', val: '↓↓', cls: 'acid' },
+    ],
+    fisca: 'Concept stratégique.',
+    pros: ['<strong>Réduit le risque</strong> sans réduire le rendement long terme', 'Protège contre <strong>l\'effondrement d\'un secteur</strong>', '"Dormir tranquille"', '<strong>ETF World</strong> = 1500+ entreprises, 23 pays'],
+    cons: ['Trop diversifier = juste suivre le marché', 'Plus complexe à gérer (rebalancement)'],
+    vs: '<strong>Allocation débutant</strong> : 70% ETF World + 20% obligations + 10% cash. Simple, efficace, bat 80% des fonds actifs sur 10 ans.',
+  },
+  { id: 'frais', cat: 'concept', icon: '🩸',
+    name: 'Frais cachés',
+    fullName: 'Les frais cachés',
+    tag: 'CONCEPT · ATTENTION',
+    tldr: '<strong>1% de frais/an = 30% de capital perdu sur 30 ans</strong>. Le pire ennemi du compounding.',
+    hero: { lbl: 'Perte sur 30 ans', val: '-187 000 €' },
+    what: 'Les frais financiers sont <strong>l\'ennemi n°1 de la performance long terme</strong>. Frais d\'entrée, de gestion annuelle, d\'arbitrage, de versement, de retrait... Ils paraissent <em>minimes</em> (1-2%/an) mais ils <strong>composent négativement</strong> sur 30 ans. Un fonds qui prend 2%/an au lieu de 0.30% (ETF) te fera perdre près de <em>40% de capital final</em>. Les banques traditionnelles vendent souvent du "cher et peu performant". <strong>Vérifier les frais avant de signer = ton réflexe n°1</strong>.',
+    how: '<strong>Comment les détecter</strong> :<br>1. Demander la <strong>DICI</strong> (Document d\'Information Clé pour l\'Investisseur) — légal, obligatoire<br>2. Chercher la ligne <strong>"Frais courants"</strong> ou <strong>TFE (Total Frais sur Encours)</strong><br>3. Vérifier les <strong>frais d\'entrée</strong> (souvent 0% en ligne, 3-5% en agence)<br>4. Vérifier les <strong>frais d\'arbitrage</strong> en AV (devrait être 0 ou < 1%)<br><br><strong>Quelles solutions choisir</strong> :<br>• <strong>ETF</strong> au lieu de fonds actifs : 0.05-0.30% vs 1.5-2.5%/an<br>• <strong>AV en ligne</strong> (Linxea Avenir 2 : 0%/0.6%) au lieu de banque (3%/1%)<br>• <strong>Courtiers low cost</strong> (Trade Republic, DEGIRO) au lieu de banque traditionnelle<br><br><strong>Démonstration choc</strong> :<br>• 100k € sur 30 ans à 7% net = <strong>761 000 €</strong><br>• 100k € sur 30 ans à 6% (1% de frais) = <strong>574 000 €</strong><br>• Différence : <em>187 000 € envolés</em> à cause d\'1% de frais.',
+    forWho: '<strong>Tout investisseur</strong>. Surtout en banque traditionnelle.',
+    metrics: [
+      { lbl: 'AV entrée', val: '0-3%' },
+      { lbl: 'AV gestion', val: '0.5-1%' },
+      { lbl: 'ETF', val: '0.05-0.30%', cls: 'acid' },
+      { lbl: 'Fonds actifs', val: '1.5-2.5%', cls: 'down' },
+    ],
+    fisca: 'Frais déductibles du rendement.',
+    pros: ['Comprendre les frais te <strong>fait gagner</strong>', 'Solutions en ligne <strong>sans frais d\'entrée</strong> (Linxea, Boursobank, Yomoni)', 'ETF passifs = <strong>30x moins cher</strong>'],
+    cons: ['Banques traditionnelles vendent du <strong>cher et peu performant</strong>', 'Frais cachés dans les <strong>petits caractères</strong>', 'Frais sur arbitrages, versements, retraits...'],
+    vs: '<strong>Choc</strong> : 100k € sur 30 ans à 7% net = 761k €. À 6% (1% de frais) = 574k €. <strong>187 000 € perdus en frais</strong>.',
+  },
+  { id: 'dca', cat: 'concept', icon: '📅',
+    name: 'DCA',
+    fullName: 'Dollar Cost Averaging',
+    tag: 'CONCEPT · STRATÉGIE',
+    tldr: 'Investir <strong>un montant fixe régulièrement</strong>. Élimine le stress du timing.',
+    hero: { lbl: 'Stress', val: 'Minimal' },
+    what: 'Le DCA, c\'est <strong>investir une somme fixe à intervalle régulier</strong>, peu importe ce que fait le marché. Exemple : 200 €/mois sur un ETF World, le 5 de chaque mois, sans réfléchir. Si le marché monte → tu achètes moins de parts (mais elles valent plus). Si le marché baisse → tu achètes plus de parts (avec le même montant). <em>Tu lisses automatiquement ton prix moyen d\'achat</em>. Avantage psychologique énorme : <strong>tu n\'as plus à te demander "est-ce que c\'est le bon moment ?"</strong> — c\'est toujours le bon moment.',
+    how: '<strong>Comment mettre en place</strong> :<br>1. Choisir un montant que tu peux vraiment sortir <em>chaque mois sans douleur</em> (ex: 100-300 €)<br>2. Choisir un courtier qui propose <strong>l\'investissement programmé</strong> :<br>&nbsp;&nbsp;• <strong>Trade Republic</strong> : plans d\'investissement auto sur ETF (gratuit)<br>&nbsp;&nbsp;• <strong>Bourse Direct</strong> : programmation manuelle<br>&nbsp;&nbsp;• <strong>AV en ligne</strong> : versements programmés natifs<br>3. Choisir un <strong>ETF World</strong> (1 seul suffit)<br>4. Programmer le virement automatique <strong>le lendemain de ta paie</strong> (sinon tu trouveras 1000 raisons de skipper)<br>5. <strong>NE PLUS REGARDER</strong> avant 5-10 ans<br><br><strong>Astuce psychologique</strong> : prélèvement automatique = tu ne sens pas l\'argent partir. Comme un abonnement Netflix mais qui te rend riche.',
+    forWho: 'Débutants, salariés avec revenu régulier, tous ceux qui veulent <strong>investir sans réfléchir</strong>.',
+    metrics: [
+      { lbl: 'Fréquence', val: 'Mensuelle' },
+      { lbl: 'Montant', val: 'Fixe' },
+      { lbl: 'Auto', val: 'Oui', cls: 'acid' },
+      { lbl: 'Stress', val: 'Min', cls: 'acid' },
+    ],
+    fisca: 'Selon l\'enveloppe (PEA, CTO, AV).',
+    pros: ['<strong>Élimine le market timing</strong>', 'Lisse le prix moyen d\'achat', '<strong>Automatisable</strong> chez la plupart des courtiers', 'Tu investis aussi <strong>en marché baissier</strong>'],
+    cons: ['Sous-performant en marché haussier vs lump sum', 'Demande de la <strong>constance sur des années</strong>'],
+    vs: '<strong>vs Lump sum</strong> : lump sum bat DCA 70% du temps statistiquement. Mais DCA est <strong>psychologiquement plus facile</strong>.',
+  },
+  { id: 'allocation', cat: 'concept', icon: '🥧',
+    name: 'Allocation d\'actifs',
+    fullName: 'Allocation d\'actifs',
+    tag: 'CONCEPT · STRATÉGIE',
+    tldr: 'La <strong>répartition</strong> actions / obligations / cash / immo. Détermine 90% du rendement.',
+    hero: { lbl: 'Règle simple', val: '100 - âge' },
+    what: 'L\'allocation d\'actifs, c\'est <strong>la grosse décision stratégique</strong> de ton patrimoine : <em>quelle part en actions, obligations, immo, cash ?</em> Les études montrent que cette décision <strong>détermine 90% de ton rendement final</strong>, bien plus que le choix de telle ou telle action. Plus tu es jeune (et donc avec un long horizon), <em>plus tu peux te permettre d\'actions</em> (volatiles mais rentables). Plus tu approches de tes objectifs (retraite, achat immo), <em>plus tu sécurises avec des obligations et du cash</em>.',
+    how: '<strong>Étapes pour définir ton allocation</strong> :<br>1. <strong>Identifier ton horizon</strong> : 5 ans ? 10 ans ? 30 ans ?<br>2. <strong>Évaluer ta tolérance au risque</strong> : "comment je réagirais à -40% de mon patrimoine en 6 mois ?" Si "panique", tu es trop agressif.<br>3. Appliquer la <strong>règle simple</strong> : <em>100 - ton âge = % en actions</em>. À 25 ans → 75% actions. À 60 ans → 40% actions.<br>4. <strong>Construire ton portefeuille</strong> :<br>&nbsp;&nbsp;• Actions → ETF World (en PEA)<br>&nbsp;&nbsp;• Obligations → ETF obligataire (en CTO ou AV)<br>&nbsp;&nbsp;• Cash → Livret A / LDDS<br>&nbsp;&nbsp;• Immobilier → SCPI ou LMNP<br>5. <strong>Rebalancer 1x/an</strong> : vendre ce qui a trop monté, racheter ce qui a baissé pour revenir à la cible.<br><br><strong>Exemple concret jeune actif</strong> : 70% ETF World (PEA), 15% AV en fonds €, 10% Livret A, 5% crypto.',
+    forWho: 'Dès que tu as <strong>plus de 10k € à placer</strong>, tu dois te poser la question.',
+    metrics: [
+      { lbl: '20 ans', val: '80/20' },
+      { lbl: '40 ans', val: '60/40' },
+      { lbl: '60 ans', val: '40/60' },
+      { lbl: 'Règle', val: '100 - âge', cls: 'acid' },
+    ],
+    fisca: 'L\'allocation influence le choix des enveloppes.',
+    pros: ['Définit ton <strong>profil de risque</strong>', '<strong>Plus déterminante</strong> que la sélection d\'actions', 'Permet le <strong>rebalancement</strong> (acheter bas, vendre haut)'],
+    cons: ['Doit être <strong>révisée</strong> régulièrement', 'Dérive en bull market (sous-pondération obligations)'],
+    vs: '<strong>Test de stress</strong> : "Comment je réagis à -40% en 6 mois ?" Si "panique vente", ton allocation est trop agressive.',
+  },
+];
+
+/* ═══════════ CATÉGORIES META ═══════════ */
+const CATS = {
+  enveloppe: { label: 'Comptes & Enveloppes', short: 'Enveloppes', color: 'var(--acid)',   emoji: '🏛️' },
+  epargne:   { label: 'Épargne sécurisée',     short: 'Épargne',    color: 'var(--blue)',   emoji: '🪙' },
+  immo:      { label: 'Immobilier',            short: 'Immo',       color: 'var(--clay)',   emoji: '🏠' },
+  marche:    { label: 'Marchés financiers',    short: 'Marchés',    color: 'var(--purple)', emoji: '📊' },
+  assurance: { label: 'Assurances',            short: 'Assurance',  color: 'var(--pink)',   emoji: '🛡️' },
+  fiscalite: { label: 'Fiscalité',             short: 'Fiscalité',  color: 'var(--amber)',  emoji: '🧾' },
+  concept:   { label: 'Concepts clés',         short: 'Concepts',   color: 'var(--teal)',   emoji: '💡' },
+};
+const CATS_ORDER = ['enveloppe', 'epargne', 'immo', 'marche', 'assurance', 'fiscalite', 'concept'];
+
+/* ═══════════ STATE & STORAGE ═══════════ */
+const BM_KEY = 'tradegenius_m5_bookmarks';
+const VW_KEY = 'tradegenius_m5_viewed';
+let currentView = 'home';   // home | cat | favs | detail
+let currentCat = null;
+let currentFiche = null;
+let navStack = [];           // for back button
+
+function getList(key) {
+  try {
+    const p = JSON.parse(localStorage.getItem(key) || '[]');
+    return Array.isArray(p) ? p : [];
+  } catch { return []; }
+}
+function saveList(key, list) {
+  try { localStorage.setItem(key, JSON.stringify(list)); } catch {}
+}
+function toggleInList(key, id) {
+  const list = getList(key);
+  const idx = list.indexOf(id);
+  if (idx === -1) list.push(id); else list.splice(idx, 1);
+  saveList(key, list);
+  return list;
+}
+function addToList(key, id) {
+  const list = getList(key);
+  if (!list.includes(id)) {
+    list.push(id);
+    saveList(key, list);
+  }
+  return list;
+}
+
+/* ═══════════ NAV ═══════════ */
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  currentView = name;
+  window.scrollTo(0, 0);
+  updateHeader();
+}
+
+function updateHeader() {
+  const back = document.getElementById('head-back');
+  const eb = document.getElementById('head-eyebrow');
+  const tt = document.getElementById('head-title');
+
+  if (currentView === 'home') {
+    back.innerHTML = '←';
+    back.onclick = () => { location.href = 'index.html'; };
+    eb.textContent = 'BIBLIOTHÈQUE';
+    tt.textContent = 'Tes placements';
+  } else if (currentView === 'cat') {
+    back.innerHTML = '←';
+    back.onclick = navBack;
+    const c = CATS[currentCat];
+    eb.textContent = c.short.toUpperCase();
+    tt.textContent = c.label;
+  } else if (currentView === 'favs') {
+    back.innerHTML = '←';
+    back.onclick = navBack;
+    eb.textContent = '★ FAVORIS';
+    tt.textContent = 'Tes incontournables';
+  } else if (currentView === 'detail') {
+    back.innerHTML = '←';
+    back.onclick = navBack;
+    const f = FICHES.find(x => x.id === currentFiche);
+    if (f) {
+      eb.textContent = CATS[f.cat].short.toUpperCase();
+      tt.textContent = f.name;
+    }
+  }
+}
+
+function navBack() {
+  if (navStack.length > 0) {
+    const prev = navStack.pop();
+    currentCat = prev.cat || null;
+    currentFiche = prev.fiche || null;
+    if (prev.view === 'home') showView('home');
+    else if (prev.view === 'cat') { renderCatView(currentCat); showView('cat'); }
+    else if (prev.view === 'favs') { renderFavsView(); showView('favs'); }
+  } else {
+    location.href = 'index.html';
+  }
+  if (navigator.vibrate) navigator.vibrate(8);
+}
+
+function pushNav() {
+  navStack.push({ view: currentView, cat: currentCat, fiche: currentFiche });
+}
+
+/* ═══════════ PROGRESS ═══════════ */
+function updateProgress() {
+  const viewed = getList(VW_KEY);
+  const total = FICHES.length;
+  document.getElementById('prog-num').textContent = viewed.length;
+  document.getElementById('prog-total').textContent = total;
+  const pct = total > 0 ? (viewed.length / total) * 100 : 0;
+  document.getElementById('prog-fill').style.width = pct + '%';
+
+  // Fav shortcut
+  const bm = getList(BM_KEY);
+  const shortcut = document.getElementById('fav-shortcut');
+  if (bm.length > 0) {
+    shortcut.style.display = 'flex';
+    document.getElementById('fav-shortcut-count').textContent = bm.length + ' fiche' + (bm.length > 1 ? 's' : '');
+  } else {
+    shortcut.style.display = 'none';
+  }
+}
+
+/* ═══════════ RENDER HOME ═══════════ */
+function renderHome() {
+  const grid = document.getElementById('cats-grid');
+  grid.innerHTML = CATS_ORDER.map(key => {
+    const c = CATS[key];
+    const count = FICHES.filter(f => f.cat === key).length;
+    return `
+      <div class="cat-tile" style="--cat-color: ${c.color};" onclick="openCat('${key}')">
+        <div class="cat-emoji">${c.emoji}</div>
+        <div class="cat-name">${c.short}</div>
+        <div class="cat-count">${count} fiches</div>
+      </div>
+    `;
+  }).join('');
+  updateProgress();
+}
+
+/* ═══════════ RENDER CATEGORY ═══════════ */
+function openCat(catKey) {
+  pushNav();
+  currentCat = catKey;
+  renderCatView(catKey);
+  showView('cat');
+  if (navigator.vibrate) navigator.vibrate(8);
+}
+
+function renderCatView(catKey) {
+  const c = CATS[catKey];
+  const banner = document.getElementById('cat-banner');
+  banner.style.setProperty('--cat-color', c.color);
+  document.getElementById('cat-banner-emoji').textContent = c.emoji;
+  document.getElementById('cat-banner-label').textContent = c.short.toUpperCase();
+  document.getElementById('cat-banner-title').textContent = c.label;
+
+  const fiches = FICHES.filter(f => f.cat === catKey);
+  const viewed = getList(VW_KEY);
+  document.getElementById('cat-fiches-grid').innerHTML = fiches.map(f => `
+    <div class="fiche-card ${viewed.includes(f.id) ? 'viewed' : ''}" onclick="openFiche('${f.id}')">
+      <div class="fiche-emoji">${f.icon}</div>
+      <div class="fiche-name">${f.name}</div>
+      <div class="fiche-tldr">${stripHtml(f.tldr)}</div>
+    </div>
+  `).join('');
+}
+
+/* ═══════════ RENDER FAVORITES ═══════════ */
+function openFavorites() {
+  pushNav();
+  renderFavsView();
+  showView('favs');
+  if (navigator.vibrate) navigator.vibrate(8);
+}
+
+function renderFavsView() {
+  const bm = getList(BM_KEY);
+  const fiches = FICHES.filter(f => bm.includes(f.id));
+  const grid = document.getElementById('favs-grid');
+  if (fiches.length === 0) {
+    grid.innerHTML = `
+      <div class="lib-empty" style="grid-column: 1 / -1;">
+        <span class="lib-empty-emoji">⭐</span>
+        Pas encore de favoris.<br>Touche ★ sur une fiche pour l'ajouter.
+      </div>`;
+    return;
+  }
+  const viewed = getList(VW_KEY);
+  grid.innerHTML = fiches.map(f => `
+    <div class="fiche-card ${viewed.includes(f.id) ? 'viewed' : ''}" onclick="openFiche('${f.id}')">
+      <div class="fiche-bm-mini">★</div>
+      <div class="fiche-emoji">${f.icon}</div>
+      <div class="fiche-name">${f.name}</div>
+      <div class="fiche-tldr">${stripHtml(f.tldr)}</div>
+    </div>
+  `).join('');
+}
+
+/* ═══════════ RENDER DETAIL ═══════════ */
+function openFiche(id) {
+  pushNav();
+  currentFiche = id;
+  addToList(VW_KEY, id);
+  renderDetail(id);
+  showView('detail');
+  if (navigator.vibrate) navigator.vibrate(8);
+}
+
+function renderDetail(id) {
+  const f = FICHES.find(x => x.id === id);
+  if (!f) return;
+  const c = CATS[f.cat];
+  const bm = getList(BM_KEY);
+  const isBm = bm.includes(id);
+
+  const metricsHtml = f.metrics ? `
+    <div class="det-metrics">
+      ${f.metrics.map(m => `
+        <div class="det-metric">
+          <div class="det-metric-lbl">${m.lbl}</div>
+          <div class="det-metric-val ${m.cls || ''}">${m.val}</div>
+        </div>
+      `).join('')}
+    </div>` : '';
+
+  document.getElementById('detail-content').innerHTML = `
+    <div class="detail-hero" style="--cat-color: ${c.color};">
+      <button class="detail-bm-btn ${isBm ? 'on' : ''}" id="detail-bm" onclick="toggleBookmarkDetail()" aria-label="Favori">${isBm ? '★' : '☆'}</button>
+      <div class="detail-hero-tag">${f.tag}</div>
+      <div class="detail-hero-emoji">${f.icon}</div>
+      <div class="detail-hero-name">${f.fullName}</div>
+      <div class="detail-hero-tldr">${f.tldr}</div>
+    </div>
+
+    ${f.hero ? `
+      <div class="hero-stat" style="--cat-color: ${c.color};">
+        <div class="hero-stat-icon">${f.icon}</div>
+        <div class="hero-stat-text">
+          <div class="hero-stat-lbl">${f.hero.lbl}</div>
+          <div class="hero-stat-val">${f.hero.val}</div>
+        </div>
+      </div>
+    ` : ''}
+
+    ${f.what ? `
+      <div class="det-section">
+        <div class="det-section-head">
+          <div class="det-section-icon">📖</div>
+          <div class="det-section-title">C'est quoi ?</div>
+        </div>
+        <div class="det-section-body">${f.what}</div>
+      </div>
+    ` : ''}
+
+    ${f.forWho ? `
+      <div class="det-section">
+        <div class="det-section-head">
+          <div class="det-section-icon">💡</div>
+          <div class="det-section-title">Pour qui</div>
+        </div>
+        <div class="det-section-body">${f.forWho}</div>
+      </div>
+    ` : ''}
+
+    ${metricsHtml ? `
+      <div class="det-section">
+        <div class="det-section-head">
+          <div class="det-section-icon">📊</div>
+          <div class="det-section-title">Les chiffres clés</div>
+        </div>
+        ${metricsHtml}
+      </div>
+    ` : ''}
+
+    ${f.how ? `
+      <div class="det-section det-section-how">
+        <div class="det-section-head">
+          <div class="det-section-icon">🚀</div>
+          <div class="det-section-title">Comment ouvrir / investir</div>
+        </div>
+        <div class="det-section-body">${f.how}</div>
+      </div>
+    ` : ''}
+
+    <div class="det-pros-cons">
+      ${f.pros ? `
+        <div class="pc-card pros">
+          <div class="pc-head">
+            <div class="pc-emoji">✅</div>
+            <div class="pc-title">Le bon</div>
+          </div>
+          <ul class="pc-list">${f.pros.map(p => `<li>${p}</li>`).join('')}</ul>
+        </div>
+      ` : ''}
+      ${f.cons ? `
+        <div class="pc-card cons">
+          <div class="pc-head">
+            <div class="pc-emoji">🚫</div>
+            <div class="pc-title">Le piège</div>
+          </div>
+          <ul class="pc-list">${f.cons.map(c => `<li>${c}</li>`).join('')}</ul>
+        </div>
+      ` : ''}
+    </div>
+
+    ${f.fisca ? `
+      <div class="det-section">
+        <div class="det-section-head">
+          <div class="det-section-icon">🧾</div>
+          <div class="det-section-title">Fiscalité</div>
+        </div>
+        <div class="det-section-body">${f.fisca}</div>
+      </div>
+    ` : ''}
+
+    ${f.vs ? `
+      <div class="det-vs">
+        <div class="det-vs-head">
+          <span class="det-vs-emoji">🆚</span>
+          <div class="det-vs-title">Quand le choisir</div>
+        </div>
+        <div class="det-vs-body">${f.vs}</div>
+      </div>
+    ` : ''}
+
+    ${f.note ? `<div class="det-note">${f.note}</div>` : ''}
+  `;
+}
+
+function toggleBookmarkDetail() {
+  if (!currentFiche) return;
+  const list = toggleInList(BM_KEY, currentFiche);
+  const isBm = list.includes(currentFiche);
+  const btn = document.getElementById('detail-bm');
+  if (btn) {
+    btn.textContent = isBm ? '★' : '☆';
+    btn.classList.toggle('on', isBm);
+  }
+  if (navigator.vibrate) navigator.vibrate(10);
+}
+
+/* ═══════════ SEARCH ═══════════ */
+const searchInput = document.getElementById('search-input');
+const searchClear = document.getElementById('search-clear');
+
+searchInput.addEventListener('input', (e) => {
+  const q = e.target.value.trim();
+  searchClear.classList.toggle('show', !!q);
+  if (q) renderSearch(q); else showDefaultHome();
+});
+
+function clearSearch() {
+  searchInput.value = '';
+  searchClear.classList.remove('show');
+  showDefaultHome();
+}
+
+function showDefaultHome() {
+  document.getElementById('home-default').style.display = 'block';
+  document.getElementById('home-search').style.display = 'none';
+}
+
+function renderSearch(q) {
+  const ql = q.toLowerCase();
+  const matches = FICHES.filter(f =>
+    f.name.toLowerCase().includes(ql) ||
+    f.fullName.toLowerCase().includes(ql) ||
+    f.tag.toLowerCase().includes(ql) ||
+    stripHtml(f.tldr).toLowerCase().includes(ql) ||
+    (f.forWho && stripHtml(f.forWho).toLowerCase().includes(ql)) ||
+    (f.what && stripHtml(f.what).toLowerCase().includes(ql))
+  );
+  document.getElementById('home-default').style.display = 'none';
+  document.getElementById('home-search').style.display = 'block';
+
+  const wrap = document.getElementById('search-results');
+  if (matches.length === 0) {
+    wrap.innerHTML = `<div class="lib-empty"><span class="lib-empty-emoji">🔍</span>Aucun résultat pour "<strong>${escapeHtml(q)}</strong>".</div>`;
+    return;
+  }
+  const viewed = getList(VW_KEY);
+  wrap.innerHTML = matches.map(f => {
+    const c = CATS[f.cat];
+    return `
+      <div class="fiche-card flat ${viewed.includes(f.id) ? 'viewed' : ''}" style="--cat-color:${c.color};" onclick="openFiche('${f.id}')">
+        <div class="fiche-emoji">${f.icon}</div>
+        <div class="fiche-content">
+          <div class="fiche-name">${f.name}</div>
+          <div class="fiche-tldr">${stripHtml(f.tldr)}</div>
+          <span class="fiche-cat-pill" style="color:${c.color};">${c.short}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* ═══════════ UTILS ═══════════ */
+function stripHtml(s) {
+  return (s || '').replace(/<[^>]+>/g, '');
+}
+function escapeHtml(s) {
+  return (s || '').replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+}
+
+/* ═══════════ INIT ═══════════ */
+renderHome();
+updateHeader();
+</script>
+  <script type="module" src="tg-common.js?v=149"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js?v=149').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
