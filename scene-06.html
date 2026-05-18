@@ -29,7 +29,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
 
 <style>
 :root {
@@ -52,15 +52,15 @@
   --pink: #f9a8d4;
   --amber: #fcd34d;
   --teal: #5eead4;
-  --font-d: 'Inter', sans-serif;
-  --font-h: 'Bricolage Grotesque', serif;
+  --font-d: 'Bricolage Grotesque', Georgia, serif;
+  --font-b: 'Manrope', system-ui, sans-serif;
   --font-m: 'JetBrains Mono', monospace;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body {
   background: var(--bg); color: var(--text);
-  font-family: var(--font-d); font-size: 14px; line-height: 1.5;
+  font-family: var(--font-b); font-size: 14px; line-height: 1.5;
   overflow-x: hidden;
 }
 body { min-height: 100vh; min-height: 100dvh; }
@@ -90,7 +90,7 @@ body { min-height: 100vh; min-height: 100dvh; }
   color: var(--acid);
 }
 .lib-title {
-  font-family: var(--font-h); font-size: 18px;
+  font-family: var(--font-d); font-size: 18px;
   font-weight: 800; letter-spacing: -0.02em;
   line-height: 1.05;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
@@ -148,7 +148,7 @@ body { min-height: 100vh; min-height: 100dvh; }
   margin-bottom: 3px;
 }
 .progress-stat {
-  font-family: var(--font-h); font-size: 14px;
+  font-family: var(--font-d); font-size: 14px;
   font-weight: 700; color: var(--text);
 }
 .progress-stat strong { color: var(--acid); }
@@ -175,7 +175,7 @@ body { min-height: 100vh; min-height: 100dvh; }
   border-radius: 12px;
   padding: 12px 38px 12px 38px;
   color: var(--text);
-  font-family: var(--font-d); font-size: 14px;
+  font-family: var(--font-b); font-size: 14px;
   -webkit-appearance: none;
 }
 .search-input:focus { outline: 0; border-color: var(--border-strong); }
@@ -244,7 +244,7 @@ body { min-height: 100vh; min-height: 100dvh; }
   position: relative; z-index: 1;
 }
 .cat-name {
-  font-family: var(--font-h); font-size: 15px;
+  font-family: var(--font-d); font-size: 15px;
   font-weight: 800; letter-spacing: -0.01em;
   line-height: 1.15;
   color: var(--text);
@@ -293,7 +293,7 @@ body { min-height: 100vh; min-height: 100dvh; }
   margin-bottom: 2px;
 }
 .cat-banner-title {
-  font-family: var(--font-h); font-size: 19px;
+  font-family: var(--font-d); font-size: 19px;
   font-weight: 800; letter-spacing: -0.02em;
 }
 
@@ -334,7 +334,7 @@ body { min-height: 100vh; min-height: 100dvh; }
   filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
 }
 .fiche-name {
-  font-family: var(--font-h); font-size: 13px;
+  font-family: var(--font-d); font-size: 13px;
   font-weight: 700; letter-spacing: -0.01em;
   line-height: 1.2;
   margin-bottom: 4px;
@@ -429,7 +429,7 @@ body { min-height: 100vh; min-height: 100dvh; }
 }
 .detail-hero-name {
   position: relative; z-index: 1;
-  font-family: var(--font-h); font-size: 24px;
+  font-family: var(--font-d); font-size: 24px;
   font-weight: 800; letter-spacing: -0.02em;
   line-height: 1.1;
   margin-bottom: 8px;
@@ -485,7 +485,7 @@ body { min-height: 100vh; min-height: 100dvh; }
   margin-bottom: 1px;
 }
 .hero-stat-val {
-  font-family: var(--font-h); font-size: 20px;
+  font-family: var(--font-d); font-size: 20px;
   font-weight: 800; letter-spacing: -0.01em;
   line-height: 1.1;
 }
@@ -510,7 +510,7 @@ body { min-height: 100vh; min-height: 100dvh; }
   font-size: 14px;
 }
 .det-section-title {
-  font-family: var(--font-h); font-size: 14px;
+  font-family: var(--font-d); font-size: 14px;
   font-weight: 700; letter-spacing: -0.01em;
   color: var(--text);
 }
@@ -576,7 +576,7 @@ body { min-height: 100vh; min-height: 100dvh; }
 }
 .pc-emoji { font-size: 16px; }
 .pc-title {
-  font-family: var(--font-h); font-size: 13.5px;
+  font-family: var(--font-d); font-size: 13.5px;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
@@ -615,7 +615,7 @@ body { min-height: 100vh; min-height: 100dvh; }
 }
 .det-vs-emoji { font-size: 18px; }
 .det-vs-title {
-  font-family: var(--font-h); font-size: 13.5px;
+  font-family: var(--font-d); font-size: 13.5px;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--purple);
@@ -697,7 +697,7 @@ body { min-height: 100vh; min-height: 100dvh; }
 }
 .fav-shortcut-text { flex: 1; }
 .fav-shortcut-label {
-  font-family: var(--font-h); font-size: 14px;
+  font-family: var(--font-d); font-size: 14px;
   font-weight: 700; color: var(--text);
 }
 .fav-shortcut-count {
@@ -1766,7 +1766,7 @@ function escapeHtml(s) {
 renderHome();
 updateHeader();
 </script>
-  <script type="module" src="tg-common.js?v=149"></script>
+  <script type="module" src="tg-common.js?v=150"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {

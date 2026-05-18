@@ -32,7 +32,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
 <style>
 /* ===== TOKENS ===== */
@@ -67,7 +67,8 @@
   --red-bg: rgba(248, 113, 113, 0.12);
 
   /* Fonts */
-  --font-d: 'Inter', system-ui, sans-serif;
+  --font-d: 'Bricolage Grotesque', Georgia, serif;
+  --font-b: 'Manrope', system-ui, sans-serif;
   --font-m: 'JetBrains Mono', monospace;
 
   /* Motion */
@@ -80,7 +81,7 @@
 html, body {
   background: var(--bg);
   color: var(--text);
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   -webkit-font-smoothing: antialiased;
   overscroll-behavior: none;
   user-select: none;
@@ -155,7 +156,7 @@ input { font-family: inherit; }
 }
 .hub-head.minimal .hub-eyebrow { font-size: 10px; margin-bottom: 4px; }
 .hub-title {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 32px;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -163,7 +164,7 @@ input { font-family: inherit; }
   margin-bottom: 10px;
 }
 .hub-title-mini {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 22px;
   font-weight: 800;
   letter-spacing: -0.015em;
@@ -233,7 +234,7 @@ input { font-family: inherit; }
 }
 .level-head:first-child { margin-top: 6px; }
 .level-head-title {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 16px;
   font-weight: 800;
   letter-spacing: -0.005em;
@@ -352,7 +353,7 @@ input { font-family: inherit; }
   opacity: 0.85;
 }
 .part-coming-header {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 14.5px;
   font-weight: 700;
   color: var(--text);
@@ -408,7 +409,7 @@ input { font-family: inherit; }
   background: linear-gradient(135deg, rgba(190, 242, 100, 0.12) 0%, rgba(167, 139, 250, 0.12) 100%);
   border: 1px solid rgba(190, 242, 100, 0.3);
   color: var(--acid);
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -536,7 +537,7 @@ input { font-family: inherit; }
   border-radius: 4px;
 }
 .scen-bar-title {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 13.5px;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -907,7 +908,7 @@ input { font-family: inherit; }
   border-left: 3px solid #f59e0b;
   border-radius: 9px;
   padding: 8px 30px 8px 11px;
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 11.5px;
   line-height: 1.35;
   color: var(--text);
@@ -1025,7 +1026,7 @@ input { font-family: inherit; }
   padding: 0 4px;
 }
 .sim-pos-label {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 15px;
   color: var(--text);
   font-weight: 700;
@@ -1046,7 +1047,7 @@ input { font-family: inherit; }
   min-width: 0;
 }
 .pos-stat-label {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 11px;
   color: var(--text-faint);
   font-weight: 500;
@@ -1252,7 +1253,7 @@ input { font-family: inherit; }
   padding: 16px 22px;
   border-radius: 14px;
   box-shadow: 0 12px 40px rgba(247, 113, 113, 0.4);
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-weight: 700;
   text-align: center;
   max-width: 320px;
@@ -1306,7 +1307,7 @@ input { font-family: inherit; }
   padding: 13px;
   background: linear-gradient(135deg, var(--acid) 0%, var(--acid-glow) 100%);
   color: #1a1a0a;
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 15px;
   font-weight: 800;
   border: none;
@@ -1455,7 +1456,7 @@ input { font-family: inherit; }
   letter-spacing: 0.1em;
 }
 .tuto-title {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 16px;
   font-weight: 800;
   letter-spacing: -0.01em;
@@ -1510,7 +1511,7 @@ input { font-family: inherit; }
   padding: 10px;
   background: linear-gradient(135deg, var(--acid) 0%, var(--acid-glow) 100%);
   color: #1a1a0a;
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 13px;
   font-weight: 800;
   border: none;
@@ -1562,7 +1563,7 @@ input { font-family: inherit; }
   text-align: center;
 }
 .rules-title {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.01em;
@@ -1601,7 +1602,7 @@ input { font-family: inherit; }
   letter-spacing: 0.05em;
 }
 .rule-item-title {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 13.5px;
   font-weight: 700;
   color: var(--text);
@@ -1651,7 +1652,7 @@ input { font-family: inherit; }
   background: rgba(125, 211, 252, 0.08);
   border: 1px solid rgba(125, 211, 252, 0.25);
   color: var(--text);
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 13px;
   font-weight: 700;
   border-radius: 11px;
@@ -1749,7 +1750,7 @@ input { font-family: inherit; }
   margin-bottom: 3px;
 }
 .intro-title {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 16px;
   font-weight: 800;
   letter-spacing: -0.01em;
@@ -1798,7 +1799,7 @@ input { font-family: inherit; }
   padding: 11px;
   background: linear-gradient(135deg, var(--acid) 0%, var(--acid-glow) 100%);
   color: #1a1a0a;
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 13.5px;
   font-weight: 800;
   border: none;
@@ -1867,7 +1868,7 @@ input { font-family: inherit; }
   gap: 5px;
 }
 .gloss-title {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 18px;
   font-weight: 800;
   letter-spacing: -0.01em;
@@ -1958,7 +1959,7 @@ input { font-family: inherit; }
   display: inline-block;
 }
 .coach-title {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 21px;
   font-weight: 800;
   letter-spacing: -0.01em;
@@ -2000,7 +2001,7 @@ input { font-family: inherit; }
 .coach-ind.bear .ind-val { color: var(--red-strong); }
 
 .coach-question {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 15.5px;
   font-weight: 700;
   color: var(--text);
@@ -2020,7 +2021,7 @@ input { font-family: inherit; }
   border-radius: 12px;
   padding: 14px 16px;
   color: var(--text);
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 14px;
   font-weight: 600;
   line-height: 1.4;
@@ -2035,7 +2036,7 @@ input { font-family: inherit; }
   margin-top: 6px;
 }
 .coach-verdict {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 18px;
   font-weight: 800;
   letter-spacing: -0.01em;
@@ -2105,7 +2106,7 @@ input { font-family: inherit; }
   text-transform: uppercase;
 }
 .crv-title {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 13.5px;
   font-weight: 700;
   color: var(--text);
@@ -2146,7 +2147,7 @@ input { font-family: inherit; }
   margin-bottom: 4px;
 }
 .coach-action-cta .cta-line-2 {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 18px;
   font-weight: 800;
   letter-spacing: -0.01em;
@@ -2154,7 +2155,7 @@ input { font-family: inherit; }
   line-height: 1.15;
 }
 .coach-action-cta .cta-hint {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 12.5px;
   color: var(--text-dim);
   line-height: 1.45;
@@ -2194,7 +2195,7 @@ input { font-family: inherit; }
   margin-bottom: 2px;
 }
 .recap-title {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 17px;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -2430,7 +2431,7 @@ input { font-family: inherit; }
   text-transform: uppercase;
 }
 .rcn-title {
-  font-family: var(--font-d);
+  font-family: var(--font-b);
   font-size: 14.5px;
   font-weight: 800;
   letter-spacing: -0.005em;
@@ -6670,7 +6671,7 @@ function renderRecapChart() {
       parts.push(`<line x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${x.toFixed(1)}" y2="${(padT + chartH).toFixed(1)}" stroke="${color}" stroke-width="0.5" opacity="0.3" stroke-dasharray="2,2"/>`);
       // Bubble
       parts.push(`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="${color}" stroke="#0a0a0d" stroke-width="1.5"/>`);
-      parts.push(`<text x="${x.toFixed(1)}" y="${(y + 3).toFixed(1)}" font-family="Inter, sans-serif" font-size="9.5" font-weight="700" fill="${textColor}" text-anchor="middle">${sym}</text>`);
+      parts.push(`<text x="${x.toFixed(1)}" y="${(y + 3).toFixed(1)}" font-family="Manrope, sans-serif" font-size="9.5" font-weight="700" fill="${textColor}" text-anchor="middle">${sym}</text>`);
     });
   }
 
@@ -6822,7 +6823,7 @@ function safeInit() {
         <div style="padding:20px;text-align:center;color:#e76f51;border:1px solid rgba(231,111,81,0.4);border-radius:12px;margin:20px 0;">
           <div style="font-weight:700;margin-bottom:8px;">⚠️ Données corrompues</div>
           <div style="font-size:13px;color:var(--text-dim);margin-bottom:14px;">Une donnée locale empêche le chargement. Réinitialise pour repartir à zéro.</div>
-          <button onclick="localStorage.clear();location.reload();" style="background:rgba(231,111,81,0.16);border:1px solid rgba(231,111,81,0.4);color:#e76f51;padding:10px 20px;border-radius:10px;font-family:var(--font-d);font-weight:700;">Tout effacer & recharger</button>
+          <button onclick="localStorage.clear();location.reload();" style="background:rgba(231,111,81,0.16);border:1px solid rgba(231,111,81,0.4);color:#e76f51;padding:10px 20px;border-radius:10px;font-family:var(--font-b);font-weight:700;">Tout effacer & recharger</button>
         </div>`;
     }
   }
@@ -6842,7 +6843,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 </script>
-  <script type="module" src="tg-common.js?v=149"></script>
+  <script type="module" src="tg-common.js?v=150"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
