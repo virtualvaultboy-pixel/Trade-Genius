@@ -98,7 +98,7 @@ body { min-height: 100vh; min-height: 100dvh; }
 
 /* ═══════════ VIEWS ═══════════ */
 .view { display: none; padding-bottom: 40px; }
-.view.active { display: block; animation: viewIn 0.28s var(--ease); }
+.view.active { display: block; animation: viewIn 0.28s var(--ease); will-change: transform, opacity; }
 @keyframes viewIn {
   from { opacity: 0; transform: translateX(20px); }
   to   { opacity: 1; transform: translateX(0); }
@@ -1766,7 +1766,7 @@ function escapeHtml(s) {
 renderHome();
 updateHeader();
 </script>
-  <script type="module" src="tg-common.js?v=150"></script>
+  <script type="module" src="tg-common.js?v=151"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {

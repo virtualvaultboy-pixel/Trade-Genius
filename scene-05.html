@@ -282,6 +282,7 @@ input { font-family: inherit; }
   animation: scenFlash 2.4s ease-out;
   position: relative;
   z-index: 5;
+  will-change: transform, box-shadow;
 }
 @keyframes scenFlash {
   0%       { box-shadow: 0 0 0 0 rgba(190, 242, 100, 0); transform: scale(1); }
@@ -917,6 +918,7 @@ input { font-family: inherit; }
   -webkit-backdrop-filter: blur(6px);
   box-shadow: 0 4px 18px rgba(0,0,0,0.4);
   animation: newsSlide 0.25s var(--ease);
+  will-change: transform, opacity;
 }
 @keyframes newsSlide { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 .news-toast.show { display: block; }
@@ -1258,6 +1260,7 @@ input { font-family: inherit; }
   text-align: center;
   max-width: 320px;
   animation: stopToastIn 0.32s var(--ease) both;
+  will-change: transform, opacity;
 }
 .stop-toast.hide { animation: stopToastOut 0.28s var(--ease) both; }
 @keyframes stopToastIn {
@@ -1408,6 +1411,7 @@ input { font-family: inherit; }
 }
 .tuto-bubble.slide-in {
   animation: tutoBubbleSlide 0.28s var(--ease) both;
+  will-change: transform, opacity;
 }
 @keyframes tutoBubbleSlide {
   from { transform: translateY(6px); opacity: 0; }
@@ -1932,6 +1936,7 @@ input { font-family: inherit; }
   position: relative;
   box-shadow: 0 -20px 60px rgba(0,0,0,0.6);
   animation: coachSlideUp 0.32s var(--ease);
+  will-change: transform, opacity;
 }
 @keyframes coachSlideUp {
   from { transform: translateY(40px); opacity: 0; }
@@ -6843,7 +6848,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 </script>
-  <script type="module" src="tg-common.js?v=150"></script>
+  <script type="module" src="tg-common.js?v=151"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
