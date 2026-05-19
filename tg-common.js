@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.59';
+export const TG_VERSION = 'v1.60';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -265,8 +265,9 @@ function ensureGlossaryStyle() {
   const s = document.createElement('style');
   s.id = 'tg-glossary-style';
   s.textContent = `
-    [data-term] { color: var(--blue, #7dd3fc); border-bottom: 1px dashed currentColor; cursor: pointer; }
-    [data-term]:active { opacity: 0.6; }
+    [data-term] { border-bottom: 1px dashed currentColor; cursor: pointer; transition: opacity 0.15s; }
+    [data-term]:hover { opacity: 0.75; }
+    [data-term]:active { opacity: 0.55; }
     .tg-gloss-modal { position: fixed; inset: 0; z-index: 99998; background: rgba(0,0,0,0.7); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; padding: 16px; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
     .tg-gloss-modal.active { opacity: 1; pointer-events: auto; }
     .tg-gloss-card { background: linear-gradient(180deg, #16161c, #0c0c10); border: 1px solid rgba(125,211,252,0.3); border-radius: 14px; padding: 20px 18px 18px; max-width: 380px; width: 100%; box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 24px rgba(125,211,252,0.15); transform: translateY(20px); transition: transform 0.25s cubic-bezier(0.2,0.8,0.2,1); }

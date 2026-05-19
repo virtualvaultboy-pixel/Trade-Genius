@@ -5368,7 +5368,7 @@
       <div class="tap-zones"><div class="tap-prev" onclick="prev()"></div><div class="tap-next" onclick="next()"></div></div>
       <div class="content">
         <div class="eyebrow reveal">ALORS...</div>
-        <h1 class="h1 xl reveal">Mais une <span class="acid">action</span>,<br>c'est quoi<br>exactement ?</h1>
+        <h1 class="h1 xl reveal">Mais une <span class="acid" data-term="action">action</span>,<br>c'est quoi<br>exactement ?</h1>
         <p class="body reveal">Tu en achètes <em>une</em>. Tu reçois quoi ? Tu détiens quoi ?<br><strong class="acid-strong">On démonte tout au prochain chapitre.</strong></p>
 
         <button class="next-cta reveal" onclick="completeCurrentChapter()" style="margin-top: 12px;">
@@ -5481,7 +5481,7 @@
             <span class="profit-num">2</span>
             <span class="profit-icon">💰</span>
             <div class="profit-text">
-              <strong>Le dividende</strong>
+              <strong data-term="dividende">Le dividende</strong>
               <span>L'entreprise gagne de l'argent, elle t'en reverse une partie.<br><em>(Pas obligatoire.)</em></span>
             </div>
           </div>
@@ -5496,7 +5496,7 @@
       <div class="tap-zones"><div class="tap-prev" onclick="prev()"></div><div class="tap-next" onclick="next()"></div></div>
       <div class="content">
         <div class="eyebrow reveal" style="color: var(--clay-glow);">2ÈME OUTIL</div>
-        <h1 class="h1 l reveal">L'<span class="clay">obligation</span>,<br>c'est un prêt.</h1>
+        <h1 class="h1 l reveal">L'<span class="clay" data-term="obligation">obligation</span>,<br>c'est un prêt.</h1>
         <p class="body reveal">L'État ou une entreprise a besoin de cash. Tu lui prêtes. Tu deviens son <strong class="clay-strong">créancier</strong>.</p>
 
         <div class="bond-flow reveal">
@@ -5528,7 +5528,7 @@
       <div class="tap-zones"><div class="tap-prev" onclick="prev()"></div><div class="tap-next" onclick="next()"></div></div>
       <div class="content">
         <div class="eyebrow reveal" style="color: var(--clay-glow);">3ÈME OUTIL</div>
-        <h1 class="h1 l reveal">L'<span class="clay">ETF</span>,<br>c'est un panier.</h1>
+        <h1 class="h1 l reveal">L'<span class="clay" data-term="etf">ETF</span>,<br>c'est un panier.</h1>
 
         <div class="etf-basket reveal">
           <div class="basket-title">🧺 ETF S&P 500</div>
@@ -5711,7 +5711,7 @@
           </div>
         </div>
 
-        <p class="body reveal">Le <strong class="sienna-strong">spread</strong>, c'est la différence entre les deux.<br>Plus c'est serré, plus le marché est <em>liquide</em>.</p>
+        <p class="body reveal">Le <strong class="sienna-strong" data-term="spread">spread</strong>, c'est la différence entre les deux.<br>Plus c'est serré, plus le marché est <em data-term="liquidité">liquide</em>.</p>
 
         <div class="liquid-why reveal">
           <div class="lw-tag">🤔 POURQUOI ÇA REND LE MARCHÉ "LIQUIDE" ?</div>
@@ -5945,7 +5945,7 @@
       <div class="tap-zones"><div class="tap-prev" onclick="prev()"></div><div class="tap-next" onclick="next()"></div></div>
       <div class="content">
         <div class="eyebrow reveal">DEUX MOTS À RETENIR</div>
-        <h1 class="h1 l reveal">Le marché est<br><span class="bronze">Bull</span> ou <span class="bronze">Bear</span>.</h1>
+        <h1 class="h1 l reveal">Le marché est<br><span class="bronze" data-term="bull market">Bull</span> ou <span class="bronze" data-term="bear market">Bear</span>.</h1>
 
         <div class="bullbear reveal">
           <div class="bb-card bull">
@@ -6124,7 +6124,7 @@
             <span class="anat-num">⑤</span>
             <div class="anat-info">
               <strong>Haut / Bas du jour</strong>
-              <span>Le plus haut et le plus bas atteints. Montre la <em>volatilité</em>.</span>
+              <span>Le plus haut et le plus bas atteints. Montre la <em data-term="volatilité">volatilité</em>.</span>
             </div>
           </div>
         </div>
@@ -7115,11 +7115,11 @@
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeInfo(); });
   </script>
-  <script type="module" src="tg-common.js?v=159"></script>
+  <script type="module" src="tg-common.js?v=160"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=159').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=160').catch(() => {});
       });
     }
   </script>
