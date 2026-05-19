@@ -13,7 +13,8 @@
   <meta property="og:url" content="https://virtualvaultboy-pixel.github.io/Trade-Genius/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" type="image/png" href="icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -477,6 +478,36 @@
     border-radius: 2px;
   }
   .chap-bar.done { background: var(--module-color, var(--acid)); }
+
+  /* Highlight "PROCHAINE ÉTAPE" sur la module-card à attaquer */
+  .module-card.next-up {
+    border-color: rgba(190, 242, 100, 0.4);
+    box-shadow: 0 0 0 1px rgba(190, 242, 100, 0.18), 0 8px 24px rgba(190, 242, 100, 0.08);
+    position: relative;
+  }
+  .module-card.next-up::after {
+    content: '✦ PROCHAINE ÉTAPE';
+    position: absolute;
+    top: -8px; right: 14px;
+    background: var(--acid);
+    color: #0a0a0c;
+    font-family: var(--font-m);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    animation: nextUpPulse 2.2s ease-in-out infinite;
+    box-shadow: 0 4px 14px rgba(190, 242, 100, 0.4);
+  }
+  @keyframes nextUpPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 4px 14px rgba(190, 242, 100, 0.4); }
+    50% { transform: scale(1.06); box-shadow: 0 4px 22px rgba(190, 242, 100, 0.7); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .module-card.next-up::after { animation: none; }
+  }
 
   .card-footer {
     display: flex;
@@ -1329,7 +1360,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=170')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=171')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -1348,7 +1379,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=170')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=171')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -1367,7 +1398,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=170')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=171')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -1386,7 +1417,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=170')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=171')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -1464,15 +1495,15 @@
 
     <!-- Stats compactes -->
     <div class="stats-row">
-      <div class="stat-cell" onclick="location.href='scene-06.html?v=170'">
+      <div class="stat-cell" onclick="location.href='scene-06.html?v=171'">
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=170'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=171'">
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=170'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=171'">
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
       </div>
@@ -1489,7 +1520,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=170'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=171'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -1619,11 +1650,18 @@
         if (prog.completed && prog.completed[i + 1] === true) bar.classList.add('done');
       });
 
+      // Reset next-up flag, sera réappliqué en post-pass
+      card.classList.remove('next-up');
+
       // Track for next iteration
       if (!isComing && !isComplete) allDone = false;
       if (isComing) allDone = false;
       prevComplete = isComplete && !isComing;
     });
+
+    // Highlight la 1re card non-complete et non-locked comme "PROCHAINE ÉTAPE"
+    const nextUp = document.querySelector('.module-card:not(.locked) .card-status.in-progress')?.closest('.module-card');
+    if (nextUp) nextUp.classList.add('next-up');
 
     // Reveal unlock banner + accueil button if all non-coming modules done
     const nonComingDone = MODULES.filter(m => !m.coming).every(m => countDone(loadProg(m.storage)) >= m.total);
@@ -1813,7 +1851,7 @@
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
       const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '168';
-      location.href = 'scene-05.html?v=170' + v;
+      location.href = 'scene-05.html?v=171' + v;
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -1967,7 +2005,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=170' + v; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=171' + v; };
         block.style.display = 'block';
         return;
       }
@@ -2009,7 +2047,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=170';
+        card.onclick = () => location.href = 'scene-05.html?v=171';
         block.style.display = 'block';
         return;
       }
@@ -2029,7 +2067,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=170';
+          card.onclick = () => location.href = 'scene-06.html?v=171';
           block.style.display = 'block';
           return;
         }
@@ -2043,7 +2081,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=170';
+        card.onclick = () => location.href = 'scene-06.html?v=171';
         block.style.display = 'block';
         return;
       }
@@ -2058,7 +2096,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=170';
+    card.onclick = () => location.href = 'scene-05.html?v=171';
     block.style.display = 'block';
   }
 
@@ -2265,11 +2303,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=170"></script>
+  <script type="module" src="tg-common.js?v=171"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=170').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=171').catch(() => {});
       });
     }
   </script>
