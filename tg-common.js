@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.84';
+export const TG_VERSION = 'v1.85';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -382,7 +382,45 @@ function ensureRecapStyle() {
   document.head.appendChild(s);
 }
 
-export function showRecap({ eyebrow = '✓ VALIDÉ', title = 'Ce que tu as appris', points = [], onContinue = null } = {}) {
+// === Confettis (célébration fin de module ou achievement) ===
+function ensureConfettiStyle() {
+  if (document.getElementById('tg-confetti-style')) return;
+  const s = document.createElement('style');
+  s.id = 'tg-confetti-style';
+  s.textContent = `
+    .tg-confetti-wrap { position: fixed; inset: 0; pointer-events: none; z-index: 99999; overflow: hidden; }
+    .tg-confetti-piece { position: absolute; top: -20px; width: 9px; height: 14px; border-radius: 2px; opacity: 0; transform-origin: center; }
+    @keyframes tgConfettiFall {
+      0%   { opacity: 0; transform: translateY(-30px) translateX(0) rotate(0); }
+      10%  { opacity: 1; }
+      100% { opacity: 0.1; transform: translateY(110vh) translateX(var(--tg-drift)) rotate(var(--tg-rot)); }
+    }
+  `;
+  document.head.appendChild(s);
+}
+
+export function launchConfetti({ count = 80, duration = 2200, colors = ['#bef264', '#d9f99d', '#fbbf24', '#a78bfa', '#7dd3fc'] } = {}) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  ensureConfettiStyle();
+  const wrap = document.createElement('div');
+  wrap.className = 'tg-confetti-wrap';
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'tg-confetti-piece';
+    const c = colors[Math.floor(Math.random() * colors.length)];
+    const left = Math.random() * 100;
+    const delay = Math.random() * 0.3;
+    const dur = 1.6 + Math.random() * 1.2;
+    const rot = Math.random() * 720 - 360;
+    const drift = (Math.random() - 0.5) * 200;
+    p.style.cssText = `left:${left}%;background:${c};animation:tgConfettiFall ${dur}s cubic-bezier(0.4,0.6,0.5,1) ${delay}s forwards;--tg-rot:${rot}deg;--tg-drift:${drift}px;`;
+    wrap.appendChild(p);
+  }
+  document.body.appendChild(wrap);
+  setTimeout(() => wrap.remove(), duration + 600);
+}
+
+export function showRecap({ eyebrow = '✓ VALIDÉ', title = 'Ce que tu as appris', points = [], onContinue = null, confetti = false } = {}) {
   ensureRecapStyle();
   let overlay = document.getElementById('tg-recap-overlay');
   if (!overlay) {
@@ -394,7 +432,7 @@ export function showRecap({ eyebrow = '✓ VALIDÉ', title = 'Ce que tu as appri
   // Recrée le contenu à chaque show pour rejouer les animations CSS
   overlay.innerHTML = `
     <div class="tg-recap-card">
-      <div class="tg-recap-check">✓</div>
+      <div class="tg-recap-check">${confetti ? '🏆' : '✓'}</div>
       <div class="tg-recap-eyebrow">${eyebrow}</div>
       <h2 class="tg-recap-title">${title}</h2>
       <ul class="tg-recap-points">
@@ -411,7 +449,10 @@ export function showRecap({ eyebrow = '✓ VALIDÉ', title = 'Ce que tu as appri
     setTimeout(() => { if (typeof onContinue === 'function') onContinue(); }, 380);
   };
   overlay.classList.add('active');
-  if (navigator.vibrate) navigator.vibrate([12, 60, 28]);
+  if (navigator.vibrate) navigator.vibrate(confetti ? [50, 80, 50, 80, 100] : [12, 60, 28]);
+  if (confetti) {
+    setTimeout(() => launchConfetti({ count: 130, duration: 2800 }), 250);
+  }
 }
 
 // === Streak quotidien — tracking auto à chaque visite ===
@@ -541,7 +582,7 @@ export async function shareCard({ title = 'Trade Genius', stat = '', quote = '' 
 
 // Expose API globalement pour usage hors module (scripts inline des HTML)
 window.TG = Object.assign(window.TG || {}, {
-  shareCard, addGlossaryTerm, recordVisit, resetConsent, showRecap,
+  shareCard, addGlossaryTerm, recordVisit, resetConsent, showRecap, launchConfetti,
   getNotifState, requestNotifPermission, disableNotifs, checkStreakDangerNotify,
   getDailyChallenge, getDailyState, showDailyChallenge,
   TG_VERSION,

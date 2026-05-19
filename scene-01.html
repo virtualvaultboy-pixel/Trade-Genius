@@ -5473,12 +5473,14 @@
           else showHub();
         };
         const recap = CHAPTER_TAKEAWAYS[ch];
+        const isLastChapter = ch >= 7;
         if (recap && window.TG && window.TG.showRecap) {
           window.TG.showRecap({
-            eyebrow: '✓ CHAPITRE ' + ch + ' VALIDÉ',
+            eyebrow: isLastChapter ? '🏆 MODULE 0 TERMINÉ' : '✓ CHAPITRE ' + ch + ' VALIDÉ',
             title: recap.title,
             points: recap.points,
             onContinue: goNext,
+            confetti: isLastChapter,
           });
         } else {
           goNext();
@@ -5759,11 +5761,11 @@
       }
     }
   </script>
-  <script type="module" src="tg-common.js?v=184"></script>
+  <script type="module" src="tg-common.js?v=185"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=184').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=185').catch(() => {});
       });
     }
   </script>
