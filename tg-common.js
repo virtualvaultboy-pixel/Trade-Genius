@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.68';
+export const TG_VERSION = 'v1.69';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -384,14 +384,33 @@ export async function shareCard({ title = 'Trade Genius', stat = '', quote = '' 
   ctx.fillStyle = '#bef264';
   ctx.fillRect(0, 0, W, 8);
 
-  // Logo TG + brand
+  // Logo monogramme T-chandelier + brand
   ctx.textAlign = 'left';
   ctx.fillStyle = '#bef264';
-  ctx.font = '800 140px "Bricolage Grotesque", Georgia, serif';
-  ctx.fillText('TG', 80, 240);
+  // Scale viewBox 0..100 → 0..160 px à partir de (80, 100)
+  const lx = 80, ly = 100, lw = 160;
+  const sx = (n) => lx + (n / 100) * lw;
+  const sy = (n) => ly + (n / 100) * lw;
+  // Toit du T
+  ctx.beginPath();
+  ctx.roundRect ? ctx.roundRect(sx(14), sy(20), sx(86) - sx(14), sy(30) - sy(20), 4) : ctx.rect(sx(14), sy(20), sx(86) - sx(14), sy(30) - sy(20));
+  ctx.fill();
+  // Mèche supérieure (opacity 0.85)
+  ctx.globalAlpha = 0.85;
+  ctx.fillRect(sx(48.5), sy(30), sx(51.5) - sx(48.5), sy(39) - sy(30));
+  ctx.globalAlpha = 1;
+  // Corps de la bougie
+  ctx.beginPath();
+  ctx.roundRect ? ctx.roundRect(sx(40), sy(39), sx(60) - sx(40), sy(79) - sy(39), 4) : ctx.rect(sx(40), sy(39), sx(60) - sx(40), sy(79) - sy(39));
+  ctx.fill();
+  // Mèche inférieure
+  ctx.globalAlpha = 0.85;
+  ctx.fillRect(sx(48.5), sy(79), sx(51.5) - sx(48.5), sy(85) - sy(79));
+  ctx.globalAlpha = 1;
+
   ctx.fillStyle = 'rgba(245,243,239,0.55)';
   ctx.font = '700 22px "JetBrains Mono", monospace';
-  ctx.fillText('TRADE GENIUS', 80, 285);
+  ctx.fillText('TRADE GENIUS', 80, 308);
 
   // Title (gros)
   ctx.fillStyle = '#f5f3ef';

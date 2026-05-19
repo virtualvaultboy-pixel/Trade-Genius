@@ -1134,13 +1134,12 @@
     animation: tgSplashIn 0.5s cubic-bezier(0.2,0.8,0.2,1);
   }
   .tg-splash-mark {
-    font-family: 'Bricolage Grotesque', serif;
-    font-weight: 800; font-size: 68px;
+    width: 76px; height: 76px;
     color: var(--acid);
-    letter-spacing: -0.04em;
-    line-height: 1;
     animation: tgSplashPulse 1.6s ease-in-out infinite;
+    filter: drop-shadow(0 0 18px rgba(190,242,100,0.4));
   }
+  .tg-splash-mark rect { transition: opacity 0.3s; }
   .tg-splash-name {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px; font-weight: 700;
@@ -1184,7 +1183,14 @@
   <!-- Splash screen (cold-start PWA) -->
   <div id="tg-splash" aria-hidden="true">
     <div class="tg-splash-logo">
-      <div class="tg-splash-mark">TG</div>
+      <svg class="tg-splash-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Trade Genius">
+        <g fill="currentColor">
+          <rect x="14" y="20" width="72" height="10" rx="2"/>
+          <rect x="48.5" y="30" width="3" height="9" opacity="0.85"/>
+          <rect x="40" y="39" width="20" height="40" rx="2"/>
+          <rect x="48.5" y="79" width="3" height="6" opacity="0.85"/>
+        </g>
+      </svg>
       <div class="tg-splash-name">TRADE GENIUS</div>
       <div class="tg-splash-dot"></div>
     </div>
@@ -1323,7 +1329,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=168')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=169')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -1342,7 +1348,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=168')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=169')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -1361,7 +1367,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=168')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=169')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -1380,7 +1386,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=168')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=169')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -1458,15 +1464,15 @@
 
     <!-- Stats compactes -->
     <div class="stats-row">
-      <div class="stat-cell" onclick="location.href='scene-06.html?v=168'">
+      <div class="stat-cell" onclick="location.href='scene-06.html?v=169'">
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=168'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=169'">
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=168'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=169'">
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
       </div>
@@ -1483,7 +1489,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=168'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=169'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -1807,7 +1813,7 @@
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
       const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '168';
-      location.href = 'scene-05.html?v=168' + v;
+      location.href = 'scene-05.html?v=169' + v;
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -1961,7 +1967,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=168' + v; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=169' + v; };
         block.style.display = 'block';
         return;
       }
@@ -2003,7 +2009,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=168';
+        card.onclick = () => location.href = 'scene-05.html?v=169';
         block.style.display = 'block';
         return;
       }
@@ -2023,7 +2029,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=168';
+          card.onclick = () => location.href = 'scene-06.html?v=169';
           block.style.display = 'block';
           return;
         }
@@ -2037,7 +2043,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=168';
+        card.onclick = () => location.href = 'scene-06.html?v=169';
         block.style.display = 'block';
         return;
       }
@@ -2052,7 +2058,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=168';
+    card.onclick = () => location.href = 'scene-05.html?v=169';
     block.style.display = 'block';
   }
 
@@ -2259,11 +2265,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=168"></script>
+  <script type="module" src="tg-common.js?v=169"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=168').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=169').catch(() => {});
       });
     }
   </script>
