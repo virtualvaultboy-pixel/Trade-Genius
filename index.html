@@ -1171,13 +1171,18 @@
     font-size: 13px;
   }
 
-  /* Outils en chips compacts — 2x2 grid */
+  /* Outils en chips compacts — 2x2 grid (ou 3 cols si .tools-grid-3 v1.99) */
   .tools-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
     margin-bottom: 18px;
   }
+  .tools-grid.tools-grid-3 { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .tools-grid.tools-grid-3 .tool-icon { width: 32px; height: 32px; font-size: 17px; }
+  .tools-grid.tools-grid-3 .tool-name { font-size: 11px; }
+  .stat-cell.stat-readonly { cursor: default; }
+  .stat-cell.stat-readonly:active { transform: none; border-color: var(--border); }
   .tool-chip {
     position: relative;
     padding: 14px 10px;
@@ -2007,7 +2012,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=198')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=199')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -2026,7 +2031,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=198')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=199')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -2045,7 +2050,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=198')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=199')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -2064,7 +2069,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=198')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=199')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -2096,14 +2101,6 @@
   <div id="view-accueil" class="view">
     <!-- Canvas trading chart en background — signature fintech v1.98 -->
     <canvas class="hub-bg-canvas" id="hub-bg-canvas" aria-hidden="true"></canvas>
-
-    <div class="header-bar">
-      <button class="back-home" onclick="showView('modules')">← MODULES</button>
-      <div class="brand">
-        <span class="brand-dot"></span>
-        <span>TRADE GENIUS</span>
-      </div>
-    </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
     <div class="hub-header" id="hub-header">
@@ -2141,33 +2138,21 @@
       <div class="resume-card" id="resume-card"></div>
     </div>
 
-    <!-- Progression globale du parcours pédago -->
-    <div class="parcours-progress" onclick="showView('modules')">
-      <div class="pp-head">
-        <span class="pp-label">PARCOURS PÉDAGO</span>
-        <span class="pp-stat" id="pp-stat">0 / 28 chapitres</span>
-      </div>
-      <div class="pp-bar-wrap">
-        <div class="pp-bar-fill" id="pp-bar-fill" style="width: 0%"></div>
-      </div>
-      <div class="pp-pct" id="pp-pct">0%</div>
-    </div>
-
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=198'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=199'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=198'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=199'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
         <canvas class="stat-spark" id="spark-sessions" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: #F59E0B;" onclick="location.href='scene-05.html?v=198'">
+      <div class="stat-cell stat-readonly" style="--stat-color: #F59E0B;">
         <div class="stat-icon">🎯</div>
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
@@ -2196,22 +2181,18 @@
 
     <!-- Outils en chips -->
     <div class="section-title">Tes outils</div>
-    <div class="tools-grid">
+    <div class="tools-grid tools-grid-3">
       <div class="tool-chip" style="--mode-color: var(--acid);" onclick="showView('modules')">
         <div class="tool-icon">📚</div>
-        <div class="tool-name">Apprendre</div>
+        <div class="tool-name">Modules</div>
       </div>
       <div class="tool-chip" id="tool-simu" style="--mode-color: var(--blue);" onclick="openSimulator()">
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=198'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=199'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
-      </div>
-      <div class="tool-chip premium-locked" id="tool-analyse" style="--mode-color: var(--clay);" onclick="openAnalyse()">
-        <div class="tool-icon">📊</div>
-        <div class="tool-name">Analyse<span class="tool-sub">Premium</span></div>
       </div>
     </div>
 
@@ -2289,9 +2270,7 @@
         }
       }, 350);
       setTimeout(initMagneticTools, 200);
-      if (shouldShowAccueilTuto()) {
-        setTimeout(startAccueilTuto, 450);
-      }
+      // v1.99 — auto-tuto désactivé (déclenchable manuellement via burger menu)
     }
     if (name === 'modules') {
       setTimeout(animateModulesEntrance, 60);
@@ -3052,7 +3031,7 @@
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
       const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '168';
-      location.href = 'scene-05.html?v=198' + v;
+      location.href = 'scene-05.html?v=199' + v;
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -3401,7 +3380,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=198' + v; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=199' + v; };
         block.style.display = 'block';
         return;
       }
@@ -3443,7 +3422,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=198';
+        card.onclick = () => location.href = 'scene-05.html?v=199';
         block.style.display = 'block';
         return;
       }
@@ -3463,7 +3442,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=198';
+          card.onclick = () => location.href = 'scene-06.html?v=199';
           block.style.display = 'block';
           return;
         }
@@ -3477,7 +3456,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=198';
+        card.onclick = () => location.href = 'scene-06.html?v=199';
         block.style.display = 'block';
         return;
       }
@@ -3492,7 +3471,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=198';
+    card.onclick = () => location.href = 'scene-05.html?v=199';
     block.style.display = 'block';
   }
 
@@ -3712,11 +3691,11 @@
     if (shortcut === 'modules') { showView('modules'); return; }
     if (shortcut === 'simu') {
       // Pas de location.href ici : on est déjà dans index.html, redirige
-      location.href = 'scene-05.html?v=198';
+      location.href = 'scene-05.html?v=199';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=198';
+      location.href = 'scene-06.html?v=199';
       return;
     }
 
@@ -3735,11 +3714,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=198"></script>
+  <script type="module" src="tg-common.js?v=199"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=198').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=199').catch(() => {});
       });
     }
   </script>
