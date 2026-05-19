@@ -26,7 +26,7 @@
   <meta name="description" content="Module 4 — Analyse technique avancée : patterns chandeliers, RSI, MACD, Fibonacci, volume profile, backtesting.">
   <link rel="manifest" href="manifest.json">
   <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
-  <script type="module" src="tg-common.js?v=209"></script>
+  <script type="module" src="tg-common.js?v=210"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -889,103 +889,279 @@
         `},
       ],
 
-      // ============ CHAPITRE 4 — Dow + Fibonacci (PREMIUM) ============
+      // ============ CHAPITRE 4 — Dow + Fibonacci (PREMIUM) — 7 slides enrichies ============
       4: [
         { type: 'intro', html: `
           <div class="eyebrow">CH.4 · DOW + FIBONACCI</div>
           <h1 class="h1">La <em>théorie classique</em></h1>
-          <p class="lead">Charles Dow a posé les bases de l'analyse technique <strong>il y a 130 ans</strong>. Ses principes restent valables aujourd'hui.</p>
+          <p class="lead"><strong>Charles Dow</strong> (1851-1902), fondateur du Wall Street Journal et du Dow Jones, a posé les bases de l'analyse technique <strong>il y a 130 ans</strong>. Ses 6 principes restent universellement valides en 2026.</p>
+          <p class="lead" style="margin-top:10px;">Combinée à <strong>Fibonacci</strong> (mathématicien italien du 13ème siècle), la théorie de Dow forme l'<em>épine dorsale</em> de tout traders pro. Maîtrise ces deux outils et tu lis le marché comme un livre ouvert.</p>
           <div class="callout">
-            <div class="ck-lbl">DOW · 6 PRINCIPES</div>
-            <div class="ck-txt">Le marché évolue en 3 mouvements (primaire, secondaire, mineur). Les tendances ont 3 phases (accumulation, public, distribution).</div>
+            <div class="ck-lbl">À RETENIR</div>
+            <div class="ck-txt">Le marché <strong>ne fait pas n'importe quoi</strong>. Il suit des règles découvertes il y a un siècle et toujours actives — parce que la <em>psychologie humaine n'a pas changé</em>.</div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.4 · DOW</div>
+          <h1 class="h1">Les <em>6 principes</em></h1>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">1️⃣</div>
+              <div class="point-text"><strong>Le marché reflète tout</strong> : prix actuel = toutes les infos disponibles intégrées. Inutile de chercher l'info cachée.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">2️⃣</div>
+              <div class="point-text"><strong>3 tendances simultanées</strong> : primaire (mois/années), secondaire (semaines), mineure (jours). Trader la primaire = moins de bruit.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">3️⃣</div>
+              <div class="point-text"><strong>3 phases dans la tendance primaire</strong> : accumulation, participation publique, distribution. Détaillé slide suivante.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">4️⃣</div>
+              <div class="point-text"><strong>Les indices doivent se confirmer</strong> : Dow Industrial + Dow Transport doivent bouger ensemble pour valider une tendance.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">5️⃣</div>
+              <div class="point-text"><strong>Volume confirme</strong> : montée avec volume = saine. Montée sans volume = piège.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">6️⃣</div>
+              <div class="point-text"><strong>Tendance dure</strong> jusqu'à signal contraire clair. Pas de retournement présumé.</div>
+            </div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.4 · 3 PHASES</div>
+          <h1 class="h1">Les <em>3 phases</em> d'un cycle</h1>
+          <p class="lead">Toute tendance primaire se déroule en 3 phases. <strong>Reconnaître la phase</strong> = savoir si on est tôt ou tard dans le cycle.</p>
+          <div class="points">
+            <div class="point acid-pt">
+              <div class="point-icon">🌱</div>
+              <div class="point-text"><strong>1. Accumulation</strong> : la "smart money" (institutionnels, insiders) achète <em>en silence</em>, souvent après une grosse baisse. Volume bas, prix stagne. Public désintéressé voire pessimiste.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📢</div>
+              <div class="point-text"><strong>2. Participation publique</strong> : la tendance devient évidente. Médias commencent à en parler. Volume monte, prix accélère. <em>C'est la phase la plus longue et profitable pour le retail informé.</em></div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🎉</div>
+              <div class="point-text"><strong>3. Distribution</strong> : la smart money <em>revend silencieusement</em> au grand public euphorique. Volume très élevé, prix consolide ou fait des plus hauts faibles. Médias en couverture. <em>C'est là qu'il faut sortir.</em></div>
+            </div>
+          </div>
+          <div class="callout">
+            <div class="ck-lbl">SIGNAL CLÉ</div>
+            <div class="ck-txt">Quand <strong>ton taxi te parle d'actions</strong>, c'est la phase 3. Sors.</div>
           </div>
         `},
         { type: 'concept', html: `
           <div class="eyebrow">CH.4 · FIBONACCI</div>
-          <h1 class="h1"><span class="gold">Fibonacci</span> retracement</h1>
-          <canvas class="demo-canvas" id="canvas-fib" width="600" height="200"></canvas>
-          <div class="demo-caption">Niveaux clés : 23.6% · 38.2% · 50% · 61.8% · 78.6%</div>
+          <h1 class="h1"><span class="gold">Fibonacci</span> — la magie des chiffres</h1>
+          <p class="lead">Leonardo Fibonacci (1170-1250) a découvert une suite mathématique présente dans la nature : <em>tournesols, galaxies, ADN... et marchés financiers</em>.</p>
+          <div class="callout">
+            <div class="ck-lbl">LA SUITE</div>
+            <div class="ck-txt"><strong>0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144...</strong><br>Chaque nombre = somme des 2 précédents. Le ratio entre 2 nombres consécutifs converge vers <em>1.618</em> (le "nombre d'or" ou phi).</div>
+          </div>
           <div class="points">
             <div class="point">
               <div class="point-icon">📐</div>
-              <div class="point-text"><strong>61.8%</strong> = le golden ratio. Niveau de retracement le plus respecté par le marché.</div>
+              <div class="point-text"><strong>Ratios Fibo</strong> dérivés : 23.6%, 38.2%, 50% (psychologique), 61.8% (golden), 78.6%, 100%, 127.2%, 161.8%, 261.8%.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🧠</div>
+              <div class="point-text">Ces niveaux fonctionnent parce que <strong>tout le monde les regarde</strong>. Self-fulfilling prophecy : les pros placent des ordres aux mêmes niveaux.</div>
             </div>
             <div class="point">
               <div class="point-icon">🎯</div>
-              <div class="point-text"><strong>50%</strong> n'est pas un vrai Fibo mais reste un niveau psychologique majeur.</div>
+              <div class="point-text"><strong>61.8%</strong> = le golden ratio. Niveau le plus respecté. Si le prix s'arrête là après une forte baisse, c'est souvent un point d'entrée.</div>
             </div>
           </div>
         `},
         { type: 'example', html: `
-          <div class="eyebrow">CH.4 · COMBOS</div>
-          <h1 class="h1">Fibo + <em>S/R</em></h1>
+          <div class="eyebrow">CH.4 · RETRACEMENT</div>
+          <h1 class="h1">Fibonacci <em>retracement</em></h1>
+          <canvas class="demo-canvas big" id="canvas-fib" width="600" height="280"></canvas>
+          <div class="demo-caption">Tracé sur le mouvement haussier · niveaux clés visibles</div>
+          <p class="lead" style="margin-top:8px;">Utilisation : <strong>après un fort mouvement</strong>, le prix corrige souvent <em>partiellement</em> avant de reprendre. Les niveaux Fibo identifient les <strong>zones de rebond probables</strong>.</p>
           <div class="points">
+            <div class="point">
+              <div class="point-icon">📉</div>
+              <div class="point-text"><strong>Retracement 38.2%</strong> : correction faible, tendance forte. Le prix repart vite.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📊</div>
+              <div class="point-text"><strong>Retracement 50%</strong> : correction normale. Niveau psychologique majeur.</div>
+            </div>
             <div class="point acid-pt">
-              <div class="point-icon">✨</div>
-              <div class="point-text"><strong>Confluence</strong> = un niveau Fibo qui tombe sur un support historique. Le combo le plus puissant.</div>
+              <div class="point-icon">⭐</div>
+              <div class="point-text"><strong>Retracement 61.8%</strong> : correction profonde, mais tendance souvent préservée. <em>Setup d'entrée préféré des pros</em>.</div>
             </div>
             <div class="point">
-              <div class="point-icon">📈</div>
-              <div class="point-text"><strong>Fibo extensions</strong> (127.2%, 161.8%) : pour fixer tes objectifs de prix (take-profit).</div>
+              <div class="point-icon">🚨</div>
+              <div class="point-text"><strong>Retracement 78.6%</strong> : limite. Au-delà, la tendance est probablement cassée.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.4 · EXTENSIONS</div>
+          <h1 class="h1">Extensions = <em>cibles</em></h1>
+          <p class="lead">Une fois que le prix a corrigé et repart, où va-t-il aller ? Les <strong>extensions Fibo</strong> donnent les cibles de prix.</p>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">🎯</div>
+              <div class="point-text"><strong>Ext 127.2%</strong> : cible conservatrice. Souvent atteinte rapidement.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">🏆</div>
+              <div class="point-text"><strong>Ext 161.8%</strong> (golden) : cible classique des pros. Take-profit principal.</div>
             </div>
             <div class="point">
-              <div class="point-icon">⚠️</div>
-              <div class="point-text">Fibo ne marche que sur un <strong>mouvement clair</strong>. Range = pas de Fibo.</div>
+              <div class="point-icon">🚀</div>
+              <div class="point-text"><strong>Ext 261.8%</strong> : cible extrême, parfois atteinte dans les mouvements de panique/euphorie.</div>
             </div>
+          </div>
+          <div class="callout">
+            <div class="ck-lbl">CONFLUENCE = OR</div>
+            <div class="ck-txt">Quand un niveau Fibo <strong>coïncide avec un support/résistance historique</strong>, une moyenne mobile clé (MA50, MA200), ou un VWAP — la probabilité de réaction explose. <em>C'est ce que les pros attendent.</em></div>
           </div>
         `},
         { type: 'takeaway', html: `
           <div class="eyebrow">CH.4 · RÉCAP</div>
-          <h1 class="h1">Dow &amp; <em>Fibo</em></h1>
+          <h1 class="h1">Dow + Fibo : <em>mode pro</em></h1>
           <div class="points">
-            <div class="point"><div class="point-icon">📜</div><div class="point-text"><strong>Dow</strong> : 6 principes, 3 phases.</div></div>
-            <div class="point"><div class="point-icon">📐</div><div class="point-text"><strong>Niveaux Fibo</strong> : 38.2 · 50 · 61.8 · 78.6.</div></div>
-            <div class="point acid-pt"><div class="point-icon">✨</div><div class="point-text"><strong>Confluence Fibo + S/R</strong> = setup en or.</div></div>
-            <div class="point"><div class="point-icon">🎯</div><div class="point-text"><strong>Extensions Fibo</strong> = cibles de prix.</div></div>
+            <div class="point"><div class="point-icon">📜</div><div class="point-text"><strong>Dow</strong> : 6 principes, 3 phases (accumulation → public → distribution).</div></div>
+            <div class="point"><div class="point-icon">🌱</div><div class="point-text"><strong>Identifie la phase</strong> avant d'entrer : ça change tout.</div></div>
+            <div class="point"><div class="point-icon">📐</div><div class="point-text"><strong>Niveaux Fibo retracement</strong> : 38.2 · 50 · <em class="gold">61.8</em> · 78.6.</div></div>
+            <div class="point"><div class="point-icon">🎯</div><div class="point-text"><strong>Extensions</strong> 127.2 · <em class="gold">161.8</em> · 261.8 = cibles de prix.</div></div>
+            <div class="point acid-pt"><div class="point-icon">⭐</div><div class="point-text"><strong>Confluence Fibo + S/R + MA</strong> = setup haute proba.</div></div>
           </div>
+          <p class="lead" style="margin-top:12px;">Prochain : <strong>Volume Profile + VWAP</strong>, là où les institutionnels lisent vraiment le marché.</p>
         `},
       ],
 
-      // ============ CHAPITRE 5 — Volume Profile + VWAP (PREMIUM) ============
+      // ============ CHAPITRE 5 — Volume Profile + VWAP (PREMIUM) — 7 slides enrichies ============
       5: [
         { type: 'intro', html: `
           <div class="eyebrow">CH.5 · VOLUME PROFILE</div>
-          <h1 class="h1">Là où ça <em>échange</em></h1>
-          <p class="lead">Le prix te dit où le marché est. Le <strong>volume</strong> te dit s'il y croit. Volume Profile montre <strong>à quels prix</strong> se font les vrais échanges.</p>
+          <h1 class="h1">Là où ça <em>échange vraiment</em></h1>
+          <p class="lead">Sur un chart classique, tu vois le <strong>prix en fonction du temps</strong>. Mais le marché n'est pas une ligne temporelle — c'est une <em>distribution de volume à chaque prix</em>.</p>
+          <p class="lead" style="margin-top:10px;">Le <strong>Volume Profile</strong> retourne le chart : il montre <em>combien de volume s'est échangé à chaque niveau de prix</em>. C'est l'<strong>outil n°1 des traders institutionnels</strong>.</p>
+          <div class="callout">
+            <div class="ck-lbl">L'INTUITION</div>
+            <div class="ck-txt">Un prix où <strong>beaucoup de monde a acheté/vendu</strong> devient un niveau important — le marché y reviendra tester. Un prix sans volume = pas de mémoire = pas de réaction.</div>
+          </div>
         `},
         { type: 'concept', html: `
-          <div class="eyebrow">CH.5 · POC + VA</div>
-          <h1 class="h1">POC, VAH, VAL</h1>
+          <div class="eyebrow">CH.5 · POC</div>
+          <h1 class="h1"><span class="gold">POC</span> — le centre de gravité</h1>
+          <p class="lead">Le <strong>POC (Point of Control)</strong> est le prix où <em>le plus de volume s'est échangé</em> sur une période donnée (journée, semaine, mois).</p>
           <div class="points">
-            <div class="point">
-              <div class="point-icon">🎯</div>
-              <div class="point-text"><strong>POC</strong> (Point of Control) : prix où le plus de volume s'est échangé. Aimant à prix.</div>
-            </div>
-            <div class="point">
-              <div class="point-icon">📊</div>
-              <div class="point-text"><strong>Value Area</strong> : zone où 70% du volume s'est fait. VAH = haut, VAL = bas.</div>
-            </div>
             <div class="point acid-pt">
               <div class="point-icon">🧲</div>
-              <div class="point-text">Le prix <strong>revient toujours</strong> tester le POC après un breakout.</div>
+              <div class="point-text"><strong>Aimant à prix</strong> : le marché retourne quasi-systématiquement tester le POC après un breakout. <em>Statistique : 80% du temps</em>.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">⚖️</div>
+              <div class="point-text"><strong>Niveau d'équilibre</strong> : c'est là que vendeurs et acheteurs ont trouvé un terrain d'entente. <em>Le marché y est à l'aise.</em></div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🎯</div>
+              <div class="point-text"><strong>Utilisation</strong> : prix au-dessus du POC = pression haussière. En dessous = pression baissière. <em>Le POC est ta ligne de tendance dynamique.</em></div>
+            </div>
+          </div>
+          <div class="callout">
+            <div class="ck-lbl">EXEMPLE BTC</div>
+            <div class="ck-txt">BTC 2024 : POC à <strong>65 000 $</strong>. Chaque fois que le prix s'éloignait, il revenait y tester. <em>Magnétisme du POC vérifié.</em></div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.5 · VALUE AREA</div>
+          <h1 class="h1">Value Area (VAH / VAL)</h1>
+          <p class="lead">La <strong>Value Area</strong> est la zone où <em>70% du volume</em> s'est échangé. Délimitée par 2 lignes : <strong>VAH</strong> (Value Area High) en haut, <strong>VAL</strong> (Value Area Low) en bas.</p>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">📊</div>
+              <div class="point-text"><strong>Dedans = équilibre</strong>. Le marché est en mode "range trading", les pros achètent à VAL et vendent à VAH.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🚀</div>
+              <div class="point-text"><strong>Cassure de VAH</strong> = breakout haussier confirmé. Souvent suivi d'une montée vers la VAH de la période supérieure.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📉</div>
+              <div class="point-text"><strong>Cassure de VAL</strong> = breakout baissier. Suivi d'une chute vers VAL inférieure.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">🔄</div>
+              <div class="point-text"><strong>Retest classique</strong> : après cassure de VAH, le prix revient le tester comme <em>nouveau support</em>. Setup d'entrée classique.</div>
+            </div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.5 · VWAP</div>
+          <h1 class="h1"><span class="blue">VWAP</span> — la moyenne pondérée</h1>
+          <p class="lead">Le <strong>VWAP (Volume Weighted Average Price)</strong> = prix moyen <em>pondéré par le volume</em>. C'est le benchmark institutionnel par excellence.</p>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">🏦</div>
+              <div class="point-text"><strong>Les pros sont mesurés sur ça</strong> : un trader pro doit acheter <em>en dessous du VWAP</em> et vendre <em>au-dessus</em>. Sinon il a "battu" l'indice.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📍</div>
+              <div class="point-text"><strong>Au-dessus du VWAP</strong> = momentum haussier intraday. <strong>En dessous</strong> = baissier. Simple et efficace.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🎯</div>
+              <div class="point-text"><strong>Cassure du VWAP en intraday</strong> = changement de sentiment. Premier signal d'alerte ou d'entrée.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">⚖️</div>
+              <div class="point-text"><strong>VWAP intraday se reset à minuit</strong> (heure de l'exchange). Chaque jour, nouveau calcul.</div>
             </div>
           </div>
         `},
         { type: 'example', html: `
-          <div class="eyebrow">CH.5 · VWAP</div>
-          <h1 class="h1"><span class="blue">VWAP</span> — la moyenne pondérée</h1>
+          <div class="eyebrow">CH.5 · ANCHORED VWAP</div>
+          <h1 class="h1">Anchored VWAP — <em>plus précis</em></h1>
+          <p class="lead">Le <strong>VWAP ancré</strong> démarre son calcul à <em>un événement précis</em> au lieu du début de la journée : résultats trimestriels, breakout, ATH, krach, IPO...</p>
           <div class="points">
             <div class="point">
-              <div class="point-icon">⚖️</div>
-              <div class="point-text"><strong>VWAP</strong> = prix moyen pondéré par le volume. C'est ce que paient les institutionnels.</div>
-            </div>
-            <div class="point">
-              <div class="point-icon">📍</div>
-              <div class="point-text"><strong>Au-dessus du VWAP</strong> = momentum haussier. Au-dessous = baissier.</div>
-            </div>
-            <div class="point">
               <div class="point-icon">⚓</div>
-              <div class="point-text"><strong>Anchored VWAP</strong> : ancré à un événement (résultat, breakout). Plus précis qu'intraday.</div>
+              <div class="point-text"><strong>Ancré au pic d'avant-krach</strong> : montre le prix moyen payé par tous ceux qui ont acheté trop tôt. C'est le niveau de "break-even" psychologique.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📈</div>
+              <div class="point-text"><strong>Ancré au creux post-krach</strong> : montre le prix moyen des early buyers. Souvent un support fort tant que la tendance haussière dure.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">🎯</div>
+              <div class="point-text"><strong>Ancré aux résultats trimestriels</strong> : indique si la communauté investisseur croit ou pas à la nouvelle direction donnée par le management.</div>
+            </div>
+          </div>
+          <div class="callout">
+            <div class="ck-lbl">USAGE PRO</div>
+            <div class="ck-txt">Les hedge funds utilisent l'<strong>Anchored VWAP</strong> pour timer leurs entrées sur du swing trading. <em>Standard chez Goldman, Renaissance Tech, Citadel.</em></div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.5 · STRATÉGIES</div>
+          <h1 class="h1">Combinaisons <em>gagnantes</em></h1>
+          <div class="points">
+            <div class="point acid-pt">
+              <div class="point-icon">⭐</div>
+              <div class="point-text"><strong>POC + VWAP qui coïncident</strong> = zone d'équilibre majeure. Setup de scalping ou swing à fort potentiel.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🔄</div>
+              <div class="point-text"><strong>VAH cassée + retest + bougie verte</strong> = entrée long. Stop sous le retest. Cible POC supérieur.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🚨</div>
+              <div class="point-text"><strong>Prix loin du POC sans volume</strong> = signal de retour. Souvent un fade trade.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📊</div>
+              <div class="point-text"><strong>Volume Profile + Fibonacci</strong> : si le POC tombe sur un niveau Fibo, c'est un setup en or (cf. Ch.4).</div>
             </div>
           </div>
         `},
@@ -993,54 +1169,133 @@
           <div class="eyebrow">CH.5 · RÉCAP</div>
           <h1 class="h1">Volume <em>maîtrisé</em></h1>
           <div class="points">
-            <div class="point"><div class="point-icon">🎯</div><div class="point-text"><strong>POC</strong> : aimant à prix.</div></div>
-            <div class="point"><div class="point-icon">📊</div><div class="point-text"><strong>Value Area</strong> : zone d'équilibre.</div></div>
-            <div class="point"><div class="point-icon">⚖️</div><div class="point-text"><strong>VWAP</strong> : prix moyen des pros.</div></div>
-            <div class="point acid-pt"><div class="point-icon">⚓</div><div class="point-text"><strong>Anchored VWAP</strong> = setup institutionnel.</div></div>
+            <div class="point"><div class="point-icon">🎯</div><div class="point-text"><strong>POC</strong> = aimant à prix (80% des breakouts y reviennent).</div></div>
+            <div class="point"><div class="point-icon">📊</div><div class="point-text"><strong>Value Area (VAH/VAL)</strong> = zone d'équilibre 70% volume.</div></div>
+            <div class="point"><div class="point-icon">⚖️</div><div class="point-text"><strong>VWAP intraday</strong> = benchmark des pros, reset quotidien.</div></div>
+            <div class="point acid-pt"><div class="point-icon">⚓</div><div class="point-text"><strong>Anchored VWAP</strong> = ancré à un événement, hyper précis swing.</div></div>
+            <div class="point"><div class="point-icon">⭐</div><div class="point-text">Combos POC+VWAP, VAH+retest = setups haute proba.</div></div>
           </div>
         `},
       ],
 
-      // ============ CHAPITRE 6 — Order book + microstructure (PREMIUM) ============
+      // ============ CHAPITRE 6 — Order book + microstructure (PREMIUM) — 7 slides enrichies ============
       6: [
         { type: 'intro', html: `
           <div class="eyebrow">CH.6 · ORDER BOOK</div>
           <h1 class="h1">Le <em>carnet d'ordres</em></h1>
-          <p class="lead">Tout ce que tu vois sur un graphique est <strong>passé</strong>. L'order book te montre les <strong>intentions</strong> du moment.</p>
+          <p class="lead">Tout ce que tu vois sur un graphique est <strong>déjà passé</strong>. L'<em>order book</em> (carnet d'ordres) te montre les <strong>intentions du moment</strong> — qui veut acheter, qui veut vendre, à quel prix.</p>
+          <p class="lead" style="margin-top:10px;">Comprendre la <strong>microstructure</strong> (comment les ordres sont matchés, qui sont les acteurs) te donne une <em>longueur d'avance</em> sur le retail aveugle.</p>
+          <div class="callout">
+            <div class="ck-lbl">CONTEXTE</div>
+            <div class="ck-txt">L'order book est <strong>public en crypto</strong> (Binance, Coinbase). Plus restrictif en actions (Level 2 souvent payant). Mais le concept reste universel.</div>
+          </div>
         `},
         { type: 'concept', html: `
-          <div class="eyebrow">CH.6 · LIRE LE CARNET</div>
-          <h1 class="h1">Bid / Ask / Spread</h1>
+          <div class="eyebrow">CH.6 · BID / ASK</div>
+          <h1 class="h1">Lire le <em>carnet</em></h1>
+          <div class="points">
+            <div class="point acid-pt">
+              <div class="point-icon">💰</div>
+              <div class="point-text"><strong>Bid</strong> (côté vert) = ordres d'<em>achat</em> en attente. Triés du plus haut prix au plus bas.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">💸</div>
+              <div class="point-text"><strong>Ask</strong> (côté rouge) = ordres de <em>vente</em> en attente. Triés du plus bas prix au plus haut.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📏</div>
+              <div class="point-text"><strong>Spread = Ask - Bid</strong> (au prix le plus serré). C'est le <em>coût implicite</em> d'une transaction immédiate.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">⚖️</div>
+              <div class="point-text"><strong>Mid-price</strong> = (Bid + Ask) / 2 = prix théorique de référence.</div>
+            </div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.6 · PROFONDEUR</div>
+          <h1 class="h1">Depth — la <em>vraie liquidité</em></h1>
+          <p class="lead">Le <strong>"top of book"</strong> (premier bid/ask) ne raconte pas tout. La <em>profondeur</em> (depth) montre tous les niveaux de prix avec leurs volumes cumulés.</p>
           <div class="points">
             <div class="point">
-              <div class="point-icon">💰</div>
-              <div class="point-text"><strong>Bid</strong> = ordres d'achat. <strong>Ask</strong> = ordres de vente. Spread = différence.</div>
+              <div class="point-icon">🏔️</div>
+              <div class="point-text"><strong>Gros mur à un niveau</strong> = beaucoup d'ordres = niveau de support/résistance fort à court terme.</div>
             </div>
             <div class="point">
               <div class="point-icon">💧</div>
-              <div class="point-text"><strong>Spread serré</strong> = liquidité forte. Spread large = peu d'acteurs, slippage probable.</div>
+              <div class="point-text"><strong>Spread serré + depth élevée</strong> = liquidité forte. Tu peux entrer/sortir sans bouger le prix.</div>
             </div>
             <div class="point">
-              <div class="point-icon">🧊</div>
-              <div class="point-text"><strong>Iceberg orders</strong> : gros ordres cachés, révélés progressivement. Souvent des pros.</div>
+              <div class="point-icon">⚠️</div>
+              <div class="point-text"><strong>Spread large + depth faible</strong> = piège liquidité. Slippage probable. Sors avant que la situation s'aggrave.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">📐</div>
+              <div class="point-text"><strong>Imbalance ratio</strong> = volume bids / volume asks. &gt; 2 = pression acheteuse forte. &lt; 0.5 = pression vendeuse.</div>
             </div>
           </div>
         `},
         { type: 'example', html: `
-          <div class="eyebrow">CH.6 · MARKET MAKERS</div>
-          <h1 class="h1">Makers vs <em>Takers</em></h1>
+          <div class="eyebrow">CH.6 · ICEBERG</div>
+          <h1 class="h1">Iceberg orders</h1>
+          <p class="lead">Un <strong>iceberg order</strong> est un gros ordre qui <em>n'affiche qu'une petite partie visible</em>. Quand cette partie est remplie, une nouvelle apparaît automatiquement — comme un iceberg qui montre 10% au-dessus de l'eau.</p>
           <div class="points">
             <div class="point">
-              <div class="point-icon">🏗️</div>
-              <div class="point-text"><strong>Market maker</strong> : pose un ordre limite, attend. Ajoute de la liquidité.</div>
+              <div class="point-icon">🧊</div>
+              <div class="point-text"><strong>Pourquoi</strong> : un institutionnel qui veut acheter 1 million d'actions ne va pas l'afficher en plein. Ça ferait monter le prix. Il découpe en petits morceaux.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🔍</div>
+              <div class="point-text"><strong>Détecter un iceberg</strong> : un ordre à un niveau qui se refait sans cesse, peu importe combien tu en prends. <em>Signe d'un gros acteur</em>.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">💡</div>
+              <div class="point-text"><strong>Suivre la smart money</strong> : si un iceberg accumule un niveau, c'est probablement un support fort. <em>Achète avec lui.</em></div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.6 · MANIPULATIONS</div>
+          <h1 class="h1"><span class="red">Spoofing</span> &amp; layering</h1>
+          <p class="lead">Toutes les bonnes pratiques ne sont pas légales. Voici les <em>manipulations à reconnaître</em> (et à fuir).</p>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">👻</div>
+              <div class="point-text"><strong>Spoofing</strong> : poser un gros ordre fake (qu'on n'a pas l'intention d'exécuter) pour faire bouger le prix, puis l'annuler. Illégal en actions (US, EU), <em>courant en crypto</em>.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📚</div>
+              <div class="point-text"><strong>Layering</strong> : version raffinée du spoofing avec plusieurs ordres fakes à différents niveaux pour créer l'illusion d'une pression.</div>
             </div>
             <div class="point">
               <div class="point-icon">⚡</div>
-              <div class="point-text"><strong>Market taker</strong> : prend ce qui est dispo. Paie un spread mais entre immédiatement.</div>
+              <div class="point-text"><strong>Front-running</strong> : voir un gros ordre arriver (via le feed) et passer son propre ordre avant. Le HFT (High Frequency Trading) automatise ça.</div>
             </div>
             <div class="point acid-pt">
-              <div class="point-icon">⚠️</div>
-              <div class="point-text"><strong>Spoofing</strong> : faux gros ordres pour faire bouger le prix. Illégal mais courant en crypto.</div>
+              <div class="point-icon">🛡️</div>
+              <div class="point-text"><strong>Comment se protéger</strong> : utiliser des ordres limites (pas market) et ne pas réagir aux mouvements de carnet soudains sans confirmation prix.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.6 · MAKERS / TAKERS</div>
+          <h1 class="h1">Makers vs <em>Takers</em></h1>
+          <div class="points">
+            <div class="point acid-pt">
+              <div class="point-icon">🏗️</div>
+              <div class="point-text"><strong>Market maker</strong> : pose un ordre <em>limite</em>, attend qu'il soit pris. <em>Ajoute</em> de la liquidité au marché. Frais <strong>réduits</strong> voire négatifs (rebate).</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">⚡</div>
+              <div class="point-text"><strong>Market taker</strong> : prend ce qui est dispo (ordre <em>market</em> ou limite croisée). <em>Consomme</em> la liquidité. Frais <strong>plus élevés</strong>.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">💰</div>
+              <div class="point-text"><strong>Pourquoi ça compte</strong> : sur Binance par exemple, taker = 0.10%, maker = 0.10% standard mais peut descendre à 0%. <em>Sur 1000 trades/an = milliers d'euros</em>.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🎯</div>
+              <div class="point-text"><strong>Stratégie</strong> : si tu n'as pas besoin d'entrer immédiatement, utilise toujours des ordres limites. Tu gagnes le spread + tu paies moins de frais.</div>
             </div>
           </div>
         `},
@@ -1048,23 +1303,71 @@
           <div class="eyebrow">CH.6 · RÉCAP</div>
           <h1 class="h1">Carnet <em>compris</em></h1>
           <div class="points">
-            <div class="point"><div class="point-icon">📖</div><div class="point-text"><strong>Bid/Ask</strong> = intentions live.</div></div>
-            <div class="point"><div class="point-icon">💧</div><div class="point-text"><strong>Spread</strong> = signal de liquidité.</div></div>
-            <div class="point"><div class="point-icon">🧊</div><div class="point-text"><strong>Iceberg</strong> = pro en train d'accumuler.</div></div>
-            <div class="point acid-pt"><div class="point-icon">⚠️</div><div class="point-text">Le carnet peut <strong>mentir</strong> — méfie-toi des gros ordres soudains.</div></div>
+            <div class="point"><div class="point-icon">📖</div><div class="point-text"><strong>Bid/Ask</strong> = intentions live. Spread = coût + liquidité.</div></div>
+            <div class="point"><div class="point-icon">🏔️</div><div class="point-text"><strong>Depth + imbalance</strong> = pression acheteuse/vendeuse réelle.</div></div>
+            <div class="point"><div class="point-icon">🧊</div><div class="point-text"><strong>Iceberg orders</strong> = smart money en train d'accumuler.</div></div>
+            <div class="point"><div class="point-icon">👻</div><div class="point-text"><strong>Spoofing / layering / HFT</strong> : connais l'ennemi.</div></div>
+            <div class="point acid-pt"><div class="point-icon">🎯</div><div class="point-text"><strong>Ordres limites &gt; market</strong> : moins de frais, contrôle du prix.</div></div>
           </div>
+          <p class="lead" style="margin-top:12px;"><strong>Le carnet peut mentir</strong> — toujours croiser avec le price action et le volume.</p>
         `},
       ],
 
-      // ============ CHAPITRE 7 — Backtesting + journal (PREMIUM) ============
+      // ============ CHAPITRE 7 — Backtesting + journal (PREMIUM) — 7 slides enrichies ============
       7: [
         { type: 'intro', html: `
           <div class="eyebrow">CH.7 · BACKTESTING</div>
           <h1 class="h1">Tester avant <em>de risquer</em></h1>
-          <p class="lead">Tu as une stratégie ? <strong>Prouve-la sur 5 ans d'historique</strong> avant d'y mettre un centime réel.</p>
+          <p class="lead">Tu as une stratégie qui te semble géniale dans ta tête. <strong>Test-la sur 5 ans d'historique</strong> avant d'y mettre un centime réel. Les chiffres disent toujours la vérité, même quand toi tu te mens.</p>
           <div class="callout">
-            <div class="ck-lbl">PRINCIPE</div>
-            <div class="ck-txt">Une stratégie qui <strong>fonctionne sur le passé</strong> n'est pas garantie sur le futur. Mais une stratégie qui <strong>échoue sur le passé</strong> échouera à coup sûr.</div>
+            <div class="ck-lbl">PRINCIPE FONDAMENTAL</div>
+            <div class="ck-txt">Une stratégie qui <strong>fonctionne sur le passé</strong> n'est pas garantie sur le futur. <em>Mais une stratégie qui échoue sur le passé échouera à coup sûr.</em> Le backtest = filtre anti-illusion.</div>
+          </div>
+          <p class="lead" style="margin-top:10px;">90% des stratégies "géniales" que tu imagines <strong>perdent de l'argent sur backtest</strong>. Acceptes-en 9 sur 10 — la 10ème est peut-être valable.</p>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.7 · DONNÉES</div>
+          <h1 class="h1">Choisir les <em>bonnes données</em></h1>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">📅</div>
+              <div class="point-text"><strong>5 ans minimum</strong>, idéalement 10. Doit couvrir bull markets, bear markets, ranges, krachs. Une stratégie qui ne marche qu'en bull = piège.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🌍</div>
+              <div class="point-text"><strong>Plusieurs régimes</strong> : taux bas (2009-2021), taux hauts (2022+), inflation, déflation, crises. Tester sur tous.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">✂️</div>
+              <div class="point-text"><strong>In-sample vs out-of-sample</strong> : 70% pour optimiser, 30% pour vérifier. Sinon tu fais de l'<em>overfitting</em>.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">📊</div>
+              <div class="point-text"><strong>Sources gratuites</strong> : Yahoo Finance (CSV historiques), Binance Vision (crypto data), TradingView (Pine Script), Stooq.com.</div>
+            </div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.7 · STRATÉGIE</div>
+          <h1 class="h1">Stratégie <em>testable</em></h1>
+          <p class="lead">Une stratégie de trading n'est testable que si <strong>chaque règle est explicite, écrite, et sans interprétation subjective</strong>.</p>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">📥</div>
+              <div class="point-text"><strong>Entry</strong> : "J'achète quand le RSI 14 passe sous 30 ET le prix touche la bande basse de Bollinger ET MA50 monte". <em>Pas "quand ça a l'air bien"</em>.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📤</div>
+              <div class="point-text"><strong>Exit</strong> : "Je vends quand RSI &gt; 70 OU stop-loss touché OU trailing stop déclenché". Règle claire et automatisable.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🛡️</div>
+              <div class="point-text"><strong>Stop-loss</strong> : où exactement ? % du prix d'entrée ? ATR ? Niveau structurel ? Choisis et reste cohérent.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">📏</div>
+              <div class="point-text"><strong>Position size</strong> : combien par trade ? Fixe en %, basé sur le ATR, ou Kelly criterion modifié ? Définis avant de tester.</div>
+            </div>
           </div>
         `},
         { type: 'concept', html: `
@@ -1072,47 +1375,89 @@
           <h1 class="h1">Les chiffres <em>qui comptent</em></h1>
           <div class="points">
             <div class="point">
+              <div class="point-icon">📈</div>
+              <div class="point-text"><strong>CAGR</strong> (Compound Annual Growth Rate) = rendement annualisé. Si CAGR &lt; S&amp;P 500 buy-and-hold, ta stratégie ne vaut pas la peine.</div>
+            </div>
+            <div class="point acid-pt">
               <div class="point-icon">📊</div>
-              <div class="point-text"><strong>Sharpe ratio</strong> : gain par unité de risque. &gt; 1 = correct, &gt; 2 = excellent.</div>
+              <div class="point-text"><strong>Sharpe ratio</strong> = (CAGR - taux sans risque) / volatilité. <em>&gt; 1 = correct, &gt; 2 = excellent, &gt; 3 = suspicieux (probable overfitting)</em>.</div>
             </div>
             <div class="point">
               <div class="point-icon">📉</div>
-              <div class="point-text"><strong>Max drawdown</strong> : pire perte cumulée. Si tu ne peux pas le supporter mentalement, change de stratégie.</div>
+              <div class="point-text"><strong>Max drawdown</strong> = pire perte cumulée du peak au creux. Si &gt; 30%, peux-tu mentalement le supporter ? Honnêtement ?</div>
             </div>
             <div class="point">
               <div class="point-icon">💎</div>
-              <div class="point-text"><strong>Profit factor</strong> : gains totaux / pertes totales. &gt; 1.5 = stratégie viable.</div>
+              <div class="point-text"><strong>Profit factor</strong> = somme des gains / somme des pertes. &gt; 1.5 = stratégie viable. &gt; 2 = très bon. &lt; 1 = perdante.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🎯</div>
+              <div class="point-text"><strong>Win rate</strong> + <strong>R-multiple moyen</strong>. Un win rate de 40% est OK si le R-multiple &gt; 1.5.</div>
             </div>
           </div>
         `},
         { type: 'example', html: `
           <div class="eyebrow">CH.7 · PIÈGES</div>
-          <h1 class="h1">Les biais à <em>éviter</em></h1>
+          <h1 class="h1">Les <em>biais</em> à éviter</h1>
+          <p class="lead">Tu peux te tromper toi-même sans le savoir. Voici les pièges classiques.</p>
           <div class="points">
             <div class="point">
               <div class="point-icon">🎭</div>
-              <div class="point-text"><strong>Overfitting</strong> : ta stratégie est trop optimisée pour les données passées. Marche pas sur le futur.</div>
+              <div class="point-text"><strong>Overfitting</strong> : stratégie ultra-optimisée pour les données passées. Marche pas en réel. <em>Signe</em> : Sharpe &gt; 3 sur backtest = très suspect.</div>
             </div>
             <div class="point">
               <div class="point-icon">👁️</div>
-              <div class="point-text"><strong>Look-ahead bias</strong> : tu utilises des données qui n'existaient pas encore à ce moment.</div>
+              <div class="point-text"><strong>Look-ahead bias</strong> : ton code utilise une donnée future. Ex : "j'utilise le close du jour pour décider d'entrer au open du même jour". Pas possible en vrai.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🪦</div>
+              <div class="point-text"><strong>Survivorship bias</strong> : tu testes sur les actions actuelles du S&amp;P 500 sans inclure celles qui ont disparu (Enron, Lehman). Biais positif énorme.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">💸</div>
+              <div class="point-text"><strong>Slippage et frais ignorés</strong> : sur 1000 trades/an, 0.1% de slippage + 0.1% de frais = 200 bps/an. Ça change tout.</div>
             </div>
             <div class="point acid-pt">
-              <div class="point-icon">📝</div>
-              <div class="point-text"><strong>Forward testing en paper trading</strong> : teste en réel mais sans argent, sur 1-3 mois minimum.</div>
+              <div class="point-icon">📐</div>
+              <div class="point-text"><strong>Monte Carlo</strong> : refaire le backtest 1000 fois avec ordre des trades randomisé. Si ça tient toujours = robuste.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.7 · FORWARD TESTING</div>
+          <h1 class="h1">Paper trading <em>obligatoire</em></h1>
+          <p class="lead">Le backtest est théorique. Le <strong>forward testing en paper trading</strong> (trading sans argent réel, en temps réel) est l'étape finale avant de risquer ton capital.</p>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">⏱️</div>
+              <div class="point-text"><strong>1 à 3 mois minimum</strong> en conditions réelles. Pas moins. Tu dois traverser au moins 50 trades.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🎯</div>
+              <div class="point-text"><strong>Discipline absolue</strong> : exécute tes règles à 100%, même si tu sens que "celui-là va perdre". Si tu trichais, le forward test ne sert à rien.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">⚠️</div>
+              <div class="point-text"><strong>Si les résultats divergent fort du backtest</strong> (-30%+) = ta stratégie était overfittée. Retour à la planche.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">✅</div>
+              <div class="point-text"><strong>Si forward test ≈ backtest</strong> = stratégie robuste. <em>Tu peux passer en réel avec petite taille (10% de la position normale).</em></div>
             </div>
           </div>
         `},
         { type: 'takeaway', html: `
-          <div class="eyebrow">CH.7 · RÉCAP FINAL</div>
-          <h1 class="h1">Plan <em>d'action</em></h1>
+          <div class="eyebrow">CH.7 · PLAN D'ACTION</div>
+          <h1 class="h1">Ton plan <em>complet</em></h1>
           <div class="points">
-            <div class="point"><div class="point-icon">1️⃣</div><div class="point-text">Définis ta <strong>stratégie écrite</strong>.</div></div>
-            <div class="point"><div class="point-icon">2️⃣</div><div class="point-text"><strong>Backtest 5 ans</strong> de data.</div></div>
-            <div class="point"><div class="point-icon">3️⃣</div><div class="point-text"><strong>Paper trading 3 mois</strong> minimum.</div></div>
-            <div class="point acid-pt"><div class="point-icon">4️⃣</div><div class="point-text">Capital réel avec <strong>≤ 2% risk / trade</strong>.</div></div>
+            <div class="point"><div class="point-icon">1️⃣</div><div class="point-text"><strong>Stratégie écrite</strong> : règles entry/exit/sizing 100% explicites.</div></div>
+            <div class="point"><div class="point-icon">2️⃣</div><div class="point-text"><strong>Backtest 5-10 ans</strong> de data multi-régimes, out-of-sample 30%.</div></div>
+            <div class="point"><div class="point-icon">3️⃣</div><div class="point-text"><strong>Métriques OK</strong> : Sharpe &gt; 1, drawdown supportable, PF &gt; 1.5.</div></div>
+            <div class="point"><div class="point-icon">4️⃣</div><div class="point-text"><strong>Paper trading 3 mois</strong> minimum, discipline totale.</div></div>
+            <div class="point acid-pt"><div class="point-icon">5️⃣</div><div class="point-text"><strong>Capital réel petit</strong> (10% taille normale), risque &lt; 2% / trade.</div></div>
+            <div class="point"><div class="point-icon">6️⃣</div><div class="point-text"><strong>Journal de trading</strong> : note chaque trade (raison, émotion, résultat). Apprends de toi.</div></div>
           </div>
-          <p class="lead" style="margin-top:14px;">🎓 <strong>Module 4 terminé.</strong> Tu as les bases du pro. La suite, c'est <strong>10 000 heures</strong> de pratique.</p>
+          <p class="lead" style="margin-top:14px;">🎓 <strong>Module 4 terminé.</strong> Tu as les bases du pro : Dow + Fibo, Volume Profile + VWAP, Order book, Backtesting. La suite, c'est <strong>10 000 heures</strong> de pratique. Bonne route.</p>
         `},
       ],
     };
