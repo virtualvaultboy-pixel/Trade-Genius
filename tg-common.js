@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.75';
+export const TG_VERSION = 'v1.76';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -515,7 +515,9 @@ export async function shareCard({ title = 'Trade Genius', stat = '', quote = '' 
 
 // Expose API globalement pour usage hors module (scripts inline des HTML)
 window.TG = Object.assign(window.TG || {}, {
-  shareCard, addGlossaryTerm, recordVisit, resetConsent, showRecap, TG_VERSION,
+  shareCard, addGlossaryTerm, recordVisit, resetConsent, showRecap,
+  getNotifState, requestNotifPermission, disableNotifs, checkStreakDangerNotify,
+  TG_VERSION,
 });
 
 // === Prefetch scenes critiques (perf navigation, après LCP) ===
@@ -537,6 +539,67 @@ export function prefetchScenes() {
   else window.addEventListener('load', run, { once: true });
 }
 
+// === Notifications quotidiennes — rappel streak ===
+const NOTIF_CONSENT_KEY = 'tradegenius_notif_consent';
+const NOTIF_LAST_KEY = 'tradegenius_last_notif';
+
+export function getNotifState() {
+  if (!('Notification' in window)) return 'unsupported';
+  return Notification.permission; // 'granted' | 'denied' | 'default'
+}
+
+export async function requestNotifPermission() {
+  if (!('Notification' in window)) return 'unsupported';
+  if (Notification.permission !== 'default') return Notification.permission;
+  try {
+    const r = await Notification.requestPermission();
+    if (r === 'granted') {
+      localStorage.setItem(NOTIF_CONSENT_KEY, '1');
+      // Notif de confirmation
+      new Notification('🔔 Rappels activés', {
+        body: 'On te rappellera si ton streak est en danger.',
+        icon: 'icon-512.png',
+        tag: 'tg-welcome',
+      });
+    }
+    return r;
+  } catch { return 'denied'; }
+}
+
+export function disableNotifs() {
+  localStorage.removeItem(NOTIF_CONSENT_KEY);
+}
+
+function _streakInDanger() {
+  try {
+    const s = JSON.parse(localStorage.getItem('tradegenius_streak') || '{}');
+    if (!s.lastDate || !s.count || s.count < 2) return false;
+    const today = new Date().toISOString().slice(0, 10);
+    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    return s.lastDate === yesterday; // visité hier mais pas encore aujourd'hui
+  } catch { return false; }
+}
+
+export function checkStreakDangerNotify() {
+  if (!('Notification' in window)) return;
+  if (Notification.permission !== 'granted') return;
+  if (localStorage.getItem(NOTIF_CONSENT_KEY) !== '1') return;
+  if (!_streakInDanger()) return;
+  const today = new Date().toISOString().slice(0, 10);
+  if (localStorage.getItem(NOTIF_LAST_KEY) === today) return; // déjà notifié aujourd'hui
+  try {
+    const s = JSON.parse(localStorage.getItem('tradegenius_streak') || '{}');
+    new Notification('🔥 Ton streak est en danger !', {
+      body: `Tu en es à ${s.count} jours d'affilée. 1 chapitre = 5 min — ne le casse pas.`,
+      icon: 'icon-512.png',
+      badge: 'icon-192.png',
+      tag: 'streak-danger',
+      requireInteraction: false,
+    });
+    localStorage.setItem(NOTIF_LAST_KEY, today);
+  } catch {}
+}
+
 // Auto-init au load
 function autoInit() {
   injectVersionBadge();
@@ -546,6 +609,7 @@ function autoInit() {
   recordVisit();
   initGlossary();
   prefetchScenes();
+  checkStreakDangerNotify();
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', autoInit);
 else autoInit();

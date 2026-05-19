@@ -1110,6 +1110,36 @@
   }
   .share-progress-btn:active { transform: scale(0.98); background: rgba(125,211,252,0.2); }
 
+  /* Hub actions row (rappels + partager) */
+  .hub-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 18px 16px 8px;
+  }
+  .hub-action-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 12px 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-family: 'Manrope', system-ui, sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: transform 0.15s, background 0.15s, border-color 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hub-action-btn:active { transform: scale(0.97); }
+  .hub-action-btn .ha-ico { font-size: 15px; line-height: 1; }
+  .hub-action-btn.notif { color: var(--clay); border-color: rgba(212,165,116,0.25); background: rgba(212,165,116,0.06); }
+  .hub-action-btn.notif:active { background: rgba(212,165,116,0.14); }
+  .hub-action-btn.notif.active { color: var(--acid); border-color: rgba(190,242,100,0.4); background: rgba(190,242,100,0.1); }
+  .hub-action-btn.share { color: var(--blue); border-color: rgba(96,165,250,0.25); background: rgba(96,165,250,0.06); }
+  .hub-action-btn.share:active { background: rgba(96,165,250,0.14); }
+
   /* Install PWA — bouton fixed top, visible si beforeinstallprompt dispo */
   #install-pwa-btn {
     position: fixed;
@@ -1360,7 +1390,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=175')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=176')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -1379,7 +1409,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=175')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=176')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -1398,7 +1428,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=175')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=176')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -1417,7 +1447,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=175')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=176')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -1495,15 +1525,15 @@
 
     <!-- Stats compactes -->
     <div class="stats-row">
-      <div class="stat-cell" onclick="location.href='scene-06.html?v=175'">
+      <div class="stat-cell" onclick="location.href='scene-06.html?v=176'">
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=175'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=176'">
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=175'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=176'">
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
       </div>
@@ -1520,17 +1550,23 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=175'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=176'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
     </div>
 
-    <!-- Partager -->
-    <button class="share-progress-btn" onclick="shareProgress()">
-      <span style="font-size:16px;">📤</span>
-      <span>Partager mon progrès</span>
-    </button>
+    <!-- Rappels notif + Partager -->
+    <div class="hub-actions">
+      <button class="hub-action-btn notif" id="notif-btn" onclick="toggleNotif()">
+        <span class="ha-ico" id="notif-ico">🔔</span>
+        <span class="ha-label" id="notif-label">Activer rappels</span>
+      </button>
+      <button class="hub-action-btn share" onclick="shareProgress()">
+        <span class="ha-ico">📤</span>
+        <span class="ha-label">Partager</span>
+      </button>
+    </div>
 
     <div class="footer-brand">✦ DEPONCHY STUDIO · 2026</div>
     <a class="privacy-link" onclick="openPrivacy()">🔒 Confidentialité &amp; cookies</a>
@@ -1773,6 +1809,9 @@
 
     // 7) Barre de progression globale du parcours
     updateParcoursProgress();
+
+    // 8) État du bouton notifications
+    refreshNotifBtn();
   }
 
   function updateParcoursProgress() {
@@ -1851,7 +1890,7 @@
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
       const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '168';
-      location.href = 'scene-05.html?v=175' + v;
+      location.href = 'scene-05.html?v=176' + v;
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -1885,6 +1924,60 @@
   function openPrivacy() {
     if (navigator.vibrate) navigator.vibrate(8);
     location.href = 'privacy.html';
+  }
+
+  /* ===== RAPPELS NOTIFICATIONS ===== */
+  async function toggleNotif() {
+    if (navigator.vibrate) navigator.vibrate(8);
+    if (!('Notification' in window)) {
+      alert('Notifications non supportées sur ce navigateur.');
+      return;
+    }
+    if (!window.TG || !window.TG.requestNotifPermission) {
+      setTimeout(toggleNotif, 250);
+      return;
+    }
+    const state = window.TG.getNotifState();
+    if (state === 'granted') {
+      if (localStorage.getItem('tradegenius_notif_consent') === '1') {
+        if (confirm('Désactiver les rappels de streak ?')) {
+          window.TG.disableNotifs();
+        }
+      } else {
+        localStorage.setItem('tradegenius_notif_consent', '1');
+      }
+      refreshNotifBtn();
+      return;
+    }
+    if (state === 'denied') {
+      alert('Notifications bloquées. Active-les dans les paramètres du navigateur.');
+      return;
+    }
+    await window.TG.requestNotifPermission();
+    refreshNotifBtn();
+  }
+
+  function refreshNotifBtn() {
+    const btn = document.getElementById('notif-btn');
+    const ico = document.getElementById('notif-ico');
+    const label = document.getElementById('notif-label');
+    if (!btn || !ico || !label) return;
+    if (!('Notification' in window)) { btn.style.display = 'none'; return; }
+    const state = window.TG && window.TG.getNotifState ? window.TG.getNotifState() : 'default';
+    const consented = localStorage.getItem('tradegenius_notif_consent') === '1';
+    if (state === 'granted' && consented) {
+      btn.classList.add('active');
+      ico.textContent = '🔔';
+      label.textContent = 'Rappels activés';
+    } else if (state === 'denied') {
+      btn.classList.remove('active');
+      ico.textContent = '🔕';
+      label.textContent = 'Notif bloquées';
+    } else {
+      btn.classList.remove('active');
+      ico.textContent = '🔔';
+      label.textContent = 'Activer rappels';
+    }
   }
 
   async function shareProgress() {
@@ -2000,7 +2093,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=175' + v; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=176' + v; };
         block.style.display = 'block';
         return;
       }
@@ -2042,7 +2135,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=175';
+        card.onclick = () => location.href = 'scene-05.html?v=176';
         block.style.display = 'block';
         return;
       }
@@ -2062,7 +2155,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=175';
+          card.onclick = () => location.href = 'scene-06.html?v=176';
           block.style.display = 'block';
           return;
         }
@@ -2076,7 +2169,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=175';
+        card.onclick = () => location.href = 'scene-06.html?v=176';
         block.style.display = 'block';
         return;
       }
@@ -2091,7 +2184,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=175';
+    card.onclick = () => location.href = 'scene-05.html?v=176';
     block.style.display = 'block';
   }
 
@@ -2289,11 +2382,11 @@
     if (shortcut === 'modules') { showView('modules'); return; }
     if (shortcut === 'simu') {
       // Pas de location.href ici : on est déjà dans index.html, redirige
-      location.href = 'scene-05.html?v=175';
+      location.href = 'scene-05.html?v=176';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=175';
+      location.href = 'scene-06.html?v=176';
       return;
     }
 
@@ -2312,11 +2405,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=175"></script>
+  <script type="module" src="tg-common.js?v=176"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=175').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=176').catch(() => {});
       });
     }
   </script>
