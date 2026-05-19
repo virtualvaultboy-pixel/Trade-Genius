@@ -6675,6 +6675,8 @@
 
     /* ===== STORAGE ===== */
     const STORAGE_KEY = 'tradegenius_m1';
+    const BOOKMARK_KEY = 'tradegenius_m1_bookmark';
+    const BOOKMARK_TTL = 7 * 24 * 60 * 60 * 1000;
     function loadProgress() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { completed: {} }; }
       catch { return { completed: {} }; }
@@ -6687,6 +6689,18 @@
       p.completed = p.completed || {};
       p.completed[n] = true;
       saveProgress(p);
+      try { localStorage.removeItem(BOOKMARK_KEY); } catch {}
+    }
+    function saveBookmark(chapter, slide) {
+      try { localStorage.setItem(BOOKMARK_KEY, JSON.stringify({ chapter, slide, ts: Date.now() })); } catch {}
+    }
+    function loadBookmark(chapter) {
+      try {
+        const b = JSON.parse(localStorage.getItem(BOOKMARK_KEY));
+        if (!b || b.chapter !== chapter) return null;
+        if (Date.now() - b.ts > BOOKMARK_TTL) return null;
+        return b.slide;
+      } catch { return null; }
     }
 
     /* ===== CHAPTER STATE LOGIC =====
@@ -6885,6 +6899,7 @@
       if (i !== cur && navigator.vibrate) navigator.vibrate(8);
       cur = i;
       update();
+      if (currentChapter != null) saveBookmark(currentChapter, cur);
     }
     function next() {
       if (cur < chapterEnd) go(cur + 1);
@@ -6907,7 +6922,8 @@
       currentChapter = n;
       chapterStart = getChapterStart(n);
       chapterEnd = chapterStart + getChapterSize(n) - 1;
-      cur = chapterStart;
+      const bookmarked = loadBookmark(n);
+      cur = (bookmarked != null && bookmarked >= chapterStart && bookmarked <= chapterEnd) ? bookmarked : chapterStart;
       showReader();
       // Force transform to current slide
       track.style.transition = 'none';
@@ -7099,7 +7115,7 @@
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeInfo(); });
   </script>
-  <script type="module" src="tg-common.js?v=153"></script>
+  <script type="module" src="tg-common.js?v=154"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
