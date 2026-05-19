@@ -6564,7 +6564,7 @@
       <div class="tap-zones"><div class="tap-prev" onclick="prev()"></div><div class="tap-next" onclick="next()"></div></div>
       <div class="content">
         <div class="eyebrow reveal">CHAPITRE 1 — TERMINÉ</div>
-        <h1 class="h1 l reveal">Tu lis<br>un <span class="clay">chandelier</span>.</h1>
+        <h1 class="h1 l reveal">Tu lis<br>un <span class="clay" data-term="chandelier">chandelier</span>.</h1>
 
         <div class="recap-card reveal">
           <div class="recap-tag">✓ CE QUE TU VIENS D'APPRENDRE</div>
@@ -6999,7 +6999,7 @@
       <div class="tap-zones"><div class="tap-prev" onclick="prev()"></div><div class="tap-next" onclick="next()"></div></div>
       <div class="content">
         <div class="eyebrow reveal">CHAPITRE 3 — TERMINÉ</div>
-        <h1 class="h1 l reveal">Tu vois la<br><span class="bronze">tendance</span>.</h1>
+        <h1 class="h1 l reveal">Tu vois la<br><span class="bronze" data-term="tendance">tendance</span>.</h1>
 
         <div class="recap-card reveal" style="border-color: rgba(176, 138, 74, 0.4); background: linear-gradient(135deg, rgba(176, 138, 74, 0.1) 0%, rgba(176, 138, 74, 0.02) 100%);">
           <div class="recap-tag" style="color: var(--bronze);">✓ CE QUE TU SAIS MAINTENANT</div>
@@ -7057,7 +7057,7 @@
         <div class="eyebrow reveal">LE SUPPORT</div>
         <h1 class="h1 l reveal">Le <span class="silver">plancher</span><br>du prix.</h1>
 
-        <p class="body reveal">Le prix descend, descend, puis <strong>rebondit</strong> sur un niveau. Il y revient quelques temps plus tard, et <strong>rebondit encore</strong>. Ce niveau, c'est un <strong class="silver-strong">support</strong>.</p>
+        <p class="body reveal">Le prix descend, descend, puis <strong>rebondit</strong> sur un niveau. Il y revient quelques temps plus tard, et <strong>rebondit encore</strong>. Ce niveau, c'est un <strong class="silver-strong" data-term="support">support</strong>.</p>
 
         <div class="sr-viz reveal">
           <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" overflow="visible">
@@ -7106,7 +7106,7 @@
         <div class="eyebrow reveal">LA RÉSISTANCE</div>
         <h1 class="h1 l reveal">Le <span class="silver">plafond</span><br>du prix.</h1>
 
-        <p class="body reveal">Pareil mais inversé. Le prix monte, monte, puis <strong>se cogne</strong> sur un niveau. Il y revient, et <strong>se cogne encore</strong>. C'est une <strong class="silver-strong">résistance</strong>.</p>
+        <p class="body reveal">Pareil mais inversé. Le prix monte, monte, puis <strong>se cogne</strong> sur un niveau. Il y revient, et <strong>se cogne encore</strong>. C'est une <strong class="silver-strong" data-term="résistance">résistance</strong>.</p>
 
         <div class="sr-viz reveal">
           <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" overflow="visible">
@@ -8647,11 +8647,11 @@
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeInfo(); });
   </script>
-  <script type="module" src="tg-common.js?v=161"></script>
+  <script type="module" src="tg-common.js?v=162"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=161').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=162').catch(() => {});
       });
     }
   </script>

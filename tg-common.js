@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.61';
+export const TG_VERSION = 'v1.62';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -258,6 +258,11 @@ const GLOSSARY = {
   'long': "Parier sur la hausse. Position d'achat classique.",
   'fomo': "Fear Of Missing Out. Peur de rater une hausse → achat impulsif au plus haut.",
   'fud': "Fear, Uncertainty, Doubt. Peurs propagées qui font vendre dans la panique.",
+  'chandelier': "Bougie sur un chart qui montre 4 infos sur une période : ouverture, clôture, plus haut, plus bas.",
+  'tendance': "Direction générale du prix sur une période : haussière (↗), baissière (↘) ou latérale (→).",
+  'support': "Niveau de prix où les acheteurs reviennent. Le prix rebondit souvent dessus.",
+  'résistance': "Niveau de prix où les vendeurs reprennent la main. Le prix bute souvent dessus.",
+  'volume': "Quantité d'actions échangées sur une période. Volume fort = mouvement crédible.",
 };
 
 function ensureGlossaryStyle() {

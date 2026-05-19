@@ -5085,7 +5085,7 @@ const SCENARIO_INTROS = {
     icon: '🛡️',
     asset: 'Microsoft (MSFT) · 2018',
     period: 'Octobre → Décembre 2018',
-    what: "<strong>MSFT à $110</strong>, en pleine zone de turbulence Tech Q4 2018. <strong>Bienvenue en Partie 2</strong> : à partir de maintenant, tu disposes du <em>stop-loss</em>, un ordre automatique qui vend ta position si le prix descend trop bas. <strong>Et du <em>take-profit</em></strong> : un ordre auto qui vend si le prix monte à un niveau cible.",
+    what: "<strong>MSFT à $110</strong>, en pleine zone de turbulence Tech Q4 2018. <strong>Bienvenue en Partie 2</strong> : à partir de maintenant, tu disposes du <em data-term='stop-loss'>stop-loss</em>, un ordre automatique qui vend ta position si le prix descend trop bas. <strong>Et du <em data-term='take-profit'>take-profit</em></strong> : un ordre auto qui vend si le prix monte à un niveau cible.",
     history: "<strong>Le Q4 2018 noir.</strong> Hausse des taux Fed + tensions commerciales. Le Nasdaq plonge de -23% en 3 mois. MSFT n'est pas épargné. <em>Sans stop-loss, tu vis 3 semaines d'enfer mental.</em> Avec stop-loss, tu sors automatiquement à -8% et tu reviens quand la fumée se dissipe.",
     lesson: "<strong>Poser un stop-loss en achetant. Faire confiance au stop pendant la baisse. Re-rentrer après confirmation.</strong>",
     qtyNote: "Capital de <strong>$10,000</strong>. Tu trades en actions entières. <strong>Tu vois désormais un champ \"🛡️ Stop-loss\"</strong> dans la zone de trade — pose-le AVANT d'acheter.",
@@ -5146,7 +5146,7 @@ const RULES = [
   {
     num: '2',
     title: 'La règle des 2% — risque max',
-    body: "Avec un <strong>stop-loss</strong> (vu en Partie 2), ne risque jamais plus de <strong>2% de perte</strong> sur un trade. <em>Combien j'engage</em> et <em>combien j'accepte de perdre</em> sont deux choses différentes.<br><br>Exemple : tu engages 25% du capital ($250 sur $1k) avec un stop-loss à -8%. Ta perte max possible = $250 × 8% = <strong>$20</strong>, soit exactement 2% du capital. <em>Les deux règles s'emboîtent.</em>",
+    body: "Avec un <strong data-term='stop-loss'>stop-loss</strong> (vu en Partie 2), ne risque jamais plus de <strong>2% de perte</strong> sur un trade. <em>Combien j'engage</em> et <em>combien j'accepte de perdre</em> sont deux choses différentes.<br><br>Exemple : tu engages 25% du capital ($250 sur $1k) avec un stop-loss à -8%. Ta perte max possible = $250 × 8% = <strong>$20</strong>, soit exactement 2% du capital. <em>Les deux règles s'emboîtent.</em>",
     formula: 'Taille × Stop-loss = 2% du capital',
   },
   {
@@ -6851,11 +6851,11 @@ document.addEventListener('keydown', (e) => {
 });
 
 </script>
-  <script type="module" src="tg-common.js?v=161"></script>
+  <script type="module" src="tg-common.js?v=162"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=161').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=162').catch(() => {});
       });
     }
   </script>
