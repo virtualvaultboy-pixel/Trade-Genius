@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.90';
+export const TG_VERSION = 'v1.91';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -336,6 +336,14 @@ export function getGlossary() {
   return { ...GLOSSARY };
 }
 
+// === Freemium — détection user premium ===
+export function isPremium() {
+  try { return localStorage.getItem('tradegenius_premium') === '1'; } catch { return false; }
+}
+export function setPremium(v) {
+  try { localStorage.setItem('tradegenius_premium', v ? '1' : '0'); } catch {}
+}
+
 // === Recap fin de chapitre (Duolingo-style) ===
 function ensureRecapStyle() {
   if (document.getElementById('tg-recap-style')) return;
@@ -586,7 +594,7 @@ export async function shareCard({ title = 'Trade Genius', stat = '', quote = '' 
 
 // Expose API globalement pour usage hors module (scripts inline des HTML)
 window.TG = Object.assign(window.TG || {}, {
-  shareCard, addGlossaryTerm, getGlossary, recordVisit, resetConsent, showRecap, launchConfetti,
+  shareCard, addGlossaryTerm, getGlossary, isPremium, setPremium, recordVisit, resetConsent, showRecap, launchConfetti,
   getNotifState, requestNotifPermission, disableNotifs, checkStreakDangerNotify,
   getDailyChallenge, getDailyState, showDailyChallenge, showModuleQuiz,
   TG_VERSION,

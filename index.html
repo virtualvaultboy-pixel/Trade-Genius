@@ -798,12 +798,76 @@
     text-transform: uppercase;
   }
 
-  /* Outils en chips compacts */
+  /* Premium card (freemium) */
+  .premium-card {
+    margin: 18px 0;
+    padding: 18px;
+    background: linear-gradient(135deg, rgba(190,242,100,0.14) 0%, rgba(96,165,250,0.12) 100%);
+    border: 1px solid rgba(190,242,100,0.35);
+    border-radius: 16px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.15s;
+  }
+  .premium-card:active { transform: scale(0.985); }
+  .premium-card::before {
+    content: '✨';
+    position: absolute;
+    top: 14px; right: 16px;
+    font-size: 22px;
+  }
+  .pc-eyebrow {
+    font-family: var(--font-m);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    color: var(--acid);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .pc-title {
+    font-family: var(--font-d);
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .pc-sub {
+    font-family: var(--font-b);
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+  .pc-cta {
+    display: inline-block;
+    padding: 9px 16px;
+    background: linear-gradient(135deg, var(--acid), #d9f99d);
+    color: #0a0a0c;
+    font-family: var(--font-d);
+    font-size: 13px;
+    font-weight: 800;
+    border-radius: 9px;
+    border: none;
+    cursor: pointer;
+  }
+  /* Tool chip locked variant for freemium */
+  .tool-chip.premium-locked { opacity: 0.55; position: relative; }
+  .tool-chip.premium-locked::after {
+    content: '🔒';
+    position: absolute;
+    top: 8px; right: 8px;
+    font-size: 13px;
+  }
+
+  /* Outils en chips compacts — 2x2 grid */
   .tools-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-bottom: 24px;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
   }
   .tool-chip {
     position: relative;
@@ -1450,7 +1514,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=190')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=191')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -1469,7 +1533,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=190')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=191')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -1488,7 +1552,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=190')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=191')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -1507,7 +1571,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=190')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=191')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -1597,15 +1661,15 @@
 
     <!-- Stats compactes -->
     <div class="stats-row">
-      <div class="stat-cell" onclick="location.href='scene-06.html?v=190'">
+      <div class="stat-cell" onclick="location.href='scene-06.html?v=191'">
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=190'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=191'">
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=190'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=191'">
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
       </div>
@@ -1622,10 +1686,22 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=190'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=191'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
+      <div class="tool-chip premium-locked" id="tool-analyse" style="--mode-color: var(--clay);" onclick="openAnalyse()">
+        <div class="tool-icon">📊</div>
+        <div class="tool-name">Analyse<span class="tool-sub">Premium</span></div>
+      </div>
+    </div>
+
+    <!-- Card Premium (freemium upsell, masquée si déjà premium) -->
+    <div class="premium-card" id="premium-card" onclick="openPremium()" style="display:none;">
+      <div class="pc-eyebrow">✦ Trade Genius Premium</div>
+      <div class="pc-title">Débloque <em>tout</em></div>
+      <div class="pc-sub">Modules 2-4 · Analyse avancée · Biblio 26 fiches · Simu illimitée · Stats avancées</div>
+      <button class="pc-cta">Voir les avantages →</button>
     </div>
 
     <!-- Rappels notif + Partager -->
@@ -1888,6 +1964,9 @@
 
     // 9) État défi du jour
     refreshDailyChallenge();
+
+    // 10) Card Premium (freemium)
+    refreshPremiumCard();
   }
 
   function refreshDailyChallenge() {
@@ -1991,11 +2070,32 @@
       name.innerHTML = `Entraîner<span class="tool-sub">${done}/${total} modules</span>`;
     }
   }
+  function openAnalyse() {
+    if (navigator.vibrate) navigator.vibrate(8);
+    if (window.TG && window.TG.isPremium && window.TG.isPremium()) {
+      alert('Module Analyse à venir — déjà débloqué pour toi 🚀');
+    } else {
+      openPremium();
+    }
+  }
+  function openPremium() {
+    if (navigator.vibrate) navigator.vibrate(8);
+    alert("✨ Trade Genius Premium\n\nDébloque:\n• Modules 2, 3, 4 (Chart, Psycho, Analyse avancée)\n• Bibliothèque complète (26 fiches)\n• Simulateur illimité\n• Stats avancées\n\n3€/mois ou 25€/an\n\n(Paiement à venir — Play Billing après publication)");
+  }
+  function refreshPremiumCard() {
+    const card = document.getElementById('premium-card');
+    const analyse = document.getElementById('tool-analyse');
+    if (!card) return;
+    const premium = window.TG && window.TG.isPremium ? window.TG.isPremium() : false;
+    card.style.display = premium ? 'none' : 'block';
+    if (analyse) analyse.classList.toggle('premium-locked', !premium);
+  }
+
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
       const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '168';
-      location.href = 'scene-05.html?v=190' + v;
+      location.href = 'scene-05.html?v=191' + v;
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -2198,7 +2298,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=190' + v; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=191' + v; };
         block.style.display = 'block';
         return;
       }
@@ -2240,7 +2340,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=190';
+        card.onclick = () => location.href = 'scene-05.html?v=191';
         block.style.display = 'block';
         return;
       }
@@ -2260,7 +2360,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=190';
+          card.onclick = () => location.href = 'scene-06.html?v=191';
           block.style.display = 'block';
           return;
         }
@@ -2274,7 +2374,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=190';
+        card.onclick = () => location.href = 'scene-06.html?v=191';
         block.style.display = 'block';
         return;
       }
@@ -2289,7 +2389,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=190';
+    card.onclick = () => location.href = 'scene-05.html?v=191';
     block.style.display = 'block';
   }
 
@@ -2483,11 +2583,11 @@
     if (shortcut === 'modules') { showView('modules'); return; }
     if (shortcut === 'simu') {
       // Pas de location.href ici : on est déjà dans index.html, redirige
-      location.href = 'scene-05.html?v=190';
+      location.href = 'scene-05.html?v=191';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=190';
+      location.href = 'scene-06.html?v=191';
       return;
     }
 
@@ -2506,11 +2606,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=190"></script>
+  <script type="module" src="tg-common.js?v=191"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=190').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=191').catch(() => {});
       });
     }
   </script>
