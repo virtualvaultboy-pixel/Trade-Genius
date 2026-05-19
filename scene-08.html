@@ -14,7 +14,7 @@
   <meta name="theme-color" content="#0a0a0c">
   <title>Trade Genius — Patterns Lab</title>
   <link rel="manifest" href="manifest.json">
-  <script type="module" src="tg-common.js?v=211"></script>
+  <script type="module" src="tg-common.js?v=212"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -347,13 +347,13 @@
   <div class="view-list active" id="view-list">
     <div class="h-eyebrow">PATTERNS LAB</div>
     <h1 class="h-title">Tous les <em>modèles classiques</em></h1>
-    <p class="h-sub">6 figures chartistes. Tap une carte pour la <strong>fiche complète</strong> : anatomie, psychologie, comment trader, pièges, exemple historique.</p>
+    <p class="h-sub">12 figures chartistes. Tap une carte pour la <strong>fiche complète</strong> : anatomie, psychologie, comment trader, pièges, exemples historiques.</p>
 
     <div id="patterns-grid"></div>
 
     <div class="coming-block">
       <div class="cb-lbl">Prochainement</div>
-      <div class="cb-txt">Cup &amp; Handle · Wedge · Pennant · Rectangle · Channels · Diamond · Rounding Bottom...</div>
+      <div class="cb-txt">Diamond top/bottom · Channels (ascendant/descendant) · Broadening formation · Three drives · Gartley · Harmonics avancés...</div>
     </div>
   </div>
 
@@ -593,6 +593,217 @@
     frame();
   }
 
+  /* === v2.12 — 6 NOUVEAUX PATTERNS === */
+
+  function drawCupHandle(canvas) {
+    const { ctx, w, h, DPR } = setupCanvas(canvas);
+    const padX = 20 * DPR, padY = 30 * DPR;
+    const useW = w - padX * 2, useH = h - padY * 2;
+    // Cup (U) puis handle (petit recul) puis breakout
+    const pts = [
+      [0.00, 0.20], [0.05, 0.25], [0.10, 0.35], [0.15, 0.50], [0.20, 0.65],
+      [0.27, 0.78], [0.34, 0.82], [0.40, 0.80], [0.46, 0.72], [0.52, 0.60],
+      [0.58, 0.45], [0.64, 0.30], [0.70, 0.22], // fin de la cup
+      [0.74, 0.30], [0.78, 0.38], [0.82, 0.36], [0.86, 0.30], // handle
+      [0.92, 0.18], [1.00, 0.05] // breakout
+    ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
+    let progress = 0;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      drawCurve(ctx, pts, '#22c55e', 2, DPR, progress);
+      if (progress >= 1) {
+        const rim = padY + 0.20 * useH;
+        dashLine(ctx, padX, rim, padX + useW, rim, '#f59e0b', DPR);
+        label(ctx, 'RIM (rebord)', padX + 8 * DPR, rim - 4 * DPR, '#f59e0b', DPR, 'left', 9);
+        label(ctx, 'CUP', padX + 0.35 * useW, padY + 0.82 * useH - 4 * DPR, '#a78bfa', DPR, 'center', 10);
+        label(ctx, 'HANDLE', padX + 0.80 * useW, padY + 0.40 * useH + 16 * DPR, '#a78bfa', DPR, 'center', 9);
+        label(ctx, 'BREAKOUT', pts[17][0], pts[17][1] - 8 * DPR, '#bef264', DPR, 'center', 10);
+      }
+      if (progress < 1) { progress = Math.min(progress + 0.018, 1); requestAnimationFrame(frame); }
+    }
+    frame();
+  }
+
+  function drawRisingWedge(canvas) {
+    const { ctx, w, h, DPR } = setupCanvas(canvas);
+    const padX = 20 * DPR, padY = 30 * DPR;
+    const useW = w - padX * 2, useH = h - padY * 2;
+    // Sommets et creux qui montent mais convergent (compression)
+    const pts = [
+      [0.00, 0.85], [0.06, 0.70], [0.12, 0.55],
+      [0.18, 0.68], [0.22, 0.60],
+      [0.28, 0.48], [0.34, 0.38],
+      [0.40, 0.50], [0.44, 0.42],
+      [0.50, 0.34], [0.56, 0.26],
+      [0.62, 0.36], [0.66, 0.30],
+      [0.72, 0.22], [0.76, 0.18],
+      [0.80, 0.30], [0.86, 0.45], [0.92, 0.65], [1.00, 0.92]
+    ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
+    let progress = 0;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      if (progress >= 0.4) {
+        const a = Math.min((progress - 0.4) * 3, 1);
+        ctx.globalAlpha = a;
+        // Ligne haute (résistance qui monte)
+        dashLine(ctx, padX, padY + 0.55 * useH, padX + 0.78 * useW, padY + 0.16 * useH, '#ef4444', DPR);
+        // Ligne basse (support qui monte plus pente forte)
+        dashLine(ctx, padX, padY + 0.86 * useH, padX + 0.78 * useW, padY + 0.30 * useH, '#22c55e', DPR);
+        ctx.globalAlpha = 1;
+      }
+      drawCurve(ctx, pts, '#ef4444', 2, DPR, progress);
+      if (progress >= 1) {
+        label(ctx, 'BREAKDOWN', pts[18][0], pts[18][1] - 8 * DPR, '#ef4444', DPR, 'right', 10);
+      }
+      if (progress < 1) { progress = Math.min(progress + 0.018, 1); requestAnimationFrame(frame); }
+    }
+    frame();
+  }
+
+  function drawFallingWedge(canvas) {
+    const { ctx, w, h, DPR } = setupCanvas(canvas);
+    const padX = 20 * DPR, padY = 30 * DPR;
+    const useW = w - padX * 2, useH = h - padY * 2;
+    const pts = [
+      [0.00, 0.20], [0.06, 0.35], [0.12, 0.50],
+      [0.18, 0.40], [0.22, 0.48],
+      [0.28, 0.58], [0.34, 0.66],
+      [0.40, 0.55], [0.44, 0.62],
+      [0.50, 0.72], [0.56, 0.78],
+      [0.62, 0.68], [0.66, 0.72],
+      [0.72, 0.80], [0.76, 0.82],
+      [0.80, 0.70], [0.86, 0.55], [0.92, 0.30], [1.00, 0.05]
+    ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
+    let progress = 0;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      if (progress >= 0.4) {
+        const a = Math.min((progress - 0.4) * 3, 1);
+        ctx.globalAlpha = a;
+        dashLine(ctx, padX, padY + 0.20 * useH, padX + 0.78 * useW, padY + 0.78 * useH, '#ef4444', DPR);
+        dashLine(ctx, padX, padY + 0.55 * useH, padX + 0.78 * useW, padY + 0.84 * useH, '#22c55e', DPR);
+        ctx.globalAlpha = 1;
+      }
+      drawCurve(ctx, pts, '#22c55e', 2, DPR, progress);
+      if (progress >= 1) {
+        label(ctx, 'BREAKOUT', pts[18][0], pts[18][1] - 8 * DPR, '#bef264', DPR, 'right', 10);
+      }
+      if (progress < 1) { progress = Math.min(progress + 0.018, 1); requestAnimationFrame(frame); }
+    }
+    frame();
+  }
+
+  function drawPennant(canvas) {
+    const { ctx, w, h, DPR } = setupCanvas(canvas);
+    const padX = 20 * DPR, padY = 30 * DPR;
+    const useW = w - padX * 2, useH = h - padY * 2;
+    // Forte montée (mât) + triangle convergent (pennant) + breakout
+    const pts = [
+      [0.00, 0.95], [0.05, 0.85], [0.10, 0.70], [0.15, 0.50],
+      [0.20, 0.32], [0.25, 0.20], // mât
+      [0.30, 0.30], [0.35, 0.24], // touche supérieure 1
+      [0.40, 0.32], [0.45, 0.28], // touche inférieure 1
+      [0.50, 0.30], [0.54, 0.26], // touche supérieure 2 (plus basse)
+      [0.58, 0.32], [0.62, 0.29], // touche inférieure 2 (plus haute)
+      [0.66, 0.30], // pointe du triangle
+      [0.72, 0.20], [0.80, 0.10], [0.88, 0.04], [1.00, 0.02] // breakout
+    ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
+    let progress = 0;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      if (progress >= 0.4) {
+        const a = Math.min((progress - 0.4) * 3, 1);
+        ctx.globalAlpha = a;
+        // Lignes convergentes
+        dashLine(ctx, padX + 0.27 * useW, padY + 0.22 * useH, padX + 0.67 * useW, padY + 0.29 * useH, '#a78bfa', DPR);
+        dashLine(ctx, padX + 0.27 * useW, padY + 0.36 * useH, padX + 0.67 * useW, padY + 0.30 * useH, '#a78bfa', DPR);
+        ctx.globalAlpha = 1;
+      }
+      drawCurve(ctx, pts, '#22c55e', 2, DPR, progress);
+      if (progress >= 1) {
+        label(ctx, 'MÂT', pts[5][0] - 10 * DPR, pts[5][1] + 8 * DPR, '#22c55e', DPR, 'right', 10);
+        label(ctx, 'PENNANT', padX + 0.48 * useW, padY + 0.42 * useH + 8 * DPR, '#a78bfa', DPR, 'center', 9);
+        label(ctx, 'BREAKOUT', pts[17][0], pts[17][1] - 8 * DPR, '#bef264', DPR, 'right', 10);
+      }
+      if (progress < 1) { progress = Math.min(progress + 0.018, 1); requestAnimationFrame(frame); }
+    }
+    frame();
+  }
+
+  function drawRectangle(canvas) {
+    const { ctx, w, h, DPR } = setupCanvas(canvas);
+    const padX = 20 * DPR, padY = 30 * DPR;
+    const useW = w - padX * 2, useH = h - padY * 2;
+    // Range entre 2 niveaux + breakout haussier en fin
+    const top = padY + 0.30 * useH;
+    const bot = padY + 0.70 * useH;
+    const pts = [
+      [0.00, 0.50], [0.04, 0.35], [0.08, 0.32], // touche top 1
+      [0.12, 0.50], [0.16, 0.68], [0.20, 0.70], // touche bot 1
+      [0.26, 0.50], [0.30, 0.33], [0.34, 0.31], // touche top 2
+      [0.40, 0.50], [0.44, 0.68], [0.48, 0.70], // touche bot 2
+      [0.54, 0.50], [0.58, 0.33], [0.62, 0.31], // touche top 3
+      [0.66, 0.50], [0.70, 0.68], [0.74, 0.70], // touche bot 3
+      [0.80, 0.50], [0.86, 0.32], // touche top 4 + breakout
+      [0.92, 0.18], [0.96, 0.10], [1.00, 0.05]
+    ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
+    let progress = 0;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      if (progress >= 0.2) {
+        const a = Math.min((progress - 0.2) * 3, 1);
+        ctx.globalAlpha = a;
+        dashLine(ctx, padX, top, padX + 0.84 * useW, top, '#ef4444', DPR);
+        dashLine(ctx, padX, bot, padX + 0.78 * useW, bot, '#22c55e', DPR);
+        ctx.globalAlpha = 1;
+      }
+      drawCurve(ctx, pts, '#a78bfa', 2, DPR, progress);
+      if (progress >= 1) {
+        label(ctx, 'RÉSIST.', padX + 8 * DPR, top - 4 * DPR, '#ef4444', DPR, 'left', 9);
+        label(ctx, 'SUPPORT', padX + 8 * DPR, bot + 12 * DPR, '#22c55e', DPR, 'left', 9);
+        label(ctx, 'BREAKOUT', pts[20][0], pts[20][1] - 8 * DPR, '#bef264', DPR, 'right', 10);
+      }
+      if (progress < 1) { progress = Math.min(progress + 0.014, 1); requestAnimationFrame(frame); }
+    }
+    frame();
+  }
+
+  function drawRoundingBottom(canvas) {
+    const { ctx, w, h, DPR } = setupCanvas(canvas);
+    const padX = 20 * DPR, padY = 30 * DPR;
+    const useW = w - padX * 2, useH = h - padY * 2;
+    // Forme en U doux + breakout final
+    const pts = [];
+    const total = 28;
+    for (let i = 0; i < total; i++) {
+      const px = i / (total - 1);
+      const t = (px - 0.5) * 2;
+      const py = 0.20 + 0.60 * (1 - (1 - t * t));
+      pts.push([padX + px * useW, padY + py * useH]);
+    }
+    // Breakout final
+    pts.push([padX + 1.05 * useW, padY + 0.05 * useH]);
+    let progress = 0;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      if (progress >= 0.7) {
+        const a = Math.min((progress - 0.7) * 3, 1);
+        ctx.globalAlpha = a;
+        const rim = padY + 0.20 * useH;
+        dashLine(ctx, padX, rim, padX + useW, rim, '#f59e0b', DPR);
+        ctx.globalAlpha = 1;
+      }
+      drawCurve(ctx, pts, '#22c55e', 2, DPR, progress);
+      if (progress >= 1) {
+        label(ctx, 'NECKLINE', padX + useW - 8 * DPR, padY + 0.20 * useH - 4 * DPR, '#f59e0b', DPR, 'right', 9);
+        label(ctx, 'BOTTOM', padX + 0.50 * useW, padY + 0.80 * useH + 14 * DPR, '#a78bfa', DPR, 'center', 10);
+        label(ctx, 'BREAKOUT', pts[pts.length - 1][0] - 12 * DPR, pts[pts.length - 1][1] + 6 * DPR, '#bef264', DPR, 'right', 10);
+      }
+      if (progress < 1) { progress = Math.min(progress + 0.018, 1); requestAnimationFrame(frame); }
+    }
+    frame();
+  }
+
   /* === Données patterns + contenu détaillé === */
   const PATTERNS = {
     'hs-top': {
@@ -731,6 +942,144 @@
       },
       pitfall: `Si le drapeau dure <strong>plus longtemps que le mât</strong>, c'est suspect (probable retournement). Si le drapeau est ascendant au lieu de descendant ou horizontal → ce n'est pas un bull flag, c'est un <em class="purple">wedge ascendant</em> (souvent baissier). Volume sur le breakout est <strong>critique</strong> : sans lui, le faux signal est fréquent.`,
       historic: `<strong>GameStop janvier 2021</strong> : plusieurs bull flags consécutifs pendant le short squeeze. <strong>Tesla 2020</strong> : bull flag de 3 semaines à 200 $ avant l'envolée vers 700 $. <strong>Bitcoin 2020-2021</strong> : bull flag à 20k$ avant la cassure à 60k$.`,
+    },
+
+    'cup-handle': {
+      name: 'Cup & Handle',
+      tag: 'up',
+      tagLabel: '↗️ HAUSSIER',
+      drawer: drawCupHandle,
+      teaser: 'U doux + handle + breakout',
+      definition: `Le <strong>Cup &amp; Handle</strong> (tasse avec anse) est l'un des patterns de continuation haussière <em class="acid">les plus puissants</em>, popularisé par William O'Neil (CANSLIM). Il se forme en 2 phases : d'abord une <strong>cup</strong> (forme en U arrondi) sur plusieurs semaines/mois, puis une <strong>handle</strong> (petit pullback) avant le breakout. La cup symbolise une consolidation où le marché digère les gains, la handle une dernière hésitation avant l'envolée.`,
+      anatomy: [
+        { n: '1', t: '<strong>Cup (la tasse)</strong> : forme en U arrondi, jamais en V. Profondeur typique 12-33% du sommet. Volume diminue progressivement vers le fond du U. <em class="acid">Durée 7-65 semaines</em>.' },
+        { n: '2', t: '<strong>Remontée jusqu\'au rim</strong> : le prix revient au niveau du sommet de la cup (rebord). C\'est la résistance à surveiller.' },
+        { n: '3', t: '<strong>Handle (l\'anse)</strong> : petit pullback de 10-15% maximum. Souvent en canal descendant léger, 1-4 semaines. <em class="purple">Volume très bas</em> — peu de vendeurs.' },
+        { n: '4', t: '<strong>Breakout du rim</strong> : prix casse au-dessus du sommet (cup + handle) avec <em class="acid">explosion de volume</em>. Signal d\'achat O\'Neil.' },
+      ],
+      psychology: `La cup raconte <strong>l'élimination des vendeurs faibles</strong> : ceux qui ont acheté trop haut paniquent et vendent dans la baisse. Quand le prix remonte, ils se sentent soulagés et vendent au rim pour récupérer. Cette vente crée la handle. Une fois ces vendeurs épuisés, <em class="purple">il n'y a plus que des acheteurs convaincus</em> — la résistance cède sous leur pression.`,
+      trade: {
+        entry: 'Cassure du rim avec volume +40% vs moyenne',
+        stop: 'Sous la borne basse du handle',
+        target: 'Profondeur de la cup projetée depuis le rim',
+      },
+      pitfall: `Une cup en <strong>V</strong> (chute brutale, remontée brutale) est <em class="red">moins fiable</em> qu'une cup en U doux : les vendeurs n'ont pas eu le temps de s'éliminer. Handle trop profond (&gt; 33% de la cup) = pattern invalidé. Cassure sans volume = <strong>faux signal</strong> presque garanti. Cible : ne pas vendre toute la position au target — laisser courir avec trailing stop.`,
+      historic: `<strong>Nvidia 2022-2023</strong> : Cup &amp; Handle parfait. Cup de 9 mois (de 280 $ à 110 $ et retour), handle de 6 semaines, breakout en janvier 2023 à 200 $. Montée à 950 $ (+375% en 18 mois). <strong>Apple 1998</strong> : cup de 18 mois avant l'envolée historique 1999-2000. <strong>Microsoft 2013</strong> : cup &amp; handle classique de 12 mois avant le rally vers 50 $.`,
+    },
+
+    'rising-wedge': {
+      name: 'Rising Wedge',
+      tag: 'down',
+      tagLabel: '↘️ BAISSIER',
+      drawer: drawRisingWedge,
+      teaser: 'Sommets + creux qui montent en convergeant',
+      definition: `Le <strong>Rising Wedge</strong> (coin ascendant) est un pattern de <em class="acid">retournement baissier</em> trompeur : visuellement, le prix monte, ce qui rassure les retailers. Mais les sommets ET les creux convergent vers un point — la <strong>pression vendeuse augmente plus vite</strong> que la pression acheteuse. Quand le support inférieur cède, la chute est souvent <em class="purple">rapide et profonde</em>.`,
+      anatomy: [
+        { n: '1', t: '<strong>Tendance haussière</strong> initiale claire avec sommets et creux qui montent.' },
+        { n: '2', t: '<strong>Compression</strong> : la ligne haute (résistance qui monte doucement) et la ligne basse (support qui monte plus vite) convergent.' },
+        { n: '3', t: '<strong>Volume décroissant</strong> : pendant la formation du wedge, le volume baisse — signal que les acheteurs sont épuisés.' },
+        { n: '4', t: '<strong>Breakdown du support inférieur</strong> : cassure baissière avec volume qui repart. <em class="red">Chute rapide</em>, souvent 50-100% de la hauteur du wedge.' },
+      ],
+      psychology: `Le rising wedge est un piège pour les acheteurs tardifs. Le marché <em class="purple">semble haussier</em> mais les pros voient l'essoufflement : chaque nouveau sommet est moins ambitieux que le précédent, et chaque correction est plus profonde. <strong>Les smart money sortent silencieusement</strong> pendant que le retail FOMO entre. Quand le support cède, la cascade des stops déclenche une chute violente.`,
+      trade: {
+        entry: 'Cassure baissière du support inférieur + volume',
+        stop: 'Au-dessus du dernier sommet du wedge',
+        target: 'Base du wedge (point de départ) ou plus bas',
+      },
+      pitfall: `<strong>Faux breakdown</strong> très courant : le prix peut casser brièvement le support puis remonter (bear trap). Attendre <em class="red">clôture sous la ligne + retest</em> avant d'entrer short. Le rising wedge en <em class="acid">milieu de tendance haussière</em> peut être une simple consolidation (pas un retournement) — vérifier le timeframe supérieur.`,
+      historic: `<strong>Bitcoin avril-novembre 2021</strong> : rising wedge de 7 mois entre 30k$ et 69k$. Breakdown en novembre, chute à 15k$ (−78%). <strong>Tesla 2021-2022</strong> : rising wedge culminant à 414 $, breakdown vers 102 $. <strong>Nasdaq 1999-2000</strong> : rising wedge classique précédant le krach dotcom.`,
+    },
+
+    'falling-wedge': {
+      name: 'Falling Wedge',
+      tag: 'up',
+      tagLabel: '↗️ HAUSSIER',
+      drawer: drawFallingWedge,
+      teaser: 'Sommets + creux qui descendent en convergeant',
+      definition: `Le <strong>Falling Wedge</strong> est le miroir haussier du rising wedge. Prix baisse, sommets et creux convergent vers le bas, mais le <strong>support baisse moins vite</strong> que la résistance — les vendeurs s'essoufflent. <em class="acid">Pattern de retournement haussier puissant</em>, souvent en fin de bear market ou de correction.`,
+      anatomy: [
+        { n: '1', t: '<strong>Tendance baissière</strong> avec sommets et creux qui descendent.' },
+        { n: '2', t: '<strong>Convergence</strong> : la résistance descend plus vite que le support. Le wedge se resserre.' },
+        { n: '3', t: '<strong>Volume décroissant</strong> sur les nouvelles baisses : les vendeurs sont épuisés.' },
+        { n: '4', t: '<strong>Breakout haussier</strong> de la résistance avec <em class="acid">forte explosion de volume</em>. Souvent suivi d\'un retest avant l\'envolée.' },
+      ],
+      psychology: `Le marché paraît baissier — les retailers vendent par capitulation. Mais les <strong>smart money accumulent silencieusement</strong>, profitant des prix bas. Chaque nouvelle baisse perd en force (volume bas, amplitude réduite). Quand la résistance descendante cède, c'est la signalisation : <em class="purple">le bear market est terminé</em>. Les short sellers couvrent leurs positions, amplifiant la hausse.`,
+      trade: {
+        entry: 'Cassure de la résistance supérieure + volume',
+        stop: 'Sous le dernier creux',
+        target: 'Hauteur de base du wedge projetée depuis breakout',
+      },
+      pitfall: `Comme tous les wedges : le faux breakout est fréquent. Attendre <strong>clôture au-dessus + retest réussi</strong>. Si le breakout coïncide avec un niveau Fibo 0.618 + ancien support → setup en or. <em class="red">Falling wedge en plein bull market</em> peut être trompeur : c\'est souvent juste une consolidation, pas un fond.`,
+      historic: `<strong>Bitcoin novembre 2022 - janvier 2023</strong> : falling wedge classique après le crash FTX. Breakout en janvier 2023 à 18k$, montée à 73k$ en 2024. <strong>S&amp;P 500 octobre 2022</strong> : falling wedge de 10 mois, breakout octobre 2022 à 3600, rally vers 5800 en 2024. <strong>Ethereum 2018-2019</strong> : falling wedge de 12 mois avant la remontée 2020.`,
+    },
+
+    'pennant': {
+      name: 'Pennant',
+      tag: 'up',
+      tagLabel: '↗️ HAUSSIER',
+      drawer: drawPennant,
+      teaser: 'Mât + triangle convergent + breakout',
+      definition: `Le <strong>Pennant</strong> (fanion) est un pattern de continuation similaire au Bull Flag, mais la consolidation se fait en <em class="acid">triangle convergent symétrique</em> au lieu d'un canal parallèle. Toujours précédé d'un fort mouvement (le mât), suivi d'une compression rapide (le fanion) avant la reprise. <strong>Durée courte</strong> : 1-3 semaines maximum.`,
+      anatomy: [
+        { n: '1', t: '<strong>Mât</strong> : mouvement vertical fort (souvent +20%+ en peu de bougies). Volume très élevé.' },
+        { n: '2', t: '<strong>Pennant (fanion)</strong> : 2 lignes convergentes (résistance descendante + support ascendant) qui se rejoignent à la pointe.' },
+        { n: '3', t: '<strong>Volume très bas</strong> dans le pennant : la pause est saine, pas de panique.' },
+        { n: '4', t: '<strong>Breakout</strong> dans la direction du mât (généralement haussier après un mât haussier) avec <em class="acid">explosion de volume</em>.' },
+      ],
+      psychology: `Après un fort mouvement, certains traders prennent leurs gains rapidement. Mais l'élan est tel que <strong>peu de monde veut vendre</strong>. Les acheteurs hésitent un instant — où ça va ? La consolidation très rapide en triangle force les indécis à choisir un côté. Quand la pointe du triangle est atteinte, <em class="purple">le marché doit trancher</em> : généralement dans la direction du mât.`,
+      trade: {
+        entry: 'Cassure du triangle dans le sens du mât',
+        stop: 'Côté opposé du pennant (juste sous la borne)',
+        target: 'Hauteur du mât projetée depuis breakout',
+      },
+      pitfall: `Si le pennant dure <strong>plus de 4 semaines</strong>, ce n\'est plus un pennant : c\'est un triangle symétrique normal, moins fiable. Volume sur le breakout <strong>critique</strong> : sans lui, faux signal. <em class="red">Pennants contre-tendance</em> (mât baissier puis breakout haussier) sont moins fiables.`,
+      historic: `<strong>Nvidia mai 2023</strong> : mât +25% sur 2 jours (résultats IA), pennant de 5 jours, breakout vers 480 $. <strong>Bitcoin novembre 2020</strong> : pennant de 10 jours à 18k$ avant l'envolée vers 64k$. <strong>Tesla janvier 2020</strong> : pennant classique après l'envolée initiale.`,
+    },
+
+    'rectangle': {
+      name: 'Rectangle / Range',
+      tag: 'neutral',
+      tagLabel: '⏸️ CONSOLIDATION',
+      drawer: drawRectangle,
+      teaser: 'Range horizontal · breakout final',
+      definition: `Le <strong>Rectangle</strong> (range, trading range) est une <em class="acid">consolidation horizontale</em> entre une résistance et un support définis. Le prix oscille entre ces 2 niveaux pendant plusieurs semaines/mois. <strong>Direction du breakout imprévisible</strong> : peut casser haussier (continuation) ou baissier (retournement). C'est le pattern le plus courant — on est en range 70% du temps.`,
+      anatomy: [
+        { n: '1', t: '<strong>Résistance horizontale</strong> : testée 2+ fois sans être franchie.' },
+        { n: '2', t: '<strong>Support horizontal</strong> : testé 2+ fois sans être cassé.' },
+        { n: '3', t: '<strong>Volume décroissant</strong> au sein du range, puis qui explose à la cassure.' },
+        { n: '4', t: '<strong>Breakout</strong> : direction généralement dans le sens de la tendance précédente (continuation), parfois inverse (retournement).' },
+      ],
+      psychology: `Le rectangle représente <strong>l'équilibre parfait</strong> entre acheteurs et vendeurs. À chaque niveau de prix, l'un des deux camps prend le contrôle. Les pros profitent du range pour <em class="purple">acheter au support et vendre à la résistance</em> (range trading). Quand un côté cède, ça signifie qu'un nouvel équilibre s'établira ailleurs.`,
+      trade: {
+        entry: 'Range : achat à support, vente à résistance · Breakout : entrée à cassure + volume',
+        stop: 'Range : juste de l\'autre côté du niveau · Breakout : sous le niveau cassé',
+        target: 'Range : niveau opposé · Breakout : hauteur du range projetée',
+      },
+      pitfall: `<strong>Faux breakouts très fréquents</strong> : 50% des cassures de range échouent (bull/bear traps). Attendre clôture + volume. Le <em class="red">retest du niveau cassé</em> (devenu support si breakout haussier) est souvent le meilleur point d'entrée. Range qui dure trop longtemps (&gt; 6 mois) perd en signification.`,
+      historic: `<strong>Bitcoin 2018-2020</strong> : range de 18 mois entre 3k$ et 13k$. Cassure haussière en octobre 2020. <strong>S&amp;P 500 août 2023 - décembre 2023</strong> : range entre 4 100 et 4 600, breakout haussier vers 5 000+. <strong>Or 2013-2019</strong> : range de 6 ans entre 1 050 $ et 1 350 $ avant le bull run.`,
+    },
+
+    'rounding-bottom': {
+      name: 'Rounding Bottom',
+      tag: 'up',
+      tagLabel: '↗️ HAUSSIER',
+      drawer: drawRoundingBottom,
+      teaser: 'U arrondi long terme · retournement majeur',
+      definition: `Le <strong>Rounding Bottom</strong> (soucoupe) est un pattern de <em class="acid">retournement de long terme</em>, souvent vu sur des graphiques hebdo/mensuels. Forme en U doux qui s'étale sur 6 mois à plusieurs années. Représente un <strong>changement progressif et profond</strong> de sentiment du marché : de baissier à neutre à haussier. <em class="purple">Le pattern le plus fiable</em> mais le plus lent à se former.`,
+      anatomy: [
+        { n: '1', t: '<strong>Phase descendante</strong> : tendance baissière qui ralentit progressivement. Volume baisse aussi.' },
+        { n: '2', t: '<strong>Bottom prolongé</strong> : prix stagne en un range bas pendant plusieurs mois. <em class="acid">Accumulation silencieuse</em> par les smart money.' },
+        { n: '3', t: '<strong>Phase ascendante</strong> : pente d\'inclinaison miroir de la descente. Volume qui remonte graduellement.' },
+        { n: '4', t: '<strong>Breakout de la neckline</strong> (niveau du début de la cup) avec <em class="acid">explosion de volume</em>. Confirmation du retournement.' },
+      ],
+      psychology: `Le rounding bottom raconte une histoire <strong>longue</strong> : panique → désespoir → résignation → indifférence → curiosité → optimisme prudent → conviction → enthousiasme. À chaque étape, certains vendeurs capitulent et certains acheteurs prennent leur place. <em class="purple">Le marché digère psychologiquement</em> le krach précédent. Quand le bottom est complet, la nouvelle tendance haussière est généralement durable.`,
+      trade: {
+        entry: 'Cassure de la neckline avec volume',
+        stop: 'Sous le creux du rounding bottom',
+        target: 'Profondeur du bottom projetée depuis neckline (cible long terme)',
+      },
+      pitfall: `<strong>Patience requise</strong> : impossible de timer l'entrée parfaite. Entrer trop tôt = subir des mois de stagnation. Entrer trop tard = rater le rally. Stratégie : <em class="acid">DCA (Dollar Cost Averaging)</em> pendant la phase basse + position massive sur cassure neckline. Ne pas confondre avec un simple range — le rounding bottom doit avoir cette <strong>forme U claire</strong>.`,
+      historic: `<strong>Apple 2003-2004</strong> : rounding bottom de 18 mois entre 7 $ et 12 $ avant le rally historique vers 200 $. <strong>Bitcoin 2014-2016</strong> : rounding bottom de 2 ans entre 200 $ et 450 $, puis bull run vers 20k$. <strong>Microsoft 2009-2013</strong> : rounding bottom long de 4 ans après le krach 2008, avant l\'envolée Satya Nadella.`,
     },
   };
 

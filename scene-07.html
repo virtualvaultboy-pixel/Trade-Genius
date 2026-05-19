@@ -26,7 +26,7 @@
   <meta name="description" content="Module 4 — Analyse technique avancée : patterns chandeliers, RSI, MACD, Fibonacci, volume profile, backtesting.">
   <link rel="manifest" href="manifest.json">
   <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
-  <script type="module" src="tg-common.js?v=211"></script>
+  <script type="module" src="tg-common.js?v=212"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -934,6 +934,8 @@
         { type: 'concept', html: `
           <div class="eyebrow">CH.4 · 3 PHASES</div>
           <h1 class="h1">Les <em>3 phases</em> d'un cycle</h1>
+          <canvas class="demo-canvas big" id="canvas-dow-phases" width="600" height="260"></canvas>
+          <div class="demo-caption">Accumulation · Public · Distribution</div>
           <p class="lead">Toute tendance primaire se déroule en 3 phases. <strong>Reconnaître la phase</strong> = savoir si on est tôt ou tard dans le cycle.</p>
           <div class="points">
             <div class="point acid-pt">
@@ -1054,6 +1056,8 @@
         { type: 'concept', html: `
           <div class="eyebrow">CH.5 · POC</div>
           <h1 class="h1"><span class="gold">POC</span> — le centre de gravité</h1>
+          <canvas class="demo-canvas big" id="canvas-volume-profile" width="600" height="260"></canvas>
+          <div class="demo-caption">Volume Profile · POC + Value Area (VAH / VAL)</div>
           <p class="lead">Le <strong>POC (Point of Control)</strong> est le prix où <em>le plus de volume s'est échangé</em> sur une période donnée (journée, semaine, mois).</p>
           <div class="points">
             <div class="point acid-pt">
@@ -1215,6 +1219,8 @@
         { type: 'concept', html: `
           <div class="eyebrow">CH.6 · PROFONDEUR</div>
           <h1 class="h1">Depth — la <em>vraie liquidité</em></h1>
+          <canvas class="demo-canvas big" id="canvas-order-book" width="600" height="260"></canvas>
+          <div class="demo-caption">Bids ↑ (vert) · Asks ↓ (rouge) · Spread au milieu</div>
           <p class="lead">Le <strong>"top of book"</strong> (premier bid/ask) ne raconte pas tout. La <em>profondeur</em> (depth) montre tous les niveaux de prix avec leurs volumes cumulés.</p>
           <div class="points">
             <div class="point">
@@ -1373,6 +1379,8 @@
         { type: 'concept', html: `
           <div class="eyebrow">CH.7 · MÉTRIQUES</div>
           <h1 class="h1">Les chiffres <em>qui comptent</em></h1>
+          <canvas class="demo-canvas big" id="canvas-equity-curve" width="600" height="260"></canvas>
+          <div class="demo-caption">Equity curve · Peak en vert · Drawdown en rouge</div>
           <div class="points">
             <div class="point">
               <div class="point-icon">📈</div>
@@ -1603,6 +1611,11 @@
       'canvas-rsi'            : (c) => drawRSIDemo(c),
       'canvas-macd'           : (c) => drawMACDDemo(c),
       'canvas-fib'            : (c) => drawFibDemo(c),
+      // v2.12 — M4 ch.4-7 Premium
+      'canvas-dow-phases'     : (c) => drawDowPhases(c),
+      'canvas-volume-profile' : (c) => drawVolumeProfile(c),
+      'canvas-order-book'     : (c) => drawOrderBook(c),
+      'canvas-equity-curve'   : (c) => drawEquityCurve(c),
     };
 
     function setupCanvas(canvas) {
@@ -2242,6 +2255,365 @@
       }
       const ts = performance.now();
       requestAnimationFrame((t) => frame(t - ts));
+    }
+
+    /* ============================================
+       v2.12 — Canvas pour Module 4 ch.4-7 Premium
+       ============================================ */
+
+    /* Ch.4 — Dow 3 phases (accumulation / public / distribution) */
+    function drawDowPhases(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const padX = 20 * DPR, padY = 30 * DPR;
+      const useW = w - padX * 2, useH = h - padY * 2;
+
+      // Courbe : phase plate, hausse forte, plateau distribution
+      const points = 60;
+      const ys = [];
+      for (let i = 0; i < points; i++) {
+        const t = i / (points - 1);
+        let y;
+        if (t < 0.25) {
+          // accumulation : oscille bas
+          y = 0.75 + 0.04 * Math.sin(t * 30) + 0.02 * Math.sin(t * 17);
+        } else if (t < 0.75) {
+          // public participation : montée
+          const lt = (t - 0.25) / 0.5;
+          y = 0.75 - lt * 0.55 + 0.03 * Math.sin(lt * 24);
+        } else {
+          // distribution : plateau haut
+          y = 0.20 + 0.04 * Math.sin(t * 28) + 0.025 * Math.sin(t * 16);
+        }
+        ys.push(y);
+      }
+
+      let progress = 0;
+      function frame() {
+        ctx.clearRect(0, 0, w, h);
+
+        // 3 zones colorées en fond
+        if (progress >= 0.95) {
+          ctx.globalAlpha = 0.10;
+          ctx.fillStyle = '#bef264';
+          ctx.fillRect(padX, padY, useW * 0.25, useH);
+          ctx.fillStyle = '#60a5fa';
+          ctx.fillRect(padX + useW * 0.25, padY, useW * 0.50, useH);
+          ctx.fillStyle = '#ef4444';
+          ctx.fillRect(padX + useW * 0.75, padY, useW * 0.25, useH);
+          ctx.globalAlpha = 1;
+        }
+
+        // Courbe progressive
+        const lastIdx = Math.floor(progress * (points - 1));
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 2.2 * DPR;
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.shadowColor = '#f59e0b'; ctx.shadowBlur = 5 * DPR;
+        ctx.beginPath();
+        for (let i = 0; i <= lastIdx; i++) {
+          const px = padX + (i / (points - 1)) * useW;
+          const py = padY + ys[i] * useH;
+          if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        if (progress >= 0.95) {
+          ctx.font = `bold ${9 * DPR}px JetBrains Mono`;
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#bef264';
+          ctx.fillText('ACCUMULATION', padX + useW * 0.125, padY + 12 * DPR);
+          ctx.fillStyle = '#60a5fa';
+          ctx.fillText('PUBLIC', padX + useW * 0.50, padY + 12 * DPR);
+          ctx.fillStyle = '#ef4444';
+          ctx.fillText('DISTRIBUTION', padX + useW * 0.875, padY + 12 * DPR);
+        }
+
+        if (progress < 1) { progress = Math.min(progress + 0.018, 1); requestAnimationFrame(frame); }
+      }
+      frame();
+    }
+
+    /* Ch.5 — Volume Profile (chart vertical avec barres horizontales) */
+    function drawVolumeProfile(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const padX = 20 * DPR, padY = 20 * DPR;
+      const useW = w - padX * 2;
+      const useH = h - padY * 2;
+      const chartW = useW * 0.62;
+      const volW = useW * 0.32;
+      const gap = useW * 0.06;
+
+      // Génère des barres de volume par niveau de prix
+      const levels = 18;
+      const volumes = [];
+      for (let i = 0; i < levels; i++) {
+        // distribution gaussienne autour du POC (niveau 8)
+        const d = (i - 8) / 4;
+        volumes.push(Math.exp(-d * d) + Math.random() * 0.08);
+      }
+      const maxVol = Math.max(...volumes);
+      const pocIdx = volumes.indexOf(maxVol);
+      // Value Area = ±2 levels autour du POC
+      const vahIdx = pocIdx - 3;
+      const valIdx = pocIdx + 3;
+
+      // Courbe de prix oscillant autour du POC
+      const points = 50;
+      const ys = [];
+      for (let i = 0; i < points; i++) {
+        const t = i / (points - 1);
+        const y = 0.4 + 0.20 * Math.sin(t * 18) + 0.06 * Math.sin(t * 5);
+        ys.push(y);
+      }
+
+      let progress = 0;
+      function frame() {
+        ctx.clearRect(0, 0, w, h);
+
+        // Chart de prix à gauche
+        const cx0 = padX;
+        const lastIdx = Math.floor(progress * (points - 1));
+        ctx.strokeStyle = '#a78bfa';
+        ctx.lineWidth = 1.8 * DPR;
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.beginPath();
+        for (let i = 0; i <= lastIdx; i++) {
+          const px = cx0 + (i / (points - 1)) * chartW;
+          const py = padY + ys[i] * useH;
+          if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+
+        // Volume Profile à droite (barres horizontales)
+        if (progress >= 0.4) {
+          const a = Math.min((progress - 0.4) * 2, 1);
+          ctx.globalAlpha = a;
+          const lvlH = useH / levels;
+          for (let i = 0; i < levels; i++) {
+            const lvlY = padY + i * lvlH;
+            const barW = (volumes[i] / maxVol) * volW;
+            const isPoc = i === pocIdx;
+            const isVa = i >= vahIdx && i <= valIdx && !isPoc;
+            ctx.fillStyle = isPoc ? '#f59e0b' : (isVa ? 'rgba(167,139,250,0.55)' : 'rgba(167,139,250,0.20)');
+            ctx.fillRect(cx0 + chartW + gap, lvlY + 1 * DPR, barW, lvlH - 2 * DPR);
+          }
+          ctx.globalAlpha = 1;
+        }
+
+        // Labels POC + VA
+        if (progress >= 0.9) {
+          ctx.font = `bold ${9 * DPR}px JetBrains Mono`;
+          const pocY = padY + (pocIdx + 0.5) * (useH / levels);
+          ctx.fillStyle = '#f59e0b';
+          ctx.textAlign = 'left';
+          ctx.fillText('POC', cx0 + chartW + gap + volW + 4 * DPR, pocY + 3 * DPR);
+          ctx.fillStyle = '#a78bfa';
+          const vahY = padY + (vahIdx + 0.5) * (useH / levels);
+          const valY = padY + (valIdx + 0.5) * (useH / levels);
+          ctx.fillText('VAH', cx0 + chartW + gap + volW + 4 * DPR, vahY + 3 * DPR);
+          ctx.fillText('VAL', cx0 + chartW + gap + volW + 4 * DPR, valY + 3 * DPR);
+        }
+
+        if (progress < 1) { progress = Math.min(progress + 0.018, 1); requestAnimationFrame(frame); }
+      }
+      frame();
+    }
+
+    /* Ch.6 — Order book ladder (bid/ask cumulés) */
+    function drawOrderBook(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const padX = 20 * DPR, padY = 20 * DPR;
+      const useW = w - padX * 2;
+      const useH = h - padY * 2;
+      const rows = 10;
+      const rowH = useH / rows;
+      const colW = useW / 2;
+
+      // Bids (verts) et asks (rouges)
+      const bids = [], asks = [];
+      const priceBase = 100;
+      for (let i = 0; i < rows / 2; i++) {
+        bids.push({ price: priceBase - (i + 1) * 0.5, size: 80 + Math.random() * 200 + i * 30 });
+        asks.push({ price: priceBase + (i + 1) * 0.5, size: 70 + Math.random() * 180 + i * 25 });
+      }
+      const maxSize = Math.max(...bids.map(b => b.size), ...asks.map(a => a.size));
+
+      let progress = 0;
+      function frame() {
+        ctx.clearRect(0, 0, w, h);
+
+        // Ligne centrale (mid-price)
+        const midY = padY + (rows / 2) * rowH;
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 1 * DPR;
+        ctx.setLineDash([4 * DPR, 4 * DPR]);
+        ctx.beginPath();
+        ctx.moveTo(padX, midY); ctx.lineTo(padX + useW, midY);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        const lastBid = Math.floor(progress * bids.length);
+        const lastAsk = Math.floor(progress * asks.length);
+
+        // Asks (top, rouges, ordre croissant en s'éloignant du milieu)
+        for (let i = 0; i < Math.min(lastAsk, asks.length); i++) {
+          const y = midY - (i + 1) * rowH;
+          const sz = asks[i].size;
+          const barW = (sz / maxSize) * colW * 0.95;
+          ctx.fillStyle = 'rgba(239,68,68,0.32)';
+          ctx.fillRect(padX + colW - barW, y + 2 * DPR, barW, rowH - 4 * DPR);
+          ctx.font = `${9 * DPR}px JetBrains Mono`;
+          ctx.fillStyle = '#ef4444';
+          ctx.textAlign = 'right';
+          ctx.fillText(asks[i].price.toFixed(2), padX + colW - 4 * DPR, y + rowH / 2 + 3 * DPR);
+          ctx.fillStyle = '#a8a8b3';
+          ctx.textAlign = 'left';
+          ctx.fillText(Math.round(sz), padX + colW + 6 * DPR, y + rowH / 2 + 3 * DPR);
+        }
+
+        // Bids (bottom, verts)
+        for (let i = 0; i < Math.min(lastBid, bids.length); i++) {
+          const y = midY + i * rowH;
+          const sz = bids[i].size;
+          const barW = (sz / maxSize) * colW * 0.95;
+          ctx.fillStyle = 'rgba(34,197,94,0.32)';
+          ctx.fillRect(padX + colW, y + 2 * DPR, barW, rowH - 4 * DPR);
+          ctx.font = `${9 * DPR}px JetBrains Mono`;
+          ctx.fillStyle = '#22c55e';
+          ctx.textAlign = 'left';
+          ctx.fillText(bids[i].price.toFixed(2), padX + colW + 4 * DPR, y + rowH / 2 + 3 * DPR);
+          ctx.fillStyle = '#a8a8b3';
+          ctx.textAlign = 'right';
+          ctx.fillText(Math.round(sz), padX + colW - 6 * DPR, y + rowH / 2 + 3 * DPR);
+        }
+
+        // Headers
+        if (progress >= 0.9) {
+          ctx.font = `bold ${10 * DPR}px JetBrains Mono`;
+          ctx.fillStyle = '#ef4444';
+          ctx.textAlign = 'center';
+          ctx.fillText('ASKS (vendeurs)', padX + colW * 0.5, padY + 10 * DPR);
+          ctx.fillStyle = '#22c55e';
+          ctx.fillText('BIDS (acheteurs)', padX + colW * 1.5, padY + 10 * DPR);
+          ctx.fillStyle = '#f59e0b';
+          ctx.textAlign = 'left';
+          ctx.fillText('← spread', padX + 4 * DPR, midY + 3 * DPR);
+        }
+
+        if (progress < 1) { progress = Math.min(progress + 0.018, 1); requestAnimationFrame(frame); }
+      }
+      frame();
+    }
+
+    /* Ch.7 — Equity curve avec drawdown coloré */
+    function drawEquityCurve(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const padX = 28 * DPR, padY = 20 * DPR;
+      const useW = w - padX * 2;
+      const useH = h - padY * 2;
+
+      // Equity simulée : croissance + drawdown + récup + suite
+      const points = 80;
+      const eq = [];
+      let val = 100;
+      for (let i = 0; i < points; i++) {
+        const t = i / (points - 1);
+        // Phase 1 : croissance, Phase 2 : drawdown -25%, Phase 3 : récup + croissance
+        let chg;
+        if (t < 0.30) chg = 0.4 + Math.random() * 0.6;
+        else if (t < 0.45) chg = -1.2 + Math.random() * 0.5;
+        else if (t < 0.55) chg = -0.3 + Math.random() * 0.6;
+        else chg = 0.5 + Math.random() * 0.7;
+        val = Math.max(val + chg, 80);
+        eq.push(val);
+      }
+      const mn = Math.min(...eq), mx = Math.max(...eq);
+      const range = mx - mn || 1;
+      const y = (v) => padY + (1 - (v - mn) / range) * useH;
+
+      // Drawdown : trouve les peaks et trough
+      let peak = eq[0], peakIdx = 0, troughIdx = 0, troughVal = eq[0];
+      let maxDD = 0;
+      for (let i = 0; i < eq.length; i++) {
+        if (eq[i] > peak) { peak = eq[i]; peakIdx = i; }
+        const dd = (peak - eq[i]) / peak;
+        if (dd > maxDD) { maxDD = dd; troughIdx = i; troughVal = eq[i]; }
+      }
+
+      let progress = 0;
+      function frame() {
+        ctx.clearRect(0, 0, w, h);
+
+        // Grille
+        ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+        ctx.lineWidth = 1 * DPR;
+        for (let g = 1; g < 4; g++) {
+          const gy = padY + (useH / 4) * g;
+          ctx.beginPath(); ctx.moveTo(padX, gy); ctx.lineTo(padX + useW, gy); ctx.stroke();
+        }
+
+        const lastIdx = Math.floor(progress * (eq.length - 1));
+
+        // Fill sous la courbe (gradient acid)
+        const grad = ctx.createLinearGradient(0, padY, 0, padY + useH);
+        grad.addColorStop(0, 'rgba(190,242,100,0.32)');
+        grad.addColorStop(1, 'rgba(190,242,100,0.02)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.moveTo(padX, padY + useH);
+        const stepX = useW / (eq.length - 1);
+        for (let i = 0; i <= lastIdx; i++) ctx.lineTo(padX + i * stepX, y(eq[i]));
+        ctx.lineTo(padX + lastIdx * stepX, padY + useH);
+        ctx.closePath();
+        ctx.fill();
+
+        // Zone drawdown en rouge (entre peakIdx et trough)
+        if (progress >= 0.7 && lastIdx >= troughIdx) {
+          ctx.fillStyle = 'rgba(239,68,68,0.22)';
+          ctx.beginPath();
+          ctx.moveTo(padX + peakIdx * stepX, y(eq[peakIdx]));
+          for (let i = peakIdx; i <= Math.min(troughIdx, lastIdx); i++) ctx.lineTo(padX + i * stepX, y(eq[i]));
+          ctx.lineTo(padX + Math.min(troughIdx, lastIdx) * stepX, y(eq[peakIdx]));
+          ctx.closePath();
+          ctx.fill();
+        }
+
+        // Ligne principale
+        ctx.strokeStyle = '#bef264';
+        ctx.lineWidth = 2 * DPR;
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.shadowColor = '#bef264'; ctx.shadowBlur = 6 * DPR;
+        ctx.beginPath();
+        for (let i = 0; i <= lastIdx; i++) {
+          const px = padX + i * stepX;
+          const py = y(eq[i]);
+          if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // Marqueurs peak + trough
+        if (progress >= 1) {
+          ctx.font = `bold ${10 * DPR}px JetBrains Mono`;
+          // Peak
+          const peakX = padX + peakIdx * stepX;
+          const peakY = y(eq[peakIdx]);
+          ctx.fillStyle = '#22c55e';
+          ctx.beginPath(); ctx.arc(peakX, peakY, 4 * DPR, 0, Math.PI * 2); ctx.fill();
+          ctx.textAlign = 'left';
+          ctx.fillText('PEAK', peakX + 6 * DPR, peakY - 4 * DPR);
+          // Trough
+          const trX = padX + troughIdx * stepX;
+          const trY = y(troughVal);
+          ctx.fillStyle = '#ef4444';
+          ctx.beginPath(); ctx.arc(trX, trY, 4 * DPR, 0, Math.PI * 2); ctx.fill();
+          ctx.fillText(`DD −${(maxDD * 100).toFixed(0)}%`, trX + 6 * DPR, trY + 14 * DPR);
+        }
+
+        if (progress < 1) { progress = Math.min(progress + 0.014, 1); requestAnimationFrame(frame); }
+      }
+      frame();
     }
 
     /* ===== INIT ===== */
