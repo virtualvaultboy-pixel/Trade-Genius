@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.52';
+export const TG_VERSION = 'v1.53';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -180,10 +180,67 @@ export function initAllBills() {
   });
 }
 
+// === Analytics — Umami Cloud (cookieless, RGPD-friendly, opt-out) ===
+// Remplir UMAMI_WEBSITE_ID après création du site sur cloud.umami.is
+const UMAMI_WEBSITE_ID = '';
+const UMAMI_SRC = 'https://cloud.umami.is/script.js';
+const CONSENT_KEY = 'tradegenius_analytics_consent';
+
+export function loadAnalytics() {
+  if (!UMAMI_WEBSITE_ID) return;
+  if (localStorage.getItem(CONSENT_KEY) === 'refused') return;
+  if (document.querySelector('script[data-website-id]')) return;
+  const s = document.createElement('script');
+  s.defer = true;
+  s.src = UMAMI_SRC;
+  s.setAttribute('data-website-id', UMAMI_WEBSITE_ID);
+  document.head.appendChild(s);
+}
+
+export function injectConsentBanner() {
+  if (!UMAMI_WEBSITE_ID) return;
+  if (localStorage.getItem(CONSENT_KEY)) return;
+  const banner = document.createElement('div');
+  banner.id = 'tg-consent';
+  banner.style.cssText = `
+    position:fixed;bottom:12px;left:12px;right:12px;z-index:99999;
+    background:rgba(10,10,12,0.95);backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.12);border-radius:12px;
+    padding:10px 12px;display:flex;align-items:center;gap:10px;
+    font-family:'Manrope',system-ui,sans-serif;font-size:12px;
+    color:#b8b3ad;box-shadow:0 8px 32px rgba(0,0,0,0.5);
+    max-width:480px;margin:0 auto;
+  `;
+  banner.innerHTML = `
+    <span style="flex:1;line-height:1.4">📊 Stats anonymes <span style="color:#6a6864">·</span> pas de cookies</span>
+    <button id="tg-consent-off" style="background:transparent;border:1px solid rgba(255,255,255,0.18);color:#bef264;font-size:11px;padding:5px 10px;border-radius:7px;cursor:pointer;font-weight:600;font-family:inherit;">Désactiver</button>
+    <button id="tg-consent-ok" style="background:transparent;border:none;color:#6a6864;font-size:16px;cursor:pointer;padding:4px 6px;font-family:inherit;line-height:1;" aria-label="Fermer">×</button>
+  `;
+  document.body.appendChild(banner);
+  document.getElementById('tg-consent-off').onclick = () => {
+    localStorage.setItem(CONSENT_KEY, 'refused');
+    banner.remove();
+    document.querySelectorAll('script[data-website-id]').forEach(s => s.remove());
+  };
+  document.getElementById('tg-consent-ok').onclick = () => {
+    localStorage.setItem(CONSENT_KEY, 'accepted');
+    banner.remove();
+  };
+}
+
+// Permet de réactiver depuis ailleurs (ex: bouton "Paramètres confidentialité")
+export function resetConsent() {
+  localStorage.removeItem(CONSENT_KEY);
+  location.reload();
+}
+
 // Auto-init au load
 function autoInit() {
   injectVersionBadge();
   initAllBills();
+  loadAnalytics();
+  injectConsentBanner();
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', autoInit);
 else autoInit();
