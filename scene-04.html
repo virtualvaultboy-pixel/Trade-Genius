@@ -9261,14 +9261,19 @@
         };
         const recap = CHAPTER_TAKEAWAYS[ch];
         const isLastChapter = ch >= 7;
+        const launchRecap = () => window.TG.showRecap({
+          eyebrow: isLastChapter ? '🏆 MODULE 3 TERMINÉ · PARCOURS COMPLET' : '✓ CHAPITRE ' + ch + ' VALIDÉ',
+          title: recap.title,
+          points: recap.points,
+          onContinue: goNext,
+          confetti: isLastChapter,
+        });
         if (recap && window.TG && window.TG.showRecap) {
-          window.TG.showRecap({
-            eyebrow: isLastChapter ? '🏆 MODULE 3 TERMINÉ · PARCOURS COMPLET' : '✓ CHAPITRE ' + ch + ' VALIDÉ',
-            title: recap.title,
-            points: recap.points,
-            onContinue: goNext,
-            confetti: isLastChapter,
-          });
+          if (isLastChapter && window.TG.showModuleQuiz) {
+            window.TG.showModuleQuiz({ moduleId: 3, onComplete: launchRecap });
+          } else {
+            launchRecap();
+          }
         } else {
           goNext();
         }
@@ -9403,11 +9408,11 @@
       }
     })();
   </script>
-  <script type="module" src="tg-common.js?v=186"></script>
+  <script type="module" src="tg-common.js?v=187"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=186').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=187').catch(() => {});
       });
     }
   </script>

@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.86';
+export const TG_VERSION = 'v1.87';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -588,7 +588,7 @@ export async function shareCard({ title = 'Trade Genius', stat = '', quote = '' 
 window.TG = Object.assign(window.TG || {}, {
   shareCard, addGlossaryTerm, getGlossary, recordVisit, resetConsent, showRecap, launchConfetti,
   getNotifState, requestNotifPermission, disableNotifs, checkStreakDangerNotify,
-  getDailyChallenge, getDailyState, showDailyChallenge,
+  getDailyChallenge, getDailyState, showDailyChallenge, showModuleQuiz,
   TG_VERSION,
 });
 
@@ -786,6 +786,133 @@ export function showDailyChallenge() {
 
   overlay.classList.add('active');
   if (navigator.vibrate) navigator.vibrate(8);
+}
+
+// === Quiz fin de module — 5 questions pour valider ===
+function ensureModuleQuizStyle() {
+  if (document.getElementById('tg-mq-style')) return;
+  const s = document.createElement('style');
+  s.id = 'tg-mq-style';
+  s.textContent = `
+    .tg-mq-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.84); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); display: flex; align-items: center; justify-content: center; padding: 18px; z-index: 260; opacity: 0; pointer-events: none; transition: opacity 0.32s; }
+    .tg-mq-overlay.active { opacity: 1; pointer-events: auto; }
+    .tg-mq-card { background: linear-gradient(180deg, #16161c, #0c0c10); border: 1px solid rgba(190,242,100,0.32); border-radius: 20px; padding: 22px 20px 20px; max-width: 440px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 16px 60px rgba(0,0,0,0.7), 0 0 40px rgba(190,242,100,0.16); transform: translateY(28px) scale(0.96); transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1); }
+    .tg-mq-overlay.active .tg-mq-card { transform: translateY(0) scale(1); }
+    .tg-mq-progress { margin-bottom: 18px; }
+    .tg-mq-progress-bar { height: 5px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; margin-bottom: 8px; }
+    .tg-mq-progress-fill { height: 100%; background: linear-gradient(90deg, #bef264, #d9f99d); border-radius: 999px; transition: width 0.5s cubic-bezier(0.2,0.8,0.2,1); }
+    .tg-mq-progress-text { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; color: #bef264; text-transform: uppercase; }
+    .tg-mq-q { font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 19px; font-weight: 800; color: #f5f3ef; letter-spacing: -0.01em; line-height: 1.25; margin: 0 0 18px; }
+    .tg-mq-opts { display: flex; flex-direction: column; gap: 9px; margin: 0 0 14px; }
+    .tg-mq-opt { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: #f5f3ef; font-family: 'Manrope', system-ui, sans-serif; font-size: 14px; font-weight: 600; text-align: left; padding: 13px 14px; border-radius: 11px; cursor: pointer; transition: all 0.18s; line-height: 1.35; -webkit-tap-highlight-color: transparent; }
+    .tg-mq-opt:active { transform: scale(0.98); background: rgba(255,255,255,0.08); }
+    .tg-mq-opt:disabled { cursor: not-allowed; }
+    .tg-mq-opt.correct { background: rgba(74,222,128,0.16); border-color: #4ade80; color: #86efac; font-weight: 700; }
+    .tg-mq-opt.wrong { background: rgba(248,113,113,0.16); border-color: #f87171; color: #fca5a5; }
+    .tg-mq-explain { background: rgba(190,242,100,0.06); border-left: 3px solid #bef264; border-radius: 8px; padding: 12px 14px; font-family: 'Manrope', system-ui, sans-serif; font-size: 13px; line-height: 1.45; color: #b8b3ad; margin: 0 0 14px; display: none; }
+    .tg-mq-explain.show { display: block; animation: mqFadeIn 0.3s ease-out; }
+    .tg-mq-explain strong { color: #f5f3ef; }
+    @keyframes mqFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .tg-mq-next, .tg-mq-cta { width: 100%; background: linear-gradient(135deg, #bef264, #d9f99d); color: #0a0a0c; border: none; font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 15px; font-weight: 800; padding: 14px; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 14px rgba(190,242,100,0.35); display: none; }
+    .tg-mq-next.show, .tg-mq-cta { display: block; }
+    .tg-mq-next:active, .tg-mq-cta:active { transform: scale(0.97); }
+    /* Fin de quiz */
+    .tg-mq-end { text-align: center; }
+    .tg-mq-medal { font-size: 70px; margin-bottom: 10px; line-height: 1; animation: mqMedalIn 0.6s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes mqMedalIn { 0% { transform: scale(0) rotate(-180deg); } 60% { transform: scale(1.18) rotate(15deg); } 100% { transform: scale(1) rotate(0); } }
+    .tg-mq-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 800; letter-spacing: 0.22em; color: #bef264; text-transform: uppercase; margin-bottom: 6px; }
+    .tg-mq-score { font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 42px; font-weight: 800; color: #f5f3ef; letter-spacing: -0.03em; line-height: 1; margin: 0 0 6px; }
+    .tg-mq-pct { font-family: 'Manrope', sans-serif; font-size: 13px; color: #b8b3ad; margin: 0 0 22px; }
+  `;
+  document.head.appendChild(s);
+}
+
+export function showModuleQuiz({ moduleId = 0, onComplete = null, total = 5 } = {}) {
+  ensureModuleQuizStyle();
+  const all = DAILY_QUESTIONS.filter(q => q.m === moduleId);
+  const questions = all.slice(0, Math.min(total, all.length));
+  if (questions.length === 0) {
+    if (onComplete) onComplete({ score: 0, total: 0, pct: 0 });
+    return;
+  }
+  let idx = 0, score = 0;
+  let overlay = document.getElementById('tg-mq-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'tg-mq-overlay';
+    overlay.className = 'tg-mq-overlay';
+    document.body.appendChild(overlay);
+  }
+
+  function renderEnd() {
+    const pct = (score / questions.length) * 100;
+    let medal = '🥉', label = 'Bien essayé';
+    if (pct >= 100)      { medal = '🏆'; label = 'Parfait'; }
+    else if (pct >= 80)  { medal = '🥇'; label = 'Excellent'; }
+    else if (pct >= 60)  { medal = '🥈'; label = 'Très bien'; }
+    const key = `tradegenius_quiz_m${moduleId}_best`;
+    const prevBest = parseInt(localStorage.getItem(key) || '0', 10);
+    const newBest = Math.max(prevBest, score);
+    try { localStorage.setItem(key, String(newBest)); } catch {}
+    overlay.innerHTML = `
+      <div class="tg-mq-card tg-mq-end">
+        <div class="tg-mq-medal">${medal}</div>
+        <div class="tg-mq-eyebrow">${label}</div>
+        <h3 class="tg-mq-score">${score} / ${questions.length}</h3>
+        <p class="tg-mq-pct">${Math.round(pct)}% de bonnes réponses${newBest > prevBest ? ' · 🎯 Nouveau record !' : ''}</p>
+        <button class="tg-mq-cta" id="tg-mq-cta">Continuer →</button>
+      </div>
+    `;
+    document.getElementById('tg-mq-cta').onclick = () => {
+      if (navigator.vibrate) navigator.vibrate(10);
+      overlay.classList.remove('active');
+      setTimeout(() => { if (typeof onComplete === 'function') onComplete({ score, total: questions.length, pct }); }, 380);
+    };
+    if (pct >= 100) launchConfetti({ count: 90, duration: 2200 });
+    if (navigator.vibrate) navigator.vibrate(pct >= 80 ? [40, 60, 40, 60, 80] : [20, 40, 20]);
+  }
+
+  function renderQ() {
+    if (idx >= questions.length) { renderEnd(); return; }
+    const ch = questions[idx];
+    overlay.innerHTML = `
+      <div class="tg-mq-card">
+        <div class="tg-mq-progress">
+          <div class="tg-mq-progress-bar"><div class="tg-mq-progress-fill" style="width:${((idx+1)/questions.length)*100}%"></div></div>
+          <span class="tg-mq-progress-text">QUIZ · Question ${idx+1} / ${questions.length}</span>
+        </div>
+        <h3 class="tg-mq-q">${ch.q}</h3>
+        <div class="tg-mq-opts" id="tg-mq-opts">
+          ${ch.options.map((opt, i) => `<button class="tg-mq-opt" data-i="${i}">${opt}</button>`).join('')}
+        </div>
+        <div class="tg-mq-explain" id="tg-mq-explain"></div>
+        <button class="tg-mq-next" id="tg-mq-next">Question suivante →</button>
+      </div>
+    `;
+    const explainEl = document.getElementById('tg-mq-explain');
+    const nextEl = document.getElementById('tg-mq-next');
+    overlay.querySelectorAll('.tg-mq-opt').forEach(btn => {
+      btn.onclick = () => {
+        const choice = parseInt(btn.dataset.i, 10);
+        const isCorrect = choice === ch.correct;
+        if (isCorrect) score++;
+        overlay.querySelectorAll('.tg-mq-opt').forEach((b, i) => {
+          b.disabled = true;
+          if (i === ch.correct) b.classList.add('correct');
+          else if (i === choice) b.classList.add('wrong');
+        });
+        explainEl.innerHTML = `<strong>${isCorrect ? '✓ Bonne réponse.' : '✗ Faux.'}</strong> ${ch.explain}`;
+        explainEl.classList.add('show');
+        nextEl.classList.add('show');
+        nextEl.textContent = (idx + 1 >= questions.length) ? 'Voir le score →' : 'Question suivante →';
+        if (navigator.vibrate) navigator.vibrate(isCorrect ? [12, 40, 18] : [40, 40, 40]);
+      };
+    });
+    nextEl.onclick = () => { idx++; renderQ(); };
+  }
+
+  overlay.classList.add('active');
+  renderQ();
 }
 
 // === Notifications quotidiennes — rappel streak ===
