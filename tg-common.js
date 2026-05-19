@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.99';
+export const TG_VERSION = 'v2.00';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -676,6 +676,31 @@ const DAILY_QUESTIONS = [
   { m: 3, q: 'Le stop-loss sert à :',
     options: ['Augmenter le levier', 'Limiter automatiquement les pertes', 'Acheter plus bas', 'Bloquer le compte'],
     correct: 1, explain: 'Ordre auto qui vend quand le prix descend à un seuil. Indispensable.' },
+  // === Module 4 — Étude des courbes ===
+  { m: 4, q: 'Le pattern engulfing haussier signale :',
+    options: ['Une continuation baissière', 'Un retournement à la hausse', 'Une indécision', 'Une volatilité forte'],
+    correct: 1, explain: 'Une bougie verte qui avale une rouge précédente = acheteurs reprennent le contrôle.' },
+  { m: 4, q: 'Un RSI > 70 indique :',
+    options: ['Survente', 'Surachat possible', 'Tendance forte', 'Sortie de range'],
+    correct: 1, explain: 'RSI > 70 = surachat probable, le marché peut corriger. Pas un signal de vente automatique.' },
+  { m: 4, q: 'Le niveau Fibonacci le plus respecté est :',
+    options: ['23.6%', '38.2%', '50%', '61.8%'],
+    correct: 3, explain: 'Le golden ratio 61.8% est le niveau de retracement le plus suivi par les traders.' },
+  { m: 4, q: 'Le MACD croisement haussier c\'est :',
+    options: ['MACD sous le signal', 'MACD passe au-dessus du signal', 'Histogramme à 0', 'RSI > 70'],
+    correct: 1, explain: 'Quand la MACD line croise au-dessus de la signal line = momentum haussier confirmé.' },
+  { m: 4, q: 'Un Bollinger squeeze c\'est :',
+    options: ['Bandes qui s\'écartent', 'Bandes qui se resserrent', 'Cassure de la moyenne', 'Volume à zéro'],
+    correct: 1, explain: 'Les bandes qui se resserrent annoncent une explosion de volatilité imminente.' },
+  { m: 4, q: 'Le POC (Point of Control) c\'est :',
+    options: ['Le prix actuel', 'Prix où le plus de volume s\'est échangé', 'La moyenne mobile 200', 'Le niveau Fibo 50%'],
+    correct: 1, explain: 'POC = prix où le plus gros volume s\'est échangé. Aimant à prix dans le futur.' },
+  { m: 4, q: 'Un Sharpe ratio acceptable est :',
+    options: ['< 0', 'Entre 0 et 0.5', '> 1', 'Peu importe'],
+    correct: 2, explain: 'Sharpe > 1 = stratégie correcte. Sharpe > 2 = excellente performance ajustée du risque.' },
+  { m: 4, q: 'L\'overfitting en backtesting c\'est :',
+    options: ['Trop de trades', 'Stratégie trop optimisée sur le passé', 'Levier trop élevé', 'Frais trop importants'],
+    correct: 1, explain: 'Une stratégie ultra-optimisée pour les données passées échoue souvent en réel.' },
 ];
 
 function _todayKey() { return new Date().toISOString().slice(0, 10); }

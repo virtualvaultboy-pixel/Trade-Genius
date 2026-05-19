@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<!--
+═══════════════════════════════════════════════════════════════════
+                    TRADE GENIUS · scene-07.html
+                    MODULE 4 — Étude des courbes (avancé)
+═══════════════════════════════════════════════════════════════════
+
+  CHAPITRES :
+  Ch.1 — Patterns chandeliers avancés       (free)
+  Ch.2 — Indicateurs momentum (RSI, Stoch)  (free)
+  Ch.3 — Tendance et volatilité (MACD, BB)  (free)
+  Ch.4 — Dow + Fibonacci                    (PREMIUM)
+  Ch.5 — Volume Profile + VWAP              (PREMIUM)
+  Ch.6 — Order book + microstructure        (PREMIUM)
+  Ch.7 — Backtesting + journal              (PREMIUM)
+
+  Storage  : tradegenius_m4
+  Bookmark : tradegenius_m4_bookmark
+-->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0c">
+  <title>Trade Genius — Module 4 : Étude des courbes</title>
+  <meta name="description" content="Module 4 — Analyse technique avancée : patterns chandeliers, RSI, MACD, Fibonacci, volume profile, backtesting.">
+  <link rel="manifest" href="manifest.json">
+  <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script type="module" src="tg-common.js?v=200"></script>
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-deep: #050507;
+      --surface: #13131c;
+      --surface-2: #1a1a25;
+      --border: rgba(255,255,255,0.08);
+
+      --text: #f8f5ee;
+      --text-dim: #a8a8b3;
+      --text-faint: #6a6a75;
+
+      --acid: #bef264;
+      --acid-glow: rgba(190,242,100,0.5);
+      --purple: #a78bfa;
+      --purple-glow: rgba(167,139,250,0.5);
+      --blue: #60a5fa;
+      --blue-glow: rgba(96,165,250,0.5);
+      --gold: #f59e0b;
+      --gold-glow: rgba(245,158,11,0.5);
+      --red: #ef4444;
+      --green: #22c55e;
+
+      --font-d: 'Manrope', system-ui, sans-serif;
+      --font-m: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-d);
+      overflow: hidden;
+      height: 100%;
+      overscroll-behavior: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .view { display: none; height: 100vh; height: 100dvh; overflow-y: auto; overflow-x: hidden; position: relative; }
+    .view.active { display: block; }
+
+    /* ============ HUB (chapter list) ============ */
+    #hub {
+      padding: calc(20px + env(safe-area-inset-top)) 16px calc(40px + env(safe-area-inset-bottom));
+      max-width: 480px; margin: 0 auto;
+    }
+    .hub-top {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .back-btn {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-m); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 8px 12px; border-radius: 10px;
+      cursor: pointer;
+    }
+    .back-btn:active { transform: scale(0.96); background: rgba(255,255,255,0.08); }
+    .hub-brand {
+      font-family: var(--font-m); font-size: 11px;
+      letter-spacing: 0.22em; color: var(--purple); font-weight: 700;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .hub-brand::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--purple); box-shadow: 0 0 10px var(--purple-glow);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse { 50% { opacity: 0.4; } }
+
+    .hub-title {
+      font-family: var(--font-d); font-size: 32px; font-weight: 800;
+      letter-spacing: -0.02em; line-height: 1.05; margin: 0 0 4px;
+    }
+    .hub-title em { font-style: italic; color: var(--purple); font-weight: 700; }
+    .hub-sub {
+      font-family: var(--font-d); font-size: 14px; color: var(--text-dim);
+      margin: 0 0 24px; line-height: 1.4;
+    }
+
+    .hub-progress {
+      margin-bottom: 24px;
+      padding: 14px 16px;
+      background: linear-gradient(135deg, rgba(167,139,250,0.08) 0%, rgba(167,139,250,0.02) 100%);
+      border: 1px solid rgba(167,139,250,0.22);
+      border-radius: 14px;
+    }
+    .hp-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 8px;
+    }
+    .hp-label {
+      font-family: var(--font-m); font-size: 9.5px;
+      letter-spacing: 0.18em; color: var(--purple); font-weight: 700;
+      text-transform: uppercase;
+    }
+    .hp-text {
+      font-family: var(--font-m); font-size: 11px; color: var(--text-dim);
+      font-weight: 600;
+    }
+    .hp-bar-wrap {
+      height: 6px; background: rgba(255,255,255,0.06);
+      border-radius: 999px; overflow: hidden;
+    }
+    .hp-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--purple) 0%, var(--blue) 100%);
+      border-radius: 999px;
+      transition: width 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 0 12px var(--purple-glow);
+    }
+
+    .chapter-list { display: flex; flex-direction: column; gap: 10px; }
+    .chapter-card {
+      position: relative;
+      display: grid; grid-template-columns: 44px 1fr auto; gap: 14px;
+      align-items: center;
+      padding: 14px 14px;
+      background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: transform 0.15s, border-color 0.2s;
+      overflow: hidden;
+    }
+    .chapter-card.available, .chapter-card.complete {
+      cursor: pointer;
+      border-color: rgba(167,139,250,0.35);
+    }
+    .chapter-card.available:active, .chapter-card.complete:active {
+      transform: scale(0.985);
+    }
+    .chapter-card.complete {
+      background: linear-gradient(135deg, rgba(34,197,94,0.08) 0%, var(--surface) 80%);
+    }
+    .chapter-card.locked, .chapter-card.premium-locked {
+      opacity: 0.6;
+    }
+    .chapter-num {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(167,139,250,0.12);
+      color: var(--purple);
+      font-family: var(--font-d); font-size: 15px; font-weight: 800;
+      letter-spacing: -0.02em;
+      border: 1px solid rgba(167,139,250,0.25);
+    }
+    .chapter-card.complete .chapter-num {
+      background: rgba(34,197,94,0.18); color: var(--green);
+      border-color: rgba(34,197,94,0.4);
+    }
+    .chapter-info { min-width: 0; }
+    .chapter-name {
+      font-family: var(--font-d); font-size: 15px; font-weight: 700;
+      color: var(--text); line-height: 1.2; margin-bottom: 3px;
+      letter-spacing: -0.01em;
+    }
+    .chapter-desc {
+      font-family: var(--font-d); font-size: 12px; color: var(--text-dim);
+      line-height: 1.3;
+    }
+    .chapter-state {
+      font-family: var(--font-d); font-size: 22px; font-weight: 800;
+      color: var(--purple);
+    }
+    .chapter-card.complete .chapter-state { color: var(--green); }
+    .chapter-card.locked .chapter-state { color: var(--text-faint); font-size: 16px; }
+    .chapter-pill {
+      position: absolute; top: 8px; right: 10px;
+      font-family: var(--font-m); font-size: 8.5px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 3px 7px; border-radius: 999px;
+      background: rgba(245,158,11,0.16);
+      color: var(--gold); border: 1px solid rgba(245,158,11,0.35);
+    }
+    .chapter-pill.locked { background: rgba(255,255,255,0.06); color: var(--text-faint); border-color: var(--border); }
+
+    /* ============ READER ============ */
+    #reader { position: fixed; inset: 0; background: var(--bg); }
+    .reader-head {
+      position: fixed; top: 0; left: 0; right: 0;
+      padding: calc(12px + env(safe-area-inset-top)) 16px 12px;
+      background: linear-gradient(180deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0.7) 100%);
+      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+      z-index: 10; display: flex; align-items: center; justify-content: space-between;
+      gap: 10px;
+    }
+    .head-close {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 38px; height: 38px; border-radius: 10px;
+      font-size: 18px; cursor: pointer; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .head-close:active { transform: scale(0.94); }
+    .head-meta { flex: 1; text-align: center; min-width: 0; }
+    .head-meta .chapter {
+      font-family: var(--font-m); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.2em; color: var(--purple);
+      display: block; margin-bottom: 2px;
+    }
+    .progress-bars {
+      display: flex; gap: 4px; justify-content: center;
+    }
+    .bar {
+      flex: 1; max-width: 40px; height: 3px;
+      background: rgba(255,255,255,0.1); border-radius: 2px;
+      overflow: hidden; position: relative;
+    }
+    .bar.done { background: var(--purple); }
+    .bar.active::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--purple);
+      animation: bar-pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes bar-pulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+    .counter {
+      font-family: var(--font-m); font-size: 10px; color: var(--text-faint);
+      font-weight: 700; flex-shrink: 0; min-width: 32px; text-align: right;
+    }
+
+    #track-wrap {
+      position: absolute; inset: 0;
+      overflow: hidden;
+    }
+    #track {
+      display: flex; height: 100%;
+      transition: transform 0.34s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .slide {
+      flex: 0 0 100%; width: 100%; min-width: 100%; height: 100%;
+      padding: calc(72px + env(safe-area-inset-top)) 20px calc(96px + env(safe-area-inset-bottom));
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow-y: auto;
+    }
+    .slide.s-intro { background: radial-gradient(ellipse at 50% 35%, #1a1424 0%, var(--bg-deep) 70%); }
+    .slide.s-concept { background: linear-gradient(180deg, #0e0e16 0%, var(--bg) 100%); }
+    .slide.s-example { background: radial-gradient(ellipse at 50% 50%, #131022 0%, var(--bg) 80%); }
+    .slide.s-takeaway { background: linear-gradient(135deg, #0a0a0c 0%, #14111e 100%); }
+
+    .eyebrow {
+      font-family: var(--font-m); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.22em; color: var(--purple); text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .h1 {
+      font-family: var(--font-d); font-size: 28px; font-weight: 800;
+      line-height: 1.1; letter-spacing: -0.025em; margin: 0 0 14px;
+    }
+    .h1 em { font-style: italic; color: var(--purple); font-weight: 800; }
+    .h1 .acid { color: var(--acid); font-style: normal; font-weight: 800; }
+    .h1 .gold { color: var(--gold); font-style: normal; font-weight: 800; }
+    .h1 .blue { color: var(--blue); font-style: normal; font-weight: 800; }
+    .lead {
+      font-family: var(--font-d); font-size: 15px; line-height: 1.45;
+      color: var(--text-dim); margin: 0 0 16px;
+    }
+    .lead strong { color: var(--text); font-weight: 700; }
+
+    .callout {
+      padding: 14px 16px;
+      background: linear-gradient(135deg, rgba(167,139,250,0.10) 0%, rgba(167,139,250,0.02) 100%);
+      border: 1px solid rgba(167,139,250,0.3);
+      border-radius: 14px;
+      margin: 12px 0;
+    }
+    .callout .ck-lbl {
+      font-family: var(--font-m); font-size: 9.5px; font-weight: 700;
+      letter-spacing: 0.2em; color: var(--purple); text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .callout .ck-txt {
+      font-family: var(--font-d); font-size: 13.5px; color: var(--text);
+      line-height: 1.4;
+    }
+    .callout .ck-txt strong { color: var(--purple); }
+
+    .points { display: flex; flex-direction: column; gap: 10px; margin: 14px 0; }
+    .point {
+      display: grid; grid-template-columns: 34px 1fr; gap: 12px;
+      align-items: start;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .point-icon { font-size: 22px; line-height: 1.1; }
+    .point-text {
+      font-family: var(--font-d); font-size: 13.5px; color: var(--text);
+      line-height: 1.4;
+    }
+    .point-text strong { color: var(--purple); font-weight: 700; }
+    .point.acid-pt { border-color: rgba(190,242,100,0.3); }
+    .point.acid-pt .point-text strong { color: var(--acid); }
+
+    .demo-canvas {
+      width: 100%; height: 200px;
+      background: linear-gradient(180deg, var(--surface) 0%, var(--bg-deep) 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      display: block;
+      margin: 12px 0;
+    }
+    .demo-caption {
+      font-family: var(--font-m); font-size: 10.5px;
+      color: var(--text-faint); letter-spacing: 0.04em;
+      text-align: center; margin: -4px 0 12px;
+    }
+
+    /* Nav buttons */
+    .reader-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      background: linear-gradient(0deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0) 100%);
+      z-index: 10;
+      display: flex; gap: 10px; justify-content: space-between; align-items: center;
+    }
+    .nav-btn {
+      flex: 1; max-width: 140px;
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-family: var(--font-d); font-size: 13px; font-weight: 700;
+      border-radius: 12px; cursor: pointer;
+      transition: transform 0.12s, background 0.2s;
+    }
+    .nav-btn:active { transform: scale(0.97); }
+    .nav-btn.primary {
+      flex: 2;
+      background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+      color: #0a0a0c;
+      border-color: rgba(167,139,250,0.4);
+      box-shadow: 0 8px 20px rgba(167,139,250,0.32);
+    }
+    .nav-btn:disabled { opacity: 0.4; cursor: default; }
+
+    /* Validation overlay */
+    .validate-overlay {
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(0,0,0,0.85); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 18px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .validate-overlay.show { opacity: 1; pointer-events: auto; }
+    .validate-circle {
+      width: 90px; height: 90px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 46px; color: #0a0a0c;
+      box-shadow: 0 0 40px var(--purple-glow);
+      transform: scale(0);
+      animation: validate-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    @keyframes validate-pop { to { transform: scale(1); } }
+    .validate-text {
+      font-family: var(--font-d); font-size: 18px; font-weight: 800;
+      color: var(--text); letter-spacing: -0.01em;
+    }
+
+    /* Quiz */
+    .quiz-question {
+      font-family: var(--font-d); font-size: 17px; font-weight: 700;
+      color: var(--text); line-height: 1.3; margin: 0 0 16px;
+    }
+    .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+    .quiz-opt {
+      padding: 13px 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1.5px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-d); font-size: 14px; font-weight: 600;
+      border-radius: 12px; cursor: pointer;
+      text-align: left;
+      transition: transform 0.1s, background 0.2s, border-color 0.2s;
+    }
+    .quiz-opt:active { transform: scale(0.98); }
+    .quiz-opt.picked.correct { background: rgba(34,197,94,0.18); border-color: var(--green); color: var(--green); }
+    .quiz-opt.picked.wrong { background: rgba(239,68,68,0.18); border-color: var(--red); color: var(--red); }
+    .quiz-feedback {
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: rgba(167,139,250,0.10);
+      border: 1px solid rgba(167,139,250,0.3);
+      border-radius: 12px;
+      font-family: var(--font-d); font-size: 13px;
+      color: var(--text-dim); line-height: 1.4;
+      display: none;
+    }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback strong { color: var(--purple); }
+
+    @media (max-width: 360px) {
+      .hub-title { font-size: 26px; }
+      .h1 { font-size: 24px; }
+      .demo-canvas { height: 170px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ HUB ============ -->
+  <div id="hub" class="view active">
+    <div class="hub-top">
+      <button class="back-btn" onclick="goBack()">← MENU</button>
+      <div class="hub-brand">TRADE GENIUS</div>
+    </div>
+
+    <div class="eyebrow" style="color: var(--purple);">MODULE 04 · AVANCÉ</div>
+    <h1 class="hub-title">Étude des <em>courbes</em></h1>
+    <p class="hub-sub">Patterns chandeliers, indicateurs, théorie de Dow, Fibonacci, volume profile, backtesting. La vraie analyse technique.</p>
+
+    <div class="hub-progress">
+      <div class="hp-head">
+        <span class="hp-label">PROGRESSION</span>
+        <span class="hp-text" id="hub-progress-text">0 / 7 chapitres</span>
+      </div>
+      <div class="hp-bar-wrap">
+        <div class="hp-bar-fill" id="hub-progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <div class="chapter-list" id="chapter-list"></div>
+  </div>
+
+  <!-- ============ READER ============ -->
+  <div id="reader" class="view">
+    <div class="reader-head">
+      <button class="head-close" onclick="closeReader()" aria-label="Fermer">✕</button>
+      <div class="head-meta">
+        <span class="chapter">MODULE 4 · CH.1</span>
+        <div class="progress-bars" id="progress-bars"></div>
+      </div>
+      <span class="counter" id="slide-counter">1/4</span>
+    </div>
+
+    <div id="track-wrap">
+      <div id="track">
+        <!-- Slides injectées dynamiquement par buildSlides() -->
+      </div>
+    </div>
+
+    <div class="reader-nav">
+      <button class="nav-btn" id="nav-prev" onclick="prev()">← Préc.</button>
+      <button class="nav-btn primary" id="nav-next" onclick="next()">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Validation overlay -->
+  <div class="validate-overlay" id="validate-overlay">
+    <div class="validate-circle">✓</div>
+    <div class="validate-text" id="validate-text">Chapitre validé</div>
+  </div>
+
+  <script>
+    /* ===================================================
+       TRADE GENIUS · Module 4 — Étude des courbes
+       =================================================== */
+
+    const CHAPTERS = [
+      { n: 1, title: 'Patterns chandeliers',     desc: 'Engulfing, hammer, doji, étoile du matin' },
+      { n: 2, title: 'Indicateurs momentum',     desc: 'RSI, stochastique, divergences' },
+      { n: 3, title: 'Tendance & volatilité',    desc: 'MACD, Bollinger, ATR, ADX' },
+      { n: 4, title: 'Dow + Fibonacci',          desc: 'Théorie classique et retracements' },
+      { n: 5, title: 'Volume Profile + VWAP',    desc: 'Là où se font les vrais échanges' },
+      { n: 6, title: 'Order book',               desc: 'Microstructure et carnet d\'ordres' },
+      { n: 7, title: 'Backtesting + journal',    desc: 'Tester avant de risquer' },
+    ];
+    const CHAPTER_SIZE = 4;
+    const STORAGE_KEY  = 'tradegenius_m4';
+    const BOOKMARK_KEY = 'tradegenius_m4_bookmark';
+    const BOOKMARK_TTL = 7 * 24 * 60 * 60 * 1000;
+
+    /* ===== STORAGE ===== */
+    function loadProgress() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { completed: {} }; }
+      catch { return { completed: {} }; }
+    }
+    function saveProgress(p) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch {} }
+    function markChapterComplete(n) {
+      const p = loadProgress();
+      p.completed = p.completed || {};
+      p.completed[n] = true;
+      saveProgress(p);
+      try { localStorage.removeItem(BOOKMARK_KEY); } catch {}
+    }
+    function saveBookmark(chapter, slide) {
+      try { localStorage.setItem(BOOKMARK_KEY, JSON.stringify({ chapter, slide, ts: Date.now() })); } catch {}
+    }
+    function loadBookmark(chapter) {
+      try {
+        const b = JSON.parse(localStorage.getItem(BOOKMARK_KEY));
+        if (!b || b.chapter !== chapter) return null;
+        if (Date.now() - b.ts > BOOKMARK_TTL) return null;
+        return b.slide;
+      } catch { return null; }
+    }
+
+    function getChapterState(n) {
+      const p = loadProgress();
+      if (p.completed && p.completed[n]) return 'complete';
+      if (n === 1) return 'available';
+      if (p.completed && p.completed[n - 1]) return 'available';
+      return 'locked';
+    }
+
+    /* ===== HUB ===== */
+    const chapterListEl = document.getElementById('chapter-list');
+    const hubProgressFill = document.getElementById('hub-progress-fill');
+    const hubProgressText = document.getElementById('hub-progress-text');
+
+    function renderHub() {
+      const p = loadProgress();
+      const completed = p.completed || {};
+      const completedCount = Object.keys(completed).filter(k => completed[k]).length;
+      const total = CHAPTERS.length;
+      hubProgressFill.style.width = `${(completedCount / total) * 100}%`;
+      hubProgressText.textContent = `${completedCount} / ${total} chapitre${completedCount > 1 ? 's' : ''}`;
+
+      const isPremium = window.TG && window.TG.isPremium && window.TG.isPremium();
+      chapterListEl.innerHTML = CHAPTERS.map(ch => {
+        const state = getChapterState(ch.n);
+        const premLocked = ch.n >= 4 && !isPremium;
+        const clickable = (state === 'available' || state === 'complete');
+        const onclickAttr = clickable ? `onclick="openChapter(${ch.n})"` : '';
+        let icon = '→';
+        if (state === 'complete') icon = '✓';
+        else if (premLocked && state === 'available') icon = '✦';
+        else if (state === 'locked') icon = '🔒';
+
+        let pill = '';
+        if (premLocked && state === 'available') pill = '<span class="chapter-pill">✦ Premium</span>';
+        else if (state === 'locked') pill = '<span class="chapter-pill locked">Verrouillé</span>';
+
+        return `
+          <div class="chapter-card ${state}${premLocked ? ' premium-locked' : ''}" data-ch="${ch.n}" ${onclickAttr}>
+            <div class="chapter-num">${String(ch.n).padStart(2, '0')}</div>
+            <div class="chapter-info">
+              <div class="chapter-name">${ch.title}</div>
+              <div class="chapter-desc">${ch.desc}</div>
+            </div>
+            <div class="chapter-state">${icon}</div>
+            ${pill}
+          </div>
+        `;
+      }).join('');
+    }
+
+    /* ===== SLIDES CONTENT ===== */
+    const SLIDES = {
+      // ============ CHAPITRE 1 — Patterns chandeliers ============
+      1: [
+        { type: 'intro', html: `
+          <div class="eyebrow">CH.1 · PATTERNS CHANDELIERS</div>
+          <h1 class="h1">Le langage <em>des bougies</em></h1>
+          <p class="lead">Chaque chandelier raconte <strong>une bataille</strong> entre acheteurs et vendeurs. Apprends à lire qui a gagné, et tu anticipes le prochain mouvement.</p>
+          <div class="callout">
+            <div class="ck-lbl">À RETENIR</div>
+            <div class="ck-txt">Un pattern <strong>chandelier</strong> = 1 à 3 bougies qui forment une figure typique. Probabiliste, jamais sûr à 100%.</div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.1 · CONCEPT</div>
+          <h1 class="h1"><span class="acid">Engulfing</span> &amp; <span class="gold">Hammer</span></h1>
+          <canvas class="demo-canvas" id="canvas-patterns" width="600" height="200"></canvas>
+          <div class="demo-caption">Engulfing haussier (gauche) · Hammer (droite)</div>
+          <div class="points">
+            <div class="point acid-pt">
+              <div class="point-icon">🟢</div>
+              <div class="point-text"><strong>Engulfing haussier</strong> : bougie verte qui avale entièrement la rouge précédente. Retournement à la hausse.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🔨</div>
+              <div class="point-text"><strong>Hammer</strong> : long bas, petit corps en haut. Les vendeurs ont essayé, les acheteurs ont repris le contrôle.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.1 · EXEMPLES</div>
+          <h1 class="h1">Doji &amp; <span class="blue">Étoile</span></h1>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">➕</div>
+              <div class="point-text"><strong>Doji</strong> : ouverture = clôture. Indécision totale. Souvent un signal de pause ou de retournement.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">⭐</div>
+              <div class="point-text"><strong>Morning Star</strong> (étoile du matin) : 3 bougies — grosse rouge, petit doji, grosse verte. Retournement haussier puissant.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🌑</div>
+              <div class="point-text"><strong>Evening Star</strong> : l'inverse. Verte, doji, rouge. Signal baissier après un rallye.</div>
+            </div>
+          </div>
+          <div class="callout">
+            <div class="ck-lbl">RÈGLE D'OR</div>
+            <div class="ck-txt">Un pattern <strong>en zone S/R</strong> vaut 10× plus qu'au milieu de nulle part.</div>
+          </div>
+        `},
+        { type: 'takeaway', html: `
+          <div class="eyebrow">CH.1 · RÉCAP</div>
+          <h1 class="h1">Tes <em>patterns</em> clés</h1>
+          <div class="points">
+            <div class="point acid-pt"><div class="point-icon">🟢</div><div class="point-text"><strong>Engulfing</strong> : retournement majeur.</div></div>
+            <div class="point"><div class="point-icon">🔨</div><div class="point-text"><strong>Hammer / Pin bar</strong> : rejet d'un niveau.</div></div>
+            <div class="point"><div class="point-icon">➕</div><div class="point-text"><strong>Doji</strong> : indécision = attendre.</div></div>
+            <div class="point"><div class="point-icon">⭐</div><div class="point-text"><strong>Morning/Evening Star</strong> : 3 bougies = renversement fiable.</div></div>
+          </div>
+          <p class="lead" style="margin-top:12px;"><strong>Ch.2</strong> : on passe aux indicateurs momentum pour confirmer ces signaux.</p>
+        `},
+      ],
+
+      // ============ CHAPITRE 2 — Indicateurs momentum ============
+      2: [
+        { type: 'intro', html: `
+          <div class="eyebrow">CH.2 · MOMENTUM</div>
+          <h1 class="h1">Mesurer la <em>force</em> du mouvement</h1>
+          <p class="lead">Un prix monte, OK. Mais <strong>monte-t-il en s'essoufflant</strong> ou en accélérant ? Les indicateurs momentum répondent.</p>
+          <div class="callout">
+            <div class="ck-lbl">PRINCIPE</div>
+            <div class="ck-txt"><strong>Momentum</strong> = vitesse du changement de prix. Hautes valeurs = surachat, basses = survente.</div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.2 · CONCEPT</div>
+          <h1 class="h1"><span class="blue">RSI</span> — le baromètre</h1>
+          <canvas class="demo-canvas" id="canvas-rsi" width="600" height="200"></canvas>
+          <div class="demo-caption">RSI 14 — zones de surachat (>70) et survente (<30)</div>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">📈</div>
+              <div class="point-text"><strong>RSI &gt; 70</strong> : surachat. Le marché peut corriger. Pas un signal de vente automatique.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📉</div>
+              <div class="point-text"><strong>RSI &lt; 30</strong> : survente. Possible rebond. Surveille un signal d'entrée.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.2 · DIVERGENCE</div>
+          <h1 class="h1">La <em>divergence</em> RSI</h1>
+          <p class="lead">Le prix fait un nouveau plus haut, mais le RSI fait un plus bas. <strong>C'est une divergence baissière.</strong> Signal puissant.</p>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">⚠️</div>
+              <div class="point-text"><strong>Divergence baissière</strong> : prix ↑ + RSI ↓ = retournement à la baisse probable.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">✨</div>
+              <div class="point-text"><strong>Divergence haussière</strong> : prix ↓ + RSI ↑ = retournement à la hausse en approche.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🎯</div>
+              <div class="point-text"><strong>Stochastique</strong> : variant du RSI, plus réactif. Bon pour les marchés sans tendance forte.</div>
+            </div>
+          </div>
+        `},
+        { type: 'takeaway', html: `
+          <div class="eyebrow">CH.2 · RÉCAP</div>
+          <h1 class="h1">Momentum <em>compris</em></h1>
+          <div class="points">
+            <div class="point"><div class="point-icon">📊</div><div class="point-text"><strong>RSI 14</strong> : standard. 70/30 comme repères.</div></div>
+            <div class="point"><div class="point-icon">🔄</div><div class="point-text"><strong>Divergence</strong> = signal le plus fort.</div></div>
+            <div class="point"><div class="point-icon">⚡</div><div class="point-text"><strong>Stochastique</strong> : plus rapide, plus de faux signaux.</div></div>
+            <div class="point acid-pt"><div class="point-icon">🎯</div><div class="point-text">Un indicateur seul ne suffit jamais. <strong>Combine</strong> avec patterns et S/R.</div></div>
+          </div>
+        `},
+      ],
+
+      // ============ CHAPITRE 3 — Tendance & volatilité ============
+      3: [
+        { type: 'intro', html: `
+          <div class="eyebrow">CH.3 · TENDANCE</div>
+          <h1 class="h1">Mesurer la <em>tendance</em></h1>
+          <p class="lead">Le RSI te dit la force du momentum. Le <strong>MACD</strong> et les <strong>Bollinger Bands</strong> te disent où va le marché et combien il bouge.</p>
+          <div class="callout">
+            <div class="ck-lbl">RÈGLE</div>
+            <div class="ck-txt"><strong>The trend is your friend.</strong> Trader contre la tendance = perdre statistiquement.</div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.3 · MACD</div>
+          <h1 class="h1"><span class="blue">MACD</span> — le croisement</h1>
+          <canvas class="demo-canvas" id="canvas-macd" width="600" height="200"></canvas>
+          <div class="demo-caption">MACD line, signal line, histogramme</div>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">📈</div>
+              <div class="point-text"><strong>MACD line &gt; signal line</strong> : momentum haussier. Idéalement au-dessus de 0.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🔄</div>
+              <div class="point-text"><strong>Croisement</strong> de la signal line = signal d'entrée. Histogramme aide à anticiper.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.3 · BOLLINGER &amp; ATR</div>
+          <h1 class="h1"><span class="gold">Bandes</span> &amp; volatilité</h1>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">〰️</div>
+              <div class="point-text"><strong>Bollinger Bands</strong> : moyenne ± 2 écarts-types. Le prix touche la bande haute = surachat probable.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">💥</div>
+              <div class="point-text"><strong>Squeeze</strong> : les bandes se resserrent → explosion de volatilité imminente.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📏</div>
+              <div class="point-text"><strong>ATR</strong> (Average True Range) : moyenne des variations. Sert à calibrer ton stop-loss.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">💪</div>
+              <div class="point-text"><strong>ADX &gt; 25</strong> : tendance forte. ADX &lt; 20 : marché sans direction, évite le trend trading.</div>
+            </div>
+          </div>
+        `},
+        { type: 'takeaway', html: `
+          <div class="eyebrow">CH.3 · RÉCAP</div>
+          <h1 class="h1">Tendance <em>maîtrisée</em></h1>
+          <div class="points">
+            <div class="point"><div class="point-icon">📊</div><div class="point-text"><strong>MACD</strong> = direction + force tendance.</div></div>
+            <div class="point"><div class="point-icon">〰️</div><div class="point-text"><strong>Bollinger</strong> = volatilité + extrêmes.</div></div>
+            <div class="point"><div class="point-icon">📏</div><div class="point-text"><strong>ATR</strong> = taille du stop-loss intelligente.</div></div>
+            <div class="point acid-pt"><div class="point-icon">💪</div><div class="point-text"><strong>ADX</strong> = filtre tendance vs range.</div></div>
+          </div>
+          <p class="lead" style="margin-top:12px;">Ch.4-7 : on entre dans le <strong>premium</strong> — Dow, Fibonacci, Volume, Backtesting.</p>
+        `},
+      ],
+
+      // ============ CHAPITRE 4 — Dow + Fibonacci (PREMIUM) ============
+      4: [
+        { type: 'intro', html: `
+          <div class="eyebrow">CH.4 · DOW + FIBONACCI</div>
+          <h1 class="h1">La <em>théorie classique</em></h1>
+          <p class="lead">Charles Dow a posé les bases de l'analyse technique <strong>il y a 130 ans</strong>. Ses principes restent valables aujourd'hui.</p>
+          <div class="callout">
+            <div class="ck-lbl">DOW · 6 PRINCIPES</div>
+            <div class="ck-txt">Le marché évolue en 3 mouvements (primaire, secondaire, mineur). Les tendances ont 3 phases (accumulation, public, distribution).</div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.4 · FIBONACCI</div>
+          <h1 class="h1"><span class="gold">Fibonacci</span> retracement</h1>
+          <canvas class="demo-canvas" id="canvas-fib" width="600" height="200"></canvas>
+          <div class="demo-caption">Niveaux clés : 23.6% · 38.2% · 50% · 61.8% · 78.6%</div>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">📐</div>
+              <div class="point-text"><strong>61.8%</strong> = le golden ratio. Niveau de retracement le plus respecté par le marché.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🎯</div>
+              <div class="point-text"><strong>50%</strong> n'est pas un vrai Fibo mais reste un niveau psychologique majeur.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.4 · COMBOS</div>
+          <h1 class="h1">Fibo + <em>S/R</em></h1>
+          <div class="points">
+            <div class="point acid-pt">
+              <div class="point-icon">✨</div>
+              <div class="point-text"><strong>Confluence</strong> = un niveau Fibo qui tombe sur un support historique. Le combo le plus puissant.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📈</div>
+              <div class="point-text"><strong>Fibo extensions</strong> (127.2%, 161.8%) : pour fixer tes objectifs de prix (take-profit).</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">⚠️</div>
+              <div class="point-text">Fibo ne marche que sur un <strong>mouvement clair</strong>. Range = pas de Fibo.</div>
+            </div>
+          </div>
+        `},
+        { type: 'takeaway', html: `
+          <div class="eyebrow">CH.4 · RÉCAP</div>
+          <h1 class="h1">Dow &amp; <em>Fibo</em></h1>
+          <div class="points">
+            <div class="point"><div class="point-icon">📜</div><div class="point-text"><strong>Dow</strong> : 6 principes, 3 phases.</div></div>
+            <div class="point"><div class="point-icon">📐</div><div class="point-text"><strong>Niveaux Fibo</strong> : 38.2 · 50 · 61.8 · 78.6.</div></div>
+            <div class="point acid-pt"><div class="point-icon">✨</div><div class="point-text"><strong>Confluence Fibo + S/R</strong> = setup en or.</div></div>
+            <div class="point"><div class="point-icon">🎯</div><div class="point-text"><strong>Extensions Fibo</strong> = cibles de prix.</div></div>
+          </div>
+        `},
+      ],
+
+      // ============ CHAPITRE 5 — Volume Profile + VWAP (PREMIUM) ============
+      5: [
+        { type: 'intro', html: `
+          <div class="eyebrow">CH.5 · VOLUME PROFILE</div>
+          <h1 class="h1">Là où ça <em>échange</em></h1>
+          <p class="lead">Le prix te dit où le marché est. Le <strong>volume</strong> te dit s'il y croit. Volume Profile montre <strong>à quels prix</strong> se font les vrais échanges.</p>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.5 · POC + VA</div>
+          <h1 class="h1">POC, VAH, VAL</h1>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">🎯</div>
+              <div class="point-text"><strong>POC</strong> (Point of Control) : prix où le plus de volume s'est échangé. Aimant à prix.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📊</div>
+              <div class="point-text"><strong>Value Area</strong> : zone où 70% du volume s'est fait. VAH = haut, VAL = bas.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">🧲</div>
+              <div class="point-text">Le prix <strong>revient toujours</strong> tester le POC après un breakout.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.5 · VWAP</div>
+          <h1 class="h1"><span class="blue">VWAP</span> — la moyenne pondérée</h1>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">⚖️</div>
+              <div class="point-text"><strong>VWAP</strong> = prix moyen pondéré par le volume. C'est ce que paient les institutionnels.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📍</div>
+              <div class="point-text"><strong>Au-dessus du VWAP</strong> = momentum haussier. Au-dessous = baissier.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">⚓</div>
+              <div class="point-text"><strong>Anchored VWAP</strong> : ancré à un événement (résultat, breakout). Plus précis qu'intraday.</div>
+            </div>
+          </div>
+        `},
+        { type: 'takeaway', html: `
+          <div class="eyebrow">CH.5 · RÉCAP</div>
+          <h1 class="h1">Volume <em>maîtrisé</em></h1>
+          <div class="points">
+            <div class="point"><div class="point-icon">🎯</div><div class="point-text"><strong>POC</strong> : aimant à prix.</div></div>
+            <div class="point"><div class="point-icon">📊</div><div class="point-text"><strong>Value Area</strong> : zone d'équilibre.</div></div>
+            <div class="point"><div class="point-icon">⚖️</div><div class="point-text"><strong>VWAP</strong> : prix moyen des pros.</div></div>
+            <div class="point acid-pt"><div class="point-icon">⚓</div><div class="point-text"><strong>Anchored VWAP</strong> = setup institutionnel.</div></div>
+          </div>
+        `},
+      ],
+
+      // ============ CHAPITRE 6 — Order book + microstructure (PREMIUM) ============
+      6: [
+        { type: 'intro', html: `
+          <div class="eyebrow">CH.6 · ORDER BOOK</div>
+          <h1 class="h1">Le <em>carnet d'ordres</em></h1>
+          <p class="lead">Tout ce que tu vois sur un graphique est <strong>passé</strong>. L'order book te montre les <strong>intentions</strong> du moment.</p>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.6 · LIRE LE CARNET</div>
+          <h1 class="h1">Bid / Ask / Spread</h1>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">💰</div>
+              <div class="point-text"><strong>Bid</strong> = ordres d'achat. <strong>Ask</strong> = ordres de vente. Spread = différence.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">💧</div>
+              <div class="point-text"><strong>Spread serré</strong> = liquidité forte. Spread large = peu d'acteurs, slippage probable.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🧊</div>
+              <div class="point-text"><strong>Iceberg orders</strong> : gros ordres cachés, révélés progressivement. Souvent des pros.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.6 · MARKET MAKERS</div>
+          <h1 class="h1">Makers vs <em>Takers</em></h1>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">🏗️</div>
+              <div class="point-text"><strong>Market maker</strong> : pose un ordre limite, attend. Ajoute de la liquidité.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">⚡</div>
+              <div class="point-text"><strong>Market taker</strong> : prend ce qui est dispo. Paie un spread mais entre immédiatement.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">⚠️</div>
+              <div class="point-text"><strong>Spoofing</strong> : faux gros ordres pour faire bouger le prix. Illégal mais courant en crypto.</div>
+            </div>
+          </div>
+        `},
+        { type: 'takeaway', html: `
+          <div class="eyebrow">CH.6 · RÉCAP</div>
+          <h1 class="h1">Carnet <em>compris</em></h1>
+          <div class="points">
+            <div class="point"><div class="point-icon">📖</div><div class="point-text"><strong>Bid/Ask</strong> = intentions live.</div></div>
+            <div class="point"><div class="point-icon">💧</div><div class="point-text"><strong>Spread</strong> = signal de liquidité.</div></div>
+            <div class="point"><div class="point-icon">🧊</div><div class="point-text"><strong>Iceberg</strong> = pro en train d'accumuler.</div></div>
+            <div class="point acid-pt"><div class="point-icon">⚠️</div><div class="point-text">Le carnet peut <strong>mentir</strong> — méfie-toi des gros ordres soudains.</div></div>
+          </div>
+        `},
+      ],
+
+      // ============ CHAPITRE 7 — Backtesting + journal (PREMIUM) ============
+      7: [
+        { type: 'intro', html: `
+          <div class="eyebrow">CH.7 · BACKTESTING</div>
+          <h1 class="h1">Tester avant <em>de risquer</em></h1>
+          <p class="lead">Tu as une stratégie ? <strong>Prouve-la sur 5 ans d'historique</strong> avant d'y mettre un centime réel.</p>
+          <div class="callout">
+            <div class="ck-lbl">PRINCIPE</div>
+            <div class="ck-txt">Une stratégie qui <strong>fonctionne sur le passé</strong> n'est pas garantie sur le futur. Mais une stratégie qui <strong>échoue sur le passé</strong> échouera à coup sûr.</div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.7 · MÉTRIQUES</div>
+          <h1 class="h1">Les chiffres <em>qui comptent</em></h1>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">📊</div>
+              <div class="point-text"><strong>Sharpe ratio</strong> : gain par unité de risque. &gt; 1 = correct, &gt; 2 = excellent.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📉</div>
+              <div class="point-text"><strong>Max drawdown</strong> : pire perte cumulée. Si tu ne peux pas le supporter mentalement, change de stratégie.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">💎</div>
+              <div class="point-text"><strong>Profit factor</strong> : gains totaux / pertes totales. &gt; 1.5 = stratégie viable.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.7 · PIÈGES</div>
+          <h1 class="h1">Les biais à <em>éviter</em></h1>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">🎭</div>
+              <div class="point-text"><strong>Overfitting</strong> : ta stratégie est trop optimisée pour les données passées. Marche pas sur le futur.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">👁️</div>
+              <div class="point-text"><strong>Look-ahead bias</strong> : tu utilises des données qui n'existaient pas encore à ce moment.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">📝</div>
+              <div class="point-text"><strong>Forward testing en paper trading</strong> : teste en réel mais sans argent, sur 1-3 mois minimum.</div>
+            </div>
+          </div>
+        `},
+        { type: 'takeaway', html: `
+          <div class="eyebrow">CH.7 · RÉCAP FINAL</div>
+          <h1 class="h1">Plan <em>d'action</em></h1>
+          <div class="points">
+            <div class="point"><div class="point-icon">1️⃣</div><div class="point-text">Définis ta <strong>stratégie écrite</strong>.</div></div>
+            <div class="point"><div class="point-icon">2️⃣</div><div class="point-text"><strong>Backtest 5 ans</strong> de data.</div></div>
+            <div class="point"><div class="point-icon">3️⃣</div><div class="point-text"><strong>Paper trading 3 mois</strong> minimum.</div></div>
+            <div class="point acid-pt"><div class="point-icon">4️⃣</div><div class="point-text">Capital réel avec <strong>≤ 2% risk / trade</strong>.</div></div>
+          </div>
+          <p class="lead" style="margin-top:14px;">🎓 <strong>Module 4 terminé.</strong> Tu as les bases du pro. La suite, c'est <strong>10 000 heures</strong> de pratique.</p>
+        `},
+      ],
+    };
+
+    /* ===== READER STATE ===== */
+    let currentChapter = null;
+    let cur = 0; // slide index 0..(CHAPTER_SIZE-1)
+
+    const track = document.getElementById('track');
+    const counter = document.getElementById('slide-counter');
+    const chapterLabel = document.querySelector('.head-meta .chapter');
+    const progressBars = document.getElementById('progress-bars');
+    const navPrev = document.getElementById('nav-prev');
+    const navNext = document.getElementById('nav-next');
+
+    function buildSlides(chapterN) {
+      const slides = SLIDES[chapterN] || [];
+      track.innerHTML = slides.map((s, i) => `
+        <div class="slide s-${s.type}" data-idx="${i}">
+          <div class="content">${s.html}</div>
+        </div>
+      `).join('');
+      progressBars.innerHTML = slides.map(() => `<div class="bar"></div>`).join('');
+    }
+
+    function update() {
+      const slides = track.querySelectorAll('.slide');
+      const bars = progressBars.querySelectorAll('.bar');
+      slides.forEach((s, i) => s.classList.toggle('active', i === cur));
+      bars.forEach((b, i) => {
+        b.classList.remove('active', 'done');
+        if (i < cur) b.classList.add('done');
+        else if (i === cur) b.classList.add('active');
+      });
+      track.style.transform = `translateX(-${cur * 100}%)`;
+      counter.textContent = `${cur + 1}/${CHAPTER_SIZE}`;
+      chapterLabel.textContent = `MODULE 4 · CH.${currentChapter}`;
+      navPrev.disabled = cur === 0;
+      navNext.textContent = cur === CHAPTER_SIZE - 1 ? '✓ Valider' : 'Suivant →';
+
+      if (currentChapter != null) saveBookmark(currentChapter, cur);
+
+      // Lance les canvas animations spécifiques au slide actuel
+      const activeSlide = slides[cur];
+      if (activeSlide) {
+        const canvases = activeSlide.querySelectorAll('canvas');
+        canvases.forEach(c => {
+          if (c.id === 'canvas-patterns' && !c._drawn) { drawCandlePatterns(c); c._drawn = true; }
+          if (c.id === 'canvas-rsi' && !c._drawn) { drawRSIDemo(c); c._drawn = true; }
+          if (c.id === 'canvas-macd' && !c._drawn) { drawMACDDemo(c); c._drawn = true; }
+          if (c.id === 'canvas-fib' && !c._drawn) { drawFibDemo(c); c._drawn = true; }
+        });
+      }
+    }
+
+    function next() {
+      if (cur < CHAPTER_SIZE - 1) { cur++; update(); if (navigator.vibrate) navigator.vibrate(6); }
+      else completeCurrentChapter();
+    }
+    function prev() {
+      if (cur > 0) { cur--; update(); if (navigator.vibrate) navigator.vibrate(6); }
+    }
+
+    function openChapter(n) {
+      const state = getChapterState(n);
+      if (state === 'locked') {
+        if (navigator.vibrate) navigator.vibrate([20, 40, 20]);
+        return;
+      }
+      // Premium gating ch.4+
+      const isPremium = window.TG && window.TG.isPremium && window.TG.isPremium();
+      if (n >= 4 && !isPremium) {
+        if (navigator.vibrate) navigator.vibrate([20, 40, 20]);
+        if (confirm("🔒 Chapitre Premium\n\nLes chapitres 4-7 nécessitent Trade Genius Premium.\n\n• Dow + Fibonacci\n• Volume Profile + VWAP\n• Order book\n• Backtesting\n\n3€/mois ou 25€/an\n\nVoir les avantages ?")) {
+          window.location.href = 'index.html#accueil';
+        }
+        return;
+      }
+      currentChapter = n;
+      buildSlides(n);
+      const bk = loadBookmark(n);
+      cur = (bk != null && bk >= 0 && bk < CHAPTER_SIZE) ? bk : 0;
+      document.getElementById('hub').classList.remove('active');
+      document.getElementById('reader').classList.add('active');
+      track.style.transition = 'none';
+      update();
+      requestAnimationFrame(() => { track.style.transition = ''; });
+    }
+
+    function closeReader() {
+      document.getElementById('reader').classList.remove('active');
+      document.getElementById('hub').classList.add('active');
+      currentChapter = null;
+      renderHub();
+    }
+
+    function completeCurrentChapter() {
+      const ch = currentChapter;
+      if (!ch) return;
+      markChapterComplete(ch);
+      if (navigator.vibrate) navigator.vibrate([12, 60, 28, 60, 48]);
+
+      const overlay = document.getElementById('validate-overlay');
+      const txt = document.getElementById('validate-text');
+      txt.textContent = (ch === 7) ? 'Module 4 terminé 🎓' : `Chapitre ${ch} validé`;
+      overlay.classList.remove('show');
+      void overlay.offsetWidth;
+      overlay.classList.add('show');
+
+      setTimeout(() => {
+        overlay.classList.remove('show');
+        if (ch === 7) {
+          // Quiz final si TG.showModuleQuiz dispo
+          if (window.TG && window.TG.showModuleQuiz) {
+            window.TG.showModuleQuiz({
+              moduleId: 4,
+              onComplete: () => {
+                setTimeout(() => { window.location.href = 'index.html#accueil'; }, 200);
+              },
+            });
+          } else {
+            setTimeout(() => { window.location.href = 'index.html#accueil'; }, 200);
+          }
+        } else {
+          closeReader();
+        }
+      }, 1100);
+    }
+
+    function goBack() {
+      window.location.href = 'index.html#modules';
+    }
+
+    /* ===== CANVAS DEMOS ===== */
+    function setupCanvas(canvas) {
+      const DPR = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = canvas.offsetWidth * DPR;
+      canvas.height = canvas.offsetHeight * DPR;
+      return { ctx: canvas.getContext('2d'), w: canvas.width, h: canvas.height, DPR };
+    }
+
+    function drawCandlePatterns(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const padX = 24 * DPR;
+      const padY = 30 * DPR;
+      const cw = (w - padX * 2) / 9;
+      const cbw = cw * 0.55;
+      ctx.font = `${10 * DPR}px JetBrains Mono`;
+      ctx.textAlign = 'center';
+
+      // 5 bougies de baisse + Engulfing haussier
+      const candles1 = [
+        { o: 110, c: 100, hi: 112, lo: 98, color: '#ef4444' },
+        { o: 100, c: 92,  hi: 102, lo: 90, color: '#ef4444' },
+        { o: 92,  c: 86,  hi: 94,  lo: 84, color: '#ef4444' },
+        { o: 86,  c: 80,  hi: 88,  lo: 78, color: '#ef4444' },
+        { o: 80,  c: 78,  hi: 81,  lo: 76, color: '#ef4444' },
+        { o: 76,  c: 92,  hi: 94,  lo: 74, color: '#22c55e' }, // engulfing
+      ];
+
+      // Hammer pattern (3 candles)
+      const candles2 = [
+        { o: 95,  c: 88,  hi: 96,  lo: 86, color: '#ef4444' },
+        { o: 88,  c: 82,  hi: 89,  lo: 80, color: '#ef4444' },
+        { o: 82,  c: 86,  hi: 87,  lo: 70, color: '#22c55e' }, // hammer (long lower wick)
+      ];
+
+      const allCandles = candles1.concat(candles2);
+
+      let mn = Infinity, mx = -Infinity;
+      allCandles.forEach(c => { if (c.lo < mn) mn = c.lo; if (c.hi > mx) mx = c.hi; });
+      const range = mx - mn;
+      const y = (p) => padY + (1 - (p - mn) / range) * (h - padY * 2);
+
+      let idx = 0;
+      const animFrames = 16;
+      let frame = 0;
+      function loop() {
+        ctx.clearRect(0, 0, w, h);
+        // grid
+        ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+        ctx.lineWidth = 1 * DPR;
+        for (let g = 1; g < 4; g++) {
+          const gy = (h / 4) * g;
+          ctx.beginPath();
+          ctx.moveTo(0, gy); ctx.lineTo(w, gy);
+          ctx.stroke();
+        }
+
+        const drawCount = Math.min(allCandles.length, Math.floor((frame / animFrames) * allCandles.length));
+        for (let i = 0; i < drawCount; i++) {
+          const c = allCandles[i];
+          const x = padX + i * cw + cw / 2;
+          ctx.strokeStyle = c.color;
+          ctx.lineWidth = 1.6 * DPR;
+          ctx.beginPath();
+          ctx.moveTo(x, y(c.hi));
+          ctx.lineTo(x, y(c.lo));
+          ctx.stroke();
+          const top = y(Math.max(c.o, c.c));
+          const bot = y(Math.min(c.o, c.c));
+          ctx.fillStyle = c.color;
+          ctx.fillRect(x - cbw / 2, top, cbw, Math.max(bot - top, 2 * DPR));
+        }
+
+        // labels
+        if (drawCount >= 6) {
+          ctx.fillStyle = '#bef264';
+          ctx.fillText('ENGULFING', padX + 5 * cw + cw / 2, h - 8 * DPR);
+        }
+        if (drawCount >= 9) {
+          ctx.fillStyle = '#f59e0b';
+          ctx.fillText('HAMMER', padX + 8 * cw + cw / 2, h - 8 * DPR);
+        }
+
+        frame++;
+        if (frame <= animFrames) requestAnimationFrame(loop);
+      }
+      loop();
+    }
+
+    function drawRSIDemo(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const padX = 24 * DPR, padY = 20 * DPR;
+      const useH = h - padY * 2;
+      const useW = w - padX * 2;
+
+      // 70/30 zones
+      const y70 = padY + useH * 0.3;
+      const y30 = padY + useH * 0.7;
+
+      function frame(t) {
+        ctx.clearRect(0, 0, w, h);
+
+        // zones overbought/oversold
+        ctx.fillStyle = 'rgba(239,68,68,0.08)';
+        ctx.fillRect(padX, padY, useW, y70 - padY);
+        ctx.fillStyle = 'rgba(34,197,94,0.08)';
+        ctx.fillRect(padX, y30, useW, padY + useH - y30);
+
+        // grille
+        ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+        ctx.lineWidth = 1 * DPR;
+        [padY, y70, padY + useH/2, y30, padY + useH].forEach(yv => {
+          ctx.beginPath(); ctx.moveTo(padX, yv); ctx.lineTo(padX + useW, yv); ctx.stroke();
+        });
+
+        // RSI curve (sine + noise)
+        const points = 60;
+        const progress = Math.min(t / 1200, 1);
+        const visible = Math.floor(progress * points);
+        ctx.strokeStyle = '#60a5fa';
+        ctx.lineWidth = 2 * DPR;
+        ctx.shadowColor = '#60a5fa';
+        ctx.shadowBlur = 6 * DPR;
+        ctx.beginPath();
+        for (let i = 0; i < visible; i++) {
+          const px = padX + (i / (points - 1)) * useW;
+          const rsi = 50 + 28 * Math.sin(i / 7) + 6 * Math.sin(i / 2.3);
+          const py = padY + (1 - rsi / 100) * useH;
+          if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // labels
+        ctx.fillStyle = '#ef4444';
+        ctx.font = `${9 * DPR}px JetBrains Mono`;
+        ctx.textAlign = 'right';
+        ctx.fillText('70 surachat', padX + useW - 4 * DPR, y70 - 4 * DPR);
+        ctx.fillStyle = '#22c55e';
+        ctx.fillText('30 survente', padX + useW - 4 * DPR, y30 + 12 * DPR);
+
+        if (progress < 1) requestAnimationFrame(frame);
+      }
+      const start = performance.now();
+      requestAnimationFrame((t) => frame(t - start));
+    }
+
+    function drawMACDDemo(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const padX = 18 * DPR, padY = 20 * DPR;
+      const useH = h - padY * 2;
+      const useW = w - padX * 2;
+      const midY = padY + useH / 2;
+      const points = 50;
+
+      // Pré-calcul des courbes
+      const macd = [], signal = [];
+      for (let i = 0; i < points; i++) {
+        macd.push(8 * Math.sin(i / 5) + 3 * Math.sin(i / 1.7));
+        signal.push(8 * Math.sin((i - 4) / 5) + 2 * Math.sin((i - 4) / 1.7));
+      }
+
+      function frame(t) {
+        ctx.clearRect(0, 0, w, h);
+
+        // mid line
+        ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+        ctx.lineWidth = 1 * DPR;
+        ctx.beginPath(); ctx.moveTo(padX, midY); ctx.lineTo(padX + useW, midY); ctx.stroke();
+
+        const progress = Math.min(t / 1400, 1);
+        const visible = Math.floor(progress * points);
+
+        // histogramme
+        for (let i = 0; i < visible; i++) {
+          const px = padX + (i / (points - 1)) * useW;
+          const hist = macd[i] - signal[i];
+          const hy = midY - hist * 4 * DPR;
+          ctx.fillStyle = hist >= 0 ? 'rgba(190,242,100,0.45)' : 'rgba(239,68,68,0.45)';
+          ctx.fillRect(px - 2 * DPR, Math.min(midY, hy), 4 * DPR, Math.abs(hy - midY));
+        }
+
+        // MACD line
+        ctx.strokeStyle = '#60a5fa';
+        ctx.lineWidth = 2 * DPR;
+        ctx.shadowColor = '#60a5fa'; ctx.shadowBlur = 4 * DPR;
+        ctx.beginPath();
+        for (let i = 0; i < visible; i++) {
+          const px = padX + (i / (points - 1)) * useW;
+          const py = midY - macd[i] * 4 * DPR;
+          if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+
+        // Signal line
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 1.6 * DPR;
+        ctx.shadowColor = '#f59e0b';
+        ctx.beginPath();
+        for (let i = 0; i < visible; i++) {
+          const px = padX + (i / (points - 1)) * useW;
+          const py = midY - signal[i] * 4 * DPR;
+          if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // legend
+        ctx.font = `${9 * DPR}px JetBrains Mono`;
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#60a5fa';
+        ctx.fillText('MACD', padX + 4 * DPR, padY + 10 * DPR);
+        ctx.fillStyle = '#f59e0b';
+        ctx.fillText('SIGNAL', padX + 50 * DPR, padY + 10 * DPR);
+
+        if (progress < 1) requestAnimationFrame(frame);
+      }
+      const start = performance.now();
+      requestAnimationFrame((t) => frame(t - start));
+    }
+
+    function drawFibDemo(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const padX = 24 * DPR, padY = 18 * DPR;
+      const useH = h - padY * 2;
+      const useW = w - padX * 2;
+
+      // Faux mouvement haussier
+      const start = { x: padX + 20 * DPR, y: padY + useH - 10 * DPR };
+      const peak  = { x: padX + useW - 30 * DPR, y: padY + 14 * DPR };
+
+      const levels = [
+        { pct: 0,     label: '0%',    color: '#22c55e' },
+        { pct: 0.236, label: '23.6%', color: 'rgba(255,255,255,0.4)' },
+        { pct: 0.382, label: '38.2%', color: '#a78bfa' },
+        { pct: 0.5,   label: '50%',   color: '#60a5fa' },
+        { pct: 0.618, label: '61.8%', color: '#f59e0b' },
+        { pct: 0.786, label: '78.6%', color: 'rgba(255,255,255,0.4)' },
+        { pct: 1,     label: '100%',  color: '#ef4444' },
+      ];
+
+      function frame(t) {
+        ctx.clearRect(0, 0, w, h);
+        const progress = Math.min(t / 1400, 1);
+
+        // mouvement haussier
+        const swingProg = Math.min(progress * 1.5, 1);
+        const endX = start.x + (peak.x - start.x) * swingProg;
+        const endY = start.y + (peak.y - start.y) * swingProg;
+
+        ctx.strokeStyle = '#22c55e';
+        ctx.lineWidth = 2.5 * DPR;
+        ctx.shadowColor = '#22c55e'; ctx.shadowBlur = 6 * DPR;
+        ctx.beginPath();
+        ctx.moveTo(start.x, start.y);
+        ctx.lineTo(endX, endY);
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // Niveaux Fibo (apparaissent après le mouvement)
+        if (progress > 0.4) {
+          const fibProg = Math.min((progress - 0.4) / 0.6, 1);
+          ctx.font = `${9 * DPR}px JetBrains Mono`;
+          ctx.textAlign = 'right';
+          ctx.lineWidth = 1 * DPR;
+          levels.forEach((lvl, i) => {
+            const stagger = i / levels.length;
+            if (fibProg < stagger) return;
+            const yv = peak.y + (start.y - peak.y) * lvl.pct;
+            ctx.strokeStyle = lvl.color;
+            ctx.globalAlpha = 0.7;
+            ctx.setLineDash([4 * DPR, 4 * DPR]);
+            ctx.beginPath();
+            ctx.moveTo(padX, yv); ctx.lineTo(padX + useW, yv);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = lvl.color;
+            ctx.fillText(lvl.label, padX + useW - 2 * DPR, yv - 3 * DPR);
+          });
+        }
+
+        if (progress < 1) requestAnimationFrame(frame);
+      }
+      const ts = performance.now();
+      requestAnimationFrame((t) => frame(t - ts));
+    }
+
+    /* ===== INIT ===== */
+    window.addEventListener('load', renderHub);
+
+    // Touch swipe nav
+    let touchStartX = 0;
+    document.getElementById('reader').addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    document.getElementById('reader').addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) {
+        if (dx < 0) next(); else prev();
+      }
+    }, { passive: true });
+
+    // Keyboard nav
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('reader').classList.contains('active')) {
+        if (e.key === 'ArrowRight') next();
+        else if (e.key === 'ArrowLeft') prev();
+        else if (e.key === 'Escape') closeReader();
+      }
+    });
+  </script>
+</body>
+</html>
