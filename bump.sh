@@ -27,5 +27,6 @@ sed -i "s|const VERSION = 'tg-v[0-9.]*';|const VERSION = 'tg-v${V}';|" sw.js
 for n in 01 02 03 04 05 06; do
   sed -i "s|scene-${n}\.html?v=[0-9]*|scene-${n}.html?v=${VINT}|g" sw.js
 done
+sed -i "s|tg-common\.js?v=[0-9]*|tg-common.js?v=${VINT}|g" sw.js
 
 echo "Bumped to v$V ($VINT)"
