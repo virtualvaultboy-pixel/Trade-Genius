@@ -80,21 +80,21 @@
   #view-welcome {
     background: radial-gradient(ellipse at 50% 25%, #14110d 0%, var(--bg-deep) 65%);
     display: none;
-    flex-direction: column;
     position: fixed;
     inset: 0;
     width: 100vw;
     height: 100vh;
     height: 100dvh;
     z-index: 100;
-    padding: calc(22px + env(safe-area-inset-top)) 26px calc(36px + env(safe-area-inset-bottom));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
-  #view-welcome.active { display: flex; }
+  #view-welcome.active { display: block; }
   .w-inner {
     width: 100%;
     max-width: 460px;
     margin: 0 auto;
-    flex: 1;
+    padding: calc(22px + env(safe-area-inset-top)) 26px calc(36px + env(safe-area-inset-bottom));
     display: flex;
     flex-direction: column;
   }
@@ -187,11 +187,155 @@
   }
   .w-subtitle strong { color: var(--text); font-weight: 700; }
 
+  /* v2.14 — Welcome enrichie */
+  .w-stats-hero {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 22px;
+    flex-shrink: 0;
+  }
+  .w-stat {
+    padding: 10px 6px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .w-stat-num {
+    font-family: var(--font-d);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--acid);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .w-stat-lbl {
+    font-family: var(--font-m);
+    font-size: 8.5px;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 700;
+  }
+
+  .w-section-title {
+    font-family: var(--font-m);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 4px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .w-section-title::before {
+    content: '';
+    display: inline-block;
+    width: 16px; height: 2px;
+    background: linear-gradient(90deg, var(--acid) 0%, rgba(190,242,100,0) 100%);
+    border-radius: 2px;
+  }
+  .w-section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
+  }
+
+  .w-modules-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+  .w-mod {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.015) 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .w-mod-emo {
+    font-size: 22px;
+    line-height: 1;
+    text-align: center;
+  }
+  .w-mod-body { min-width: 0; }
+  .w-mod-num {
+    font-family: var(--font-m);
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    color: var(--acid);
+    font-weight: 800;
+    margin-bottom: 2px;
+  }
+  .w-mod-name {
+    font-family: var(--font-d);
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .w-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .w-step {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 11px 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .w-step-num {
+    width: 32px; height: 32px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(190,242,100,0.18), rgba(190,242,100,0.06));
+    border: 1px solid rgba(190,242,100,0.4);
+    color: var(--acid);
+    font-family: var(--font-d);
+    font-size: 15px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .w-step-txt {
+    font-family: var(--font-d);
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.4;
+  }
+  .w-step-txt strong { color: var(--acid); font-weight: 700; }
+
+  .w-cta-note {
+    margin: 8px 0 0;
+    font-family: var(--font-m);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
   .w-promises {
     display: flex;
     flex-direction: column;
     gap: 7px;
-    margin-bottom: 18px;
+    margin-bottom: 22px;
     flex-shrink: 0;
   }
   .w-promise {
@@ -2319,7 +2463,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.13</div>
+        <div class="bd-brand-ver" id="bd-version">v2.14</div>
       </div>
     </div>
 
@@ -2331,16 +2475,16 @@
     <a class="bd-item" href="glossary.html"><span class="bd-ico">📑</span><span>Glossaire (26 termes)</span></a>
 
     <div class="bd-section-title">Apprendre</div>
-    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=213')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=213')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=213')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=213')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=213')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=214')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=214')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=214')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=214')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=214')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=213')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=213')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=213')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=214')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=214')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=214')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
     <a class="bd-item bd-premium" onclick="closeBurger();openCoachIA()"><span class="bd-ico">🤖</span><span>Coach IA <span class="bd-mini">Bientôt</span></span></a>
 
     <div class="bd-section-title">Tes stats</div>
@@ -2437,6 +2581,8 @@
        ============================================ -->
   <div id="view-welcome" class="view">
     <div class="w-inner">
+
+    <!-- Brand + hero -->
     <div class="w-brand">
       <span class="w-brand-dot"></span>
       <span>TRADE GENIUS</span>
@@ -2454,21 +2600,13 @@
             <stop offset="100%" stop-color="#bef264" stop-opacity="0"/>
           </linearGradient>
         </defs>
-
-        <!-- Grid -->
         <g stroke="rgba(255,255,255,0.04)" stroke-width="0.5">
           <line x1="0" y1="45" x2="340" y2="45"/>
           <line x1="0" y1="80" x2="340" y2="80"/>
           <line x1="0" y1="115" x2="340" y2="115"/>
         </g>
-
-        <!-- Area fill -->
         <path d="M 10 125 L 40 120 L 70 122 L 100 108 L 130 112 L 160 92 L 190 96 L 220 78 L 250 65 L 280 50 L 310 38 L 330 30 L 330 150 L 10 150 Z" fill="url(#welcomeFillGrad)"/>
-
-        <!-- Main line -->
         <path class="w-line-anim" d="M 10 125 L 40 120 L 70 122 L 100 108 L 130 112 L 160 92 L 190 96 L 220 78 L 250 65 L 280 50 L 310 38 L 330 30" fill="none" stroke="url(#welcomeLineGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-
-        <!-- Candles -->
         <g class="w-candle" style="animation-delay:0.5s">
           <line x1="65" y1="113" x2="65" y2="132" stroke="#bef264" stroke-width="0.8"/>
           <rect x="59" y="118" width="12" height="11" fill="#bef264" opacity="0.9"/>
@@ -2485,39 +2623,85 @@
           <line x1="305" y1="32" x2="305" y2="55" stroke="#bef264" stroke-width="0.8"/>
           <rect x="299" y="38" width="12" height="13" fill="#bef264" opacity="1"/>
         </g>
-
-        <!-- Pulse at end -->
         <circle cx="330" cy="30" r="4" fill="#bef264"/>
         <circle cx="330" cy="30" r="4" fill="#bef264" opacity="0.4" class="w-pulse-dot"/>
       </svg>
     </div>
 
     <div class="w-tag">▸ COMPRENDS, NE DEVINE PAS</div>
-    <h1 class="w-title">Apprends<br>à <em>investir.</em><br>Vraiment.</h1>
-    <p class="w-subtitle">Pas de promesses. Pas de gourous.<br><strong>Juste les fondamentaux</strong>, expliqués comme à un ami.</p>
+    <h1 class="w-title">Apprends<br>la <em>bourse.</em><br>Gratuitement.</h1>
+    <p class="w-subtitle">5 modules · simulateur · biblio · marché live.<br><strong>De zéro à autonome</strong> en ~90 min.</p>
 
-    <div class="w-promises">
-      <div class="w-promise">
-        <span class="w-promise-check">✓</span>
-        <span>Pas de pub, pas d'affiliation</span>
+    <!-- Stats hero -->
+    <div class="w-stats-hero">
+      <div class="w-stat">
+        <div class="w-stat-num">5</div>
+        <div class="w-stat-lbl">Modules</div>
       </div>
-      <div class="w-promise">
-        <span class="w-promise-check">✓</span>
-        <span>Pas un conseil financier</span>
+      <div class="w-stat">
+        <div class="w-stat-num">26</div>
+        <div class="w-stat-lbl">Fiches</div>
       </div>
-      <div class="w-promise">
-        <span class="w-promise-check">✓</span>
-        <span>Juste de la pédagogie</span>
+      <div class="w-stat">
+        <div class="w-stat-num">12</div>
+        <div class="w-stat-lbl">Patterns</div>
+      </div>
+      <div class="w-stat">
+        <div class="w-stat-num">0€</div>
+        <div class="w-stat-lbl">À payer</div>
       </div>
     </div>
 
+    <!-- Modules preview -->
+    <div class="w-section-title">Ce que tu vas apprendre</div>
+    <div class="w-modules-preview">
+      <div class="w-mod"><span class="w-mod-emo">🪙</span><div class="w-mod-body"><div class="w-mod-num">M0</div><div class="w-mod-name">Monnaie · Du troc à Bitcoin</div></div></div>
+      <div class="w-mod"><span class="w-mod-emo">📈</span><div class="w-mod-body"><div class="w-mod-num">M1</div><div class="w-mod-name">Marché · Action, obligation, ETF</div></div></div>
+      <div class="w-mod"><span class="w-mod-emo">📊</span><div class="w-mod-body"><div class="w-mod-num">M2</div><div class="w-mod-name">Chart · Lire un graphique</div></div></div>
+      <div class="w-mod"><span class="w-mod-emo">🧠</span><div class="w-mod-body"><div class="w-mod-num">M3</div><div class="w-mod-name">Psycho · Les pièges du cerveau</div></div></div>
+      <div class="w-mod"><span class="w-mod-emo">📊</span><div class="w-mod-body"><div class="w-mod-num">M4</div><div class="w-mod-name">Courbes · Analyse technique</div></div></div>
+    </div>
+
+    <!-- Parcours -->
+    <div class="w-section-title">Ton parcours</div>
+    <div class="w-steps">
+      <div class="w-step">
+        <div class="w-step-num">1</div>
+        <div class="w-step-txt"><strong>5 modules pédago</strong> pour comprendre les bases, étape par étape.</div>
+      </div>
+      <div class="w-step">
+        <div class="w-step-num">2</div>
+        <div class="w-step-txt"><strong>Simulateur historique</strong> : trade Apple 2008, Bitcoin 2017, GameStop 2021 — sans risque.</div>
+      </div>
+      <div class="w-step">
+        <div class="w-step-num">3</div>
+        <div class="w-step-txt"><strong>26 fiches placements</strong> : PEA, ETF, crypto, or, immo. Le lexique du vrai investisseur.</div>
+      </div>
+      <div class="w-step">
+        <div class="w-step-num">4</div>
+        <div class="w-step-txt"><strong>Marché live + analyse pro</strong> (optionnel premium) : Crypto · Actions · ETF en direct avec 6 indicateurs.</div>
+      </div>
+    </div>
+
+    <!-- Promesses -->
+    <div class="w-section-title">Pourquoi c'est gratuit</div>
+    <div class="w-promises">
+      <div class="w-promise"><span class="w-promise-check">✓</span><span><strong>Pas de pub, pas d'affiliation</strong> — on ne gagne rien si tu ouvres un compte courtier</span></div>
+      <div class="w-promise"><span class="w-promise-check">✓</span><span><strong>Pas un conseil financier</strong> — apprentissage uniquement, jamais "achète ça"</span></div>
+      <div class="w-promise"><span class="w-promise-check">✓</span><span><strong>Pas de tracking</strong> — données 100% locales, analytics cookieless (Umami)</span></div>
+      <div class="w-promise"><span class="w-promise-check">✓</span><span><strong>0€ d'infra</strong> — hébergé sur GitHub Pages, APIs publiques gratuites</span></div>
+    </div>
+
+    <!-- CTA + footer -->
     <div class="w-cta-wrap">
       <button class="w-cta" onclick="finishOnboarding()">
-        <span>Commencer</span>
+        <span>Commencer le Module 0</span>
         <span class="w-cta-arrow">→</span>
       </button>
-      <div class="w-footer"><span class="dot">✦</span> DEPONCHY STUDIO</div>
+      <p class="w-cta-note">Aucun compte requis · Aucune carte bancaire</p>
+      <div class="w-footer"><span class="dot">✦</span> DEPONCHY STUDIO · 2026</div>
     </div>
+
     </div>
   </div>
 
@@ -2550,7 +2734,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=213')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=214')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -2569,7 +2753,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=213')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=214')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -2588,7 +2772,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=213')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=214')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -2607,7 +2791,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=213')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=214')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -2626,7 +2810,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=213')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=214')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -2665,7 +2849,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.13</span>
+      <span class="hbb-tag" id="hbb-tag">v2.14</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -2706,13 +2890,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=213'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=214'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=213'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=214'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -2764,7 +2948,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=213'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=214'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -2776,25 +2960,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=213" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=214" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=213" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=214" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 6 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=213" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=214" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=213" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=214" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -3797,7 +3981,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=213';
+        location.href = 'scene-10.html?v=214';
       });
       widget._linked = true;
     }
@@ -3850,7 +4034,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=213';
+      location.href = 'scene-05.html?v=214';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -4261,7 +4445,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=213'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=214'; };
         block.style.display = 'block';
         return;
       }
@@ -4303,7 +4487,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=213';
+        card.onclick = () => location.href = 'scene-05.html?v=214';
         block.style.display = 'block';
         return;
       }
@@ -4323,7 +4507,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=213';
+          card.onclick = () => location.href = 'scene-06.html?v=214';
           block.style.display = 'block';
           return;
         }
@@ -4337,7 +4521,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=213';
+        card.onclick = () => location.href = 'scene-06.html?v=214';
         block.style.display = 'block';
         return;
       }
@@ -4352,7 +4536,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=213';
+    card.onclick = () => location.href = 'scene-05.html?v=214';
     block.style.display = 'block';
   }
 
@@ -4663,11 +4847,11 @@
     if (shortcut === 'modules') { showView('modules'); return; }
     if (shortcut === 'simu') {
       // Pas de location.href ici : on est déjà dans index.html, redirige
-      location.href = 'scene-05.html?v=213';
+      location.href = 'scene-05.html?v=214';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=213';
+      location.href = 'scene-06.html?v=214';
       return;
     }
 
@@ -4686,11 +4870,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=213"></script>
+  <script type="module" src="tg-common.js?v=214"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=213').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=214').catch(() => {});
       });
     }
   </script>
