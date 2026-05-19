@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.57';
+export const TG_VERSION = 'v1.58';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -339,6 +339,103 @@ export function recordVisit() {
     localStorage.setItem(STREAK_KEY, JSON.stringify(s));
   } catch {}
 }
+
+// === Partage — génère un visuel 1080x1080 partageable (Web Share API ou download) ===
+// Usage: TG.shareCard({ title: 'Chapitre 3 validé', stat: '3 / 7', quote: 'Pense long terme.' })
+function wrapText(ctx, text, x, y, maxW, lineH) {
+  const words = (text || '').split(' ');
+  let line = '';
+  for (let i = 0; i < words.length; i++) {
+    const test = line + words[i] + ' ';
+    if (ctx.measureText(test).width > maxW && i > 0) {
+      ctx.fillText(line.trim(), x, y);
+      line = words[i] + ' ';
+      y += lineH;
+    } else line = test;
+  }
+  ctx.fillText(line.trim(), x, y);
+  return y;
+}
+
+export async function shareCard({ title = 'Trade Genius', stat = '', quote = '' } = {}) {
+  try { await document.fonts.ready; } catch {}
+  const W = 1080, H = 1080;
+  const c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  const ctx = c.getContext('2d');
+
+  // Fond gradient
+  const bg = ctx.createLinearGradient(0, 0, 0, H);
+  bg.addColorStop(0, '#0a0a0c'); bg.addColorStop(1, '#16161c');
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+  // Glow acid radial top-left
+  const glow = ctx.createRadialGradient(220, 200, 0, 220, 200, 600);
+  glow.addColorStop(0, 'rgba(190,242,100,0.18)'); glow.addColorStop(1, 'rgba(190,242,100,0)');
+  ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
+
+  // Top accent bar
+  ctx.fillStyle = '#bef264';
+  ctx.fillRect(0, 0, W, 8);
+
+  // Logo TG + brand
+  ctx.textAlign = 'left';
+  ctx.fillStyle = '#bef264';
+  ctx.font = '800 140px "Bricolage Grotesque", Georgia, serif';
+  ctx.fillText('TG', 80, 240);
+  ctx.fillStyle = 'rgba(245,243,239,0.55)';
+  ctx.font = '700 22px "JetBrains Mono", monospace';
+  ctx.fillText('TRADE GENIUS', 80, 285);
+
+  // Title (gros)
+  ctx.fillStyle = '#f5f3ef';
+  ctx.font = '800 78px "Bricolage Grotesque", Georgia, serif';
+  let y = wrapText(ctx, title, 80, 480, W - 160, 92);
+
+  // Stat (acid)
+  if (stat) {
+    ctx.fillStyle = '#bef264';
+    ctx.font = '700 38px "Manrope", system-ui, sans-serif';
+    ctx.fillText(stat, 80, y + 80);
+  }
+
+  // Quote
+  if (quote) {
+    ctx.fillStyle = 'rgba(184,179,173,0.9)';
+    ctx.font = 'italic 30px "Manrope", system-ui, sans-serif';
+    wrapText(ctx, '« ' + quote + ' »', 80, 870, W - 160, 42);
+  }
+
+  // Footer URL
+  ctx.fillStyle = 'rgba(245,243,239,0.4)';
+  ctx.font = '600 18px "JetBrains Mono", monospace';
+  ctx.textAlign = 'right';
+  ctx.fillText('virtualvaultboy-pixel.github.io/Trade-Genius', W - 80, H - 60);
+
+  const blob = await new Promise(r => c.toBlob(r, 'image/png', 0.95));
+  if (!blob) return false;
+
+  // Web Share API (Android natif, iOS 16+)
+  const file = new File([blob], 'tradegenius.png', { type: 'image/png' });
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    try {
+      await navigator.share({ files: [file], title: 'Trade Genius', text: title });
+      return true;
+    } catch (e) { /* user cancelled, fallback */ }
+  }
+  // Fallback: download
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'tradegenius-' + Date.now() + '.png';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1500);
+  return false;
+}
+
+// Expose API globalement pour usage hors module (scripts inline des HTML)
+window.TG = Object.assign(window.TG || {}, {
+  shareCard, addGlossaryTerm, recordVisit, resetConsent, TG_VERSION,
+});
 
 // Auto-init au load
 function autoInit() {
