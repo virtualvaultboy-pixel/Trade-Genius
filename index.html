@@ -15,6 +15,7 @@
   <meta property="og:url" content="https://virtualvaultboy-pixel.github.io/Trade-Genius/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="manifest" href="manifest.json">
+  <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -1671,7 +1672,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=193')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=194')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -1690,7 +1691,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=193')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=194')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -1709,7 +1710,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=193')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=194')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -1728,7 +1729,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=193')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=194')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -1818,15 +1819,15 @@
 
     <!-- Stats compactes -->
     <div class="stats-row">
-      <div class="stat-cell" onclick="location.href='scene-06.html?v=193'">
+      <div class="stat-cell" onclick="location.href='scene-06.html?v=194'">
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=193'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=194'">
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=193'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=194'">
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
       </div>
@@ -1843,7 +1844,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=193'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=194'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -1914,11 +1915,68 @@
     if (name === 'modules') refreshModules();
     if (name === 'accueil') {
       refreshAccueil();
-      // First visit → start tutorial (after a short delay so layout settles)
+      animateAccueilEntrance();
       if (shouldShowAccueilTuto()) {
         setTimeout(startAccueilTuto, 450);
       }
     }
+    if (name === 'modules') {
+      setTimeout(animateModulesEntrance, 60);
+    }
+  }
+
+  function animateAccueilEntrance() {
+    if (typeof anime === 'undefined') return;
+    // Hero greeting + sub
+    anime({
+      targets: '#view-accueil .hello, #view-accueil .hero-daily, #view-accueil .streak-badge.active',
+      translateY: [16, 0],
+      opacity: [0, 1],
+      delay: anime.stagger(80, { start: 50 }),
+      duration: 600,
+      easing: 'easeOutCubic',
+    });
+    // Resume + parcours-progress + stats
+    anime({
+      targets: '#view-accueil .resume-block, #view-accueil .parcours-progress, #view-accueil .stats-row, #view-accueil .daily-challenge',
+      translateY: [20, 0],
+      opacity: [0, 1],
+      delay: anime.stagger(70, { start: 200 }),
+      duration: 580,
+      easing: 'easeOutCubic',
+    });
+    // Tools grid cascade
+    anime({
+      targets: '#view-accueil .tool-chip',
+      translateY: [22, 0],
+      opacity: [0, 1],
+      scale: [0.94, 1],
+      delay: anime.stagger(60, { start: 400 }),
+      duration: 540,
+      easing: 'easeOutBack',
+    });
+    // Premium card + hub-actions
+    anime({
+      targets: '#view-accueil .premium-card, #view-accueil .hub-actions',
+      translateY: [16, 0],
+      opacity: [0, 1],
+      delay: anime.stagger(80, { start: 600 }),
+      duration: 540,
+      easing: 'easeOutCubic',
+    });
+  }
+
+  function animateModulesEntrance() {
+    if (typeof anime === 'undefined') return;
+    anime({
+      targets: '#view-modules .module-card',
+      translateY: [24, 0],
+      opacity: [0, 1],
+      scale: [0.96, 1],
+      delay: anime.stagger(90, { start: 80 }),
+      duration: 600,
+      easing: 'easeOutCubic',
+    });
   }
 
   function finishOnboarding() {
@@ -2252,7 +2310,7 @@
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
       const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '168';
-      location.href = 'scene-05.html?v=193' + v;
+      location.href = 'scene-05.html?v=194' + v;
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -2506,9 +2564,23 @@
       try { localStorage.setItem(STREAK_KEY, JSON.stringify(s)); } catch {}
     }
     if (s.count >= 2) {
-      document.getElementById('streak-num').textContent = s.count;
+      const numEl = document.getElementById('streak-num');
       document.getElementById('streak-s').textContent = 's';
       document.getElementById('streak-badge').classList.add('active');
+      if (typeof anime !== 'undefined' && numEl) {
+        const obj = { val: 0 };
+        anime({
+          targets: obj,
+          val: s.count,
+          round: 1,
+          easing: 'easeOutExpo',
+          duration: 1100,
+          delay: 250,
+          update: () => { numEl.textContent = obj.val; },
+        });
+      } else if (numEl) {
+        numEl.textContent = s.count;
+      }
     }
   }
 
@@ -2585,7 +2657,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=193' + v; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=194' + v; };
         block.style.display = 'block';
         return;
       }
@@ -2627,7 +2699,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=193';
+        card.onclick = () => location.href = 'scene-05.html?v=194';
         block.style.display = 'block';
         return;
       }
@@ -2647,7 +2719,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=193';
+          card.onclick = () => location.href = 'scene-06.html?v=194';
           block.style.display = 'block';
           return;
         }
@@ -2661,7 +2733,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=193';
+        card.onclick = () => location.href = 'scene-06.html?v=194';
         block.style.display = 'block';
         return;
       }
@@ -2676,20 +2748,36 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=193';
+    card.onclick = () => location.href = 'scene-05.html?v=194';
     block.style.display = 'block';
   }
 
+  // Helper: count-up animation via anime.js (fallback textContent si pas chargé)
+  function animateCount(el, target, suffix) {
+    if (!el) return;
+    if (typeof anime === 'undefined') {
+      el.textContent = (target || 0) + (suffix || '');
+      return;
+    }
+    const obj = { val: 0 };
+    anime({
+      targets: obj,
+      val: target,
+      round: 1,
+      easing: 'easeOutCubic',
+      duration: 850,
+      update: () => { el.textContent = obj.val + (suffix || ''); },
+    });
+  }
+
   function refreshStats() {
-    // Fiches lues
     let fichesCount = 0;
     try {
       const viewed = JSON.parse(localStorage.getItem('tradegenius_m5_viewed') || '[]');
       if (Array.isArray(viewed)) fichesCount = viewed.length;
     } catch {}
-    document.getElementById('stat-fiches').textContent = fichesCount;
+    animateCount(document.getElementById('stat-fiches'), fichesCount);
 
-    // Sessions simu + winrate
     let sessions = 0, wins = 0, totalCompleted = 0;
     try {
       const journal = JSON.parse(localStorage.getItem('tradegenius_m4_journal') || '[]');
@@ -2703,10 +2791,10 @@
         });
       }
     } catch {}
-    document.getElementById('stat-sessions').textContent = sessions;
+    animateCount(document.getElementById('stat-sessions'), sessions);
     if (totalCompleted > 0) {
       const wr = Math.round((wins / totalCompleted) * 100);
-      document.getElementById('stat-winrate').textContent = wr + '%';
+      animateCount(document.getElementById('stat-winrate'), wr, '%');
     } else {
       document.getElementById('stat-winrate').textContent = '—';
     }
@@ -2870,11 +2958,11 @@
     if (shortcut === 'modules') { showView('modules'); return; }
     if (shortcut === 'simu') {
       // Pas de location.href ici : on est déjà dans index.html, redirige
-      location.href = 'scene-05.html?v=193';
+      location.href = 'scene-05.html?v=194';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=193';
+      location.href = 'scene-06.html?v=194';
       return;
     }
 
@@ -2893,11 +2981,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=193"></script>
+  <script type="module" src="tg-common.js?v=194"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=193').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=194').catch(() => {});
       });
     }
   </script>
