@@ -1514,7 +1514,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=191')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=192')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -1533,7 +1533,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=191')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=192')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -1552,7 +1552,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=191')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=192')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -1571,7 +1571,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=191')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=192')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -1661,15 +1661,15 @@
 
     <!-- Stats compactes -->
     <div class="stats-row">
-      <div class="stat-cell" onclick="location.href='scene-06.html?v=191'">
+      <div class="stat-cell" onclick="location.href='scene-06.html?v=192'">
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=191'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=192'">
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=191'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=192'">
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
       </div>
@@ -1686,7 +1686,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=191'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=192'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -2095,7 +2095,7 @@
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
       const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '168';
-      location.href = 'scene-05.html?v=191' + v;
+      location.href = 'scene-05.html?v=192' + v;
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -2298,7 +2298,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=191' + v; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=192' + v; };
         block.style.display = 'block';
         return;
       }
@@ -2340,7 +2340,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=191';
+        card.onclick = () => location.href = 'scene-05.html?v=192';
         block.style.display = 'block';
         return;
       }
@@ -2360,7 +2360,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=191';
+          card.onclick = () => location.href = 'scene-06.html?v=192';
           block.style.display = 'block';
           return;
         }
@@ -2374,7 +2374,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=191';
+        card.onclick = () => location.href = 'scene-06.html?v=192';
         block.style.display = 'block';
         return;
       }
@@ -2389,7 +2389,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=191';
+    card.onclick = () => location.href = 'scene-05.html?v=192';
     block.style.display = 'block';
   }
 
@@ -2583,11 +2583,11 @@
     if (shortcut === 'modules') { showView('modules'); return; }
     if (shortcut === 'simu') {
       // Pas de location.href ici : on est déjà dans index.html, redirige
-      location.href = 'scene-05.html?v=191';
+      location.href = 'scene-05.html?v=192';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=191';
+      location.href = 'scene-06.html?v=192';
       return;
     }
 
@@ -2606,11 +2606,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=191"></script>
+  <script type="module" src="tg-common.js?v=192"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=191').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=192').catch(() => {});
       });
     }
   </script>

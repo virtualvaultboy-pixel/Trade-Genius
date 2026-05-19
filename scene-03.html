@@ -8321,12 +8321,15 @@
       hubProgressFill.style.width = `${(completedCount / total) * 100}%`;
       hubProgressText.textContent = `${completedCount} / ${total} chapitre${completedCount > 1 ? 's' : ''} validé${completedCount > 1 ? 's' : ''}`;
 
+      const isPremium = window.TG && window.TG.isPremium && window.TG.isPremium();
       chapterListEl.innerHTML = CHAPTERS.map(ch => {
         const state = getChapterState(ch.n);
+        const isPremiumLocked = ch.n >= 4 && !isPremium;
         const clickable = (state === 'available' || state === 'complete');
         const onclickAttr = clickable ? `onclick="openChapter(${ch.n})"` : '';
         let icon = '';
         if (state === 'complete') icon = '✓';
+        else if (isPremiumLocked && state === 'available') icon = '✨';
         else if (state === 'available') icon = '→';
         else if (state === 'coming') icon = '⋯';
         else icon = '🔒';
@@ -8334,9 +8337,10 @@
         let pill = '';
         if (state === 'coming') pill = '<span class="chapter-coming-pill">À venir</span>';
         else if (state === 'locked') pill = '<span class="chapter-coming-pill">Verrouillé</span>';
+        else if (isPremiumLocked) pill = '<span class="chapter-coming-pill" style="background:rgba(190,242,100,0.18);color:#bef264;border-color:rgba(190,242,100,0.4);">✦ Premium</span>';
 
         return `
-          <div class="chapter-card ${state}" data-ch="${ch.n}" ${onclickAttr}>
+          <div class="chapter-card ${state}${isPremiumLocked ? ' premium-locked' : ''}" data-ch="${ch.n}" ${onclickAttr}>
             <div class="chapter-num">${String(ch.n).padStart(2, '0')}</div>
             <div class="chapter-info">
               <div class="chapter-name">${ch.title}</div>
@@ -8515,6 +8519,15 @@
       const state = getChapterState(n);
       if (state === 'locked' || state === 'coming') {
         if (navigator.vibrate) navigator.vibrate([20, 40, 20]);
+        return;
+      }
+      // Freemium: Ch4+ requires premium (Module 2 Chart)
+      const isPremium = window.TG && window.TG.isPremium && window.TG.isPremium();
+      if (n >= 4 && !isPremium) {
+        if (navigator.vibrate) navigator.vibrate([20, 40, 20]);
+        if (confirm("🔒 Chapitre Premium\n\nLes chapitres 4-7 nécessitent Trade Genius Premium.\n\n• Patterns chandeliers complexes\n• Combos d'indicateurs\n• Stratégies avancées\n\n3€/mois ou 25€/an\n\nVoir les avantages ?")) {
+          window.location.href = 'index.html#accueil';
+        }
         return;
       }
       currentChapter = n;
@@ -8721,11 +8734,11 @@
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeInfo(); });
   </script>
-  <script type="module" src="tg-common.js?v=191"></script>
+  <script type="module" src="tg-common.js?v=192"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=191').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=192').catch(() => {});
       });
     }
   </script>
