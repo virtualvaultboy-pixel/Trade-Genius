@@ -26,7 +26,7 @@
   <meta name="description" content="Module 4 — Analyse technique avancée : patterns chandeliers, RSI, MACD, Fibonacci, volume profile, backtesting.">
   <link rel="manifest" href="manifest.json">
   <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
-  <script type="module" src="tg-common.js?v=201"></script>
+  <script type="module" src="tg-common.js?v=202"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -343,11 +343,82 @@
       display: block;
       margin: 12px 0;
     }
+    .demo-canvas.big {
+      height: 260px;
+      border: 1px solid rgba(167,139,250,0.25);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.04);
+    }
     .demo-caption {
       font-family: var(--font-m); font-size: 10.5px;
       color: var(--text-faint); letter-spacing: 0.04em;
       text-align: center; margin: -4px 0 12px;
     }
+    .lead-mini {
+      font-family: var(--font-d); font-size: 13.5px;
+      line-height: 1.45; color: var(--text-dim);
+      margin: 8px 0 0; text-align: center;
+    }
+    .lead-mini strong { color: var(--text); font-weight: 700; }
+    .vis-legend {
+      display: flex; justify-content: center; gap: 18px;
+      flex-wrap: wrap; margin-top: 8px;
+    }
+    .vis-legend .vl-item {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-m); font-size: 11px;
+      color: var(--text-dim); font-weight: 600; letter-spacing: 0.04em;
+    }
+    .vis-legend .vl-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      display: inline-block;
+    }
+    .vis-legend .vl-dot.green { background: var(--green); box-shadow: 0 0 8px var(--green); }
+    .vis-legend .vl-dot.red   { background: var(--red);   box-shadow: 0 0 8px var(--red); }
+    .vis-tag {
+      display: inline-block;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-family: var(--font-m); font-size: 11px; font-weight: 800;
+      letter-spacing: 0.1em;
+      margin: 8px auto;
+      align-self: center;
+    }
+    .vis-tag.good {
+      background: rgba(34,197,94,0.16); color: var(--green);
+      border: 1px solid rgba(34,197,94,0.4);
+      box-shadow: 0 0 16px rgba(34,197,94,0.18);
+    }
+    .vis-tag.bad {
+      background: rgba(239,68,68,0.16); color: var(--red);
+      border: 1px solid rgba(239,68,68,0.4);
+    }
+    .vis-tag.neutral {
+      background: rgba(245,158,11,0.16); color: var(--gold);
+      border: 1px solid rgba(245,158,11,0.4);
+    }
+    .patterns-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+      margin-top: 10px;
+    }
+    .pg-item {
+      display: grid; grid-template-columns: 32px 1fr 28px;
+      align-items: center; gap: 8px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .pg-emoji { font-size: 22px; line-height: 1; text-align: center; }
+    .pg-name {
+      font-family: var(--font-d); font-size: 13px; font-weight: 700;
+      color: var(--text);
+    }
+    .pg-arrow {
+      font-size: 18px; font-weight: 800; text-align: center;
+    }
+    .pg-arrow.up { color: var(--green); }
+    .pg-arrow.down { color: var(--red); }
+    .pg-arrow.neutral { color: var(--gold); }
 
     /* Nav buttons */
     .reader-nav {
@@ -510,7 +581,8 @@
       { n: 6, title: 'Order book',               desc: 'Microstructure et carnet d\'ordres' },
       { n: 7, title: 'Backtesting + journal',    desc: 'Tester avant de risquer' },
     ];
-    const CHAPTER_SIZE = 4;
+    // Chaque chapitre a son propre nombre de slides (basé sur SLIDES[n])
+    function chapterSize(n) { return (SLIDES[n] || []).length || 4; }
     const STORAGE_KEY  = 'tradegenius_m4';
     const BOOKMARK_KEY = 'tradegenius_m4_bookmark';
     const BOOKMARK_TTL = 7 * 24 * 60 * 60 * 1000;
@@ -592,65 +664,61 @@
 
     /* ===== SLIDES CONTENT ===== */
     const SLIDES = {
-      // ============ CHAPITRE 1 — Patterns chandeliers ============
+      // ============ CHAPITRE 1 — Patterns chandeliers (ultra-visuel v2.02) ============
       1: [
+        // Slide 1 : Anatomie d'une bougie
         { type: 'intro', html: `
-          <div class="eyebrow">CH.1 · PATTERNS CHANDELIERS</div>
-          <h1 class="h1">Le langage <em>des bougies</em></h1>
-          <p class="lead">Chaque chandelier raconte <strong>une bataille</strong> entre acheteurs et vendeurs. Apprends à lire qui a gagné, et tu anticipes le prochain mouvement.</p>
-          <div class="callout">
-            <div class="ck-lbl">À RETENIR</div>
-            <div class="ck-txt">Un pattern <strong>chandelier</strong> = 1 à 3 bougies qui forment une figure typique. Probabiliste, jamais sûr à 100%.</div>
+          <div class="eyebrow">CH.1 · LES BASES</div>
+          <h1 class="h1">Anatomie d'une <em>bougie</em></h1>
+          <canvas class="demo-canvas big" id="canvas-anatomy" width="600" height="280"></canvas>
+          <div class="vis-legend">
+            <span class="vl-item"><span class="vl-dot green"></span>Verte = ça monte</span>
+            <span class="vl-item"><span class="vl-dot red"></span>Rouge = ça baisse</span>
           </div>
         `},
+        // Slide 2 : Hammer (1 bougie)
         { type: 'concept', html: `
-          <div class="eyebrow">CH.1 · CONCEPT</div>
-          <h1 class="h1"><span class="acid">Engulfing</span> &amp; <span class="gold">Hammer</span></h1>
-          <canvas class="demo-canvas" id="canvas-patterns" width="600" height="200"></canvas>
-          <div class="demo-caption">Engulfing haussier (gauche) · Hammer (droite)</div>
-          <div class="points">
-            <div class="point acid-pt">
-              <div class="point-icon">🟢</div>
-              <div class="point-text"><strong>Engulfing haussier</strong> : bougie verte qui avale entièrement la rouge précédente. Retournement à la hausse.</div>
-            </div>
-            <div class="point">
-              <div class="point-icon">🔨</div>
-              <div class="point-text"><strong>Hammer</strong> : long bas, petit corps en haut. Les vendeurs ont essayé, les acheteurs ont repris le contrôle.</div>
-            </div>
-          </div>
+          <div class="eyebrow">CH.1 · 1 BOUGIE</div>
+          <h1 class="h1">Le <span class="acid">Hammer 🔨</span></h1>
+          <canvas class="demo-canvas big" id="canvas-hammer" width="600" height="280"></canvas>
+          <div class="vis-tag good">↗️ Signal HAUSSIER</div>
+          <p class="lead-mini">Longue mèche du bas = les vendeurs ont poussé, mais les acheteurs ont gagné.</p>
         `},
+        // Slide 3 : Doji (1 bougie)
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.1 · 1 BOUGIE</div>
+          <h1 class="h1">Le <span class="gold">Doji ⚖️</span></h1>
+          <canvas class="demo-canvas big" id="canvas-doji" width="600" height="280"></canvas>
+          <div class="vis-tag neutral">⏸️ Signal INDÉCISION</div>
+          <p class="lead-mini">Ouverture = clôture. Personne ne gagne. Souvent une pause avant retournement.</p>
+        `},
+        // Slide 4 : Engulfing (2 bougies)
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.1 · 2 BOUGIES</div>
+          <h1 class="h1"><span class="acid">Engulfing</span> haussier</h1>
+          <canvas class="demo-canvas big" id="canvas-engulfing" width="600" height="280"></canvas>
+          <div class="vis-tag good">↗️ Signal HAUSSIER FORT</div>
+          <p class="lead-mini">Une grosse bougie verte qui <strong>avale</strong> la rouge précédente.</p>
+        `},
+        // Slide 5 : Morning Star (3 bougies)
         { type: 'example', html: `
-          <div class="eyebrow">CH.1 · EXEMPLES</div>
-          <h1 class="h1">Doji &amp; <span class="blue">Étoile</span></h1>
-          <div class="points">
-            <div class="point">
-              <div class="point-icon">➕</div>
-              <div class="point-text"><strong>Doji</strong> : ouverture = clôture. Indécision totale. Souvent un signal de pause ou de retournement.</div>
-            </div>
-            <div class="point">
-              <div class="point-icon">⭐</div>
-              <div class="point-text"><strong>Morning Star</strong> (étoile du matin) : 3 bougies — grosse rouge, petit doji, grosse verte. Retournement haussier puissant.</div>
-            </div>
-            <div class="point">
-              <div class="point-icon">🌑</div>
-              <div class="point-text"><strong>Evening Star</strong> : l'inverse. Verte, doji, rouge. Signal baissier après un rallye.</div>
-            </div>
-          </div>
-          <div class="callout">
-            <div class="ck-lbl">RÈGLE D'OR</div>
-            <div class="ck-txt">Un pattern <strong>en zone S/R</strong> vaut 10× plus qu'au milieu de nulle part.</div>
-          </div>
+          <div class="eyebrow">CH.1 · 3 BOUGIES</div>
+          <h1 class="h1"><span class="blue">Morning Star ⭐</span></h1>
+          <canvas class="demo-canvas big" id="canvas-morning-star" width="600" height="280"></canvas>
+          <div class="vis-tag good">↗️ Retournement HAUSSIER</div>
+          <p class="lead-mini">Rouge → petite indécise → verte. Le retournement le plus fiable.</p>
         `},
+        // Slide 6 : Récap visuel
         { type: 'takeaway', html: `
           <div class="eyebrow">CH.1 · RÉCAP</div>
-          <h1 class="h1">Tes <em>patterns</em> clés</h1>
-          <div class="points">
-            <div class="point acid-pt"><div class="point-icon">🟢</div><div class="point-text"><strong>Engulfing</strong> : retournement majeur.</div></div>
-            <div class="point"><div class="point-icon">🔨</div><div class="point-text"><strong>Hammer / Pin bar</strong> : rejet d'un niveau.</div></div>
-            <div class="point"><div class="point-icon">➕</div><div class="point-text"><strong>Doji</strong> : indécision = attendre.</div></div>
-            <div class="point"><div class="point-icon">⭐</div><div class="point-text"><strong>Morning/Evening Star</strong> : 3 bougies = renversement fiable.</div></div>
+          <h1 class="h1">Les <em>4 patterns</em></h1>
+          <canvas class="demo-canvas big" id="canvas-recap-patterns" width="600" height="280"></canvas>
+          <div class="patterns-grid">
+            <div class="pg-item"><span class="pg-emoji">🔨</span><span class="pg-name">Hammer</span><span class="pg-arrow up">↗</span></div>
+            <div class="pg-item"><span class="pg-emoji">⚖️</span><span class="pg-name">Doji</span><span class="pg-arrow neutral">⏸</span></div>
+            <div class="pg-item"><span class="pg-emoji">🟢</span><span class="pg-name">Engulfing</span><span class="pg-arrow up">↗</span></div>
+            <div class="pg-item"><span class="pg-emoji">⭐</span><span class="pg-name">Morning Star</span><span class="pg-arrow up">↗</span></div>
           </div>
-          <p class="lead" style="margin-top:12px;"><strong>Ch.2</strong> : on passe aux indicateurs momentum pour confirmer ces signaux.</p>
         `},
       ],
 
@@ -1004,7 +1072,7 @@
 
     /* ===== READER STATE ===== */
     let currentChapter = null;
-    let cur = 0; // slide index 0..(CHAPTER_SIZE-1)
+    let cur = 0; // slide index 0..(chapterSize(currentChapter)-1)
 
     const track = document.getElementById('track');
     const counter = document.getElementById('slide-counter');
@@ -1024,6 +1092,7 @@
     }
 
     function update() {
+      const total = chapterSize(currentChapter);
       const slides = track.querySelectorAll('.slide');
       const bars = progressBars.querySelectorAll('.bar');
       slides.forEach((s, i) => s.classList.toggle('active', i === cur));
@@ -1033,10 +1102,10 @@
         else if (i === cur) b.classList.add('active');
       });
       track.style.transform = `translateX(-${cur * 100}%)`;
-      counter.textContent = `${cur + 1}/${CHAPTER_SIZE}`;
+      counter.textContent = `${cur + 1}/${total}`;
       chapterLabel.textContent = `MODULE 4 · CH.${currentChapter}`;
       navPrev.disabled = cur === 0;
-      navNext.textContent = cur === CHAPTER_SIZE - 1 ? '✓ Valider' : 'Suivant →';
+      navNext.textContent = cur === total - 1 ? '✓ Valider' : 'Suivant →';
 
       if (currentChapter != null) saveBookmark(currentChapter, cur);
 
@@ -1045,16 +1114,16 @@
       if (activeSlide) {
         const canvases = activeSlide.querySelectorAll('canvas');
         canvases.forEach(c => {
-          if (c.id === 'canvas-patterns' && !c._drawn) { drawCandlePatterns(c); c._drawn = true; }
-          if (c.id === 'canvas-rsi' && !c._drawn) { drawRSIDemo(c); c._drawn = true; }
-          if (c.id === 'canvas-macd' && !c._drawn) { drawMACDDemo(c); c._drawn = true; }
-          if (c.id === 'canvas-fib' && !c._drawn) { drawFibDemo(c); c._drawn = true; }
+          if (c._drawn) return;
+          const fn = CANVAS_DRAWERS[c.id];
+          if (fn) { fn(c); c._drawn = true; }
         });
       }
     }
 
     function next() {
-      if (cur < CHAPTER_SIZE - 1) { cur++; update(); if (navigator.vibrate) navigator.vibrate(6); }
+      const total = chapterSize(currentChapter);
+      if (cur < total - 1) { cur++; update(); if (navigator.vibrate) navigator.vibrate(6); }
       else completeCurrentChapter();
     }
     function prev() {
@@ -1078,8 +1147,9 @@
       }
       currentChapter = n;
       buildSlides(n);
+      const total = chapterSize(n);
       const bk = loadBookmark(n);
-      cur = (bk != null && bk >= 0 && bk < CHAPTER_SIZE) ? bk : 0;
+      cur = (bk != null && bk >= 0 && bk < total) ? bk : 0;
       document.getElementById('hub').classList.remove('active');
       document.getElementById('reader').classList.add('active');
       track.style.transition = 'none';
@@ -1132,6 +1202,20 @@
     }
 
     /* ===== CANVAS DEMOS ===== */
+    // Mapping id canvas → fonction de dessin (utilisé par update())
+    const CANVAS_DRAWERS = {
+      'canvas-anatomy'        : (c) => drawAnatomy(c),
+      'canvas-hammer'         : (c) => drawHammer(c),
+      'canvas-doji'           : (c) => drawDoji(c),
+      'canvas-engulfing'      : (c) => drawEngulfing(c),
+      'canvas-morning-star'   : (c) => drawMorningStar(c),
+      'canvas-recap-patterns' : (c) => drawRecapPatterns(c),
+      'canvas-patterns'       : (c) => drawCandlePatterns(c),
+      'canvas-rsi'            : (c) => drawRSIDemo(c),
+      'canvas-macd'           : (c) => drawMACDDemo(c),
+      'canvas-fib'            : (c) => drawFibDemo(c),
+    };
+
     function setupCanvas(canvas) {
       const DPR = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = canvas.offsetWidth * DPR;
@@ -1139,85 +1223,438 @@
       return { ctx: canvas.getContext('2d'), w: canvas.width, h: canvas.height, DPR };
     }
 
-    function drawCandlePatterns(canvas) {
-      const { ctx, w, h, DPR } = setupCanvas(canvas);
-      const padX = 24 * DPR;
-      const padY = 30 * DPR;
-      const cw = (w - padX * 2) / 9;
-      const cbw = cw * 0.55;
-      ctx.font = `${10 * DPR}px JetBrains Mono`;
-      ctx.textAlign = 'center';
-
-      // 5 bougies de baisse + Engulfing haussier
-      const candles1 = [
-        { o: 110, c: 100, hi: 112, lo: 98, color: '#ef4444' },
-        { o: 100, c: 92,  hi: 102, lo: 90, color: '#ef4444' },
-        { o: 92,  c: 86,  hi: 94,  lo: 84, color: '#ef4444' },
-        { o: 86,  c: 80,  hi: 88,  lo: 78, color: '#ef4444' },
-        { o: 80,  c: 78,  hi: 81,  lo: 76, color: '#ef4444' },
-        { o: 76,  c: 92,  hi: 94,  lo: 74, color: '#22c55e' }, // engulfing
-      ];
-
-      // Hammer pattern (3 candles)
-      const candles2 = [
-        { o: 95,  c: 88,  hi: 96,  lo: 86, color: '#ef4444' },
-        { o: 88,  c: 82,  hi: 89,  lo: 80, color: '#ef4444' },
-        { o: 82,  c: 86,  hi: 87,  lo: 70, color: '#22c55e' }, // hammer (long lower wick)
-      ];
-
-      const allCandles = candles1.concat(candles2);
-
-      let mn = Infinity, mx = -Infinity;
-      allCandles.forEach(c => { if (c.lo < mn) mn = c.lo; if (c.hi > mx) mx = c.hi; });
-      const range = mx - mn;
-      const y = (p) => padY + (1 - (p - mn) / range) * (h - padY * 2);
-
-      let idx = 0;
-      const animFrames = 16;
-      let frame = 0;
-      function loop() {
-        ctx.clearRect(0, 0, w, h);
-        // grid
-        ctx.strokeStyle = 'rgba(255,255,255,0.04)';
-        ctx.lineWidth = 1 * DPR;
-        for (let g = 1; g < 4; g++) {
-          const gy = (h / 4) * g;
-          ctx.beginPath();
-          ctx.moveTo(0, gy); ctx.lineTo(w, gy);
-          ctx.stroke();
-        }
-
-        const drawCount = Math.min(allCandles.length, Math.floor((frame / animFrames) * allCandles.length));
-        for (let i = 0; i < drawCount; i++) {
-          const c = allCandles[i];
-          const x = padX + i * cw + cw / 2;
-          ctx.strokeStyle = c.color;
-          ctx.lineWidth = 1.6 * DPR;
-          ctx.beginPath();
-          ctx.moveTo(x, y(c.hi));
-          ctx.lineTo(x, y(c.lo));
-          ctx.stroke();
-          const top = y(Math.max(c.o, c.c));
-          const bot = y(Math.min(c.o, c.c));
-          ctx.fillStyle = c.color;
-          ctx.fillRect(x - cbw / 2, top, cbw, Math.max(bot - top, 2 * DPR));
-        }
-
-        // labels
-        if (drawCount >= 6) {
-          ctx.fillStyle = '#bef264';
-          ctx.fillText('ENGULFING', padX + 5 * cw + cw / 2, h - 8 * DPR);
-        }
-        if (drawCount >= 9) {
-          ctx.fillStyle = '#f59e0b';
-          ctx.fillText('HAMMER', padX + 8 * cw + cw / 2, h - 8 * DPR);
-        }
-
-        frame++;
-        if (frame <= animFrames) requestAnimationFrame(loop);
-      }
-      loop();
+    /* ===== Helpers pattern drawing (v2.02) ===== */
+    function drawCandle(ctx, x, y, bodyW, candle, alpha, DPR) {
+      const isUp = candle.c >= candle.o;
+      const color = isUp ? '#22c55e' : '#ef4444';
+      ctx.globalAlpha = alpha;
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = 2 * DPR;
+      // Wick
+      ctx.beginPath();
+      ctx.moveTo(x, y(candle.hi));
+      ctx.lineTo(x, y(candle.lo));
+      ctx.stroke();
+      // Body
+      const top = y(Math.max(candle.o, candle.c));
+      const bot = y(Math.min(candle.o, candle.c));
+      const bodyH = Math.max(bot - top, 3 * DPR);
+      // Glow
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 8 * DPR;
+      ctx.fillRect(x - bodyW / 2, top, bodyW, bodyH);
+      ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1;
     }
+
+    function drawDottedArrow(ctx, fromX, fromY, toX, toY, color, DPR) {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2 * DPR;
+      ctx.setLineDash([5 * DPR, 4 * DPR]);
+      ctx.beginPath();
+      ctx.moveTo(fromX, fromY);
+      ctx.lineTo(toX, toY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      // arrowhead
+      const ang = Math.atan2(toY - fromY, toX - fromX);
+      const a = 8 * DPR;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(toX, toY);
+      ctx.lineTo(toX - a * Math.cos(ang - 0.4), toY - a * Math.sin(ang - 0.4));
+      ctx.lineTo(toX - a * Math.cos(ang + 0.4), toY - a * Math.sin(ang + 0.4));
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    /* ===== Slide 1 — Anatomie d'une bougie ===== */
+    function drawAnatomy(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const cx = w / 2;
+      const bodyW = 60 * DPR;
+      const wickTop = 30 * DPR;
+      const bodyTop = 70 * DPR;
+      const bodyBot = 180 * DPR;
+      const wickBot = h - 30 * DPR;
+
+      let progress = 0;
+      function frame(t) {
+        ctx.clearRect(0, 0, w, h);
+        // Bougie verte d'exemple
+        ctx.globalAlpha = Math.min(progress, 1);
+        ctx.strokeStyle = '#22c55e';
+        ctx.lineWidth = 2.5 * DPR;
+        ctx.shadowColor = '#22c55e'; ctx.shadowBlur = 10 * DPR;
+        // Wick
+        ctx.beginPath();
+        ctx.moveTo(cx, wickTop); ctx.lineTo(cx, wickBot);
+        ctx.stroke();
+        // Body
+        ctx.fillStyle = '#22c55e';
+        ctx.fillRect(cx - bodyW / 2, bodyTop, bodyW, bodyBot - bodyTop);
+        ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1;
+
+        // Labels avec lignes
+        if (progress > 0.5) {
+          const a = Math.min((progress - 0.5) * 2, 1);
+          ctx.globalAlpha = a;
+          ctx.font = `${12 * DPR}px JetBrains Mono`;
+          ctx.fillStyle = '#a8a8b3';
+          ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+          ctx.lineWidth = 1 * DPR;
+
+          // HIGH (top of wick)
+          ctx.textAlign = 'left';
+          ctx.fillStyle = '#f59e0b';
+          ctx.fillText('▲ HIGH', cx + 50 * DPR, wickTop + 4 * DPR);
+          ctx.beginPath(); ctx.moveTo(cx + 4 * DPR, wickTop); ctx.lineTo(cx + 48 * DPR, wickTop); ctx.stroke();
+
+          // CLOSE (top of body, since green)
+          ctx.fillStyle = '#22c55e';
+          ctx.fillText('CLOSE', cx + 50 * DPR, bodyTop + 4 * DPR);
+          ctx.beginPath(); ctx.moveTo(cx + bodyW / 2, bodyTop); ctx.lineTo(cx + 48 * DPR, bodyTop); ctx.stroke();
+
+          // OPEN (bottom of body)
+          ctx.fillStyle = '#ef4444';
+          ctx.fillText('OPEN', cx + 50 * DPR, bodyBot + 4 * DPR);
+          ctx.beginPath(); ctx.moveTo(cx + bodyW / 2, bodyBot); ctx.lineTo(cx + 48 * DPR, bodyBot); ctx.stroke();
+
+          // LOW (bottom of wick)
+          ctx.fillStyle = '#f59e0b';
+          ctx.fillText('▼ LOW', cx + 50 * DPR, wickBot + 4 * DPR);
+          ctx.beginPath(); ctx.moveTo(cx + 4 * DPR, wickBot); ctx.lineTo(cx + 48 * DPR, wickBot); ctx.stroke();
+
+          // Annotation "MÈCHE" (left side)
+          ctx.textAlign = 'right';
+          ctx.fillStyle = 'rgba(190,242,100,0.85)';
+          ctx.fillText('mèche', cx - 50 * DPR, wickTop + 22 * DPR);
+          ctx.fillText('corps', cx - 50 * DPR, (bodyTop + bodyBot) / 2 + 4 * DPR);
+          ctx.fillText('mèche', cx - 50 * DPR, wickBot - 12 * DPR);
+
+          ctx.globalAlpha = 1;
+        }
+
+        progress += 0.025;
+        if (progress < 1.5) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    /* ===== Slide 2 — Hammer ===== */
+    function drawHammer(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const padX = 30 * DPR, padY = 30 * DPR;
+      const useH = h - padY * 2;
+      const cw = 60 * DPR;
+      const candles = [
+        { o: 110, c: 102, hi: 112, lo: 100 },
+        { o: 102, c: 95,  hi: 103, lo: 93 },
+        { o: 95,  c: 88,  hi: 96,  lo: 86 },
+        { o: 88,  c: 95,  hi: 96,  lo: 72 }, // hammer
+      ];
+      let mn = Infinity, mx = -Infinity;
+      candles.forEach(c => { if (c.lo < mn) mn = c.lo; if (c.hi > mx) mx = c.hi; });
+      const range = mx - mn;
+      const totalW = candles.length * (cw + 20 * DPR);
+      const startX = (w - totalW) / 2 + cw / 2;
+      const y = (p) => padY + (1 - (p - mn) / range) * useH;
+
+      let progress = 0;
+      function frame() {
+        ctx.clearRect(0, 0, w, h);
+        const visibleCount = Math.min(candles.length, Math.floor(progress * candles.length));
+        const partial = (progress * candles.length) - visibleCount;
+        for (let i = 0; i < visibleCount; i++) {
+          const x = startX + i * (cw + 20 * DPR);
+          drawCandle(ctx, x, y, cw, candles[i], 1, DPR);
+        }
+        if (visibleCount < candles.length && partial > 0) {
+          const x = startX + visibleCount * (cw + 20 * DPR);
+          drawCandle(ctx, x, y, cw, candles[visibleCount], partial, DPR);
+        }
+
+        // Label HAMMER + flèche rebond après que toutes les bougies soient là
+        if (progress > 1.05) {
+          const a = Math.min((progress - 1.05) * 2, 1);
+          ctx.globalAlpha = a;
+          const lastX = startX + 3 * (cw + 20 * DPR);
+          ctx.font = `bold ${13 * DPR}px Manrope`;
+          ctx.fillStyle = '#bef264';
+          ctx.textAlign = 'center';
+          ctx.fillText('🔨 HAMMER', lastX, padY - 8 * DPR);
+          // flèche rebond depuis le bas de la mèche vers le haut
+          drawDottedArrow(ctx, lastX, y(72) - 6 * DPR, lastX, y(98), '#22c55e', DPR);
+          ctx.fillStyle = '#22c55e';
+          ctx.font = `${11 * DPR}px JetBrains Mono`;
+          ctx.fillText('REBOND', lastX, h - 8 * DPR);
+          ctx.globalAlpha = 1;
+        }
+
+        progress += 0.025;
+        if (progress < 1.7) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    /* ===== Slide 3 — Doji ===== */
+    function drawDoji(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const cx = w / 2;
+      const cw = 70 * DPR;
+      const padY = 40 * DPR;
+      const high = padY;
+      const low = h - padY;
+      const mid = (high + low) / 2;
+      const bodyH = 4 * DPR; // doji = corps ultra-fin
+
+      let progress = 0;
+      function frame() {
+        ctx.clearRect(0, 0, w, h);
+
+        // wick
+        ctx.globalAlpha = Math.min(progress * 2, 1);
+        ctx.strokeStyle = '#a78bfa';
+        ctx.lineWidth = 3 * DPR;
+        ctx.shadowColor = '#a78bfa'; ctx.shadowBlur = 12 * DPR;
+        ctx.beginPath();
+        ctx.moveTo(cx, high); ctx.lineTo(cx, low);
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // Tiny body
+        if (progress > 0.5) {
+          ctx.fillStyle = '#f59e0b';
+          ctx.fillRect(cx - cw / 2, mid - bodyH / 2, cw, bodyH);
+        }
+
+        // Labels et flèches
+        if (progress > 0.9) {
+          const a = Math.min((progress - 0.9) * 2, 1);
+          ctx.globalAlpha = a;
+          ctx.font = `bold ${13 * DPR}px Manrope`;
+          ctx.fillStyle = '#a78bfa';
+          ctx.textAlign = 'center';
+          ctx.fillText('⚖️ DOJI', cx, padY - 14 * DPR);
+
+          // Acheteurs ↑ vs Vendeurs ↓ — labels en haut/bas
+          ctx.font = `${11 * DPR}px JetBrains Mono`;
+          ctx.fillStyle = '#22c55e';
+          ctx.fillText('↑ Acheteurs', cx - 100 * DPR, mid - 18 * DPR);
+          ctx.fillStyle = '#ef4444';
+          ctx.fillText('↓ Vendeurs', cx + 100 * DPR, mid + 22 * DPR);
+
+          // Trait OPEN = CLOSE
+          ctx.strokeStyle = 'rgba(245,158,11,0.6)';
+          ctx.setLineDash([4 * DPR, 4 * DPR]);
+          ctx.lineWidth = 1.5 * DPR;
+          ctx.beginPath();
+          ctx.moveTo(20 * DPR, mid); ctx.lineTo(w - 20 * DPR, mid);
+          ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.fillStyle = '#f59e0b';
+          ctx.textAlign = 'right';
+          ctx.fillText('OPEN = CLOSE', w - 18 * DPR, mid - 8 * DPR);
+          ctx.globalAlpha = 1;
+        }
+
+        progress += 0.025;
+        if (progress < 1.4) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    /* ===== Slide 4 — Engulfing haussier ===== */
+    function drawEngulfing(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const cx = w / 2;
+      const padY = 40 * DPR;
+      const useH = h - padY * 2;
+      const cw = 80 * DPR;
+      const gap = 30 * DPR;
+
+      // Bougie 1 (rouge, petite)
+      const c1 = { o: 100, c: 92, hi: 102, lo: 90 };
+      // Bougie 2 (verte, qui engloutit) — open < c1.close, close > c1.open
+      const c2 = { o: 90, c: 108, hi: 110, lo: 88 };
+
+      const mn = 86, mx = 112;
+      const range = mx - mn;
+      const y = (p) => padY + (1 - (p - mn) / range) * useH;
+
+      const x1 = cx - cw / 2 - gap / 2;
+      const x2 = cx + cw / 2 + gap / 2;
+
+      let progress = 0;
+      function frame() {
+        ctx.clearRect(0, 0, w, h);
+        // Étape 1 : draw c1 (jusqu'à progress 0.5)
+        const a1 = Math.min(progress * 2, 1);
+        drawCandle(ctx, x1, y, cw, c1, a1, DPR);
+
+        // Étape 2 : draw c2 (de progress 0.5 à 1.0)
+        if (progress > 0.5) {
+          const a2 = Math.min((progress - 0.5) * 2, 1);
+          drawCandle(ctx, x2, y, cw, c2, a2, DPR);
+        }
+
+        // Labels
+        if (progress > 1.0) {
+          const a = Math.min((progress - 1.0) * 2, 1);
+          ctx.globalAlpha = a;
+          ctx.font = `bold ${12 * DPR}px Manrope`;
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#ef4444';
+          ctx.fillText('1️⃣ Rouge', x1, h - 12 * DPR);
+          ctx.fillStyle = '#22c55e';
+          ctx.fillText('2️⃣ Verte avale tout', x2, h - 12 * DPR);
+
+          // Highlight rectangle qui englobe c1
+          ctx.strokeStyle = '#bef264';
+          ctx.setLineDash([6 * DPR, 4 * DPR]);
+          ctx.lineWidth = 2 * DPR;
+          ctx.strokeRect(x1 - cw / 2 - 6 * DPR, y(c2.hi) - 4 * DPR, cw + 12 * DPR, y(c2.lo) - y(c2.hi) + 8 * DPR);
+          ctx.setLineDash([]);
+          ctx.globalAlpha = 1;
+        }
+
+        progress += 0.025;
+        if (progress < 1.5) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    /* ===== Slide 5 — Morning Star (3 bougies) ===== */
+    function drawMorningStar(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const padY = 40 * DPR;
+      const useH = h - padY * 2;
+      const cw = 60 * DPR;
+      const gap = 24 * DPR;
+      const totalW = 3 * cw + 2 * gap;
+      const startX = (w - totalW) / 2 + cw / 2;
+
+      const candles = [
+        { o: 110, c: 92, hi: 112, lo: 90 },  // 1: grosse rouge
+        { o: 90,  c: 88, hi: 93,  lo: 86 },  // 2: petite indécise (proche doji)
+        { o: 90,  c: 108, hi: 110, lo: 88 }, // 3: grosse verte
+      ];
+      let mn = Infinity, mx = -Infinity;
+      candles.forEach(c => { if (c.lo < mn) mn = c.lo; if (c.hi > mx) mx = c.hi; });
+      const range = mx - mn;
+      const y = (p) => padY + (1 - (p - mn) / range) * useH;
+
+      let progress = 0;
+      function frame() {
+        ctx.clearRect(0, 0, w, h);
+        const visibleCount = Math.min(candles.length, Math.floor(progress * candles.length));
+        const partial = (progress * candles.length) - visibleCount;
+        for (let i = 0; i < visibleCount; i++) {
+          drawCandle(ctx, startX + i * (cw + gap), y, cw, candles[i], 1, DPR);
+        }
+        if (visibleCount < candles.length && partial > 0) {
+          drawCandle(ctx, startX + visibleCount * (cw + gap), y, cw, candles[visibleCount], partial, DPR);
+        }
+
+        // Labels en bas
+        if (progress > 0.4) {
+          ctx.globalAlpha = Math.min((progress - 0.4) * 2, 1);
+          ctx.font = `${11 * DPR}px JetBrains Mono`;
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#ef4444';
+          if (progress >= 0.4) ctx.fillText('1', startX, h - 12 * DPR);
+          if (progress >= 0.7) { ctx.fillStyle = '#f59e0b'; ctx.fillText('2', startX + cw + gap, h - 12 * DPR); }
+          if (progress >= 1.0) { ctx.fillStyle = '#22c55e'; ctx.fillText('3', startX + 2 * (cw + gap), h - 12 * DPR); }
+          ctx.globalAlpha = 1;
+        }
+
+        // Flèche retournement
+        if (progress > 1.1) {
+          const a = Math.min((progress - 1.1) * 2, 1);
+          ctx.globalAlpha = a;
+          drawDottedArrow(
+            ctx,
+            startX + cw + gap, h - 30 * DPR,
+            startX + 2 * (cw + gap), padY + 12 * DPR,
+            '#bef264', DPR
+          );
+          ctx.font = `bold ${12 * DPR}px Manrope`;
+          ctx.fillStyle = '#bef264';
+          ctx.textAlign = 'center';
+          ctx.fillText('⭐ RETOURNEMENT', w / 2, padY - 12 * DPR);
+          ctx.globalAlpha = 1;
+        }
+
+        progress += 0.022;
+        if (progress < 1.6) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    /* ===== Slide 6 — Récap : 4 patterns côte à côte ===== */
+    function drawRecapPatterns(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const padY = 30 * DPR;
+      const useH = h - padY * 2;
+      const slots = 4;
+      const slotW = w / slots;
+      const cw = 22 * DPR;
+
+      const datasets = [
+        // Hammer (1 bougie)
+        { candles: [{ o: 95, c: 100, hi: 102, lo: 80 }], label: '🔨' },
+        // Doji (1 bougie)
+        { candles: [{ o: 96, c: 96, hi: 105, lo: 87 }], label: '⚖️' },
+        // Engulfing (2 bougies)
+        { candles: [{ o: 100, c: 92, hi: 102, lo: 90 }, { o: 90, c: 108, hi: 110, lo: 88 }], label: '🟢' },
+        // Morning Star (3 bougies)
+        { candles: [{ o: 110, c: 92, hi: 112, lo: 90 }, { o: 90, c: 88, hi: 93, lo: 86 }, { o: 90, c: 108, hi: 110, lo: 88 }], label: '⭐' },
+      ];
+      const mn = 78, mx = 114;
+      const range = mx - mn;
+      const y = (p) => padY + (1 - (p - mn) / range) * useH;
+
+      let progress = 0;
+      function frame() {
+        ctx.clearRect(0, 0, w, h);
+        for (let s = 0; s < slots; s++) {
+          const slotProg = Math.max(0, Math.min(1, (progress - s * 0.2) * 1.5));
+          if (slotProg <= 0) continue;
+          const slotCx = slotW * s + slotW / 2;
+          const ds = datasets[s];
+          const n = ds.candles.length;
+          const totalCW = n * cw + (n - 1) * 8 * DPR;
+          const sx = slotCx - totalCW / 2 + cw / 2;
+          for (let i = 0; i < n; i++) {
+            drawCandle(ctx, sx + i * (cw + 8 * DPR), y, cw, ds.candles[i], slotProg, DPR);
+          }
+          // separator
+          if (s < slots - 1) {
+            ctx.globalAlpha = 0.15;
+            ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+            ctx.lineWidth = 1 * DPR;
+            ctx.beginPath();
+            ctx.moveTo(slotW * (s + 1), padY); ctx.lineTo(slotW * (s + 1), h - padY);
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+          }
+          // Label emoji
+          ctx.globalAlpha = slotProg;
+          ctx.font = `${22 * DPR}px Manrope`;
+          ctx.textAlign = 'center';
+          ctx.fillText(ds.label, slotCx, h - 10 * DPR);
+          ctx.globalAlpha = 1;
+        }
+        progress += 0.025;
+        if (progress < 1.5) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    /* ===== Legacy : drawCandlePatterns (gardé pour compat, redirigé vers anatomie) ===== */
+    function drawCandlePatterns(canvas) { drawAnatomy(canvas); }
 
     function drawRSIDemo(canvas) {
       const { ctx, w, h, DPR } = setupCanvas(canvas);
