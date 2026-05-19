@@ -1140,6 +1140,52 @@
   .hub-action-btn.share { color: var(--blue); border-color: rgba(96,165,250,0.25); background: rgba(96,165,250,0.06); }
   .hub-action-btn.share:active { background: rgba(96,165,250,0.14); }
 
+  /* Défi du jour */
+  .daily-challenge {
+    margin: 14px 0 14px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, rgba(212,165,116,0.12) 0%, rgba(212,165,116,0.04) 100%);
+    border: 1px solid rgba(212,165,116,0.32);
+    border-radius: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    transition: transform 0.15s, border-color 0.2s, background 0.2s;
+  }
+  .daily-challenge:active { transform: scale(0.985); border-color: rgba(212,165,116,0.5); background: linear-gradient(135deg, rgba(212,165,116,0.18) 0%, rgba(212,165,116,0.06) 100%); }
+  .daily-challenge.done { border-color: rgba(190,242,100,0.4); background: linear-gradient(135deg, rgba(190,242,100,0.1) 0%, rgba(190,242,100,0.02) 100%); }
+  .daily-challenge.done .dc-label { color: var(--acid); }
+  .dc-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+  .dc-icon { font-size: 26px; line-height: 1; flex-shrink: 0; }
+  .dc-text { flex: 1; min-width: 0; }
+  .dc-label {
+    font-family: var(--font-m);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--clay);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .dc-title {
+    font-family: var(--font-d);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+  }
+  .dc-arrow {
+    color: var(--clay);
+    font-family: var(--font-m);
+    font-size: 18px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .daily-challenge.done .dc-arrow { color: var(--acid); }
+
   /* Install PWA — bouton fixed top, visible si beforeinstallprompt dispo */
   #install-pwa-btn {
     position: fixed;
@@ -1390,7 +1436,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=176')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=177')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -1409,7 +1455,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=176')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=177')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -1428,7 +1474,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=176')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=177')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -1447,7 +1493,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=176')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=177')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -1505,6 +1551,18 @@
       <p class="hero-daily-author" id="hero-daily-author"></p>
     </div>
 
+    <!-- Défi du jour -->
+    <div class="daily-challenge" id="daily-challenge" onclick="openDailyChallenge()">
+      <div class="dc-left">
+        <div class="dc-icon" id="dc-icon">🎯</div>
+        <div class="dc-text">
+          <div class="dc-label" id="dc-label">DÉFI DU JOUR</div>
+          <div class="dc-title" id="dc-title">1 question pour rester affûté</div>
+        </div>
+      </div>
+      <div class="dc-arrow">→</div>
+    </div>
+
     <!-- Continue où tu en étais -->
     <div class="resume-block" id="resume-block" style="display:none;">
       <div class="resume-eyebrow">↻ REPRENDRE</div>
@@ -1525,15 +1583,15 @@
 
     <!-- Stats compactes -->
     <div class="stats-row">
-      <div class="stat-cell" onclick="location.href='scene-06.html?v=176'">
+      <div class="stat-cell" onclick="location.href='scene-06.html?v=177'">
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=176'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=177'">
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=176'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=177'">
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
       </div>
@@ -1550,7 +1608,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=176'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=177'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -1812,6 +1870,38 @@
 
     // 8) État du bouton notifications
     refreshNotifBtn();
+
+    // 9) État défi du jour
+    refreshDailyChallenge();
+  }
+
+  function refreshDailyChallenge() {
+    const wrap = document.getElementById('daily-challenge');
+    const icon = document.getElementById('dc-icon');
+    const label = document.getElementById('dc-label');
+    const title = document.getElementById('dc-title');
+    if (!wrap || !window.TG || !window.TG.getDailyState) return;
+    const state = window.TG.getDailyState();
+    if (state) {
+      wrap.classList.add('done');
+      icon.textContent = state.correct ? '✅' : '🔁';
+      label.textContent = state.correct ? '✓ DÉFI VALIDÉ' : '✓ DÉFI FAIT';
+      title.textContent = state.correct ? 'Bonne réponse ! Reviens demain' : 'Revoir la question';
+    } else {
+      wrap.classList.remove('done');
+      icon.textContent = '🎯';
+      label.textContent = 'DÉFI DU JOUR';
+      title.textContent = '1 question pour rester affûté';
+    }
+  }
+
+  function openDailyChallenge() {
+    if (navigator.vibrate) navigator.vibrate(8);
+    if (window.TG && window.TG.showDailyChallenge) {
+      window.TG.showDailyChallenge();
+      // Rafraîchir l'état après fermeture (l'overlay peut être fermé avant)
+      setTimeout(refreshDailyChallenge, 1500);
+    }
   }
 
   function updateParcoursProgress() {
@@ -1890,7 +1980,7 @@
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
       const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '168';
-      location.href = 'scene-05.html?v=176' + v;
+      location.href = 'scene-05.html?v=177' + v;
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -2093,7 +2183,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=176' + v; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=177' + v; };
         block.style.display = 'block';
         return;
       }
@@ -2135,7 +2225,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=176';
+        card.onclick = () => location.href = 'scene-05.html?v=177';
         block.style.display = 'block';
         return;
       }
@@ -2155,7 +2245,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=176';
+          card.onclick = () => location.href = 'scene-06.html?v=177';
           block.style.display = 'block';
           return;
         }
@@ -2169,7 +2259,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=176';
+        card.onclick = () => location.href = 'scene-06.html?v=177';
         block.style.display = 'block';
         return;
       }
@@ -2184,7 +2274,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=176';
+    card.onclick = () => location.href = 'scene-05.html?v=177';
     block.style.display = 'block';
   }
 
@@ -2382,11 +2472,11 @@
     if (shortcut === 'modules') { showView('modules'); return; }
     if (shortcut === 'simu') {
       // Pas de location.href ici : on est déjà dans index.html, redirige
-      location.href = 'scene-05.html?v=176';
+      location.href = 'scene-05.html?v=177';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=176';
+      location.href = 'scene-06.html?v=177';
       return;
     }
 
@@ -2405,11 +2495,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=176"></script>
+  <script type="module" src="tg-common.js?v=177"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=176').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=177').catch(() => {});
       });
     }
   </script>

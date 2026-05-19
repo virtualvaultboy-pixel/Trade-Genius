@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.76';
+export const TG_VERSION = 'v1.77';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -517,6 +517,7 @@ export async function shareCard({ title = 'Trade Genius', stat = '', quote = '' 
 window.TG = Object.assign(window.TG || {}, {
   shareCard, addGlossaryTerm, recordVisit, resetConsent, showRecap,
   getNotifState, requestNotifPermission, disableNotifs, checkStreakDangerNotify,
+  getDailyChallenge, getDailyState, showDailyChallenge,
   TG_VERSION,
 });
 
@@ -537,6 +538,183 @@ export function prefetchScenes() {
   }, 2200);
   if (document.readyState === 'complete') run();
   else window.addEventListener('load', run, { once: true });
+}
+
+// === Défi du jour — quiz aléatoire ===
+const DAILY_KEY = 'tradegenius_daily_challenge';
+const DAILY_QUESTIONS = [
+  { m: 0, q: 'Pourquoi un billet de 20€ a-t-il de la valeur ?',
+    options: ['Il est garanti en or', 'Convention sociale, confiance dans l\'État', 'Décret européen 2012', 'Aucune valeur réelle'],
+    correct: 1, explain: 'Depuis 1971, les monnaies sont fiat : leur valeur tient uniquement à la confiance collective.' },
+  { m: 0, q: 'En quelle année Nixon décroche le dollar de l\'or ?',
+    options: ['1944', '1971', '1989', '2008'], correct: 1,
+    explain: '15 août 1971 : fin de l\'étalon-or. Toutes les monnaies deviennent fiat.' },
+  { m: 0, q: 'Quels sont les 3 rôles d\'une monnaie ?',
+    options: ['Acheter, voter, voyager', 'Échange, mesure de valeur, épargne', 'Spéculer, prêter, miner', 'Frapper, garder, brûler'],
+    correct: 1, explain: 'Une monnaie = moyen d\'échange + unité de compte + réserve de valeur.' },
+  { m: 0, q: 'Qui invente le billet de banque ?',
+    options: ['Les Romains', 'La Chine (~700)', 'Napoléon', 'La FED en 1913'],
+    correct: 1, explain: 'La Chine invente le billet vers l\'an 700, arrive en Europe au 17e siècle.' },
+  { m: 1, q: 'Que représente une action ?',
+    options: ['Un prêt à l\'entreprise', 'Une part de propriété', 'Un bon d\'achat', 'Un dividende'],
+    correct: 1, explain: 'Acheter une action = devenir copropriétaire d\'une fraction de l\'entreprise.' },
+  { m: 1, q: 'L\'obligation, c\'est :',
+    options: ['Une part d\'entreprise', 'Un prêt à un État/entreprise', 'Un dérivé spéculatif', 'Une crypto'],
+    correct: 1, explain: 'Tu prêtes ton argent, tu touches des intérêts puis le capital à échéance.' },
+  { m: 1, q: 'Un ETF est :',
+    options: ['Un fonds actif géré', 'Un panier d\'actifs qui suit un indice', 'Une action exotique', 'Un produit dérivé'],
+    correct: 1, explain: 'ETF = panier diversifié (ex: S&P 500) avec des frais très bas (~0.1%/an).' },
+  { m: 1, q: 'Bull market signifie :',
+    options: ['Marché qui descend', 'Marché qui monte durablement', 'Krach', 'Volatilité extrême'],
+    correct: 1, explain: 'Bull = taureau qui frappe vers le haut. Bear = ours qui frappe vers le bas.' },
+  { m: 1, q: 'Le spread c\'est :',
+    options: ['La taxe sur les trades', 'L\'écart bid/ask', 'La commission du courtier', 'Le levier max'],
+    correct: 1, explain: 'Spread = différence entre prix d\'achat (ask) et prix de vente (bid). Faible = liquide.' },
+  { m: 2, q: 'Combien de prix sont représentés dans un chandelier ?',
+    options: ['1 (la clôture)', '2 (ouverture, clôture)', '4 (open, high, low, close)', '6'],
+    correct: 2, explain: 'OHLC : Open, High, Low, Close. Les mèches montrent high/low, le corps montre open→close.' },
+  { m: 2, q: 'Une chandelle verte signifie :',
+    options: ['Prix monte sur le moment', 'Clôture > ouverture', 'Achat massif', 'Tendance haussière'],
+    correct: 1, explain: 'Vert = clôture supérieure à ouverture. Acheteurs ont gagné sur cette période.' },
+  { m: 2, q: 'Un support est :',
+    options: ['Un plafond de prix', 'Un plancher où le prix rebondit', 'Une moyenne mobile', 'Un indicateur'],
+    correct: 1, explain: 'Support = niveau où les acheteurs reviennent. Cassé, il devient résistance.' },
+  { m: 2, q: 'Volume fort + mouvement signifie :',
+    options: ['Mouvement crédible', 'Manipulation', 'Bull trap', 'Indifférent'],
+    correct: 0, explain: 'Volume confirme. Mouvement avec volume faible = méfiance, mouvement fragile.' },
+  { m: 3, q: 'Quel % de traders particuliers perdent à long terme ?',
+    options: ['~30%', '~50%', '~70%', '~95%'], correct: 3,
+    explain: 'Environ 95% des traders actifs perdent ou sous-performent un simple ETF World.' },
+  { m: 3, q: 'FOMO veut dire :',
+    options: ['Fund Of Money Only', 'Fear Of Missing Out', 'Forex Online', 'Free Open Market'],
+    correct: 1, explain: 'FOMO = peur de rater. Pousse à acheter au sommet, juste avant le retournement.' },
+  { m: 3, q: 'La règle des 2% c\'est :',
+    options: ['Frais max courtier', 'Risque max par trade', 'Levier max', 'Diversification'],
+    correct: 1, explain: 'Ne perdre jamais plus de 2% du capital sur un trade unique. Garantit la survie.' },
+  { m: 3, q: 'Selon Kahneman, le Système 1 c\'est :',
+    options: ['Pensée rationnelle, lente', 'Pensée rapide, instinctive', 'Système informatique', 'Algorithme trading'],
+    correct: 1, explain: 'Système 1 = rapide et émotionnel (l\'ennemi). Système 2 = lent et rationnel (à activer).' },
+  { m: 3, q: 'Le stop-loss sert à :',
+    options: ['Augmenter le levier', 'Limiter automatiquement les pertes', 'Acheter plus bas', 'Bloquer le compte'],
+    correct: 1, explain: 'Ordre auto qui vend quand le prix descend à un seuil. Indispensable.' },
+];
+
+function _todayKey() { return new Date().toISOString().slice(0, 10); }
+function _dayOfYear() {
+  const n = new Date();
+  return Math.floor((n - new Date(n.getFullYear(), 0, 0)) / 86400000);
+}
+
+export function getDailyChallenge() {
+  const idx = _dayOfYear() % DAILY_QUESTIONS.length;
+  return { ...DAILY_QUESTIONS[idx], index: idx };
+}
+
+export function getDailyState() {
+  try {
+    const s = JSON.parse(localStorage.getItem(DAILY_KEY) || '{}');
+    if (s.date === _todayKey()) return s;
+  } catch {}
+  return null;
+}
+
+function ensureDailyStyle() {
+  if (document.getElementById('tg-daily-style')) return;
+  const s = document.createElement('style');
+  s.id = 'tg-daily-style';
+  s.textContent = `
+    .tg-daily-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.82); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; padding: 18px; z-index: 9990; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .tg-daily-overlay.active { opacity: 1; pointer-events: auto; }
+    .tg-daily-card { background: linear-gradient(180deg, #16161c, #0c0c10); border: 1px solid rgba(212,165,116,0.32); border-radius: 18px; padding: 22px 20px 18px; max-width: 440px; width: 100%; max-height: 88vh; overflow-y: auto; box-shadow: 0 16px 60px rgba(0,0,0,0.7), 0 0 32px rgba(212,165,116,0.18); transform: translateY(28px) scale(0.97); transition: transform 0.38s cubic-bezier(0.2,0.8,0.2,1); }
+    .tg-daily-overlay.active .tg-daily-card { transform: translateY(0) scale(1); }
+    .tg-daily-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .tg-daily-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 800; letter-spacing: 0.18em; color: #d4a574; text-transform: uppercase; }
+    .tg-daily-close { width: 30px; height: 30px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #b8b3ad; border-radius: 50%; font-size: 14px; cursor: pointer; }
+    .tg-daily-q { font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 19px; font-weight: 800; color: #f5f3ef; letter-spacing: -0.01em; line-height: 1.25; margin: 0 0 18px; }
+    .tg-daily-opts { display: flex; flex-direction: column; gap: 9px; margin: 0 0 16px; }
+    .tg-daily-opt { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: #f5f3ef; font-family: 'Manrope', system-ui, sans-serif; font-size: 14px; font-weight: 600; text-align: left; padding: 13px 14px; border-radius: 11px; cursor: pointer; transition: all 0.18s; line-height: 1.35; -webkit-tap-highlight-color: transparent; }
+    .tg-daily-opt:active { transform: scale(0.98); background: rgba(255,255,255,0.08); }
+    .tg-daily-opt:disabled { cursor: not-allowed; }
+    .tg-daily-opt.correct { background: rgba(74,222,128,0.16); border-color: #4ade80; color: #86efac; font-weight: 700; }
+    .tg-daily-opt.wrong { background: rgba(248,113,113,0.16); border-color: #f87171; color: #fca5a5; }
+    .tg-daily-explain { background: rgba(212,165,116,0.08); border-left: 3px solid #d4a574; border-radius: 8px; padding: 12px 14px; font-family: 'Manrope', system-ui, sans-serif; font-size: 13.5px; line-height: 1.45; color: #b8b3ad; margin: 0 0 16px; display: none; }
+    .tg-daily-explain.show { display: block; animation: dailyFadeIn 0.3s ease-out; }
+    .tg-daily-explain strong { color: #f5f3ef; }
+    @keyframes dailyFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .tg-daily-result-pill { display: inline-block; padding: 4px 10px; border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+    .tg-daily-result-pill.ok { background: rgba(74,222,128,0.18); color: #86efac; }
+    .tg-daily-result-pill.ko { background: rgba(248,113,113,0.18); color: #fca5a5; }
+    .tg-daily-cta { display: block; width: 100%; background: linear-gradient(135deg, #d4a574, #e8c39a); color: #1a1a0a; border: none; font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 14px; font-weight: 800; padding: 12px; border-radius: 11px; cursor: pointer; box-shadow: 0 4px 14px rgba(212,165,116,0.35); display: none; }
+    .tg-daily-cta.show { display: block; }
+    .tg-daily-cta:active { transform: scale(0.97); }
+  `;
+  document.head.appendChild(s);
+}
+
+export function showDailyChallenge() {
+  ensureDailyStyle();
+  const ch = getDailyChallenge();
+  const prev = getDailyState();
+  let overlay = document.getElementById('tg-daily-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'tg-daily-overlay';
+    overlay.className = 'tg-daily-overlay';
+    document.body.appendChild(overlay);
+  }
+  const moduleNames = ['Monnaie', 'Marché', 'Chart', 'Psycho'];
+  overlay.innerHTML = `
+    <div class="tg-daily-card">
+      <div class="tg-daily-head">
+        <span class="tg-daily-eyebrow">🎯 Défi du jour · M${ch.m} ${moduleNames[ch.m]}</span>
+        <button class="tg-daily-close" id="tg-daily-close" aria-label="Fermer">✕</button>
+      </div>
+      <h3 class="tg-daily-q">${ch.q}</h3>
+      <div class="tg-daily-opts" id="tg-daily-opts">
+        ${ch.options.map((opt, i) => `<button class="tg-daily-opt" data-i="${i}">${opt}</button>`).join('')}
+      </div>
+      <div class="tg-daily-explain" id="tg-daily-explain"></div>
+      <button class="tg-daily-cta" id="tg-daily-cta">Continuer →</button>
+    </div>
+  `;
+  const close = () => overlay.classList.remove('active');
+  document.getElementById('tg-daily-close').onclick = close;
+  document.getElementById('tg-daily-cta').onclick = close;
+  overlay.onclick = (e) => { if (e.target === overlay) close(); };
+
+  const optBtns = overlay.querySelectorAll('.tg-daily-opt');
+  const explainEl = document.getElementById('tg-daily-explain');
+  const ctaEl = document.getElementById('tg-daily-cta');
+
+  const reveal = (choice) => {
+    optBtns.forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === ch.correct) btn.classList.add('correct');
+      else if (i === choice) btn.classList.add('wrong');
+    });
+    const isCorrect = choice === ch.correct;
+    explainEl.innerHTML = `<span class="tg-daily-result-pill ${isCorrect ? 'ok' : 'ko'}">${isCorrect ? '✓ Bonne réponse' : '✗ Faux'}</span><br><br>${ch.explain}`;
+    explainEl.classList.add('show');
+    ctaEl.classList.add('show');
+    if (navigator.vibrate) navigator.vibrate(isCorrect ? [12, 60, 28] : [60, 40, 60]);
+  };
+
+  if (prev) {
+    // Déjà répondu : montrer le résultat
+    reveal(prev.choice);
+  } else {
+    optBtns.forEach(btn => {
+      btn.onclick = () => {
+        const choice = parseInt(btn.dataset.i, 10);
+        const isCorrect = choice === ch.correct;
+        try { localStorage.setItem(DAILY_KEY, JSON.stringify({ date: _todayKey(), choice, correct: isCorrect, ts: Date.now() })); } catch {}
+        reveal(choice);
+      };
+    });
+  }
+
+  overlay.classList.add('active');
+  if (navigator.vibrate) navigator.vibrate(8);
 }
 
 // === Notifications quotidiennes — rappel streak ===
