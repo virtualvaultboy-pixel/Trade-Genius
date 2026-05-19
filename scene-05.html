@@ -792,7 +792,8 @@ input { font-family: inherit; }
 .sim-chart {
   width: 100%;
   height: auto;
-  max-height: 230px;
+  min-height: 280px;
+  max-height: calc(100vh - 280px);
   display: block;
   background: transparent;
 }
@@ -1614,7 +1615,7 @@ input { font-family: inherit; }
   50%      { box-shadow: 0 0 0 3px var(--acid), 0 0 0 14px rgba(190, 242, 100, 0.05), 0 0 36px rgba(190, 242, 100, 0.5); }
 }
 
-/* The sliding bubble */
+/* The sliding bubble — transitions fluides entre steps */
 .tuto-bubble {
   position: fixed;
   z-index: 9002;
@@ -1625,21 +1626,28 @@ input { font-family: inherit; }
   width: calc(100vw - 28px);
   max-width: 340px;
   box-shadow: 0 12px 40px rgba(0,0,0,0.6);
-  display: none;
+  visibility: hidden;
+  opacity: 0;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   -webkit-user-select: none;
+  transition:
+    top 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
+    left 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.28s ease-out,
+    visibility 0s linear 0s;
+  will-change: top, left, opacity;
 }
 .tuto-bubble.active {
-  display: block;
+  visibility: visible;
+  opacity: 1;
+  transition:
+    top 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
+    left 0.42s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.28s ease-out;
 }
-.tuto-bubble.slide-in {
-  animation: tutoBubbleSlide 0.28s var(--ease) both;
-  will-change: transform, opacity;
-}
-@keyframes tutoBubbleSlide {
-  from { transform: translateY(6px); opacity: 0; }
-  to   { transform: translateY(0); opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .tuto-bubble { transition: opacity 0.2s ease-out, visibility 0s !important; }
 }
 
 /* Arrow */
@@ -5506,34 +5514,46 @@ function closeScenarioIntro() {
    ═══════════════════════════════════════════════════════════════ */
 const TUTO_STEPS = [
   {
+    target: '.sim-ticker-wrap',
+    placement: 'bottom',
+    title: 'Bienvenue dans le simulateur 🎮',
+    body: 'Tu vas trader un <strong>cas historique réel</strong> (Apple, Bitcoin, GameStop…). Pas d\'argent réel, juste de l\'apprentissage.<br><br>Capital de départ : <strong>$10 000</strong>. Tu décides : acheter, vendre, attendre.',
+  },
+  {
     target: '.sim-price-row',
     placement: 'bottom',
     title: 'Le marché',
-    body: 'En haut : le <strong>prix actuel</strong>, sa variation, et ton <strong>cash dispo</strong> ($10k pour démarrer).',
+    body: 'En haut : le <strong>prix actuel</strong>, sa variation jour, et ton <strong>cash dispo</strong>. Le ticker change selon le scénario (AAPL, BTC, MSFT…).',
   },
   {
     target: '.sim-chart-wrap',
     placement: 'bottom',
     title: 'Lire le chart',
-    body: 'Chaque <strong>bougie</strong> = 1 jour (verte = ↑, rouge = ↓). Courbe violette = <strong>MM20</strong> (tendance).<br><br>🔍 Bouton <strong>zoom</strong> : cycle 4 niveaux (Tout → ½ → ¼ → ⅛). <strong>MM50</strong> : ajoute la tendance long-terme (orange).<br><br>💡 Touche une bougie pour son détail OHLC.',
+    body: 'Chaque <strong>bougie</strong> = 1 jour (verte = ↑, rouge = ↓). Courbe violette = <strong>MM20</strong> (tendance).<br><br>🔍 Bouton zoom : cycle 4 niveaux. MM50 : tendance long-terme (orange).<br>💡 Touche une bougie pour son détail OHLC.',
   },
   {
     target: '.tb-buy',
     placement: 'top',
-    title: 'Acheter',
-    body: 'Tape <strong>ACHETER</strong> pour ouvrir le panel d\'ordre : tu choisis ta quantité (slider %), définis <strong>SL/TP</strong> si nécessaire, et confirmes.',
+    title: 'Passer un ordre d\'achat',
+    body: 'Tape <strong>ACHETER</strong> → un panel slide-up apparaît avec :<br>• <strong>Slider %</strong> du capital (10%, 25%, 50%, MAX)<br>• Champ <strong>quantité</strong> manuel<br>• <strong>Stop-loss</strong> 🛡️ et <strong>take-profit</strong> 🎯 (si scénario activé)<br>• Récap coût + bouton <strong>CONFIRMER</strong>',
   },
   {
     target: '.tb-sell',
     placement: 'top',
-    title: 'Vendre',
-    body: 'Pareil pour <strong>VENDRE</strong> : ouvre le panel avec la quantité dispo en position. Reste verrouillé tant que tu n\'as pas d\'actions.',
+    title: 'Vendre ta position',
+    body: '<strong>VENDRE</strong> ouvre le même panel mais pour fermer. Le slider montre le % de tes actions à liquider.<br><br>⚠️ Reste <strong>verrouillé</strong> tant que tu n\'as pas d\'actions en portefeuille.',
   },
   {
     target: '.tb-advance',
     placement: 'top',
     title: 'Avancer le temps',
-    body: 'Chaque appui sur <strong>⏭ Avancer</strong> = 1 jour qui passe. Au <strong>jour 5</strong>, le coach 🎯 t\'arrête pour ton premier choix guidé.<br><br>🎯 Objectif : battre le <strong>Buy & Hold</strong> (acheter au début, garder = stratégie qui bat 80% des traders).',
+    body: 'Chaque appui sur <strong>⏭ Avancer</strong> = 1 jour qui passe. Le compteur (ex: J12/50) à l\'intérieur du bouton suit ta progression.<br><br>Au <strong>jour 5</strong>, le coach 🎯 t\'arrête pour ton premier choix guidé.',
+  },
+  {
+    target: '.sim-chart-wrap',
+    placement: 'bottom',
+    title: 'Ton objectif 🎯',
+    body: 'À la fin, ta perf est comparée au <strong>Buy & Hold</strong> = acheter au début, ne plus toucher. Cette stratégie bat <strong>80% des traders</strong>.<br><br>Ton défi : faire mieux qu\'elle.<br><br>💬 Les <span style="color:#7dd3fc;border-bottom:1px dashed #7dd3fc;">termes en bleu</span> du coach sont cliquables.',
   },
 ];
 let tutoStep = 0;
@@ -5615,13 +5635,8 @@ function renderTutoStep() {
   `;
   bubble.setAttribute('data-placement', s.placement);
 
-  // Re-trigger slide-in animation on each step change
-  bubble.classList.remove('slide-in');
-  void bubble.offsetWidth; // force reflow
-  bubble.classList.add('slide-in');
-
-  // Position bubble relative to target (after layout settled, allow scrollIntoView)
-  setTimeout(() => positionTutoBubble(target, s.placement), 320);
+  // Position bubble relative to target (CSS transitions handle fluid movement between steps)
+  positionTutoBubble(target, s.placement);
 }
 
 function positionTutoBubble(target, placement) {
@@ -7270,11 +7285,11 @@ document.addEventListener('keydown', (e) => {
 });
 
 </script>
-  <script type="module" src="tg-common.js?v=179"></script>
+  <script type="module" src="tg-common.js?v=180"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=179').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=180').catch(() => {});
       });
     }
   </script>
