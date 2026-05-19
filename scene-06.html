@@ -724,6 +724,9 @@ body { min-height: 100vh; min-height: 100dvh; }
   .cat-name { font-size: 14px; }
   .detail-hero-name { font-size: 21px; }
 }
+
+/* A11y — focus visible pour navigation clavier */
+:focus-visible { outline: 2px solid var(--acid); outline-offset: 3px; border-radius: 4px; }
 </style>
 </head>
 <body>
@@ -1765,8 +1768,13 @@ function escapeHtml(s) {
 /* ═══════════ INIT ═══════════ */
 renderHome();
 updateHeader();
+
+/* A11y — Escape = retour (navBack gère home → index.html) */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') navBack();
+});
 </script>
-  <script type="module" src="tg-common.js?v=151"></script>
+  <script type="module" src="tg-common.js?v=152"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {

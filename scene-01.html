@@ -3122,6 +3122,9 @@
     }
     .gw-compact strong { color: var(--text); font-weight: 700; }
 
+    /* A11y — focus visible pour navigation clavier */
+    :focus-visible { outline: 2px solid var(--acid); outline-offset: 3px; border-radius: 4px; }
+
     /* End of file CSS */
   </style>
 </head>
@@ -5600,7 +5603,7 @@
       }
     }
   </script>
-  <script type="module" src="tg-common.js?v=151"></script>
+  <script type="module" src="tg-common.js?v=152"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
