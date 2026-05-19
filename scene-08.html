@@ -2,11 +2,10 @@
 <!--
 ═══════════════════════════════════════════════════════════════════
                     TRADE GENIUS · scene-08.html
-                    PATTERNS LAB (Premium)
+                    PATTERNS LAB v2.09 (Premium)
 ═══════════════════════════════════════════════════════════════════
-  Galerie de patterns chartistes classiques avec animations Canvas
-  Patterns : H&S top, H&S inverse, Double Top, Double Bottom,
-             Triangle ascendant, Flag bull
+  Vue list (6 patterns) + vue détaillée par pattern :
+  définition, anatomie, psycho, trading, pièges, exemple historique.
 -->
 <html lang="fr">
 <head>
@@ -15,7 +14,7 @@
   <meta name="theme-color" content="#0a0a0c">
   <title>Trade Genius — Patterns Lab</title>
   <link rel="manifest" href="manifest.json">
-  <script type="module" src="tg-common.js?v=208"></script>
+  <script type="module" src="tg-common.js?v=209"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -36,9 +35,7 @@
       --text-dim: #a8a8b3;
       --text-faint: #6a6a75;
       --acid: #bef264;
-      --acid-glow: rgba(190,242,100,0.5);
       --purple: #a78bfa;
-      --purple-glow: rgba(167,139,250,0.5);
       --blue: #60a5fa;
       --gold: #f59e0b;
       --gold-glow: rgba(245,158,11,0.5);
@@ -57,43 +54,30 @@
       overscroll-behavior: none;
       -webkit-tap-highlight-color: transparent;
     }
-
-    /* Aurora background subtle */
     body::before {
-      content: '';
-      position: fixed;
+      content: ''; position: fixed;
       top: -10vh; left: -15%;
       width: 70vw; max-width: 540px; height: 60vh; min-height: 360px;
-      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(245,158,11,0.18) 0%, rgba(245,158,11,0) 65%);
-      filter: blur(36px);
-      z-index: 0; pointer-events: none;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(245,158,11,0.16) 0%, rgba(245,158,11,0) 65%);
+      filter: blur(36px); z-index: 0; pointer-events: none;
       animation: drift-gold 22s ease-in-out infinite;
     }
     body::after {
-      content: '';
-      position: fixed;
+      content: ''; position: fixed;
       bottom: 0; right: -20%;
       width: 80vw; max-width: 540px; height: 55vh; min-height: 340px;
-      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(167,139,250,0.16) 0%, rgba(167,139,250,0) 70%);
-      filter: blur(36px);
-      z-index: 0; pointer-events: none;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(167,139,250,0.14) 0%, rgba(167,139,250,0) 70%);
+      filter: blur(36px); z-index: 0; pointer-events: none;
       animation: drift-purple 28s ease-in-out infinite;
     }
-    @keyframes drift-gold {
-      0%,100% { transform: translate(0,0) scale(1); }
-      50%     { transform: translate(6vw, 4vh) scale(1.1); }
-    }
-    @keyframes drift-purple {
-      0%,100% { transform: translate(0,0) scale(1); }
-      50%     { transform: translate(-5vw, -3vh) scale(1.15); }
-    }
+    @keyframes drift-gold   { 0%,100% { transform: translate(0,0); } 50% { transform: translate(6vw,4vh) scale(1.1); } }
+    @keyframes drift-purple { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-5vw,-3vh) scale(1.15); } }
 
     .wrap {
       position: relative; z-index: 1;
       padding: calc(20px + env(safe-area-inset-top)) 16px calc(40px + env(safe-area-inset-bottom));
       max-width: 480px; margin: 0 auto;
     }
-
     .top-bar {
       display: flex; align-items: center; justify-content: space-between;
       margin-bottom: 18px;
@@ -118,6 +102,9 @@
       border: 1px solid rgba(245,158,11,0.4);
     }
 
+    .view-list { display: none; }
+    .view-list.active { display: block; }
+
     .h-eyebrow {
       font-family: var(--font-m); font-size: 10px; font-weight: 700;
       letter-spacing: 0.22em; color: var(--gold); text-transform: uppercase;
@@ -140,8 +127,16 @@
       border: 1px solid rgba(167,139,250,0.22);
       border-radius: 18px;
       box-shadow: 0 12px 32px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.04);
-      position: relative;
-      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, border-color 0.22s, box-shadow 0.22s;
+      position: relative; overflow: hidden;
+    }
+    .pattern-card:active { transform: scale(0.985); }
+    @media (hover: hover) {
+      .pattern-card:hover {
+        border-color: rgba(245,158,11,0.35);
+        box-shadow: 0 16px 38px rgba(0,0,0,0.4), 0 0 18px rgba(245,158,11,0.12);
+      }
     }
     .pc-head {
       display: flex; align-items: center; justify-content: space-between;
@@ -161,29 +156,183 @@
     .pc-tag.up { background: rgba(34,197,94,0.16); color: var(--green); border: 1px solid rgba(34,197,94,0.35); }
     .pc-tag.down { background: rgba(239,68,68,0.16); color: var(--red); border: 1px solid rgba(239,68,68,0.35); }
     .pc-tag.neutral { background: rgba(245,158,11,0.16); color: var(--gold); border: 1px solid rgba(245,158,11,0.4); }
-
     .pc-canvas {
-      width: 100%; height: 200px;
+      width: 100%; height: 180px;
       background: linear-gradient(180deg, var(--bg-deep) 0%, rgba(10,10,15,0.6) 100%);
       border: 1px solid var(--border);
       border-radius: 12px;
       display: block;
       margin-bottom: 10px;
     }
-    .pc-desc {
-      font-family: var(--font-d); font-size: 13px;
-      color: var(--text-dim); line-height: 1.4;
-      margin: 0;
+    .pc-tease {
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--font-d); font-size: 12.5px;
+      color: var(--text-dim); font-weight: 600;
     }
-    .pc-desc strong { color: var(--text); font-weight: 700; }
-    .pc-desc .acid { color: var(--acid); }
-    .pc-desc .gold { color: var(--gold); }
-    .pc-desc .purple { color: var(--purple); }
+    .pc-tease .pc-arrow { color: var(--gold); font-weight: 800; font-size: 18px; }
+
+    .coming-block {
+      text-align: center; margin-top: 24px; padding: 16px;
+      background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(167,139,250,0.2);
+      border-radius: 14px;
+    }
+    .coming-block .cb-lbl {
+      font-family: var(--font-m); font-size: 11px; letter-spacing: 0.16em;
+      color: var(--purple); text-transform: uppercase; margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .coming-block .cb-txt {
+      font-family: var(--font-d); font-size: 13.5px; color: var(--text-dim);
+      line-height: 1.45;
+    }
+
+    .view-detail { display: none; }
+    .view-detail.active { display: block; }
+
+    .d-hero {
+      margin-bottom: 18px;
+      padding: 18px;
+      background: linear-gradient(135deg, rgba(245,158,11,0.10) 0%, rgba(167,139,250,0.08) 100%);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 20px;
+      box-shadow: 0 14px 36px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.05);
+      position: relative; overflow: hidden;
+    }
+    .d-hero-head {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 12px; margin-bottom: 14px;
+    }
+    .d-name {
+      font-family: var(--font-d); font-size: 28px; font-weight: 800;
+      letter-spacing: -0.025em; line-height: 1.1; margin: 0;
+    }
+    .d-canvas {
+      width: 100%; height: 220px;
+      background: rgba(0,0,0,0.32);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      display: block;
+    }
+
+    .section {
+      margin-bottom: 16px;
+      padding: 16px;
+      background: linear-gradient(180deg, var(--surface) 0%, rgba(20,20,30,0.85) 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .section-eyebrow {
+      font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.22em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: var(--font-d); font-size: 18px; font-weight: 800;
+      letter-spacing: -0.015em; line-height: 1.2; margin: 0 0 10px;
+      color: var(--text);
+    }
+    .section-title em { font-style: italic; color: var(--gold); font-weight: 800; }
+    .section-text {
+      font-family: var(--font-d); font-size: 13.5px; color: var(--text);
+      line-height: 1.55; margin: 0;
+    }
+    .section-text + .section-text { margin-top: 10px; }
+    .section-text strong { color: var(--gold); font-weight: 700; }
+    .section-text em.acid { font-style: normal; color: var(--acid); font-weight: 700; }
+    .section-text em.purple { font-style: normal; color: var(--purple); font-weight: 700; }
+
+    .anatomy-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+    .ana-row {
+      display: grid; grid-template-columns: 36px 1fr; gap: 12px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .ana-num {
+      font-family: var(--font-d); font-size: 14px; font-weight: 800;
+      color: var(--gold);
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(245,158,11,0.12);
+      border: 1px solid rgba(245,158,11,0.3);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ana-body { font-family: var(--font-d); font-size: 13px; color: var(--text); line-height: 1.4; }
+    .ana-body strong { color: var(--text); font-weight: 800; }
+    .ana-body em.acid { font-style: normal; color: var(--acid); font-weight: 700; }
+    .ana-body em.purple { font-style: normal; color: var(--purple); font-weight: 700; }
+
+    .trade-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px; margin-top: 8px;
+    }
+    .trade-cell {
+      padding: 10px 8px;
+      background: rgba(0,0,0,0.32);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-align: center;
+    }
+    .trade-cell.entry  { border-color: rgba(96,165,250,0.35); }
+    .trade-cell.stop   { border-color: rgba(239,68,68,0.35); }
+    .trade-cell.target { border-color: rgba(34,197,94,0.35); }
+    .tc-lbl {
+      font-family: var(--font-m); font-size: 9px; font-weight: 800;
+      letter-spacing: 0.16em; color: var(--text-faint);
+      text-transform: uppercase; margin-bottom: 5px;
+    }
+    .trade-cell.entry  .tc-lbl { color: var(--blue); }
+    .trade-cell.stop   .tc-lbl { color: var(--red); }
+    .trade-cell.target .tc-lbl { color: var(--green); }
+    .tc-txt {
+      font-family: var(--font-d); font-size: 12px; color: var(--text);
+      line-height: 1.35; font-weight: 600;
+    }
+
+    .pitfall {
+      padding: 12px 14px;
+      background: linear-gradient(135deg, rgba(239,68,68,0.10), rgba(239,68,68,0.02));
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+    .pitfall .pf-lbl {
+      font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.18em; color: var(--red);
+      text-transform: uppercase; margin-bottom: 5px;
+    }
+    .pitfall .pf-txt {
+      font-family: var(--font-d); font-size: 13px; color: var(--text);
+      line-height: 1.45;
+    }
+    .pitfall .pf-txt strong { color: var(--red); }
+    .pitfall .pf-txt em.acid { font-style: normal; color: var(--acid); font-weight: 700; }
+    .pitfall .pf-txt em.purple { font-style: normal; color: var(--purple); font-weight: 700; }
+
+    .historic {
+      padding: 12px 14px;
+      background: linear-gradient(135deg, rgba(167,139,250,0.10), rgba(167,139,250,0.02));
+      border: 1px solid rgba(167,139,250,0.3);
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+    .historic .h-lbl {
+      font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.18em; color: var(--purple);
+      text-transform: uppercase; margin-bottom: 5px;
+    }
+    .historic .h-txt {
+      font-family: var(--font-d); font-size: 13px; color: var(--text);
+      line-height: 1.45;
+    }
+    .historic .h-txt strong { color: var(--purple); }
 
     @media (max-width: 360px) {
       .h-title { font-size: 26px; }
-      .pc-name { font-size: 16px; }
-      .pc-canvas { height: 170px; }
+      .d-name { font-size: 24px; }
+      .d-canvas { height: 190px; }
+      .section-title { font-size: 16px; }
     }
   </style>
 </head>
@@ -191,98 +340,41 @@
 
 <div class="wrap">
   <div class="top-bar">
-    <button class="back-btn" onclick="window.location.href='index.html#accueil'">← ACCUEIL</button>
+    <button class="back-btn" id="back-btn" onclick="goBack()">← ACCUEIL</button>
     <span class="premium-pill">✦ EXPERT</span>
   </div>
 
-  <div class="h-eyebrow">PATTERNS LAB</div>
-  <h1 class="h-title">Tous les <em>modèles classiques</em></h1>
-  <p class="h-sub">6 figures chartistes que tout pro reconnaît. Animations interactives, peu de texte.</p>
+  <div class="view-list active" id="view-list">
+    <div class="h-eyebrow">PATTERNS LAB</div>
+    <h1 class="h-title">Tous les <em>modèles classiques</em></h1>
+    <p class="h-sub">6 figures chartistes. Tap une carte pour la <strong>fiche complète</strong> : anatomie, psychologie, comment trader, pièges, exemple historique.</p>
 
-  <!-- 1. Head & Shoulders (top) -->
-  <div class="pattern-card">
-    <div class="pc-head">
-      <span class="pc-name">Head &amp; Shoulders</span>
-      <span class="pc-tag down">↘️ BAISSIER</span>
+    <div id="patterns-grid"></div>
+
+    <div class="coming-block">
+      <div class="cb-lbl">Prochainement</div>
+      <div class="cb-txt">Cup &amp; Handle · Wedge · Pennant · Rectangle · Channels · Diamond · Rounding Bottom...</div>
     </div>
-    <canvas class="pc-canvas" data-pattern="hs-top"></canvas>
-    <p class="pc-desc"><strong class="red">3 sommets</strong> : épaule gauche, tête plus haute, épaule droite. Cassure de la <strong class="gold">neckline</strong> = signal de vente.</p>
   </div>
 
-  <!-- 2. Inverse Head & Shoulders (bottom) -->
-  <div class="pattern-card">
-    <div class="pc-head">
-      <span class="pc-name">H&amp;S Inversé</span>
-      <span class="pc-tag up">↗️ HAUSSIER</span>
-    </div>
-    <canvas class="pc-canvas" data-pattern="hs-bottom"></canvas>
-    <p class="pc-desc">L'inverse : 3 creux, le central plus bas. Cassure de la <strong class="gold">neckline</strong> haussière = entrée d'achat.</p>
-  </div>
-
-  <!-- 3. Double Top -->
-  <div class="pattern-card">
-    <div class="pc-head">
-      <span class="pc-name">Double Top</span>
-      <span class="pc-tag down">↘️ BAISSIER</span>
-    </div>
-    <canvas class="pc-canvas" data-pattern="double-top"></canvas>
-    <p class="pc-desc"><strong>2 sommets</strong> au même niveau. Le marché essaie 2× de monter, échoue 2×. Cassure du <strong class="gold">support</strong> = retournement.</p>
-  </div>
-
-  <!-- 4. Double Bottom -->
-  <div class="pattern-card">
-    <div class="pc-head">
-      <span class="pc-name">Double Bottom</span>
-      <span class="pc-tag up">↗️ HAUSSIER</span>
-    </div>
-    <canvas class="pc-canvas" data-pattern="double-bottom"></canvas>
-    <p class="pc-desc"><strong>2 creux</strong> au même niveau. Le marché teste 2× le support, rebondit. Cassure de la <strong class="gold">résistance</strong> = entrée long.</p>
-  </div>
-
-  <!-- 5. Triangle ascendant -->
-  <div class="pattern-card">
-    <div class="pc-head">
-      <span class="pc-name">Triangle ascendant</span>
-      <span class="pc-tag up">↗️ HAUSSIER</span>
-    </div>
-    <canvas class="pc-canvas" data-pattern="triangle-asc"></canvas>
-    <p class="pc-desc">Résistance plate + creux qui montent. Les acheteurs gagnent du terrain. Cassure de la résistance = <strong class="acid">explosion à la hausse</strong>.</p>
-  </div>
-
-  <!-- 6. Bull Flag -->
-  <div class="pattern-card">
-    <div class="pc-head">
-      <span class="pc-name">Bull Flag</span>
-      <span class="pc-tag up">↗️ HAUSSIER</span>
-    </div>
-    <canvas class="pc-canvas" data-pattern="flag-bull"></canvas>
-    <p class="pc-desc">Forte montée (mât) → consolidation en canal descendant (drapeau). Cassure haussière = continuation. Cible = hauteur du mât.</p>
-  </div>
-
-  <div style="text-align:center; margin-top: 24px; padding: 16px; background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(245,158,11,0.05)); border: 1px solid rgba(167,139,250,0.2); border-radius: 14px;">
-    <p style="font-family: var(--font-m); font-size: 11px; letter-spacing: 0.16em; color: var(--purple); text-transform: uppercase; margin: 0 0 6px; font-weight: 700;">PROCHAINEMENT</p>
-    <p style="font-family: var(--font-d); font-size: 13.5px; color: var(--text-dim); margin: 0; line-height: 1.45;">Cup &amp; Handle · Wedge · Pennant · Rectangle · Channels · Diamond · Rounding Bottom...</p>
-  </div>
+  <div class="view-detail" id="view-detail"></div>
 </div>
 
 <script>
   /* ===================================================
-     PATTERNS LAB — Canvas drawers
+     PATTERNS LAB v2.09 — list + detail détaillé par pattern
      =================================================== */
-
   function setupCanvas(canvas) {
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = canvas.offsetWidth * DPR;
     canvas.height = canvas.offsetHeight * DPR;
     return { ctx: canvas.getContext('2d'), w: canvas.width, h: canvas.height, DPR };
   }
-
   function drawCurve(ctx, points, color, lineW, DPR, progress = 1) {
     ctx.strokeStyle = color;
     ctx.lineWidth = lineW * DPR;
     ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-    ctx.shadowColor = color;
-    ctx.shadowBlur = 6 * DPR;
+    ctx.shadowColor = color; ctx.shadowBlur = 6 * DPR;
     const lastIdx = Math.floor(progress * (points.length - 1));
     ctx.beginPath();
     for (let i = 0; i <= lastIdx; i++) {
@@ -298,7 +390,6 @@
     ctx.stroke();
     ctx.shadowBlur = 0;
   }
-
   function dashLine(ctx, x1, y1, x2, y2, color, DPR) {
     ctx.strokeStyle = color;
     ctx.lineWidth = 1.5 * DPR;
@@ -308,7 +399,6 @@
     ctx.stroke();
     ctx.setLineDash([]);
   }
-
   function label(ctx, text, x, y, color, DPR, align = 'center', size = 10) {
     ctx.font = `bold ${size * DPR}px JetBrains Mono`;
     ctx.fillStyle = color;
@@ -316,65 +406,49 @@
     ctx.fillText(text, x, y);
   }
 
-  /* === PATTERN 1 : Head & Shoulders (top) === */
-  function drawHSTop(canvas, animate = true) {
+  /* === Drawers (réutilisés en grand sur la vue detail) === */
+  function drawHSTop(canvas) {
     const { ctx, w, h, DPR } = setupCanvas(canvas);
     const padX = 20 * DPR, padY = 30 * DPR;
     const useW = w - padX * 2, useH = h - padY * 2;
-    // Points en pourcentage relatif
     const pts = [
-      [0.00, 0.85], [0.07, 0.7], [0.13, 0.55], // montée vers épaule gauche
-      [0.18, 0.4], [0.22, 0.45], // épaule gauche puis descente
+      [0.00, 0.85], [0.07, 0.7], [0.13, 0.55],
+      [0.18, 0.4], [0.22, 0.45],
       [0.30, 0.6], [0.35, 0.55],
-      [0.43, 0.3], [0.48, 0.15], [0.53, 0.2], // tête (sommet plus haut)
+      [0.43, 0.3], [0.48, 0.15], [0.53, 0.2],
       [0.60, 0.45], [0.65, 0.5],
-      [0.72, 0.35], [0.78, 0.40], // épaule droite (~même hauteur que gauche)
+      [0.72, 0.35], [0.78, 0.40],
       [0.85, 0.65], [0.92, 0.85], [1.00, 0.95]
     ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
-
     let progress = 0;
     function frame() {
       ctx.clearRect(0, 0, w, h);
       drawCurve(ctx, pts, '#ef4444', 2, DPR, progress);
-
-      // Labels en fin d'animation
       if (progress >= 1) {
-        const [, ly] = pts[4];   // épaule gauche peak ~ pts[3]
-        const [, hy] = pts[8];   // tête peak ~ pts[8]
-        const [, ry] = pts[13];  // épaule droite ~ pts[13]
         const neckY = padY + 0.6 * useH;
-        // Neckline
         dashLine(ctx, padX, neckY, padX + useW, neckY, '#f59e0b', DPR);
         label(ctx, 'NECKLINE', padX + useW - 8 * DPR, neckY - 4 * DPR, '#f59e0b', DPR, 'right', 9);
-        // Tête + épaules
         label(ctx, 'É.G', pts[3][0], pts[3][1] - 8 * DPR, '#a8a8b3', DPR);
         label(ctx, 'TÊTE', pts[8][0], pts[8][1] - 8 * DPR, '#ef4444', DPR, 'center', 11);
         label(ctx, 'É.D', pts[13][0], pts[13][1] - 8 * DPR, '#a8a8b3', DPR);
       }
-
-      if (animate && progress < 1) {
-        progress = Math.min(progress + 0.02, 1);
-        requestAnimationFrame(frame);
-      }
+      if (progress < 1) { progress = Math.min(progress + 0.02, 1); requestAnimationFrame(frame); }
     }
-    if (animate) frame(); else { progress = 1; frame(); }
+    frame();
   }
-
-  /* === PATTERN 2 : Head & Shoulders Inverse === */
   function drawHSBottom(canvas) {
     const { ctx, w, h, DPR } = setupCanvas(canvas);
     const padX = 20 * DPR, padY = 30 * DPR;
     const useW = w - padX * 2, useH = h - padY * 2;
     const pts = [
       [0.00, 0.15], [0.07, 0.3], [0.13, 0.45],
-      [0.18, 0.60], [0.22, 0.55], // épaule gauche basse
+      [0.18, 0.60], [0.22, 0.55],
       [0.30, 0.40], [0.35, 0.45],
-      [0.43, 0.70], [0.48, 0.85], [0.53, 0.80], // tête (creux plus bas)
+      [0.43, 0.70], [0.48, 0.85], [0.53, 0.80],
       [0.60, 0.55], [0.65, 0.50],
-      [0.72, 0.65], [0.78, 0.60], // épaule droite
+      [0.72, 0.65], [0.78, 0.60],
       [0.85, 0.35], [0.92, 0.15], [1.00, 0.05]
     ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
-
     let progress = 0;
     function frame() {
       ctx.clearRect(0, 0, w, h);
@@ -387,26 +461,20 @@
         label(ctx, 'TÊTE', pts[8][0], pts[8][1] + 14 * DPR, '#22c55e', DPR, 'center', 11);
         label(ctx, 'É.D', pts[13][0], pts[13][1] + 14 * DPR, '#a8a8b3', DPR);
       }
-      if (progress < 1) {
-        progress = Math.min(progress + 0.02, 1);
-        requestAnimationFrame(frame);
-      }
+      if (progress < 1) { progress = Math.min(progress + 0.02, 1); requestAnimationFrame(frame); }
     }
     frame();
   }
-
-  /* === PATTERN 3 : Double Top === */
   function drawDoubleTop(canvas) {
     const { ctx, w, h, DPR } = setupCanvas(canvas);
     const padX = 20 * DPR, padY = 30 * DPR;
     const useW = w - padX * 2, useH = h - padY * 2;
     const pts = [
-      [0.00, 0.85], [0.10, 0.65], [0.18, 0.45], [0.25, 0.25], [0.30, 0.20], // 1er sommet
-      [0.40, 0.45], [0.45, 0.55], [0.50, 0.50],                              // creux
-      [0.58, 0.30], [0.65, 0.22], [0.70, 0.20],                              // 2ème sommet (même niveau)
-      [0.80, 0.50], [0.88, 0.75], [1.00, 0.95]                               // chute
+      [0.00, 0.85], [0.10, 0.65], [0.18, 0.45], [0.25, 0.25], [0.30, 0.20],
+      [0.40, 0.45], [0.45, 0.55], [0.50, 0.50],
+      [0.58, 0.30], [0.65, 0.22], [0.70, 0.20],
+      [0.80, 0.50], [0.88, 0.75], [1.00, 0.95]
     ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
-
     let progress = 0;
     function frame() {
       ctx.clearRect(0, 0, w, h);
@@ -416,20 +484,15 @@
         const suppY = padY + 0.55 * useH;
         dashLine(ctx, padX, topY, padX + useW, topY, 'rgba(239,68,68,0.5)', DPR);
         dashLine(ctx, padX, suppY, padX + useW, suppY, '#f59e0b', DPR);
-        label(ctx, 'RÉSISTANCE', padX + 8 * DPR, topY - 4 * DPR, '#ef4444', DPR, 'left', 9);
+        label(ctx, 'RÉSIST.', padX + 8 * DPR, topY - 4 * DPR, '#ef4444', DPR, 'left', 9);
         label(ctx, 'SUPPORT', padX + useW - 8 * DPR, suppY - 4 * DPR, '#f59e0b', DPR, 'right', 9);
         label(ctx, 'M', pts[4][0], pts[4][1] - 8 * DPR, '#ef4444', DPR, 'center', 12);
         label(ctx, 'M', pts[10][0], pts[10][1] - 8 * DPR, '#ef4444', DPR, 'center', 12);
       }
-      if (progress < 1) {
-        progress = Math.min(progress + 0.02, 1);
-        requestAnimationFrame(frame);
-      }
+      if (progress < 1) { progress = Math.min(progress + 0.02, 1); requestAnimationFrame(frame); }
     }
     frame();
   }
-
-  /* === PATTERN 4 : Double Bottom === */
   function drawDoubleBottom(canvas) {
     const { ctx, w, h, DPR } = setupCanvas(canvas);
     const padX = 20 * DPR, padY = 30 * DPR;
@@ -440,7 +503,6 @@
       [0.58, 0.70], [0.65, 0.78], [0.70, 0.80],
       [0.80, 0.50], [0.88, 0.25], [1.00, 0.05]
     ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
-
     let progress = 0;
     function frame() {
       ctx.clearRect(0, 0, w, h);
@@ -451,85 +513,64 @@
         dashLine(ctx, padX, botY, padX + useW, botY, 'rgba(34,197,94,0.5)', DPR);
         dashLine(ctx, padX, resY, padX + useW, resY, '#f59e0b', DPR);
         label(ctx, 'SUPPORT', padX + 8 * DPR, botY + 14 * DPR, '#22c55e', DPR, 'left', 9);
-        label(ctx, 'RÉSISTANCE', padX + useW - 8 * DPR, resY - 4 * DPR, '#f59e0b', DPR, 'right', 9);
+        label(ctx, 'RÉSIST.', padX + useW - 8 * DPR, resY - 4 * DPR, '#f59e0b', DPR, 'right', 9);
         label(ctx, 'W', pts[4][0], pts[4][1] + 14 * DPR, '#22c55e', DPR, 'center', 12);
         label(ctx, 'W', pts[10][0], pts[10][1] + 14 * DPR, '#22c55e', DPR, 'center', 12);
       }
-      if (progress < 1) {
-        progress = Math.min(progress + 0.02, 1);
-        requestAnimationFrame(frame);
-      }
+      if (progress < 1) { progress = Math.min(progress + 0.02, 1); requestAnimationFrame(frame); }
     }
     frame();
   }
-
-  /* === PATTERN 5 : Triangle ascendant === */
   function drawTriangleAsc(canvas) {
     const { ctx, w, h, DPR } = setupCanvas(canvas);
     const padX = 20 * DPR, padY = 30 * DPR;
     const useW = w - padX * 2, useH = h - padY * 2;
-    const resY = padY + 0.25 * useH; // résistance plate
+    const resY = padY + 0.25 * useH;
     const pts = [
-      [0.00, 0.85], [0.08, 0.60], [0.13, 0.30], [0.18, 0.25], // touche résistance 1
+      [0.00, 0.85], [0.08, 0.60], [0.13, 0.30], [0.18, 0.25],
       [0.25, 0.55], [0.30, 0.65],
-      [0.36, 0.30], [0.40, 0.25], // touche résistance 2
+      [0.36, 0.30], [0.40, 0.25],
       [0.47, 0.50], [0.52, 0.55],
-      [0.58, 0.28], [0.62, 0.25], // touche résistance 3
+      [0.58, 0.28], [0.62, 0.25],
       [0.68, 0.45],
-      [0.74, 0.25], [0.80, 0.20], // breakout
+      [0.74, 0.25], [0.80, 0.20],
       [0.88, 0.10], [1.00, 0.02]
     ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
-
     let progress = 0;
     function frame() {
       ctx.clearRect(0, 0, w, h);
-
-      // Lignes triangle (résistance haute + ligne basse montante)
       if (progress >= 0.3) {
         const a = Math.min((progress - 0.3) * 3, 1);
         ctx.globalAlpha = a;
         dashLine(ctx, padX, resY, padX + 0.72 * useW, resY, '#ef4444', DPR);
-        // ligne montante du bas (de pt[0] à environ pt[12])
         const lowerStart = pts[0];
         const lowerEnd = [padX + 0.72 * useW, padY + 0.35 * useH];
         dashLine(ctx, lowerStart[0], lowerStart[1], lowerEnd[0], lowerEnd[1], '#22c55e', DPR);
         ctx.globalAlpha = 1;
       }
-
       drawCurve(ctx, pts, '#a78bfa', 2, DPR, progress);
-
       if (progress >= 1) {
         label(ctx, 'RÉSIST.', padX + 8 * DPR, resY - 4 * DPR, '#ef4444', DPR, 'left', 9);
         label(ctx, 'BREAK', pts[15][0], pts[15][1] - 8 * DPR, '#bef264', DPR, 'center', 11);
       }
-
-      if (progress < 1) {
-        progress = Math.min(progress + 0.018, 1);
-        requestAnimationFrame(frame);
-      }
+      if (progress < 1) { progress = Math.min(progress + 0.018, 1); requestAnimationFrame(frame); }
     }
     frame();
   }
-
-  /* === PATTERN 6 : Bull Flag === */
   function drawFlagBull(canvas) {
     const { ctx, w, h, DPR } = setupCanvas(canvas);
     const padX = 20 * DPR, padY = 30 * DPR;
     const useW = w - padX * 2, useH = h - padY * 2;
-    // Mât (forte montée) → drapeau (canal descendant) → breakout
     const pts = [
       [0.00, 0.95], [0.04, 0.85], [0.08, 0.70], [0.12, 0.55],
-      [0.16, 0.40], [0.20, 0.25], [0.24, 0.15], // mât
-      [0.32, 0.25], [0.38, 0.20], [0.44, 0.30], [0.50, 0.28], // canal drapeau descendant
+      [0.16, 0.40], [0.20, 0.25], [0.24, 0.15],
+      [0.32, 0.25], [0.38, 0.20], [0.44, 0.30], [0.50, 0.28],
       [0.56, 0.38], [0.62, 0.32], [0.68, 0.40],
-      [0.74, 0.25], [0.80, 0.12], [0.88, 0.05], [1.00, 0.02] // breakout + cible
+      [0.74, 0.25], [0.80, 0.12], [0.88, 0.05], [1.00, 0.02]
     ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
-
     let progress = 0;
     function frame() {
       ctx.clearRect(0, 0, w, h);
-
-      // Canal drapeau (2 lignes parallèles descendantes)
       if (progress >= 0.4) {
         const a = Math.min((progress - 0.4) * 3, 1);
         ctx.globalAlpha = a;
@@ -541,46 +582,299 @@
         dashLine(ctx, botX1, botY1, botX2, botY2, '#a78bfa', DPR);
         ctx.globalAlpha = 1;
       }
-
       drawCurve(ctx, pts, '#22c55e', 2, DPR, progress);
-
       if (progress >= 1) {
         label(ctx, 'MÂT', pts[5][0] - 10 * DPR, pts[5][1] + 10 * DPR, '#22c55e', DPR, 'right', 10);
         label(ctx, 'DRAPEAU', padX + 0.49 * useW, padY + 0.5 * useH + 14 * DPR, '#a78bfa', DPR, 'center', 10);
         label(ctx, 'BREAKOUT', pts[16][0], pts[16][1] - 8 * DPR, '#bef264', DPR, 'center', 10);
       }
-
-      if (progress < 1) {
-        progress = Math.min(progress + 0.018, 1);
-        requestAnimationFrame(frame);
-      }
+      if (progress < 1) { progress = Math.min(progress + 0.018, 1); requestAnimationFrame(frame); }
     }
     frame();
   }
 
-  const DRAWERS = {
-    'hs-top': drawHSTop,
-    'hs-bottom': drawHSBottom,
-    'double-top': drawDoubleTop,
-    'double-bottom': drawDoubleBottom,
-    'triangle-asc': drawTriangleAsc,
-    'flag-bull': drawFlagBull,
+  /* === Données patterns + contenu détaillé === */
+  const PATTERNS = {
+    'hs-top': {
+      name: 'Head & Shoulders',
+      tag: 'down',
+      tagLabel: '↘️ BAISSIER',
+      drawer: drawHSTop,
+      teaser: '3 sommets · neckline · retournement',
+      definition: `Le <strong>Head &amp; Shoulders</strong> (épaule-tête-épaule) est l'une des figures de retournement <em class="acid">les plus fiables</em> de l'analyse technique. Elle marque la <strong>fin d'une tendance haussière</strong> et le début d'un mouvement baissier majeur. Trois sommets se forment : une première épaule, une tête plus élevée, puis une seconde épaule à un niveau similaire à la première. Les creux entre ces sommets définissent une <em class="purple">neckline</em>, ligne horizontale ou légèrement inclinée.`,
+      anatomy: [
+        { n: '1', t: '<strong>Épaule gauche</strong> : prix monte fortement puis corrige. Volume <em class="acid">élevé</em> typique d\'un mouvement haussier sain.' },
+        { n: '2', t: '<strong>Tête</strong> : nouvelle hausse qui dépasse l\'épaule gauche. <em class="acid">Volume décroissant</em> par rapport à l\'épaule — signal d\'essoufflement.' },
+        { n: '3', t: '<strong>Épaule droite</strong> : tentative de hausse qui échoue à atteindre la tête. <em class="purple">Volume faible</em> — les acheteurs sont à court.' },
+        { n: '4', t: '<strong>Neckline cassée</strong> : prix passe sous la ligne reliant les 2 creux. <em class="acid">Volume explose</em> — capitulation des acheteurs.' },
+      ],
+      psychology: `Cette figure raconte l'histoire d'<strong>une perte progressive de conviction</strong> chez les acheteurs. Lors de l'épaule gauche, ils sont confiants. À la tête, ils poussent encore mais avec moins d'élan. À l'épaule droite, ils essaient une dernière fois mais échouent à dépasser la tête : c'est le signal que <em class="purple">le marché est épuisé</em>. La cassure de la neckline confirme que les vendeurs ont pris le contrôle.`,
+      trade: {
+        entry: 'Cassure confirmée de la neckline (clôture + volume)',
+        stop: 'Au-dessus de l\'épaule droite',
+        target: 'Hauteur tête-neckline projetée vers le bas',
+      },
+      pitfall: `<strong>Faux breakout</strong> : si le prix casse la neckline mais remonte rapidement au-dessus, la figure est invalidée. <strong>Toujours attendre une clôture sous la neckline avec volume élevé</strong>. Les épaules doivent être à des niveaux similaires (±10%) — sinon c'est une configuration différente, moins fiable.`,
+      historic: `<strong>Bitcoin décembre 2017 → janvier 2018</strong> : H&amp;S top parfait sur BTC après le pic à 20 000 $. La cassure de la neckline vers 11 000 $ a déclenché une chute jusqu'à 3 200 $ (−84%). <strong>Apple en 2012</strong> : H&amp;S sur le timeframe hebdo a annoncé la correction de 700 $ à 390 $ avant le split.`,
+    },
+
+    'hs-bottom': {
+      name: 'H&S Inversé',
+      tag: 'up',
+      tagLabel: '↗️ HAUSSIER',
+      drawer: drawHSBottom,
+      teaser: '3 creux · neckline haussière',
+      definition: `Le <strong>Head &amp; Shoulders inversé</strong> est le miroir baissier de la figure classique. C'est une <em class="acid">figure de retournement haussier</em> qui apparaît en fin de tendance baissière. Trois creux se forment : un premier creux (épaule gauche), un creux plus profond (tête inversée), puis un troisième creux similaire au premier (épaule droite). La neckline reliant les 2 sommets intermédiaires marque le seuil de cassure.`,
+      anatomy: [
+        { n: '1', t: '<strong>Épaule gauche basse</strong> : prix descend puis rebondit modestement. Volume encore élevé sur la baisse.' },
+        { n: '2', t: '<strong>Tête</strong> : nouveau creux plus bas, panique maximale. <em class="acid">Volume capitulation</em> — souvent un sell-off spectaculaire.' },
+        { n: '3', t: '<strong>Épaule droite</strong> : retest du niveau de l\'épaule gauche mais le creux est moins profond. <em class="purple">Volume faible</em> — les vendeurs sont épuisés.' },
+        { n: '4', t: '<strong>Cassure neckline haussière</strong> : prix passe au-dessus avec <em class="acid">volume explosif</em>. Signal d\'achat confirmé.' },
+      ],
+      psychology: `Les vendeurs s'épuisent en 3 vagues, chacune plus faible que la précédente. <strong>Les acheteurs informés (smart money) accumulent silencieusement</strong> aux niveaux de creux, profitant du désespoir général. Quand la neckline est cassée, le grand public réalise que la baisse est terminée : afflux d'achats → mouvement haussier puissant.`,
+      trade: {
+        entry: 'Cassure de la neckline avec volume',
+        stop: 'Sous le creux de l\'épaule droite',
+        target: 'Hauteur tête-neckline projetée vers le haut',
+      },
+      pitfall: `Ne pas confondre avec un <strong>triple bottom</strong> (3 creux au même niveau, sans tête plus basse) — c'est plus rare et moins fiable. Le volume de capitulation à la tête est <strong>essentiel</strong> : sans lui, c'est probablement un simple range qui finira par casser à la baisse.`,
+      historic: `<strong>S&amp;P 500 mars 2009</strong> : un H&amp;S inversé majestueux après la chute de 2007-2008. La cassure de la neckline à 940 a marqué le début du plus long bull market de l'histoire moderne (2009-2020). <strong>Bitcoin novembre 2018 → avril 2019</strong> : H&amp;S inversé qui a précédé la remontée de 3 200 $ à 13 000 $.`,
+    },
+
+    'double-top': {
+      name: 'Double Top',
+      tag: 'down',
+      tagLabel: '↘️ BAISSIER',
+      drawer: drawDoubleTop,
+      teaser: '2 sommets · support cassé · "M"',
+      definition: `Le <strong>Double Top</strong> (forme en "M") est un pattern de <em class="acid">retournement baissier puissant</em>. Deux sommets se forment au même niveau, séparés par un creux. La résistance horizontale est testée 2 fois sans être franchie. La cassure du support intermédiaire (le creux entre les 2 sommets) confirme le retournement.`,
+      anatomy: [
+        { n: '1', t: '<strong>1er sommet</strong> : montée forte, atteint un plus haut. <em class="acid">Volume élevé</em>.' },
+        { n: '2', t: '<strong>Correction</strong> : prix retombe au support intermédiaire (creux entre les 2 sommets).' },
+        { n: '3', t: '<strong>2ème sommet</strong> : nouvelle tentative qui échoue au même niveau. <em class="purple">Volume nettement plus faible</em> — signal d\'épuisement.' },
+        { n: '4', t: '<strong>Cassure du support</strong> : prix passe sous le creux intermédiaire. <em class="acid">Volume élevé</em> sur la cassure.' },
+      ],
+      psychology: `Le marché essaie 2 fois de franchir une zone de résistance. À chaque échec, la confiance des acheteurs s'érode. Le 2ème sommet avec un volume plus faible montre que <strong>les acheteurs n'ont plus la force</strong>. Les vendeurs prennent le contrôle quand le support cède : c'est souvent <em class="purple">violent</em> car les stops accumulés sous le support déclenchent une cascade.`,
+      trade: {
+        entry: 'Cassure du support intermédiaire',
+        stop: 'Au-dessus du 2ème sommet',
+        target: 'Hauteur sommet-support projetée vers le bas',
+      },
+      pitfall: `<strong>Faux double top</strong> : si la cassure du support n'est <strong>pas accompagnée de volume</strong>, méfiance. Le retest du support (qui devient résistance) après cassure est souvent une <em class="acid">2ème opportunité d'entrée</em>. Attention : 2 sommets très proches dans le temps sont moins fiables qu'un double top espacé (1-3 mois).`,
+      historic: `<strong>Krach 1929 sur le Dow Jones</strong> : double top emblématique avant la Grande Dépression. <strong>Tesla novembre 2021 → fév 2022</strong> : double top à 1 200 $ qui a précédé la chute à 102 $ (−92%). <strong>Bitcoin 2021</strong> : double top entre avril (64k$) et novembre (69k$) annonçant le bear market crypto.`,
+    },
+
+    'double-bottom': {
+      name: 'Double Bottom',
+      tag: 'up',
+      tagLabel: '↗️ HAUSSIER',
+      drawer: drawDoubleBottom,
+      teaser: '2 creux · résistance cassée · "W"',
+      definition: `Le <strong>Double Bottom</strong> (forme en "W") est le miroir haussier du double top. Deux creux se forment au même niveau, séparés par un rebond. La cassure de la résistance intermédiaire (le sommet entre les 2 creux) confirme le retournement haussier.`,
+      anatomy: [
+        { n: '1', t: '<strong>1er creux</strong> : forte baisse, atteint un plus bas. <em class="acid">Volume de capitulation</em>.' },
+        { n: '2', t: '<strong>Rebond</strong> : prix remonte à la résistance intermédiaire.' },
+        { n: '3', t: '<strong>2ème creux</strong> : retest du même niveau qu\'au 1er creux. <em class="purple">Volume plus faible</em> — les vendeurs sont épuisés.' },
+        { n: '4', t: '<strong>Cassure de la résistance</strong> : prix passe au-dessus du sommet intermédiaire avec <em class="acid">volume explosif</em>.' },
+      ],
+      psychology: `Le marché teste 2 fois un support, montrant que les acheteurs reviennent à ce niveau. Le 2ème creux avec volume plus faible montre que les vendeurs <strong>n'arrivent plus à pousser plus bas</strong>. La cassure de la résistance déclenche les achats : les short sellers couvrent leurs positions (short squeeze possible), amplifiant le mouvement.`,
+      trade: {
+        entry: 'Cassure de la résistance intermédiaire',
+        stop: 'Sous le 2ème creux',
+        target: 'Hauteur creux-résistance projetée vers le haut',
+      },
+      pitfall: `Un double bottom <strong>sans volume de capitulation</strong> au 1er creux est suspect. Le 2ème creux peut parfois être légèrement plus bas que le 1er (jusqu'à -3%) sans invalider la figure. Si la résistance casse mais le prix retombe sous le 1er sommet → <em class="purple">faux signal</em>, invalidé.`,
+      historic: `<strong>S&amp;P 500 2002-2003</strong> : double bottom à 770 puis 800 après la crise dotcom. Cassure de la résistance à 950 a marqué le début du bull market 2003-2007. <strong>Bitcoin 2015</strong> : double bottom à 200 $ qui a précédé la remontée vers 20 000 $ en 2017.`,
+    },
+
+    'triangle-asc': {
+      name: 'Triangle ascendant',
+      tag: 'up',
+      tagLabel: '↗️ HAUSSIER',
+      drawer: drawTriangleAsc,
+      teaser: 'Résistance plate · creux montants',
+      definition: `Le <strong>Triangle ascendant</strong> est un pattern de <em class="acid">continuation haussière</em>. Il se forme dans une tendance haussière par : (1) une résistance horizontale testée plusieurs fois, et (2) une ligne de tendance ascendante qui relie les creux successifs. Plus le triangle se forme longtemps (3 semaines à 3 mois), plus la cassure haussière est puissante.`,
+      anatomy: [
+        { n: '1', t: '<strong>Résistance horizontale</strong> : testée au moins 2-3 fois sans être franchie. Les acheteurs sont actifs mais bloqués à ce niveau.' },
+        { n: '2', t: '<strong>Creux ascendants</strong> : chaque correction est moins profonde que la précédente. Les acheteurs entrent <em class="acid">plus tôt</em>.' },
+        { n: '3', t: '<strong>Compression</strong> : le triangle se resserre, la volatilité diminue. <em class="purple">Volume décroissant</em> typique.' },
+        { n: '4', t: '<strong>Breakout haussier</strong> : prix casse la résistance avec <em class="acid">forte explosion de volume</em>.' },
+      ],
+      psychology: `Les acheteurs deviennent <strong>de plus en plus agressifs</strong> à chaque correction (creux qui montent). Pendant ce temps, les vendeurs persistent à la même résistance mais leur force diminue. Quand la pression acheteuse devient trop forte, la résistance cède : c'est l'<em class="acid">explosion à la hausse</em>, souvent accompagnée d'un gap.`,
+      trade: {
+        entry: 'Cassure de la résistance + volume',
+        stop: 'Sous le dernier creux (ou sous la ligne de tendance)',
+        target: 'Hauteur initiale du triangle projetée',
+      },
+      pitfall: `<strong>Faux breakout</strong> sans volume = piège classique. Attendre une <strong>clôture au-dessus de la résistance</strong> avant d'entrer. Si le prix casse sous la ligne ascendante au lieu de la résistance, c'est un signal baissier (cassure inverse). Un triangle qui dure plus de 6 mois perd en fiabilité.`,
+      historic: `<strong>Nvidia 2023</strong> : triangle ascendant de 6 mois entre 200 $ et 280 $, cassé en mai après les résultats IA, puis montée à 950 $. <strong>Apple 2017</strong> : triangle ascendant sur 4 mois avant l'envolée vers 230 $.`,
+    },
+
+    'flag-bull': {
+      name: 'Bull Flag',
+      tag: 'up',
+      tagLabel: '↗️ HAUSSIER',
+      drawer: drawFlagBull,
+      teaser: 'Mât + drapeau + breakout',
+      definition: `Le <strong>Bull Flag</strong> (drapeau haussier) est un pattern de <em class="acid">continuation haussière</em> très courant. Il se forme en 2 phases : (1) le <strong>mât</strong> = forte hausse verticale (souvent +20-50% en peu de temps), suivie de (2) <strong>le drapeau</strong> = consolidation en canal descendant ou rectangle, avec une amplitude limitée. La cassure haussière du drapeau relance la tendance avec une cible proportionnelle au mât.`,
+      anatomy: [
+        { n: '1', t: '<strong>Le mât</strong> : montée verticale forte sur peu de bougies. <em class="acid">Volume très élevé</em> typique d\'un mouvement institutionnel.' },
+        { n: '2', t: '<strong>Le drapeau</strong> : prix consolide dans un canal descendant ou horizontal. <em class="purple">Volume nettement plus faible</em> — pas de panique, juste du profit-taking.' },
+        { n: '3', t: '<strong>Compression du drapeau</strong> : la consolidation dure 5 à 15 bougies. Plus court que le mât.' },
+        { n: '4', t: '<strong>Breakout haussier</strong> : cassure de la borne haute du drapeau avec <em class="acid">explosion de volume</em>. Reprise de la tendance.' },
+      ],
+      psychology: `Après une forte hausse, certains traders prennent leurs profits → consolidation. Mais <strong>la majorité reste positionnée</strong> car ils anticipent la suite. Le drapeau représente une <em class="purple">pause saine</em>, pas un retournement. Quand de nouveaux acheteurs entrent à la cassure, l'élan reprend avec encore plus de force.`,
+      trade: {
+        entry: 'Cassure haussière de la borne haute du drapeau',
+        stop: 'Sous la borne basse du drapeau',
+        target: 'Hauteur du mât projetée depuis le breakout',
+      },
+      pitfall: `Si le drapeau dure <strong>plus longtemps que le mât</strong>, c'est suspect (probable retournement). Si le drapeau est ascendant au lieu de descendant ou horizontal → ce n'est pas un bull flag, c'est un <em class="purple">wedge ascendant</em> (souvent baissier). Volume sur le breakout est <strong>critique</strong> : sans lui, le faux signal est fréquent.`,
+      historic: `<strong>GameStop janvier 2021</strong> : plusieurs bull flags consécutifs pendant le short squeeze. <strong>Tesla 2020</strong> : bull flag de 3 semaines à 200 $ avant l'envolée vers 700 $. <strong>Bitcoin 2020-2021</strong> : bull flag à 20k$ avant la cassure à 60k$.`,
+    },
   };
 
-  // Intersection observer pour lancer l'anim au scroll
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const c = e.target;
-        if (c._drawn) return;
-        const key = c.dataset.pattern;
-        const fn = DRAWERS[key];
-        if (fn) { fn(c); c._drawn = true; }
-      }
-    });
-  }, { threshold: 0.3 });
+  /* === Routing list ↔ detail === */
+  let _currentPattern = null;
 
-  document.querySelectorAll('canvas[data-pattern]').forEach(c => observer.observe(c));
+  function renderList() {
+    const grid = document.getElementById('patterns-grid');
+    grid.innerHTML = Object.keys(PATTERNS).map(key => {
+      const p = PATTERNS[key];
+      return `
+        <div class="pattern-card" data-key="${key}" onclick="openDetail('${key}')">
+          <div class="pc-head">
+            <span class="pc-name">${p.name}</span>
+            <span class="pc-tag ${p.tag}">${p.tagLabel}</span>
+          </div>
+          <canvas class="pc-canvas" data-key="${key}"></canvas>
+          <div class="pc-tease">
+            <span>${p.teaser}</span>
+            <span class="pc-arrow">→</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const c = e.target;
+          if (c._drawn) return;
+          const key = c.dataset.key;
+          const p = PATTERNS[key];
+          if (p && p.drawer) { p.drawer(c); c._drawn = true; }
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.pc-canvas').forEach(c => observer.observe(c));
+  }
+
+  function openDetail(key) {
+    if (navigator.vibrate) navigator.vibrate(8);
+    _currentPattern = key;
+    const p = PATTERNS[key];
+    if (!p) return;
+
+    const detail = document.getElementById('view-detail');
+    detail.innerHTML = `
+      <div class="d-hero">
+        <div class="d-hero-head">
+          <h1 class="d-name">${p.name}</h1>
+          <span class="pc-tag ${p.tag}" style="flex-shrink:0;">${p.tagLabel}</span>
+        </div>
+        <canvas class="d-canvas" id="d-canvas"></canvas>
+      </div>
+
+      <div class="section">
+        <div class="section-eyebrow">DÉFINITION</div>
+        <h2 class="section-title">Qu'est-ce que c'est ?</h2>
+        <p class="section-text">${p.definition}</p>
+      </div>
+
+      <div class="section">
+        <div class="section-eyebrow">ANATOMIE</div>
+        <h2 class="section-title">Étape par étape</h2>
+        <div class="anatomy-grid">
+          ${p.anatomy.map(a => `
+            <div class="ana-row">
+              <div class="ana-num">${a.n}</div>
+              <div class="ana-body">${a.t}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-eyebrow">PSYCHOLOGIE</div>
+        <h2 class="section-title">Ce que pense <em>le marché</em></h2>
+        <p class="section-text">${p.psychology}</p>
+      </div>
+
+      <div class="section">
+        <div class="section-eyebrow">COMMENT TRADER</div>
+        <h2 class="section-title">Entrée · Stop · Cible</h2>
+        <div class="trade-grid">
+          <div class="trade-cell entry">
+            <div class="tc-lbl">Entrée</div>
+            <div class="tc-txt">${p.trade.entry}</div>
+          </div>
+          <div class="trade-cell stop">
+            <div class="tc-lbl">Stop</div>
+            <div class="tc-txt">${p.trade.stop}</div>
+          </div>
+          <div class="trade-cell target">
+            <div class="tc-lbl">Cible</div>
+            <div class="tc-txt">${p.trade.target}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-eyebrow">PIÈGES</div>
+        <h2 class="section-title">Faux signaux à éviter</h2>
+        <div class="pitfall">
+          <div class="pf-lbl">⚠ Attention</div>
+          <p class="pf-txt">${p.pitfall}</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-eyebrow">EXEMPLES HISTORIQUES</div>
+        <h2 class="section-title">Cas <em>réels</em></h2>
+        <div class="historic">
+          <div class="h-lbl">📜 Marchés</div>
+          <p class="h-txt">${p.historic}</p>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('view-list').classList.remove('active');
+    detail.classList.add('active');
+    document.getElementById('back-btn').textContent = '← PATTERNS';
+    window.scrollTo(0, 0);
+
+    setTimeout(() => {
+      const c = document.getElementById('d-canvas');
+      if (c && p.drawer) p.drawer(c);
+    }, 60);
+  }
+
+  function closeDetail() {
+    if (navigator.vibrate) navigator.vibrate(6);
+    document.getElementById('view-detail').classList.remove('active');
+    document.getElementById('view-list').classList.add('active');
+    document.getElementById('back-btn').textContent = '← ACCUEIL';
+    _currentPattern = null;
+    window.scrollTo(0, 0);
+  }
+
+  function goBack() {
+    if (_currentPattern) closeDetail();
+    else window.location.href = 'index.html#accueil';
+  }
+
+  renderList();
 </script>
 
 </body>

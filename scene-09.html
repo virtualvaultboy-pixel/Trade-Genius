@@ -2,9 +2,11 @@
 <!--
 ═══════════════════════════════════════════════════════════════════
                     TRADE GENIUS · scene-09.html
-                    HISTORIQUES (Premium) — krachs majeurs
+                    HISTORIQUES v2.09 (Premium)
 ═══════════════════════════════════════════════════════════════════
-  Mini-charts animés des 4 krachs majeurs avec leçons clés
+  Vue list (4 krachs) + vue détaillée :
+  contexte, chronologie, causes, conséquences,
+  signes avant-coureurs, comment s'en prémunir, leçons.
 -->
 <html lang="fr">
 <head>
@@ -13,7 +15,7 @@
   <meta name="theme-color" content="#0a0a0c">
   <title>Trade Genius — Historiques</title>
   <link rel="manifest" href="manifest.json">
-  <script type="module" src="tg-common.js?v=208"></script>
+  <script type="module" src="tg-common.js?v=209"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -54,8 +56,7 @@
       -webkit-tap-highlight-color: transparent;
     }
     body::before {
-      content: '';
-      position: fixed;
+      content: ''; position: fixed;
       top: 10vh; left: -20%;
       width: 80vw; max-width: 540px; height: 60vh; min-height: 360px;
       background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(239,68,68,0.18) 0%, rgba(239,68,68,0) 65%);
@@ -64,8 +65,7 @@
       animation: drift-red 24s ease-in-out infinite;
     }
     body::after {
-      content: '';
-      position: fixed;
+      content: ''; position: fixed;
       bottom: -5vh; right: -20%;
       width: 80vw; max-width: 540px; height: 55vh; min-height: 340px;
       background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(167,139,250,0.15) 0%, rgba(167,139,250,0) 70%);
@@ -105,6 +105,9 @@
       border: 1px solid rgba(245,158,11,0.4);
     }
 
+    .view-list { display: none; }
+    .view-list.active { display: block; }
+
     .h-eyebrow {
       font-family: var(--font-m); font-size: 10px; font-weight: 700;
       letter-spacing: 0.22em; color: var(--red); text-transform: uppercase;
@@ -127,8 +130,16 @@
       border: 1px solid rgba(239,68,68,0.2);
       border-radius: 18px;
       box-shadow: 0 12px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
-      position: relative;
-      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, border-color 0.22s, box-shadow 0.22s;
+      position: relative; overflow: hidden;
+    }
+    .krach-card:active { transform: scale(0.985); }
+    @media (hover: hover) {
+      .krach-card:hover {
+        border-color: rgba(239,68,68,0.4);
+        box-shadow: 0 16px 38px rgba(0,0,0,0.4), 0 0 18px rgba(239,68,68,0.16);
+      }
     }
     .kc-head {
       display: flex; align-items: baseline; justify-content: space-between;
@@ -152,34 +163,171 @@
       margin-bottom: 10px; text-transform: uppercase;
     }
     .kc-canvas {
-      width: 100%; height: 180px;
+      width: 100%; height: 160px;
       background: linear-gradient(180deg, var(--bg-deep) 0%, rgba(10,10,15,0.6) 100%);
       border: 1px solid var(--border);
       border-radius: 12px;
       display: block;
-      margin: 8px 0 12px;
+      margin: 8px 0 10px;
     }
-    .kc-lesson {
-      padding: 12px 14px;
-      background: linear-gradient(135deg, rgba(245,158,11,0.10) 0%, rgba(245,158,11,0.02) 100%);
-      border: 1px solid rgba(245,158,11,0.28);
+    .kc-tease {
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--font-d); font-size: 12.5px;
+      color: var(--text-dim); font-weight: 600;
+    }
+    .kc-tease .kc-arrow { color: var(--red); font-weight: 800; font-size: 18px; }
+
+    .coming-block {
+      text-align: center; margin-top: 24px; padding: 16px;
+      background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(245,158,11,0.05));
+      border: 1px solid rgba(167,139,250,0.2);
+      border-radius: 14px;
+    }
+    .coming-block .cb-lbl {
+      font-family: var(--font-m); font-size: 11px; letter-spacing: 0.16em;
+      color: var(--purple); text-transform: uppercase; margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .coming-block .cb-txt {
+      font-family: var(--font-d); font-size: 13.5px; color: var(--text-dim);
+      line-height: 1.45;
+    }
+
+    .view-detail { display: none; }
+    .view-detail.active { display: block; }
+
+    .d-hero {
+      margin-bottom: 18px;
+      padding: 18px;
+      background: linear-gradient(135deg, rgba(239,68,68,0.12) 0%, rgba(167,139,250,0.08) 100%);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 20px;
+      box-shadow: 0 14px 36px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .d-hero-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 4px;
+    }
+    .d-year {
+      font-family: var(--font-m); font-size: 11px; font-weight: 800;
+      letter-spacing: 0.2em; color: var(--red);
+    }
+    .d-loss {
+      font-family: var(--font-d); font-size: 22px; font-weight: 800;
+      color: var(--red); letter-spacing: -0.02em;
+    }
+    .d-name {
+      font-family: var(--font-d); font-size: 26px; font-weight: 800;
+      letter-spacing: -0.025em; line-height: 1.1; margin: 0 0 4px;
+    }
+    .d-tag {
+      font-family: var(--font-m); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.08em; color: var(--text-dim);
+      margin-bottom: 12px; text-transform: uppercase;
+    }
+    .d-canvas {
+      width: 100%; height: 200px;
+      background: rgba(0,0,0,0.32);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: block;
+    }
+
+    .section {
+      margin-bottom: 14px;
+      padding: 16px;
+      background: linear-gradient(180deg, var(--surface) 0%, rgba(20,20,30,0.85) 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .section-eyebrow {
+      font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.22em; color: var(--red);
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .section-eyebrow.gold { color: var(--gold); }
+    .section-eyebrow.purple { color: var(--purple); }
+    .section-eyebrow.green { color: var(--green); }
+    .section-title {
+      font-family: var(--font-d); font-size: 18px; font-weight: 800;
+      letter-spacing: -0.015em; line-height: 1.2; margin: 0 0 10px;
+      color: var(--text);
+    }
+    .section-title em { font-style: italic; color: var(--red); font-weight: 800; }
+    .section-title em.gold { color: var(--gold); }
+    .section-title em.purple { color: var(--purple); }
+    .section-title em.green { color: var(--green); }
+    .section-text {
+      font-family: var(--font-d); font-size: 13.5px; color: var(--text);
+      line-height: 1.55; margin: 0;
+    }
+    .section-text + .section-text { margin-top: 10px; }
+    .section-text strong { color: var(--gold); font-weight: 700; }
+    .section-text em.red    { font-style: normal; color: var(--red); font-weight: 700; }
+    .section-text em.green  { font-style: normal; color: var(--green); font-weight: 700; }
+    .section-text em.purple { font-style: normal; color: var(--purple); font-weight: 700; }
+
+    .timeline { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+    .tl-row {
+      display: grid; grid-template-columns: 70px 1fr; gap: 12px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
       border-radius: 12px;
     }
-    .kc-lesson-lbl {
-      font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
-      letter-spacing: 0.2em; color: var(--gold);
-      text-transform: uppercase; margin-bottom: 5px;
+    .tl-date {
+      font-family: var(--font-m); font-size: 10.5px; font-weight: 800;
+      color: var(--red);
+      letter-spacing: 0.04em;
+      align-self: start;
+      padding-top: 2px;
     }
-    .kc-lesson-txt {
-      font-family: var(--font-d); font-size: 13px; color: var(--text);
-      line-height: 1.4; margin: 0;
+    .tl-body {
+      font-family: var(--font-d); font-size: 13px;
+      color: var(--text); line-height: 1.4;
     }
-    .kc-lesson-txt strong { color: var(--gold); }
+    .tl-body strong { color: var(--text); font-weight: 800; }
+    .tl-body em.red    { font-style: normal; color: var(--red); font-weight: 700; }
+    .tl-body em.green  { font-style: normal; color: var(--green); font-weight: 700; }
+    .tl-body em.purple { font-style: normal; color: var(--purple); font-weight: 700; }
+
+    .signs-list, .protect-list, .lessons-list {
+      display: flex; flex-direction: column; gap: 8px; margin-top: 10px;
+    }
+    .sg-row, .pr-row, .ls-row {
+      display: grid; grid-template-columns: 28px 1fr; gap: 10px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .sg-ico, .pr-ico, .ls-ico {
+      font-size: 18px; line-height: 1;
+      align-self: center; text-align: center;
+    }
+    .sg-row { border-color: rgba(245,158,11,0.25); background: rgba(245,158,11,0.04); }
+    .pr-row { border-color: rgba(34,197,94,0.25);  background: rgba(34,197,94,0.04); }
+    .ls-row { border-color: rgba(167,139,250,0.25); background: rgba(167,139,250,0.04); }
+    .sg-txt, .pr-txt, .ls-txt {
+      font-family: var(--font-d); font-size: 13px;
+      color: var(--text); line-height: 1.4;
+    }
+    .sg-txt strong { color: var(--gold); }
+    .pr-txt strong { color: var(--green); }
+    .ls-txt strong { color: var(--purple); }
+    .sg-txt em.red, .pr-txt em.red, .ls-txt em.red,
+    .sg-txt em.green, .pr-txt em.green, .ls-txt em.green,
+    .sg-txt em.purple, .pr-txt em.purple, .ls-txt em.purple { font-style: normal; font-weight: 700; }
+    .sg-txt em.red, .pr-txt em.red, .ls-txt em.red { color: var(--red); }
+    .sg-txt em.green, .pr-txt em.green, .ls-txt em.green { color: var(--green); }
+    .sg-txt em.purple, .pr-txt em.purple, .ls-txt em.purple { color: var(--purple); }
 
     @media (max-width: 360px) {
       .h-title { font-size: 26px; }
-      .kc-name { font-size: 17px; }
-      .kc-canvas { height: 160px; }
+      .d-name { font-size: 22px; }
+      .d-canvas { height: 170px; }
+      .section-title { font-size: 16px; }
+      .tl-row { grid-template-columns: 60px 1fr; }
     }
   </style>
 </head>
@@ -187,69 +335,31 @@
 
 <div class="wrap">
   <div class="top-bar">
-    <button class="back-btn" onclick="window.location.href='index.html#accueil'">← ACCUEIL</button>
+    <button class="back-btn" id="back-btn" onclick="goBack()">← ACCUEIL</button>
     <span class="premium-pill">✦ EXPERT</span>
   </div>
 
-  <div class="h-eyebrow">HISTORIQUES</div>
-  <h1 class="h-title">Les <em>4 krachs</em> à connaître</h1>
-  <p class="h-sub">Apprends de l'histoire avant de la subir. Charts, contexte, leçon clé.</p>
+  <div class="view-list active" id="view-list">
+    <div class="h-eyebrow">HISTORIQUES</div>
+    <h1 class="h-title">Les <em>4 krachs</em> à connaître</h1>
+    <p class="h-sub">Apprends de l'histoire avant de la subir. Tap une carte pour la <strong>fiche complète</strong> : chronologie, causes, signes avant-coureurs, comment s'en prémunir.</p>
 
-  <!-- 2000 - Dotcom -->
-  <div class="krach-card">
-    <div class="kc-head"><span class="kc-year">MARS 2000 — OCT 2002</span><span class="kc-loss">−78%</span></div>
-    <h2 class="kc-name">Bulle Internet (Dotcom)</h2>
-    <p class="kc-tag">NASDAQ · valuations folles · pas de profits</p>
-    <canvas class="kc-canvas" data-krach="dotcom"></canvas>
-    <div class="kc-lesson">
-      <div class="kc-lesson-lbl">LEÇON</div>
-      <p class="kc-lesson-txt">Quand <strong>tout le monde</strong> dit "cette fois c'est différent" — c'est jamais différent. Une boîte sans bénéfices reste sans bénéfices.</p>
+    <div id="krachs-grid"></div>
+
+    <div class="coming-block">
+      <div class="cb-lbl">Prochainement</div>
+      <div class="cb-txt">1929 Wall Street · 1987 Black Monday · 1997 Asie · 2010 Flash Crash · GameStop 2021...</div>
     </div>
   </div>
 
-  <!-- 2008 - Lehman -->
-  <div class="krach-card">
-    <div class="kc-head"><span class="kc-year">OCT 2007 — MARS 2009</span><span class="kc-loss">−57%</span></div>
-    <h2 class="kc-name">Crise des subprimes</h2>
-    <p class="kc-tag">S&amp;P 500 · Lehman Brothers · crédits pourris</p>
-    <canvas class="kc-canvas" data-krach="lehman"></canvas>
-    <div class="kc-lesson">
-      <div class="kc-lesson-lbl">LEÇON</div>
-      <p class="kc-lesson-txt">La <strong>contagion</strong> est rapide. Un actif "sans risque" (immobilier US) peut faire tomber tout le système. Diversifie hors corrélations.</p>
-    </div>
-  </div>
-
-  <!-- 2020 - COVID -->
-  <div class="krach-card">
-    <div class="kc-head"><span class="kc-year">FEV — MARS 2020</span><span class="kc-loss">−34%</span></div>
-    <h2 class="kc-name">Krach COVID-19</h2>
-    <p class="kc-tag">S&amp;P 500 · cygne noir · rebond en V</p>
-    <canvas class="kc-canvas" data-krach="covid"></canvas>
-    <div class="kc-lesson">
-      <div class="kc-lesson-lbl">LEÇON</div>
-      <p class="kc-lesson-txt">Les <strong>cygnes noirs</strong> existent. Garde toujours du cash. Les pires baisses font les meilleurs points d'entrée si tu as les nerfs et la liquidité.</p>
-    </div>
-  </div>
-
-  <!-- 2022 - Crypto / FTX -->
-  <div class="krach-card">
-    <div class="kc-head"><span class="kc-year">NOV 2021 — NOV 2022</span><span class="kc-loss">−77%</span></div>
-    <h2 class="kc-name">Hiver Crypto / FTX</h2>
-    <p class="kc-tag">BTC · effondrement FTX · Luna · contagion crypto</p>
-    <canvas class="kc-canvas" data-krach="ftx"></canvas>
-    <div class="kc-lesson">
-      <div class="kc-lesson-lbl">LEÇON</div>
-      <p class="kc-lesson-txt">Pas tes clés, pas tes coins. La <strong>contrepartie</strong> peut s'effondrer du jour au lendemain (FTX, Celsius, Luna). Self-custody &gt; CEX pour le long terme.</p>
-    </div>
-  </div>
-
-  <div style="text-align:center; margin-top: 24px; padding: 16px; background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(245,158,11,0.05)); border: 1px solid rgba(167,139,250,0.2); border-radius: 14px;">
-    <p style="font-family: var(--font-m); font-size: 11px; letter-spacing: 0.16em; color: var(--purple); text-transform: uppercase; margin: 0 0 6px; font-weight: 700;">PROCHAINEMENT</p>
-    <p style="font-family: var(--font-d); font-size: 13.5px; color: var(--text-dim); margin: 0; line-height: 1.45;">1929 Wall Street · 1987 Black Monday · 1997 Asie · 2010 Flash Crash · 2021 GameStop...</p>
-  </div>
+  <div class="view-detail" id="view-detail"></div>
 </div>
 
 <script>
+  /* ===================================================
+     HISTORIQUES v2.09 — list + detail détaillé par krach
+     =================================================== */
+
   function setupCanvas(canvas) {
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = canvas.offsetWidth * DPR;
@@ -270,8 +380,6 @@
     let progress = 0;
     function frame() {
       ctx.clearRect(0, 0, w, h);
-
-      // grille
       ctx.strokeStyle = 'rgba(255,255,255,0.04)';
       ctx.lineWidth = 1 * DPR;
       for (let g = 1; g < 4; g++) {
@@ -284,16 +392,13 @@
       const lastIdx = Math.min(points.length - 1, Math.floor(progress * (points.length - 1)));
       const local = (progress * (points.length - 1)) - lastIdx;
 
-      // Fill sous la courbe (gradient rouge)
       const grad = ctx.createLinearGradient(0, padY, 0, padY + useH);
       grad.addColorStop(0, 'rgba(239,68,68,0.04)');
       grad.addColorStop(1, 'rgba(239,68,68,0.32)');
       ctx.fillStyle = grad;
       ctx.beginPath();
       ctx.moveTo(padX, padY + useH);
-      for (let i = 0; i <= lastIdx; i++) {
-        ctx.lineTo(padX + i * stepX, y(points[i]));
-      }
+      for (let i = 0; i <= lastIdx; i++) ctx.lineTo(padX + i * stepX, y(points[i]));
       if (lastIdx < points.length - 1 && local > 0) {
         const ix = padX + lastIdx * stepX;
         const nx = padX + (lastIdx + 1) * stepX;
@@ -307,7 +412,6 @@
       ctx.closePath();
       ctx.fill();
 
-      // Ligne principale
       ctx.strokeStyle = '#ef4444';
       ctx.lineWidth = 2 * DPR;
       ctx.shadowColor = '#ef4444'; ctx.shadowBlur = 8 * DPR;
@@ -328,7 +432,6 @@
       ctx.stroke();
       ctx.shadowBlur = 0;
 
-      // Marqueurs
       if (progress >= 1) {
         ctx.font = `bold ${10 * DPR}px JetBrains Mono`;
         labels.forEach(lbl => {
@@ -351,53 +454,342 @@
     frame();
   }
 
-  /* Données stylisées (pas de prix exacts, mais cohérent avec la courbe historique) */
+  /* === Krachs : données + contenu détaillé === */
   const KRACHS = {
     dotcom: {
+      year: 'MARS 2000 — OCT 2002',
+      loss: '−78%',
+      name: 'Bulle Internet (Dotcom)',
+      tag: 'NASDAQ · valuations folles · pas de profits',
       points: [100, 110, 125, 140, 160, 195, 215, 235, 240, 215, 180, 160, 140, 120, 100, 85, 72, 60, 52, 48, 50, 55],
       labels: [
         { i: 8, text: 'PEAK', dy: -12, color: '#ef4444' },
         { i: 19, text: '−78%', dy: 16, color: '#f59e0b' },
       ],
+      context: `À la fin des années 90, <strong>Internet</strong> est la révolution du siècle. Les valorisations explosent sans logique : <em class="red">Pets.com</em> vaut 290 millions $ sans avoir vendu un kilo de croquettes. <em class="purple">Yahoo!</em> double tous les 3 mois. Le Nasdaq composite passe de 750 (1995) à <strong>5 048 points</strong> en mars 2000. Le PER moyen du Nasdaq dépasse <em class="red">200x</em> les bénéfices (vs 15-20 historiquement). Les retail novices entrent en masse, persuadés que "cette fois c'est différent". Alan Greenspan parle d'<em class="purple">"exubérance irrationnelle"</em> dès 1996, mais la bulle continue 4 ans de plus.`,
+      timeline: [
+        { d: '1995', t: '<strong>IPO Netscape</strong> : action +108% le 1er jour, marque le début de la fièvre Internet.' },
+        { d: '1996', t: 'Alan Greenspan (Fed) parle d\'<em class="red">"exubérance irrationnelle"</em>. La bulle continue.' },
+        { d: '1998-99', t: 'Frénésie IPO : Amazon +966%, Yahoo! +6000% sur la période. <em class="red">Pets.com</em>, Webvan, eToys deviennent millionnaires sans bénéfices.' },
+        { d: '10 mars 2000', t: 'Pic du Nasdaq à <strong>5 048,62 points</strong>. Capitalisation crypto-tech : 6 500 milliards $.' },
+        { d: 'Avril 2000', t: '<em class="red">Première chute</em> : Nasdaq −34% en 1 mois. Beaucoup pensent à un simple correctif.' },
+        { d: '2000-2001', t: '<strong>Slow bleed</strong> : −50% supplémentaires sur 18 mois. Les IPO sans revenus font faillite en série.' },
+        { d: 'Oct 2002', t: 'Plus bas à <strong>1 114 points</strong> (−78% du sommet). <em class="purple">5 000 milliards $ effacés</em>.' },
+      ],
+      causes: `<strong>Spéculation pure</strong>, sans aucune base fondamentale. Les valorisations reposaient sur des projections futuristes et non sur des bénéfices réels. <em class="red">Pets.com</em> et <em class="red">Webvan</em> brûlaient du cash à vitesse industrielle sans business model viable. Les banques poussaient les IPO à fond (frais juteux), les médias amplifiaient l'euphorie, les analystes "buy-side" donnaient des recommandations achat même sur des sociétés sans CA. L'<strong>effet boule de neige retail</strong> a fait grimper jusqu'à l'absurde, puis la chute s'est auto-alimentée à la baisse.`,
+      consequences: `<em class="red">5 000 milliards $ évaporés</em> au total. <strong>Des centaines de boîtes ont fait faillite</strong> : Pets.com, Webvan, Boo.com, eToys. <em class="purple">Amazon a perdu 94%</em> (de 113 $ à 6 $) mais a survécu — et est devenue le géant qu'on connaît. <em class="green">Apple, Microsoft, Cisco</em> ont mis 15 ans à retrouver leurs ATH de 2000. Récession 2001-2002, chômage US +30%. Confiance retail détruite pour une décennie.`,
+      signs: [
+        { i: '📊', t: '<strong>PER Nasdaq &gt; 200x</strong> les bénéfices, contre 15-20 historiquement.' },
+        { i: '🚀', t: 'IPO de sociétés <em class="red">sans CA ni bénéfices</em> (Pets.com, Webvan, eToys).' },
+        { i: '📰', t: 'Couverture médiatique massive (TIME magazine "Personne de l\'année 1999" = Jeff Bezos).' },
+        { i: '🗣️', t: 'Phrase fatale : <strong>"This time is different"</strong>. Tout le monde la répète.' },
+        { i: '🛒', t: 'Le grand public (taxi, dentiste, voisin) parle d\'actions et ouvre un compte broker.' },
+      ],
+      protect: [
+        { i: '📈', t: 'Méfier des valuations <strong>&gt; 50x bénéfices</strong> sans justification de croissance soutenable.' },
+        { i: '🎯', t: 'Diversifier <strong>hors secteur unique</strong> : la concentration tech tue en cas de retournement.' },
+        { i: '⏸️', t: 'Quand <strong>tout le monde achète</strong>, c\'est souvent l\'heure de vendre. L\'inverse aussi.' },
+        { i: '🧊', t: 'Garder <strong>du cash</strong> (10-20% du portefeuille) pour acheter les soldes après le krach.' },
+        { i: '💼', t: 'Investir dans des <strong>entreprises rentables</strong>. Pas de bénéfices = pas de valeur durable.' },
+      ],
+      lessons: [
+        { i: '1️⃣', t: '<strong>"Cette fois c\'est différent"</strong> est presque toujours faux. Les cycles se répètent.' },
+        { i: '2️⃣', t: 'Une entreprise <strong>sans bénéfices reste sans valeur</strong> à long terme, peu importe le narratif.' },
+        { i: '3️⃣', t: 'Les <strong>bulles ne sont visibles qu\'a posteriori</strong>, jamais en temps réel. Méfier de l\'euphorie collective.' },
+        { i: '4️⃣', t: 'Les meilleurs investissements (Amazon, Google) se font <strong>après</strong> le krach, pas pendant l\'euphorie.' },
+      ],
     },
+
     lehman: {
+      year: 'OCT 2007 — MARS 2009',
+      loss: '−57%',
+      name: 'Crise des subprimes (Lehman)',
+      tag: 'S&P 500 · Lehman Brothers · crédits pourris',
       points: [100, 105, 110, 108, 102, 95, 88, 78, 62, 55, 48, 43, 55, 65, 70, 75],
       labels: [
         { i: 2, text: 'PEAK', dy: -12, color: '#ef4444' },
         { i: 11, text: 'BOTTOM', dy: 18, color: '#f59e0b' },
       ],
+      context: `Après le krach dotcom, la Fed baisse les taux à <strong>1%</strong> pour relancer l'économie. Les banques US s'engouffrent dans le crédit immobilier : <em class="red">crédits subprime</em> accordés à des emprunteurs insolvables (NINJA loans = "No Income, No Job, no Assets"). Les banques empaquettent ces prêts en <strong>CDO et MBS</strong> (titrisations complexes) et les revendent partout dans le monde, notés AAA par les agences. <em class="purple">Wall Street</em> empoche des commissions énormes. Quand les taux remontent en 2006-2007, les emprunteurs subprime ne peuvent plus rembourser. Tout le système financier <em class="red">contaminé</em>.`,
+      timeline: [
+        { d: '2003-06', t: '<strong>Boom immobilier US</strong> : prix +90% en 5 ans. Taux Fed à 1%, crédit facile. NINJA loans accordés à tout va.' },
+        { d: 'Été 2007', t: 'Premiers défauts subprime. <em class="red">BNP Paribas</em> gèle 3 fonds adossés aux subprime. Premier signal d\'alerte.' },
+        { d: 'Mars 2008', t: '<strong>Bear Stearns</strong> (5ème banque US) au bord de la faillite. JPMorgan la rachète à 2 $/action (vs 170 $ un an plus tôt) avec aide Fed.' },
+        { d: '7 sept 2008', t: '<em class="red">Fannie Mae &amp; Freddie Mac</em> (géants du crédit immo US) nationalisés en urgence.' },
+        { d: '15 sept 2008', t: '<strong>Lehman Brothers</strong> (158 ans d\'existence, 25 000 employés) fait <em class="red">faillite</em>. Plus grande faillite de l\'histoire US.' },
+        { d: '16 sept 2008', t: 'AIG (premier assureur mondial) sauvé in extremis par 85 milliards $ de la Fed.' },
+        { d: '29 sept 2008', t: 'Le plan TARP (700 milliards $) rejeté par le Congrès. <em class="red">Dow Jones −778 points</em> (record).' },
+        { d: '3 oct 2008', t: 'TARP validé. Mais panique mondiale, sell-off généralisé.' },
+        { d: '6 mars 2009', t: 'Plus bas S&amp;P 500 à <strong>666 points</strong> (−57% du peak). Capitulation totale.' },
+      ],
+      causes: `<strong>Crédits subprime</strong> donnés à des emprunteurs insolvables, taux variables qui ont explosé en 2006-2007 → impayés massifs. Les <em class="red">CDO</em> (titres complexes) ont propagé le poison : tout le monde en détenait sans savoir ce qu'il y avait dedans. <em class="purple">Effet de levier excessif</em> des banques (Lehman avait 30x son capital en dettes). Les agences de notation donnaient AAA à des produits pourris. <strong>Manque total de régulation</strong> sur les dérivés OTC. Quand la confiance interbancaire s'est effondrée, plus personne ne se prêtait → freeze total du système.`,
+      consequences: `<em class="red">−57% S&amp;P 500</em> du peak au creux. <strong>Récession mondiale</strong> 2008-2010, chômage US à 10%. Faillite de <em class="red">Lehman, Bear Stearns, Washington Mutual</em>. <em class="purple">Bailouts</em> massifs (TARP 700 milliards $, Fed +3 000 milliards $ de QE). Confiance détruite : il a fallu 6 ans au S&amp;P 500 pour retrouver ses sommets. Crise européenne en cascade (Grèce, Espagne, Portugal). Nouvelle régulation <em class="green">Dodd-Frank Act</em> (2010) — partiellement détricotée depuis.`,
+      signs: [
+        { i: '🏠', t: 'Prix immobilier US <strong>+90% en 5 ans</strong> (2003-2008), totalement déconnecté des revenus.' },
+        { i: '💸', t: 'Subprime <strong>&gt; 20% des nouveaux prêts immo</strong> en 2006. NINJA loans normalisés.' },
+        { i: '📊', t: 'Leverage des banques d\'investissement <strong>30x leur capital</strong>. Lehman = 30:1, Bear Stearns = 35:1.' },
+        { i: '⚠️', t: 'BNP Paribas gèle 3 fonds dès <strong>août 2007</strong>. Ignoré par les marchés pendant 12 mois.' },
+        { i: '🏦', t: 'Banques refusent de se prêter entre elles à partir de mars 2008 (LIBOR-OIS spread explose).' },
+      ],
+      protect: [
+        { i: '🏦', t: 'Surveiller le <strong>leverage des banques</strong>. Si banque X = 25x+ capital, danger systémique.' },
+        { i: '🏠', t: 'Méfier quand <strong>l\'immo grimpe trop vite</strong> sans hausse de salaires correspondante.' },
+        { i: '🎯', t: 'Diversifier <strong>hors corrélations</strong> : or, obligations souveraines, cash, pas tout en actions.' },
+        { i: '💰', t: 'Garder <strong>6-12 mois de dépenses en cash</strong>. La crise dure souvent 18 mois minimum.' },
+        { i: '📉', t: 'Réduire l\'exposition actions <strong>quand le VIX (peur du marché) est très bas</strong> = complaisance dangereuse.' },
+      ],
+      lessons: [
+        { i: '1️⃣', t: 'La <strong>contagion</strong> est rapide. Un actif "sans risque" (immo US AAA) peut faire tomber tout le système.' },
+        { i: '2️⃣', t: '<strong>Too big to fail</strong> = piège. Les bailouts privatisent les gains et socialisent les pertes.' },
+        { i: '3️⃣', t: 'Les <strong>warnings ignorés</strong> (BNP août 2007, Bear mars 2008) ont coûté cher : 13 mois pour rien.' },
+        { i: '4️⃣', t: 'Le marché peut rester irrationnel <strong>plus longtemps que ton compte solvable</strong>. Pas de shorts massifs sans stop.' },
+      ],
     },
+
     covid: {
+      year: 'FEV — MARS 2020',
+      loss: '−34%',
+      name: 'Krach COVID-19',
+      tag: 'S&P 500 · cygne noir · rebond en V',
       points: [100, 102, 101, 103, 96, 88, 74, 66, 72, 80, 88, 95, 102, 110, 118],
       labels: [
         { i: 3, text: 'PEAK', dy: -12, color: '#ef4444' },
         { i: 6, text: '−34%', dy: 18, color: '#f59e0b' },
         { i: 14, text: 'REBOND V', dy: -12, color: '#22c55e', align: 'right', dx: -4 },
       ],
+      context: `Le S&amp;P 500 est en plein <strong>bull market</strong> de 11 ans (depuis 2009). Valuations élevées mais pas folles. Janvier 2020 : premiers cas de <em class="red">COVID-19</em> à Wuhan. Les marchés ignorent — c'est "loin", "comme la grippe". Mais le virus se propage en Asie, Europe, USA. <em class="purple">Mi-février</em>, Italie en confinement. <em class="red">23 février</em>, S&amp;P 500 à 3 393 ATH. Les semaines suivantes : économie mondiale arrêtée brutalement. Vols cloués, restos fermés, factories à l'arrêt. <strong>Le plus rapide bear market de l'histoire</strong> commence.`,
+      timeline: [
+        { d: 'Janv 2020', t: 'Premiers cas <em class="red">COVID-19</em> identifiés à Wuhan. Marchés ignorent ("loin", "grippe normale").' },
+        { d: '19 fév 2020', t: '<strong>Pic S&amp;P 500 à 3 393,52</strong>. ATH dans la complaisance totale.' },
+        { d: '24 fév', t: 'Italie en confinement. Marchés <em class="red">prennent peur</em>. Début de la chute.' },
+        { d: '12 mars', t: 'Trump suspend les vols depuis l\'Europe. <em class="red">−9% en un jour</em>, pire séance depuis 1987.' },
+        { d: '13-16 mars', t: 'Volatilité extrême : VIX à <strong>82</strong> (record historique, supérieur à 2008). Circuit breaker déclenché 4 fois.' },
+        { d: '23 mars 2020', t: 'Plus bas à <strong>2 237 points</strong> (−34% en 33 jours). Bear market le plus rapide jamais vu.' },
+        { d: '23 mars', t: '<em class="green">Fed</em> annonce <strong>QE infini</strong> + taux 0%. Trump signe le CARES Act (2 200 milliards $).' },
+        { d: 'Avril 2020', t: 'Rebond fulgurant en <em class="green">V</em>. Tech (Zoom, Netflix, Amazon) explose.' },
+        { d: 'Août 2020', t: '<strong>Nouvel ATH</strong> du S&amp;P 500. Rebond +60% en 5 mois.' },
+        { d: '2021-2022', t: 'Inflation revient (+9% en juin 2022). Fed remonte les taux. Nouveau bear market.' },
+      ],
+      causes: `<strong>Choc exogène pur</strong> : un virus que personne n'avait anticipé (cygne noir parfait). Shutdowns économiques globaux simultanés. Peur extrême du retail. Mais surtout, <em class="red">deleverage forcé</em> : les fonds qui utilisaient du levier ont dû vendre tout d'un coup pour couvrir leurs marges, créant une spirale baissière auto-amplifiée. <em class="purple">Pétrole négatif</em> en avril 2020 (du jamais vu).`,
+      consequences: `<strong>Récession mondiale</strong> de 3 mois (la plus courte de l'histoire). <em class="green">Rebond en V</em> grâce aux interventions massives Fed + politique budgétaire. <em class="purple">Tech boom</em> : Zoom +725%, Netflix +60%, Amazon +50%. Bulle d'actifs créée par les liquidités (mèmes stocks, NFT, SPAC). <em class="red">Inflation</em> 2021-2023 conséquence directe. Repenser le travail (remote, hybrid). Accélération de 10 ans dans le digital.`,
+      signs: [
+        { i: '🦠', t: 'Aucun signe technique préalable — un <strong>vrai cygne noir</strong>. Le marché était en ATH la veille.' },
+        { i: '⚠️', t: 'Une fois la peur partie, <strong>VIX à 82</strong> (record absolu) a signalé la capitulation.' },
+        { i: '📊', t: 'Les circuit breakers (arrêts auto -7%/-13%/-20%) ont été déclenchés <strong>4 fois en 10 jours</strong>.' },
+        { i: '💼', t: 'Quand <strong>l\'or, le bitcoin et les actions chutent simultanément</strong> (deleverage forcé), c\'est la capitulation.' },
+      ],
+      protect: [
+        { i: '💰', t: 'Avoir toujours <strong>6 mois de cash</strong>. En crise, c\'est <em class="green">le cash qui est roi</em>.' },
+        { i: '📏', t: 'Position size <strong>maximum 2% par trade</strong>. En cas de gap-down, tu survis.' },
+        { i: '🎯', t: '<strong>Acheter dans la peur extrême</strong> (VIX &gt; 40) si tu as la liquidité et les nerfs.' },
+        { i: '🔄', t: '<strong>Rebalance trimestriel</strong> : forcer la vente du qui monte, l\'achat du qui baisse.' },
+        { i: '📰', t: 'Couper les <strong>news en boucle</strong> en pleine crise. La panique se nourrit d\'elle-même.' },
+      ],
+      lessons: [
+        { i: '1️⃣', t: 'Les <strong>cygnes noirs existent</strong>. Tu ne peux pas tous les prédire, mais tu peux y survivre avec du cash.' },
+        { i: '2️⃣', t: 'Les <em class="green">meilleures opportunités</em> viennent dans la <strong>peur extrême</strong>. Mais il faut les nerfs.' },
+        { i: '3️⃣', t: 'Les banques centrales <strong>imprimeront</strong> à chaque crise majeure. Conséquence : bulles d\'actifs futures.' },
+        { i: '4️⃣', t: 'Un rebond en V est <strong>rare</strong>. Le plus souvent (1929, 2000, 2008) c\'est L ou U. COVID 2020 est l\'exception.' },
+      ],
     },
+
     ftx: {
+      year: 'NOV 2021 — NOV 2022',
+      loss: '−77%',
+      name: 'Hiver Crypto / FTX',
+      tag: 'BTC · effondrement FTX · Luna · contagion crypto',
       points: [100, 115, 110, 105, 95, 88, 78, 65, 55, 48, 42, 32, 28, 24, 22, 24, 26],
       labels: [
         { i: 1, text: 'PEAK BTC', dy: -12, color: '#ef4444' },
         { i: 11, text: 'FTX', dy: 16, color: '#a78bfa', align: 'center' },
         { i: 14, text: '−77%', dy: 18, color: '#f59e0b' },
       ],
+      context: `Bull run crypto 2020-2021 alimenté par : taux 0%, stimulus checks COVID, retail euphorique, hype DeFi/NFT. <em class="red">Bitcoin</em> atteint <strong>69 000 $</strong> en novembre 2021. Tout l'écosystème crypto explose : <em class="purple">Solana</em> +12 000%, <em class="purple">Luna</em> +14 000%, NFT à plusieurs millions, métaverse en hype. <strong>FTX</strong> devient la 2ème plateforme crypto mondiale, Sam Bankman-Fried (SBF) est en couverture de Forbes/Fortune, donne des cours à Stanford. Tout semble incroyable. Sauf que l'écosystème est <em class="red">construit sur du levier excessif, des contreparties opaques, et des Ponzi déguisés</em>.`,
+      timeline: [
+        { d: '10 nov 2021', t: '<strong>BTC ATH à 69 000 $</strong>. ETH à 4 850 $. Marché crypto = 3 000 milliards $.' },
+        { d: 'Janv 2022', t: 'Fed annonce hausse des taux. <em class="red">Risk-off</em> global, tech et crypto baissent.' },
+        { d: 'Mai 2022', t: '<strong>Effondrement Terra/Luna</strong> : −99% en 3 jours. Stablecoin UST se dépegge. <em class="red">60 milliards $ évaporés</em> en 1 semaine.' },
+        { d: 'Juin 2022', t: '<em class="red">Celsius Network</em> (lending platform) gèle les retraits. 12 milliards $ bloqués.' },
+        { d: 'Juillet 2022', t: '<em class="red">3AC</em> (Three Arrows Capital) en faillite. Voyager, BlockFi, Genesis en cascade.' },
+        { d: '2 nov 2022', t: 'CoinDesk publie : <strong>Alameda (fonds de SBF) détient majoritairement du FTT</strong> (token de FTX), conflit d\'intérêts massif.' },
+        { d: '6 nov 2022', t: 'CZ (Binance) annonce vendre tout son FTT. <em class="red">Bank run</em> sur FTX.' },
+        { d: '8 nov 2022', t: 'FTX gèle les retraits. SBF cherche un sauveur (Binance se rétracte le 9).' },
+        { d: '11 nov 2022', t: '<strong>FTX dépose le bilan</strong>. 130 entités impliquées. 8 milliards $ de fonds clients <em class="red">utilisés à mauvais escient</em>.' },
+        { d: 'Nov 2022', t: '<strong>BTC à 15 500 $</strong> (−77% du peak). Bear market crypto confirmé.' },
+        { d: 'Déc 2022', t: 'SBF arrêté aux Bahamas, extradé aux US. Procès 2023, <em class="red">condamné à 25 ans de prison</em>.' },
+      ],
+      causes: `<strong>Levier excessif partout</strong> : 3AC empruntait à plusieurs plateformes simultanément. <em class="red">Terra/Luna</em> = Ponzi déguisé (le yield 20% d'Anchor venait d'autres dépôts). <em class="purple">FTX a utilisé des fonds clients</em> pour financer son fonds hedge Alameda Research (~10 milliards $ détournés). Contreparties opaques, audits inexistants ou pipeau, manque total de régulation crypto. Quand la confiance s'effondre dans une plateforme, <em class="red">bank run</em> immédiat (les crypto ne dorment jamais).`,
+      consequences: `<em class="red">−77% sur BTC</em> du peak. Écosystème crypto = 3 000 → 800 milliards $ (capitalisation). <strong>Faillites en cascade</strong> : Celsius, Voyager, BlockFi, Genesis, Gemini Earn. <em class="purple">2 millions de victimes</em> côté FTX. Confiance retail crypto détruite pour 2 ans. <em class="green">Côté positif</em> : nettoyage massif de l'écosystème, régulation accélérée (EU MiCA, US enforcement SEC). Bitcoin survit, recule mais ne meurt pas. Self-custody (hardware wallets) explose.`,
+      signs: [
+        { i: '💸', t: 'Yield <em class="red">Anchor à 20%</em> sur stablecoin UST : <strong>impossible économiquement</strong> sans subvention ou Ponzi.' },
+        { i: '🔗', t: '<strong>Liens troubles FTX-Alameda</strong> dès l\'été 2022 (CoinDesk en parle). Audit qui ne séparait pas les bilans.' },
+        { i: '👑', t: 'Quand SBF est en cover de <strong>Forbes / Fortune / TIME</strong>, c\'est typiquement le pic d\'une bulle.' },
+        { i: '📊', t: 'Capitalisation crypto totale <strong>3 000 milliards $</strong> sans cas d\'usage massif derrière.' },
+        { i: '🎁', t: 'NFT <em class="red">CryptoPunks à 23 millions $</em>. Bored Ape à 400 000 $. Manifestement absurde.' },
+      ],
+      protect: [
+        { i: '🔐', t: '<strong>Not your keys, not your coins</strong>. Self-custody (Ledger, Trezor) pour le long terme.' },
+        { i: '📏', t: 'Crypto = <strong>maximum 5-10% du portefeuille</strong>. Pas plus. Volatilité extrême non négociable.' },
+        { i: '🚨', t: '<strong>Yields &gt; 10%</strong> sur stablecoin = drapeau rouge. Si c\'était sûr, tout le monde le ferait.' },
+        { i: '🏦', t: 'Méfier des <strong>plateformes opaques</strong>. Proof of reserves (preuve des avoirs) doit être public et auditable.' },
+        { i: '👤', t: 'Méfier des <strong>founders charismatiques sans antécédents</strong>. SBF, Do Kwon, Saylor : profils dangereux.' },
+      ],
+      lessons: [
+        { i: '1️⃣', t: '<strong>"Pas tes clés, pas tes coins"</strong>. Tout actif sur un exchange centralisé = risque de contrepartie.' },
+        { i: '2️⃣', t: 'Tout <em class="red">yield trop beau pour être vrai</em> est un Ponzi (Anchor 20%, Celsius 17%, FTX Earn 8%).' },
+        { i: '3️⃣', t: '<strong>Régulation = bonne nouvelle</strong> à terme. La crypto sans régulation = far west = catastrophes répétées.' },
+        { i: '4️⃣', t: '<em class="purple">Bitcoin survit aux crashs</em>. Les altcoins moins. Diversification crypto ≠ diversification réelle.' },
+      ],
     },
   };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const c = e.target;
-        if (c._drawn) return;
-        const key = c.dataset.krach;
-        const data = KRACHS[key];
-        if (data) { drawKrach(c, data.points, data.labels); c._drawn = true; }
-      }
-    });
-  }, { threshold: 0.3 });
+  /* === Routing list ↔ detail === */
+  let _currentKrach = null;
 
-  document.querySelectorAll('canvas[data-krach]').forEach(c => observer.observe(c));
+  function renderList() {
+    const grid = document.getElementById('krachs-grid');
+    grid.innerHTML = Object.keys(KRACHS).map(key => {
+      const k = KRACHS[key];
+      return `
+        <div class="krach-card" data-key="${key}" onclick="openDetail('${key}')">
+          <div class="kc-head"><span class="kc-year">${k.year}</span><span class="kc-loss">${k.loss}</span></div>
+          <h2 class="kc-name">${k.name}</h2>
+          <p class="kc-tag">${k.tag}</p>
+          <canvas class="kc-canvas" data-key="${key}"></canvas>
+          <div class="kc-tease">
+            <span>Voir l'analyse complète</span>
+            <span class="kc-arrow">→</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const c = e.target;
+          if (c._drawn) return;
+          const key = c.dataset.key;
+          const k = KRACHS[key];
+          if (k) { drawKrach(c, k.points, k.labels); c._drawn = true; }
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.kc-canvas').forEach(c => observer.observe(c));
+  }
+
+  function openDetail(key) {
+    if (navigator.vibrate) navigator.vibrate(8);
+    _currentKrach = key;
+    const k = KRACHS[key];
+    if (!k) return;
+
+    const detail = document.getElementById('view-detail');
+    detail.innerHTML = `
+      <div class="d-hero">
+        <div class="d-hero-head"><span class="d-year">${k.year}</span><span class="d-loss">${k.loss}</span></div>
+        <h1 class="d-name">${k.name}</h1>
+        <p class="d-tag">${k.tag}</p>
+        <canvas class="d-canvas" id="d-canvas"></canvas>
+      </div>
+
+      <div class="section">
+        <div class="section-eyebrow">CONTEXTE</div>
+        <h2 class="section-title">Avant la <em>tempête</em></h2>
+        <p class="section-text">${k.context}</p>
+      </div>
+
+      <div class="section">
+        <div class="section-eyebrow">CHRONOLOGIE</div>
+        <h2 class="section-title">Comment ça s'est passé</h2>
+        <div class="timeline">
+          ${k.timeline.map(row => `
+            <div class="tl-row">
+              <div class="tl-date">${row.d}</div>
+              <div class="tl-body">${row.t}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-eyebrow">CAUSES</div>
+        <h2 class="section-title">Pourquoi ça a <em>explosé</em></h2>
+        <p class="section-text">${k.causes}</p>
+      </div>
+
+      <div class="section">
+        <div class="section-eyebrow">CONSÉQUENCES</div>
+        <h2 class="section-title">L'après-crise</h2>
+        <p class="section-text">${k.consequences}</p>
+      </div>
+
+      <div class="section">
+        <div class="section-eyebrow gold">SIGNES AVANT-COUREURS</div>
+        <h2 class="section-title">Ce qu'on aurait dû <em class="gold">voir</em></h2>
+        <div class="signs-list">
+          ${k.signs.map(s => `
+            <div class="sg-row">
+              <div class="sg-ico">${s.i}</div>
+              <div class="sg-txt">${s.t}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-eyebrow green">SE PRÉMUNIR</div>
+        <h2 class="section-title">Comment <em class="green">éviter</em> la prochaine</h2>
+        <div class="protect-list">
+          ${k.protect.map(p => `
+            <div class="pr-row">
+              <div class="pr-ico">${p.i}</div>
+              <div class="pr-txt">${p.t}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-eyebrow purple">LEÇONS</div>
+        <h2 class="section-title">À <em class="purple">retenir</em></h2>
+        <div class="lessons-list">
+          ${k.lessons.map(l => `
+            <div class="ls-row">
+              <div class="ls-ico">${l.i}</div>
+              <div class="ls-txt">${l.t}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    document.getElementById('view-list').classList.remove('active');
+    detail.classList.add('active');
+    document.getElementById('back-btn').textContent = '← KRACHS';
+    window.scrollTo(0, 0);
+
+    setTimeout(() => {
+      const c = document.getElementById('d-canvas');
+      if (c) drawKrach(c, k.points, k.labels);
+    }, 60);
+  }
+
+  function closeDetail() {
+    if (navigator.vibrate) navigator.vibrate(6);
+    document.getElementById('view-detail').classList.remove('active');
+    document.getElementById('view-list').classList.add('active');
+    document.getElementById('back-btn').textContent = '← ACCUEIL';
+    _currentKrach = null;
+    window.scrollTo(0, 0);
+  }
+
+  function goBack() {
+    if (_currentKrach) closeDetail();
+    else window.location.href = 'index.html#accueil';
+  }
+
+  renderList();
 </script>
 
 </body>
