@@ -720,6 +720,73 @@
     transition: transform 0.12s ease;
   }
   .tool-chip:active { transform: scale(0.96); }
+  .tool-chip.locked { opacity: 0.55; }
+  .tool-chip.locked .tool-name { color: var(--text-faint); }
+  .tool-chip .tool-sub {
+    display: block;
+    font-family: var(--font-m);
+    font-size: 8.5px;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--text-faint);
+    margin-top: 2px;
+    text-transform: uppercase;
+  }
+
+  /* Toast simu verrouillée */
+  .simu-locked-toast {
+    position: fixed;
+    bottom: 16px; left: 12px; right: 12px;
+    z-index: 9997;
+    max-width: 460px; margin: 0 auto;
+    background: linear-gradient(180deg, #1a1a22 0%, #14141a 100%);
+    border: 1px solid rgba(96, 165, 250, 0.4);
+    border-radius: 14px;
+    padding: 14px 14px 12px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 8px 12px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 24px rgba(96,165,250,0.15);
+    transform: translateY(120%);
+    opacity: 0;
+    transition: transform 0.32s cubic-bezier(0.2,0.8,0.2,1), opacity 0.25s;
+  }
+  .simu-locked-toast.show { transform: translateY(0); opacity: 1; }
+  .slt-icon {
+    font-size: 22px;
+    grid-row: 1;
+    align-self: center;
+  }
+  .slt-body { grid-row: 1; }
+  .slt-title {
+    font-family: var(--font-d);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .slt-text {
+    font-family: var(--font-d);
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.35;
+  }
+  .slt-cta {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+    background: rgba(96, 165, 250, 0.16);
+    border: 1px solid rgba(96, 165, 250, 0.4);
+    color: var(--blue);
+    font-family: var(--font-d);
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 9px;
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+  }
+  .slt-cta:active { background: rgba(96, 165, 250, 0.26); }
   .tool-chip::before {
     content: '';
     position: absolute;
@@ -1189,7 +1256,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=168')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=167')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -1208,7 +1275,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=168')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=167')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -1227,7 +1294,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=168')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=167')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -1246,7 +1313,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=168')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=167')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -1312,15 +1379,15 @@
 
     <!-- Stats compactes -->
     <div class="stats-row">
-      <div class="stat-cell" onclick="location.href='scene-06.html?v=168'">
+      <div class="stat-cell" onclick="location.href='scene-06.html?v=167'">
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=168'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=167'">
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=168'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=167'">
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
       </div>
@@ -1333,11 +1400,11 @@
         <div class="tool-icon">📚</div>
         <div class="tool-name">Apprendre</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--blue);" onclick="location.href='scene-05.html?v=168'">
-        <div class="tool-icon">🎮</div>
-        <div class="tool-name">Entraîner</div>
+      <div class="tool-chip" id="tool-simu" style="--mode-color: var(--blue);" onclick="openSimulator()">
+        <div class="tool-icon" id="tool-simu-icon">🎮</div>
+        <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=168'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=167'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -1577,6 +1644,9 @@
 
     // 5) Streak quotidien
     updateStreak();
+
+    // 6) Verrou simu selon progression modules
+    refreshSimuLock();
   }
 
   /* ===== PWA INSTALL PROMPT ===== */
@@ -1603,6 +1673,65 @@
       }
     } catch {}
     deferredInstallPrompt = null;
+  }
+
+  /* ===== SIMULATEUR — Verrou pédago jusqu'à 4 modules validés ===== */
+  function _modulesAllDone() {
+    return MODULES.filter(m => !m.coming).every(m => countDone(loadProg(m.storage)) >= m.total);
+  }
+  function _modulesDoneCount() {
+    return MODULES.filter(m => !m.coming).reduce((acc, m) => acc + (countDone(loadProg(m.storage)) >= m.total ? 1 : 0), 0);
+  }
+  function refreshSimuLock() {
+    const chip = document.getElementById('tool-simu');
+    const icon = document.getElementById('tool-simu-icon');
+    const name = document.getElementById('tool-simu-name');
+    if (!chip) return;
+    const ok = _modulesAllDone();
+    if (ok) {
+      chip.classList.remove('locked');
+      icon.textContent = '🎮';
+      name.textContent = 'Entraîner';
+    } else {
+      chip.classList.add('locked');
+      icon.textContent = '🔒';
+      const done = _modulesDoneCount();
+      const total = MODULES.filter(m => !m.coming).length;
+      name.innerHTML = `Entraîner<span class="tool-sub">${done}/${total} modules</span>`;
+    }
+  }
+  function openSimulator() {
+    if (navigator.vibrate) navigator.vibrate(8);
+    if (_modulesAllDone()) {
+      const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '168';
+      location.href = 'scene-05.html?v=167' + v;
+      return;
+    }
+    // Verrouillé : montrer info pédagogique
+    const done = _modulesDoneCount();
+    const total = MODULES.filter(m => !m.coming).length;
+    showSimuLockedToast(done, total);
+  }
+  function showSimuLockedToast(done, total) {
+    let toast = document.getElementById('simu-locked-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'simu-locked-toast';
+      toast.className = 'simu-locked-toast';
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = `
+      <div class="slt-icon">🔒</div>
+      <div class="slt-body">
+        <div class="slt-title">Simulateur verrouillé</div>
+        <div class="slt-text">Termine les 4 modules avant de trader (${done}/${total} validés). Sinon tu vas perdre vite.</div>
+      </div>
+      <button class="slt-cta" onclick="showView('modules');document.getElementById('simu-locked-toast').classList.remove('show');">Aller aux modules →</button>
+    `;
+    requestAnimationFrame(() => toast.classList.add('show'));
+    if (navigator.vibrate) navigator.vibrate([20, 50, 20]);
+    clearTimeout(showSimuLockedToast._t);
+    showSimuLockedToast._t = setTimeout(() => toast.classList.remove('show'), 5500);
   }
 
   /* ===== CONFIDENTIALITÉ — Réafficher banner consentement ===== */
@@ -1700,24 +1829,58 @@
       }
     } catch {}
 
-    // Priorité 0.5 : après Module 1 validé + 0 session simu → pousser le simu
+    // Priorité 0.5 : pédago avant pratique — pousser dans l'ordre des modules
     try {
-      const m1 = JSON.parse(localStorage.getItem('tradegenius_m1') || '{}');
-      const m1Done = m1.completed && Object.keys(m1.completed).filter(k => m1.completed[k]).length >= 7;
+      const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '168';
+      const modulesStatus = [
+        { key: 'tradegenius_v1', n: 0, emoji: '🪙', name: 'MONNAIE', scene: 'scene-01.html', title: 'Découvre la base' },
+        { key: 'tradegenius_m1', n: 1, emoji: '📈', name: 'MARCHÉ', scene: 'scene-02.html', title: 'Actions, ETF, obligations' },
+        { key: 'tradegenius_m2', n: 2, emoji: '📊', name: 'CHART', scene: 'scene-03.html', title: 'Apprends à lire les graphiques' },
+        { key: 'tradegenius_m3', n: 3, emoji: '🧠', name: 'PSYCHO', scene: 'scene-04.html', title: 'Maîtrise tes émotions' },
+      ];
+      let allDone = true;
+      let nextMod = null;
+      for (const m of modulesStatus) {
+        const p = JSON.parse(localStorage.getItem(m.key) || '{}');
+        const done = p.completed && Object.keys(p.completed).filter(k => p.completed[k]).length >= 7;
+        if (!done) { allDone = false; nextMod = m; break; }
+      }
       const journal0 = JSON.parse(localStorage.getItem('tradegenius_m4_journal') || '[]');
-      if (m1Done && (!Array.isArray(journal0) || journal0.length === 0)) {
-        const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '167';
+      const hasSimu = Array.isArray(journal0) && journal0.length > 0;
+
+      // Cas A : TOUS les 4 modules validés + 0 simu encore → débloquer le simu
+      if (allDone && !hasSimu) {
         card.innerHTML = `
           <div class="resume-icon">🎮</div>
           <div class="resume-text">
-            <div class="resume-label">PROCHAINE ÉTAPE · PRATIQUE</div>
-            <div class="resume-title">Module 1 validé → Essaie le simu</div>
+            <div class="resume-label">SIMU DÉBLOQUÉ · PRATIQUE</div>
+            <div class="resume-title">4 modules validés — lance ta 1ère simu</div>
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=168' + v;
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=167' + v; };
         block.style.display = 'block';
         return;
+      }
+      // Cas B : un module est terminé, suivant pas commencé → pousser au suivant
+      if (nextMod && nextMod.n > 0) {
+        const prev = JSON.parse(localStorage.getItem(modulesStatus[nextMod.n - 1].key) || '{}');
+        const prevDone = prev.completed && Object.keys(prev.completed).filter(k => prev.completed[k]).length >= 7;
+        const cur = JSON.parse(localStorage.getItem(nextMod.key) || '{}');
+        const curHasAny = cur.completed && Object.keys(cur.completed).filter(k => cur.completed[k]).length > 0;
+        if (prevDone && !curHasAny) {
+          card.innerHTML = `
+            <div class="resume-icon">${nextMod.emoji}</div>
+            <div class="resume-text">
+              <div class="resume-label">PROCHAINE ÉTAPE · MODULE 0${nextMod.n}</div>
+              <div class="resume-title">${nextMod.title}</div>
+            </div>
+            <div class="resume-arrow">→</div>
+          `;
+          card.onclick = () => { if (window.location) window.location.href = nextMod.scene + '?v=' + v; };
+          block.style.display = 'block';
+          return;
+        }
       }
     } catch {}
 
@@ -1737,7 +1900,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=168';
+        card.onclick = () => location.href = 'scene-05.html?v=167';
         block.style.display = 'block';
         return;
       }
@@ -1757,7 +1920,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=168';
+          card.onclick = () => location.href = 'scene-06.html?v=167';
           block.style.display = 'block';
           return;
         }
@@ -1771,7 +1934,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=168';
+        card.onclick = () => location.href = 'scene-06.html?v=167';
         block.style.display = 'block';
         return;
       }
@@ -1786,7 +1949,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=168';
+    card.onclick = () => location.href = 'scene-05.html?v=167';
     block.style.display = 'block';
   }
 
@@ -1993,11 +2156,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=168"></script>
+  <script type="module" src="tg-common.js?v=167"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=168').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=167').catch(() => {});
       });
     }
   </script>
