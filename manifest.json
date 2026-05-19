@@ -1,33 +1,106 @@
 {
-  "name": "Trade Genius",
-  "short_name": "TG",
-  "description": "Apprends la bourse de zéro. Pas de pub, pas de gourous, juste de la pédagogie.",
-  "start_url": "./index.html",
+  "name": "Trade Genius — Apprendre la bourse",
+  "short_name": "Trade Genius",
+  "description": "Apprends la bourse de zéro. 4 modules pédago + simulateur de trading sur cas historiques + bibliothèque. Pas de pub, pas de gourous, juste de la pédagogie.",
+  "id": "/Trade-Genius/",
+  "start_url": "./index.html?source=pwa",
   "scope": "./",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
   "orientation": "portrait",
   "background_color": "#0a0a0c",
   "theme_color": "#0a0a0c",
   "lang": "fr",
-  "categories": ["education", "finance"],
+  "dir": "ltr",
+  "categories": ["education", "finance", "lifestyle"],
+  "iarc_rating_id": "",
+  "prefer_related_applications": false,
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
   "icons": [
     {
       "src": "icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Continuer le parcours",
+      "short_name": "Modules",
+      "description": "Reprendre les modules pédago",
+      "url": "./index.html?shortcut=modules",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Simulateur de trading",
+      "short_name": "Simu",
+      "description": "Trader sur des cas historiques",
+      "url": "./scene-05.html?shortcut=simu",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Bibliothèque",
+      "short_name": "Biblio",
+      "description": "26 fiches de placements expliqués",
+      "url": "./scene-06.html?shortcut=biblio",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Hub accueil — Citation du jour, stats, parcours"
+    },
+    {
+      "src": "screenshot-2.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Modules pédago — Apprends la bourse de zéro"
+    },
+    {
+      "src": "screenshot-3.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Simulateur de trading — 10 cas historiques"
+    },
+    {
+      "src": "screenshot-4.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Bibliothèque — 26 placements expliqués"
     }
   ]
 }
