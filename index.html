@@ -642,59 +642,80 @@
     font-weight: 600;
   }
 
-  /* Reprendre */
+  /* Reprendre — HERO style jeu pro */
   .resume-block { margin-bottom: 18px; }
   .resume-eyebrow {
     font-family: var(--font-m);
     font-size: 9.5px;
     letter-spacing: 0.18em;
-    color: var(--text-faint);
-    font-weight: 700;
-    margin-bottom: 8px;
+    color: var(--acid);
+    font-weight: 800;
+    margin-bottom: 10px;
     padding-left: 4px;
   }
   .resume-card {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 13px 14px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 13px;
+    gap: 14px;
+    padding: 18px 18px;
+    background: linear-gradient(135deg, rgba(190,242,100,0.16) 0%, rgba(190,242,100,0.04) 60%, rgba(167,139,250,0.08) 100%);
+    border: 1px solid rgba(190,242,100,0.4);
+    border-radius: 18px;
     cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(190,242,100,0.12), inset 0 1px 0 rgba(190,242,100,0.12);
+    transition: transform 0.18s, box-shadow 0.22s;
   }
-  .resume-card:active { background: rgba(255,255,255,0.05); }
+  .resume-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -20%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(190,242,100,0.18), rgba(190,242,100,0) 70%);
+    pointer-events: none;
+  }
+  .resume-card:active {
+    transform: scale(0.985);
+    box-shadow: 0 4px 18px rgba(190,242,100,0.18);
+  }
   .resume-icon {
-    width: 40px; height: 40px;
+    width: 56px; height: 56px;
     flex-shrink: 0;
-    border-radius: 11px;
-    background: var(--surface, rgba(255,255,255,0.05));
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(190,242,100,0.25), rgba(190,242,100,0.08));
+    border: 1px solid rgba(190,242,100,0.35);
     display: flex; align-items: center; justify-content: center;
-    font-size: 19px;
+    font-size: 30px;
+    box-shadow: 0 4px 14px rgba(190,242,100,0.18);
   }
   .resume-text { flex: 1; min-width: 0; }
   .resume-label {
     font-family: var(--font-m);
-    font-size: 9px;
-    letter-spacing: 0.14em;
-    color: var(--text-faint);
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    color: var(--acid);
     text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 2px;
+    font-weight: 800;
+    margin-bottom: 4px;
   }
   .resume-title {
     font-family: var(--font-d);
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 17px;
+    font-weight: 800;
     color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
   .resume-arrow {
     color: var(--acid);
-    font-family: var(--font-m);
-    font-size: 14px;
-    font-weight: 700;
+    font-family: var(--font-d);
+    font-size: 22px;
+    font-weight: 800;
     flex-shrink: 0;
+    line-height: 1;
+    filter: drop-shadow(0 0 8px rgba(190,242,100,0.5));
   }
 
   /* Progression globale du parcours */
@@ -1672,7 +1693,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=194')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=195')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -1691,7 +1712,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=194')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=195')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -1710,7 +1731,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=194')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=195')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -1729,7 +1750,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=194')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=195')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -1819,15 +1840,15 @@
 
     <!-- Stats compactes -->
     <div class="stats-row">
-      <div class="stat-cell" onclick="location.href='scene-06.html?v=194'">
+      <div class="stat-cell" onclick="location.href='scene-06.html?v=195'">
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=194'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=195'">
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=194'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=195'">
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
       </div>
@@ -1844,7 +1865,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=194'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=195'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -2310,7 +2331,7 @@
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
       const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '168';
-      location.href = 'scene-05.html?v=194' + v;
+      location.href = 'scene-05.html?v=195' + v;
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -2657,7 +2678,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=194' + v; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=195' + v; };
         block.style.display = 'block';
         return;
       }
@@ -2699,7 +2720,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=194';
+        card.onclick = () => location.href = 'scene-05.html?v=195';
         block.style.display = 'block';
         return;
       }
@@ -2719,7 +2740,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=194';
+          card.onclick = () => location.href = 'scene-06.html?v=195';
           block.style.display = 'block';
           return;
         }
@@ -2733,7 +2754,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=194';
+        card.onclick = () => location.href = 'scene-06.html?v=195';
         block.style.display = 'block';
         return;
       }
@@ -2748,7 +2769,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=194';
+    card.onclick = () => location.href = 'scene-05.html?v=195';
     block.style.display = 'block';
   }
 
@@ -2958,11 +2979,11 @@
     if (shortcut === 'modules') { showView('modules'); return; }
     if (shortcut === 'simu') {
       // Pas de location.href ici : on est déjà dans index.html, redirige
-      location.href = 'scene-05.html?v=194';
+      location.href = 'scene-05.html?v=195';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=194';
+      location.href = 'scene-06.html?v=195';
       return;
     }
 
@@ -2981,11 +3002,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=194"></script>
+  <script type="module" src="tg-common.js?v=195"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=194').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=195').catch(() => {});
       });
     }
   </script>
