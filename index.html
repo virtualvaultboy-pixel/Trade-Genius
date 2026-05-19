@@ -945,6 +945,48 @@
   }
   .share-progress-btn:active { transform: scale(0.98); background: rgba(125,211,252,0.2); }
 
+  /* Install PWA — bouton fixed top, visible si beforeinstallprompt dispo */
+  #install-pwa-btn {
+    position: fixed;
+    top: calc(8px + env(safe-area-inset-top));
+    right: 8px;
+    z-index: 9998;
+    display: none;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 11px;
+    background: rgba(190,242,100,0.14);
+    border: 1px solid rgba(190,242,100,0.4);
+    border-radius: 999px;
+    color: var(--acid);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    text-transform: uppercase;
+  }
+  #install-pwa-btn:active { transform: scale(0.94); }
+  #install-pwa-btn .pwa-ico { font-size: 12px; }
+
+  /* Lien Confidentialité dans le footer */
+  .privacy-link {
+    display: block;
+    text-align: center;
+    margin: 6px 0 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+  }
+  .privacy-link:hover, .privacy-link:active { opacity: 1; color: var(--text-dim); }
+
   /* Splash screen PWA (cold-start) */
   #tg-splash {
     position: fixed; inset: 0; z-index: 100000;
@@ -998,6 +1040,12 @@
 </style>
 </head>
 <body>
+
+  <!-- PWA install prompt (caché par défaut, révélé via beforeinstallprompt) -->
+  <button id="install-pwa-btn" onclick="installPWA()" aria-label="Installer l'application">
+    <span class="pwa-ico">⤓</span>
+    <span>Installer</span>
+  </button>
 
   <!-- Splash screen (cold-start PWA) -->
   <div id="tg-splash" aria-hidden="true">
@@ -1141,7 +1189,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=160')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=161')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -1160,7 +1208,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=160')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=161')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -1179,7 +1227,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=160')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=161')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -1198,7 +1246,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=160')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=161')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -1264,15 +1312,15 @@
 
     <!-- Stats compactes -->
     <div class="stats-row">
-      <div class="stat-cell" onclick="location.href='scene-06.html?v=160'">
+      <div class="stat-cell" onclick="location.href='scene-06.html?v=161'">
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=160'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=161'">
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=160'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=161'">
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
       </div>
@@ -1285,11 +1333,11 @@
         <div class="tool-icon">📚</div>
         <div class="tool-name">Apprendre</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--blue);" onclick="location.href='scene-05.html?v=160'">
+      <div class="tool-chip" style="--mode-color: var(--blue);" onclick="location.href='scene-05.html?v=161'">
         <div class="tool-icon">🎮</div>
         <div class="tool-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=160'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=161'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -1302,6 +1350,7 @@
     </button>
 
     <div class="footer-brand">✦ DEPONCHY STUDIO · 2026</div>
+    <a class="privacy-link" onclick="openPrivacy()">🔒 Confidentialité &amp; cookies</a>
 
     <button class="dev-reset-btn" onclick="resetAll()">[DEV] ↺ RESET COMPLET (1ÈRE CONNEXION)</button>
   </div>
@@ -1530,6 +1579,43 @@
     updateStreak();
   }
 
+  /* ===== PWA INSTALL PROMPT ===== */
+  let deferredInstallPrompt = null;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    const btn = document.getElementById('install-pwa-btn');
+    if (btn) btn.style.display = 'inline-flex';
+  });
+  window.addEventListener('appinstalled', () => {
+    const btn = document.getElementById('install-pwa-btn');
+    if (btn) btn.style.display = 'none';
+    deferredInstallPrompt = null;
+  });
+  async function installPWA() {
+    if (!deferredInstallPrompt) return;
+    if (navigator.vibrate) navigator.vibrate(10);
+    deferredInstallPrompt.prompt();
+    try {
+      const { outcome } = await deferredInstallPrompt.userChoice;
+      if (outcome === 'accepted') {
+        document.getElementById('install-pwa-btn').style.display = 'none';
+      }
+    } catch {}
+    deferredInstallPrompt = null;
+  }
+
+  /* ===== CONFIDENTIALITÉ — Réafficher banner consentement ===== */
+  function openPrivacy() {
+    if (navigator.vibrate) navigator.vibrate(8);
+    if (window.TG && window.TG.resetConsent) {
+      window.TG.resetConsent();
+    } else {
+      try { localStorage.removeItem('tradegenius_analytics_consent'); } catch {}
+      location.reload();
+    }
+  }
+
   async function shareProgress() {
     if (navigator.vibrate) navigator.vibrate(10);
     if (!window.TG || !window.TG.shareCard) {
@@ -1590,7 +1676,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=160';
+        card.onclick = () => location.href = 'scene-05.html?v=161';
         block.style.display = 'block';
         return;
       }
@@ -1610,7 +1696,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=160';
+          card.onclick = () => location.href = 'scene-06.html?v=161';
           block.style.display = 'block';
           return;
         }
@@ -1624,7 +1710,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=160';
+        card.onclick = () => location.href = 'scene-06.html?v=161';
         block.style.display = 'block';
         return;
       }
@@ -1639,7 +1725,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=160';
+    card.onclick = () => location.href = 'scene-05.html?v=161';
     block.style.display = 'block';
   }
 
@@ -1846,11 +1932,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=160"></script>
+  <script type="module" src="tg-common.js?v=161"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=160').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=161').catch(() => {});
       });
     }
   </script>

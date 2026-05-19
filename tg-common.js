@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.60';
+export const TG_VERSION = 'v1.61';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -438,6 +438,25 @@ window.TG = Object.assign(window.TG || {}, {
   shareCard, addGlossaryTerm, recordVisit, resetConsent, TG_VERSION,
 });
 
+// === Prefetch scenes critiques (perf navigation, après LCP) ===
+export function prefetchScenes() {
+  const run = () => setTimeout(() => {
+    const v = TG_VERSION.replace(/^v/, '').replace(/\./g, '');
+    const here = location.pathname.split('/').pop() || 'index.html';
+    ['index.html', 'scene-01.html', 'scene-05.html', 'scene-06.html'].forEach(s => {
+      if (here === s) return;
+      if (document.querySelector(`link[rel="prefetch"][href*="${s}"]`)) return;
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = s + '?v=' + v;
+      link.as = 'document';
+      document.head.appendChild(link);
+    });
+  }, 2200);
+  if (document.readyState === 'complete') run();
+  else window.addEventListener('load', run, { once: true });
+}
+
 // Auto-init au load
 function autoInit() {
   injectVersionBadge();
@@ -446,6 +465,7 @@ function autoInit() {
   injectConsentBanner();
   recordVisit();
   initGlossary();
+  prefetchScenes();
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', autoInit);
 else autoInit();
