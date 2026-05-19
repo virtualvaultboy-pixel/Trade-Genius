@@ -4775,19 +4775,23 @@
     <div class="slide s31 ch6" data-idx="30">
       <div class="tap-zones"><div class="tap-prev" onclick="prev()"></div><div class="tap-next" onclick="next()"></div></div>
       <div class="content">
-        <div class="eyebrow reveal">APRÈS LA CRISE DE 2008</div>
-        <h1 class="h1 l reveal">Un inconnu publie<br><span class="purple">9 pages</span> sur internet.</h1>
+        <div class="eyebrow reveal">31 OCTOBRE 2008</div>
+        <h1 class="h1 l reveal">Un <span class="purple">inconnu</span><br>publie un <span class="purple">white paper <button class="info-btn" onclick="showInfo('whitepaper')" aria-label="C'est quoi un white paper ?">?</button></span>.</h1>
+
+        <p class="body reveal">9 pages techniques sur une mailing list obscure. Personne ne fait attention. Pourtant, c'est le <strong class="purple-strong">début d'une révolution monétaire</strong>.</p>
 
         <div class="whitepaper reveal">
           <div class="whitepaper-title">Bitcoin: A Peer-to-Peer<br>Electronic Cash System</div>
-          <div class="whitepaper-meta">Cryptography mailing list · 31 oct 2008</div>
-          <div class="whitepaper-sig">— Satoshi Nakamoto</div>
+          <div class="whitepaper-meta">Mailing list crypto · 31 oct 2008</div>
+          <div class="whitepaper-sig">— Satoshi Nakamoto <button class="info-btn" onclick="showInfo('satoshi')" aria-label="Qui est Satoshi ?">?</button></div>
         </div>
 
+        <p class="body reveal">Le contexte ? Une crise mondiale qui détruit la confiance dans les banques.</p>
+
         <div class="mini-timeline reveal">
-          <div class="mini-tl-row"><span class="mini-tl-date">SEPT 2008</span><span class="mini-tl-evt">Lehman Brothers fait faillite. Crise mondiale.</span></div>
-          <div class="mini-tl-row"><span class="mini-tl-date">OCT 2008</span><span class="mini-tl-evt">Satoshi publie le whitepaper Bitcoin.</span></div>
-          <div class="mini-tl-row crit"><span class="mini-tl-date">JAN 2009</span><span class="mini-tl-evt">Le réseau Bitcoin démarre.</span></div>
+          <div class="mini-tl-row"><span class="mini-tl-date">SEPT 2008</span><span class="mini-tl-evt">Lehman Brothers s'effondre. Crise mondiale.</span></div>
+          <div class="mini-tl-row"><span class="mini-tl-date">OCT 2008</span><span class="mini-tl-evt">Satoshi publie son white paper.</span></div>
+          <div class="mini-tl-row crit"><span class="mini-tl-date">JAN 2009</span><span class="mini-tl-evt">Le réseau Bitcoin démarre. Bloc #0 créé.</span></div>
         </div>
       </div>
       <div class="hint">SUITE</div>
@@ -5637,6 +5641,24 @@
                <p>Leur objectif : <strong>éviter le chaos monétaire des années 1930</strong> qui avait nourri la crise et la guerre. Les économistes <em>Keynes</em> (UK) et <em>White</em> (US) y ont conçu un nouveau système.</p>
                <p>L'accord : <strong>toutes les monnaies sont liées au dollar</strong>, et <strong>le dollar est lié à l'or</strong> (1 once = 35 $). Les États-Unis garantissent l'échange aux banques centrales étrangères.</p>
                <p>De cet accord sont aussi nés le <strong>FMI</strong> et la <strong>Banque mondiale</strong>. Le système a tenu 27 ans, jusqu'à Nixon en 1971.</p>`
+      },
+      whitepaper: {
+        emoji: '📄',
+        title: 'White paper',
+        subtitle: "Document fondateur · Bitcoin 2008",
+        body: `<p>Un <strong>white paper</strong> ("livre blanc") est un <strong>document technique</strong> qui décrit un projet : son fonctionnement, sa raison d'être, sa solution à un problème.</p>
+               <p>Dans la tech et la crypto, c'est <strong>l'acte de naissance officiel</strong> d'un projet. Tu publies ton white paper avant de coder, pour que la communauté juge l'idée.</p>
+               <p>Le white paper Bitcoin de <strong>Satoshi Nakamoto</strong> (31 oct 2008) fait <strong>9 pages</strong> et s'intitule <em>"Bitcoin: A Peer-to-Peer Electronic Cash System"</em>. Il décrit comment échanger de la valeur sur internet <strong>sans banque ni intermédiaire</strong>.</p>
+               <p>👉 Tu peux encore le lire en intégralité aujourd'hui sur <strong>bitcoin.org/bitcoin.pdf</strong>. Document historique.</p>`
+      },
+      satoshi: {
+        emoji: '👤',
+        title: 'Satoshi Nakamoto',
+        subtitle: 'Identité inconnue · 2008-2011',
+        body: `<p><strong>Satoshi Nakamoto</strong> est le <strong>pseudonyme</strong> du créateur de Bitcoin. Personne ne sait qui c'est réellement.</p>
+               <p>Il (ou elle, ou ils) a publié le white paper en <strong>octobre 2008</strong>, lancé le réseau Bitcoin en <strong>janvier 2009</strong>, puis a discuté avec la communauté pendant 2 ans avant de <strong>disparaître complètement en avril 2011</strong>. Plus aucun message depuis.</p>
+               <p>Ses comptes contiennent environ <strong>1 million de bitcoins</strong> (plusieurs dizaines de milliards d'euros aujourd'hui) qui n'ont <strong>jamais bougé</strong>.</p>
+               <p>De nombreux candidats ont été suspectés (Hal Finney, Nick Szabo, Craig Wright…) mais aucune preuve n'a été apportée. <em>Un des plus grands mystères de l'histoire récente.</em></p>`
       }
     };
 
@@ -5680,11 +5702,11 @@
       }
     }
   </script>
-  <script type="module" src="tg-common.js?v=181"></script>
+  <script type="module" src="tg-common.js?v=182"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=181').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=182').catch(() => {});
       });
     }
   </script>
