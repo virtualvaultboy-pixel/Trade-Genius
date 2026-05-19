@@ -778,25 +778,7 @@
   }
   #view-accueil > * { position: relative; z-index: 1; }
 
-  /* Hello */
-  .hello { margin-bottom: 18px; }
-  .hello-line1 {
-    font-family: var(--font-d);
-    font-size: 17px;
-    color: var(--text-dim);
-    margin: 0 0 4px;
-    font-weight: 500;
-  }
-  .hello-line2 {
-    font-family: var(--font-d);
-    font-size: 26px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    margin: 0;
-    color: var(--text);
-  }
-  .hello-line2 em { font-style: italic; color: var(--acid); font-weight: 700; }
+  /* v2.16 — CSS .hello retiré (remplacé par .hub-header en v1.96) */
 
   /* ============================================
      v2.06 — Hub brand bar (titre app en haut)
@@ -985,51 +967,7 @@
     .hub-streak .hs-num { font-size: 16px; }
   }
 
-  /* Hero du jour — citation/stat */
-  .hero-daily {
-    margin-bottom: 18px;
-    padding: 16px 18px 18px;
-    background: linear-gradient(135deg, rgba(190, 242, 100, 0.08) 0%, rgba(190, 242, 100, 0.02) 100%);
-    border: 1px solid rgba(190, 242, 100, 0.25);
-    border-radius: 16px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-daily::after {
-    content: '';
-    position: absolute;
-    top: -40px; right: -40px;
-    width: 120px; height: 120px;
-    background: radial-gradient(circle, var(--acid) 0%, transparent 70%);
-    opacity: 0.1;
-    border-radius: 50%;
-    pointer-events: none;
-  }
-  .hero-daily-eyebrow {
-    font-family: var(--font-m);
-    font-size: 9.5px;
-    letter-spacing: 0.18em;
-    color: var(--acid);
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-  .hero-daily-text {
-    font-family: var(--font-d);
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    line-height: 1.4;
-    margin: 0;
-  }
-  .hero-daily-text em { color: var(--acid); font-style: normal; font-weight: 700; }
-  .hero-daily-author {
-    font-family: var(--font-m);
-    font-size: 11px;
-    color: var(--text-faint);
-    margin: 8px 0 0;
-    font-weight: 600;
-  }
+  /* v2.16 — CSS .hero-daily retiré (élément DOM retiré en v2.11) */
 
   /* Reprendre — HERO style jeu pro */
   .resume-block { margin-bottom: 18px; }
@@ -1150,72 +1088,7 @@
     .resume-arrow { animation: none; }
   }
 
-  /* Progression globale du parcours */
-  .parcours-progress {
-    margin: 14px 0 14px;
-    padding: 14px 16px 12px;
-    background: linear-gradient(135deg, rgba(190,242,100,0.08) 0%, rgba(190,242,100,0.02) 100%);
-    border: 1px solid rgba(190,242,100,0.22);
-    border-radius: 14px;
-    cursor: pointer;
-    position: relative;
-    transition: transform 0.15s ease, border-color 0.2s;
-  }
-  .parcours-progress:active { transform: scale(0.985); border-color: rgba(190,242,100,0.4); }
-  .pp-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 8px;
-  }
-  .pp-label {
-    font-family: var(--font-m);
-    font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    color: var(--acid);
-    text-transform: uppercase;
-  }
-  .pp-stat {
-    font-family: var(--font-m);
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text-dim);
-    letter-spacing: 0.04em;
-  }
-  .pp-bar-wrap {
-    height: 6px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 999px;
-    overflow: hidden;
-    position: relative;
-  }
-  .pp-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--acid) 0%, var(--acid-glow) 100%);
-    border-radius: 999px;
-    transition: width 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: 0 0 12px rgba(190, 242, 100, 0.45);
-  }
-  .pp-pct {
-    position: absolute;
-    top: 13px;
-    right: 16px;
-    font-family: var(--font-d);
-    font-size: 12px;
-    font-weight: 800;
-    color: var(--acid);
-    letter-spacing: -0.01em;
-    pointer-events: none;
-    display: none;
-  }
-  .parcours-progress.done {
-    border-color: rgba(190,242,100,0.5);
-    background: linear-gradient(135deg, rgba(190,242,100,0.16) 0%, rgba(190,242,100,0.04) 100%);
-  }
-  .parcours-progress.done .pp-label::after {
-    content: ' · TERMINÉ ✓';
-  }
+  /* v2.16 — CSS .parcours-progress retiré (élément retiré en v1.99) */
 
   /* Stats compactes 3 cellules — v1.96 avec icônes */
   .stats-row {
@@ -2051,26 +1924,7 @@
   }
   .tuto-next:active { transform: scale(0.97); }
 
-  /* Streak quotidien */
-  .streak-badge {
-    display: none;
-    align-items: center;
-    gap: 6px;
-    margin: 0 16px 14px;
-    padding: 6px 12px;
-    background: linear-gradient(135deg, rgba(212,165,116,0.16), rgba(212,165,116,0.06));
-    border: 1px solid rgba(212,165,116,0.3);
-    border-radius: 999px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--clay);
-    width: fit-content;
-    letter-spacing: 0.05em;
-  }
-  .streak-badge.active { display: inline-flex; }
-  .streak-badge .streak-icon { font-size: 14px; line-height: 1; }
-  .streak-badge .streak-num { font-size: 13px; color: var(--text); }
+  /* v2.16 — CSS .streak-badge retiré (remplacé par .hub-streak en v1.96) */
 
   /* Bouton Partager progrès */
   .share-progress-btn {
@@ -2463,7 +2317,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.15</div>
+        <div class="bd-brand-ver" id="bd-version">v2.16</div>
       </div>
     </div>
 
@@ -2475,17 +2329,17 @@
     <a class="bd-item" href="glossary.html"><span class="bd-ico">📑</span><span>Glossaire (26 termes)</span></a>
 
     <div class="bd-section-title">Apprendre</div>
-    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=215')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=215')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=215')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=215')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=215')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(5, 'scene-11.html?v=215')"><span class="bd-ico" style="color:var(--green);">💰</span><span>M5 · Fiscalité FR</span><span class="bd-count" id="bd-prog-m5">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=216')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=216')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=216')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=216')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=216')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(5, 'scene-11.html?v=216')"><span class="bd-ico" style="color:var(--green);">💰</span><span>M5 · Fiscalité FR</span><span class="bd-count" id="bd-prog-m5">—</span></a>
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=215')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=215')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=215')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=216')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=216')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=216')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
     <a class="bd-item bd-premium" onclick="closeBurger();openCoachIA()"><span class="bd-ico">🤖</span><span>Coach IA <span class="bd-mini">Bientôt</span></span></a>
 
     <div class="bd-section-title">Tes stats</div>
@@ -2736,7 +2590,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=215')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=216')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -2755,7 +2609,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=215')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=216')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -2774,7 +2628,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=215')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=216')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -2793,7 +2647,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=215')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=216')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -2812,7 +2666,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=215')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=216')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -2831,7 +2685,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=215')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=216')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -2870,7 +2724,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.15</span>
+      <span class="hbb-tag" id="hbb-tag">v2.16</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -2911,13 +2765,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=215'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=216'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=215'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=216'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -2969,7 +2823,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=215'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=216'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -2981,25 +2835,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=215" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=216" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=215" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=216" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 6 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=215" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=216" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=215" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=216" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -3164,31 +3018,23 @@
       easing: 'easeOutBack',
     });
 
-    // 3) Parcours progress + stats pop one by one
-    anime({
-      targets: '#view-accueil .parcours-progress',
-      translateY: [20, 0],
-      opacity: [0, 1],
-      duration: 540,
-      delay: 540,
-      easing: 'easeOutCubic',
-    });
+    // 3) Stats pop one by one (v2.16 : parcours-progress retiré)
     anime({
       targets: '#view-accueil .stats-row .stat-cell',
       translateY: [22, 0],
       scale: [0.85, 1],
       opacity: [0, 1],
-      delay: anime.stagger(90, { start: 660 }),
+      delay: anime.stagger(90, { start: 540 }),
       duration: 580,
       easing: 'easeOutBack',
     });
 
-    // 4) Défi du jour + pensée du jour
+    // 4) Défi du jour (v2.16 : hero-daily retiré)
     anime({
-      targets: '#view-accueil .daily-challenge, #view-accueil .hero-daily',
+      targets: '#view-accueil .daily-challenge',
       translateY: [18, 0],
       opacity: [0, 1],
-      delay: anime.stagger(80, { start: 900 }),
+      delay: 820,
       duration: 540,
       easing: 'easeOutCubic',
     });
@@ -3734,8 +3580,7 @@
     // 6) Verrou simu selon progression modules
     refreshSimuLock();
 
-    // 7) Barre de progression globale du parcours
-    updateParcoursProgress();
+    // 7) v2.16 — updateParcoursProgress retiré (élément retiré en v1.99)
 
     // 8) État du bouton notifications
     refreshNotifBtn();
@@ -3779,26 +3624,7 @@
     }
   }
 
-  function updateParcoursProgress() {
-    const mods = MODULES.filter(m => !m.coming);
-    let done = 0, total = 0;
-    mods.forEach(m => { done += countDone(loadProg(m.storage)); total += m.total; });
-    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-    const fill = document.getElementById('pp-bar-fill');
-    const stat = document.getElementById('pp-stat');
-    const pctEl = document.getElementById('pp-pct');
-    const wrap = document.querySelector('.parcours-progress');
-    if (stat) stat.textContent = `${done} / ${total} chapitres`;
-    if (pctEl) pctEl.textContent = pct + '%';
-    if (wrap) wrap.classList.toggle('done', pct >= 100);
-    // Anim au load: 0 → pct
-    if (fill) {
-      fill.style.width = '0%';
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        fill.style.width = pct + '%';
-      }));
-    }
-  }
+  /* v2.16 — function updateParcoursProgress() retirée (élément DOM retiré en v1.99) */
 
   /* ===== PWA INSTALL PROMPT ===== */
   let deferredInstallPrompt = null;
@@ -4003,7 +3829,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=215';
+        location.href = 'scene-10.html?v=216';
       });
       widget._linked = true;
     }
@@ -4056,7 +3882,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=215';
+      location.href = 'scene-05.html?v=216';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -4468,7 +4294,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=215'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=216'; };
         block.style.display = 'block';
         return;
       }
@@ -4510,7 +4336,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=215';
+        card.onclick = () => location.href = 'scene-05.html?v=216';
         block.style.display = 'block';
         return;
       }
@@ -4530,7 +4356,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=215';
+          card.onclick = () => location.href = 'scene-06.html?v=216';
           block.style.display = 'block';
           return;
         }
@@ -4544,7 +4370,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=215';
+        card.onclick = () => location.href = 'scene-06.html?v=216';
         block.style.display = 'block';
         return;
       }
@@ -4559,7 +4385,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=215';
+    card.onclick = () => location.href = 'scene-05.html?v=216';
     block.style.display = 'block';
   }
 
@@ -4870,11 +4696,11 @@
     if (shortcut === 'modules') { showView('modules'); return; }
     if (shortcut === 'simu') {
       // Pas de location.href ici : on est déjà dans index.html, redirige
-      location.href = 'scene-05.html?v=215';
+      location.href = 'scene-05.html?v=216';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=215';
+      location.href = 'scene-06.html?v=216';
       return;
     }
 
@@ -4893,11 +4719,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=215"></script>
+  <script type="module" src="tg-common.js?v=216"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=215').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=216').catch(() => {});
       });
     }
   </script>
