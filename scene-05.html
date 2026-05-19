@@ -1244,6 +1244,85 @@ input { font-family: inherit; }
 /* Trading controls (now embedded in bottom sheet) */
 .sim-controls { padding: 0 14px 12px; }
 
+/* Slider % du capital (UX broker-like) */
+.sim-slider-row {
+  padding: 10px 14px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  margin-bottom: 8px;
+}
+.sim-slider-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.sim-slider-label {
+  font-family: var(--font-m);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+.sim-slider-amount {
+  font-family: var(--font-m);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--acid);
+  letter-spacing: 0.02em;
+}
+.sim-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--acid) 0%, var(--acid) var(--slider-pct, 10%), rgba(255,255,255,0.08) var(--slider-pct, 10%), rgba(255,255,255,0.08) 100%);
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+}
+.sim-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px; height: 22px;
+  background: var(--acid);
+  border-radius: 50%;
+  border: 3px solid #16161c;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px var(--acid), 0 2px 12px rgba(190,242,100,0.45);
+  transition: transform 0.1s;
+}
+.sim-slider::-webkit-slider-thumb:active { transform: scale(1.18); }
+.sim-slider::-moz-range-thumb {
+  width: 22px; height: 22px;
+  background: var(--acid);
+  border-radius: 50%;
+  border: 3px solid #16161c;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px var(--acid), 0 2px 12px rgba(190,242,100,0.45);
+}
+.sim-slider-ticks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  margin-top: 9px;
+}
+.slider-tick {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-m);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  padding: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.slider-tick:active { background: rgba(255,255,255,0.1); color: var(--text); }
+
 /* Dans la sheet, on n'affiche QU'UN bouton (buy ou sell) selon le contexte */
 .sim-action-row {
   display: grid;
@@ -2680,6 +2759,21 @@ input { font-family: inherit; }
       <div class="sim-qty-helpers">
         <button class="sim-qty-helper" onclick="setQty('half')">½</button>
         <button class="sim-qty-helper" onclick="setQty('max')">MAX</button>
+      </div>
+    </div>
+
+    <!-- Slider % du capital (broker-like, plus ergonomique que input qty) -->
+    <div class="sim-slider-row">
+      <div class="sim-slider-header">
+        <span class="sim-slider-label" id="sim-slider-label">% DU CAPITAL</span>
+        <span class="sim-slider-amount" id="sim-slider-amount">10% · $0</span>
+      </div>
+      <input type="range" id="sim-slider" class="sim-slider" min="0" max="100" value="10" step="1"/>
+      <div class="sim-slider-ticks">
+        <button class="slider-tick" onclick="setCapitalPct(25)">25%</button>
+        <button class="slider-tick" onclick="setCapitalPct(50)">50%</button>
+        <button class="slider-tick" onclick="setCapitalPct(75)">75%</button>
+        <button class="slider-tick" onclick="setCapitalPct(100)">MAX</button>
       </div>
     </div>
     <div class="sim-stop-row" id="sim-stop-row" style="display:none;">
@@ -7016,6 +7110,8 @@ function openOrderSheet(side) {
 
   panel.classList.add('open');
   backdrop.classList.add('active');
+  // Sync slider avec la qty actuelle (basé sur le side)
+  syncSliderFromQty();
   if (navigator.vibrate) navigator.vibrate(8);
 }
 
@@ -7030,6 +7126,103 @@ document.addEventListener('keydown', (e) => {
     closeOrderSheet();
   }
 });
+
+/* ═══════════════════════════════════════════════════════════════
+   SLIDER % du capital (broker UX)
+   ═══════════════════════════════════════════════════════════════ */
+function _currentSimPrice() {
+  if (!state.scenario) return 0;
+  const candle = state.scenario.candles[state.currentDay];
+  return candle ? candle.close : 0;
+}
+
+function _currentSide() {
+  return document.getElementById('trade-panel')?.dataset.side || 'buy';
+}
+
+function setCapitalPct(pct) {
+  applySliderPct(pct);
+  if (navigator.vibrate) navigator.vibrate(6);
+}
+
+function applySliderPct(pct) {
+  if (!state.scenario) return;
+  pct = Math.max(0, Math.min(100, pct));
+  const slider = document.getElementById('sim-slider');
+  if (slider) {
+    slider.value = pct;
+    slider.style.setProperty('--slider-pct', pct + '%');
+  }
+  const price = _currentSimPrice();
+  if (price <= 0) return;
+
+  const sc = state.scenario;
+  const side = _currentSide();
+  let qty;
+  if (side === 'buy') {
+    const maxQty = state.cash / price;
+    qty = maxQty * (pct / 100);
+  } else {
+    qty = state.shares * (pct / 100);
+  }
+  if (sc.fractional) {
+    const dec = sc.qtyDecimals || 4;
+    qty = Math.floor(qty * Math.pow(10, dec)) / Math.pow(10, dec);
+  } else {
+    qty = Math.floor(qty);
+  }
+  document.getElementById('sim-qty').value = qty;
+  updateTradeControls(price);
+  _updateSliderAmount(pct, qty, price);
+}
+
+function _updateSliderAmount(pct, qty, price) {
+  const amount = qty * price;
+  const amountEl = document.getElementById('sim-slider-amount');
+  const labelEl = document.getElementById('sim-slider-label');
+  if (amountEl) amountEl.textContent = pct + '% · $' + amount.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+  if (labelEl) labelEl.textContent = (_currentSide() === 'buy') ? '% DU CAPITAL' : '% DES TITRES';
+}
+
+function syncSliderFromQty() {
+  if (!state.scenario) return;
+  const price = _currentSimPrice();
+  if (price <= 0) return;
+  const qty = readQty();
+  const side = _currentSide();
+  let pct;
+  if (side === 'buy') {
+    pct = state.cash > 0 ? Math.min(100, Math.round((qty * price / state.cash) * 100)) : 0;
+  } else {
+    pct = state.shares > 0 ? Math.min(100, Math.round((qty / state.shares) * 100)) : 0;
+  }
+  const slider = document.getElementById('sim-slider');
+  if (slider) {
+    slider.value = pct;
+    slider.style.setProperty('--slider-pct', pct + '%');
+  }
+  _updateSliderAmount(pct, qty, price);
+}
+
+/* Listeners au load (idempotent) */
+(function setupSliderListeners() {
+  const slider = document.getElementById('sim-slider');
+  const qtyInput = document.getElementById('sim-qty');
+  if (slider && !slider.dataset.wired) {
+    slider.dataset.wired = '1';
+    slider.addEventListener('input', (e) => {
+      applySliderPct(parseInt(e.target.value, 10));
+    });
+  }
+  if (qtyInput && !qtyInput.dataset.wired) {
+    qtyInput.dataset.wired = '1';
+    qtyInput.addEventListener('input', () => {
+      syncSliderFromQty();
+      const price = _currentSimPrice();
+      if (price > 0) updateTradeControls(price);
+    });
+  }
+})();
 
 /* ═══════════════════════════════════════════════════════════════
    INIT — protected
@@ -7066,11 +7259,11 @@ document.addEventListener('keydown', (e) => {
 });
 
 </script>
-  <script type="module" src="tg-common.js?v=164"></script>
+  <script type="module" src="tg-common.js?v=165"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=164').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=165').catch(() => {});
       });
     }
   </script>
