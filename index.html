@@ -1148,6 +1148,310 @@
   }
   body.premium-mode .hub-greet-line1 { color: var(--gold, #f59e0b); }
 
+  /* ============================================
+     v2.05 — Tools advanced (verrouillés en free)
+     ============================================ */
+  .expert-title-row {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 24px !important;
+  }
+  .expert-title-row .adv-title-text {
+    font-family: var(--font-m);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold, #f59e0b);
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+  .expert-title-row .adv-title-status {
+    font-family: var(--font-m);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .expert-title-row::before, .expert-title-row::after { display: none; }
+  .tools-grid.tools-grid-2x2 {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .tool-chip.advanced {
+    padding: 14px 10px;
+    align-items: flex-start;
+    text-align: left;
+    gap: 4px;
+    position: relative;
+    overflow: hidden;
+    min-height: 96px;
+  }
+  .tool-chip.advanced .tool-icon {
+    width: 32px; height: 32px;
+    font-size: 17px;
+    align-self: flex-start;
+  }
+  .tool-chip.advanced .tool-name {
+    font-size: 13px;
+    text-align: left;
+    width: 100%;
+    margin-top: 2px;
+  }
+  .tool-chip.advanced .tool-sub-info {
+    font-family: var(--font-d);
+    font-size: 10.5px;
+    color: var(--text-dim);
+    line-height: 1.3;
+    width: 100%;
+  }
+  .tool-chip.advanced .lock-badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    font-size: 14px;
+    filter: drop-shadow(0 0 6px rgba(245,158,11,0.5));
+  }
+  /* Free state — cadenas visible, opacité réduite */
+  body:not(.premium-mode) .tool-chip.advanced {
+    cursor: pointer;
+    opacity: 0.78;
+    border-color: rgba(245,158,11,0.22);
+  }
+  body:not(.premium-mode) .tool-chip.advanced::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(20,20,28,0) 0%, rgba(20,20,28,0.5) 100%);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  body:not(.premium-mode) .tool-chip.advanced:active {
+    opacity: 0.95;
+    transform: scale(0.97);
+  }
+  /* Premium state — débloqués */
+  body.premium-mode .tool-chip.advanced .lock-badge { display: none; }
+  body.premium-mode .tool-chip.advanced { opacity: 1; border-color: rgba(245,158,11,0.4); }
+  body.premium-mode #adv-status { color: var(--gold, #f59e0b); }
+
+  /* ============================================
+     v2.05 — Widget Marché Live (Premium uniquement)
+     ============================================ */
+  .market-live {
+    margin: 0 0 22px;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.06) 0%, rgba(20,20,28,0.7) 60%, rgba(167,139,250,0.08) 100%);
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: 18px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.36), 0 0 18px rgba(245,158,11,0.08), inset 0 1px 0 rgba(255,255,255,0.05);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(140%);
+    position: relative;
+    overflow: hidden;
+  }
+  .ml-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px;
+  }
+  .ml-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-m); font-size: 9.5px;
+    letter-spacing: 0.22em; color: var(--gold, #f59e0b);
+    font-weight: 800; text-transform: uppercase;
+  }
+  .ml-pulse {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+    animation: ml-pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes ml-pulse {
+    0%, 100% { opacity: 0.5; transform: scale(0.85); }
+    50%      { opacity: 1;   transform: scale(1.15); }
+  }
+  .ml-refresh {
+    font-family: var(--font-m); font-size: 9.5px;
+    color: var(--text-faint); letter-spacing: 0.15em;
+    font-weight: 700;
+  }
+  .ml-tickers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .ml-ticker {
+    padding: 8px 9px;
+    background: rgba(0,0,0,0.32);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: transform 0.18s, border-color 0.22s;
+  }
+  .ml-ticker .ml-sym {
+    font-family: var(--font-m); font-size: 9.5px;
+    color: var(--text-dim); font-weight: 800;
+    letter-spacing: 0.08em; margin-bottom: 3px;
+  }
+  .ml-ticker .ml-price {
+    font-family: var(--font-d); font-size: 14px; font-weight: 800;
+    color: var(--text); letter-spacing: -0.01em;
+  }
+  .ml-ticker .ml-chg {
+    font-family: var(--font-m); font-size: 10px; font-weight: 700;
+    margin-top: 2px;
+  }
+  .ml-ticker.up .ml-chg { color: var(--green); }
+  .ml-ticker.down .ml-chg { color: var(--red); }
+  .ml-ticker.up    { border-color: rgba(34,197,94,0.28); }
+  .ml-ticker.down  { border-color: rgba(239,68,68,0.28); }
+  .ml-chart {
+    width: 100%; height: 80px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.08) 100%);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .ml-foot {
+    font-family: var(--font-m); font-size: 9px;
+    color: var(--text-faint); text-align: right;
+    letter-spacing: 0.06em;
+  }
+
+  /* ============================================
+     v2.05 — Vidéos placeholder (Premium)
+     ============================================ */
+  .videos-section { margin: 18px 0; }
+  .videos-placeholder {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 14px;
+    padding: 14px;
+    background: linear-gradient(135deg, rgba(167,139,250,0.08) 0%, rgba(20,20,28,0.6) 100%);
+    border: 1px solid rgba(167,139,250,0.25);
+    border-radius: 14px;
+  }
+  .videos-placeholder .vp-thumb {
+    width: 100px; height: 60px;
+    background: linear-gradient(135deg, #0a0a0c, #1a1a25);
+    border: 1px solid rgba(167,139,250,0.3);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: var(--purple);
+    box-shadow: 0 0 14px rgba(167,139,250,0.2) inset;
+  }
+  .videos-placeholder .vp-info { min-width: 0; }
+  .videos-placeholder .vp-lbl {
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 700;
+    color: var(--purple); letter-spacing: 0.18em;
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .videos-placeholder .vp-title {
+    font-family: var(--font-d); font-size: 13px; color: var(--text);
+    line-height: 1.35; font-weight: 600;
+  }
+
+  /* ============================================
+     v2.05 — Bandeau Premium full-width (free seulement)
+     ============================================ */
+  .premium-banner {
+    position: relative;
+    margin: 22px 0 8px;
+    padding: 22px 18px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.18) 0%, rgba(167,139,250,0.15) 100%);
+    border: 1px solid rgba(245,158,11,0.45);
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 18px 44px rgba(245,158,11,0.18), inset 0 1px 0 rgba(255,255,255,0.08);
+    animation: pb-pulse 4.5s ease-in-out infinite;
+  }
+  .premium-banner:active { transform: scale(0.992); }
+  .pb-glow {
+    position: absolute;
+    top: -60%; right: -30%;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(245,158,11,0.4) 0%, transparent 65%);
+    pointer-events: none;
+    animation: pb-glow-rotate 12s linear infinite;
+  }
+  .premium-banner::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -120%;
+    width: 50%; height: 100%;
+    background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+    pointer-events: none;
+    animation: pb-shine 6s ease-in-out infinite;
+    animation-delay: 1.5s;
+  }
+  @keyframes pb-pulse {
+    0%, 100% { box-shadow: 0 18px 44px rgba(245,158,11,0.18), inset 0 1px 0 rgba(255,255,255,0.08); }
+    50%      { box-shadow: 0 22px 52px rgba(245,158,11,0.30), 0 0 18px rgba(167,139,250,0.18), inset 0 1px 0 rgba(255,255,255,0.12); }
+  }
+  @keyframes pb-glow-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes pb-shine {
+    0% { left: -120%; }
+    55%, 100% { left: 140%; }
+  }
+  .pb-content { position: relative; z-index: 1; }
+  .pb-eyebrow {
+    font-family: var(--font-m); font-size: 10.5px;
+    letter-spacing: 0.22em; color: var(--gold, #f59e0b);
+    font-weight: 800; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .pb-title {
+    font-family: var(--font-d); font-size: 26px;
+    font-weight: 800; line-height: 1.05;
+    letter-spacing: -0.02em; margin: 0 0 14px;
+    color: var(--text);
+  }
+  .pb-title em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--gold, #f59e0b), var(--purple, #a78bfa));
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    font-weight: 800;
+  }
+  .pb-features {
+    display: flex; flex-direction: column; gap: 7px;
+    margin-bottom: 16px;
+  }
+  .pb-feat {
+    display: grid; grid-template-columns: 26px 1fr; gap: 10px;
+    align-items: center;
+    font-family: var(--font-d); font-size: 13px;
+    color: var(--text); line-height: 1.35;
+  }
+  .pb-feat-ico {
+    font-size: 18px; line-height: 1;
+    filter: drop-shadow(0 0 6px rgba(245,158,11,0.3));
+  }
+  .pb-cta {
+    width: 100%;
+    padding: 13px 16px;
+    background: linear-gradient(135deg, var(--gold, #f59e0b), var(--purple, #a78bfa));
+    color: #0a0a0c;
+    font-family: var(--font-d); font-size: 14px;
+    font-weight: 800; letter-spacing: 0.02em;
+    border: none; border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 8px 22px rgba(245,158,11,0.32), inset 0 1px 0 rgba(255,255,255,0.22);
+  }
+  .pb-cta:active { transform: scale(0.98); }
+  @media (prefers-reduced-motion: reduce) {
+    .premium-banner, .pb-glow, .premium-banner::after { animation: none; }
+  }
+  @media (max-width: 360px) {
+    .pb-title { font-size: 22px; }
+    .pb-feat { font-size: 12px; }
+  }
+
   /* Premium card (freemium) — v1.97 pulse + shine sweep */
   .premium-card {
     margin: 18px 0;
@@ -1920,7 +2224,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.04</div>
+        <div class="bd-brand-ver" id="bd-version">v2.05</div>
       </div>
     </div>
 
@@ -2118,7 +2422,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=204')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=205')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -2137,7 +2441,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=204')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=205')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -2156,7 +2460,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=204')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=205')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -2175,7 +2479,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=204')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=205')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -2194,7 +2498,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=204')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=205')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -2265,13 +2569,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=204'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=205'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=204'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=205'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -2304,7 +2608,20 @@
       <p class="hero-daily-author" id="hero-daily-author"></p>
     </div>
 
-    <!-- Outils en chips -->
+    <!-- ============ WIDGET MARCHÉ LIVE (Premium uniquement) ============ -->
+    <div class="market-live" id="market-live" style="display:none;">
+      <div class="ml-head">
+        <div class="ml-eyebrow"><span class="ml-pulse"></span>MARCHÉ EN TEMPS RÉEL</div>
+        <div class="ml-refresh" id="ml-refresh">··· LIVE</div>
+      </div>
+      <div class="ml-tickers" id="ml-tickers">
+        <!-- Tickers injectés par JS -->
+      </div>
+      <canvas class="ml-chart" id="ml-chart" aria-hidden="true"></canvas>
+      <div class="ml-foot">Source : mock — vraie API Binance/Yahoo à venir</div>
+    </div>
+
+    <!-- ============ OUTILS BASE (toujours visibles) ============ -->
     <div class="section-title">Tes outils</div>
     <div class="tools-grid tools-grid-3">
       <div class="tool-chip" style="--mode-color: var(--acid);" onclick="showView('modules')">
@@ -2315,37 +2632,72 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=204'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=205'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
     </div>
 
-    <!-- ============ MODE EXPERT (visible si isPremium) ============ -->
-    <div class="expert-section" id="expert-section" style="display:none;">
-      <div class="section-title expert-title">✦ Mode Expert</div>
-      <div class="tools-grid tools-grid-3 tools-expert">
-        <div class="tool-chip expert" style="--mode-color: var(--gold);" onclick="location.href='scene-08.html?v=204'">
-          <div class="tool-icon">🔬</div>
-          <div class="tool-name">Patterns Lab</div>
-        </div>
-        <div class="tool-chip expert" style="--mode-color: var(--red);" onclick="location.href='scene-09.html?v=204'">
-          <div class="tool-icon">📜</div>
-          <div class="tool-name">Historiques</div>
-        </div>
-        <div class="tool-chip expert" style="--mode-color: var(--purple);" onclick="openCoachIA()">
-          <div class="tool-icon">🤖</div>
-          <div class="tool-name">Coach IA<span class="tool-sub">Bientôt</span></div>
+    <!-- ============ OUTILS AVANCÉS (verrouillés en free, débloqués en premium) ============ -->
+    <div class="section-title expert-title-row" id="advanced-title">
+      <span class="adv-title-text">Mode Expert</span>
+      <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
+    </div>
+    <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=205#advanced" style="--mode-color: var(--blue);">
+        <div class="tool-icon">🎓</div>
+        <div class="tool-name">Cours avancé</div>
+        <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
+        <span class="lock-badge">🔒</span>
+      </div>
+      <div class="tool-chip advanced" data-href="scene-08.html?v=205" style="--mode-color: var(--gold);">
+        <div class="tool-icon">🔬</div>
+        <div class="tool-name">Patterns Lab</div>
+        <div class="tool-sub-info">H&S, Triangles, Flags...</div>
+        <span class="lock-badge">🔒</span>
+      </div>
+      <div class="tool-chip advanced" data-href="scene-09.html?v=205" style="--mode-color: var(--red);">
+        <div class="tool-icon">📜</div>
+        <div class="tool-name">Historiques</div>
+        <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
+        <span class="lock-badge">🔒</span>
+      </div>
+      <div class="tool-chip advanced" data-action="coach" style="--mode-color: var(--purple);">
+        <div class="tool-icon">🤖</div>
+        <div class="tool-name">Coach IA</div>
+        <div class="tool-sub-info">Review de tes trades par IA</div>
+        <span class="lock-badge">🔒</span>
+      </div>
+    </div>
+
+    <!-- ============ VIDÉOS (Premium uniquement) ============ -->
+    <div class="videos-section" id="videos-section" style="display:none;">
+      <div class="section-title expert-title">📹 Vidéos trading</div>
+      <div class="videos-placeholder">
+        <div class="vp-thumb"><span>▶</span></div>
+        <div class="vp-info">
+          <div class="vp-lbl">PROCHAINEMENT</div>
+          <div class="vp-title">Tutos vidéo · Analyses hebdo · Replays sessions live</div>
         </div>
       </div>
     </div>
 
-    <!-- Card Premium (upsell mode expert, masquée si déjà premium) -->
-    <div class="premium-card" id="premium-card" onclick="openPremium()" style="display:none;">
-      <div class="pc-eyebrow">✦ Passe en mode expert</div>
-      <div class="pc-title">Aller <em>plus loin</em></div>
-      <div class="pc-sub">Coach IA · Analyse de tes trades · Module 4 expert (Fibonacci, Volume Profile, Order book) · Watchlist live</div>
-      <button class="pc-cta">Voir les avantages →</button>
+    <!-- ============ BANDEAU PREMIUM (full-width, accrocheur — free seulement) ============ -->
+    <div class="premium-banner" id="premium-banner" onclick="openPremium()" style="display:none;">
+      <div class="pb-glow"></div>
+      <div class="pb-content">
+        <div class="pb-eyebrow">✦ TRADE GENIUS EXPERT</div>
+        <div class="pb-title">Débloque <em>tout</em></div>
+        <div class="pb-features">
+          <div class="pb-feat"><span class="pb-feat-ico">🎓</span><span>Cours avancé Fibonacci, Dow, Volume Profile</span></div>
+          <div class="pb-feat"><span class="pb-feat-ico">🔬</span><span>Patterns Lab — tous les modèles classiques</span></div>
+          <div class="pb-feat"><span class="pb-feat-ico">📜</span><span>Krachs historiques décortiqués</span></div>
+          <div class="pb-feat"><span class="pb-feat-ico">🤖</span><span>Coach IA — analyse de tes trades</span></div>
+          <div class="pb-feat"><span class="pb-feat-ico">📡</span><span>Marché en temps réel + watchlist</span></div>
+          <div class="pb-feat"><span class="pb-feat-ico">📹</span><span>Vidéos tutos + analyses hebdo</span></div>
+        </div>
+        <button class="pb-cta">Passer en Expert · 3€/mois →</button>
+      </div>
     </div>
 
     <!-- Rappels notif + Partager -->
@@ -3159,32 +3511,160 @@
     if (navigator.vibrate) navigator.vibrate(8);
     alert("✦ TRADE GENIUS — MODE EXPERT\n\nToutes les bases restent gratuites (M0-M3 + simu illimité + biblio + glossaire). Le Premium, c'est pour aller plus loin :\n\n🤖 Coach IA — review de tes sessions simu, plans suggérés\n📊 Analyse de TES trades — win rate par setup, par horaire, drawdown perso\n📈 Module 4 expert (ch.4-7) — Dow + Fibonacci, Volume Profile, Order book, Backtesting\n📰 Newsletter hebdo personnalisée selon ta progression\n💹 Watchlist live (prix temps réel)\n🎬 Scénarios simu historiques (krachs 2008, 2020, dotcom)\n\n3€/mois ou 25€/an\n\n(Paiement à venir — Play Billing après publication)");
   }
-  function refreshPremiumCard() {
-    const card = document.getElementById('premium-card');
-    if (!card) return;
-    const premium = window.TG && window.TG.isPremium ? window.TG.isPremium() : false;
-    card.style.display = premium ? 'none' : 'block';
-  }
-  // v2.03/2.04 : transformation premium (badge + expert section + body class + fab)
+  // v2.05 : ancien premium-card retiré, banner full-width géré par refreshPremiumMode
+  function refreshPremiumCard() { /* deprecated v2.05 — voir refreshPremiumMode */ }
+
+  // v2.05 : transformation app selon mode (free vs premium hub)
   function refreshPremiumMode() {
     const premium = window.TG && window.TG.isPremium ? window.TG.isPremium() : false;
     document.body.classList.toggle('premium-mode', premium);
     const badge = document.getElementById('expert-badge');
-    const expertSec = document.getElementById('expert-section');
     const fab = document.getElementById('premium-fab');
+    const banner = document.getElementById('premium-banner');
+    const market = document.getElementById('market-live');
+    const videos = document.getElementById('videos-section');
+    const advStatus = document.getElementById('adv-status');
+
     if (badge) badge.style.display = premium ? 'inline-block' : 'none';
-    if (expertSec) expertSec.style.display = premium ? 'block' : 'none';
     if (fab) fab.classList.toggle('hidden', premium);
+    if (banner) banner.style.display = premium ? 'none' : 'block';
+    if (market) market.style.display = premium ? 'block' : 'none';
+    if (videos) videos.style.display = premium ? 'block' : 'none';
+    if (advStatus) advStatus.textContent = premium ? '✦ Débloqué' : '🔒 Verrouillé';
+
+    // Câble les onclick des tools avancés selon mode
+    document.querySelectorAll('.tool-chip.advanced').forEach(chip => {
+      chip.onclick = () => {
+        if (navigator.vibrate) navigator.vibrate(8);
+        if (!premium) {
+          openPremium();
+          return;
+        }
+        const href = chip.getAttribute('data-href');
+        const action = chip.getAttribute('data-action');
+        if (action === 'coach') openCoachIA();
+        else if (href) location.href = href;
+      };
+    });
+
+    if (premium) startMarketLive();
+    else stopMarketLive();
   }
-  function openCoachIA() {
-    if (navigator.vibrate) navigator.vibrate(8);
-    alert("🤖 COACH IA — Bientôt disponible\n\nTu colleras ta dernière session simu, et l'IA Claude (Anthropic) la décortique :\n\n• 3 améliorations concrètes\n• Détection de tes biais récurrents\n• Plan de progression sur 30 jours\n• Comparaison à des setups historiques\n\nLancement prévu : Q3 2026.");
+
+  /* ============================================
+     v2.05 — Widget Marché Live (mock data, vraie API à venir)
+     ============================================ */
+  const ML_SYMBOLS = [
+    { sym: 'BTC',   base: 67800,   color: '#f59e0b' },
+    { sym: 'ETH',   base: 3450,    color: '#a78bfa' },
+    { sym: 'S&P',   base: 5780,    color: '#60a5fa' },
+  ];
+  let _mlState = null;
+  let _mlInterval = null;
+  let _mlChartRaf = null;
+
+  function startMarketLive() {
+    const tickers = document.getElementById('ml-tickers');
+    if (!tickers) return;
+    if (_mlState) return;
+
+    _mlState = ML_SYMBOLS.map(s => ({
+      sym: s.sym,
+      color: s.color,
+      base: s.base,
+      price: s.base * (1 + (Math.random() - 0.5) * 0.04),
+      prev: s.base,
+      history: Array.from({ length: 40 }, () => s.base * (1 + (Math.random() - 0.5) * 0.04)),
+    }));
+
+    renderTickers();
+    drawMarketChart();
+
+    _mlInterval = setInterval(() => {
+      _mlState.forEach(s => {
+        const drift = (Math.random() - 0.5) * s.base * 0.008;
+        s.prev = s.price;
+        s.price = Math.max(s.base * 0.7, Math.min(s.base * 1.3, s.price + drift));
+        s.history.push(s.price);
+        if (s.history.length > 40) s.history.shift();
+      });
+      renderTickers();
+      drawMarketChart();
+    }, 2200);
+  }
+
+  function stopMarketLive() {
+    if (_mlInterval) { clearInterval(_mlInterval); _mlInterval = null; }
+    if (_mlChartRaf) { cancelAnimationFrame(_mlChartRaf); _mlChartRaf = null; }
+    _mlState = null;
+  }
+
+  function renderTickers() {
+    const tickers = document.getElementById('ml-tickers');
+    if (!tickers || !_mlState) return;
+    tickers.innerHTML = _mlState.map(s => {
+      const chg = ((s.price - s.base) / s.base) * 100;
+      const isUp = chg >= 0;
+      const cls = isUp ? 'up' : 'down';
+      const fmt = s.base > 100 ? Math.round(s.price).toLocaleString('fr-FR') : s.price.toFixed(2);
+      return `
+        <div class="ml-ticker ${cls}">
+          <div class="ml-sym">${s.sym}</div>
+          <div class="ml-price">${fmt}</div>
+          <div class="ml-chg">${isUp ? '▲' : '▼'} ${chg.toFixed(2)}%</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function drawMarketChart() {
+    const c = document.getElementById('ml-chart');
+    if (!c || !_mlState) return;
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    c.width = c.offsetWidth * DPR;
+    c.height = c.offsetHeight * DPR;
+    const ctx = c.getContext('2d');
+    const w = c.width, h = c.height;
+    ctx.clearRect(0, 0, w, h);
+
+    // grille
+    ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+    ctx.lineWidth = 1 * DPR;
+    for (let g = 1; g < 4; g++) {
+      const gy = (h / 4) * g;
+      ctx.beginPath();
+      ctx.moveTo(0, gy); ctx.lineTo(w, gy);
+      ctx.stroke();
+    }
+
+    // Trace les 3 historiques (normalisés)
+    _mlState.forEach((s, idx) => {
+      const hist = s.history;
+      const mn = Math.min(...hist), mx = Math.max(...hist);
+      const range = (mx - mn) || 1;
+      const stepX = w / (hist.length - 1);
+      const padY = 6 * DPR;
+      const useH = h - padY * 2;
+      ctx.strokeStyle = s.color;
+      ctx.lineWidth = 1.6 * DPR;
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.shadowColor = s.color;
+      ctx.shadowBlur = 5 * DPR;
+      ctx.beginPath();
+      hist.forEach((v, i) => {
+        const px = i * stepX;
+        const py = padY + (1 - (v - mn) / range) * useH;
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      });
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    });
   }
 
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=204';
+      location.href = 'scene-05.html?v=205';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -3534,7 +4014,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=204'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=205'; };
         block.style.display = 'block';
         return;
       }
@@ -3576,7 +4056,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=204';
+        card.onclick = () => location.href = 'scene-05.html?v=205';
         block.style.display = 'block';
         return;
       }
@@ -3596,7 +4076,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=204';
+          card.onclick = () => location.href = 'scene-06.html?v=205';
           block.style.display = 'block';
           return;
         }
@@ -3610,7 +4090,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=204';
+        card.onclick = () => location.href = 'scene-06.html?v=205';
         block.style.display = 'block';
         return;
       }
@@ -3625,7 +4105,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=204';
+    card.onclick = () => location.href = 'scene-05.html?v=205';
     block.style.display = 'block';
   }
 
@@ -3848,11 +4328,11 @@
     if (shortcut === 'modules') { showView('modules'); return; }
     if (shortcut === 'simu') {
       // Pas de location.href ici : on est déjà dans index.html, redirige
-      location.href = 'scene-05.html?v=204';
+      location.href = 'scene-05.html?v=205';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=204';
+      location.href = 'scene-06.html?v=205';
       return;
     }
 
@@ -3871,11 +4351,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=204"></script>
+  <script type="module" src="tg-common.js?v=205"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=204').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=205').catch(() => {});
       });
     }
   </script>
