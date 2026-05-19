@@ -4699,19 +4699,34 @@
     .liquid-why p strong { color: var(--text); font-weight: 700; }
     .liquid-why p em { color: var(--text); font-style: italic; }
 
-    /* INFO POPUPS */
+    /* INFO POPUPS — acid + pulse pour signaler cliquable */
     .info-btn {
       display: inline-flex; align-items: center; justify-content: center;
       width: 22px; height: 22px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text); border-radius: 50%;
-      font-family: var(--font-d); font-size: 13px; font-weight: 700;
-      cursor: pointer; padding: 0; margin: 0 4px;
-      vertical-align: middle; transition: all 0.15s ease;
+      border: 1.5px solid var(--acid);
+      background: rgba(190, 242, 100, 0.16);
+      color: var(--acid); border-radius: 50%;
+      font-family: var(--font-d); font-size: 13px; font-weight: 800;
+      cursor: pointer; padding: 0; margin: 0 2px 0 6px;
+      vertical-align: middle; transition: all 0.18s ease;
       -webkit-tap-highlight-color: transparent;
+      animation: infoBtnPulse 2.4s ease-in-out infinite;
+      box-shadow: 0 0 0 0 rgba(190, 242, 100, 0.5);
     }
-    .info-btn:hover, .info-btn:active { background: rgba(255,255,255,0.2); transform: scale(1.1); }
+    @keyframes infoBtnPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(190, 242, 100, 0.5); }
+      50%      { box-shadow: 0 0 0 7px rgba(190, 242, 100, 0); }
+    }
+    .info-btn:hover, .info-btn:active {
+      background: rgba(190, 242, 100, 0.32);
+      color: #0a0a0c;
+      transform: scale(1.18);
+      animation-play-state: paused;
+      box-shadow: 0 0 14px rgba(190, 242, 100, 0.55);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .info-btn { animation: none; }
+    }
     .info-modal {
       position: fixed; inset: 0; background: rgba(0,0,0,0.85);
       backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
@@ -7165,11 +7180,11 @@
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeInfo(); });
   </script>
-  <script type="module" src="tg-common.js?v=180"></script>
+  <script type="module" src="tg-common.js?v=181"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=180').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=181').catch(() => {});
       });
     }
   </script>
