@@ -4876,50 +4876,28 @@
       <div class="hint">SUITE</div>
     </div>
 
-    <!-- SLIDE 32 (CH.6 / 2) — Mystère Satoshi -->
+    <!-- SLIDE 32 (CH.6 / 2) — Contexte crise 2008 + Naissance Bitcoin -->
     <div class="slide s32 ch6" data-idx="31">
       <div class="tap-zones"><div class="tap-prev" onclick="prev()"></div><div class="tap-next" onclick="next()"></div></div>
       <div class="content">
-        <div class="eyebrow reveal">QUI EST SATOSHI ?</div>
-        <h1 class="h1 l reveal"><span class="purple">Personne</span><br>ne le sait.</h1>
+        <div class="eyebrow reveal">POURQUOI ÇA ARRIVE EN 2008</div>
+        <h1 class="h1 l reveal">Le monde <span class="purple">brûle</span>.<br>Un inconnu répond.</h1>
 
-        <div class="satoshi-scene reveal">
-          <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" overflow="hidden">
-            <defs>
-              <radialGradient id="satoshiBg" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="rgba(167, 139, 250, 0.2)"/>
-                <stop offset="100%" stop-color="rgba(167, 139, 250, 0)"/>
-              </radialGradient>
-              <linearGradient id="satoshiFrame" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#a78bfa"/>
-                <stop offset="100%" stop-color="#6d28d9"/>
-              </linearGradient>
-            </defs>
-            <rect width="200" height="130" fill="url(#satoshiBg)"/>
-            <!-- Medallion (style portrait but empty / silhouette) -->
-            <circle cx="100" cy="55" r="42" fill="rgba(20, 12, 26, 0.8)" stroke="url(#satoshiFrame)" stroke-width="2"/>
-            <circle cx="100" cy="55" r="38" fill="none" stroke="rgba(196, 181, 253, 0.3)" stroke-width="0.4"/>
-            <!-- Silhouette ombre anonymisée -->
-            <g transform="translate(100, 55)" class="satoshi-shadow">
-              <!-- Head -->
-              <ellipse cx="0" cy="-8" rx="12" ry="14" fill="#1a0a2a"/>
-              <!-- Shoulders -->
-              <path d="M -18 8 Q -22 22 -22 30 L 22 30 Q 22 22 18 8 Q 10 5 0 5 Q -10 5 -18 8 Z" fill="#1a0a2a"/>
-              <!-- Big question mark on the head -->
-              <text x="0" y="-3" text-anchor="middle" font-family="Bricolage Grotesque, serif" font-size="22" font-weight="800" fill="#a78bfa">?</text>
-            </g>
-            <!-- Plaque -->
-            <rect x="50" y="105" width="100" height="14" rx="2" fill="rgba(167, 139, 250, 0.1)" stroke="rgba(196, 181, 253, 0.35)" stroke-width="0.5"/>
-            <text x="100" y="112" text-anchor="middle" font-family="Bricolage Grotesque, serif" font-size="6" fill="#c4b5fd" font-weight="700" letter-spacing="0.4">SATOSHI NAKAMOTO</text>
-            <text x="100" y="117" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="3.8" fill="#9080b0" letter-spacing="0.8">IDENTITÉ INCONNUE · 2008 — ?</text>
-          </svg>
+        <p class="body reveal">La crise bancaire détruit la confiance dans les banques. <strong class="purple-strong">Et si on faisait sans elles ?</strong></p>
+
+        <div class="mini-timeline reveal">
+          <div class="mini-tl-row"><span class="mini-tl-date">SEPT 2008</span><span class="mini-tl-evt">Lehman Brothers s'effondre. Les États sauvent les banques.</span></div>
+          <div class="mini-tl-row crit"><span class="mini-tl-date">31 OCT</span><span class="mini-tl-evt">Un certain <strong>Satoshi <button class="info-btn" onclick="showInfo('satoshi')" aria-label="Qui est Satoshi ?">?</button></strong> publie un <strong>white paper <button class="info-btn" onclick="showInfo('whitepaper')" aria-label="C'est quoi un white paper ?">?</button></strong>.</span></div>
+          <div class="mini-tl-row"><span class="mini-tl-date">JAN 2009</span><span class="mini-tl-evt">Le réseau Bitcoin démarre. Bloc #0 créé.</span></div>
         </div>
 
-        <div class="satoshi-facts reveal">
-          <div class="satoshi-fact"><span class="fact-num">17 ans</span><span class="fact-txt">d'enquêtes journalistiques. Aucune identification confirmée.</span></div>
-          <div class="satoshi-fact"><span class="fact-num">Avril 2011</span><span class="fact-txt">Dernier message public. Disparition définitive.</span></div>
-          <div class="satoshi-fact"><span class="fact-num">~1 M BTC</span><span class="fact-txt">détenus, jamais dépensés.</span></div>
+        <div class="whitepaper reveal">
+          <div class="whitepaper-title">Bitcoin: A Peer-to-Peer<br>Electronic Cash System</div>
+          <div class="whitepaper-meta">9 pages · mailing list crypto</div>
+          <div class="whitepaper-sig">— Satoshi Nakamoto · identité inconnue</div>
         </div>
+
+        <p class="body reveal" style="text-align:center;font-size:13px;color:var(--text-faint);">Une révolution discrète vient de commencer.</p>
       </div>
       <div class="hint">SUITE</div>
     </div>
@@ -5781,11 +5759,11 @@
       }
     }
   </script>
-  <script type="module" src="tg-common.js?v=183"></script>
+  <script type="module" src="tg-common.js?v=184"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=183').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=184').catch(() => {});
       });
     }
   </script>
