@@ -8160,9 +8160,9 @@
             <text x="125" y="160" font-family="JetBrains Mono" font-size="9" fill="#fb7185" font-weight="700">😱 panique</text>
             <text x="220" y="115" font-family="JetBrains Mono" font-size="9" fill="#8edca0" font-weight="600">🙂 rebond</text>
 
-            <!-- "Tu vends ici" arrow -->
-            <path d="M 175,165 L 145,140" stroke="#fb7185" stroke-width="1.5" fill="none"/>
-            <text x="55" y="138" font-family="JetBrains Mono" font-size="10" fill="#fb7185" font-weight="700">tu vends ici →</text>
+            <!-- "Tu vends ici" — placé en bas, sous la zone des émotions (évite chevauchement avec 'panique') -->
+            <text x="8" y="195" font-family="JetBrains Mono" font-size="9" fill="#fb7185" font-weight="700">tu vends ici</text>
+            <path d="M 92,191 L 158,180" stroke="#fb7185" stroke-width="1.5" fill="none"/>
           </svg>
         </div>
 
@@ -9399,11 +9399,11 @@
       }
     })();
   </script>
-  <script type="module" src="tg-common.js?v=178"></script>
+  <script type="module" src="tg-common.js?v=179"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=178').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=179').catch(() => {});
       });
     }
   </script>

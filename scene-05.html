@@ -5518,22 +5518,22 @@ const TUTO_STEPS = [
     body: 'Chaque <strong>bougie</strong> = 1 jour (verte = ↑, rouge = ↓). Courbe violette = <strong>MM20</strong> (tendance).<br><br>🔍 Bouton <strong>zoom</strong> : cycle 4 niveaux (Tout → ½ → ¼ → ⅛). <strong>MM50</strong> : ajoute la tendance long-terme (orange).<br><br>💡 Touche une bougie pour son détail OHLC.',
   },
   {
-    target: '.sim-qty-row',
+    target: '.tb-buy',
     placement: 'top',
-    title: 'Trader',
-    body: 'Saisis ta <strong>quantité</strong> (ou ½ / MAX), puis <strong>ACHETER</strong> ou <strong>VENDRE</strong>. Ta position s\'affichera juste au-dessus dès que tu achètes.',
+    title: 'Acheter',
+    body: 'Tape <strong>ACHETER</strong> pour ouvrir le panel d\'ordre : tu choisis ta quantité (slider %), définis <strong>SL/TP</strong> si nécessaire, et confirmes.',
   },
   {
-    target: '.sim-advance-row',
+    target: '.tb-sell',
+    placement: 'top',
+    title: 'Vendre',
+    body: 'Pareil pour <strong>VENDRE</strong> : ouvre le panel avec la quantité dispo en position. Reste verrouillé tant que tu n\'as pas d\'actions.',
+  },
+  {
+    target: '.tb-advance',
     placement: 'top',
     title: 'Avancer le temps',
-    body: 'Chaque appui sur <strong>⏭ Avancer</strong> = 1 jour qui passe. Le bouton <strong>▶</strong> avance auto (1 jour/sec). Au <strong>jour 5</strong>, le coach 🎯 t\'arrête pour ton premier choix guidé.',
-  },
-  {
-    target: '#sim-advance',
-    placement: 'top',
-    title: 'Ton objectif',
-    body: 'À la fin, ta perf est comparée au <strong>Buy & Hold</strong> = acheter au début, ne plus toucher. Cette stratégie bat 80% des traders. Ton défi : faire mieux.<br><br>💬 Les <span style="color:#7dd3fc;border-bottom:1px dashed #7dd3fc;">termes en bleu</span> du coach sont cliquables (RSI, FOMO, capitulation...).',
+    body: 'Chaque appui sur <strong>⏭ Avancer</strong> = 1 jour qui passe. Au <strong>jour 5</strong>, le coach 🎯 t\'arrête pour ton premier choix guidé.<br><br>🎯 Objectif : battre le <strong>Buy & Hold</strong> (acheter au début, garder = stratégie qui bat 80% des traders).',
   },
 ];
 let tutoStep = 0;
@@ -7270,11 +7270,11 @@ document.addEventListener('keydown', (e) => {
 });
 
 </script>
-  <script type="module" src="tg-common.js?v=178"></script>
+  <script type="module" src="tg-common.js?v=179"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=178').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=179').catch(() => {});
       });
     }
   </script>
