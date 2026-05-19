@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<!--
+═══════════════════════════════════════════════════════════════════
+                    TRADE GENIUS · scene-09.html
+                    HISTORIQUES (Premium) — krachs majeurs
+═══════════════════════════════════════════════════════════════════
+  Mini-charts animés des 4 krachs majeurs avec leçons clés
+-->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0c">
+  <title>Trade Genius — Historiques</title>
+  <link rel="manifest" href="manifest.json">
+  <script type="module" src="tg-common.js?v=203"></script>
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-deep: #050507;
+      --surface: #13131c;
+      --surface-2: #1a1a25;
+      --border: rgba(255,255,255,0.08);
+      --text: #f8f5ee;
+      --text-dim: #a8a8b3;
+      --text-faint: #6a6a75;
+      --acid: #bef264;
+      --purple: #a78bfa;
+      --purple-glow: rgba(167,139,250,0.5);
+      --blue: #60a5fa;
+      --gold: #f59e0b;
+      --red: #ef4444;
+      --green: #22c55e;
+      --font-d: 'Manrope', system-ui, sans-serif;
+      --font-m: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-d);
+      min-height: 100vh;
+      overscroll-behavior: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 10vh; left: -20%;
+      width: 80vw; max-width: 540px; height: 60vh; min-height: 360px;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(239,68,68,0.18) 0%, rgba(239,68,68,0) 65%);
+      filter: blur(40px);
+      z-index: 0; pointer-events: none;
+      animation: drift-red 24s ease-in-out infinite;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -5vh; right: -20%;
+      width: 80vw; max-width: 540px; height: 55vh; min-height: 340px;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(167,139,250,0.15) 0%, rgba(167,139,250,0) 70%);
+      filter: blur(36px);
+      z-index: 0; pointer-events: none;
+      animation: drift-purple 28s ease-in-out infinite;
+    }
+    @keyframes drift-red    { 0%,100% { transform: translate(0,0); } 50% { transform: translate(5vw, 3vh) scale(1.1); } }
+    @keyframes drift-purple { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-5vw,-3vh) scale(1.15); } }
+
+    .wrap {
+      position: relative; z-index: 1;
+      padding: calc(20px + env(safe-area-inset-top)) 16px calc(40px + env(safe-area-inset-bottom));
+      max-width: 480px; margin: 0 auto;
+    }
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .back-btn {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-m); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 9px 13px; border-radius: 10px;
+      cursor: pointer;
+    }
+    .back-btn:active { transform: scale(0.96); }
+    .premium-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-m); font-size: 10.5px; font-weight: 800;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      padding: 6px 11px; border-radius: 999px;
+      background: linear-gradient(135deg, rgba(245,158,11,0.18), rgba(167,139,250,0.14));
+      border: 1px solid rgba(245,158,11,0.4);
+    }
+
+    .h-eyebrow {
+      font-family: var(--font-m); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.22em; color: var(--red); text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .h-title {
+      font-family: var(--font-d); font-size: 32px; font-weight: 800;
+      line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 6px;
+    }
+    .h-title em { font-style: italic; color: var(--red); font-weight: 800; }
+    .h-sub {
+      font-family: var(--font-d); font-size: 14px; color: var(--text-dim);
+      margin: 0 0 26px; line-height: 1.4;
+    }
+
+    .krach-card {
+      margin-bottom: 16px;
+      padding: 16px;
+      background: linear-gradient(180deg, var(--surface) 0%, rgba(20,20,30,0.85) 100%);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 18px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
+      position: relative;
+      overflow: hidden;
+    }
+    .kc-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .kc-year {
+      font-family: var(--font-m); font-size: 11.5px; font-weight: 800;
+      letter-spacing: 0.18em; color: var(--red);
+    }
+    .kc-loss {
+      font-family: var(--font-d); font-size: 16px; font-weight: 800;
+      color: var(--red); letter-spacing: -0.02em;
+    }
+    .kc-name {
+      font-family: var(--font-d); font-size: 19px; font-weight: 800;
+      letter-spacing: -0.015em; margin: 0 0 4px;
+    }
+    .kc-tag {
+      font-family: var(--font-m); font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.1em; color: var(--text-dim);
+      margin-bottom: 10px; text-transform: uppercase;
+    }
+    .kc-canvas {
+      width: 100%; height: 180px;
+      background: linear-gradient(180deg, var(--bg-deep) 0%, rgba(10,10,15,0.6) 100%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: block;
+      margin: 8px 0 12px;
+    }
+    .kc-lesson {
+      padding: 12px 14px;
+      background: linear-gradient(135deg, rgba(245,158,11,0.10) 0%, rgba(245,158,11,0.02) 100%);
+      border: 1px solid rgba(245,158,11,0.28);
+      border-radius: 12px;
+    }
+    .kc-lesson-lbl {
+      font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.2em; color: var(--gold);
+      text-transform: uppercase; margin-bottom: 5px;
+    }
+    .kc-lesson-txt {
+      font-family: var(--font-d); font-size: 13px; color: var(--text);
+      line-height: 1.4; margin: 0;
+    }
+    .kc-lesson-txt strong { color: var(--gold); }
+
+    @media (max-width: 360px) {
+      .h-title { font-size: 26px; }
+      .kc-name { font-size: 17px; }
+      .kc-canvas { height: 160px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top-bar">
+    <button class="back-btn" onclick="window.location.href='index.html#accueil'">← ACCUEIL</button>
+    <span class="premium-pill">✦ EXPERT</span>
+  </div>
+
+  <div class="h-eyebrow">HISTORIQUES</div>
+  <h1 class="h-title">Les <em>4 krachs</em> à connaître</h1>
+  <p class="h-sub">Apprends de l'histoire avant de la subir. Charts, contexte, leçon clé.</p>
+
+  <!-- 2000 - Dotcom -->
+  <div class="krach-card">
+    <div class="kc-head"><span class="kc-year">MARS 2000 — OCT 2002</span><span class="kc-loss">−78%</span></div>
+    <h2 class="kc-name">Bulle Internet (Dotcom)</h2>
+    <p class="kc-tag">NASDAQ · valuations folles · pas de profits</p>
+    <canvas class="kc-canvas" data-krach="dotcom"></canvas>
+    <div class="kc-lesson">
+      <div class="kc-lesson-lbl">LEÇON</div>
+      <p class="kc-lesson-txt">Quand <strong>tout le monde</strong> dit "cette fois c'est différent" — c'est jamais différent. Une boîte sans bénéfices reste sans bénéfices.</p>
+    </div>
+  </div>
+
+  <!-- 2008 - Lehman -->
+  <div class="krach-card">
+    <div class="kc-head"><span class="kc-year">OCT 2007 — MARS 2009</span><span class="kc-loss">−57%</span></div>
+    <h2 class="kc-name">Crise des subprimes</h2>
+    <p class="kc-tag">S&amp;P 500 · Lehman Brothers · crédits pourris</p>
+    <canvas class="kc-canvas" data-krach="lehman"></canvas>
+    <div class="kc-lesson">
+      <div class="kc-lesson-lbl">LEÇON</div>
+      <p class="kc-lesson-txt">La <strong>contagion</strong> est rapide. Un actif "sans risque" (immobilier US) peut faire tomber tout le système. Diversifie hors corrélations.</p>
+    </div>
+  </div>
+
+  <!-- 2020 - COVID -->
+  <div class="krach-card">
+    <div class="kc-head"><span class="kc-year">FEV — MARS 2020</span><span class="kc-loss">−34%</span></div>
+    <h2 class="kc-name">Krach COVID-19</h2>
+    <p class="kc-tag">S&amp;P 500 · cygne noir · rebond en V</p>
+    <canvas class="kc-canvas" data-krach="covid"></canvas>
+    <div class="kc-lesson">
+      <div class="kc-lesson-lbl">LEÇON</div>
+      <p class="kc-lesson-txt">Les <strong>cygnes noirs</strong> existent. Garde toujours du cash. Les pires baisses font les meilleurs points d'entrée si tu as les nerfs et la liquidité.</p>
+    </div>
+  </div>
+
+  <!-- 2022 - Crypto / FTX -->
+  <div class="krach-card">
+    <div class="kc-head"><span class="kc-year">NOV 2021 — NOV 2022</span><span class="kc-loss">−77%</span></div>
+    <h2 class="kc-name">Hiver Crypto / FTX</h2>
+    <p class="kc-tag">BTC · effondrement FTX · Luna · contagion crypto</p>
+    <canvas class="kc-canvas" data-krach="ftx"></canvas>
+    <div class="kc-lesson">
+      <div class="kc-lesson-lbl">LEÇON</div>
+      <p class="kc-lesson-txt">Pas tes clés, pas tes coins. La <strong>contrepartie</strong> peut s'effondrer du jour au lendemain (FTX, Celsius, Luna). Self-custody &gt; CEX pour le long terme.</p>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top: 24px; padding: 16px; background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(245,158,11,0.05)); border: 1px solid rgba(167,139,250,0.2); border-radius: 14px;">
+    <p style="font-family: var(--font-m); font-size: 11px; letter-spacing: 0.16em; color: var(--purple); text-transform: uppercase; margin: 0 0 6px; font-weight: 700;">PROCHAINEMENT</p>
+    <p style="font-family: var(--font-d); font-size: 13.5px; color: var(--text-dim); margin: 0; line-height: 1.45;">1929 Wall Street · 1987 Black Monday · 1997 Asie · 2010 Flash Crash · 2021 GameStop...</p>
+  </div>
+</div>
+
+<script>
+  function setupCanvas(canvas) {
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = canvas.offsetWidth * DPR;
+    canvas.height = canvas.offsetHeight * DPR;
+    return { ctx: canvas.getContext('2d'), w: canvas.width, h: canvas.height, DPR };
+  }
+
+  function drawKrach(canvas, points, labels) {
+    const { ctx, w, h, DPR } = setupCanvas(canvas);
+    const padX = 24 * DPR, padY = 28 * DPR;
+    const useW = w - padX * 2, useH = h - padY * 2;
+    let mn = Infinity, mx = -Infinity;
+    points.forEach(p => { if (p < mn) mn = p; if (p > mx) mx = p; });
+    const range = mx - mn || 1;
+    const stepX = useW / (points.length - 1);
+    const y = (v) => padY + (1 - (v - mn) / range) * useH;
+
+    let progress = 0;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+
+      // grille
+      ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+      ctx.lineWidth = 1 * DPR;
+      for (let g = 1; g < 4; g++) {
+        const gy = padY + (useH / 4) * g;
+        ctx.beginPath();
+        ctx.moveTo(padX, gy); ctx.lineTo(padX + useW, gy);
+        ctx.stroke();
+      }
+
+      const lastIdx = Math.min(points.length - 1, Math.floor(progress * (points.length - 1)));
+      const local = (progress * (points.length - 1)) - lastIdx;
+
+      // Fill sous la courbe (gradient rouge)
+      const grad = ctx.createLinearGradient(0, padY, 0, padY + useH);
+      grad.addColorStop(0, 'rgba(239,68,68,0.04)');
+      grad.addColorStop(1, 'rgba(239,68,68,0.32)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.moveTo(padX, padY + useH);
+      for (let i = 0; i <= lastIdx; i++) {
+        ctx.lineTo(padX + i * stepX, y(points[i]));
+      }
+      if (lastIdx < points.length - 1 && local > 0) {
+        const ix = padX + lastIdx * stepX;
+        const nx = padX + (lastIdx + 1) * stepX;
+        const iy = y(points[lastIdx]);
+        const ny = y(points[lastIdx + 1]);
+        ctx.lineTo(ix + (nx - ix) * local, iy + (ny - iy) * local);
+        ctx.lineTo(ix + (nx - ix) * local, padY + useH);
+      } else {
+        ctx.lineTo(padX + lastIdx * stepX, padY + useH);
+      }
+      ctx.closePath();
+      ctx.fill();
+
+      // Ligne principale
+      ctx.strokeStyle = '#ef4444';
+      ctx.lineWidth = 2 * DPR;
+      ctx.shadowColor = '#ef4444'; ctx.shadowBlur = 8 * DPR;
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.beginPath();
+      for (let i = 0; i <= lastIdx; i++) {
+        const px = padX + i * stepX;
+        const py = y(points[i]);
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      if (lastIdx < points.length - 1 && local > 0) {
+        const ix = padX + lastIdx * stepX;
+        const nx = padX + (lastIdx + 1) * stepX;
+        const iy = y(points[lastIdx]);
+        const ny = y(points[lastIdx + 1]);
+        ctx.lineTo(ix + (nx - ix) * local, iy + (ny - iy) * local);
+      }
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // Marqueurs
+      if (progress >= 1) {
+        ctx.font = `bold ${10 * DPR}px JetBrains Mono`;
+        labels.forEach(lbl => {
+          const px = padX + lbl.i * stepX;
+          const py = y(points[lbl.i]);
+          ctx.fillStyle = lbl.color || '#f59e0b';
+          ctx.beginPath();
+          ctx.arc(px, py, 4 * DPR, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.textAlign = lbl.align || 'center';
+          ctx.fillText(lbl.text, px + (lbl.dx || 0) * DPR, py + (lbl.dy || -10) * DPR);
+        });
+      }
+
+      if (progress < 1) {
+        progress = Math.min(progress + 0.018, 1);
+        requestAnimationFrame(frame);
+      }
+    }
+    frame();
+  }
+
+  /* Données stylisées (pas de prix exacts, mais cohérent avec la courbe historique) */
+  const KRACHS = {
+    dotcom: {
+      points: [100, 110, 125, 140, 160, 195, 215, 235, 240, 215, 180, 160, 140, 120, 100, 85, 72, 60, 52, 48, 50, 55],
+      labels: [
+        { i: 8, text: 'PEAK', dy: -12, color: '#ef4444' },
+        { i: 19, text: '−78%', dy: 16, color: '#f59e0b' },
+      ],
+    },
+    lehman: {
+      points: [100, 105, 110, 108, 102, 95, 88, 78, 62, 55, 48, 43, 55, 65, 70, 75],
+      labels: [
+        { i: 2, text: 'PEAK', dy: -12, color: '#ef4444' },
+        { i: 11, text: 'BOTTOM', dy: 18, color: '#f59e0b' },
+      ],
+    },
+    covid: {
+      points: [100, 102, 101, 103, 96, 88, 74, 66, 72, 80, 88, 95, 102, 110, 118],
+      labels: [
+        { i: 3, text: 'PEAK', dy: -12, color: '#ef4444' },
+        { i: 6, text: '−34%', dy: 18, color: '#f59e0b' },
+        { i: 14, text: 'REBOND V', dy: -12, color: '#22c55e', align: 'right', dx: -4 },
+      ],
+    },
+    ftx: {
+      points: [100, 115, 110, 105, 95, 88, 78, 65, 55, 48, 42, 32, 28, 24, 22, 24, 26],
+      labels: [
+        { i: 1, text: 'PEAK BTC', dy: -12, color: '#ef4444' },
+        { i: 11, text: 'FTX', dy: 16, color: '#a78bfa', align: 'center' },
+        { i: 14, text: '−77%', dy: 18, color: '#f59e0b' },
+      ],
+    },
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const c = e.target;
+        if (c._drawn) return;
+        const key = c.dataset.krach;
+        const data = KRACHS[key];
+        if (data) { drawKrach(c, data.points, data.labels); c._drawn = true; }
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('canvas[data-krach]').forEach(c => observer.observe(c));
+</script>
+
+</body>
+</html>

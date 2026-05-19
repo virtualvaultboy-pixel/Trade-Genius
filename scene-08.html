@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<!--
+═══════════════════════════════════════════════════════════════════
+                    TRADE GENIUS · scene-08.html
+                    PATTERNS LAB (Premium)
+═══════════════════════════════════════════════════════════════════
+  Galerie de patterns chartistes classiques avec animations Canvas
+  Patterns : H&S top, H&S inverse, Double Top, Double Bottom,
+             Triangle ascendant, Flag bull
+-->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0c">
+  <title>Trade Genius — Patterns Lab</title>
+  <link rel="manifest" href="manifest.json">
+  <script type="module" src="tg-common.js?v=203"></script>
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-deep: #050507;
+      --surface: #13131c;
+      --surface-2: #1a1a25;
+      --border: rgba(255,255,255,0.08);
+      --text: #f8f5ee;
+      --text-dim: #a8a8b3;
+      --text-faint: #6a6a75;
+      --acid: #bef264;
+      --acid-glow: rgba(190,242,100,0.5);
+      --purple: #a78bfa;
+      --purple-glow: rgba(167,139,250,0.5);
+      --blue: #60a5fa;
+      --gold: #f59e0b;
+      --gold-glow: rgba(245,158,11,0.5);
+      --red: #ef4444;
+      --green: #22c55e;
+      --font-d: 'Manrope', system-ui, sans-serif;
+      --font-m: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-d);
+      min-height: 100vh;
+      overscroll-behavior: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Aurora background subtle */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -10vh; left: -15%;
+      width: 70vw; max-width: 540px; height: 60vh; min-height: 360px;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(245,158,11,0.18) 0%, rgba(245,158,11,0) 65%);
+      filter: blur(36px);
+      z-index: 0; pointer-events: none;
+      animation: drift-gold 22s ease-in-out infinite;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: 0; right: -20%;
+      width: 80vw; max-width: 540px; height: 55vh; min-height: 340px;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(167,139,250,0.16) 0%, rgba(167,139,250,0) 70%);
+      filter: blur(36px);
+      z-index: 0; pointer-events: none;
+      animation: drift-purple 28s ease-in-out infinite;
+    }
+    @keyframes drift-gold {
+      0%,100% { transform: translate(0,0) scale(1); }
+      50%     { transform: translate(6vw, 4vh) scale(1.1); }
+    }
+    @keyframes drift-purple {
+      0%,100% { transform: translate(0,0) scale(1); }
+      50%     { transform: translate(-5vw, -3vh) scale(1.15); }
+    }
+
+    .wrap {
+      position: relative; z-index: 1;
+      padding: calc(20px + env(safe-area-inset-top)) 16px calc(40px + env(safe-area-inset-bottom));
+      max-width: 480px; margin: 0 auto;
+    }
+
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .back-btn {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-m); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 9px 13px; border-radius: 10px;
+      cursor: pointer;
+    }
+    .back-btn:active { transform: scale(0.96); }
+    .premium-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-m); font-size: 10.5px; font-weight: 800;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      padding: 6px 11px; border-radius: 999px;
+      background: linear-gradient(135deg, rgba(245,158,11,0.18), rgba(167,139,250,0.14));
+      border: 1px solid rgba(245,158,11,0.4);
+    }
+
+    .h-eyebrow {
+      font-family: var(--font-m); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.22em; color: var(--gold); text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .h-title {
+      font-family: var(--font-d); font-size: 32px; font-weight: 800;
+      line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 6px;
+    }
+    .h-title em { font-style: italic; color: var(--gold); font-weight: 800; }
+    .h-sub {
+      font-family: var(--font-d); font-size: 14px; color: var(--text-dim);
+      margin: 0 0 26px; line-height: 1.4;
+    }
+
+    .pattern-card {
+      margin-bottom: 14px;
+      padding: 16px;
+      background: linear-gradient(180deg, var(--surface) 0%, rgba(20,20,30,0.85) 100%);
+      border: 1px solid rgba(167,139,250,0.22);
+      border-radius: 18px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.04);
+      position: relative;
+      overflow: hidden;
+    }
+    .pc-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .pc-name {
+      font-family: var(--font-d); font-size: 18px; font-weight: 800;
+      letter-spacing: -0.015em;
+    }
+    .pc-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+      letter-spacing: 0.12em;
+    }
+    .pc-tag.up { background: rgba(34,197,94,0.16); color: var(--green); border: 1px solid rgba(34,197,94,0.35); }
+    .pc-tag.down { background: rgba(239,68,68,0.16); color: var(--red); border: 1px solid rgba(239,68,68,0.35); }
+    .pc-tag.neutral { background: rgba(245,158,11,0.16); color: var(--gold); border: 1px solid rgba(245,158,11,0.4); }
+
+    .pc-canvas {
+      width: 100%; height: 200px;
+      background: linear-gradient(180deg, var(--bg-deep) 0%, rgba(10,10,15,0.6) 100%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .pc-desc {
+      font-family: var(--font-d); font-size: 13px;
+      color: var(--text-dim); line-height: 1.4;
+      margin: 0;
+    }
+    .pc-desc strong { color: var(--text); font-weight: 700; }
+    .pc-desc .acid { color: var(--acid); }
+    .pc-desc .gold { color: var(--gold); }
+    .pc-desc .purple { color: var(--purple); }
+
+    @media (max-width: 360px) {
+      .h-title { font-size: 26px; }
+      .pc-name { font-size: 16px; }
+      .pc-canvas { height: 170px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top-bar">
+    <button class="back-btn" onclick="window.location.href='index.html#accueil'">← ACCUEIL</button>
+    <span class="premium-pill">✦ EXPERT</span>
+  </div>
+
+  <div class="h-eyebrow">PATTERNS LAB</div>
+  <h1 class="h-title">Tous les <em>modèles classiques</em></h1>
+  <p class="h-sub">6 figures chartistes que tout pro reconnaît. Animations interactives, peu de texte.</p>
+
+  <!-- 1. Head & Shoulders (top) -->
+  <div class="pattern-card">
+    <div class="pc-head">
+      <span class="pc-name">Head &amp; Shoulders</span>
+      <span class="pc-tag down">↘️ BAISSIER</span>
+    </div>
+    <canvas class="pc-canvas" data-pattern="hs-top"></canvas>
+    <p class="pc-desc"><strong class="red">3 sommets</strong> : épaule gauche, tête plus haute, épaule droite. Cassure de la <strong class="gold">neckline</strong> = signal de vente.</p>
+  </div>
+
+  <!-- 2. Inverse Head & Shoulders (bottom) -->
+  <div class="pattern-card">
+    <div class="pc-head">
+      <span class="pc-name">H&amp;S Inversé</span>
+      <span class="pc-tag up">↗️ HAUSSIER</span>
+    </div>
+    <canvas class="pc-canvas" data-pattern="hs-bottom"></canvas>
+    <p class="pc-desc">L'inverse : 3 creux, le central plus bas. Cassure de la <strong class="gold">neckline</strong> haussière = entrée d'achat.</p>
+  </div>
+
+  <!-- 3. Double Top -->
+  <div class="pattern-card">
+    <div class="pc-head">
+      <span class="pc-name">Double Top</span>
+      <span class="pc-tag down">↘️ BAISSIER</span>
+    </div>
+    <canvas class="pc-canvas" data-pattern="double-top"></canvas>
+    <p class="pc-desc"><strong>2 sommets</strong> au même niveau. Le marché essaie 2× de monter, échoue 2×. Cassure du <strong class="gold">support</strong> = retournement.</p>
+  </div>
+
+  <!-- 4. Double Bottom -->
+  <div class="pattern-card">
+    <div class="pc-head">
+      <span class="pc-name">Double Bottom</span>
+      <span class="pc-tag up">↗️ HAUSSIER</span>
+    </div>
+    <canvas class="pc-canvas" data-pattern="double-bottom"></canvas>
+    <p class="pc-desc"><strong>2 creux</strong> au même niveau. Le marché teste 2× le support, rebondit. Cassure de la <strong class="gold">résistance</strong> = entrée long.</p>
+  </div>
+
+  <!-- 5. Triangle ascendant -->
+  <div class="pattern-card">
+    <div class="pc-head">
+      <span class="pc-name">Triangle ascendant</span>
+      <span class="pc-tag up">↗️ HAUSSIER</span>
+    </div>
+    <canvas class="pc-canvas" data-pattern="triangle-asc"></canvas>
+    <p class="pc-desc">Résistance plate + creux qui montent. Les acheteurs gagnent du terrain. Cassure de la résistance = <strong class="acid">explosion à la hausse</strong>.</p>
+  </div>
+
+  <!-- 6. Bull Flag -->
+  <div class="pattern-card">
+    <div class="pc-head">
+      <span class="pc-name">Bull Flag</span>
+      <span class="pc-tag up">↗️ HAUSSIER</span>
+    </div>
+    <canvas class="pc-canvas" data-pattern="flag-bull"></canvas>
+    <p class="pc-desc">Forte montée (mât) → consolidation en canal descendant (drapeau). Cassure haussière = continuation. Cible = hauteur du mât.</p>
+  </div>
+
+  <div style="text-align:center; margin-top: 24px; padding: 16px; background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(245,158,11,0.05)); border: 1px solid rgba(167,139,250,0.2); border-radius: 14px;">
+    <p style="font-family: var(--font-m); font-size: 11px; letter-spacing: 0.16em; color: var(--purple); text-transform: uppercase; margin: 0 0 6px; font-weight: 700;">PROCHAINEMENT</p>
+    <p style="font-family: var(--font-d); font-size: 13.5px; color: var(--text-dim); margin: 0; line-height: 1.45;">Cup &amp; Handle · Wedge · Pennant · Rectangle · Channels · Diamond · Rounding Bottom...</p>
+  </div>
+</div>
+
+<script>
+  /* ===================================================
+     PATTERNS LAB — Canvas drawers
+     =================================================== */
+
+  function setupCanvas(canvas) {
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = canvas.offsetWidth * DPR;
+    canvas.height = canvas.offsetHeight * DPR;
+    return { ctx: canvas.getContext('2d'), w: canvas.width, h: canvas.height, DPR };
+  }
+
+  function drawCurve(ctx, points, color, lineW, DPR, progress = 1) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = lineW * DPR;
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 6 * DPR;
+    const lastIdx = Math.floor(progress * (points.length - 1));
+    ctx.beginPath();
+    for (let i = 0; i <= lastIdx; i++) {
+      const [x, y] = points[i];
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    if (lastIdx < points.length - 1) {
+      const local = (progress * (points.length - 1)) - lastIdx;
+      const [x0, y0] = points[lastIdx];
+      const [x1, y1] = points[lastIdx + 1];
+      ctx.lineTo(x0 + (x1 - x0) * local, y0 + (y1 - y0) * local);
+    }
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+  }
+
+  function dashLine(ctx, x1, y1, x2, y2, color, DPR) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.5 * DPR;
+    ctx.setLineDash([5 * DPR, 4 * DPR]);
+    ctx.beginPath();
+    ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  function label(ctx, text, x, y, color, DPR, align = 'center', size = 10) {
+    ctx.font = `bold ${size * DPR}px JetBrains Mono`;
+    ctx.fillStyle = color;
+    ctx.textAlign = align;
+    ctx.fillText(text, x, y);
+  }
+
+  /* === PATTERN 1 : Head & Shoulders (top) === */
+  function drawHSTop(canvas, animate = true) {
+    const { ctx, w, h, DPR } = setupCanvas(canvas);
+    const padX = 20 * DPR, padY = 30 * DPR;
+    const useW = w - padX * 2, useH = h - padY * 2;
+    // Points en pourcentage relatif
+    const pts = [
+      [0.00, 0.85], [0.07, 0.7], [0.13, 0.55], // montée vers épaule gauche
+      [0.18, 0.4], [0.22, 0.45], // épaule gauche puis descente
+      [0.30, 0.6], [0.35, 0.55],
+      [0.43, 0.3], [0.48, 0.15], [0.53, 0.2], // tête (sommet plus haut)
+      [0.60, 0.45], [0.65, 0.5],
+      [0.72, 0.35], [0.78, 0.40], // épaule droite (~même hauteur que gauche)
+      [0.85, 0.65], [0.92, 0.85], [1.00, 0.95]
+    ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
+
+    let progress = 0;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      drawCurve(ctx, pts, '#ef4444', 2, DPR, progress);
+
+      // Labels en fin d'animation
+      if (progress >= 1) {
+        const [, ly] = pts[4];   // épaule gauche peak ~ pts[3]
+        const [, hy] = pts[8];   // tête peak ~ pts[8]
+        const [, ry] = pts[13];  // épaule droite ~ pts[13]
+        const neckY = padY + 0.6 * useH;
+        // Neckline
+        dashLine(ctx, padX, neckY, padX + useW, neckY, '#f59e0b', DPR);
+        label(ctx, 'NECKLINE', padX + useW - 8 * DPR, neckY - 4 * DPR, '#f59e0b', DPR, 'right', 9);
+        // Tête + épaules
+        label(ctx, 'É.G', pts[3][0], pts[3][1] - 8 * DPR, '#a8a8b3', DPR);
+        label(ctx, 'TÊTE', pts[8][0], pts[8][1] - 8 * DPR, '#ef4444', DPR, 'center', 11);
+        label(ctx, 'É.D', pts[13][0], pts[13][1] - 8 * DPR, '#a8a8b3', DPR);
+      }
+
+      if (animate && progress < 1) {
+        progress = Math.min(progress + 0.02, 1);
+        requestAnimationFrame(frame);
+      }
+    }
+    if (animate) frame(); else { progress = 1; frame(); }
+  }
+
+  /* === PATTERN 2 : Head & Shoulders Inverse === */
+  function drawHSBottom(canvas) {
+    const { ctx, w, h, DPR } = setupCanvas(canvas);
+    const padX = 20 * DPR, padY = 30 * DPR;
+    const useW = w - padX * 2, useH = h - padY * 2;
+    const pts = [
+      [0.00, 0.15], [0.07, 0.3], [0.13, 0.45],
+      [0.18, 0.60], [0.22, 0.55], // épaule gauche basse
+      [0.30, 0.40], [0.35, 0.45],
+      [0.43, 0.70], [0.48, 0.85], [0.53, 0.80], // tête (creux plus bas)
+      [0.60, 0.55], [0.65, 0.50],
+      [0.72, 0.65], [0.78, 0.60], // épaule droite
+      [0.85, 0.35], [0.92, 0.15], [1.00, 0.05]
+    ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
+
+    let progress = 0;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      drawCurve(ctx, pts, '#22c55e', 2, DPR, progress);
+      if (progress >= 1) {
+        const neckY = padY + 0.4 * useH;
+        dashLine(ctx, padX, neckY, padX + useW, neckY, '#f59e0b', DPR);
+        label(ctx, 'NECKLINE', padX + useW - 8 * DPR, neckY - 4 * DPR, '#f59e0b', DPR, 'right', 9);
+        label(ctx, 'É.G', pts[3][0], pts[3][1] + 14 * DPR, '#a8a8b3', DPR);
+        label(ctx, 'TÊTE', pts[8][0], pts[8][1] + 14 * DPR, '#22c55e', DPR, 'center', 11);
+        label(ctx, 'É.D', pts[13][0], pts[13][1] + 14 * DPR, '#a8a8b3', DPR);
+      }
+      if (progress < 1) {
+        progress = Math.min(progress + 0.02, 1);
+        requestAnimationFrame(frame);
+      }
+    }
+    frame();
+  }
+
+  /* === PATTERN 3 : Double Top === */
+  function drawDoubleTop(canvas) {
+    const { ctx, w, h, DPR } = setupCanvas(canvas);
+    const padX = 20 * DPR, padY = 30 * DPR;
+    const useW = w - padX * 2, useH = h - padY * 2;
+    const pts = [
+      [0.00, 0.85], [0.10, 0.65], [0.18, 0.45], [0.25, 0.25], [0.30, 0.20], // 1er sommet
+      [0.40, 0.45], [0.45, 0.55], [0.50, 0.50],                              // creux
+      [0.58, 0.30], [0.65, 0.22], [0.70, 0.20],                              // 2ème sommet (même niveau)
+      [0.80, 0.50], [0.88, 0.75], [1.00, 0.95]                               // chute
+    ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
+
+    let progress = 0;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      drawCurve(ctx, pts, '#ef4444', 2, DPR, progress);
+      if (progress >= 1) {
+        const topY = padY + 0.2 * useH;
+        const suppY = padY + 0.55 * useH;
+        dashLine(ctx, padX, topY, padX + useW, topY, 'rgba(239,68,68,0.5)', DPR);
+        dashLine(ctx, padX, suppY, padX + useW, suppY, '#f59e0b', DPR);
+        label(ctx, 'RÉSISTANCE', padX + 8 * DPR, topY - 4 * DPR, '#ef4444', DPR, 'left', 9);
+        label(ctx, 'SUPPORT', padX + useW - 8 * DPR, suppY - 4 * DPR, '#f59e0b', DPR, 'right', 9);
+        label(ctx, 'M', pts[4][0], pts[4][1] - 8 * DPR, '#ef4444', DPR, 'center', 12);
+        label(ctx, 'M', pts[10][0], pts[10][1] - 8 * DPR, '#ef4444', DPR, 'center', 12);
+      }
+      if (progress < 1) {
+        progress = Math.min(progress + 0.02, 1);
+        requestAnimationFrame(frame);
+      }
+    }
+    frame();
+  }
+
+  /* === PATTERN 4 : Double Bottom === */
+  function drawDoubleBottom(canvas) {
+    const { ctx, w, h, DPR } = setupCanvas(canvas);
+    const padX = 20 * DPR, padY = 30 * DPR;
+    const useW = w - padX * 2, useH = h - padY * 2;
+    const pts = [
+      [0.00, 0.15], [0.10, 0.35], [0.18, 0.55], [0.25, 0.75], [0.30, 0.80],
+      [0.40, 0.55], [0.45, 0.45], [0.50, 0.50],
+      [0.58, 0.70], [0.65, 0.78], [0.70, 0.80],
+      [0.80, 0.50], [0.88, 0.25], [1.00, 0.05]
+    ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
+
+    let progress = 0;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      drawCurve(ctx, pts, '#22c55e', 2, DPR, progress);
+      if (progress >= 1) {
+        const botY = padY + 0.8 * useH;
+        const resY = padY + 0.45 * useH;
+        dashLine(ctx, padX, botY, padX + useW, botY, 'rgba(34,197,94,0.5)', DPR);
+        dashLine(ctx, padX, resY, padX + useW, resY, '#f59e0b', DPR);
+        label(ctx, 'SUPPORT', padX + 8 * DPR, botY + 14 * DPR, '#22c55e', DPR, 'left', 9);
+        label(ctx, 'RÉSISTANCE', padX + useW - 8 * DPR, resY - 4 * DPR, '#f59e0b', DPR, 'right', 9);
+        label(ctx, 'W', pts[4][0], pts[4][1] + 14 * DPR, '#22c55e', DPR, 'center', 12);
+        label(ctx, 'W', pts[10][0], pts[10][1] + 14 * DPR, '#22c55e', DPR, 'center', 12);
+      }
+      if (progress < 1) {
+        progress = Math.min(progress + 0.02, 1);
+        requestAnimationFrame(frame);
+      }
+    }
+    frame();
+  }
+
+  /* === PATTERN 5 : Triangle ascendant === */
+  function drawTriangleAsc(canvas) {
+    const { ctx, w, h, DPR } = setupCanvas(canvas);
+    const padX = 20 * DPR, padY = 30 * DPR;
+    const useW = w - padX * 2, useH = h - padY * 2;
+    const resY = padY + 0.25 * useH; // résistance plate
+    const pts = [
+      [0.00, 0.85], [0.08, 0.60], [0.13, 0.30], [0.18, 0.25], // touche résistance 1
+      [0.25, 0.55], [0.30, 0.65],
+      [0.36, 0.30], [0.40, 0.25], // touche résistance 2
+      [0.47, 0.50], [0.52, 0.55],
+      [0.58, 0.28], [0.62, 0.25], // touche résistance 3
+      [0.68, 0.45],
+      [0.74, 0.25], [0.80, 0.20], // breakout
+      [0.88, 0.10], [1.00, 0.02]
+    ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
+
+    let progress = 0;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+
+      // Lignes triangle (résistance haute + ligne basse montante)
+      if (progress >= 0.3) {
+        const a = Math.min((progress - 0.3) * 3, 1);
+        ctx.globalAlpha = a;
+        dashLine(ctx, padX, resY, padX + 0.72 * useW, resY, '#ef4444', DPR);
+        // ligne montante du bas (de pt[0] à environ pt[12])
+        const lowerStart = pts[0];
+        const lowerEnd = [padX + 0.72 * useW, padY + 0.35 * useH];
+        dashLine(ctx, lowerStart[0], lowerStart[1], lowerEnd[0], lowerEnd[1], '#22c55e', DPR);
+        ctx.globalAlpha = 1;
+      }
+
+      drawCurve(ctx, pts, '#a78bfa', 2, DPR, progress);
+
+      if (progress >= 1) {
+        label(ctx, 'RÉSIST.', padX + 8 * DPR, resY - 4 * DPR, '#ef4444', DPR, 'left', 9);
+        label(ctx, 'BREAK', pts[15][0], pts[15][1] - 8 * DPR, '#bef264', DPR, 'center', 11);
+      }
+
+      if (progress < 1) {
+        progress = Math.min(progress + 0.018, 1);
+        requestAnimationFrame(frame);
+      }
+    }
+    frame();
+  }
+
+  /* === PATTERN 6 : Bull Flag === */
+  function drawFlagBull(canvas) {
+    const { ctx, w, h, DPR } = setupCanvas(canvas);
+    const padX = 20 * DPR, padY = 30 * DPR;
+    const useW = w - padX * 2, useH = h - padY * 2;
+    // Mât (forte montée) → drapeau (canal descendant) → breakout
+    const pts = [
+      [0.00, 0.95], [0.04, 0.85], [0.08, 0.70], [0.12, 0.55],
+      [0.16, 0.40], [0.20, 0.25], [0.24, 0.15], // mât
+      [0.32, 0.25], [0.38, 0.20], [0.44, 0.30], [0.50, 0.28], // canal drapeau descendant
+      [0.56, 0.38], [0.62, 0.32], [0.68, 0.40],
+      [0.74, 0.25], [0.80, 0.12], [0.88, 0.05], [1.00, 0.02] // breakout + cible
+    ].map(([px, py]) => [padX + px * useW, padY + py * useH]);
+
+    let progress = 0;
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+
+      // Canal drapeau (2 lignes parallèles descendantes)
+      if (progress >= 0.4) {
+        const a = Math.min((progress - 0.4) * 3, 1);
+        ctx.globalAlpha = a;
+        const topX1 = padX + 0.28 * useW, topY1 = padY + 0.15 * useH;
+        const topX2 = padX + 0.70 * useW, topY2 = padY + 0.30 * useH;
+        const botX1 = padX + 0.28 * useW, botY1 = padY + 0.35 * useH;
+        const botX2 = padX + 0.70 * useW, botY2 = padY + 0.50 * useH;
+        dashLine(ctx, topX1, topY1, topX2, topY2, '#a78bfa', DPR);
+        dashLine(ctx, botX1, botY1, botX2, botY2, '#a78bfa', DPR);
+        ctx.globalAlpha = 1;
+      }
+
+      drawCurve(ctx, pts, '#22c55e', 2, DPR, progress);
+
+      if (progress >= 1) {
+        label(ctx, 'MÂT', pts[5][0] - 10 * DPR, pts[5][1] + 10 * DPR, '#22c55e', DPR, 'right', 10);
+        label(ctx, 'DRAPEAU', padX + 0.49 * useW, padY + 0.5 * useH + 14 * DPR, '#a78bfa', DPR, 'center', 10);
+        label(ctx, 'BREAKOUT', pts[16][0], pts[16][1] - 8 * DPR, '#bef264', DPR, 'center', 10);
+      }
+
+      if (progress < 1) {
+        progress = Math.min(progress + 0.018, 1);
+        requestAnimationFrame(frame);
+      }
+    }
+    frame();
+  }
+
+  const DRAWERS = {
+    'hs-top': drawHSTop,
+    'hs-bottom': drawHSBottom,
+    'double-top': drawDoubleTop,
+    'double-bottom': drawDoubleBottom,
+    'triangle-asc': drawTriangleAsc,
+    'flag-bull': drawFlagBull,
+  };
+
+  // Intersection observer pour lancer l'anim au scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const c = e.target;
+        if (c._drawn) return;
+        const key = c.dataset.pattern;
+        const fn = DRAWERS[key];
+        if (fn) { fn(c); c._drawn = true; }
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('canvas[data-pattern]').forEach(c => observer.observe(c));
+</script>
+
+</body>
+</html>
