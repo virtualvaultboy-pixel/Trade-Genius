@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.56';
+export const TG_VERSION = 'v1.57';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -235,6 +235,97 @@ export function resetConsent() {
   location.reload();
 }
 
+// === Glossaire flottant — tap sur [data-term] → popup définition ===
+const GLOSSARY = {
+  'action': "Part de propriété dans une entreprise cotée. Si l'entreprise va bien, l'action prend de la valeur.",
+  'obligation': "Prêt à un État ou une entreprise. Tu touches des intérêts puis ton capital à échéance.",
+  'dividende': "Part des bénéfices d'une entreprise versée aux actionnaires, généralement 1 à 4 fois par an.",
+  'etf': "Panier d'actions ou obligations qui suit un indice (ex: S&P 500). Diversifié et peu cher.",
+  'indice': "Moyenne pondérée d'un panier d'entreprises (ex: CAC 40 = 40 plus grosses françaises).",
+  'capitalisation': "Valeur totale d'une entreprise en bourse = prix × nombre d'actions.",
+  'volatilité': "Mesure des variations de prix. Forte = ça bouge beaucoup. Faible = stable.",
+  'liquidité': "Facilité à acheter/vendre rapidement sans perdre sur le prix.",
+  'spread': "Écart entre le prix d'achat (ask) et le prix de vente (bid).",
+  'plus-value': "Gain réalisé entre achat et vente : (prix vente − prix achat) × quantité.",
+  'stop-loss': "Ordre automatique qui vend si le prix descend à un seuil. Limite tes pertes.",
+  'take-profit': "Ordre automatique qui vend si le prix monte à un seuil. Sécurise tes gains.",
+  'bull market': "Marché haussier. Les prix montent durablement. Optimisme.",
+  'bear market': "Marché baissier (≥ −20%). Les prix descendent durablement. Pessimisme.",
+  'ipo': "Introduction en bourse. Première fois qu'une entreprise propose ses actions au public.",
+  'p/e ratio': "Price/Earnings. Combien tu paies pour 1€ de bénéfice. Plus haut = plus cher.",
+  'leverage': "Effet de levier. Trader avec plus que ton capital. Risque amplifié × N.",
+  'short': "Parier sur la baisse. Tu vends ce que tu n'as pas, espérant racheter moins cher.",
+  'long': "Parier sur la hausse. Position d'achat classique.",
+  'fomo': "Fear Of Missing Out. Peur de rater une hausse → achat impulsif au plus haut.",
+  'fud': "Fear, Uncertainty, Doubt. Peurs propagées qui font vendre dans la panique.",
+};
+
+function ensureGlossaryStyle() {
+  if (document.getElementById('tg-glossary-style')) return;
+  const s = document.createElement('style');
+  s.id = 'tg-glossary-style';
+  s.textContent = `
+    [data-term] { color: var(--blue, #7dd3fc); border-bottom: 1px dashed currentColor; cursor: pointer; }
+    [data-term]:active { opacity: 0.6; }
+    .tg-gloss-modal { position: fixed; inset: 0; z-index: 99998; background: rgba(0,0,0,0.7); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; padding: 16px; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+    .tg-gloss-modal.active { opacity: 1; pointer-events: auto; }
+    .tg-gloss-card { background: linear-gradient(180deg, #16161c, #0c0c10); border: 1px solid rgba(125,211,252,0.3); border-radius: 14px; padding: 20px 18px 18px; max-width: 380px; width: 100%; box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 24px rgba(125,211,252,0.15); transform: translateY(20px); transition: transform 0.25s cubic-bezier(0.2,0.8,0.2,1); }
+    .tg-gloss-modal.active .tg-gloss-card { transform: translateY(0); }
+    .tg-gloss-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; color: #7dd3fc; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px; }
+    .tg-gloss-term { font-family: 'Bricolage Grotesque', serif; font-size: 22px; font-weight: 800; color: #f5f3ef; letter-spacing: -0.02em; margin-bottom: 10px; text-transform: capitalize; }
+    .tg-gloss-def { font-family: 'Manrope', sans-serif; font-size: 14px; line-height: 1.5; color: #b8b3ad; }
+    .tg-gloss-close { margin-top: 14px; width: 100%; background: rgba(125,211,252,0.12); border: 1px solid rgba(125,211,252,0.25); color: #7dd3fc; font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 700; padding: 9px; border-radius: 9px; cursor: pointer; letter-spacing: 0.04em; }
+    .tg-gloss-close:active { background: rgba(125,211,252,0.18); }
+  `;
+  document.head.appendChild(s);
+}
+
+function openGlossaryPopup(term) {
+  const key = (term || '').toLowerCase().trim();
+  const def = GLOSSARY[key];
+  if (!def) return;
+  let modal = document.getElementById('tg-gloss-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'tg-gloss-modal';
+    modal.className = 'tg-gloss-modal';
+    modal.innerHTML = `
+      <div class="tg-gloss-card">
+        <div class="tg-gloss-eyebrow">📖 Glossaire</div>
+        <div class="tg-gloss-term"></div>
+        <div class="tg-gloss-def"></div>
+        <button class="tg-gloss-close">Compris ✓</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    const close = () => modal.classList.remove('active');
+    modal.querySelector('.tg-gloss-close').onclick = close;
+    modal.onclick = (e) => { if (e.target === modal) close(); };
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) close();
+    });
+  }
+  modal.querySelector('.tg-gloss-term').textContent = term;
+  modal.querySelector('.tg-gloss-def').textContent = def;
+  modal.classList.add('active');
+  if (navigator.vibrate) navigator.vibrate(8);
+}
+
+export function initGlossary() {
+  ensureGlossaryStyle();
+  document.body.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-term]');
+    if (!el) return;
+    e.preventDefault();
+    e.stopPropagation();
+    openGlossaryPopup(el.dataset.term || el.textContent);
+  });
+}
+
+export function addGlossaryTerm(term, definition) {
+  GLOSSARY[term.toLowerCase().trim()] = definition;
+}
+
 // === Streak quotidien — tracking auto à chaque visite ===
 const STREAK_KEY = 'tradegenius_streak';
 export function recordVisit() {
@@ -256,6 +347,7 @@ function autoInit() {
   loadAnalytics();
   injectConsentBanner();
   recordVisit();
+  initGlossary();
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', autoInit);
 else autoInit();
