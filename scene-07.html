@@ -26,7 +26,7 @@
   <meta name="description" content="Module 4 — Analyse technique avancée : patterns chandeliers, RSI, MACD, Fibonacci, volume profile, backtesting.">
   <link rel="manifest" href="manifest.json">
   <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
-  <script type="module" src="tg-common.js?v=212"></script>
+  <script type="module" src="tg-common.js?v=213"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -297,8 +297,17 @@
     .slide {
       flex: 0 0 100%; width: 100%; min-width: 100%; height: 100%;
       padding: calc(72px + env(safe-area-inset-top)) 20px calc(96px + env(safe-area-inset-bottom));
-      display: flex; flex-direction: column; justify-content: center;
-      position: relative; overflow-y: auto;
+      display: flex; flex-direction: column;
+      /* v2.13 : flex-start au lieu de center → scroll fonctionne quand contenu déborde */
+      justify-content: flex-start;
+      position: relative;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    /* Pour les slides courts (intro/takeaway), on garde un centrage vertical via min-content */
+    .slide .content {
+      width: 100%; max-width: 100%;
+      margin-top: auto; margin-bottom: auto;
     }
     .slide.s-intro { background: radial-gradient(ellipse at 50% 35%, #1a1424 0%, var(--bg-deep) 70%); }
     .slide.s-concept { background: linear-gradient(180deg, #0e0e16 0%, var(--bg) 100%); }
@@ -781,18 +790,23 @@
           </div>
         `},
         { type: 'concept', html: `
-          <div class="eyebrow">CH.2 · CONCEPT</div>
-          <h1 class="h1"><span class="blue">RSI</span> — le baromètre</h1>
+          <div class="eyebrow">CH.2 · LE RSI</div>
+          <h1 class="h1">Le <span class="blue">RSI</span>, c'est quoi ?</h1>
+          <p class="lead"><strong>RSI</strong> = "Relative Strength Index", indicateur entre <strong>0 et 100</strong>. Il mesure si le marché a <em class="acid">trop monté trop vite</em> (surachat) ou <em class="acid">trop baissé trop vite</em> (survente) sur les 14 dernières bougies.</p>
           <canvas class="demo-canvas" id="canvas-rsi" width="600" height="200"></canvas>
-          <div class="demo-caption">RSI 14 — zones de surachat (>70) et survente (<30)</div>
+          <div class="demo-caption">Zone rouge = surachat · Zone verte = survente</div>
           <div class="points">
             <div class="point">
-              <div class="point-icon">📈</div>
-              <div class="point-text"><strong>RSI &gt; 70</strong> : surachat. Le marché peut corriger. Pas un signal de vente automatique.</div>
+              <div class="point-icon">🔴</div>
+              <div class="point-text"><strong>RSI &gt; 70 = SURACHAT</strong>. Le prix peut corriger. Pas un signal de vente automatique : à confirmer avec d'autres outils.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">🟢</div>
+              <div class="point-text"><strong>RSI &lt; 30 = SURVENTE</strong>. Possible rebond. Cherche un signal d'achat (engulfing, hammer…).</div>
             </div>
             <div class="point">
-              <div class="point-icon">📉</div>
-              <div class="point-text"><strong>RSI &lt; 30</strong> : survente. Possible rebond. Surveille un signal d'entrée.</div>
+              <div class="point-icon">🎯</div>
+              <div class="point-text"><strong>À quoi ça sert</strong> : repérer les points d'entrée et de sortie. Ne pas trader uniquement dessus.</div>
             </div>
           </div>
         `},
@@ -839,18 +853,24 @@
           </div>
         `},
         { type: 'concept', html: `
-          <div class="eyebrow">CH.3 · MACD</div>
-          <h1 class="h1"><span class="blue">MACD</span> — le croisement</h1>
+          <div class="eyebrow">CH.3 · LE MACD</div>
+          <h1 class="h1">Le <span class="blue">MACD</span>, c'est quoi ?</h1>
+          <p class="lead"><strong>MACD</strong> = "Moving Average Convergence Divergence". Il compare <em class="acid">2 moyennes mobiles</em> (la rapide vs la lente) et te dit si le marché <strong>accélère ou ralentit</strong>.</p>
+          <p class="lead" style="margin-top:8px;"><strong>À quoi ça sert</strong> : détecter les <em class="acid">changements de tendance</em> avant qu'ils soient évidents sur le prix.</p>
           <canvas class="demo-canvas" id="canvas-macd" width="600" height="200"></canvas>
-          <div class="demo-caption">MACD line, signal line, histogramme</div>
+          <div class="demo-caption">2 lignes (MACD bleu · Signal orange) + histogramme</div>
           <div class="points">
-            <div class="point">
-              <div class="point-icon">📈</div>
-              <div class="point-text"><strong>MACD line &gt; signal line</strong> : momentum haussier. Idéalement au-dessus de 0.</div>
+            <div class="point acid-pt">
+              <div class="point-icon">🟢</div>
+              <div class="point-text"><strong>MACD croise au-dessus du Signal</strong> = signal d'<strong>ACHAT</strong>. Le momentum devient haussier.</div>
             </div>
             <div class="point">
-              <div class="point-icon">🔄</div>
-              <div class="point-text"><strong>Croisement</strong> de la signal line = signal d'entrée. Histogramme aide à anticiper.</div>
+              <div class="point-icon">🔴</div>
+              <div class="point-text"><strong>MACD croise en-dessous du Signal</strong> = signal de <strong>VENTE</strong>. Le momentum devient baissier.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📊</div>
+              <div class="point-text"><strong>Histogramme</strong> = écart entre les 2 lignes. Vert qui grandit = tendance qui s'accélère. Rouge qui grandit = baisse qui s'accélère.</div>
             </div>
           </div>
         `},
