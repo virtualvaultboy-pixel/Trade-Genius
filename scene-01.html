@@ -5117,6 +5117,45 @@
     ];
     const CHAPTER_SIZE = 6;
 
+    /* ===== TAKEAWAYS — récap fin de chapitre (Duolingo-style) ===== */
+    const CHAPTER_TAKEAWAYS = {
+      1: { title: "La monnaie, c'est de la confiance", points: [
+        { e: '🧩', t: '<strong>Pas de valeur intrinsèque</strong> — juste une convention sociale acceptée par tous.' },
+        { e: '🤝', t: 'Elle remplace le <strong>troc</strong> (problème de la double coïncidence des besoins).' },
+        { e: '🏛️', t: 'Sans confiance dans le système, <strong>plus de monnaie possible</strong>.' },
+      ]},
+      2: { title: '3 rôles essentiels', points: [
+        { e: '🛒', t: '<strong>Moyen d\\u2019échange</strong> — acheter et vendre.' },
+        { e: '📐', t: '<strong>Unité de compte</strong> — mesurer la valeur des choses.' },
+        { e: '💾', t: '<strong>Réserve de valeur</strong> — épargner pour plus tard.' },
+      ]},
+      3: { title: 'Sumer, -3000 : la 1ère monnaie', points: [
+        { e: '📜', t: 'La <strong>tablette sumérienne</strong> servait de comptabilité — avant l\'écriture.' },
+        { e: '🏛️', t: 'Les empires créent la monnaie pour <strong>collecter l\'impôt</strong>.' },
+        { e: '💳', t: 'La <strong>dette est plus vieille</strong> que l\'argent métallique.' },
+      ]},
+      4: { title: "5000 ans d'évolution", points: [
+        { e: '🐚', t: 'Coquillage, sel, bétail, orge — chaque civilisation a sa monnaie.' },
+        { e: '🪙', t: 'Les <strong>métaux précieux</strong> dominent pendant 2500 ans.' },
+        { e: '📜', t: 'Le <strong>billet</strong> inventé en Chine vers 700, en Europe au 17e siècle.' },
+      ]},
+      5: { title: '15 août 1971 : la rupture', points: [
+        { e: '🇺🇸', t: 'Nixon <strong>décroche le dollar de l\'or</strong> — fin de l\'étalon-or.' },
+        { e: '🌍', t: 'Toutes les monnaies deviennent <strong>fiat</strong> (par décret).' },
+        { e: '💸', t: 'La valeur dépend désormais <strong>uniquement de la confiance</strong>.' },
+      ]},
+      6: { title: 'Le système moderne', points: [
+        { e: '🏦', t: 'Les <strong>banques centrales</strong> créent la monnaie via le crédit.' },
+        { e: '💳', t: '<strong>99% de l\'argent</strong> est numérique, pas en billets.' },
+        { e: '₿', t: 'La <strong>crypto</strong> = alternative décentralisée, sans État.' },
+      ]},
+      7: { title: 'Pourquoi ça te concerne', points: [
+        { e: '📈', t: 'L\'<strong>inflation</strong> fait perdre de la valeur à ton argent chaque année.' },
+        { e: '🛡️', t: 'Investir = <strong>se protéger</strong> et faire travailler son argent.' },
+        { e: '🚀', t: 'Module 1 → les <strong>outils</strong> (actions, ETF, obligations).' },
+      ]},
+    };
+
     /* ===== STORAGE ===== */
     const STORAGE_KEY = 'tradegenius_v1';
     const BOOKMARK_KEY = 'tradegenius_v1_bookmark';
@@ -5356,11 +5395,20 @@
       markChapterComplete(ch);
       if (navigator.vibrate) navigator.vibrate([12, 60, 28, 60, 48]);
       playValidationAnim(ch, () => {
-        // Last chapter → return to home (modules menu)
-        if (ch >= 7) {
-          setTimeout(() => { window.location.href = 'index.html'; }, 400);
+        const goNext = () => {
+          if (ch >= 7) setTimeout(() => { window.location.href = 'index.html'; }, 200);
+          else showHub();
+        };
+        const recap = CHAPTER_TAKEAWAYS[ch];
+        if (recap && window.TG && window.TG.showRecap) {
+          window.TG.showRecap({
+            eyebrow: '✓ CHAPITRE ' + ch + ' VALIDÉ',
+            title: recap.title,
+            points: recap.points,
+            onContinue: goNext,
+          });
         } else {
-          showHub();
+          goNext();
         }
       });
     }
@@ -5620,11 +5668,11 @@
       }
     }
   </script>
-  <script type="module" src="tg-common.js?v=174"></script>
+  <script type="module" src="tg-common.js?v=175"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=174').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=175').catch(() => {});
       });
     }
   </script>

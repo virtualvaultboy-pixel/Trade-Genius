@@ -8214,6 +8214,46 @@
       return ch ? ch.size : 6;
     }
 
+    /* ===== TAKEAWAYS — récap fin de chapitre ===== */
+    const CHAPTER_TAKEAWAYS = {
+      1: { title: 'Lire un chart, c\'est lire une histoire', points: [
+        { e: '📜', t: 'Chaque <strong>chandelier</strong> raconte 1 période (jour, heure, minute…).' },
+        { e: '👥', t: 'Le prix = <strong>consensus collectif</strong> des acteurs à cet instant.' },
+        { e: '🧠', t: 'Le chart révèle la <strong>psychologie collective</strong>, pas juste des chiffres.' },
+      ]},
+      2: { title: '1 chandelier = 4 prix', points: [
+        { e: '🟢', t: '<strong>Vert</strong> = clôture &gt; ouverture (acheteurs gagnent).' },
+        { e: '🔴', t: '<strong>Rouge</strong> = clôture &lt; ouverture (vendeurs gagnent).' },
+        { e: '🕯️', t: 'Les <strong>mèches</strong> = extrêmes atteints (high/low) dans la période.' },
+      ]},
+      3: { title: 'Les patterns récurrents', points: [
+        { e: '🔨', t: '<strong>Marteau, étoile filante, doji</strong> — signaux de retournement potentiel.' },
+        { e: '🔁', t: 'Ils se répètent car la <strong>psychologie humaine</strong> est identique au fil du temps.' },
+        { e: '⚠️', t: 'Un pattern <strong>seul ne suffit jamais</strong> — toujours en contexte de tendance.' },
+      ]},
+      4: { title: 'Une tendance se dessine', points: [
+        { e: '↗️', t: '<strong>Haussière</strong> : sommets et creux de plus en plus hauts.' },
+        { e: '↘️', t: '<strong>Baissière</strong> : sommets et creux de plus en plus bas.' },
+        { e: '➡️', t: '<strong>Latérale</strong> : range stable, pas de direction claire.' },
+      ]},
+      5: { title: 'Support et résistance', points: [
+        { e: '🛡️', t: '<strong>Support</strong> = plancher où les acheteurs reviennent.' },
+        { e: '🚧', t: '<strong>Résistance</strong> = plafond où les vendeurs reprennent la main.' },
+        { e: '🔄', t: 'Cassée, une résistance devient <strong>support</strong> (et vice-versa).' },
+      ]},
+      6: { title: 'Volume et indicateurs', points: [
+        { e: '📊', t: '<strong>Volume fort</strong> + mouvement = tendance confirmée.' },
+        { e: '📉', t: 'Volume faible + mouvement = méfiance (mouvement fragile).' },
+        { e: '⚖️', t: '<strong>MM20, MM50</strong> = moyennes mobiles qui lissent le bruit.' },
+      ]},
+      7: { title: 'Avant chaque trade', points: [
+        { e: '🔍', t: '1. Identifier la <strong>tendance</strong> globale.' },
+        { e: '📐', t: '2. Repérer <strong>support et résistance</strong>.' },
+        { e: '📊', t: '3. Vérifier le <strong>volume</strong>.' },
+        { e: '🚀', t: 'Module 3 → maîtriser tes <strong>émotions</strong> (le plus dur).' },
+      ]},
+    };
+
     /* ===== STORAGE ===== */
     const STORAGE_KEY = 'tradegenius_m2';
     const BOOKMARK_KEY = 'tradegenius_m2_bookmark';
@@ -8484,11 +8524,20 @@
       markChapterComplete(ch);
       if (navigator.vibrate) navigator.vibrate([12, 60, 28, 60, 48]);
       playValidationAnim(ch, () => {
-        // Last chapter → return to home (modules menu)
-        if (ch >= 7) {
-          setTimeout(() => { window.location.href = 'index.html'; }, 400);
+        const goNext = () => {
+          if (ch >= 7) setTimeout(() => { window.location.href = 'index.html'; }, 200);
+          else showHub();
+        };
+        const recap = CHAPTER_TAKEAWAYS[ch];
+        if (recap && window.TG && window.TG.showRecap) {
+          window.TG.showRecap({
+            eyebrow: '✓ CHAPITRE ' + ch + ' VALIDÉ',
+            title: recap.title,
+            points: recap.points,
+            onContinue: goNext,
+          });
         } else {
-          showHub();
+          goNext();
         }
       });
     }
@@ -8648,11 +8697,11 @@
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeInfo(); });
   </script>
-  <script type="module" src="tg-common.js?v=174"></script>
+  <script type="module" src="tg-common.js?v=175"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=174').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=175').catch(() => {});
       });
     }
   </script>

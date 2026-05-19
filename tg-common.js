@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.74';
+export const TG_VERSION = 'v1.75';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -332,6 +332,62 @@ export function addGlossaryTerm(term, definition) {
   GLOSSARY[term.toLowerCase().trim()] = definition;
 }
 
+// === Recap fin de chapitre (Duolingo-style) ===
+function ensureRecapStyle() {
+  if (document.getElementById('tg-recap-style')) return;
+  const s = document.createElement('style');
+  s.id = 'tg-recap-style';
+  s.textContent = `
+    .tg-recap-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.78); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; padding: 18px; z-index: 250; opacity: 0; pointer-events: none; transition: opacity 0.32s; }
+    .tg-recap-overlay.active { opacity: 1; pointer-events: auto; }
+    .tg-recap-card { background: linear-gradient(180deg, #16161c, #0c0c10); border: 1px solid rgba(255,255,255,0.16); border-radius: 18px; padding: 24px 22px 20px; max-width: 420px; width: 100%; box-shadow: 0 12px 60px rgba(0,0,0,0.7), 0 0 32px rgba(190,242,100,0.18); transform: translateY(28px) scale(0.97); transition: transform 0.36s cubic-bezier(0.2, 0.8, 0.2, 1); max-height: 86vh; overflow-y: auto; }
+    .tg-recap-overlay.active .tg-recap-card { transform: translateY(0) scale(1); }
+    .tg-recap-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: #bef264; text-transform: uppercase; margin-bottom: 6px; }
+    .tg-recap-title { font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 24px; font-weight: 800; color: #f5f3ef; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 18px; }
+    .tg-recap-points { list-style: none; padding: 0; margin: 0 0 22px; display: flex; flex-direction: column; gap: 10px; }
+    .tg-recap-points li { display: flex; align-items: flex-start; gap: 11px; font-family: 'Manrope', system-ui, sans-serif; font-size: 13.5px; color: #b8b3ad; line-height: 1.42; padding: 10px 12px; background: rgba(255,255,255,0.03); border-radius: 10px; border-left: 2px solid rgba(190,242,100,0.32); }
+    .tg-recap-points li .e { font-size: 18px; line-height: 1; flex-shrink: 0; margin-top: 1px; }
+    .tg-recap-points li .t { flex: 1; }
+    .tg-recap-points li .t strong { color: #f5f3ef; font-weight: 700; }
+    .tg-recap-cta { width: 100%; background: linear-gradient(135deg, #bef264, #d9f99d); color: #0a0a0c; border: none; font-family: 'Bricolage Grotesque', Georgia, serif; font-size: 15px; font-weight: 800; letter-spacing: -0.005em; padding: 13px; border-radius: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(190,242,100,0.35); transition: transform 0.15s, box-shadow 0.2s; }
+    .tg-recap-cta:active { transform: scale(0.97); box-shadow: 0 2px 8px rgba(190,242,100,0.25); }
+  `;
+  document.head.appendChild(s);
+}
+
+export function showRecap({ eyebrow = '✓ VALIDÉ', title = 'Ce que tu as appris', points = [], onContinue = null } = {}) {
+  ensureRecapStyle();
+  let overlay = document.getElementById('tg-recap-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'tg-recap-overlay';
+    overlay.className = 'tg-recap-overlay';
+    overlay.innerHTML = `
+      <div class="tg-recap-card">
+        <div class="tg-recap-eyebrow" id="tg-recap-eyebrow"></div>
+        <h2 class="tg-recap-title" id="tg-recap-title"></h2>
+        <ul class="tg-recap-points" id="tg-recap-points"></ul>
+        <button class="tg-recap-cta" id="tg-recap-cta">
+          <span>Continuer</span><span>→</span>
+        </button>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+  }
+  document.getElementById('tg-recap-eyebrow').textContent = eyebrow;
+  document.getElementById('tg-recap-title').textContent = title;
+  document.getElementById('tg-recap-points').innerHTML = points.map(p =>
+    `<li><span class="e">${p.e || '✓'}</span><span class="t">${p.t || ''}</span></li>`
+  ).join('');
+  document.getElementById('tg-recap-cta').onclick = () => {
+    if (navigator.vibrate) navigator.vibrate(10);
+    overlay.classList.remove('active');
+    setTimeout(() => { if (typeof onContinue === 'function') onContinue(); }, 380);
+  };
+  overlay.classList.add('active');
+  if (navigator.vibrate) navigator.vibrate([12, 60, 28]);
+}
+
 // === Streak quotidien — tracking auto à chaque visite ===
 const STREAK_KEY = 'tradegenius_streak';
 export function recordVisit() {
@@ -459,7 +515,7 @@ export async function shareCard({ title = 'Trade Genius', stat = '', quote = '' 
 
 // Expose API globalement pour usage hors module (scripts inline des HTML)
 window.TG = Object.assign(window.TG || {}, {
-  shareCard, addGlossaryTerm, recordVisit, resetConsent, TG_VERSION,
+  shareCard, addGlossaryTerm, recordVisit, resetConsent, showRecap, TG_VERSION,
 });
 
 // === Prefetch scenes critiques (perf navigation, après LCP) ===

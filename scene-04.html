@@ -8967,6 +8967,46 @@
     ];
     const CHAPTER_SIZE = 6;
 
+    /* ===== TAKEAWAYS — récap fin de chapitre ===== */
+    const CHAPTER_TAKEAWAYS = {
+      1: { title: 'La psycho &gt; la technique', points: [
+        { e: '📉', t: '<strong>95% des traders particuliers perdent</strong> de l\'argent à long terme.' },
+        { e: '🧠', t: 'Le marché est rationnel à long terme — c\'est <strong>toi</strong> qui est émotionnel.' },
+        { e: '🪞', t: 'Le problème principal n\'est <strong>pas le marché</strong>, c\'est <strong>toi</strong>.' },
+      ]},
+      2: { title: 'Kahneman : 2 systèmes de pensée', points: [
+        { e: '⚡', t: '<strong>Système 1</strong> : rapide, instinctif, émotionnel (l\'ennemi en trading).' },
+        { e: '🧠', t: '<strong>Système 2</strong> : lent, analytique, rationnel (à activer).' },
+        { e: '🎯', t: 'Trader = forcer le système 2 à <strong>prendre le contrôle</strong>.' },
+      ]},
+      3: { title: 'Tes 3 ennemis émotionnels', points: [
+        { e: '😨', t: '<strong>Peur</strong> : te fait vendre au pire moment.' },
+        { e: '🤑', t: '<strong>Avidité</strong> : te fait acheter trop tard, au sommet.' },
+        { e: '🦁', t: '<strong>Ego</strong> : te fait tenir contre l\'évidence.' },
+      ]},
+      4: { title: 'La FOMO décortiquée', points: [
+        { e: '📈', t: 'Voir tout le monde gagner → <strong>peur de rater</strong>.' },
+        { e: '🔝', t: 'Tu finis par acheter <strong>au sommet</strong> du mouvement.' },
+        { e: '💸', t: 'Le marché punit l\'<strong>impatience</strong> : attends ta config.' },
+      ]},
+      5: { title: 'Biais cognitifs courants', points: [
+        { e: '🪨', t: '<strong>Ancrage</strong> : tu restes attaché à ton prix d\'achat.' },
+        { e: '🎯', t: '<strong>Confirmation</strong> : tu cherches ce qui te donne raison.' },
+        { e: '🃏', t: '<strong>Sunk cost</strong> : tu gardes une perte par refus de pertes.' },
+      ]},
+      6: { title: 'Money management = survie', points: [
+        { e: '💵', t: '<strong>Règle des 2%</strong> : jamais plus de 2% du capital perdu par trade.' },
+        { e: '🛡️', t: '<strong>Toujours un stop-loss</strong> AVANT d\'entrer en position.' },
+        { e: '📊', t: '<strong>Taille position</strong> = (capital × 2%) / stop %.' },
+      ]},
+      7: { title: 'Le mindset du pro', points: [
+        { e: '📝', t: '<strong>Plan écrit</strong> avant le trade : entrée, stop, target.' },
+        { e: '🚫', t: 'Pas de trades émotionnels (FOMO, revenge trading).' },
+        { e: '📓', t: '<strong>Carnet de trading</strong> : tu apprends de TES erreurs.' },
+        { e: '💎', t: 'Patience + discipline = <strong>résultats sur le long terme</strong>.' },
+      ]},
+    };
+
     /* ===== STORAGE ===== */
     const STORAGE_KEY = 'tradegenius_m3';
     const BOOKMARK_KEY = 'tradegenius_m3_bookmark';
@@ -9213,11 +9253,20 @@
       markChapterComplete(ch);
       if (navigator.vibrate) navigator.vibrate([12, 60, 28, 60, 48]);
       playValidationAnim(ch, () => {
-        // Last chapter → return to accueil (all modules done)
-        if (ch >= 7) {
-          setTimeout(() => { window.location.href = 'index.html#accueil'; }, 400);
+        const goNext = () => {
+          if (ch >= 7) setTimeout(() => { window.location.href = 'index.html#accueil'; }, 200);
+          else showHub();
+        };
+        const recap = CHAPTER_TAKEAWAYS[ch];
+        if (recap && window.TG && window.TG.showRecap) {
+          window.TG.showRecap({
+            eyebrow: '✓ CHAPITRE ' + ch + ' VALIDÉ',
+            title: recap.title,
+            points: recap.points,
+            onContinue: goNext,
+          });
         } else {
-          showHub();
+          goNext();
         }
       });
     }
@@ -9350,11 +9399,11 @@
       }
     })();
   </script>
-  <script type="module" src="tg-common.js?v=174"></script>
+  <script type="module" src="tg-common.js?v=175"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=174').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=175').catch(() => {});
       });
     }
   </script>

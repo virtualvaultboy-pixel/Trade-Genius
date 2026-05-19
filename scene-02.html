@@ -6674,6 +6674,46 @@
       return ch ? ch.size : 6;
     }
 
+    /* ===== TAKEAWAYS — récap fin de chapitre ===== */
+    const CHAPTER_TAKEAWAYS = {
+      1: { title: 'Tu es déjà un acteur de marché', points: [
+        { e: '🛒', t: 'Un <strong>marché</strong> = lieu d\'échange entre acheteurs et vendeurs.' },
+        { e: '💱', t: 'Le <strong>prix</strong> est déterminé par l\'offre et la demande.' },
+        { e: '📱', t: 'Tu fais du marché chaque jour : Amazon, Leboncoin, courses…' },
+      ]},
+      2: { title: 'Une action = part d\'entreprise', points: [
+        { e: '🏢', t: 'Tu deviens <strong>copropriétaire</strong> (1 part sur ~16 milliards pour Apple).' },
+        { e: '💰', t: '2 façons de gagner : <strong>plus-value</strong> (revente) + <strong>dividende</strong>.' },
+        { e: '📉', t: 'Risque réel : ça peut aussi <strong>baisser</strong>.' },
+      ]},
+      3: { title: 'Une obligation = un prêt', points: [
+        { e: '🤝', t: 'Tu <strong>prêtes</strong> à un État ou une entreprise.' },
+        { e: '📜', t: 'Tu deviens <strong>créancier</strong> — rang prioritaire si faillite.' },
+        { e: '🛡️', t: '<strong>Plus sûr</strong> qu\'une action, mais rapporte moins.' },
+      ]},
+      4: { title: 'Un ETF = panier diversifié', points: [
+        { e: '🧺', t: 'Tu achètes 1 part, tu détiens <strong>des centaines d\'entreprises</strong>.' },
+        { e: '📊', t: 'Suit un <strong>indice</strong> (CAC 40, S&P 500…).' },
+        { e: '💸', t: 'Frais très bas : <strong>0.05-0.30%/an</strong> (vs 2% pour un fonds actif).' },
+      ]},
+      5: { title: 'Le marché a 2 prix', points: [
+        { e: '🟢', t: '<strong>Ask</strong> = prix d\'achat (ce que tu paies).' },
+        { e: '🔴', t: '<strong>Bid</strong> = prix de vente (ce que tu reçois).' },
+        { e: '📏', t: '<strong>Spread</strong> = différence. Faible = marché liquide.' },
+      ]},
+      6: { title: 'Le marché a 2 humeurs', points: [
+        { e: '🐂', t: '<strong>Bull market</strong> = haussier (optimisme, ça monte durablement).' },
+        { e: '🐻', t: '<strong>Bear market</strong> = baissier (≥ -20%, pessimisme).' },
+        { e: '🔄', t: 'Les cycles se <strong>succèdent</strong> — c\'est normal et prévisible.' },
+      ]},
+      7: { title: 'Plan d\'action concret', points: [
+        { e: '📋', t: '1. Ouvre un <strong>PEA</strong> ou un compte-titres (5 min).' },
+        { e: '💰', t: '2. Verse une somme <strong>régulière</strong> (DCA, ex: 100€/mois).' },
+        { e: '📊', t: '3. Achète des <strong>ETF diversifiés</strong> (MSCI World, S&P 500).' },
+        { e: '🚀', t: 'Module 2 → apprendre à <strong>lire le chart</strong>.' },
+      ]},
+    };
+
     /* ===== STORAGE ===== */
     const STORAGE_KEY = 'tradegenius_m1';
     const BOOKMARK_KEY = 'tradegenius_m1_bookmark';
@@ -6944,11 +6984,20 @@
       markChapterComplete(ch);
       if (navigator.vibrate) navigator.vibrate([12, 60, 28, 60, 48]);
       playValidationAnim(ch, () => {
-        // Last chapter → return to home (modules menu)
-        if (ch >= 7) {
-          setTimeout(() => { window.location.href = 'index.html'; }, 400);
+        const goNext = () => {
+          if (ch >= 7) setTimeout(() => { window.location.href = 'index.html'; }, 200);
+          else showHub();
+        };
+        const recap = CHAPTER_TAKEAWAYS[ch];
+        if (recap && window.TG && window.TG.showRecap) {
+          window.TG.showRecap({
+            eyebrow: '✓ CHAPITRE ' + ch + ' VALIDÉ',
+            title: recap.title,
+            points: recap.points,
+            onContinue: goNext,
+          });
         } else {
-          showHub();
+          goNext();
         }
       });
     }
@@ -7116,11 +7165,11 @@
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeInfo(); });
   </script>
-  <script type="module" src="tg-common.js?v=174"></script>
+  <script type="module" src="tg-common.js?v=175"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=174').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=175').catch(() => {});
       });
     }
   </script>
