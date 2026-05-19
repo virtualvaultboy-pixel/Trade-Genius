@@ -6838,6 +6838,16 @@ function renderChart() {
   parts.push(`<rect x="${W - padR - 38}" y="${lastY - 6}" width="36" height="12" fill="${last.close >= (candles.length>1 ? candles[candles.length-2].close : last.open) ? '#4ade80' : '#f87171'}" rx="2"/>`);
   parts.push(`<text x="${W - padR - 20}" y="${lastY + 3}" font-family="JetBrains Mono" font-size="8.5" fill="#0a0a0c" text-anchor="middle" font-weight="700">$${last.close.toFixed(2)}</text>`);
 
+  // ENTRY line (prix d'achat moyen) — dashed acid avec badge ⊕
+  if (state.shares > 0.0001 && state.avgEntry > 0) {
+    const entryY = yOf(state.avgEntry);
+    if (entryY >= padT && entryY <= padT + priceAreaH) {
+      parts.push(`<line x1="${padL}" y1="${entryY}" x2="${W - padR}" y2="${entryY}" stroke="#bef264" stroke-width="1" stroke-dasharray="2,4" opacity="0.75"/>`);
+      parts.push(`<rect x="${W - padR - 70}" y="${entryY - 7}" width="62" height="14" fill="#bef264" rx="2" opacity="0.92"/>`);
+      parts.push(`<text x="${W - padR - 39}" y="${entryY + 3}" font-family="JetBrains Mono" font-size="8.5" fill="#0a0a0c" text-anchor="middle" font-weight="700">⊕ $${state.avgEntry.toFixed(2)}</text>`);
+    }
+  }
+
   // STOP-LOSS line when active (red dashed)
   if (state.stopLoss && state.shares > 0) {
     const stopY = yOf(state.stopLoss.price);
@@ -7259,11 +7269,11 @@ document.addEventListener('keydown', (e) => {
 });
 
 </script>
-  <script type="module" src="tg-common.js?v=165"></script>
+  <script type="module" src="tg-common.js?v=166"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=165').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=166').catch(() => {});
       });
     }
   </script>
