@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<!--
+═══════════════════════════════════════════════════════════════════
+                    TRADE GENIUS · scene-11.html
+                    MODULE 5 — Fiscalité française v2.15
+═══════════════════════════════════════════════════════════════════
+  CHAPITRES (tous gratuits) :
+  Ch.1 — PEA vs CTO (le bon compte)
+  Ch.2 — Flat tax 30% (PFU)
+  Ch.3 — Abattements et exonérations
+  Ch.4 — Crypto · fiscalité 2019+
+  Ch.5 — Dividendes et coupons
+  Ch.6 — ETF européens vs US (piège)
+  Ch.7 — Plan fiscal optimal
+
+  Storage  : tradegenius_m5
+  Bookmark : tradegenius_m5_bookmark
+-->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0c">
+  <title>Trade Genius — Module 5 : Fiscalité française</title>
+  <meta name="description" content="Module 5 — Fiscalité française : PEA, CTO, flat tax 30%, abattements, crypto, dividendes, ETF, plan fiscal optimal.">
+  <link rel="manifest" href="manifest.json">
+  <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script type="module" src="tg-common.js?v=215"></script>
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-deep: #050507;
+      --surface: #13131c;
+      --surface-2: #1a1a25;
+      --border: rgba(255,255,255,0.08);
+      --text: #f8f5ee;
+      --text-dim: #a8a8b3;
+      --text-faint: #6a6a75;
+      --acid: #bef264;
+      --acid-glow: rgba(190,242,100,0.5);
+      --purple: #a78bfa;
+      --blue: #60a5fa;
+      --gold: #f59e0b;
+      --red: #ef4444;
+      --green: #22c55e;
+      --font-d: 'Manrope', system-ui, sans-serif;
+      --font-m: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-d);
+      overflow: hidden;
+      height: 100%;
+      overscroll-behavior: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .view { display: none; height: 100vh; height: 100dvh; overflow-y: auto; overflow-x: hidden; position: relative; }
+    .view.active { display: block; }
+
+    /* HUB */
+    #hub {
+      padding: calc(20px + env(safe-area-inset-top)) 16px calc(40px + env(safe-area-inset-bottom));
+      max-width: 480px; margin: 0 auto;
+    }
+    .hub-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+    .back-btn {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-m); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 8px 12px; border-radius: 10px;
+      cursor: pointer;
+    }
+    .back-btn:active { transform: scale(0.96); }
+    .hub-brand {
+      font-family: var(--font-m); font-size: 11px;
+      letter-spacing: 0.22em; color: var(--green); font-weight: 700;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .hub-brand::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); box-shadow: 0 0 10px var(--green);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse { 50% { opacity: 0.4; } }
+
+    .hub-title { font-family: var(--font-d); font-size: 32px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; margin: 0 0 4px; }
+    .hub-title em { font-style: italic; color: var(--green); font-weight: 700; }
+    .hub-sub { font-family: var(--font-d); font-size: 14px; color: var(--text-dim); margin: 0 0 24px; line-height: 1.4; }
+
+    .hub-progress {
+      margin-bottom: 24px; padding: 14px 16px;
+      background: linear-gradient(135deg, rgba(34,197,94,0.08) 0%, rgba(34,197,94,0.02) 100%);
+      border: 1px solid rgba(34,197,94,0.22);
+      border-radius: 14px;
+    }
+    .hp-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+    .hp-label { font-family: var(--font-m); font-size: 9.5px; letter-spacing: 0.18em; color: var(--green); font-weight: 700; text-transform: uppercase; }
+    .hp-text { font-family: var(--font-m); font-size: 11px; color: var(--text-dim); font-weight: 600; }
+    .hp-bar-wrap { height: 6px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
+    .hp-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--green) 0%, var(--acid) 100%);
+      border-radius: 999px;
+      transition: width 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 0 12px rgba(34,197,94,0.4);
+    }
+
+    .chapter-list { display: flex; flex-direction: column; gap: 10px; }
+    .chapter-card {
+      position: relative;
+      display: grid; grid-template-columns: 44px 1fr auto; gap: 14px;
+      align-items: center;
+      padding: 14px 14px;
+      background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: transform 0.15s, border-color 0.2s;
+      overflow: hidden;
+    }
+    .chapter-card.available, .chapter-card.complete {
+      cursor: pointer;
+      border-color: rgba(34,197,94,0.35);
+    }
+    .chapter-card.available:active, .chapter-card.complete:active { transform: scale(0.985); }
+    .chapter-card.complete { background: linear-gradient(135deg, rgba(34,197,94,0.08) 0%, var(--surface) 80%); }
+    .chapter-card.locked { opacity: 0.6; }
+    .chapter-num {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(34,197,94,0.12); color: var(--green);
+      font-family: var(--font-d); font-size: 15px; font-weight: 800;
+      letter-spacing: -0.02em;
+      border: 1px solid rgba(34,197,94,0.25);
+    }
+    .chapter-card.complete .chapter-num { background: rgba(34,197,94,0.18); border-color: rgba(34,197,94,0.45); }
+    .chapter-info { min-width: 0; }
+    .chapter-name { font-family: var(--font-d); font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 3px; letter-spacing: -0.01em; }
+    .chapter-desc { font-family: var(--font-d); font-size: 12px; color: var(--text-dim); line-height: 1.3; }
+    .chapter-state { font-family: var(--font-d); font-size: 22px; font-weight: 800; color: var(--green); }
+    .chapter-card.locked .chapter-state { color: var(--text-faint); font-size: 16px; }
+    .chapter-pill.locked { position: absolute; top: 8px; right: 10px; font-family: var(--font-m); font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 7px; border-radius: 999px; background: rgba(255,255,255,0.06); color: var(--text-faint); border: 1px solid var(--border); }
+
+    .disclaimer {
+      margin-top: 20px; padding: 14px 16px;
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.25);
+      border-radius: 12px;
+      font-family: var(--font-d); font-size: 12.5px;
+      color: var(--text-dim); line-height: 1.45;
+    }
+    .disclaimer strong { color: var(--gold); }
+
+    /* READER */
+    #reader { position: fixed; inset: 0; background: var(--bg); }
+    .reader-head {
+      position: fixed; top: 0; left: 0; right: 0;
+      padding: calc(12px + env(safe-area-inset-top)) 16px 12px;
+      background: linear-gradient(180deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0.7) 100%);
+      -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+      z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    }
+    .head-close {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 38px; height: 38px; border-radius: 10px;
+      font-size: 18px; cursor: pointer; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .head-close:active { transform: scale(0.94); }
+    .head-meta { flex: 1; text-align: center; min-width: 0; }
+    .head-meta .chapter { font-family: var(--font-m); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: var(--green); display: block; margin-bottom: 2px; }
+    .progress-bars { display: flex; gap: 4px; justify-content: center; }
+    .bar { flex: 1; max-width: 40px; height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; position: relative; }
+    .bar.done { background: var(--green); }
+    .bar.active::after { content: ''; position: absolute; inset: 0; background: var(--green); animation: bar-pulse 1.8s ease-in-out infinite; }
+    @keyframes bar-pulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+    .counter { font-family: var(--font-m); font-size: 10px; color: var(--text-faint); font-weight: 700; flex-shrink: 0; min-width: 32px; text-align: right; }
+
+    #track-wrap { position: absolute; inset: 0; overflow: hidden; }
+    #track { display: flex; height: 100%; transition: transform 0.34s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .slide {
+      flex: 0 0 100%; width: 100%; min-width: 100%; height: 100%;
+      padding: calc(72px + env(safe-area-inset-top)) 20px calc(96px + env(safe-area-inset-bottom));
+      display: flex; flex-direction: column; justify-content: flex-start;
+      position: relative; overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .slide .content { width: 100%; max-width: 100%; margin-top: auto; margin-bottom: auto; }
+    .slide.s-intro { background: radial-gradient(ellipse at 50% 35%, #0e1816 0%, var(--bg-deep) 70%); }
+    .slide.s-concept { background: linear-gradient(180deg, #0a0f0c 0%, var(--bg) 100%); }
+    .slide.s-example { background: radial-gradient(ellipse at 50% 50%, #0c1410 0%, var(--bg) 80%); }
+    .slide.s-takeaway { background: linear-gradient(135deg, #0a0a0c 0%, #0e1612 100%); }
+
+    .eyebrow { font-family: var(--font-m); font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--green); text-transform: uppercase; margin-bottom: 12px; }
+    .h1 { font-family: var(--font-d); font-size: 28px; font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; margin: 0 0 14px; }
+    .h1 em { font-style: italic; color: var(--green); font-weight: 800; }
+    .h1 .acid { color: var(--acid); font-style: normal; font-weight: 800; }
+    .h1 .gold { color: var(--gold); font-style: normal; font-weight: 800; }
+    .h1 .red { color: var(--red); font-style: normal; font-weight: 800; }
+    .lead { font-family: var(--font-d); font-size: 15px; line-height: 1.45; color: var(--text-dim); margin: 0 0 16px; }
+    .lead strong { color: var(--text); font-weight: 700; }
+    .lead em.acid { font-style: normal; color: var(--acid); font-weight: 700; }
+    .lead em.green { font-style: normal; color: var(--green); font-weight: 700; }
+    .lead em.red { font-style: normal; color: var(--red); font-weight: 700; }
+    .lead em.gold { font-style: normal; color: var(--gold); font-weight: 700; }
+
+    .callout {
+      padding: 14px 16px;
+      background: linear-gradient(135deg, rgba(34,197,94,0.10) 0%, rgba(34,197,94,0.02) 100%);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 14px;
+      margin: 12px 0;
+    }
+    .callout .ck-lbl { font-family: var(--font-m); font-size: 9.5px; font-weight: 700; letter-spacing: 0.2em; color: var(--green); text-transform: uppercase; margin-bottom: 6px; }
+    .callout .ck-txt { font-family: var(--font-d); font-size: 13.5px; color: var(--text); line-height: 1.4; }
+    .callout .ck-txt strong { color: var(--green); }
+
+    .callout.warn { background: linear-gradient(135deg, rgba(239,68,68,0.10) 0%, rgba(239,68,68,0.02) 100%); border-color: rgba(239,68,68,0.3); }
+    .callout.warn .ck-lbl { color: var(--red); }
+    .callout.warn .ck-txt strong { color: var(--red); }
+    .callout.gold { background: linear-gradient(135deg, rgba(245,158,11,0.10) 0%, rgba(245,158,11,0.02) 100%); border-color: rgba(245,158,11,0.3); }
+    .callout.gold .ck-lbl { color: var(--gold); }
+    .callout.gold .ck-txt strong { color: var(--gold); }
+
+    .points { display: flex; flex-direction: column; gap: 10px; margin: 14px 0; }
+    .point { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; padding: 12px 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; }
+    .point-icon { font-size: 22px; line-height: 1.1; }
+    .point-text { font-family: var(--font-d); font-size: 13.5px; color: var(--text); line-height: 1.4; }
+    .point-text strong { color: var(--green); font-weight: 700; }
+    .point.acid-pt { border-color: rgba(190,242,100,0.3); }
+    .point.acid-pt .point-text strong { color: var(--acid); }
+    .point.gold-pt { border-color: rgba(245,158,11,0.3); }
+    .point.gold-pt .point-text strong { color: var(--gold); }
+    .point.red-pt { border-color: rgba(239,68,68,0.3); }
+    .point.red-pt .point-text strong { color: var(--red); }
+
+    /* Tableau comparatif */
+    .compare-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 14px 0;
+    }
+    .ct-head {
+      padding: 10px 12px;
+      font-family: var(--font-d); font-size: 13px; font-weight: 800;
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+    .ct-head.green { background: rgba(34,197,94,0.18); color: var(--green); border-right: 1px solid var(--border); }
+    .ct-head.red { background: rgba(239,68,68,0.14); color: var(--red); }
+    .ct-row {
+      padding: 9px 12px;
+      font-family: var(--font-d); font-size: 12px;
+      color: var(--text); line-height: 1.35;
+      border-top: 1px solid var(--border);
+    }
+    .ct-row:nth-child(odd) { border-right: 1px solid var(--border); }
+    .ct-row strong { font-weight: 700; }
+
+    /* Nav buttons */
+    .reader-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      background: linear-gradient(0deg, rgba(10,10,15,0.95) 0%, rgba(10,10,15,0) 100%);
+      z-index: 10; display: flex; gap: 10px; justify-content: space-between; align-items: center;
+    }
+    .nav-btn {
+      flex: 1; max-width: 140px;
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-family: var(--font-d); font-size: 13px; font-weight: 700;
+      border-radius: 12px; cursor: pointer;
+      transition: transform 0.12s, background 0.2s;
+    }
+    .nav-btn:active { transform: scale(0.97); }
+    .nav-btn.primary {
+      flex: 2;
+      background: linear-gradient(135deg, var(--green) 0%, var(--acid) 100%);
+      color: #0a0a0c;
+      border-color: rgba(34,197,94,0.4);
+      box-shadow: 0 8px 20px rgba(34,197,94,0.32);
+    }
+    .nav-btn:disabled { opacity: 0.4; cursor: default; }
+
+    /* Validation overlay */
+    .validate-overlay {
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(0,0,0,0.85); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 18px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .validate-overlay.show { opacity: 1; pointer-events: auto; }
+    .validate-circle {
+      width: 90px; height: 90px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--green) 0%, var(--acid) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 46px; color: #0a0a0c;
+      box-shadow: 0 0 40px rgba(34,197,94,0.5);
+      transform: scale(0);
+      animation: validate-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    @keyframes validate-pop { to { transform: scale(1); } }
+    .validate-text { font-family: var(--font-d); font-size: 18px; font-weight: 800; color: var(--text); letter-spacing: -0.01em; }
+
+    @media (max-width: 360px) {
+      .hub-title { font-size: 26px; }
+      .h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HUB -->
+  <div id="hub" class="view active">
+    <div class="hub-top">
+      <button class="back-btn" onclick="goBack()">← MENU</button>
+      <div class="hub-brand">TRADE GENIUS</div>
+    </div>
+
+    <div class="eyebrow" style="font-family: var(--font-m); font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--green); text-transform: uppercase; margin-bottom: 8px;">MODULE 05 · FISCALITÉ FR</div>
+    <h1 class="hub-title">Optimise <em>tes impôts</em></h1>
+    <p class="hub-sub">PEA, CTO, flat tax, abattements, crypto, ETF. Tout ce qu'un investisseur français doit savoir. 100% gratuit.</p>
+
+    <div class="hub-progress">
+      <div class="hp-head">
+        <span class="hp-label">PROGRESSION</span>
+        <span class="hp-text" id="hub-progress-text">0 / 7 chapitres</span>
+      </div>
+      <div class="hp-bar-wrap">
+        <div class="hp-bar-fill" id="hub-progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <div class="chapter-list" id="chapter-list"></div>
+
+    <div class="disclaimer">
+      <strong>⚠ Important :</strong> Ce contenu est <strong>pédagogique</strong>, jamais un conseil fiscal personnalisé. Les règles changent chaque année (loi de finances). Vérifie toujours sur <strong>impots.gouv.fr</strong> ou consulte un expert-comptable pour ta situation.
+    </div>
+  </div>
+
+  <!-- READER -->
+  <div id="reader" class="view">
+    <div class="reader-head">
+      <button class="head-close" onclick="closeReader()" aria-label="Fermer">✕</button>
+      <div class="head-meta">
+        <span class="chapter">MODULE 5 · CH.1</span>
+        <div class="progress-bars" id="progress-bars"></div>
+      </div>
+      <span class="counter" id="slide-counter">1/4</span>
+    </div>
+
+    <div id="track-wrap">
+      <div id="track"></div>
+    </div>
+
+    <div class="reader-nav">
+      <button class="nav-btn" id="nav-prev" onclick="prev()">← Préc.</button>
+      <button class="nav-btn primary" id="nav-next" onclick="next()">Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Validation overlay -->
+  <div class="validate-overlay" id="validate-overlay">
+    <div class="validate-circle">✓</div>
+    <div class="validate-text" id="validate-text">Chapitre validé</div>
+  </div>
+
+  <script>
+    /* ===================================================
+       TRADE GENIUS · Module 5 — Fiscalité française
+       =================================================== */
+    const CHAPTERS = [
+      { n: 1, title: 'PEA vs CTO',           desc: 'Le bon compte pour investir' },
+      { n: 2, title: 'Flat tax 30%',         desc: 'Le PFU expliqué' },
+      { n: 3, title: 'Abattements',          desc: 'PEA 5 ans, AV 8 ans' },
+      { n: 4, title: 'Crypto fiscalité',     desc: 'Bofip, déclaration, 30%' },
+      { n: 5, title: 'Dividendes & coupons', desc: 'Retenue à la source' },
+      { n: 6, title: 'ETF US vs UCITS',      desc: 'Le piège des US' },
+      { n: 7, title: 'Plan fiscal optimal',  desc: 'Ordre de remplissage' },
+    ];
+    function chapterSize(n) { return (SLIDES[n] || []).length || 4; }
+    const STORAGE_KEY  = 'tradegenius_m5';
+    const BOOKMARK_KEY = 'tradegenius_m5_bookmark';
+    const BOOKMARK_TTL = 7 * 24 * 60 * 60 * 1000;
+
+    function loadProgress() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { completed: {} }; } catch { return { completed: {} }; } }
+    function saveProgress(p) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch {} }
+    function markChapterComplete(n) {
+      const p = loadProgress();
+      p.completed = p.completed || {};
+      p.completed[n] = true;
+      saveProgress(p);
+      try { localStorage.removeItem(BOOKMARK_KEY); } catch {}
+    }
+    function saveBookmark(chapter, slide) { try { localStorage.setItem(BOOKMARK_KEY, JSON.stringify({ chapter, slide, ts: Date.now() })); } catch {} }
+    function loadBookmark(chapter) {
+      try {
+        const b = JSON.parse(localStorage.getItem(BOOKMARK_KEY));
+        if (!b || b.chapter !== chapter) return null;
+        if (Date.now() - b.ts > BOOKMARK_TTL) return null;
+        return b.slide;
+      } catch { return null; }
+    }
+    function getChapterState(n) {
+      const p = loadProgress();
+      if (p.completed && p.completed[n]) return 'complete';
+      if (n === 1) return 'available';
+      if (p.completed && p.completed[n - 1]) return 'available';
+      return 'locked';
+    }
+
+    const chapterListEl = document.getElementById('chapter-list');
+    const hubProgressFill = document.getElementById('hub-progress-fill');
+    const hubProgressText = document.getElementById('hub-progress-text');
+
+    function renderHub() {
+      const p = loadProgress();
+      const completed = p.completed || {};
+      const total = CHAPTERS.length;
+      const completedCount = CHAPTERS.filter(c => completed[c.n]).length;
+      hubProgressFill.style.width = `${(completedCount / total) * 100}%`;
+      hubProgressText.textContent = `${completedCount} / ${total} chapitre${completedCount > 1 ? 's' : ''}`;
+      chapterListEl.innerHTML = CHAPTERS.map(ch => {
+        const state = getChapterState(ch.n);
+        const clickable = (state === 'available' || state === 'complete');
+        const onclickAttr = clickable ? `onclick="openChapter(${ch.n})"` : '';
+        let icon = '→';
+        if (state === 'complete') icon = '✓';
+        else if (state === 'locked') icon = '🔒';
+        let pill = '';
+        if (state === 'locked') pill = '<span class="chapter-pill locked">Verrouillé</span>';
+        return `
+          <div class="chapter-card ${state}" data-ch="${ch.n}" ${onclickAttr}>
+            <div class="chapter-num">${String(ch.n).padStart(2, '0')}</div>
+            <div class="chapter-info">
+              <div class="chapter-name">${ch.title}</div>
+              <div class="chapter-desc">${ch.desc}</div>
+            </div>
+            <div class="chapter-state">${icon}</div>
+            ${pill}
+          </div>
+        `;
+      }).join('');
+    }
+
+    /* ===== SLIDES CONTENT ===== */
+    const SLIDES = {
+      // ============ CH.1 — PEA vs CTO ============
+      1: [
+        { type: 'intro', html: `
+          <div class="eyebrow">CH.1 · LE BON COMPTE</div>
+          <h1 class="h1"><em>PEA</em> ou <span class="red">CTO</span> ?</h1>
+          <p class="lead">Avant d'acheter ta première action, <strong>choisis le bon compte</strong>. Ce choix t'engage pour des années. Une mauvaise décision fiscale au début peut te coûter <em class="red">des milliers d'euros</em> à long terme.</p>
+          <div class="callout">
+            <div class="ck-lbl">EN UNE PHRASE</div>
+            <div class="ck-txt"><strong>PEA</strong> = enveloppe fiscale avantageuse pour actions européennes, plafonné. <strong>CTO</strong> = compte normal sans avantage fiscal mais sans limite, ouvert à tous les marchés.</div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.1 · COMPARATIF</div>
+          <h1 class="h1">PEA vs CTO en <em>1 tableau</em></h1>
+          <div class="compare-table">
+            <div class="ct-head green">PEA</div>
+            <div class="ct-head red">CTO</div>
+            <div class="ct-row"><strong>Plafond</strong> 150 000 €</div>
+            <div class="ct-row"><strong>Plafond</strong> aucun</div>
+            <div class="ct-row"><strong>Actions</strong> UE + UK seulement</div>
+            <div class="ct-row"><strong>Actions</strong> monde entier</div>
+            <div class="ct-row"><strong>ETF</strong> UCITS éligibles uniquement</div>
+            <div class="ct-row"><strong>ETF</strong> tous (US, monde)</div>
+            <div class="ct-row"><strong>Durée mini</strong> 5 ans (sinon retrait → clôture)</div>
+            <div class="ct-row"><strong>Durée mini</strong> aucune</div>
+            <div class="ct-row"><strong>Impôt après 5 ans</strong> 0% IR (PS 17,2%)</div>
+            <div class="ct-row"><strong>Impôt</strong> flat tax 30% (PFU)</div>
+            <div class="ct-row"><strong>1 PEA / personne</strong></div>
+            <div class="ct-row"><strong>CTO illimités</strong></div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.1 · QUI CHOISIR ?</div>
+          <h1 class="h1">Le bon choix <em>pour toi</em></h1>
+          <div class="points">
+            <div class="point acid-pt">
+              <div class="point-icon">🎯</div>
+              <div class="point-text"><strong>PEA si</strong> : tu investis en <em class="green">actions/ETF européens</em>, tu peux laisser 5+ ans, plafond 150k suffit. <em class="acid">95% des investisseurs FR commencent ici.</em></div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🌍</div>
+              <div class="point-text"><strong>CTO si</strong> : tu veux des actions US (Apple, Tesla), des ETF US, ou tu vas dépasser 150k. Plus flexible mais fiscalité moins favorable.</div>
+            </div>
+            <div class="point gold-pt">
+              <div class="point-icon">💡</div>
+              <div class="point-text"><strong>Astuce pro</strong> : ouvre <em class="gold">les deux</em>. PEA pour Europe (avantage fiscal), CTO pour US/monde. <em class="gold">Et il existe le PEA-PME</em> (75 000 € de plus pour PME/ETI européennes).</div>
+            </div>
+          </div>
+        `},
+        { type: 'takeaway', html: `
+          <div class="eyebrow">CH.1 · RÉCAP</div>
+          <h1 class="h1">PEA d'abord, <em>CTO ensuite</em></h1>
+          <div class="points">
+            <div class="point"><div class="point-icon">1️⃣</div><div class="point-text"><strong>Ouvre un PEA</strong> dès aujourd'hui (gratuit chez Boursorama, Trade Republic, Fortuneo) pour démarrer le compteur 5 ans.</div></div>
+            <div class="point"><div class="point-icon">2️⃣</div><div class="point-text">Investis en <strong>ETF UCITS World</strong> (CW8, EWLD) qui sont PEA-compatibles malgré l'exposition mondiale.</div></div>
+            <div class="point acid-pt"><div class="point-icon">3️⃣</div><div class="point-text">Ouvre un <strong>CTO en parallèle</strong> si tu veux des trucs hors PEA (crypto via tokenisation, actions US directes).</div></div>
+          </div>
+        `},
+      ],
+
+      // ============ CH.2 — Flat tax 30% (PFU) ============
+      2: [
+        { type: 'intro', html: `
+          <div class="eyebrow">CH.2 · LE PFU</div>
+          <h1 class="h1">Flat tax <em>30%</em></h1>
+          <p class="lead">Depuis <strong>2018</strong>, les revenus du capital (plus-values, dividendes, intérêts) sont taxés au <em class="green">PFU</em> (Prélèvement Forfaitaire Unique) à <strong>30%</strong>. C'est le régime par défaut, simple et prévisible.</p>
+          <div class="callout">
+            <div class="ck-lbl">DÉCOMPOSITION</div>
+            <div class="ck-txt"><strong>30% =</strong> 12,8% d'impôt sur le revenu (IR) <strong>+</strong> 17,2% de prélèvements sociaux (PS : CSG, CRDS, etc.).</div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.2 · MÉCANIQUE</div>
+          <h1 class="h1">Comment ça <em>marche</em></h1>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">💰</div>
+              <div class="point-text"><strong>Tu vends 1 000 € de plus-value</strong> sur ton CTO ? Tu paies <em class="red">300 €</em> d'impôts. Net : 700 €.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📅</div>
+              <div class="point-text"><strong>Imposition</strong> : l'année où tu réalises la plus-value (au moment de la vente). Tant que tu gardes l'action = pas d'impôt.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">⚖️</div>
+              <div class="point-text"><strong>Compensation des pertes</strong> : tu peux déduire tes moins-values de tes plus-values. Report sur <em class="acid">10 ans</em>.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.2 · OPTION IR</div>
+          <h1 class="h1">L'<em>alternative</em> : barème IR</h1>
+          <p class="lead">Tu peux <strong>opter pour le barème progressif</strong> de l'IR au lieu du PFU. Avantage uniquement si tu es dans une <em class="green">tranche basse</em> (0% ou 11%).</p>
+          <div class="points">
+            <div class="point acid-pt">
+              <div class="point-icon">💚</div>
+              <div class="point-text"><strong>Si TMI 0%</strong> : tu paies juste les PS 17,2%. Économies 12,8% vs PFU.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🟡</div>
+              <div class="point-text"><strong>Si TMI 11%</strong> : marginal, à calculer. En pratique tu paies 11% + PS 17,2% = 28,2% vs 30% PFU. Petit gain.</div>
+            </div>
+            <div class="point red-pt">
+              <div class="point-icon">🔴</div>
+              <div class="point-text"><strong>Si TMI 30%+</strong> (revenus &gt; 28k €) : reste au PFU, c'est mieux.</div>
+            </div>
+          </div>
+          <div class="callout warn">
+            <div class="ck-lbl">PIÈGE</div>
+            <div class="ck-txt">L'option IR est <strong>globale</strong> : si tu la prends, elle s'applique à TOUS tes revenus du capital de l'année (dividendes, intérêts, plus-values). Impossible de cherry-picker.</div>
+          </div>
+        `},
+        { type: 'takeaway', html: `
+          <div class="eyebrow">CH.2 · RÉCAP</div>
+          <h1 class="h1">PFU 30%, <em>simple</em></h1>
+          <div class="points">
+            <div class="point"><div class="point-icon">📊</div><div class="point-text"><strong>30% par défaut</strong> = 12,8% IR + 17,2% PS.</div></div>
+            <div class="point"><div class="point-icon">📅</div><div class="point-text">Imposition <strong>à la réalisation</strong> (vente). Garde = pas d'impôt.</div></div>
+            <div class="point"><div class="point-icon">⚖️</div><div class="point-text">Moins-values <strong>déductibles 10 ans</strong>.</div></div>
+            <div class="point acid-pt"><div class="point-icon">💡</div><div class="point-text">Option <strong>barème IR</strong> uniquement si TMI ≤ 11%.</div></div>
+          </div>
+        `},
+      ],
+
+      // ============ CH.3 — Abattements et exonérations ============
+      3: [
+        { type: 'intro', html: `
+          <div class="eyebrow">CH.3 · LES BONUS FISCAUX</div>
+          <h1 class="h1">Les <em>cadeaux</em> de l'État</h1>
+          <p class="lead">L'État te récompense quand tu <strong>investis sur le long terme</strong>. Plusieurs niches fiscales existent — toutes basées sur la durée de détention.</p>
+          <p class="lead" style="margin-top:10px;">Les <em class="acid">3 plus puissantes</em> : PEA (5 ans), Assurance Vie (8 ans), PER (retraite). À utiliser dans cet ordre selon ton objectif.</p>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.3 · PEA APRÈS 5 ANS</div>
+          <h1 class="h1">PEA · <em>0% d'IR</em></h1>
+          <div class="callout gold">
+            <div class="ck-lbl">LE GROS CADEAU</div>
+            <div class="ck-txt">Après <strong>5 ans</strong> d'ouverture, le PEA est <strong>exonéré d'impôt sur le revenu</strong>. Tu ne paies plus que <em class="gold">17,2% de prélèvements sociaux</em>.</div>
+          </div>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">📅</div>
+              <div class="point-text"><strong>Compteur dès l'ouverture</strong>, même avec 0 € dessus. <em class="acid">Stratégie</em> : ouvre un PEA aujourd'hui même si tu n'investis pas tout de suite.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">💰</div>
+              <div class="point-text"><strong>Exemple</strong> : 100 000 € investis pendant 10 ans à 7%/an = 196 000 €. Plus-value 96k. <em class="acid">PEA</em> : tu paies 16,5k de PS. <em class="red">CTO</em> : 28,8k de PFU. <strong>Économie : 12 300 €</strong>.</div>
+            </div>
+            <div class="point red-pt">
+              <div class="point-icon">⚠️</div>
+              <div class="point-text"><strong>Avant 5 ans</strong> : retrait → clôture du PEA + PFU 30%. <em class="red">Ne touche pas à ton PEA avant 5 ans</em>.</div>
+            </div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.3 · ASSURANCE VIE 8 ANS</div>
+          <h1 class="h1">AV · <em>abattement</em> 4 600 €</h1>
+          <div class="callout">
+            <div class="ck-lbl">APRÈS 8 ANS</div>
+            <div class="ck-txt">Abattement annuel de <strong>4 600 €</strong> (célibataire) ou <strong>9 200 €</strong> (couple) sur les plus-values. Au-delà : taxation réduite à <em class="green">24,7%</em> (vs 30% PFU).</div>
+          </div>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">🎯</div>
+              <div class="point-text"><strong>Stratégie</strong> : sortir <em class="green">moins de 4 600 €</em> de plus-value par an après 8 ans = <strong>0% d'impôt</strong> (juste PS 17,2%).</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🏆</div>
+              <div class="point-text"><strong>Transmission</strong> : 152 500 € exonérés par bénéficiaire en cas de décès. <em class="acid">L'outil patrimonial n°1 en France</em>.</div>
+            </div>
+            <div class="point gold-pt">
+              <div class="point-icon">💡</div>
+              <div class="point-text"><strong>Combo PEA + AV</strong> : PEA pour la croissance, AV pour la transmission. <em class="gold">Tactique des familles patrimoniales</em>.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.3 · PER RETRAITE</div>
+          <h1 class="h1">PER · <em>déduction</em> immédiate</h1>
+          <p class="lead">Le <strong>PER (Plan Épargne Retraite)</strong> permet de <em class="green">déduire tes versements</em> de ton revenu imposable. Économie immédiate, taxation à la sortie (retraite).</p>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">💸</div>
+              <div class="point-text"><strong>Exemple</strong> : TMI 30%, tu verses 5 000 €. Économie d'impôt = 1 500 €. <em class="acid">Tu as effectivement investi 3 500 € pour 5 000 €</em>.</div>
+            </div>
+            <div class="point red-pt">
+              <div class="point-icon">🔒</div>
+              <div class="point-text"><strong>Argent bloqué jusqu'à la retraite</strong>. Sortie anticipée seulement en cas de force majeure (chômage longue durée, achat résidence principale).</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">📊</div>
+              <div class="point-text"><strong>À éviter si TMI ≤ 11%</strong> : pas d'avantage fiscal à l'entrée, et imposition à la sortie. Privilégie le PEA.</div>
+            </div>
+          </div>
+        `},
+        { type: 'takeaway', html: `
+          <div class="eyebrow">CH.3 · RÉCAP</div>
+          <h1 class="h1">3 outils, <em>3 horizons</em></h1>
+          <div class="points">
+            <div class="point acid-pt"><div class="point-icon">🎯</div><div class="point-text"><strong>PEA 5 ans</strong> = 0% IR, juste PS 17,2%. Pour actions/ETF européens.</div></div>
+            <div class="point"><div class="point-icon">🛡️</div><div class="point-text"><strong>AV 8 ans</strong> = abattement 4 600 €/an + transmission 152k. Patrimoine + succession.</div></div>
+            <div class="point"><div class="point-icon">👴</div><div class="point-text"><strong>PER</strong> = déduction immédiate, sortie retraite. Pertinent si TMI 30%+.</div></div>
+          </div>
+        `},
+      ],
+
+      // ============ CH.4 — Crypto fiscalité ============
+      4: [
+        { type: 'intro', html: `
+          <div class="eyebrow">CH.4 · CRYPTO &amp; FISC</div>
+          <h1 class="h1">Crypto · <em>30%</em></h1>
+          <p class="lead">Depuis <strong>2019</strong> (BOFIP), les <em class="red">crypto-actifs</em> en France sont taxés au <strong>PFU 30%</strong> sur les plus-values <em>au moment de la conversion en monnaie fiat</em> (euros).</p>
+          <div class="callout warn">
+            <div class="ck-lbl">RÈGLE D'OR</div>
+            <div class="ck-txt">Tu peux <strong>swap entre cryptos</strong> (BTC → ETH → SOL) <em class="red">sans déclencher d'impôt</em>. C'est uniquement la conversion en <strong>euros</strong> qui crée un événement taxable.</div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.4 · CALCUL</div>
+          <h1 class="h1">Méthode du <em>prix moyen</em></h1>
+          <p class="lead">Le fisc utilise un <strong>calcul global</strong> : prix d'acquisition moyen × quantité vendue.</p>
+          <div class="callout">
+            <div class="ck-lbl">FORMULE</div>
+            <div class="ck-txt"><strong>PV = Prix vente − (PMP × quantité)</strong><br>PMP = Prix Moyen Pondéré de toutes tes acquisitions.</div>
+          </div>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">📊</div>
+              <div class="point-text"><strong>Exemple</strong> : tu achètes 1 BTC à 30k€, puis 1 BTC à 50k€. PMP = 40k€. Tu vends 1 BTC à 60k€ → PV = 60k − 40k = <strong>20 000 €</strong>. Taxe = 6 000 €.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">📝</div>
+              <div class="point-text"><strong>Déclaration</strong> : <em class="acid">formulaire 2086</em> + report sur déclaration générale. Tu dois lister chaque cession.</div>
+            </div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.4 · MINING / STAKING</div>
+          <h1 class="h1">Revenus <em>passifs</em> crypto</h1>
+          <div class="points">
+            <div class="point red-pt">
+              <div class="point-icon">⛏️</div>
+              <div class="point-text"><strong>Mining</strong> : BNC (Bénéfices Non Commerciaux) au barème IR. <em class="red">Régime spécifique</em>, comptabilité requise si activité régulière.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🏦</div>
+              <div class="point-text"><strong>Staking</strong> : la position FR évolue. Pour l'instant assimilé à des revenus de capitaux mobiliers (PFU 30%) <em class="gold">mais débat en cours</em>.</div>
+            </div>
+            <div class="point gold-pt">
+              <div class="point-icon">🎁</div>
+              <div class="point-text"><strong>Airdrops, NFT</strong> : zone grise fiscale. Conseil : noter prix d'acquisition (souvent 0 €) et déclarer en plus-value à la vente.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.4 · DÉCLARATION COMPTES</div>
+          <h1 class="h1">Comptes <em>étrangers</em></h1>
+          <div class="callout warn">
+            <div class="ck-lbl">OBLIGATION</div>
+            <div class="ck-txt">Tu dois déclarer chaque année tes <strong>comptes crypto à l'étranger</strong> (Binance, Coinbase, Kraken…) sur le <em class="red">formulaire 3916-BIS</em>. <strong>Amende : 750 € par compte non déclaré</strong>.</div>
+          </div>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">✅</div>
+              <div class="point-text"><strong>Exonérés</strong> : exchanges français (Coinhouse, BitPanda FR) et wallets self-custody (Ledger, MetaMask).</div>
+            </div>
+            <div class="point red-pt">
+              <div class="point-icon">⚠️</div>
+              <div class="point-text"><strong>À déclarer</strong> : Binance, Coinbase, Kraken, Crypto.com, et tout exchange basé hors UE. Liste à mettre à jour chaque année.</div>
+            </div>
+          </div>
+        `},
+        { type: 'takeaway', html: `
+          <div class="eyebrow">CH.4 · RÉCAP</div>
+          <h1 class="h1">Crypto = <em>traçabilité</em></h1>
+          <div class="points">
+            <div class="point"><div class="point-icon">💸</div><div class="point-text"><strong>Plus-value crypto → euros</strong> = PFU 30%.</div></div>
+            <div class="point acid-pt"><div class="point-icon">🔄</div><div class="point-text"><strong>Swap crypto-crypto</strong> = pas d'impôt (uniquement à la sortie fiat).</div></div>
+            <div class="point"><div class="point-icon">📝</div><div class="point-text">Formulaire <strong>2086</strong> pour les cessions, <strong>3916-BIS</strong> pour les comptes étrangers.</div></div>
+            <div class="point red-pt"><div class="point-icon">📊</div><div class="point-text">Utilise un <strong>outil de tracking</strong> (Waltio, Koinly, Cointracking) — manuel = cauchemar.</div></div>
+          </div>
+        `},
+      ],
+
+      // ============ CH.5 — Dividendes et coupons ============
+      5: [
+        { type: 'intro', html: `
+          <div class="eyebrow">CH.5 · REVENUS PASSIFS</div>
+          <h1 class="h1">Dividendes &amp; <em>coupons</em></h1>
+          <p class="lead">Quand tu détiens une action ou une obligation, tu peux recevoir des <strong>dividendes</strong> (action) ou des <em class="green">coupons</em> (obligation). Comment c'est taxé ? Ça dépend du compte et du pays de l'émetteur.</p>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.5 · PFU PAR DÉFAUT</div>
+          <h1 class="h1">CTO · <em>30%</em> dividendes</h1>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">💰</div>
+              <div class="point-text"><strong>Dividende d'action française</strong> sur CTO → prélèvement <em class="red">flat tax 30%</em> à la source par le courtier. Tu reçois 70%.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🌍</div>
+              <div class="point-text"><strong>Dividende d'action étrangère</strong> : prélèvement à la source dans le pays émetteur (15% US, 26,375% Allemagne, etc.) puis PFU 30% en France <em class="gold">avec crédit d'impôt</em> conventionnel.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">📜</div>
+              <div class="point-text"><strong>Formulaire W-8BEN</strong> (gratuit) : à signer chez ton courtier pour réduire la retenue US de 30% à <em class="acid">15%</em>. Quasi tous les courtiers le proposent.</div>
+            </div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.5 · PEA &amp; DIVIDENDES</div>
+          <h1 class="h1">PEA · <em>0% IR</em></h1>
+          <div class="callout">
+            <div class="ck-lbl">GROS AVANTAGE</div>
+            <div class="ck-txt">Les dividendes versés dans un PEA <strong>ne sont pas imposés tant que tu ne retires pas</strong>. Tu peux réinvestir 100% des dividendes. <em class="green">Effet boule de neige max</em>.</div>
+          </div>
+          <div class="points">
+            <div class="point">
+              <div class="point-icon">📈</div>
+              <div class="point-text"><strong>Stratégie</strong> : actions à dividendes (Total, LVMH, Sanofi) sur PEA. Tu accumules pendant des décennies sans impôt sur les flux.</div>
+            </div>
+            <div class="point red-pt">
+              <div class="point-icon">⚠️</div>
+              <div class="point-text"><strong>Mais</strong> : la retenue à la source étrangère <em>est appliquée même en PEA</em> (15% pour actions UE). Et pas de crédit d'impôt récupérable → <em class="red">perte sèche</em>.</div>
+            </div>
+            <div class="point acid-pt">
+              <div class="point-icon">💡</div>
+              <div class="point-text"><strong>Tactique</strong> : dans le PEA, privilégier des actions <em class="acid">françaises</em> (pas de double retenue) ou des ETF UCITS à dividendes accumulés.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.5 · ACC vs DIST</div>
+          <h1 class="h1">ETF <em>Acc</em> ou <em>Dist</em> ?</h1>
+          <p class="lead">Les ETF existent en 2 versions : <strong>distribuants (Dist)</strong> = versent les dividendes, ou <strong>capitalisants (Acc)</strong> = réinvestissent automatiquement.</p>
+          <div class="points">
+            <div class="point acid-pt">
+              <div class="point-icon">🌱</div>
+              <div class="point-text"><strong>Acc</strong> : pas de flux taxable. Le NAV de l'ETF monte directement. <em class="acid">Optimal sur CTO</em> (pas de friction fiscale).</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">💸</div>
+              <div class="point-text"><strong>Dist</strong> : tu reçois du cash chaque trimestre. Utile si tu veux des revenus, mais friction fiscale annuelle.</div>
+            </div>
+            <div class="point gold-pt">
+              <div class="point-icon">🎯</div>
+              <div class="point-text"><strong>Rule of thumb</strong> : sur <em class="gold">CTO</em>, choisir <strong>Acc</strong> systématiquement. Sur <em class="gold">PEA</em>, peu importe (pas d'impôt avant retrait).</div>
+            </div>
+          </div>
+        `},
+        { type: 'takeaway', html: `
+          <div class="eyebrow">CH.5 · RÉCAP</div>
+          <h1 class="h1">Dividendes <em>maîtrisés</em></h1>
+          <div class="points">
+            <div class="point"><div class="point-icon">💰</div><div class="point-text">Dividende CTO = <strong>30% flat tax</strong> direct à la source.</div></div>
+            <div class="point acid-pt"><div class="point-icon">🛡️</div><div class="point-text">Dividende PEA = <strong>0% IR</strong> tant que pas de retrait. Privilégier titres FR.</div></div>
+            <div class="point"><div class="point-icon">📜</div><div class="point-text">W-8BEN pour réduire retenue US de 30% à <strong>15%</strong>.</div></div>
+            <div class="point gold-pt"><div class="point-icon">🌱</div><div class="point-text">ETF <strong>Acc &gt; Dist</strong> sur CTO (zéro friction fiscale).</div></div>
+          </div>
+        `},
+      ],
+
+      // ============ CH.6 — ETF UCITS vs US ============
+      6: [
+        { type: 'intro', html: `
+          <div class="eyebrow">CH.6 · LE PIÈGE US</div>
+          <h1 class="h1">ETF US · <em>interdit</em></h1>
+          <p class="lead">Depuis <strong>2018</strong> (régulation européenne <em class="red">PRIIPs</em>), les courtiers FR ne peuvent <strong>plus vendre d'ETF américains</strong> aux particuliers EU. Plus de SPY, VOO, VTI, QQQ accessibles directement.</p>
+          <div class="callout warn">
+            <div class="ck-lbl">CONSÉQUENCE</div>
+            <div class="ck-txt">Tu dois utiliser des <strong>ETF UCITS</strong> (européens), qui répliquent les mêmes indices mais sont régulés différemment. Mêmes performances, frais légèrement différents.</div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.6 · ÉQUIVALENCES</div>
+          <h1 class="h1">Le <em>tableau</em> US → UCITS</h1>
+          <div class="compare-table">
+            <div class="ct-head red">ETF US (interdit)</div>
+            <div class="ct-head green">ETF UCITS (autorisé)</div>
+            <div class="ct-row"><strong>SPY</strong> S&amp;P 500</div>
+            <div class="ct-row"><strong>CSPX</strong> iShares Core S&amp;P 500</div>
+            <div class="ct-row"><strong>VOO</strong> Vanguard S&amp;P</div>
+            <div class="ct-row"><strong>VUSA</strong> Vanguard S&amp;P (UCITS)</div>
+            <div class="ct-row"><strong>VTI</strong> Total US</div>
+            <div class="ct-row"><strong>VUSD</strong> Vanguard US</div>
+            <div class="ct-row"><strong>QQQ</strong> Nasdaq 100</div>
+            <div class="ct-row"><strong>EQQQ</strong> Invesco Nasdaq UCITS</div>
+            <div class="ct-row"><strong>VT</strong> Total monde</div>
+            <div class="ct-row"><strong>VWCE / CW8</strong> All-World</div>
+            <div class="ct-row"><strong>IWM</strong> Russell 2000</div>
+            <div class="ct-row"><strong>XRS2</strong> Xtrackers Russell 2000</div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.6 · PEA-COMPATIBLES</div>
+          <h1 class="h1">ETF UCITS dans le <em>PEA</em></h1>
+          <p class="lead">Pour être éligible au PEA, un ETF doit détenir <strong>75% d'actions européennes</strong>. Pourtant, des ETF "World" sont PEA-compatibles grâce à des <em class="acid">swaps synthétiques</em>.</p>
+          <div class="points">
+            <div class="point acid-pt">
+              <div class="point-icon">🌍</div>
+              <div class="point-text"><strong>CW8</strong> (Amundi MSCI World UCITS) : éligible PEA, expose au monde entier via swap. <em class="acid">Le must</em> pour démarrer un PEA.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🇺🇸</div>
+              <div class="point-text"><strong>PE500</strong> (Amundi S&amp;P 500 UCITS) : S&amp;P 500 dans ton PEA. Performances US, fiscalité française optimale.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🌏</div>
+              <div class="point-text"><strong>PAEEM</strong> (Amundi Emerging Markets) : pays émergents (Chine, Inde, Brésil) en PEA. Diversification max.</div>
+            </div>
+            <div class="point gold-pt">
+              <div class="point-icon">💡</div>
+              <div class="point-text"><strong>Frais TER</strong> : compare toujours. Les UCITS varient de 0,07% (Amundi) à 0,5% (BNP). <em class="gold">0,1% suffit largement</em>.</div>
+            </div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.6 · PORTEFEUILLE TYPE</div>
+          <h1 class="h1">Le <em>3-ETF</em> simple</h1>
+          <p class="lead">Le portefeuille minimaliste qui bat 90% des gérants actifs sur le long terme :</p>
+          <div class="points">
+            <div class="point acid-pt">
+              <div class="point-icon">🌍</div>
+              <div class="point-text"><strong>60% CW8</strong> (Amundi World) — exposition monde, PEA-compatible.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🌏</div>
+              <div class="point-text"><strong>20% PAEEM</strong> (Amundi Emerging Markets) — diversification émergents.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">🛡️</div>
+              <div class="point-text"><strong>20% obligations</strong> (LU0290357507 Euro Govt) — stabilité, anti-corrélation.</div>
+            </div>
+          </div>
+          <div class="callout">
+            <div class="ck-lbl">PERFORMANCE</div>
+            <div class="ck-txt">Backtest 2010-2024 : <strong>~8% par an</strong> en moyenne. Drawdown max : −22% (2020). <em class="acid">Buy &amp; hold sans timer</em>.</div>
+          </div>
+        `},
+        { type: 'takeaway', html: `
+          <div class="eyebrow">CH.6 · RÉCAP</div>
+          <h1 class="h1">UCITS <em>only</em></h1>
+          <div class="points">
+            <div class="point red-pt"><div class="point-icon">🚫</div><div class="point-text"><strong>ETF US directs interdits</strong> (PRIIPs 2018). Plus de SPY, VTI, QQQ.</div></div>
+            <div class="point acid-pt"><div class="point-icon">✅</div><div class="point-text"><strong>UCITS équivalents</strong> : CSPX, VUSA, EQQQ, CW8.</div></div>
+            <div class="point"><div class="point-icon">🛡️</div><div class="point-text">PEA = ETF <strong>swap synthétique</strong> (CW8, PE500) pour exposition mondiale.</div></div>
+            <div class="point gold-pt"><div class="point-icon">🎯</div><div class="point-text">Portefeuille 3-ETF : <strong>60/20/20</strong> bat la majorité des gérants.</div></div>
+          </div>
+        `},
+      ],
+
+      // ============ CH.7 — Plan fiscal optimal ============
+      7: [
+        { type: 'intro', html: `
+          <div class="eyebrow">CH.7 · STRATÉGIE</div>
+          <h1 class="h1">Ton <em>plan</em> fiscal</h1>
+          <p class="lead">Tu as tout vu. Maintenant le <strong>plan d'action</strong> : quel compte ouvrir d'abord, où mettre quoi, dans quel ordre maximiser le rendement net d'impôts.</p>
+          <div class="callout gold">
+            <div class="ck-lbl">PRINCIPE CLÉ</div>
+            <div class="ck-txt">Maximise les <strong>enveloppes fiscales</strong> avant le CTO. Chaque euro dans un PEA ou une AV économise des % d'impôts à long terme.</div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.7 · ORDRE OPTIMAL</div>
+          <h1 class="h1">Remplis dans <em>cet ordre</em></h1>
+          <div class="points">
+            <div class="point acid-pt">
+              <div class="point-icon">1️⃣</div>
+              <div class="point-text"><strong>Épargne de précaution</strong> (3-6 mois de dépenses) : <em class="acid">Livret A + LDDS</em>. 100% liquide, garanti État, 3% net.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">2️⃣</div>
+              <div class="point-text"><strong>PEA</strong> : ouvre-le aujourd'hui, démarre le compteur 5 ans. Verse même 100€/mois pour commencer. Plafond 150 000 €.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">3️⃣</div>
+              <div class="point-text"><strong>Assurance Vie</strong> : ouvre une AV en parallèle (8 ans) pour la transmission + flexibilité.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">4️⃣</div>
+              <div class="point-text"><strong>PER</strong> si TMI ≥ 30% : déduction immédiate avantageuse. Sinon, skip.</div>
+            </div>
+            <div class="point">
+              <div class="point-icon">5️⃣</div>
+              <div class="point-text"><strong>CTO</strong> : pour ce qui ne rentre nulle part ailleurs (US directes, crypto via tokenisation, ETF spécifiques).</div>
+            </div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.7 · OÙ METTRE QUOI</div>
+          <h1 class="h1">Allocation par <em>compte</em></h1>
+          <div class="compare-table">
+            <div class="ct-head green">Compte</div>
+            <div class="ct-head red">Quoi mettre dedans</div>
+            <div class="ct-row"><strong>PEA</strong></div>
+            <div class="ct-row">ETF World (CW8), S&amp;P 500 (PE500), actions FR à dividendes</div>
+            <div class="ct-row"><strong>AV fonds €</strong></div>
+            <div class="ct-row">Épargne sécurisée garantie capital</div>
+            <div class="ct-row"><strong>AV UC</strong></div>
+            <div class="ct-row">Diversification immo (SCPI), thématique</div>
+            <div class="ct-row"><strong>PER</strong></div>
+            <div class="ct-row">ETF World (similaire PEA mais bloqué retraite)</div>
+            <div class="ct-row"><strong>CTO</strong></div>
+            <div class="ct-row">Actions US directes, ETF spécifiques, trading</div>
+            <div class="ct-row"><strong>Crypto wallet</strong></div>
+            <div class="ct-row">BTC, ETH (max 5-10% portfolio total)</div>
+          </div>
+        `},
+        { type: 'example', html: `
+          <div class="eyebrow">CH.7 · EXEMPLE CONCRET</div>
+          <h1 class="h1">Cas réel : <em>30 ans, 2 000 €/mois</em></h1>
+          <p class="lead">Profil : célibataire, TMI 30%, revenu net 2 500€/mois, peut épargner <em class="acid">600 €/mois</em>.</p>
+          <div class="callout">
+            <div class="ck-lbl">RÉPARTITION CONSEILLÉE</div>
+            <div class="ck-txt">
+              <strong>300 € PEA</strong> (CW8 à 100%, DCA mensuel)<br>
+              <strong>150 € AV</strong> (50% fonds €, 50% UC actions)<br>
+              <strong>100 € PER</strong> (ETF World, déduction IR 30 €/mois)<br>
+              <strong>50 € BTC</strong> (DCA sur wallet self-custody)<br>
+              <strong>Net</strong> : 600 € investis pour 570 € de coût réel (après déduction PER).
+            </div>
+          </div>
+          <div class="points">
+            <div class="point acid-pt">
+              <div class="point-icon">📈</div>
+              <div class="point-text"><strong>Projection 30 ans à 7%/an</strong> : ~500 000 € net d'impôts. Avec le même montant sur CTO uniquement : 380 000 €. <em class="acid">Différence : 120 000 €</em>.</div>
+            </div>
+          </div>
+        `},
+        { type: 'takeaway', html: `
+          <div class="eyebrow">CH.7 · PLAN FINAL</div>
+          <h1 class="h1">Action <em>aujourd'hui</em></h1>
+          <div class="points">
+            <div class="point acid-pt"><div class="point-icon">⚡</div><div class="point-text"><strong>OUVRIR PEA</strong> : Boursorama, Trade Republic, Fortuneo (gratuit, 0 frais courtage ETF chez TR).</div></div>
+            <div class="point"><div class="point-icon">📅</div><div class="point-text"><strong>Démarrer le compteur 5 ans</strong> même avec 100€ — c'est l'enveloppe la plus précieuse.</div></div>
+            <div class="point"><div class="point-icon">🤖</div><div class="point-text"><strong>Mettre en automatique</strong> : virement mensuel + DCA ETF World. Tu n'as plus à y penser.</div></div>
+            <div class="point gold-pt"><div class="point-icon">🎓</div><div class="point-text"><strong>Module 5 terminé.</strong> Tu sais désormais optimiser tes impôts d'investisseur. Plus de friction inutile = plus de rendement net.</div></div>
+          </div>
+          <p class="lead" style="margin-top:14px;">Pense aussi à <strong>impots.gouv.fr</strong> pour les formulaires (2086 crypto, 3916-BIS comptes étrangers) et à <strong>l'AMF</strong> pour vérifier que ton courtier est régulé.</p>
+        `},
+      ],
+    };
+
+    /* ===== READER STATE ===== */
+    let currentChapter = null;
+    let cur = 0;
+
+    const track = document.getElementById('track');
+    const counter = document.getElementById('slide-counter');
+    const chapterLabel = document.querySelector('.head-meta .chapter');
+    const progressBars = document.getElementById('progress-bars');
+    const navPrev = document.getElementById('nav-prev');
+    const navNext = document.getElementById('nav-next');
+
+    function buildSlides(chapterN) {
+      const slides = SLIDES[chapterN] || [];
+      track.innerHTML = slides.map((s, i) => `
+        <div class="slide s-${s.type}" data-idx="${i}">
+          <div class="content">${s.html}</div>
+        </div>
+      `).join('');
+      progressBars.innerHTML = slides.map(() => `<div class="bar"></div>`).join('');
+    }
+
+    function update() {
+      const total = chapterSize(currentChapter);
+      const slides = track.querySelectorAll('.slide');
+      const bars = progressBars.querySelectorAll('.bar');
+      slides.forEach((s, i) => s.classList.toggle('active', i === cur));
+      bars.forEach((b, i) => {
+        b.classList.remove('active', 'done');
+        if (i < cur) b.classList.add('done');
+        else if (i === cur) b.classList.add('active');
+      });
+      track.style.transform = `translateX(-${cur * 100}%)`;
+      counter.textContent = `${cur + 1}/${total}`;
+      chapterLabel.textContent = `MODULE 5 · CH.${currentChapter}`;
+      navPrev.disabled = cur === 0;
+      navNext.textContent = cur === total - 1 ? '✓ Valider' : 'Suivant →';
+      if (currentChapter != null) saveBookmark(currentChapter, cur);
+    }
+
+    function next() {
+      const total = chapterSize(currentChapter);
+      if (cur < total - 1) { cur++; update(); if (navigator.vibrate) navigator.vibrate(6); }
+      else completeCurrentChapter();
+    }
+    function prev() {
+      if (cur > 0) { cur--; update(); if (navigator.vibrate) navigator.vibrate(6); }
+    }
+
+    function openChapter(n) {
+      const state = getChapterState(n);
+      if (state === 'locked') {
+        if (navigator.vibrate) navigator.vibrate([20, 40, 20]);
+        return;
+      }
+      currentChapter = n;
+      buildSlides(n);
+      const total = chapterSize(n);
+      const bk = loadBookmark(n);
+      cur = (bk != null && bk >= 0 && bk < total) ? bk : 0;
+      document.getElementById('hub').classList.remove('active');
+      document.getElementById('reader').classList.add('active');
+      track.style.transition = 'none';
+      update();
+      requestAnimationFrame(() => { track.style.transition = ''; });
+    }
+
+    function closeReader() {
+      document.getElementById('reader').classList.remove('active');
+      document.getElementById('hub').classList.add('active');
+      currentChapter = null;
+      renderHub();
+    }
+
+    function completeCurrentChapter() {
+      const ch = currentChapter;
+      if (!ch) return;
+      markChapterComplete(ch);
+      if (navigator.vibrate) navigator.vibrate([12, 60, 28, 60, 48]);
+      const overlay = document.getElementById('validate-overlay');
+      const txt = document.getElementById('validate-text');
+      txt.textContent = (ch === 7) ? 'Module 5 terminé 🎓' : `Chapitre ${ch} validé`;
+      overlay.classList.remove('show');
+      void overlay.offsetWidth;
+      overlay.classList.add('show');
+      setTimeout(() => {
+        overlay.classList.remove('show');
+        if (ch === 7) {
+          setTimeout(() => { window.location.href = 'index.html#accueil'; }, 200);
+        } else {
+          closeReader();
+        }
+      }, 1100);
+    }
+
+    function goBack() { window.location.href = 'index.html#modules'; }
+
+    /* ===== INIT ===== */
+    window.addEventListener('load', renderHub);
+
+    let touchStartX = 0;
+    document.getElementById('reader').addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    document.getElementById('reader').addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) {
+        if (dx < 0) next(); else prev();
+      }
+    }, { passive: true });
+
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('reader').classList.contains('active')) {
+        if (e.key === 'ArrowRight') next();
+        else if (e.key === 'ArrowLeft') prev();
+        else if (e.key === 'Escape') closeReader();
+      }
+    });
+  </script>
+</body>
+</html>
