@@ -1189,7 +1189,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=167')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=168')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -1208,7 +1208,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=167')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=168')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -1227,7 +1227,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=167')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=168')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -1246,7 +1246,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=167')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=168')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -1312,15 +1312,15 @@
 
     <!-- Stats compactes -->
     <div class="stats-row">
-      <div class="stat-cell" onclick="location.href='scene-06.html?v=167'">
+      <div class="stat-cell" onclick="location.href='scene-06.html?v=168'">
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=167'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=168'">
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=167'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=168'">
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
       </div>
@@ -1333,11 +1333,11 @@
         <div class="tool-icon">📚</div>
         <div class="tool-name">Apprendre</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--blue);" onclick="location.href='scene-05.html?v=167'">
+      <div class="tool-chip" style="--mode-color: var(--blue);" onclick="location.href='scene-05.html?v=168'">
         <div class="tool-icon">🎮</div>
         <div class="tool-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=167'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=168'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -1700,6 +1700,27 @@
       }
     } catch {}
 
+    // Priorité 0.5 : après Module 1 validé + 0 session simu → pousser le simu
+    try {
+      const m1 = JSON.parse(localStorage.getItem('tradegenius_m1') || '{}');
+      const m1Done = m1.completed && Object.keys(m1.completed).filter(k => m1.completed[k]).length >= 7;
+      const journal0 = JSON.parse(localStorage.getItem('tradegenius_m4_journal') || '[]');
+      if (m1Done && (!Array.isArray(journal0) || journal0.length === 0)) {
+        const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '167';
+        card.innerHTML = `
+          <div class="resume-icon">🎮</div>
+          <div class="resume-text">
+            <div class="resume-label">PROCHAINE ÉTAPE · PRATIQUE</div>
+            <div class="resume-title">Module 1 validé → Essaie le simu</div>
+          </div>
+          <div class="resume-arrow">→</div>
+        `;
+        card.onclick = () => location.href = 'scene-05.html?v=168' + v;
+        block.style.display = 'block';
+        return;
+      }
+    } catch {}
+
     // Priorité 1 : dernière session simu si journal non vide
     try {
       const journal = JSON.parse(localStorage.getItem('tradegenius_m4_journal') || '[]');
@@ -1716,7 +1737,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=167';
+        card.onclick = () => location.href = 'scene-05.html?v=168';
         block.style.display = 'block';
         return;
       }
@@ -1736,7 +1757,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=167';
+          card.onclick = () => location.href = 'scene-06.html?v=168';
           block.style.display = 'block';
           return;
         }
@@ -1750,7 +1771,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=167';
+        card.onclick = () => location.href = 'scene-06.html?v=168';
         block.style.display = 'block';
         return;
       }
@@ -1765,7 +1786,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=167';
+    card.onclick = () => location.href = 'scene-05.html?v=168';
     block.style.display = 'block';
   }
 
@@ -1972,11 +1993,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=167"></script>
+  <script type="module" src="tg-common.js?v=168"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=167').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=168').catch(() => {});
       });
     }
   </script>
