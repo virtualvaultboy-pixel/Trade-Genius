@@ -1353,11 +1353,168 @@
     .tg-splash-mark, .tg-splash-dot, .tg-splash-logo { animation: none; }
   }
 
+  /* ===== BURGER MENU + DRAWER ===== */
+  .burger-btn {
+    position: fixed; top: calc(12px + env(safe-area-inset-top)); left: 12px;
+    z-index: 9997; width: 42px; height: 42px;
+    background: rgba(20,20,26,0.85);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border: 1px solid var(--border); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text); font-size: 18px; cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+  }
+  .burger-btn:active { transform: scale(0.94); }
+  .burger-backdrop {
+    position: fixed; inset: 0; z-index: 9998;
+    background: rgba(0,0,0,0.6);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    opacity: 0; pointer-events: none; transition: opacity 0.28s;
+  }
+  .burger-backdrop.active { opacity: 1; pointer-events: auto; }
+  .burger-drawer {
+    position: fixed; top: 0; left: 0; bottom: 0; z-index: 9999;
+    width: min(82vw, 320px);
+    background: linear-gradient(180deg, #14141a 0%, #0a0a0c 100%);
+    border-right: 1px solid var(--border);
+    box-shadow: 14px 0 50px rgba(0,0,0,0.6);
+    transform: translateX(-100%);
+    transition: transform 0.34s cubic-bezier(0.2,0.8,0.2,1);
+    padding: calc(20px + env(safe-area-inset-top)) 18px 24px;
+    overflow-y: auto; display: flex; flex-direction: column;
+  }
+  .burger-drawer.active { transform: translateX(0); }
+  .bd-head {
+    display: flex; align-items: center; gap: 12px;
+    padding-bottom: 18px; border-bottom: 1px solid var(--border);
+    margin-bottom: 14px;
+  }
+  .bd-logo {
+    width: 38px; height: 38px; background: var(--acid);
+    border-radius: 9px; display: flex; align-items: center; justify-content: center;
+    color: #0a0a0c; font-family: var(--font-d); font-weight: 800; font-size: 18px;
+  }
+  .bd-brand-name { font-family: var(--font-d); font-size: 17px; font-weight: 800; color: var(--text); line-height: 1; }
+  .bd-brand-ver { font-family: var(--font-m); font-size: 9.5px; color: var(--text-faint); letter-spacing: 0.12em; margin-top: 2px; }
+  .bd-section-title {
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.16em; color: var(--text-faint);
+    text-transform: uppercase; margin: 14px 0 6px;
+  }
+  .bd-item {
+    display: flex; align-items: center; gap: 11px;
+    padding: 11px 12px; border-radius: 10px;
+    color: var(--text-dim); cursor: pointer;
+    font-family: var(--font-b); font-size: 14px; font-weight: 600;
+    text-decoration: none; transition: background 0.15s, color 0.15s;
+  }
+  .bd-item:active, .bd-item:hover { background: rgba(255,255,255,0.05); color: var(--text); }
+  .bd-item .bd-ico { font-size: 17px; line-height: 1; width: 22px; text-align: center; }
+  .bd-foot {
+    margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border);
+    font-family: var(--font-m); font-size: 9.5px;
+    color: var(--text-faint); letter-spacing: 0.1em; text-align: center;
+  }
+
+  /* ===== CODE MODAL ===== */
+  .code-modal {
+    position: fixed; inset: 0; z-index: 99999;
+    background: rgba(0,0,0,0.78);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 18px; opacity: 0; pointer-events: none; transition: opacity 0.28s;
+  }
+  .code-modal.active { opacity: 1; pointer-events: auto; }
+  .code-card {
+    background: linear-gradient(180deg, #16161c, #0c0c10);
+    border: 1px solid rgba(190,242,100,0.32); border-radius: 18px;
+    padding: 22px 20px 18px; max-width: 380px; width: 100%;
+    box-shadow: 0 16px 60px rgba(0,0,0,0.7);
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.32s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .code-modal.active .code-card { transform: translateY(0) scale(1); }
+  .cm-title { font-family: var(--font-d); font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+  .cm-sub { font-family: var(--font-b); font-size: 13px; color: var(--text-dim); margin-bottom: 16px; line-height: 1.4; }
+  .cm-input {
+    width: 100%; padding: 12px 14px;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+    color: var(--text); font-family: var(--font-m); font-size: 14px;
+    border-radius: 10px; outline: none; margin-bottom: 14px;
+    letter-spacing: 0.04em;
+  }
+  .cm-input:focus { border-color: rgba(190,242,100,0.4); }
+  .cm-actions { display: flex; gap: 9px; }
+  .cm-cancel {
+    flex: 1; background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    color: var(--text-dim); font-family: var(--font-d); font-size: 13px; font-weight: 700;
+    padding: 11px; border-radius: 9px; cursor: pointer;
+  }
+  .cm-submit {
+    flex: 1; background: linear-gradient(135deg, var(--acid), #d9f99d);
+    border: none; color: #0a0a0c; font-family: var(--font-d); font-size: 13px; font-weight: 800;
+    padding: 11px; border-radius: 9px; cursor: pointer;
+  }
+  .cm-feedback { margin-top: 12px; padding: 10px 12px; border-radius: 8px; font-family: var(--font-b); font-size: 12.5px; line-height: 1.4; display: none; }
+  .cm-feedback.show { display: block; animation: cmFadeIn 0.3s; }
+  .cm-feedback.ok { background: rgba(74,222,128,0.16); color: #86efac; border-left: 3px solid #4ade80; }
+  .cm-feedback.ko { background: rgba(248,113,113,0.16); color: #fca5a5; border-left: 3px solid #f87171; }
+  @keyframes cmFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .cm-hint { margin-top: 10px; font-family: var(--font-m); font-size: 10px; color: var(--text-faint); letter-spacing: 0.06em; text-align: center; }
+
   /* A11y — focus visible pour navigation clavier */
   :focus-visible { outline: 2px solid var(--acid); outline-offset: 3px; border-radius: 4px; }
 </style>
 </head>
 <body>
+
+  <!-- Burger menu (fixed top-left) -->
+  <button class="burger-btn" onclick="openBurger()" aria-label="Menu">☰</button>
+  <div class="burger-backdrop" id="burger-backdrop" onclick="closeBurger()"></div>
+  <aside class="burger-drawer" id="burger-drawer" aria-hidden="true">
+    <div class="bd-head">
+      <div class="bd-logo">
+        <svg viewBox="0 0 100 100" width="22" height="22"><g fill="#0a0a0c"><rect x="14" y="20" width="72" height="10" rx="2"/><rect x="48.5" y="30" width="3" height="9" opacity="0.85"/><rect x="40" y="39" width="20" height="40" rx="2"/><rect x="48.5" y="79" width="3" height="6" opacity="0.85"/></g></svg>
+      </div>
+      <div>
+        <div class="bd-brand-name">TRADE GENIUS</div>
+        <div class="bd-brand-ver" id="bd-version">v1.92</div>
+      </div>
+    </div>
+
+    <div class="bd-section-title">Navigation</div>
+    <a class="bd-item" onclick="closeBurger();showView('accueil')"><span class="bd-ico">🏠</span><span>Accueil</span></a>
+    <a class="bd-item" onclick="closeBurger();showView('modules')"><span class="bd-ico">📚</span><span>Modules</span></a>
+    <a class="bd-item" href="scene-05.html"><span class="bd-ico">🎮</span><span>Entraînement</span></a>
+    <a class="bd-item" href="scene-06.html"><span class="bd-ico">📖</span><span>Bibliothèque</span></a>
+    <a class="bd-item" href="glossary.html"><span class="bd-ico">📑</span><span>Glossaire (26)</span></a>
+
+    <div class="bd-section-title">Outils</div>
+    <a class="bd-item" onclick="closeBurger();openCodeModal()"><span class="bd-ico">🎟️</span><span>Entrer un code</span></a>
+    <a class="bd-item" onclick="closeBurger();openPrivacy()"><span class="bd-ico">🔒</span><span>Confidentialité</span></a>
+    <a class="bd-item" id="bd-notif-toggle" onclick="closeBurger();toggleNotif();"><span class="bd-ico">🔔</span><span>Rappels streak</span></a>
+
+    <div class="bd-section-title">Premium</div>
+    <a class="bd-item" onclick="closeBurger();openPremium()"><span class="bd-ico">✨</span><span>Devenir Premium</span></a>
+    <a class="bd-item" onclick="closeBurger();shareProgress()"><span class="bd-ico">📤</span><span>Partager l'app</span></a>
+
+    <div class="bd-foot">✦ DEPONCHY STUDIO · 2026</div>
+  </aside>
+
+  <!-- Code modal -->
+  <div class="code-modal" id="code-modal" onclick="if(event.target===this)closeCodeModal()">
+    <div class="code-card">
+      <div class="cm-title">🎟️ Code</div>
+      <p class="cm-sub">Entre un code de test ou un code promo.</p>
+      <input class="cm-input" id="code-input" type="text" placeholder="resetall, premium, streak10..." autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="text"/>
+      <div class="cm-actions">
+        <button class="cm-cancel" onclick="closeCodeModal()">Annuler</button>
+        <button class="cm-submit" onclick="submitCode()">Valider →</button>
+      </div>
+      <div class="cm-feedback" id="cm-feedback"></div>
+      <div class="cm-hint">Indice : tape <strong>help</strong> pour la liste</div>
+    </div>
+  </div>
 
   <!-- PWA install prompt (caché par défaut, révélé via beforeinstallprompt) -->
   <button id="install-pwa-btn" onclick="installPWA()" aria-label="Installer l'application">
@@ -1514,7 +1671,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=192')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=193')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -1533,7 +1690,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=192')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=193')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -1552,7 +1709,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=192')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=193')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -1571,7 +1728,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=192')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=193')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -1661,15 +1818,15 @@
 
     <!-- Stats compactes -->
     <div class="stats-row">
-      <div class="stat-cell" onclick="location.href='scene-06.html?v=192'">
+      <div class="stat-cell" onclick="location.href='scene-06.html?v=193'">
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=192'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=193'">
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=192'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=193'">
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
       </div>
@@ -1686,7 +1843,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=192'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=193'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -2095,7 +2252,7 @@
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
       const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '168';
-      location.href = 'scene-05.html?v=192' + v;
+      location.href = 'scene-05.html?v=193' + v;
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -2124,6 +2281,136 @@
     clearTimeout(showSimuLockedToast._t);
     showSimuLockedToast._t = setTimeout(() => toast.classList.remove('show'), 5500);
   }
+
+  /* ===== BURGER MENU ===== */
+  function openBurger() {
+    if (navigator.vibrate) navigator.vibrate(6);
+    document.getElementById('burger-drawer').classList.add('active');
+    document.getElementById('burger-backdrop').classList.add('active');
+    document.getElementById('burger-drawer').setAttribute('aria-hidden', 'false');
+  }
+  function closeBurger() {
+    document.getElementById('burger-drawer').classList.remove('active');
+    document.getElementById('burger-backdrop').classList.remove('active');
+    document.getElementById('burger-drawer').setAttribute('aria-hidden', 'true');
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (document.getElementById('burger-drawer').classList.contains('active')) closeBurger();
+      else if (document.getElementById('code-modal').classList.contains('active')) closeCodeModal();
+    }
+  });
+
+  /* ===== CODES (cheat codes + promo) ===== */
+  function openCodeModal() {
+    if (navigator.vibrate) navigator.vibrate(8);
+    const m = document.getElementById('code-modal');
+    m.classList.add('active');
+    setTimeout(() => document.getElementById('code-input').focus(), 100);
+    document.getElementById('cm-feedback').classList.remove('show');
+    document.getElementById('code-input').value = '';
+  }
+  function closeCodeModal() {
+    document.getElementById('code-modal').classList.remove('active');
+  }
+  const CODE_HANDLERS = {
+    help: () => '📋 Codes : resetall · resetmodules · resetsimu · resetbiblio · resetstreak · premium · unpremium · streak10 · streak50 · alldone · confetti · about',
+    resetall: () => {
+      if (!confirm('⚠️ Reset complet ? Tous les progrès seront effacés.')) return '✗ Annulé';
+      Object.keys(localStorage).filter(k => k.startsWith('tradegenius')).forEach(k => localStorage.removeItem(k));
+      setTimeout(() => location.reload(), 600);
+      return '✓ Reset complet. Reload...';
+    },
+    resetmodules: () => {
+      ['tradegenius_v1','tradegenius_m1','tradegenius_m2','tradegenius_m3'].forEach(k => localStorage.removeItem(k));
+      ['tradegenius_v1_bookmark','tradegenius_m1_bookmark','tradegenius_m2_bookmark','tradegenius_m3_bookmark'].forEach(k => localStorage.removeItem(k));
+      setTimeout(() => location.reload(), 600);
+      return '✓ Modules reset.';
+    },
+    resetsimu: () => {
+      ['tradegenius_m4_journal','tradegenius_m4_completed','tradegenius_m4_tuto'].forEach(k => localStorage.removeItem(k));
+      setTimeout(() => location.reload(), 600);
+      return '✓ Simulateur reset.';
+    },
+    resettrain: () => CODE_HANDLERS.resetsimu(),
+    resetbiblio: () => {
+      ['tradegenius_m5_viewed','tradegenius_m5_bookmarks'].forEach(k => localStorage.removeItem(k));
+      setTimeout(() => location.reload(), 600);
+      return '✓ Bibliothèque reset.';
+    },
+    resetstreak: () => {
+      localStorage.removeItem('tradegenius_streak');
+      setTimeout(() => location.reload(), 600);
+      return '✓ Streak reset à 0.';
+    },
+    resettuto: () => {
+      ['tradegenius_accueil_tuto','tradegenius_m4_tuto'].forEach(k => localStorage.removeItem(k));
+      setTimeout(() => location.reload(), 600);
+      return '✓ Tutos reset.';
+    },
+    premium: () => {
+      if (window.TG && window.TG.setPremium) window.TG.setPremium(true);
+      setTimeout(() => location.reload(), 600);
+      return '✨ Premium activé !';
+    },
+    unpremium: () => {
+      if (window.TG && window.TG.setPremium) window.TG.setPremium(false);
+      setTimeout(() => location.reload(), 600);
+      return '✓ Premium désactivé.';
+    },
+    streak10: () => {
+      localStorage.setItem('tradegenius_streak', JSON.stringify({ count: 10, lastDate: new Date().toISOString().slice(0,10) }));
+      setTimeout(() => location.reload(), 600);
+      return '🔥 Streak set à 10 jours.';
+    },
+    streak50: () => {
+      localStorage.setItem('tradegenius_streak', JSON.stringify({ count: 50, lastDate: new Date().toISOString().slice(0,10) }));
+      setTimeout(() => location.reload(), 600);
+      return '🔥 Streak set à 50 jours.';
+    },
+    alldone: () => {
+      ['tradegenius_v1','tradegenius_m1','tradegenius_m2','tradegenius_m3'].forEach(k => {
+        localStorage.setItem(k, JSON.stringify({ completed: {1:true,2:true,3:true,4:true,5:true,6:true,7:true} }));
+      });
+      setTimeout(() => location.reload(), 600);
+      return '✓ Tous les modules validés.';
+    },
+    confetti: () => {
+      if (window.TG && window.TG.launchConfetti) window.TG.launchConfetti({ count: 200, duration: 3500 });
+      return '🎉 Boom.';
+    },
+    about: () => `Trade Genius ${(window.TG && window.TG.TG_VERSION) || 'v?'} · Deponchy Studio · 2026`,
+  };
+  function submitCode() {
+    const inputEl = document.getElementById('code-input');
+    const fb = document.getElementById('cm-feedback');
+    const code = (inputEl.value || '').trim().toLowerCase().replace(/\s+/g, '');
+    if (!code) return;
+    const handler = CODE_HANDLERS[code];
+    fb.classList.remove('ok', 'ko', 'show');
+    if (handler) {
+      const result = handler();
+      if (result === '✗ Annulé') {
+        fb.textContent = result;
+        fb.classList.add('ko', 'show');
+      } else {
+        fb.textContent = result;
+        fb.classList.add('ok', 'show');
+        if (navigator.vibrate) navigator.vibrate([20, 40, 20]);
+      }
+    } else {
+      fb.textContent = `Code "${code}" inconnu. Tape "help" pour la liste.`;
+      fb.classList.add('ko', 'show');
+      if (navigator.vibrate) navigator.vibrate([40, 60, 40]);
+    }
+  }
+  // Submit code on Enter
+  document.addEventListener('DOMContentLoaded', () => {
+    const inp = document.getElementById('code-input');
+    if (inp) inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') submitCode(); });
+    const v = document.getElementById('bd-version');
+    if (v && window.TG && window.TG.TG_VERSION) v.textContent = window.TG.TG_VERSION;
+  });
 
   /* ===== CONFIDENTIALITÉ — Ouvre la page Privacy Policy ===== */
   function openPrivacy() {
@@ -2298,7 +2585,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=192' + v; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=193' + v; };
         block.style.display = 'block';
         return;
       }
@@ -2340,7 +2627,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=192';
+        card.onclick = () => location.href = 'scene-05.html?v=193';
         block.style.display = 'block';
         return;
       }
@@ -2360,7 +2647,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=192';
+          card.onclick = () => location.href = 'scene-06.html?v=193';
           block.style.display = 'block';
           return;
         }
@@ -2374,7 +2661,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=192';
+        card.onclick = () => location.href = 'scene-06.html?v=193';
         block.style.display = 'block';
         return;
       }
@@ -2389,7 +2676,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=192';
+    card.onclick = () => location.href = 'scene-05.html?v=193';
     block.style.display = 'block';
   }
 
@@ -2583,11 +2870,11 @@
     if (shortcut === 'modules') { showView('modules'); return; }
     if (shortcut === 'simu') {
       // Pas de location.href ici : on est déjà dans index.html, redirige
-      location.href = 'scene-05.html?v=192';
+      location.href = 'scene-05.html?v=193';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=192';
+      location.href = 'scene-06.html?v=193';
       return;
     }
 
@@ -2606,11 +2893,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=192"></script>
+  <script type="module" src="tg-common.js?v=193"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=192').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=193').catch(() => {});
       });
     }
   </script>
