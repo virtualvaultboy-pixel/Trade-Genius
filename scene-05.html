@@ -1700,6 +1700,8 @@ input { font-family: inherit; }
   padding: 14px 16px 12px;
   width: calc(100vw - 28px);
   max-width: 340px;
+  max-height: 80vh;
+  overflow-y: auto;
   box-shadow: 0 12px 40px rgba(0,0,0,0.6);
   visibility: hidden;
   opacity: 0;
@@ -5723,27 +5725,39 @@ function positionTutoBubble(target, placement) {
   const vh = window.innerHeight;
   const margin = 12;
 
-  let top, left;
-  // Auto-flip placement if no room
+  // v2.11 fix : choisir le placement selon la place dispo, jamais chevaucher la cible
+  const spaceTop    = tRect.top - margin;
+  const spaceBottom = vh - tRect.bottom - margin;
   let pl = placement;
-  if (pl === 'bottom' && tRect.bottom + bRect.height + margin > vh) pl = 'top';
-  if (pl === 'top'    && tRect.top    - bRect.height - margin < 0)  pl = 'bottom';
+  if (pl === 'bottom' && spaceBottom < bRect.height && spaceTop > spaceBottom) pl = 'top';
+  else if (pl === 'top' && spaceTop < bRect.height && spaceBottom > spaceTop) pl = 'bottom';
 
-  if (pl === 'bottom') top = tRect.bottom + margin;
-  else                 top = tRect.top - bRect.height - margin;
+  let top;
+  if (pl === 'bottom') {
+    top = tRect.bottom + margin;
+    // si dépasse le bas, on n'essaie PAS de remonter au-dessus du target (chevauchement)
+    // on clamp simplement : le scroll de la bubble gère le débordement
+    if (top + bRect.height > vh - margin) {
+      top = Math.max(margin, vh - bRect.height - margin);
+    }
+  } else {
+    top = tRect.top - bRect.height - margin;
+    if (top < margin) {
+      top = margin;
+    }
+  }
+  top = Math.max(margin, Math.min(top, vh - bRect.height - margin));
 
-  // Center horizontally on target, clamp to viewport
   const targetCenter = tRect.left + tRect.width / 2;
-  left = targetCenter - bRect.width / 2;
+  let left = targetCenter - bRect.width / 2;
   left = Math.max(margin, Math.min(left, vw - bRect.width - margin));
 
   bubble.style.top  = top  + 'px';
   bubble.style.left = left + 'px';
   bubble.setAttribute('data-placement', pl);
 
-  // Position the arrow so it points to target center
   const arrowX = targetCenter - left;
-  bubble.style.setProperty('--arrow-x', arrowX + 'px');
+  bubble.style.setProperty('--arrow-x', Math.max(20, Math.min(arrowX, bRect.width - 20)) + 'px');
 }
 
 // Reposition on resize / orientation change while tuto is active
@@ -7426,11 +7440,11 @@ document.addEventListener('keydown', (e) => {
 });
 
 </script>
-  <script type="module" src="tg-common.js?v=210"></script>
+  <script type="module" src="tg-common.js?v=211"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=210').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=211').catch(() => {});
       });
     }
   </script>
