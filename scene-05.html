@@ -9,7 +9,9 @@
   <meta property="og:title" content="Trade Genius">
   <meta property="og:description" content="Apprends la bourse de zéro. Pas de pub, pas de gourous, juste de la pédagogie.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="icon-512.png">
+  <meta property="og:image" content="og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://virtualvaultboy-pixel.github.io/Trade-Genius/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="manifest" href="manifest.json">
@@ -1295,6 +1297,25 @@ input { font-family: inherit; }
   cursor: pointer;
 }
 .os-close:active { background: rgba(255,255,255,0.12); }
+
+/* Coach hint dans le bottom sheet — conseil contextuel intelligent */
+.os-coach-hint {
+  display: none;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 11px 13px;
+  background: rgba(190, 242, 100, 0.07);
+  border-left: 3px solid var(--acid);
+  border-radius: 9px;
+  margin-bottom: 12px;
+  font-family: var(--font-b);
+  font-size: 12.5px;
+  line-height: 1.42;
+  color: var(--text-dim);
+}
+.os-coach-hint.show { display: flex; }
+.os-coach-hint .och-ico { font-size: 15px; line-height: 1.2; flex-shrink: 0; }
+.os-coach-hint .och-text strong { color: var(--text); font-weight: 700; }
 
 /* Trading controls (now embedded in bottom sheet) */
 .sim-controls { padding: 0 14px 12px; }
@@ -2815,6 +2836,7 @@ input { font-family: inherit; }
       </div>
       <button class="os-close" onclick="closeOrderSheet()" aria-label="Fermer">✕</button>
     </div>
+    <div class="os-coach-hint" id="os-coach-hint"></div>
     <div class="sim-qty-row">
       <span class="sim-qty-label">QUANTITÉ</span>
       <input type="number" id="sim-qty" class="sim-qty-input" value="10" min="1" step="1" inputmode="decimal"/>
@@ -7211,7 +7233,52 @@ function openOrderSheet(side) {
   backdrop.classList.add('active');
   // Sync slider avec la qty actuelle (basé sur le side)
   syncSliderFromQty();
+  // Coach hint contextuel
+  updateCoachHint(side);
   if (navigator.vibrate) navigator.vibrate(8);
+}
+
+function updateCoachHint(side) {
+  const hintEl = document.getElementById('os-coach-hint');
+  if (!hintEl || !state.scenario) return;
+  const sc = state.scenario;
+  const candle = sc.candles[state.currentDay];
+  if (!candle) return;
+  const price = candle.close;
+  const change5 = state.currentDay >= 5
+    ? ((price - sc.candles[state.currentDay - 5].close) / sc.candles[state.currentDay - 5].close) * 100
+    : 0;
+  const hasPosition = state.shares > 1e-9;
+  const pnlPct = hasPosition ? ((price - state.avgEntry) / state.avgEntry) * 100 : 0;
+
+  let ico = '💡', text = '';
+  if (side === 'buy') {
+    if (!hasPosition) {
+      if (change5 < -5) {
+        ico = '⚠️'; text = `Le prix a chuté de <strong>${change5.toFixed(1)}%</strong> sur 5 jours. Attention au <strong>couteau qui tombe</strong> — vérifie la tendance avant d'entrer.`;
+      } else if (change5 > 5) {
+        ico = '🔥'; text = `Tendance haussière (<strong>+${change5.toFixed(1)}%</strong>/5j). Ne te précipite pas — risque de <strong>FOMO</strong>. Attends un retrait sain.`;
+      } else {
+        text = `Avant d'entrer : pose ton <strong>stop-loss</strong> (max -8%) et fixe une cible. <strong>Sans plan, pas de trade.</strong>`;
+      }
+    } else if (pnlPct < 0) {
+      ico = '⚠️'; text = `Tu moyennes à la baisse (<strong>${pnlPct.toFixed(1)}%</strong>). Soit ta thèse a changé → coupe. Soit elle tient → renforce <em>petit</em>.`;
+    } else {
+      ico = '📈'; text = `Tu renforces une position gagnante. <strong>Bonne discipline</strong>, mais respecte ton risque max 2% du capital.`;
+    }
+  } else {
+    if (!hasPosition) {
+      ico = '🚫'; text = `Pas de position à vendre. Le bouton est verrouillé.`;
+    } else if (pnlPct > 0) {
+      ico = '✓'; text = `Tu es en plus-value (<strong>+${pnlPct.toFixed(1)}%</strong>). Sécuriser une partie est <strong>toujours sage</strong>. Mieux vaut un petit profit qu'aucun.`;
+    } else if (pnlPct < -8) {
+      ico = '🛡️'; text = `Perte de <strong>${pnlPct.toFixed(1)}%</strong>. Couper fait mal mais <strong>sauve le capital</strong>. C'est la règle des pros (max -8%).`;
+    } else {
+      ico = '🤔'; text = `Tu vends au seuil. Sûr de ta thèse ? Parfois <strong>attendre</strong> est la meilleure action.`;
+    }
+  }
+  hintEl.innerHTML = `<span class="och-ico">${ico}</span><span class="och-text">${text}</span>`;
+  hintEl.classList.add('show');
 }
 
 function closeOrderSheet() {
@@ -7358,11 +7425,11 @@ document.addEventListener('keydown', (e) => {
 });
 
 </script>
-  <script type="module" src="tg-common.js?v=185"></script>
+  <script type="module" src="tg-common.js?v=186"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=185').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=186').catch(() => {});
       });
     }
   </script>

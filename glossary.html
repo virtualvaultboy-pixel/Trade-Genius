@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<title>Trade Genius — Glossaire</title>
+<meta name="description" content="Tous les termes financiers expliqués simplement. ETF, action, FOMO, stop-loss, support, résistance…">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --bg-2: #14141a;
+    --surface: rgba(255,255,255,0.04);
+    --border: rgba(255,255,255,0.1);
+    --text: #f5f3ef;
+    --text-dim: #b8b3ad;
+    --text-faint: #6a6864;
+    --acid: #bef264;
+    --blue: #7dd3fc;
+    --font-d: 'Bricolage Grotesque', Georgia, serif;
+    --font-b: 'Manrope', system-ui, sans-serif;
+    --font-m: 'JetBrains Mono', monospace;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-b);
+    line-height: 1.5;
+    overscroll-behavior: none;
+    min-height: 100vh;
+  }
+  body { max-width: 720px; margin: 0 auto; padding: 0 0 60px; }
+
+  /* Header sticky */
+  .gloss-header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(10,10,12,0.95);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: calc(14px + env(safe-area-inset-top)) 16px 12px;
+  }
+  .gh-top {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 12px;
+  }
+  .gh-back {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 18px; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; text-decoration: none;
+    flex-shrink: 0;
+  }
+  .gh-back:active { background: rgba(255,255,255,0.08); }
+  .gh-title-wrap { flex: 1; min-width: 0; }
+  .gh-eyebrow {
+    font-family: var(--font-m);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--acid);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .gh-title {
+    font-family: var(--font-d);
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .gh-search-wrap {
+    position: relative;
+  }
+  .gh-search {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--font-b);
+    font-size: 14px;
+    padding: 10px 14px 10px 38px;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .gh-search:focus { border-color: rgba(190,242,100,0.4); }
+  .gh-search::placeholder { color: var(--text-faint); }
+  .gh-search-ico {
+    position: absolute;
+    left: 13px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-faint);
+    font-size: 14px;
+    pointer-events: none;
+  }
+
+  /* Stats bar */
+  .gloss-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    font-family: var(--font-m);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+  }
+  .gloss-count { color: var(--acid); }
+
+  /* Terms list */
+  .gloss-list {
+    list-style: none;
+    padding: 0 16px;
+  }
+  .gloss-item {
+    background: linear-gradient(135deg, rgba(190,242,100,0.04), rgba(190,242,100,0.01));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .gloss-item.expanded { border-color: rgba(190,242,100,0.3); }
+  .gloss-item-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .gloss-term {
+    font-family: var(--font-d);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.005em;
+    text-transform: capitalize;
+  }
+  .gloss-chevron {
+    font-family: var(--font-m);
+    color: var(--acid);
+    font-size: 16px;
+    line-height: 1;
+    transition: transform 0.22s ease;
+  }
+  .gloss-item.expanded .gloss-chevron { transform: rotate(90deg); }
+  .gloss-def {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .gloss-item.expanded .gloss-def { max-height: 400px; }
+  .gloss-def-inner {
+    padding: 0 16px 16px;
+    font-family: var(--font-b);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-dim);
+  }
+  .gloss-def-inner strong { color: var(--text); font-weight: 700; }
+
+  /* Letter section header */
+  .gloss-letter {
+    font-family: var(--font-d);
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--acid);
+    letter-spacing: 0.18em;
+    margin: 18px 0 8px;
+    padding-left: 4px;
+    text-transform: uppercase;
+  }
+
+  /* Empty state */
+  .gloss-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-faint);
+    font-family: var(--font-m);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Focus visible */
+  :focus-visible { outline: 2px solid var(--acid); outline-offset: 3px; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<div class="gloss-header">
+  <div class="gh-top">
+    <a href="index.html#accueil" class="gh-back" aria-label="Retour à l'accueil">←</a>
+    <div class="gh-title-wrap">
+      <div class="gh-eyebrow">✦ Glossaire</div>
+      <h1 class="gh-title">Tous les termes</h1>
+    </div>
+  </div>
+  <div class="gh-search-wrap">
+    <span class="gh-search-ico">🔍</span>
+    <input type="search" class="gh-search" id="gloss-search" placeholder="Chercher un terme…" autocomplete="off" autocorrect="off" inputmode="search">
+  </div>
+</div>
+
+<div class="gloss-stats">
+  <span><span class="gloss-count" id="gloss-total">0</span> termes</span>
+  <span id="gloss-filtered" style="display:none;">→ <span id="gloss-match">0</span> résultat<span id="gloss-match-s"></span></span>
+</div>
+
+<ul class="gloss-list" id="gloss-list"></ul>
+
+<script>
+  const ALL_TERMS = {};
+  let RENDERED = [];
+
+  function normalize(s) {
+    return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  }
+
+  function render(filter = '') {
+    const list = document.getElementById('gloss-list');
+    const total = document.getElementById('gloss-total');
+    const filteredWrap = document.getElementById('gloss-filtered');
+    const match = document.getElementById('gloss-match');
+    const matchS = document.getElementById('gloss-match-s');
+
+    const entries = Object.entries(ALL_TERMS).sort((a, b) => a[0].localeCompare(b[0], 'fr'));
+    total.textContent = entries.length;
+
+    const q = normalize(filter.trim());
+    const filtered = q
+      ? entries.filter(([k, v]) => normalize(k).includes(q) || normalize(v).includes(q))
+      : entries;
+
+    filteredWrap.style.display = q ? '' : 'none';
+    match.textContent = filtered.length;
+    matchS.textContent = filtered.length > 1 ? 's' : '';
+
+    if (filtered.length === 0) {
+      list.innerHTML = '<div class="gloss-empty">Aucun terme ne correspond.</div>';
+      return;
+    }
+
+    // Group by first letter
+    let html = '';
+    let currentLetter = '';
+    filtered.forEach(([term, def]) => {
+      const letter = normalize(term).charAt(0).toUpperCase();
+      if (letter !== currentLetter && !q) {
+        html += `<li class="gloss-letter" style="list-style:none;">${letter}</li>`;
+        currentLetter = letter;
+      }
+      html += `
+        <li class="gloss-item" data-term="${term}">
+          <div class="gloss-item-head" onclick="toggleTerm(this)">
+            <span class="gloss-term">${term}</span>
+            <span class="gloss-chevron">›</span>
+          </div>
+          <div class="gloss-def">
+            <div class="gloss-def-inner">${def}</div>
+          </div>
+        </li>`;
+    });
+    list.innerHTML = html;
+  }
+
+  function toggleTerm(head) {
+    const item = head.closest('.gloss-item');
+    const isOpen = item.classList.contains('expanded');
+    document.querySelectorAll('.gloss-item.expanded').forEach(el => el.classList.remove('expanded'));
+    if (!isOpen) {
+      item.classList.add('expanded');
+      if (navigator.vibrate) navigator.vibrate(6);
+    }
+  }
+
+  document.getElementById('gloss-search').addEventListener('input', (e) => {
+    render(e.target.value);
+  });
+
+  // Charge le glossaire depuis tg-common.js (module ES6, exposé via window.TG)
+  function loadGlossary() {
+    if (window.TG && window.TG.getGlossary) {
+      Object.assign(ALL_TERMS, window.TG.getGlossary());
+      render();
+    } else {
+      setTimeout(loadGlossary, 80);
+    }
+  }
+  loadGlossary();
+</script>
+
+<script type="module" src="tg-common.js?v=185"></script>
+</body>
+</html>
