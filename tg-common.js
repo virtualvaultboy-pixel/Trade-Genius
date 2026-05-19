@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.58';
+export const TG_VERSION = 'v1.59';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -182,7 +182,7 @@ export function initAllBills() {
 
 // === Analytics — Umami Cloud (cookieless, RGPD-friendly, opt-out) ===
 // Remplir UMAMI_WEBSITE_ID après création du site sur cloud.umami.is
-const UMAMI_WEBSITE_ID = '';
+const UMAMI_WEBSITE_ID = '4789a3ad-b04e-4766-abee-91b1f1b41a0c';
 const UMAMI_SRC = 'https://cloud.umami.is/script.js';
 const CONSENT_KEY = 'tradegenius_analytics_consent';
 
