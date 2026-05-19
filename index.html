@@ -905,6 +905,27 @@
   }
   .tuto-next:active { transform: scale(0.97); }
 
+  /* Streak quotidien */
+  .streak-badge {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    margin: 0 16px 14px;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, rgba(212,165,116,0.16), rgba(212,165,116,0.06));
+    border: 1px solid rgba(212,165,116,0.3);
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--clay);
+    width: fit-content;
+    letter-spacing: 0.05em;
+  }
+  .streak-badge.active { display: inline-flex; }
+  .streak-badge .streak-icon { font-size: 14px; line-height: 1; }
+  .streak-badge .streak-num { font-size: 13px; color: var(--text); }
+
   /* A11y — focus visible pour navigation clavier */
   :focus-visible { outline: 2px solid var(--acid); outline-offset: 3px; border-radius: 4px; }
 </style>
@@ -1029,7 +1050,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=154')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=155')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -1048,7 +1069,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=154')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=155')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -1067,7 +1088,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=154')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=155')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -1086,7 +1107,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=154')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=155')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -1130,6 +1151,13 @@
       <h1 class="hello-line2" id="hello-sub">Prêt à devenir<br><em>investisseur</em> ?</h1>
     </div>
 
+    <!-- Streak quotidien -->
+    <div class="streak-badge" id="streak-badge">
+      <span class="streak-icon">🔥</span>
+      <span class="streak-num" id="streak-num">0</span>
+      <span>jour<span id="streak-s"></span> d'affilée</span>
+    </div>
+
     <!-- Hero du jour : citation ou stat -->
     <div class="hero-daily" id="hero-daily">
       <div class="hero-daily-eyebrow" id="hero-daily-eyebrow">💡 PENSÉE DU JOUR</div>
@@ -1145,15 +1173,15 @@
 
     <!-- Stats compactes -->
     <div class="stats-row">
-      <div class="stat-cell" onclick="location.href='scene-06.html?v=154'">
+      <div class="stat-cell" onclick="location.href='scene-06.html?v=155'">
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=154'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=155'">
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=154'">
+      <div class="stat-cell" onclick="location.href='scene-05.html?v=155'">
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
       </div>
@@ -1166,11 +1194,11 @@
         <div class="tool-icon">📚</div>
         <div class="tool-name">Apprendre</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--blue);" onclick="location.href='scene-05.html?v=154'">
+      <div class="tool-chip" style="--mode-color: var(--blue);" onclick="location.href='scene-05.html?v=155'">
         <div class="tool-icon">🎮</div>
         <div class="tool-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=154'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=155'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -1400,6 +1428,27 @@
 
     // 4) Stats
     refreshStats();
+
+    // 5) Streak quotidien
+    updateStreak();
+  }
+
+  function updateStreak() {
+    const STREAK_KEY = 'tradegenius_streak';
+    const today = new Date().toISOString().slice(0, 10);
+    let s;
+    try { s = JSON.parse(localStorage.getItem(STREAK_KEY) || '{}'); } catch { s = {}; }
+    if (s.lastDate !== today) {
+      const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+      s.count = (s.lastDate === yesterday) ? (s.count || 0) + 1 : 1;
+      s.lastDate = today;
+      try { localStorage.setItem(STREAK_KEY, JSON.stringify(s)); } catch {}
+    }
+    if (s.count >= 2) {
+      document.getElementById('streak-num').textContent = s.count;
+      document.getElementById('streak-s').textContent = 's';
+      document.getElementById('streak-badge').classList.add('active');
+    }
   }
 
   function refreshResume() {
@@ -1422,7 +1471,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=154';
+        card.onclick = () => location.href = 'scene-05.html?v=155';
         block.style.display = 'block';
         return;
       }
@@ -1442,7 +1491,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=154';
+          card.onclick = () => location.href = 'scene-06.html?v=155';
           block.style.display = 'block';
           return;
         }
@@ -1456,7 +1505,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=154';
+        card.onclick = () => location.href = 'scene-06.html?v=155';
         block.style.display = 'block';
         return;
       }
@@ -1471,7 +1520,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=154';
+    card.onclick = () => location.href = 'scene-05.html?v=155';
     block.style.display = 'block';
   }
 
@@ -1678,7 +1727,7 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=154"></script>
+  <script type="module" src="tg-common.js?v=155"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {

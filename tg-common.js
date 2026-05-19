@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v1.54';
+export const TG_VERSION = 'v1.55';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -235,12 +235,27 @@ export function resetConsent() {
   location.reload();
 }
 
+// === Streak quotidien — tracking auto à chaque visite ===
+const STREAK_KEY = 'tradegenius_streak';
+export function recordVisit() {
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    let s = JSON.parse(localStorage.getItem(STREAK_KEY) || '{}');
+    if (s.lastDate === today) return;
+    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    s.count = (s.lastDate === yesterday) ? (s.count || 0) + 1 : 1;
+    s.lastDate = today;
+    localStorage.setItem(STREAK_KEY, JSON.stringify(s));
+  } catch {}
+}
+
 // Auto-init au load
 function autoInit() {
   injectVersionBadge();
   initAllBills();
   loadAnalytics();
   injectConsentBanner();
+  recordVisit();
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', autoInit);
 else autoInit();
