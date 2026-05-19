@@ -3,8 +3,8 @@
 > **Studio :** Deponchy Studio · **Dev solo :** Aurélien
 > **Version :** v1.95 (50 commits depuis v1.49)
 > **Date :** 2026-05-19
-> **Prod :** https://qf06.github.io/Trade-Genius/
-> **Repo :** https://github.com/qf06/Trade-Genius
+> **Prod :** https://virtualvaultboy-pixel.github.io/Trade-Genius/
+> **Repo :** https://github.com/virtualvaultboy-pixel/Trade-Genius
 > **Local :** `C:\Users\qfichet\Desktop\Document IA\Trade Genius\files\`
 
 ---
