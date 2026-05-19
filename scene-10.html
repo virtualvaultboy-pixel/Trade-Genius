@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<!--
+═══════════════════════════════════════════════════════════════════
+                    TRADE GENIUS · scene-10.html
+                    ANALYSE DE MARCHÉ (Premium) — CoinGecko free
+═══════════════════════════════════════════════════════════════════
+  6 cryptos majeures · sparkline 7j · RSI 14 calculé côté JS · verdict
+  Pas d'API payante — uniquement CoinGecko public.
+-->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0c">
+  <title>Trade Genius — Analyse de marché</title>
+  <link rel="manifest" href="manifest.json">
+  <script type="module" src="tg-common.js?v=206"></script>
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-deep: #050507;
+      --surface: #13131c;
+      --surface-2: #1a1a25;
+      --border: rgba(255,255,255,0.08);
+      --text: #f8f5ee;
+      --text-dim: #a8a8b3;
+      --text-faint: #6a6a75;
+      --acid: #bef264;
+      --purple: #a78bfa;
+      --blue: #60a5fa;
+      --gold: #f59e0b;
+      --gold-glow: rgba(245,158,11,0.5);
+      --red: #ef4444;
+      --green: #22c55e;
+      --font-d: 'Manrope', system-ui, sans-serif;
+      --font-m: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-d);
+      min-height: 100vh;
+      overscroll-behavior: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: -10vh; left: -15%;
+      width: 70vw; max-width: 540px; height: 55vh; min-height: 340px;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(245,158,11,0.16) 0%, rgba(245,158,11,0) 65%);
+      filter: blur(36px); z-index: 0; pointer-events: none;
+      animation: drift-gold 24s ease-in-out infinite;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: 0; right: -20%;
+      width: 80vw; max-width: 540px; height: 55vh; min-height: 340px;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(167,139,250,0.16) 0%, rgba(167,139,250,0) 70%);
+      filter: blur(36px); z-index: 0; pointer-events: none;
+      animation: drift-purple 28s ease-in-out infinite;
+    }
+    @keyframes drift-gold   { 0%,100% { transform: translate(0,0); } 50% { transform: translate(6vw,4vh) scale(1.1); } }
+    @keyframes drift-purple { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-5vw,-3vh) scale(1.15); } }
+
+    .wrap {
+      position: relative; z-index: 1;
+      padding: calc(20px + env(safe-area-inset-top)) 16px calc(40px + env(safe-area-inset-bottom));
+      max-width: 480px; margin: 0 auto;
+    }
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .back-btn {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-m); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 9px 13px; border-radius: 10px;
+      cursor: pointer;
+    }
+    .back-btn:active { transform: scale(0.96); }
+    .live-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--font-m); font-size: 10.5px; font-weight: 800;
+      letter-spacing: 0.16em; color: var(--gold);
+      padding: 6px 11px; border-radius: 999px;
+      background: linear-gradient(135deg, rgba(245,158,11,0.18), rgba(167,139,250,0.14));
+      border: 1px solid rgba(245,158,11,0.4);
+    }
+    .live-pill .lp-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green); box-shadow: 0 0 8px var(--green);
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+    .live-pill.offline .lp-dot { background: var(--red); box-shadow: 0 0 8px var(--red); animation: none; }
+    @keyframes pulse { 50% { opacity: 0.4; } }
+
+    .h-eyebrow {
+      font-family: var(--font-m); font-size: 10px; font-weight: 700;
+      letter-spacing: 0.22em; color: var(--gold); text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .h-title {
+      font-family: var(--font-d); font-size: 30px; font-weight: 800;
+      line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 6px;
+    }
+    .h-title em { font-style: italic; color: var(--gold); font-weight: 800; }
+    .h-sub {
+      font-family: var(--font-d); font-size: 13.5px; color: var(--text-dim);
+      margin: 0 0 24px; line-height: 1.4;
+    }
+
+    .coin-card {
+      margin-bottom: 12px;
+      padding: 14px;
+      background: linear-gradient(180deg, var(--surface) 0%, rgba(20,20,30,0.85) 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.04);
+      position: relative; overflow: hidden;
+    }
+    .cc-row1 {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 12px;
+      align-items: center; margin-bottom: 10px;
+    }
+    .cc-sym {
+      font-family: var(--font-m); font-size: 13px; font-weight: 800;
+      color: var(--coin-color, var(--text));
+      letter-spacing: 0.08em;
+      padding: 6px 10px; border-radius: 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--coin-color, var(--border));
+      min-width: 56px; text-align: center;
+    }
+    .cc-name {
+      font-family: var(--font-d); font-size: 11.5px;
+      color: var(--text-dim); font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .cc-price-wrap {
+      font-family: var(--font-d); font-size: 17px;
+      font-weight: 800; color: var(--text);
+      letter-spacing: -0.015em; text-align: right;
+    }
+    .cc-chg {
+      font-family: var(--font-m); font-size: 11px; font-weight: 700;
+      margin-top: 2px;
+    }
+    .cc-chg.up { color: var(--green); }
+    .cc-chg.down { color: var(--red); }
+
+    .cc-row2 {
+      display: grid; grid-template-columns: 1fr auto; gap: 12px;
+      align-items: center;
+    }
+    .cc-spark {
+      width: 100%; height: 60px;
+      background: rgba(0,0,0,0.25);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .cc-rsi {
+      min-width: 110px;
+      padding: 8px 10px;
+      background: rgba(0,0,0,0.32);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-align: center;
+    }
+    .cc-rsi-lbl {
+      font-family: var(--font-m); font-size: 9px;
+      letter-spacing: 0.18em; color: var(--text-faint);
+      text-transform: uppercase; margin-bottom: 2px; font-weight: 700;
+    }
+    .cc-rsi-val {
+      font-family: var(--font-d); font-size: 18px; font-weight: 800;
+      letter-spacing: -0.01em; line-height: 1;
+    }
+    .cc-rsi-val.overbought { color: var(--red); }
+    .cc-rsi-val.oversold   { color: var(--green); }
+    .cc-rsi-val.neutral    { color: var(--gold); }
+    .cc-verdict {
+      font-family: var(--font-m); font-size: 9px;
+      font-weight: 800; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-top: 4px;
+    }
+    .cc-verdict.overbought { color: var(--red); }
+    .cc-verdict.oversold   { color: var(--green); }
+    .cc-verdict.neutral    { color: var(--gold); }
+
+    .skeleton {
+      background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%);
+      background-size: 200% 100%;
+      animation: skel 1.4s ease-in-out infinite;
+      border-radius: 6px;
+      color: transparent;
+    }
+    @keyframes skel { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    .disclaimer {
+      margin-top: 18px;
+      padding: 14px 16px;
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.25);
+      border-radius: 12px;
+      font-family: var(--font-d); font-size: 12px;
+      color: var(--text-dim); line-height: 1.45;
+    }
+    .disclaimer strong { color: var(--gold); }
+
+    @media (max-width: 360px) {
+      .h-title { font-size: 26px; }
+      .cc-spark { height: 50px; }
+      .cc-rsi { min-width: 90px; }
+      .cc-rsi-val { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top-bar">
+    <button class="back-btn" onclick="window.location.href='index.html#accueil'">← ACCUEIL</button>
+    <span class="live-pill" id="live-pill"><span class="lp-dot"></span><span id="live-label">CHARGEMENT</span></span>
+  </div>
+
+  <div class="h-eyebrow">ANALYSE DE MARCHÉ</div>
+  <h1 class="h-title"><em>6 cryptos</em> en direct</h1>
+  <p class="h-sub">Prix, variation 24h, RSI 14 sur l'historique 7 jours. Données CoinGecko, calculs côté app.</p>
+
+  <div id="coins-list"></div>
+
+  <div class="disclaimer">
+    <strong>⚠ Important :</strong> Ces données et indicateurs sont à but pédagogique uniquement. <strong>Aucune recommandation d'investissement</strong>. Le RSI est un outil parmi d'autres et ne prédit pas l'avenir. Fais tes propres recherches.
+  </div>
+</div>
+
+<script>
+  /* ===================================================
+     ANALYSE DE MARCHÉ — CoinGecko free + calculs JS
+     =================================================== */
+  const COINS = [
+    { id: 'bitcoin',      sym: 'BTC',  name: 'Bitcoin',  color: '#f59e0b' },
+    { id: 'ethereum',     sym: 'ETH',  name: 'Ethereum', color: '#a78bfa' },
+    { id: 'solana',       sym: 'SOL',  name: 'Solana',   color: '#22c55e' },
+    { id: 'binancecoin',  sym: 'BNB',  name: 'BNB',      color: '#fde047' },
+    { id: 'ripple',       sym: 'XRP',  name: 'XRP',      color: '#60a5fa' },
+    { id: 'cardano',      sym: 'ADA',  name: 'Cardano',  color: '#7dd3fc' },
+  ];
+  const CG_URL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&ids=${COINS.map(c=>c.id).join(',')}&order=market_cap_desc&sparkline=true&price_change_percentage=24h`;
+  const REFRESH_MS = 60_000;
+
+  function fmtPrice(p) {
+    if (p >= 1000) return Math.round(p).toLocaleString('fr-FR') + ' €';
+    if (p >= 1)    return p.toFixed(2) + ' €';
+    return p.toFixed(4) + ' €';
+  }
+
+  /* RSI 14 (formule classique Wilder) */
+  function calcRSI(prices, period = 14) {
+    if (!prices || prices.length < period + 1) return null;
+    let gains = 0, losses = 0;
+    for (let i = 1; i <= period; i++) {
+      const diff = prices[i] - prices[i - 1];
+      if (diff >= 0) gains += diff; else losses -= diff;
+    }
+    let avgGain = gains / period;
+    let avgLoss = losses / period;
+    for (let i = period + 1; i < prices.length; i++) {
+      const diff = prices[i] - prices[i - 1];
+      if (diff >= 0) {
+        avgGain = (avgGain * (period - 1) + diff) / period;
+        avgLoss = (avgLoss * (period - 1)) / period;
+      } else {
+        avgGain = (avgGain * (period - 1)) / period;
+        avgLoss = (avgLoss * (period - 1) - diff) / period;
+      }
+    }
+    if (avgLoss === 0) return 100;
+    const rs = avgGain / avgLoss;
+    return 100 - (100 / (1 + rs));
+  }
+
+  function rsiVerdict(rsi) {
+    if (rsi == null) return { cls: 'neutral', label: '—' };
+    if (rsi >= 70) return { cls: 'overbought', label: 'Surachat' };
+    if (rsi <= 30) return { cls: 'oversold',   label: 'Survente' };
+    return { cls: 'neutral', label: 'Neutre' };
+  }
+
+  function drawSpark(canvas, prices, color) {
+    const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = canvas.offsetWidth * DPR;
+    canvas.height = canvas.offsetHeight * DPR;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width, h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+    if (!prices || prices.length < 2) return;
+    const mn = Math.min(...prices), mx = Math.max(...prices);
+    const range = (mx - mn) || 1;
+    const padY = 4 * DPR;
+    const useH = h - padY * 2;
+    const stepX = w / (prices.length - 1);
+
+    // Fill gradient sous la courbe
+    const grad = ctx.createLinearGradient(0, padY, 0, h);
+    grad.addColorStop(0, color + '50');
+    grad.addColorStop(1, color + '00');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.moveTo(0, h);
+    prices.forEach((v, i) => {
+      const px = i * stepX;
+      const py = padY + (1 - (v - mn) / range) * useH;
+      ctx.lineTo(px, py);
+    });
+    ctx.lineTo((prices.length - 1) * stepX, h);
+    ctx.closePath();
+    ctx.fill();
+
+    // Ligne
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.6 * DPR;
+    ctx.shadowColor = color; ctx.shadowBlur = 5 * DPR;
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.beginPath();
+    prices.forEach((v, i) => {
+      const px = i * stepX;
+      const py = padY + (1 - (v - mn) / range) * useH;
+      if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+    });
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+  }
+
+  function renderSkeletons() {
+    const list = document.getElementById('coins-list');
+    list.innerHTML = COINS.map(c => `
+      <div class="coin-card" data-id="${c.id}" style="--coin-color: ${c.color};">
+        <div class="cc-row1">
+          <div class="cc-sym">${c.sym}</div>
+          <div>
+            <div class="cc-name">${c.name}</div>
+            <div class="skeleton" style="width:60%;height:10px;margin-top:4px;">·</div>
+          </div>
+          <div class="cc-price-wrap">
+            <div class="skeleton" style="width:80px;height:18px;">·</div>
+            <div class="skeleton" style="width:50px;height:11px;margin-top:4px;">·</div>
+          </div>
+        </div>
+        <div class="cc-row2">
+          <div class="cc-spark skeleton">·</div>
+          <div class="cc-rsi">
+            <div class="cc-rsi-lbl">RSI 14</div>
+            <div class="cc-rsi-val">—</div>
+            <div class="cc-verdict">···</div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderCoin(c, data) {
+    const card = document.querySelector(`.coin-card[data-id="${c.id}"]`);
+    if (!card) return;
+    const prices = (data.sparkline_in_7d && data.sparkline_in_7d.price) || [];
+    const rsi = calcRSI(prices, 14);
+    const verdict = rsiVerdict(rsi);
+    const chg = data.price_change_percentage_24h ?? 0;
+    const isUp = chg >= 0;
+
+    card.innerHTML = `
+      <div class="cc-row1">
+        <div class="cc-sym">${c.sym}</div>
+        <div>
+          <div class="cc-name">${c.name}</div>
+        </div>
+        <div class="cc-price-wrap">
+          <div>${fmtPrice(data.current_price)}</div>
+          <div class="cc-chg ${isUp ? 'up' : 'down'}">${isUp ? '▲' : '▼'} ${Math.abs(chg).toFixed(2)}% · 24h</div>
+        </div>
+      </div>
+      <div class="cc-row2">
+        <canvas class="cc-spark"></canvas>
+        <div class="cc-rsi">
+          <div class="cc-rsi-lbl">RSI 14 · 7j</div>
+          <div class="cc-rsi-val ${verdict.cls}">${rsi != null ? rsi.toFixed(0) : '—'}</div>
+          <div class="cc-verdict ${verdict.cls}">${verdict.label}</div>
+        </div>
+      </div>
+    `;
+    const canvas = card.querySelector('.cc-spark');
+    if (canvas) drawSpark(canvas, prices, c.color);
+  }
+
+  async function loadData() {
+    const pill = document.getElementById('live-pill');
+    const label = document.getElementById('live-label');
+    pill.classList.remove('offline');
+    label.textContent = 'FETCH...';
+    try {
+      const r = await fetch(CG_URL, { cache: 'no-store' });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const data = await r.json();
+      COINS.forEach(c => {
+        const coinData = data.find(d => d.id === c.id);
+        if (coinData) renderCoin(c, coinData);
+      });
+      label.textContent = '● LIVE · ' + new Date().toLocaleTimeString('fr-FR').slice(0, 5);
+    } catch (e) {
+      pill.classList.add('offline');
+      label.textContent = '⚠ OFFLINE';
+    }
+  }
+
+  renderSkeletons();
+  loadData();
+  setInterval(loadData, REFRESH_MS);
+</script>
+
+</body>
+</html>
