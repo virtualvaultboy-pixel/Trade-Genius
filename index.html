@@ -1694,6 +1694,44 @@
   #install-pwa-btn:active { transform: scale(0.94); }
   #install-pwa-btn .pwa-ico { font-size: 12px; }
 
+  /* v2.04 — Bouton ✦ Premium permanent (fixed top-right) */
+  #premium-fab {
+    position: fixed;
+    top: calc(12px + env(safe-area-inset-top));
+    right: 12px;
+    z-index: 9997;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 13px;
+    background: linear-gradient(135deg, var(--gold, #f59e0b), var(--purple, #a78bfa));
+    border: 1px solid rgba(245,158,11,0.55);
+    border-radius: 999px;
+    color: #0a0a0c;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 6px 20px rgba(245,158,11,0.32), inset 0 1px 0 rgba(255,255,255,0.18);
+    animation: premium-fab-pulse 3.4s ease-in-out infinite;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  #premium-fab:active { transform: scale(0.94); }
+  #premium-fab.hidden { display: none; }
+  @keyframes premium-fab-pulse {
+    0%, 100% { box-shadow: 0 6px 20px rgba(245,158,11,0.30), inset 0 1px 0 rgba(255,255,255,0.18); }
+    50%      { box-shadow: 0 10px 28px rgba(245,158,11,0.5), 0 0 14px rgba(167,139,250,0.4), inset 0 1px 0 rgba(255,255,255,0.22); }
+  }
+  /* Quand install-pwa-btn est visible : décaler premium-fab à gauche */
+  #install-pwa-btn[style*="inline-flex"] ~ #premium-fab,
+  body.has-install #premium-fab { right: 110px; }
+  @media (prefers-reduced-motion: reduce) {
+    #premium-fab { animation: none; }
+  }
+
   /* Lien Confidentialité dans le footer */
   .privacy-link {
     display: block;
@@ -1882,7 +1920,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.03</div>
+        <div class="bd-brand-ver" id="bd-version">v2.04</div>
       </div>
     </div>
 
@@ -1924,6 +1962,11 @@
   <button id="install-pwa-btn" onclick="installPWA()" aria-label="Installer l'application">
     <span class="pwa-ico">⤓</span>
     <span>Installer</span>
+  </button>
+
+  <!-- v2.04 — bouton ✦ Premium permanent (caché si déjà premium) -->
+  <button id="premium-fab" onclick="openPremium()" aria-label="Passer en mode expert">
+    <span>✦ Premium</span>
   </button>
 
   <!-- Splash screen (cold-start PWA) -->
@@ -2075,7 +2118,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=203')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=204')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -2094,7 +2137,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=203')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=204')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -2113,7 +2156,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=203')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=204')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -2132,7 +2175,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=203')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=204')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -2151,7 +2194,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=203')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=204')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -2222,13 +2265,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=203'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=204'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=203'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=204'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -2272,7 +2315,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=203'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=204'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -2282,11 +2325,11 @@
     <div class="expert-section" id="expert-section" style="display:none;">
       <div class="section-title expert-title">✦ Mode Expert</div>
       <div class="tools-grid tools-grid-3 tools-expert">
-        <div class="tool-chip expert" style="--mode-color: var(--gold);" onclick="location.href='scene-08.html?v=203'">
+        <div class="tool-chip expert" style="--mode-color: var(--gold);" onclick="location.href='scene-08.html?v=204'">
           <div class="tool-icon">🔬</div>
           <div class="tool-name">Patterns Lab</div>
         </div>
-        <div class="tool-chip expert" style="--mode-color: var(--red);" onclick="location.href='scene-09.html?v=203'">
+        <div class="tool-chip expert" style="--mode-color: var(--red);" onclick="location.href='scene-09.html?v=204'">
           <div class="tool-icon">📜</div>
           <div class="tool-name">Historiques</div>
         </div>
@@ -3122,14 +3165,16 @@
     const premium = window.TG && window.TG.isPremium ? window.TG.isPremium() : false;
     card.style.display = premium ? 'none' : 'block';
   }
-  // v2.03 : transformation premium (badge + expert section + body class)
+  // v2.03/2.04 : transformation premium (badge + expert section + body class + fab)
   function refreshPremiumMode() {
     const premium = window.TG && window.TG.isPremium ? window.TG.isPremium() : false;
     document.body.classList.toggle('premium-mode', premium);
     const badge = document.getElementById('expert-badge');
     const expertSec = document.getElementById('expert-section');
+    const fab = document.getElementById('premium-fab');
     if (badge) badge.style.display = premium ? 'inline-block' : 'none';
     if (expertSec) expertSec.style.display = premium ? 'block' : 'none';
+    if (fab) fab.classList.toggle('hidden', premium);
   }
   function openCoachIA() {
     if (navigator.vibrate) navigator.vibrate(8);
@@ -3139,7 +3184,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=203';
+      location.href = 'scene-05.html?v=204';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -3489,7 +3534,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=203'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=204'; };
         block.style.display = 'block';
         return;
       }
@@ -3531,7 +3576,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=203';
+        card.onclick = () => location.href = 'scene-05.html?v=204';
         block.style.display = 'block';
         return;
       }
@@ -3551,7 +3596,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=203';
+          card.onclick = () => location.href = 'scene-06.html?v=204';
           block.style.display = 'block';
           return;
         }
@@ -3565,7 +3610,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=203';
+        card.onclick = () => location.href = 'scene-06.html?v=204';
         block.style.display = 'block';
         return;
       }
@@ -3580,7 +3625,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=203';
+    card.onclick = () => location.href = 'scene-05.html?v=204';
     block.style.display = 'block';
   }
 
@@ -3786,6 +3831,9 @@
 
   /* ===== INIT ===== */
   function init() {
+    // v2.04 : init le mode premium dès le chargement (bouton fab visible sur toutes les vues)
+    refreshPremiumMode();
+
     const onboarded = localStorage.getItem(ONBOARD_KEY) === '1';
     const hash = location.hash.replace('#', '');
     const params = new URLSearchParams(location.search);
@@ -3800,11 +3848,11 @@
     if (shortcut === 'modules') { showView('modules'); return; }
     if (shortcut === 'simu') {
       // Pas de location.href ici : on est déjà dans index.html, redirige
-      location.href = 'scene-05.html?v=203';
+      location.href = 'scene-05.html?v=204';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=203';
+      location.href = 'scene-06.html?v=204';
       return;
     }
 
@@ -3823,11 +3871,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=203"></script>
+  <script type="module" src="tg-common.js?v=204"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=203').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=204').catch(() => {});
       });
     }
   </script>
