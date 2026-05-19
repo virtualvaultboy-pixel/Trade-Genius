@@ -596,6 +596,106 @@
   }
   .hello-line2 em { font-style: italic; color: var(--acid); font-weight: 700; }
 
+  /* ============================================
+     HUB HEADER v1.96 — avatar + greeting + streak grand
+     ============================================ */
+  .hub-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 14px;
+    margin: 4px 0 18px;
+    padding: 14px 14px;
+    background: linear-gradient(135deg, rgba(190,242,100,0.06) 0%, rgba(167,139,250,0.04) 100%);
+    border: 1px solid rgba(190,242,100,0.15);
+    border-radius: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hub-header::after {
+    content: '';
+    position: absolute;
+    top: -60px; right: -40px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, var(--acid) 0%, transparent 70%);
+    opacity: 0.08;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hub-avatar {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(190,242,100,0.22), rgba(167,139,250,0.18));
+    border: 1px solid rgba(190,242,100,0.35);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 4px 14px rgba(190,242,100,0.18), inset 0 1px 0 rgba(255,255,255,0.08);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .hub-greet-text { min-width: 0; position: relative; z-index: 1; }
+  .hub-greet-line1 {
+    font-family: var(--font-m);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 3px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .hub-greet-line2 {
+    font-family: var(--font-d);
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .hub-greet-line2 em { font-style: italic; color: var(--acid); font-weight: 800; }
+  .hub-streak {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, rgba(212,165,116,0.18), rgba(212,165,116,0.06));
+    border: 1px solid rgba(212,165,116,0.4);
+    border-radius: 14px;
+    min-width: 56px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 14px rgba(212,165,116,0.12);
+  }
+  .hub-streak.active { display: flex; }
+  .hub-streak .hs-icon { font-size: 18px; line-height: 1; filter: drop-shadow(0 0 6px rgba(212,165,116,0.6)); }
+  .hub-streak .hs-num {
+    font-family: var(--font-d);
+    font-size: 18px; font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .hub-streak .hs-lbl {
+    font-family: var(--font-m);
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    color: var(--clay);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  @media (max-width: 360px) {
+    .hub-header { gap: 10px; padding: 12px 12px; }
+    .hub-avatar { width: 42px; height: 42px; font-size: 22px; border-radius: 12px; }
+    .hub-greet-line2 { font-size: 15px; }
+    .hub-streak { padding: 6px 9px; min-width: 50px; }
+    .hub-streak .hs-num { font-size: 16px; }
+  }
+
   /* Hero du jour — citation/stat */
   .hero-daily {
     margin-bottom: 18px;
@@ -785,7 +885,7 @@
     content: ' · TERMINÉ ✓';
   }
 
-  /* Stats compactes 3 cellules */
+  /* Stats compactes 3 cellules — v1.96 avec icônes */
   .stats-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -793,22 +893,41 @@
     margin-bottom: 22px;
   }
   .stat-cell {
-    padding: 12px 8px;
-    background: var(--bg-card);
+    padding: 12px 8px 11px;
+    background: linear-gradient(180deg, var(--bg-card) 0%, rgba(20,20,28,0.85) 100%);
     border: 1px solid var(--border);
-    border-radius: 13px;
+    border-radius: 14px;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.12s ease;
+    transition: transform 0.15s ease, border-color 0.2s, box-shadow 0.22s;
+    position: relative;
+    overflow: hidden;
   }
-  .stat-cell:active { transform: scale(0.96); }
+  .stat-cell::before {
+    content: '';
+    position: absolute;
+    top: -22px; right: -22px;
+    width: 60px; height: 60px;
+    background: radial-gradient(circle, var(--stat-color, var(--acid)) 0%, transparent 70%);
+    opacity: 0.14;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .stat-cell:active { transform: scale(0.96); border-color: var(--stat-color, rgba(190,242,100,0.45)); }
+  .stat-icon {
+    font-size: 17px;
+    line-height: 1;
+    margin-bottom: 5px;
+    filter: drop-shadow(0 0 6px var(--stat-color, rgba(190,242,100,0.35)));
+  }
   .stat-num {
     font-family: var(--font-d);
     font-size: 22px;
     font-weight: 800;
-    color: var(--acid);
+    color: var(--stat-color, var(--acid));
     line-height: 1;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
+    letter-spacing: -0.02em;
   }
   .stat-lbl {
     font-family: var(--font-m);
@@ -820,7 +939,7 @@
     text-transform: uppercase;
   }
 
-  /* Premium card (freemium) */
+  /* Premium card (freemium) — v1.96 pulse acid subtle */
   .premium-card {
     margin: 18px 0;
     padding: 18px;
@@ -831,8 +950,16 @@
     position: relative;
     overflow: hidden;
     transition: transform 0.15s;
+    animation: premium-pulse 4.5s ease-in-out infinite;
   }
-  .premium-card:active { transform: scale(0.985); }
+  .premium-card:active { transform: scale(0.985); animation: none; }
+  @keyframes premium-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(190,242,100,0.0), inset 0 1px 0 rgba(190,242,100,0.08); }
+    50%      { box-shadow: 0 0 24px 2px rgba(190,242,100,0.16), inset 0 1px 0 rgba(190,242,100,0.18); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .premium-card { animation: none; }
+  }
   .premium-card::before {
     content: '✨';
     position: absolute;
@@ -894,16 +1021,23 @@
   .tool-chip {
     position: relative;
     padding: 13px 10px;
-    background: var(--bg-card);
+    background: linear-gradient(180deg, var(--bg-card) 0%, rgba(20,20,28,0.85) 100%);
     border: 1px solid var(--border);
-    border-radius: 13px;
+    border-radius: 14px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
     cursor: pointer;
     overflow: hidden;
-    transition: transform 0.12s ease;
+    transition: transform 0.16s ease, border-color 0.22s, box-shadow 0.22s;
+  }
+  @media (hover: hover) {
+    .tool-chip:hover {
+      transform: translateY(-2px);
+      border-color: var(--mode-color, rgba(190,242,100,0.45));
+      box-shadow: 0 8px 22px rgba(0,0,0,0.32), 0 0 18px var(--mode-color, rgba(190,242,100,0.18));
+    }
   }
   .tool-chip:active { transform: scale(0.96); }
   .tool-chip.locked { opacity: 0.55; }
@@ -1693,7 +1827,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=195')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=196')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -1712,7 +1846,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=195')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=196')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -1731,7 +1865,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=195')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=196')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -1750,7 +1884,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=195')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=196')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -1788,39 +1922,21 @@
       </div>
     </div>
 
-    <!-- Hello dynamique -->
-    <div class="hello">
-      <p class="hello-line1" id="hello-greeting">Bonjour 👋</p>
-      <h1 class="hello-line2" id="hello-sub">Prêt à devenir<br><em>investisseur</em> ?</h1>
-    </div>
-
-    <!-- Streak quotidien -->
-    <div class="streak-badge" id="streak-badge">
-      <span class="streak-icon">🔥</span>
-      <span class="streak-num" id="streak-num">0</span>
-      <span>jour<span id="streak-s"></span> d'affilée</span>
-    </div>
-
-    <!-- Hero du jour : citation ou stat -->
-    <div class="hero-daily" id="hero-daily">
-      <div class="hero-daily-eyebrow" id="hero-daily-eyebrow">💡 PENSÉE DU JOUR</div>
-      <p class="hero-daily-text" id="hero-daily-text"></p>
-      <p class="hero-daily-author" id="hero-daily-author"></p>
-    </div>
-
-    <!-- Défi du jour -->
-    <div class="daily-challenge" id="daily-challenge" onclick="openDailyChallenge()">
-      <div class="dc-left">
-        <div class="dc-icon" id="dc-icon">🎯</div>
-        <div class="dc-text">
-          <div class="dc-label" id="dc-label">DÉFI DU JOUR</div>
-          <div class="dc-title" id="dc-title">1 question pour rester affûté</div>
-        </div>
+    <!-- Hub header v1.96 : avatar + greeting + streak grand -->
+    <div class="hub-header" id="hub-header">
+      <div class="hub-avatar" id="hub-avatar" aria-hidden="true">☀️</div>
+      <div class="hub-greet-text">
+        <div class="hub-greet-line1" id="hub-greet-line1">Bonjour</div>
+        <div class="hub-greet-line2" id="hub-greet-line2">Prêt pour ta session ?</div>
       </div>
-      <div class="dc-arrow">→</div>
+      <div class="hub-streak" id="hub-streak" aria-label="Série quotidienne">
+        <div class="hs-icon">🔥</div>
+        <div class="hs-num" id="hub-streak-num">0</div>
+        <div class="hs-lbl">jour<span id="hub-streak-s"></span></div>
+      </div>
     </div>
 
-    <!-- Continue où tu en étais -->
+    <!-- HERO REPRENDRE — bloc principal -->
     <div class="resume-block" id="resume-block" style="display:none;">
       <div class="resume-eyebrow">↻ REPRENDRE</div>
       <div class="resume-card" id="resume-card"></div>
@@ -1838,20 +1954,42 @@
       <div class="pp-pct" id="pp-pct">0%</div>
     </div>
 
-    <!-- Stats compactes -->
+    <!-- Stats compactes avec icônes -->
     <div class="stats-row">
-      <div class="stat-cell" onclick="location.href='scene-06.html?v=195'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=196'">
+        <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=195'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=196'">
+        <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
       </div>
-      <div class="stat-cell" onclick="location.href='scene-05.html?v=195'">
+      <div class="stat-cell" style="--stat-color: var(--purple);" onclick="location.href='scene-05.html?v=196'">
+        <div class="stat-icon">🎯</div>
         <div class="stat-num" id="stat-winrate">—</div>
         <div class="stat-lbl">Win<br>rate</div>
       </div>
+    </div>
+
+    <!-- Défi du jour -->
+    <div class="daily-challenge" id="daily-challenge" onclick="openDailyChallenge()">
+      <div class="dc-left">
+        <div class="dc-icon" id="dc-icon">🎯</div>
+        <div class="dc-text">
+          <div class="dc-label" id="dc-label">DÉFI DU JOUR</div>
+          <div class="dc-title" id="dc-title">1 question pour rester affûté</div>
+        </div>
+      </div>
+      <div class="dc-arrow">→</div>
+    </div>
+
+    <!-- Hero du jour : citation (compact) -->
+    <div class="hero-daily" id="hero-daily">
+      <div class="hero-daily-eyebrow" id="hero-daily-eyebrow">💡 PENSÉE DU JOUR</div>
+      <p class="hero-daily-text" id="hero-daily-text"></p>
+      <p class="hero-daily-author" id="hero-daily-author"></p>
     </div>
 
     <!-- Outils en chips -->
@@ -1865,7 +2003,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=195'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=196'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -1948,40 +2086,65 @@
 
   function animateAccueilEntrance() {
     if (typeof anime === 'undefined') return;
-    // Hero greeting + sub
+    // v1.96 — timeline restructurée : header → hero reprendre → progress/stats → daily/quote → tools → premium/actions
+
+    // 1) Hub header (slide-down + fade)
     anime({
-      targets: '#view-accueil .hello, #view-accueil .hero-daily, #view-accueil .streak-badge.active',
+      targets: '#view-accueil .hub-header',
+      translateY: [-14, 0],
+      opacity: [0, 1],
+      duration: 540,
+      easing: 'easeOutCubic',
+    });
+
+    // 2) Hero Reprendre (entrée marquée, scale + slide)
+    anime({
+      targets: '#view-accueil .resume-block',
+      translateY: [20, 0],
+      scale: [0.97, 1],
+      opacity: [0, 1],
+      duration: 620,
+      delay: 120,
+      easing: 'easeOutBack',
+    });
+
+    // 3) Parcours progress + stats (stagger)
+    anime({
+      targets: '#view-accueil .parcours-progress, #view-accueil .stats-row .stat-cell',
+      translateY: [18, 0],
+      opacity: [0, 1],
+      delay: anime.stagger(55, { start: 260 }),
+      duration: 540,
+      easing: 'easeOutCubic',
+    });
+
+    // 4) Défi du jour + pensée du jour
+    anime({
+      targets: '#view-accueil .daily-challenge, #view-accueil .hero-daily',
       translateY: [16, 0],
       opacity: [0, 1],
-      delay: anime.stagger(80, { start: 50 }),
-      duration: 600,
+      delay: anime.stagger(70, { start: 460 }),
+      duration: 540,
       easing: 'easeOutCubic',
     });
-    // Resume + parcours-progress + stats
-    anime({
-      targets: '#view-accueil .resume-block, #view-accueil .parcours-progress, #view-accueil .stats-row, #view-accueil .daily-challenge',
-      translateY: [20, 0],
-      opacity: [0, 1],
-      delay: anime.stagger(70, { start: 200 }),
-      duration: 580,
-      easing: 'easeOutCubic',
-    });
-    // Tools grid cascade
+
+    // 5) Tools cascade
     anime({
       targets: '#view-accueil .tool-chip',
       translateY: [22, 0],
       opacity: [0, 1],
       scale: [0.94, 1],
-      delay: anime.stagger(60, { start: 400 }),
+      delay: anime.stagger(60, { start: 620 }),
       duration: 540,
       easing: 'easeOutBack',
     });
-    // Premium card + hub-actions
+
+    // 6) Premium card + hub-actions
     anime({
       targets: '#view-accueil .premium-card, #view-accueil .hub-actions',
       translateY: [16, 0],
       opacity: [0, 1],
-      delay: anime.stagger(80, { start: 600 }),
+      delay: anime.stagger(80, { start: 820 }),
       duration: 540,
       easing: 'easeOutCubic',
     });
@@ -2143,34 +2306,30 @@
   ];
 
   function refreshAccueil() {
-    // 1) Salutation dynamique
+    // 1) Salutation dynamique (v1.96 : hub-header compact avatar + line1 + line2)
     const now = new Date();
     const h = now.getHours();
     const day = now.getDay(); // 0 = dim, 6 = sam
-    const greetEl = document.getElementById('hello-greeting');
-    const subEl = document.getElementById('hello-sub');
-    let greet, sub;
+    const avatarEl = document.getElementById('hub-avatar');
+    const line1El = document.getElementById('hub-greet-line1');
+    const line2El = document.getElementById('hub-greet-line2');
+    let avatar, line1, line2;
     if (day === 0 || day === 6) {
-      greet = 'Bon week-end 🎯';
-      sub = 'Pose-toi.<br>Apprends quelque chose<br>de <em>nouveau</em>.';
+      avatar = '🎯'; line1 = 'BON WEEK-END'; line2 = 'Apprends un truc <em>nouveau</em>';
     } else if (h < 6) {
-      greet = 'Salut noctambule 🌙';
-      sub = 'Le marché ne dort pas.<br>Toi non plus<br>visiblement.';
+      avatar = '🌙'; line1 = 'SALUT NOCTAMBULE'; line2 = 'Le marché <em>ne dort pas</em>';
     } else if (h < 12) {
-      greet = 'Bon matin ☀️';
-      sub = 'Une journée.<br>Une décision <em>éclairée</em>.';
+      avatar = '☀️'; line1 = 'BON MATIN'; line2 = 'Une décision <em>éclairée</em>';
     } else if (h < 18) {
-      greet = 'Salut 👋';
-      sub = 'Prêt pour<br>une petite session ?';
+      avatar = '👋'; line1 = 'SALUT'; line2 = 'Prêt pour une <em>session</em> ?';
     } else if (h < 22) {
-      greet = 'Bonsoir 🌆';
-      sub = 'Une fiche par soir =<br>365 fiches par an. <em>Easy.</em>';
+      avatar = '🌆'; line1 = 'BONSOIR'; line2 = 'Une fiche / soir = <em>365 / an</em>';
     } else {
-      greet = 'Bonne nuit 🌙';
-      sub = 'Une dernière<br>session avant<br>de <em>dormir</em> ?';
+      avatar = '🌙'; line1 = 'BONNE NUIT'; line2 = 'Une dernière <em>session</em> ?';
     }
-    greetEl.textContent = greet;
-    subEl.innerHTML = sub;
+    if (avatarEl) avatarEl.textContent = avatar;
+    if (line1El) line1El.textContent = line1;
+    if (line2El) line2El.innerHTML = line2;
 
     // 2) Citation du jour (basée sur jour de l'année pour avoir 1/jour)
     const start = new Date(now.getFullYear(), 0, 0);
@@ -2331,7 +2490,7 @@
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
       const v = document.querySelector('.module-card[data-module="0"]')?.getAttribute('onclick')?.match(/v=(\d+)/)?.[1] || '168';
-      location.href = 'scene-05.html?v=195' + v;
+      location.href = 'scene-05.html?v=196' + v;
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -2585,9 +2744,11 @@
       try { localStorage.setItem(STREAK_KEY, JSON.stringify(s)); } catch {}
     }
     if (s.count >= 2) {
-      const numEl = document.getElementById('streak-num');
-      document.getElementById('streak-s').textContent = 's';
-      document.getElementById('streak-badge').classList.add('active');
+      const numEl = document.getElementById('hub-streak-num');
+      const sEl = document.getElementById('hub-streak-s');
+      const wrap = document.getElementById('hub-streak');
+      if (sEl) sEl.textContent = s.count > 1 ? 's' : '';
+      if (wrap) wrap.classList.add('active');
       if (typeof anime !== 'undefined' && numEl) {
         const obj = { val: 0 };
         anime({
@@ -2678,7 +2839,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=195' + v; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=196' + v; };
         block.style.display = 'block';
         return;
       }
@@ -2720,7 +2881,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=195';
+        card.onclick = () => location.href = 'scene-05.html?v=196';
         block.style.display = 'block';
         return;
       }
@@ -2740,7 +2901,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=195';
+          card.onclick = () => location.href = 'scene-06.html?v=196';
           block.style.display = 'block';
           return;
         }
@@ -2754,7 +2915,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=195';
+        card.onclick = () => location.href = 'scene-06.html?v=196';
         block.style.display = 'block';
         return;
       }
@@ -2769,7 +2930,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=195';
+    card.onclick = () => location.href = 'scene-05.html?v=196';
     block.style.display = 'block';
   }
 
@@ -2826,34 +2987,34 @@
 
   const ACCUEIL_TUTO_STEPS = [
     {
-      target: '.hello',
+      target: '.hub-header',
       placement: 'bottom',
       title: 'Bienvenue dans ton hub 👋',
-      body: 'Cette page est ton <strong>point de départ quotidien</strong>. Elle s\'adapte à l\'heure de la journée et à ta progression.',
-    },
-    {
-      target: '#hero-daily',
-      placement: 'bottom',
-      title: 'La pensée du jour 💡',
-      body: 'Une <em>citation financière</em> différente chaque jour. Une dose de sagesse pour t\'inspirer (Buffett, Munger, Einstein...).',
+      body: 'Cette page est ton <strong>point de départ quotidien</strong>. Avatar selon l\'heure, salutation, et ta <em>série 🔥</em> bien visible.',
     },
     {
       target: '#resume-block',
       placement: 'bottom',
       title: 'Reprendre où tu en étais ↻',
-      body: 'Ce bloc te <strong>propose une action</strong> selon ce que tu as fait dernièrement : une session simu, une fiche bibliothèque, ou une suggestion.',
+      body: 'Ce bloc te <strong>propose ta prochaine action</strong> : chapitre en cours, session simu, ou suggestion selon ce que tu as fait.',
     },
     {
       target: '.stats-row',
       placement: 'top',
       title: 'Tes stats 📊',
-      body: 'Suis ta <strong>progression</strong> : fiches lues, sessions de simulation jouées, et ton <em>winrate</em>. Tap pour aller directement à la section.',
+      body: 'Fiches lues 📚 · Sessions simu 🎮 · Winrate 🎯. Tap une carte pour aller à la section.',
+    },
+    {
+      target: '#daily-challenge',
+      placement: 'top',
+      title: 'Défi du jour 🎯',
+      body: '<strong>Une question</strong> par jour pour rester affûté. Réponds juste → streak qui monte.',
     },
     {
       target: '.tools-grid',
       placement: 'top',
-      title: 'Tes 3 outils 🎯',
-      body: '<strong>Apprendre</strong> (revoir les modules) · <strong>Entraîner</strong> (simulateur de trading) · <strong>Bibliothèque</strong> (placements expliqués). Toujours accessibles ici.',
+      title: 'Tes outils 🛠️',
+      body: '<strong>Apprendre</strong> · <strong>Entraîner</strong> · <strong>Bibliothèque</strong> · <strong>Analyse</strong> (premium). Tout est ici.',
     },
   ];
 
@@ -2979,11 +3140,11 @@
     if (shortcut === 'modules') { showView('modules'); return; }
     if (shortcut === 'simu') {
       // Pas de location.href ici : on est déjà dans index.html, redirige
-      location.href = 'scene-05.html?v=195';
+      location.href = 'scene-05.html?v=196';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=195';
+      location.href = 'scene-06.html?v=196';
       return;
     }
 
@@ -3002,11 +3163,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=195"></script>
+  <script type="module" src="tg-common.js?v=196"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=195').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=196').catch(() => {});
       });
     }
   </script>
