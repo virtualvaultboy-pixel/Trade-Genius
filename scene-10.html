@@ -2,10 +2,15 @@
 <!--
 ═══════════════════════════════════════════════════════════════════
                     TRADE GENIUS · scene-10.html
-                    ANALYSE DE MARCHÉ (Premium) — CoinGecko free
+                    ANALYSE DE MARCHÉ (Premium) v2.08
 ═══════════════════════════════════════════════════════════════════
-  6 cryptos majeures · sparkline 7j · RSI 14 calculé côté JS · verdict
-  Pas d'API payante — uniquement CoinGecko public.
+  3 tabs : Crypto · Actions · ETF
+  Crypto   : CoinGecko free
+  Actions  : Yahoo Finance via corsproxy.io
+  ETF      : Yahoo Finance via corsproxy.io
+
+  6 indicateurs côté JS : RSI 14, MA20, MA50, MACD, Bollinger, Momentum
+  Verdict combiné : Haussier · Mitigé · Baissier
 -->
 <html lang="fr">
 <head>
@@ -14,7 +19,7 @@
   <meta name="theme-color" content="#0a0a0c">
   <title>Trade Genius — Analyse de marché</title>
   <link rel="manifest" href="manifest.json">
-  <script type="module" src="tg-common.js?v=207"></script>
+  <script type="module" src="tg-common.js?v=208"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -55,20 +60,18 @@
       -webkit-tap-highlight-color: transparent;
     }
     body::before {
-      content: '';
-      position: fixed;
+      content: ''; position: fixed;
       top: -10vh; left: -15%;
       width: 70vw; max-width: 540px; height: 55vh; min-height: 340px;
-      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(245,158,11,0.16) 0%, rgba(245,158,11,0) 65%);
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(245,158,11,0.14) 0%, rgba(245,158,11,0) 65%);
       filter: blur(36px); z-index: 0; pointer-events: none;
       animation: drift-gold 24s ease-in-out infinite;
     }
     body::after {
-      content: '';
-      position: fixed;
+      content: ''; position: fixed;
       bottom: 0; right: -20%;
       width: 80vw; max-width: 540px; height: 55vh; min-height: 340px;
-      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(167,139,250,0.16) 0%, rgba(167,139,250,0) 70%);
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(167,139,250,0.14) 0%, rgba(167,139,250,0) 70%);
       filter: blur(36px); z-index: 0; pointer-events: none;
       animation: drift-purple 28s ease-in-out infinite;
     }
@@ -122,8 +125,36 @@
     .h-title em { font-style: italic; color: var(--gold); font-weight: 800; }
     .h-sub {
       font-family: var(--font-d); font-size: 13.5px; color: var(--text-dim);
-      margin: 0 0 24px; line-height: 1.4;
+      margin: 0 0 20px; line-height: 1.4;
     }
+
+    .tabs {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 4px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 18px;
+    }
+    .tab {
+      padding: 9px 12px;
+      background: transparent; border: none;
+      color: var(--text-dim);
+      font-family: var(--font-d); font-size: 12.5px; font-weight: 700;
+      letter-spacing: 0.05em;
+      border-radius: 8px; cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+    }
+    .tab:active { transform: scale(0.97); }
+    .tab.active {
+      background: linear-gradient(135deg, var(--gold), var(--purple));
+      color: #0a0a0c; font-weight: 800;
+      box-shadow: 0 4px 14px rgba(245,158,11,0.32);
+    }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
 
     .coin-card {
       margin-bottom: 12px;
@@ -145,7 +176,7 @@
       padding: 6px 10px; border-radius: 8px;
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--coin-color, var(--border));
-      min-width: 56px; text-align: center;
+      min-width: 64px; text-align: center;
     }
     .cc-name {
       font-family: var(--font-d); font-size: 11.5px;
@@ -153,64 +184,115 @@
       letter-spacing: 0.04em;
     }
     .cc-price-wrap {
-      font-family: var(--font-d); font-size: 17px;
+      font-family: var(--font-d); font-size: 16px;
       font-weight: 800; color: var(--text);
       letter-spacing: -0.015em; text-align: right;
     }
     .cc-chg {
-      font-family: var(--font-m); font-size: 11px; font-weight: 700;
+      font-family: var(--font-m); font-size: 10.5px; font-weight: 700;
       margin-top: 2px;
     }
     .cc-chg.up { color: var(--green); }
     .cc-chg.down { color: var(--red); }
 
-    .cc-row2 {
-      display: grid; grid-template-columns: 1fr auto; gap: 12px;
-      align-items: center;
-    }
+    .cc-row2 { margin-bottom: 8px; }
     .cc-spark {
-      width: 100%; height: 60px;
+      width: 100%; height: 56px;
       background: rgba(0,0,0,0.25);
       border: 1px solid var(--border);
       border-radius: 10px;
     }
-    .cc-rsi {
-      min-width: 110px;
-      padding: 8px 10px;
-      background: rgba(0,0,0,0.32);
+
+    .cc-indicators {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 6px; margin-bottom: 8px;
+    }
+    .ind {
+      padding: 6px 8px;
+      background: rgba(0,0,0,0.28);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 8px;
       text-align: center;
     }
-    .cc-rsi-lbl {
-      font-family: var(--font-m); font-size: 9px;
-      letter-spacing: 0.18em; color: var(--text-faint);
-      text-transform: uppercase; margin-bottom: 2px; font-weight: 700;
+    .ind-lbl {
+      font-family: var(--font-m); font-size: 8px;
+      letter-spacing: 0.16em; color: var(--text-faint);
+      text-transform: uppercase; font-weight: 700;
+      margin-bottom: 2px;
     }
-    .cc-rsi-val {
-      font-family: var(--font-d); font-size: 18px; font-weight: 800;
-      letter-spacing: -0.01em; line-height: 1;
+    .ind-val {
+      font-family: var(--font-d); font-size: 12.5px; font-weight: 800;
+      color: var(--text); line-height: 1;
+      letter-spacing: -0.01em;
     }
-    .cc-rsi-val.overbought { color: var(--red); }
-    .cc-rsi-val.oversold   { color: var(--green); }
-    .cc-rsi-val.neutral    { color: var(--gold); }
-    .cc-verdict {
-      font-family: var(--font-m); font-size: 9px;
-      font-weight: 800; letter-spacing: 0.12em;
-      text-transform: uppercase; margin-top: 4px;
+    .ind-val.bull { color: var(--green); }
+    .ind-val.bear { color: var(--red); }
+    .ind-val.neutral { color: var(--gold); }
+    .ind-tag {
+      display: block;
+      font-family: var(--font-m); font-size: 8px;
+      font-weight: 800; letter-spacing: 0.08em;
+      margin-top: 1px;
+      text-transform: uppercase;
     }
-    .cc-verdict.overbought { color: var(--red); }
-    .cc-verdict.oversold   { color: var(--green); }
-    .cc-verdict.neutral    { color: var(--gold); }
+    .ind-tag.bull { color: var(--green); }
+    .ind-tag.bear { color: var(--red); }
+    .ind-tag.neutral { color: var(--gold); }
+
+    .cc-verdict-bar {
+      display: grid; grid-template-columns: 1fr auto; gap: 10px;
+      align-items: center;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .cc-verdict-bar.bullish {
+      background: linear-gradient(135deg, rgba(34,197,94,0.18), rgba(34,197,94,0.04));
+      border-color: rgba(34,197,94,0.4);
+    }
+    .cc-verdict-bar.bearish {
+      background: linear-gradient(135deg, rgba(239,68,68,0.18), rgba(239,68,68,0.04));
+      border-color: rgba(239,68,68,0.4);
+    }
+    .cc-verdict-bar.neutral {
+      background: linear-gradient(135deg, rgba(245,158,11,0.16), rgba(245,158,11,0.04));
+      border-color: rgba(245,158,11,0.35);
+    }
+    .vb-label {
+      font-family: var(--font-d); font-size: 12.5px; font-weight: 700;
+      color: var(--text); letter-spacing: -0.005em;
+    }
+    .vb-label strong { font-weight: 800; }
+    .cc-verdict-bar.bullish .vb-label strong { color: var(--green); }
+    .cc-verdict-bar.bearish .vb-label strong { color: var(--red); }
+    .cc-verdict-bar.neutral .vb-label strong { color: var(--gold); }
+    .vb-score {
+      font-family: var(--font-m); font-size: 11px; font-weight: 800;
+      letter-spacing: 0.1em;
+      padding: 4px 9px; border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+    }
 
     .skeleton {
       background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%);
       background-size: 200% 100%;
       animation: skel 1.4s ease-in-out infinite;
-      border-radius: 6px;
-      color: transparent;
+      border-radius: 6px; color: transparent;
     }
     @keyframes skel { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    .tab-error {
+      padding: 20px 16px;
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.25);
+      border-radius: 12px;
+      font-family: var(--font-d); font-size: 13px;
+      color: var(--text-dim); line-height: 1.5;
+      text-align: center;
+    }
+    .tab-error strong { color: var(--red); }
 
     .disclaimer {
       margin-top: 18px;
@@ -226,8 +308,7 @@
     @media (max-width: 360px) {
       .h-title { font-size: 26px; }
       .cc-spark { height: 50px; }
-      .cc-rsi { min-width: 90px; }
-      .cc-rsi-val { font-size: 16px; }
+      .ind-val { font-size: 11.5px; }
     }
   </style>
 </head>
@@ -240,197 +321,404 @@
   </div>
 
   <div class="h-eyebrow">ANALYSE DE MARCHÉ</div>
-  <h1 class="h-title"><em>6 cryptos</em> en direct</h1>
-  <p class="h-sub">Prix, variation 24h, RSI 14 sur l'historique 7 jours. Données CoinGecko, calculs côté app.</p>
+  <h1 class="h-title">Marché en <em>direct</em></h1>
+  <p class="h-sub">Crypto · Actions · ETF · 6 indicateurs (RSI · MA20 · MA50 · MACD · Bollinger · Momentum) · verdict auto.</p>
 
-  <div id="coins-list"></div>
+  <div class="tabs">
+    <button class="tab active" data-tab="crypto" onclick="switchTab('crypto')">Crypto</button>
+    <button class="tab" data-tab="stocks" onclick="switchTab('stocks')">Actions</button>
+    <button class="tab" data-tab="etfs" onclick="switchTab('etfs')">ETF</button>
+  </div>
+
+  <div class="tab-content active" id="tab-crypto"></div>
+  <div class="tab-content" id="tab-stocks"></div>
+  <div class="tab-content" id="tab-etfs"></div>
 
   <div class="disclaimer">
-    <strong>⚠ Important :</strong> Ces données et indicateurs sont à but pédagogique uniquement. <strong>Aucune recommandation d'investissement</strong>. Le RSI est un outil parmi d'autres et ne prédit pas l'avenir. Fais tes propres recherches.
+    <strong>⚠ Important :</strong> Données et indicateurs à but <strong>pédagogique uniquement</strong>. Aucune recommandation d'investissement. Crypto via CoinGecko, Actions/ETF via Yahoo Finance (proxy public). Calculs côté app, peuvent différer des outils pro.
   </div>
 </div>
 
 <script>
-  /* ===================================================
-     ANALYSE DE MARCHÉ — CoinGecko free + calculs JS
-     =================================================== */
-  const COINS = [
-    { id: 'bitcoin',      sym: 'BTC',  name: 'Bitcoin',  color: '#f59e0b' },
-    { id: 'ethereum',     sym: 'ETH',  name: 'Ethereum', color: '#a78bfa' },
-    { id: 'solana',       sym: 'SOL',  name: 'Solana',   color: '#22c55e' },
-    { id: 'binancecoin',  sym: 'BNB',  name: 'BNB',      color: '#fde047' },
-    { id: 'ripple',       sym: 'XRP',  name: 'XRP',      color: '#60a5fa' },
-    { id: 'cardano',      sym: 'ADA',  name: 'Cardano',  color: '#7dd3fc' },
-  ];
-  const CG_URL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&ids=${COINS.map(c=>c.id).join(',')}&order=market_cap_desc&sparkline=true&price_change_percentage=24h`;
-  const REFRESH_MS = 60_000;
+/* ============================================
+   v2.08 — Multi-asset live market + indicateurs côté JS
+   ============================================ */
 
-  function fmtPrice(p) {
-    if (p >= 1000) return Math.round(p).toLocaleString('fr-FR') + ' €';
-    if (p >= 1)    return p.toFixed(2) + ' €';
-    return p.toFixed(4) + ' €';
+const CRYPTO_LIST = [
+  { id: 'bitcoin',      sym: 'BTC',  name: 'Bitcoin',  color: '#f59e0b' },
+  { id: 'ethereum',     sym: 'ETH',  name: 'Ethereum', color: '#a78bfa' },
+  { id: 'solana',       sym: 'SOL',  name: 'Solana',   color: '#22c55e' },
+  { id: 'binancecoin',  sym: 'BNB',  name: 'BNB',      color: '#fde047' },
+  { id: 'ripple',       sym: 'XRP',  name: 'XRP',      color: '#60a5fa' },
+  { id: 'cardano',      sym: 'ADA',  name: 'Cardano',  color: '#7dd3fc' },
+];
+const STOCKS_LIST = [
+  { sym: 'AAPL',  name: 'Apple',     color: '#a8a8b3' },
+  { sym: 'MSFT',  name: 'Microsoft', color: '#60a5fa' },
+  { sym: 'GOOGL', name: 'Alphabet',  color: '#fde047' },
+  { sym: 'AMZN',  name: 'Amazon',    color: '#f59e0b' },
+  { sym: 'NVDA',  name: 'Nvidia',    color: '#22c55e' },
+  { sym: 'TSLA',  name: 'Tesla',     color: '#ef4444' },
+];
+const ETFS_LIST = [
+  { sym: 'SPY',  name: 'S&P 500',         color: '#60a5fa' },
+  { sym: 'QQQ',  name: 'Nasdaq 100',      color: '#a78bfa' },
+  { sym: 'VTI',  name: 'Total US Market', color: '#22c55e' },
+  { sym: 'VOO',  name: 'Vanguard S&P',    color: '#bef264' },
+  { sym: 'IWM',  name: 'Russell 2000',    color: '#f59e0b' },
+  { sym: 'EFA',  name: 'EAFE Europe/Asia', color: '#7dd3fc' },
+];
+
+const REFRESH_MS = 60_000;
+const CG_URL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&ids=${CRYPTO_LIST.map(c=>c.id).join(',')}&order=market_cap_desc&sparkline=true&price_change_percentage=24h`;
+function yahooUrl(symbol) {
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=3mo`;
+  return `https://corsproxy.io/?${encodeURIComponent(url)}`;
+}
+
+let _currentTab = 'crypto';
+
+function fmtPriceEUR(p) {
+  if (p == null || isNaN(p)) return '—';
+  if (p >= 1000) return Math.round(p).toLocaleString('fr-FR') + ' €';
+  if (p >= 1)    return p.toFixed(2) + ' €';
+  return p.toFixed(4) + ' €';
+}
+function fmtPriceUSD(p) {
+  if (p == null || isNaN(p)) return '—';
+  if (p >= 1000) return Math.round(p).toLocaleString('fr-FR') + ' $';
+  if (p >= 1)    return p.toFixed(2) + ' $';
+  return p.toFixed(4) + ' $';
+}
+
+/* ============== INDICATEURS ============== */
+function calcRSI(prices, period = 14) {
+  if (!prices || prices.length < period + 1) return null;
+  let g = 0, l = 0;
+  for (let i = 1; i <= period; i++) {
+    const d = prices[i] - prices[i - 1];
+    if (d >= 0) g += d; else l -= d;
   }
-
-  /* RSI 14 (formule classique Wilder) */
-  function calcRSI(prices, period = 14) {
-    if (!prices || prices.length < period + 1) return null;
-    let gains = 0, losses = 0;
-    for (let i = 1; i <= period; i++) {
-      const diff = prices[i] - prices[i - 1];
-      if (diff >= 0) gains += diff; else losses -= diff;
-    }
-    let avgGain = gains / period;
-    let avgLoss = losses / period;
-    for (let i = period + 1; i < prices.length; i++) {
-      const diff = prices[i] - prices[i - 1];
-      if (diff >= 0) {
-        avgGain = (avgGain * (period - 1) + diff) / period;
-        avgLoss = (avgLoss * (period - 1)) / period;
-      } else {
-        avgGain = (avgGain * (period - 1)) / period;
-        avgLoss = (avgLoss * (period - 1) - diff) / period;
-      }
-    }
-    if (avgLoss === 0) return 100;
-    const rs = avgGain / avgLoss;
-    return 100 - (100 / (1 + rs));
+  let avgG = g / period, avgL = l / period;
+  for (let i = period + 1; i < prices.length; i++) {
+    const d = prices[i] - prices[i - 1];
+    if (d >= 0) { avgG = (avgG * (period - 1) + d) / period; avgL = (avgL * (period - 1)) / period; }
+    else        { avgG = (avgG * (period - 1)) / period;     avgL = (avgL * (period - 1) - d) / period; }
   }
+  if (avgL === 0) return 100;
+  return 100 - (100 / (1 + avgG / avgL));
+}
+function calcMA(prices, period) {
+  if (!prices || prices.length < period) return null;
+  const s = prices.slice(-period);
+  return s.reduce((a, b) => a + b, 0) / period;
+}
+function calcEMA(prices, period) {
+  if (!prices || prices.length < period) return null;
+  const k = 2 / (period + 1);
+  let ema = prices.slice(0, period).reduce((a, b) => a + b, 0) / period;
+  for (let i = period; i < prices.length; i++) ema = prices[i] * k + ema * (1 - k);
+  return ema;
+}
+function calcMACD(prices) {
+  const e12 = calcEMA(prices, 12);
+  const e26 = calcEMA(prices, 26);
+  if (e12 == null || e26 == null) return null;
+  return e12 - e26;
+}
+function calcBollinger(prices, period = 20, mult = 2) {
+  if (!prices || prices.length < period) return null;
+  const s = prices.slice(-period);
+  const ma = s.reduce((a, b) => a + b, 0) / period;
+  const v = s.reduce((a, b) => a + (b - ma) ** 2, 0) / period;
+  const std = Math.sqrt(v);
+  return { upper: ma + mult * std, mid: ma, lower: ma - mult * std };
+}
+function calcMomentum(prices, period = 14) {
+  if (!prices || prices.length < period + 1) return null;
+  const cur = prices[prices.length - 1];
+  const past = prices[prices.length - 1 - period];
+  return ((cur - past) / past) * 100;
+}
 
-  function rsiVerdict(rsi) {
-    if (rsi == null) return { cls: 'neutral', label: '—' };
-    if (rsi >= 70) return { cls: 'overbought', label: 'Surachat' };
-    if (rsi <= 30) return { cls: 'oversold',   label: 'Survente' };
-    return { cls: 'neutral', label: 'Neutre' };
-  }
+function rsiTag(v) {
+  if (v == null) return { cls: 'neutral', label: '—' };
+  if (v >= 70) return { cls: 'bear', label: 'Surachat' };
+  if (v <= 30) return { cls: 'bull', label: 'Survente' };
+  return { cls: 'neutral', label: 'Neutre' };
+}
+function maTag(price, ma) {
+  if (price == null || ma == null) return { cls: 'neutral', label: '—' };
+  return price > ma ? { cls: 'bull', label: '↑ Au-dessus' } : { cls: 'bear', label: '↓ En-dessous' };
+}
+function macdTag(v) {
+  if (v == null) return { cls: 'neutral', label: '—' };
+  return v >= 0 ? { cls: 'bull', label: 'Haussier' } : { cls: 'bear', label: 'Baissier' };
+}
+function bollTag(price, b) {
+  if (!b || price == null) return { cls: 'neutral', label: '—' };
+  if (price > b.upper) return { cls: 'bear', label: 'Bande haute' };
+  if (price < b.lower) return { cls: 'bull', label: 'Bande basse' };
+  return { cls: 'neutral', label: 'Milieu' };
+}
+function momTag(v) {
+  if (v == null) return { cls: 'neutral', label: '—' };
+  if (v >= 5) return { cls: 'bull', label: 'Fort+' };
+  if (v <= -5) return { cls: 'bear', label: 'Fort-' };
+  return { cls: 'neutral', label: 'Faible' };
+}
 
-  function drawSpark(canvas, prices, color) {
-    const DPR = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = canvas.offsetWidth * DPR;
-    canvas.height = canvas.offsetHeight * DPR;
-    const ctx = canvas.getContext('2d');
-    const w = canvas.width, h = canvas.height;
-    ctx.clearRect(0, 0, w, h);
-    if (!prices || prices.length < 2) return;
-    const mn = Math.min(...prices), mx = Math.max(...prices);
-    const range = (mx - mn) || 1;
-    const padY = 4 * DPR;
-    const useH = h - padY * 2;
-    const stepX = w / (prices.length - 1);
+function combineVerdict(tags) {
+  let bull = 0, bear = 0, neutral = 0;
+  tags.forEach(t => {
+    if (t.cls === 'bull') bull++;
+    else if (t.cls === 'bear') bear++;
+    else neutral++;
+  });
+  const score = `${bull} ↑ · ${bear} ↓`;
+  if (bull >= bear + 2) return { cls: 'bullish', label: 'Tendance <strong>Haussière</strong>', score };
+  if (bear >= bull + 2) return { cls: 'bearish', label: 'Tendance <strong>Baissière</strong>', score };
+  return { cls: 'neutral', label: 'Signaux <strong>Mitigés</strong>', score };
+}
 
-    // Fill gradient sous la courbe
-    const grad = ctx.createLinearGradient(0, padY, 0, h);
-    grad.addColorStop(0, color + '50');
-    grad.addColorStop(1, color + '00');
-    ctx.fillStyle = grad;
-    ctx.beginPath();
-    ctx.moveTo(0, h);
-    prices.forEach((v, i) => {
-      const px = i * stepX;
-      const py = padY + (1 - (v - mn) / range) * useH;
-      ctx.lineTo(px, py);
-    });
-    ctx.lineTo((prices.length - 1) * stepX, h);
-    ctx.closePath();
-    ctx.fill();
+/* ============== DRAW SPARK ============== */
+function drawSpark(canvas, prices, color) {
+  if (!canvas) return;
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = canvas.offsetWidth * DPR;
+  canvas.height = canvas.offsetHeight * DPR;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  ctx.clearRect(0, 0, w, h);
+  if (!prices || prices.length < 2) return;
+  const mn = Math.min(...prices), mx = Math.max(...prices);
+  const range = (mx - mn) || 1;
+  const padY = 4 * DPR;
+  const useH = h - padY * 2;
+  const stepX = w / (prices.length - 1);
 
-    // Ligne
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 1.6 * DPR;
-    ctx.shadowColor = color; ctx.shadowBlur = 5 * DPR;
-    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-    ctx.beginPath();
-    prices.forEach((v, i) => {
-      const px = i * stepX;
-      const py = padY + (1 - (v - mn) / range) * useH;
-      if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
-    });
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-  }
+  const grad = ctx.createLinearGradient(0, padY, 0, h);
+  grad.addColorStop(0, color + '50');
+  grad.addColorStop(1, color + '00');
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.moveTo(0, h);
+  prices.forEach((v, i) => ctx.lineTo(i * stepX, padY + (1 - (v - mn) / range) * useH));
+  ctx.lineTo((prices.length - 1) * stepX, h);
+  ctx.closePath();
+  ctx.fill();
 
-  function renderSkeletons() {
-    const list = document.getElementById('coins-list');
-    list.innerHTML = COINS.map(c => `
-      <div class="coin-card" data-id="${c.id}" style="--coin-color: ${c.color};">
-        <div class="cc-row1">
-          <div class="cc-sym">${c.sym}</div>
-          <div>
-            <div class="cc-name">${c.name}</div>
-            <div class="skeleton" style="width:60%;height:10px;margin-top:4px;">·</div>
-          </div>
-          <div class="cc-price-wrap">
-            <div class="skeleton" style="width:80px;height:18px;">·</div>
-            <div class="skeleton" style="width:50px;height:11px;margin-top:4px;">·</div>
-          </div>
-        </div>
-        <div class="cc-row2">
-          <div class="cc-spark skeleton">·</div>
-          <div class="cc-rsi">
-            <div class="cc-rsi-lbl">RSI 14</div>
-            <div class="cc-rsi-val">—</div>
-            <div class="cc-verdict">···</div>
-          </div>
-        </div>
-      </div>
-    `).join('');
-  }
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1.6 * DPR;
+  ctx.shadowColor = color; ctx.shadowBlur = 5 * DPR;
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  ctx.beginPath();
+  prices.forEach((v, i) => {
+    const px = i * stepX;
+    const py = padY + (1 - (v - mn) / range) * useH;
+    if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  });
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+}
 
-  function renderCoin(c, data) {
-    const card = document.querySelector(`.coin-card[data-id="${c.id}"]`);
-    if (!card) return;
-    const prices = (data.sparkline_in_7d && data.sparkline_in_7d.price) || [];
-    const rsi = calcRSI(prices, 14);
-    const verdict = rsiVerdict(rsi);
-    const chg = data.price_change_percentage_24h ?? 0;
-    const isUp = chg >= 0;
-
-    card.innerHTML = `
+/* ============== RENDER ============== */
+function renderSkeleton(tabId, list) {
+  const el = document.getElementById('tab-' + tabId);
+  el.innerHTML = list.map(c => `
+    <div class="coin-card" data-id="${c.sym}" style="--coin-color: ${c.color};">
       <div class="cc-row1">
         <div class="cc-sym">${c.sym}</div>
         <div>
           <div class="cc-name">${c.name}</div>
+          <div class="skeleton" style="width:60%;height:10px;margin-top:4px;">·</div>
         </div>
         <div class="cc-price-wrap">
-          <div>${fmtPrice(data.current_price)}</div>
-          <div class="cc-chg ${isUp ? 'up' : 'down'}">${isUp ? '▲' : '▼'} ${Math.abs(chg).toFixed(2)}% · 24h</div>
+          <div class="skeleton" style="width:80px;height:16px;">·</div>
         </div>
       </div>
-      <div class="cc-row2">
-        <canvas class="cc-spark"></canvas>
-        <div class="cc-rsi">
-          <div class="cc-rsi-lbl">RSI 14 · 7j</div>
-          <div class="cc-rsi-val ${verdict.cls}">${rsi != null ? rsi.toFixed(0) : '—'}</div>
-          <div class="cc-verdict ${verdict.cls}">${verdict.label}</div>
-        </div>
+      <div class="cc-row2"><div class="cc-spark skeleton">·</div></div>
+      <div class="cc-indicators">
+        <div class="ind"><div class="ind-lbl">RSI</div><div class="ind-val">···</div></div>
+        <div class="ind"><div class="ind-lbl">MA20</div><div class="ind-val">···</div></div>
+        <div class="ind"><div class="ind-lbl">MA50</div><div class="ind-val">···</div></div>
+        <div class="ind"><div class="ind-lbl">MACD</div><div class="ind-val">···</div></div>
+        <div class="ind"><div class="ind-lbl">BB</div><div class="ind-val">···</div></div>
+        <div class="ind"><div class="ind-lbl">MOM</div><div class="ind-val">···</div></div>
       </div>
-    `;
-    const canvas = card.querySelector('.cc-spark');
-    if (canvas) drawSpark(canvas, prices, c.color);
-  }
+      <div class="cc-verdict-bar neutral">
+        <div class="vb-label">Analyse <strong>en cours</strong></div>
+        <div class="vb-score">···</div>
+      </div>
+    </div>
+  `).join('');
+}
 
-  async function loadData() {
-    const pill = document.getElementById('live-pill');
-    const label = document.getElementById('live-label');
-    pill.classList.remove('offline');
-    label.textContent = 'FETCH...';
+function renderAsset(tabId, asset, prices, currentPrice, chgPct, fmt) {
+  const card = document.querySelector(`#tab-${tabId} .coin-card[data-id="${asset.sym}"]`);
+  if (!card) return;
+  const rsi = calcRSI(prices);
+  const ma20 = calcMA(prices, 20);
+  const ma50 = calcMA(prices, 50);
+  const macd = calcMACD(prices);
+  const boll = calcBollinger(prices);
+  const mom = calcMomentum(prices);
+
+  const tRsi  = rsiTag(rsi);
+  const tMa20 = maTag(currentPrice, ma20);
+  const tMa50 = maTag(currentPrice, ma50);
+  const tMacd = macdTag(macd);
+  const tBoll = bollTag(currentPrice, boll);
+  const tMom  = momTag(mom);
+  const verdict = combineVerdict([tRsi, tMa20, tMa50, tMacd, tBoll, tMom]);
+
+  const isUp = chgPct >= 0;
+  card.innerHTML = `
+    <div class="cc-row1">
+      <div class="cc-sym">${asset.sym}</div>
+      <div>
+        <div class="cc-name">${asset.name}</div>
+      </div>
+      <div class="cc-price-wrap">
+        <div>${fmt(currentPrice)}</div>
+        <div class="cc-chg ${isUp ? 'up' : 'down'}">${isUp ? '▲' : '▼'} ${Math.abs(chgPct).toFixed(2)}% · 24h</div>
+      </div>
+    </div>
+    <div class="cc-row2"><canvas class="cc-spark"></canvas></div>
+    <div class="cc-indicators">
+      <div class="ind">
+        <div class="ind-lbl">RSI 14</div>
+        <div class="ind-val ${tRsi.cls}">${rsi != null ? rsi.toFixed(0) : '—'}</div>
+        <span class="ind-tag ${tRsi.cls}">${tRsi.label}</span>
+      </div>
+      <div class="ind">
+        <div class="ind-lbl">MA 20</div>
+        <div class="ind-val ${tMa20.cls}">${ma20 != null ? (ma20 >= 100 ? ma20.toFixed(0) : ma20.toFixed(2)) : '—'}</div>
+        <span class="ind-tag ${tMa20.cls}">${tMa20.label}</span>
+      </div>
+      <div class="ind">
+        <div class="ind-lbl">MA 50</div>
+        <div class="ind-val ${tMa50.cls}">${ma50 != null ? (ma50 >= 100 ? ma50.toFixed(0) : ma50.toFixed(2)) : '—'}</div>
+        <span class="ind-tag ${tMa50.cls}">${tMa50.label}</span>
+      </div>
+      <div class="ind">
+        <div class="ind-lbl">MACD</div>
+        <div class="ind-val ${tMacd.cls}">${macd != null ? (macd >= 0 ? '+' : '') + macd.toFixed(2) : '—'}</div>
+        <span class="ind-tag ${tMacd.cls}">${tMacd.label}</span>
+      </div>
+      <div class="ind">
+        <div class="ind-lbl">Boll.</div>
+        <div class="ind-val ${tBoll.cls}">${boll ? '±' + ((boll.upper - boll.lower) / 2).toFixed(0) : '—'}</div>
+        <span class="ind-tag ${tBoll.cls}">${tBoll.label}</span>
+      </div>
+      <div class="ind">
+        <div class="ind-lbl">Mom 14</div>
+        <div class="ind-val ${tMom.cls}">${mom != null ? (mom >= 0 ? '+' : '') + mom.toFixed(1) + '%' : '—'}</div>
+        <span class="ind-tag ${tMom.cls}">${tMom.label}</span>
+      </div>
+    </div>
+    <div class="cc-verdict-bar ${verdict.cls}">
+      <div class="vb-label">${verdict.label}</div>
+      <div class="vb-score">${verdict.score}</div>
+    </div>
+  `;
+  drawSpark(card.querySelector('.cc-spark'), prices, asset.color);
+}
+
+/* ============== FETCH ============== */
+async function loadCrypto() {
+  try {
+    const r = await fetch(CG_URL, { cache: 'no-store' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const data = await r.json();
+    CRYPTO_LIST.forEach(c => {
+      const d = data.find(x => x.id === c.id);
+      if (!d) return;
+      const prices = (d.sparkline_in_7d && d.sparkline_in_7d.price) || [];
+      renderAsset('crypto', c, prices, d.current_price, d.price_change_percentage_24h ?? 0, fmtPriceEUR);
+    });
+    setLiveStatus(true);
+  } catch (e) {
+    setLiveStatus(false);
+  }
+}
+
+async function loadYahoo(tabId, list) {
+  let okCount = 0;
+  await Promise.all(list.map(async (a) => {
     try {
-      const r = await fetch(CG_URL, { cache: 'no-store' });
+      const r = await fetch(yahooUrl(a.sym), { cache: 'no-store' });
       if (!r.ok) throw new Error('HTTP ' + r.status);
-      const data = await r.json();
-      COINS.forEach(c => {
-        const coinData = data.find(d => d.id === c.id);
-        if (coinData) renderCoin(c, coinData);
-      });
-      label.textContent = '● LIVE · ' + new Date().toLocaleTimeString('fr-FR').slice(0, 5);
+      const json = await r.json();
+      const res = json && json.chart && json.chart.result && json.chart.result[0];
+      if (!res) throw new Error('Bad payload');
+      const closes = (res.indicators && res.indicators.quote && res.indicators.quote[0].close) || [];
+      const cleanCloses = closes.filter(v => v != null);
+      const meta = res.meta || {};
+      const current = meta.regularMarketPrice ?? cleanCloses[cleanCloses.length - 1];
+      const prevClose = meta.previousClose ?? cleanCloses[cleanCloses.length - 2];
+      const chgPct = prevClose ? ((current - prevClose) / prevClose) * 100 : 0;
+      renderAsset(tabId, a, cleanCloses, current, chgPct, fmtPriceUSD);
+      okCount++;
     } catch (e) {
-      pill.classList.add('offline');
-      label.textContent = '⚠ OFFLINE';
+      const card = document.querySelector(`#tab-${tabId} .coin-card[data-id="${a.sym}"]`);
+      if (card) {
+        card.innerHTML = `
+          <div class="cc-row1">
+            <div class="cc-sym">${a.sym}</div>
+            <div><div class="cc-name">${a.name}</div></div>
+            <div class="cc-price-wrap"><div style="color:var(--text-faint);font-size:13px;">indispo.</div></div>
+          </div>
+          <div style="font-family:var(--font-m);font-size:10px;color:var(--text-faint);text-align:center;padding:8px;">Source temporairement bloquée (CORS proxy)</div>
+        `;
+      }
+    }
+  }));
+  if (okCount === 0) {
+    const tab = document.getElementById('tab-' + tabId);
+    if (!tab.querySelector('.tab-error')) {
+      const err = document.createElement('div');
+      err.className = 'tab-error';
+      err.innerHTML = `<strong>Source bloquée</strong><br>Yahoo Finance via proxy public est temporairement indisponible. Réessaie dans 1 min ou ouvre un autre onglet.`;
+      tab.appendChild(err);
     }
   }
+  setLiveStatus(okCount > 0);
+}
 
-  renderSkeletons();
-  loadData();
-  setInterval(loadData, REFRESH_MS);
+function setLiveStatus(ok) {
+  const pill = document.getElementById('live-pill');
+  const label = document.getElementById('live-label');
+  if (ok) {
+    pill.classList.remove('offline');
+    label.textContent = '● LIVE · ' + new Date().toLocaleTimeString('fr-FR').slice(0, 5);
+  } else {
+    pill.classList.add('offline');
+    label.textContent = '⚠ OFFLINE';
+  }
+}
+
+function loadCurrentTab() {
+  if (_currentTab === 'crypto') loadCrypto();
+  else if (_currentTab === 'stocks') loadYahoo('stocks', STOCKS_LIST);
+  else if (_currentTab === 'etfs')   loadYahoo('etfs',   ETFS_LIST);
+}
+
+function switchTab(name) {
+  _currentTab = name;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.toggle('active', c.id === 'tab-' + name));
+  if (navigator.vibrate) navigator.vibrate(6);
+  loadCurrentTab();
+}
+
+/* ============== INIT ============== */
+renderSkeleton('crypto', CRYPTO_LIST);
+renderSkeleton('stocks', STOCKS_LIST);
+renderSkeleton('etfs',   ETFS_LIST);
+
+loadCurrentTab();
+setInterval(loadCurrentTab, REFRESH_MS);
 </script>
 
 </body>
