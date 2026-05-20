@@ -8,9 +8,9 @@
 
 | # | Broker | Temps | Statut |
 |---|--------|-------|--------|
-| 1 | Binance | 5 min | ⬜ |
+| 1 | Binance | 5 min | ✅ `CPA_0OOPLGOBMC` |
 | 2 | Bitpanda | 5 min | ⬜ |
-| 3 | Trade Republic | 3 min | ⬜ |
+| 3 | Trade Republic | 3 min | ✅ `r37Oswtt` |
 | 4 | eToro | 10 min (modération 24-48h) | ⬜ |
 
 ---
