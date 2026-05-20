@@ -2800,6 +2800,52 @@
     display: flex; justify-content: space-between; align-items: center;
     gap: 8px; flex-wrap: wrap;
   }
+  .mr-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  /* v2.50 — Poll card "Devine demain" */
+  .poll-card {
+    background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(96,165,250,0.10));
+    border: 1px solid rgba(139,92,246,0.32);
+    border-radius: 14px; padding: 14px; margin: 14px 0 0;
+    transition: opacity 0.2s;
+  }
+  .poll-card:empty { display: none; }
+  .poll-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+  .poll-tag {
+    font-family: var(--font-m); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; color: #c4b5fd;
+    background: rgba(139,92,246,0.22); padding: 4px 9px; border-radius: 999px;
+    white-space: nowrap;
+  }
+  .poll-q { font-size: 13px; font-weight: 600; color: #fff; flex: 1; line-height: 1.35; }
+  .poll-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .poll-btn {
+    padding: 12px 10px; border-radius: 10px; border: 1px solid var(--border);
+    background: rgba(0,0,0,0.36); color: #fff;
+    font-family: var(--font-m); font-size: 13px; font-weight: 700;
+    cursor: pointer; transition: transform 0.12s, border-color 0.12s, background 0.12s;
+  }
+  .poll-btn.up:hover, .poll-btn.up:focus { border-color: rgba(74,222,128,0.55); background: rgba(74,222,128,0.14); }
+  .poll-btn.down:hover, .poll-btn.down:focus { border-color: rgba(248,113,113,0.55); background: rgba(248,113,113,0.14); }
+  .poll-btn:active { transform: scale(0.97); }
+  .poll-done {
+    padding: 10px 12px; border-radius: 10px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  }
+  .poll-done-vote { font-size: 13px; color: #fff; }
+  .poll-done-vote strong { color: #c4b5fd; }
+  .poll-done-info { font-size: 11.5px; opacity: 0.65; margin-top: 4px; }
+  .poll-result {
+    padding: 10px 12px; border-radius: 10px; margin-bottom: 10px; line-height: 1.4;
+  }
+  .poll-result.win { background: rgba(74,222,128,0.12); border: 1px solid rgba(74,222,128,0.3); }
+  .poll-result.lose { background: rgba(248,113,113,0.12); border: 1px solid rgba(248,113,113,0.3); }
+  .poll-result strong { color: #fff; font-size: 13px; }
+  .poll-result small { font-size: 11.5px; opacity: 0.82; }
+  .poll-stats {
+    margin-top: 9px; font-size: 11.5px; text-align: center;
+    color: var(--text-faint); line-height: 1.35;
+  }
+  .poll-stats strong { color: #fff; }
   .mr-verdict {
     font-family: var(--font-m); font-size: 9.5px; font-weight: 700;
     letter-spacing: 0.06em; color: var(--text-faint);
@@ -2835,6 +2881,115 @@
     transition: color 0.16s, border-color 0.16s;
   }
   .mr-toggle:hover { color: var(--acid); border-color: rgba(190,242,100,0.4); }
+  /* v2.50 — Bouton Analyse patterns */
+  .mr-analyze {
+    background: linear-gradient(135deg, rgba(96,165,250,0.18), rgba(139,92,246,0.18));
+    border: 1px solid rgba(96,165,250,0.45);
+    padding: 4px 9px; border-radius: 999px;
+    color: #93c5fd;
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.04em; cursor: pointer;
+    white-space: nowrap; flex-shrink: 0;
+    transition: color 0.16s, border-color 0.16s, background 0.16s;
+  }
+  .mr-analyze:hover { color: #fff; border-color: #60a5fa; background: linear-gradient(135deg, rgba(96,165,250,0.32), rgba(139,92,246,0.32)); }
+  /* v2.50 — Popup analyse de patterns */
+  .pa-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px; margin-bottom: 10px;
+    padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .pa-asset { font-family: var(--font-m); font-size: 13px; color: var(--text-faint); }
+  .pa-asset strong { color: #fff; font-size: 15px; margin-right: 6px; }
+  .pa-price { font-family: var(--font-m); font-size: 18px; font-weight: 800; color: #fff; }
+  .pa-verdict {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px; border-radius: 12px; margin-bottom: 8px;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  }
+  .pa-verdict.bull { background: rgba(74,222,128,0.10); border-color: rgba(74,222,128,0.32); }
+  .pa-verdict.bear { background: rgba(248,113,113,0.10); border-color: rgba(248,113,113,0.32); }
+  .pa-verdict.neutral { background: rgba(250,204,21,0.08); border-color: rgba(250,204,21,0.28); }
+  .pa-verdict-score { font-family: var(--font-m); font-size: 26px; font-weight: 800; color: #fff; line-height: 1; }
+  .pa-verdict-score small { font-size: 13px; opacity: 0.55; font-weight: 600; }
+  .pa-verdict-label { font-family: var(--font-m); font-size: 14px; font-weight: 700; }
+  .pa-verdict.bull .pa-verdict-label { color: #86efac; }
+  .pa-verdict.bear .pa-verdict-label { color: #fca5a5; }
+  .pa-verdict.neutral .pa-verdict-label { color: #fde68a; }
+  .pa-takeaway { font-size: 13px; line-height: 1.5; opacity: 0.88; margin: 0 0 14px; }
+  .pa-section-title {
+    font-family: var(--font-m); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-faint); margin: 14px 0 8px;
+  }
+  .pa-no-pattern {
+    padding: 14px; border-radius: 10px;
+    background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.12);
+    font-size: 13px; line-height: 1.5; opacity: 0.85;
+  }
+  .pa-patterns { display: flex; flex-direction: column; gap: 10px; }
+  .pa-pat {
+    padding: 12px; border-radius: 12px;
+    background: rgba(0,0,0,0.32); border: 1px solid var(--border);
+  }
+  .pa-pat.bull { border-color: rgba(74,222,128,0.35); background: rgba(74,222,128,0.06); }
+  .pa-pat.bear { border-color: rgba(248,113,113,0.35); background: rgba(248,113,113,0.06); }
+  .pa-pat.neutral { border-color: rgba(250,204,21,0.32); background: rgba(250,204,21,0.05); }
+  .pa-pat-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+  .pa-pat-ico {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 8px;
+    background: rgba(255,255,255,0.08); font-weight: 800; font-size: 14px;
+    color: #fff;
+  }
+  .pa-pat-name { font-family: var(--font-m); font-size: 14px; font-weight: 700; color: #fff; flex: 1; }
+  .pa-pat-conf {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 2px 7px; border-radius: 999px;
+    background: rgba(255,255,255,0.08); color: var(--text-faint);
+  }
+  .pa-pat-conf.high { background: rgba(74,222,128,0.22); color: #86efac; }
+  .pa-pat-conf.medium { background: rgba(96,165,250,0.18); color: #93c5fd; }
+  .pa-pat-conf.low { background: rgba(250,204,21,0.18); color: #fde68a; }
+  .pa-pat-desc { font-size: 12.5px; line-height: 1.5; margin: 4px 0 6px; opacity: 0.92; }
+  .pa-pat-why {
+    font-size: 12px; line-height: 1.5; padding: 8px 10px;
+    background: rgba(0,0,0,0.32); border-radius: 8px;
+    border-left: 2px solid rgba(96,165,250,0.6);
+    margin-top: 6px;
+  }
+  .pa-pat-why strong { color: #93c5fd; }
+  .pa-pat-lvls {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;
+    font-family: var(--font-m); font-size: 11.5px;
+  }
+  .pa-pat-lvls span {
+    padding: 4px 8px; border-radius: 6px;
+    background: rgba(0,0,0,0.32); border: 1px solid rgba(255,255,255,0.08);
+  }
+  .pa-pat-lvls em { font-style: normal; opacity: 0.6; margin-right: 4px; }
+  .pa-plan {
+    background: rgba(96,165,250,0.06); border: 1px solid rgba(96,165,250,0.28);
+    border-radius: 12px; padding: 4px 12px;
+  }
+  .pa-plan-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 9px 0; font-size: 13px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .pa-plan-row:last-child { border-bottom: none; }
+  .pa-plan-row span { opacity: 0.7; }
+  .pa-plan-row strong { font-family: var(--font-m); font-weight: 700; color: #fff; }
+  .pa-track-btn {
+    display: block; width: 100%; margin-top: 12px;
+    padding: 12px; border-radius: 12px; border: none; cursor: pointer;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: #fff; font-family: var(--font-m); font-size: 13px; font-weight: 700;
+    letter-spacing: 0.03em; text-transform: uppercase;
+    transition: transform 0.12s, box-shadow 0.16s;
+  }
+  .pa-track-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(96,165,250,0.35); }
+  .pa-track-btn:disabled { background: rgba(74,222,128,0.6); cursor: default; transform: none; }
   .mr-detail {
     grid-column: 1 / -1;
     margin: 8px 0 4px;
@@ -4031,7 +4186,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.49</div>
+        <div class="bd-brand-ver" id="bd-version">v2.50</div>
       </div>
     </div>
 
@@ -4044,8 +4199,8 @@
     <!-- v2.32 — Section 'Apprendre' (M0-M5) retiree : redondant avec l'onglet Formation -->
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=249')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=249')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=250')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=250')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
     <!-- v2.46 — 'Krachs historiques' retiré du burger (deplace en Module 6 dans Formation) -->
     <!-- v2.44 — 'Coach IA · Bientôt' retire du burger (deja accessible via l'onglet IA en bottom-nav) -->
 
@@ -4301,7 +4456,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=249')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=250')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -4320,7 +4475,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=249')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=250')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -4339,7 +4494,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=249')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=250')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -4358,7 +4513,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=249')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=250')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -4377,7 +4532,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=249')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=250')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -4396,7 +4551,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=249')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=250')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -4416,7 +4571,7 @@
       </div>
 
       <!-- v2.46 — Module 6 : Krachs historiques (Premium, deplace depuis le burger) -->
-      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=249')">
+      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=250')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💥</div>
@@ -4453,7 +4608,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.49</span>
+      <span class="hbb-tag" id="hbb-tag">v2.50</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -4494,13 +4649,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=249'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=250'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=249'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=250'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -4552,7 +4707,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=249'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=250'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -4564,25 +4719,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=249" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=250" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=249" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=250" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 10 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=249" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=250" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=249" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=250" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -4677,6 +4832,9 @@
       </div>
     </div>
 
+    <!-- v2.50 — Poll quotidien "Devine demain" (BTC up/down) -->
+    <div class="poll-card" id="poll-card"></div>
+
     <div class="feed-date" id="feed-date">20 mai 2026</div>
 
     <div id="feed-posts">
@@ -4689,7 +4847,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=249'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=250'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -4718,7 +4876,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=249'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=250'">OUVRIR →</button>
         </div>
       </article>
 
@@ -4804,22 +4962,22 @@
         <p class="pp-tag">Les modules expert sont débloqués. Bonne exploration.</p>
       </div>
       <div class="pp-unlocked">
-        <a class="pp-unlock-card" href="scene-10.html?v=249">
+        <a class="pp-unlock-card" href="scene-10.html?v=250">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=249">
+        <a class="pp-unlock-card" href="scene-08.html?v=250">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=249">
+        <a class="pp-unlock-card" href="scene-09.html?v=250">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=249">
+        <a class="pp-unlock-card" href="scene-07.html?v=250">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -4896,6 +5054,17 @@
       <h3 class="tp-title" id="tp-title">—</h3>
       <p class="tp-body" id="tp-body">—</p>
       <a class="tp-link" id="tp-link" style="display:none;" href="glossary.html">Ouvrir le glossaire →</a>
+    </div>
+  </div>
+
+  <!-- v2.50 — Modal Analyse de patterns chartistes -->
+  <div id="pattern-modal" class="term-popup ai-howto-popup" role="dialog" aria-modal="true" onclick="if(event.target===this)closePatternModal()">
+    <div class="tp-card ai-howto-card">
+      <div class="tp-head" style="margin-bottom: 4px;">
+        <span class="tp-tag" style="color: #60a5fa;">🔍 ANALYSE COMPLÈTE</span>
+        <button class="tp-close" onclick="closePatternModal()" aria-label="Fermer">✕</button>
+      </div>
+      <div id="pattern-body"></div>
     </div>
   </div>
 
@@ -5045,6 +5214,7 @@
       renderMarketCard();           // v2.26
       refreshWatchlistData(true);   // v2.26 — utilise cache si frais
       refreshGlobalVerdicts();      // v2.27 — calcule indicateurs + verdict global en background
+      renderPollCard();             // v2.50 — poll quotidien "Devine demain"
       applyRelativeTimes();         // v2.32 — affichage 'il y a Xh' au lieu d'heures fixes
       // v2.19 — tuto pivot auto si jamais vu (v2.23 : ne pas le lancer si popup profil ouverte ou profil absent)
       if (shouldShowFeedTuto()) {
@@ -5935,7 +6105,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=249';
+        location.href = 'scene-10.html?v=250';
       });
       widget._linked = true;
     }
@@ -5988,7 +6158,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=249';
+      location.href = 'scene-05.html?v=250';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -6114,7 +6284,7 @@
       return '✓ Reset complet. Reload...';
     },
     resetprofile: () => {
-      ['tg_profile','tg_feed_tuto','tg_post_likes','tg_xp','tg_watchlist','tg_watchlist_cache','tg_watchlist_hist','tg_watchlist_yahoo','tg_news_cache','tg_daily_cache','tg_decr_cache','tg_ai_study_cache'].forEach(k => localStorage.removeItem(k));
+      ['tg_profile','tg_feed_tuto','tg_post_likes','tg_xp','tg_watchlist','tg_watchlist_cache','tg_watchlist_hist','tg_watchlist_yahoo','tg_news_cache','tg_daily_cache','tg_decr_cache','tg_ai_study_cache','tg_poll_history','tg_tracked_trades'].forEach(k => localStorage.removeItem(k));
       setTimeout(() => location.reload(), 600);
       return '✓ Profil + feed + XP + watchlist reset.';
     },
@@ -6403,7 +6573,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=249'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=250'; };
         block.style.display = 'block';
         return;
       }
@@ -6445,7 +6615,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=249';
+        card.onclick = () => location.href = 'scene-05.html?v=250';
         block.style.display = 'block';
         return;
       }
@@ -6465,7 +6635,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=249';
+          card.onclick = () => location.href = 'scene-06.html?v=250';
           block.style.display = 'block';
           return;
         }
@@ -6479,7 +6649,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=249';
+        card.onclick = () => location.href = 'scene-06.html?v=250';
         block.style.display = 'block';
         return;
       }
@@ -6494,7 +6664,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=249';
+    card.onclick = () => location.href = 'scene-05.html?v=250';
     block.style.display = 'block';
   }
 
@@ -6958,7 +7128,10 @@
         +   '</div>'
         +   '<div class="mr-bottom">'
         +     liveBadge
-        +     (a.live ? '<button class="mr-toggle" onclick="event.stopPropagation(); toggleAssetDetail(\'' + a.id + '\')">📐 Outils</button>' : '')
+        +     (a.live ? ('<div class="mr-actions">'
+                         + '<button class="mr-toggle" onclick="event.stopPropagation(); toggleAssetDetail(\'' + a.id + '\')">📐 Outils</button>'
+                         + '<button class="mr-analyze" onclick="event.stopPropagation(); openPatternModal(\'' + a.id + '\')">🔍 Analyse</button>'
+                         + '</div>') : '')
         +   '</div>'
         + '</div>'
         + (a.live ? '<div class="mr-detail" id="mrd-' + a.id + '"></div>' : '')
@@ -6978,13 +7151,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=249&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=250&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=249';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=250';
     else showView('premium');
   }
 
@@ -7515,6 +7688,407 @@
       + '<div class="mrd-grid">' + cells + '</div>';
   }
 
+  /* ===== v2.50 — Poll quotidien "Devine demain" (BTC up/down) ===== */
+  const POLL_KEY = 'tg_poll_history';
+  function _todayISO() {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+  function _yesterdayISO() {
+    const d = new Date(); d.setDate(d.getDate() - 1);
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+  function loadPollHistory() {
+    try { const h = JSON.parse(localStorage.getItem(POLL_KEY)); return h && typeof h === 'object' ? h : {}; }
+    catch { return {}; }
+  }
+  function savePollHistory(h) {
+    try { localStorage.setItem(POLL_KEY, JSON.stringify(h)); } catch {}
+  }
+  async function fetchBTCPriceNow() {
+    try {
+      const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const j = await r.json();
+      return j && j.bitcoin ? j.bitcoin.usd : null;
+    } catch { return null; }
+  }
+  async function settlePendingPolls() {
+    const hist = loadPollHistory();
+    const today = _todayISO();
+    const pending = Object.entries(hist).filter(([d, p]) => !p.settled && d !== today);
+    if (pending.length === 0) return hist;
+    const cur = await fetchBTCPriceNow();
+    if (!cur) return hist;
+    let changed = false;
+    for (const [d, p] of pending) {
+      if (!p.refPrice) continue;
+      const isUp = cur > p.refPrice;
+      p.finalPrice = cur;
+      p.correct = (p.vote === 'up' && isUp) || (p.vote === 'down' && !isUp);
+      p.settled = true;
+      changed = true;
+      // XP bonus si bon
+      if (p.correct && typeof addXP === 'function') {
+        try { addXP(10, 'Pari réussi'); } catch {}
+      }
+    }
+    if (changed) savePollHistory(hist);
+    return hist;
+  }
+  async function castPollVote(vote) {
+    const today = _todayISO();
+    const hist = loadPollHistory();
+    if (hist[today] && hist[today].vote) return;
+    const card = document.getElementById('poll-card');
+    if (card) card.style.opacity = '0.6';
+    const ref = await fetchBTCPriceNow();
+    if (card) card.style.opacity = '';
+    if (!ref) {
+      alert('Impossible de récupérer le prix BTC actuel. Réessaye dans quelques instants.');
+      return;
+    }
+    hist[today] = { vote, refPrice: ref, refTs: Date.now(), settled: false, finalPrice: null, correct: null };
+    savePollHistory(hist);
+    if (typeof showXPToast === 'function') showXPToast(5, 'Pari enregistré');
+    if (navigator.vibrate) navigator.vibrate([10, 30, 20]);
+    renderPollCard();
+  }
+  function pollStats(hist) {
+    const settled = Object.values(hist).filter(p => p.settled && p.correct != null);
+    if (!settled.length) return { total: 0, wins: 0, rate: 0 };
+    const wins = settled.filter(p => p.correct).length;
+    return { total: settled.length, wins, rate: Math.round((wins / settled.length) * 100) };
+  }
+  async function renderPollCard() {
+    const card = document.getElementById('poll-card');
+    if (!card) return;
+    await settlePendingPolls();
+    const hist = loadPollHistory();
+    const today = _todayISO();
+    const yest = _yesterdayISO();
+    const todayPoll = hist[today];
+    const yPoll = hist[yest];
+    const stats = pollStats(hist);
+
+    let resultBlock = '';
+    if (yPoll && yPoll.settled && yPoll.correct != null) {
+      const cls = yPoll.correct ? 'win' : 'lose';
+      const txt = yPoll.correct ? '🎯 Tu as eu raison hier !' : '❌ Raté hier';
+      const wasUp = yPoll.finalPrice > yPoll.refPrice;
+      const detail = 'BTC ' + (wasUp ? 'a monté' : 'a baissé')
+        + ' de ' + yPoll.refPrice.toFixed(0) + ' à ' + yPoll.finalPrice.toFixed(0) + ' $';
+      resultBlock = '<div class="poll-result ' + cls + '"><strong>' + txt + '</strong><br><small>' + detail + '</small></div>';
+    }
+
+    let voteBlock;
+    if (todayPoll && todayPoll.vote) {
+      const dir = todayPoll.vote === 'up' ? '📈 BTC monte' : '📉 BTC descend';
+      voteBlock = '<div class="poll-done">'
+        + '<div class="poll-done-vote">Ton pari aujourd\'hui : <strong>' + dir + '</strong></div>'
+        + '<div class="poll-done-info">BTC référence : ' + todayPoll.refPrice.toFixed(0) + ' $ · Résolution demain</div>'
+        + '</div>';
+    } else {
+      voteBlock = '<div class="poll-buttons">'
+        + '<button class="poll-btn up" onclick="castPollVote(\'up\')">📈 BTC monte</button>'
+        + '<button class="poll-btn down" onclick="castPollVote(\'down\')">📉 BTC descend</button>'
+        + '</div>';
+    }
+
+    const statsBlock = stats.total > 0
+      ? '<div class="poll-stats">Score historique : <strong>' + stats.wins + '/' + stats.total + '</strong> (' + stats.rate + ' %) · +10 XP si bon pronostic</div>'
+      : '<div class="poll-stats">+5 XP pour voter · +10 XP si bon pronostic</div>';
+
+    card.innerHTML = '<div class="poll-head">'
+      + '<span class="poll-tag">🔮 Devine demain</span>'
+      + '<span class="poll-q">D\'ici demain, BTC montera ou baissera ?</span>'
+      + '</div>'
+      + resultBlock + voteBlock + statsBlock;
+  }
+
+  /* ===== v2.50 — Pattern detector chartiste (client-side pur) ===== */
+  // Détecte les figures classiques sur les prices : double bottom/top,
+  // tendance (HH/HL ou LH/LL), triangles. Pas de dépendance, tout local.
+  function _findSwings(prices, lookback) {
+    lookback = lookback || 3;
+    const highs = [], lows = [];
+    for (let i = lookback; i < prices.length - lookback; i++) {
+      let isHigh = true, isLow = true;
+      for (let j = 1; j <= lookback; j++) {
+        if (prices[i] <= prices[i-j] || prices[i] <= prices[i+j]) isHigh = false;
+        if (prices[i] >= prices[i-j] || prices[i] >= prices[i+j]) isLow = false;
+      }
+      if (isHigh) highs.push({ idx: i, price: prices[i] });
+      if (isLow)  lows.push({ idx: i, price: prices[i] });
+    }
+    return { highs, lows };
+  }
+
+  function detectPatterns(prices) {
+    if (!prices || prices.length < 30) return [];
+    const last = prices[prices.length - 1];
+    const swings = _findSwings(prices, 3);
+    const patterns = [];
+
+    // 1. Double bottom
+    if (swings.lows.length >= 2) {
+      const recent = swings.lows.slice(-3);
+      for (let i = 0; i < recent.length - 1; i++) {
+        const l1 = recent[i], l2 = recent[i+1];
+        if (l2.idx - l1.idx < 5) continue;
+        const diff = Math.abs(l1.price - l2.price) / l1.price;
+        if (diff > 0.04) continue;
+        const between = swings.highs.filter(h => h.idx > l1.idx && h.idx < l2.idx);
+        if (!between.length) continue;
+        const neckline = Math.max(...between.map(h => h.price));
+        const minLow = Math.min(l1.price, l2.price);
+        const target = neckline + (neckline - minLow);
+        if (last < minLow * 0.97) continue;
+        patterns.push({
+          name: 'Double bottom', icon: 'W', direction: 'bullish',
+          confidence: (diff < 0.02 && last > neckline) ? 'high' : 'medium',
+          description: 'Deux creux à un même niveau (~' + minLow.toFixed(2) + ') séparés par un sommet (~' + neckline.toFixed(2) + '). Figure de retournement haussier.',
+          why: 'Le marché a testé deux fois le même support sans le casser : les vendeurs s\'essoufflent. Si le prix passe au-dessus de la neckline, c\'est souvent la confirmation que les acheteurs reprennent le contrôle.',
+          neckline: neckline, target: target, stop: minLow * 0.98,
+        });
+        break;
+      }
+    }
+
+    // 2. Double top
+    if (swings.highs.length >= 2) {
+      const recent = swings.highs.slice(-3);
+      for (let i = 0; i < recent.length - 1; i++) {
+        const h1 = recent[i], h2 = recent[i+1];
+        if (h2.idx - h1.idx < 5) continue;
+        const diff = Math.abs(h1.price - h2.price) / h1.price;
+        if (diff > 0.04) continue;
+        const between = swings.lows.filter(l => l.idx > h1.idx && l.idx < h2.idx);
+        if (!between.length) continue;
+        const neckline = Math.min(...between.map(l => l.price));
+        const maxHigh = Math.max(h1.price, h2.price);
+        const target = neckline - (maxHigh - neckline);
+        if (last > maxHigh * 1.03) continue;
+        patterns.push({
+          name: 'Double top', icon: 'M', direction: 'bearish',
+          confidence: (diff < 0.02 && last < neckline) ? 'high' : 'medium',
+          description: 'Deux sommets à un même niveau (~' + maxHigh.toFixed(2) + ') séparés par un creux (~' + neckline.toFixed(2) + '). Figure de retournement baissier.',
+          why: 'Le marché a tenté deux fois de passer la même résistance sans y arriver : les acheteurs n\'ont plus assez de force. Une cassure de la neckline confirme souvent que les vendeurs prennent la main.',
+          neckline: neckline, target: target, stop: maxHigh * 1.02,
+        });
+        break;
+      }
+    }
+
+    // 3. Structure de tendance (HH/HL ou LH/LL)
+    if (swings.lows.length >= 2 && swings.highs.length >= 2) {
+      const lh2 = swings.highs.slice(-2), ll2 = swings.lows.slice(-2);
+      const hh = lh2[1].price > lh2[0].price;
+      const hl = ll2[1].price > ll2[0].price;
+      const lh = lh2[1].price < lh2[0].price;
+      const ll = ll2[1].price < ll2[0].price;
+      if (hh && hl) {
+        patterns.push({
+          name: 'Tendance haussière (HH + HL)', icon: '↗', direction: 'bullish', confidence: 'medium',
+          description: 'Les sommets et les creux progressent vers le haut. Structure de tendance haussière propre.',
+          why: 'Chaque correction trouve un support plus haut que la précédente : les acheteurs sont structurellement plus forts. C\'est le schéma classique d\'un "uptrend".',
+        });
+      } else if (lh && ll) {
+        patterns.push({
+          name: 'Tendance baissière (LH + LL)', icon: '↘', direction: 'bearish', confidence: 'medium',
+          description: 'Les sommets et les creux descendent. Structure de tendance baissière propre.',
+          why: 'Chaque rebond échoue plus bas que le précédent : les vendeurs dominent. C\'est le schéma classique d\'un "downtrend".',
+        });
+      }
+    }
+
+    // 4. Triangles (sur les 30 dernières bougies)
+    const recHi = swings.highs.filter(h => h.idx >= prices.length - 30);
+    const recLo = swings.lows.filter(l => l.idx >= prices.length - 30);
+    if (recHi.length >= 2 && recLo.length >= 2) {
+      const hiTrend = (recHi[recHi.length-1].price - recHi[0].price) / recHi[0].price;
+      const loTrend = (recLo[recLo.length-1].price - recLo[0].price) / recLo[0].price;
+      if (Math.abs(hiTrend) < 0.015 && loTrend > 0.02) {
+        const resistance = recHi.map(h => h.price).reduce((a,b)=>a+b,0)/recHi.length;
+        patterns.push({
+          name: 'Triangle ascendant', icon: '◢', direction: 'bullish', confidence: 'medium',
+          description: 'Sommets sur ligne horizontale (~' + resistance.toFixed(2) + '), creux montants. Compression haussière qui se résout souvent par une cassure du toit.',
+          why: 'Le prix bute sur la même résistance mais les acheteurs entrent de plus en plus haut : la pression s\'accumule. Statistiquement la cassure se fait vers le haut dans ~70 % des cas en marché haussier.',
+          target: resistance + (resistance - recLo[0].price), stop: recLo[recLo.length-1].price * 0.98,
+        });
+      } else if (Math.abs(loTrend) < 0.015 && hiTrend < -0.02) {
+        const support = recLo.map(l => l.price).reduce((a,b)=>a+b,0)/recLo.length;
+        patterns.push({
+          name: 'Triangle descendant', icon: '◣', direction: 'bearish', confidence: 'medium',
+          description: 'Creux sur ligne horizontale (~' + support.toFixed(2) + '), sommets descendants. Compression baissière.',
+          why: 'Les acheteurs défendent le même support mais les vendeurs entrent de plus en plus bas. Statistiquement la cassure se fait vers le bas dans ~70 % des cas.',
+          target: support - (recHi[0].price - support), stop: recHi[recHi.length-1].price * 1.02,
+        });
+      } else if (hiTrend < -0.012 && loTrend > 0.012) {
+        patterns.push({
+          name: 'Triangle symétrique', icon: '◆', direction: 'neutral', confidence: 'medium',
+          description: 'Sommets et creux convergent : compression de la volatilité. Pattern de continuation, la direction qui suit dépend du contexte précédent.',
+          why: 'La volatilité se contracte avant d\'"exploser" dans un sens. La direction de la cassure suit généralement la tendance qui précédait l\'entrée dans le triangle.',
+        });
+      }
+    }
+
+    return patterns;
+  }
+
+  // Ouvre le popup d'analyse complète pour un actif de la watchlist
+  async function openPatternModal(id) {
+    const a = getAsset(id);
+    if (!a) return;
+    // Ouvre immédiatement le popup avec un état "chargement"
+    const body = document.getElementById('pattern-body');
+    if (body) body.innerHTML = '<p style="text-align:center;padding:32px 8px;opacity:0.75">⏳ Analyse en cours…</p>';
+    document.getElementById('pattern-modal').classList.add('show');
+    if (navigator.vibrate) navigator.vibrate(4);
+    const data = _verdicts[id];
+    let prices = null;
+    if (a.kind === 'crypto') {
+      // Crypto : cache HIST_CACHE_KEY rempli par fetchHistorical
+      try {
+        const c = JSON.parse(localStorage.getItem('tg_watchlist_hist') || '{}');
+        if (c[a.id] && Array.isArray(c[a.id].prices)) prices = c[a.id].prices;
+      } catch {}
+      if (!prices && typeof fetchHistorical === 'function') {
+        prices = await fetchHistorical(a.id);
+      }
+    } else {
+      const c = loadYahooCache();
+      if (c[a.id] && c[a.id].prices) prices = c[a.id].prices;
+      if (!prices && typeof fetchYahooAsset === 'function') {
+        const data = await fetchYahooAsset(a);
+        if (data && data.prices) prices = data.prices;
+      }
+    }
+    if (!body) return;
+    if (!data || !prices || prices.length < 30) {
+      // Si on a juste les prices mais pas le verdict, calcule-le maintenant
+      if (prices && prices.length >= 30 && typeof computeAllIndicators === 'function') {
+        const ind = computeAllIndicators(prices);
+        if (ind) {
+          const v = computeGlobalVerdict(ind);
+          const patterns = detectPatterns(prices);
+          const last = prices[prices.length - 1];
+          body.innerHTML = renderPatternAnalysisHTML(a, patterns, ind, v, last);
+          return;
+        }
+      }
+      body.innerHTML = '<p style="text-align:center;padding:24px 8px;opacity:0.75">Indicateurs et historique en cours de chargement. Attends quelques secondes et réessaie.</p>';
+      return;
+    }
+    const patterns = detectPatterns(prices);
+    const last = prices[prices.length - 1];
+    body.innerHTML = renderPatternAnalysisHTML(a, patterns, data.indicators, data.verdict, last);
+  }
+  function closePatternModal() {
+    document.getElementById('pattern-modal').classList.remove('show');
+  }
+
+  function renderPatternAnalysisHTML(asset, patterns, indicators, verdict, lastPrice) {
+    const fmt = (v) => formatPrice(v, asset);
+    let html = ''
+      + '<div class="pa-head">'
+      +   '<div class="pa-asset"><strong>' + escapeHTML(asset.name) + '</strong> · ' + escapeHTML(asset.symbol) + '</div>'
+      +   '<div class="pa-price">' + fmt(lastPrice) + '</div>'
+      + '</div>'
+      + '<div class="pa-verdict ' + verdict.cls + '">'
+      +   '<div class="pa-verdict-score">' + verdict.score + '<small>/100</small></div>'
+      +   '<div class="pa-verdict-label">' + escapeHTML(verdict.label) + '</div>'
+      + '</div>'
+      + (verdict.takeaway ? '<p class="pa-takeaway">' + escapeHTML(verdict.takeaway) + '</p>' : '');
+
+    if (patterns.length === 0) {
+      html += '<div class="pa-section-title">🎯 Patterns chartistes</div>'
+        + '<div class="pa-no-pattern">Aucune figure chartiste claire détectée. Le marché est probablement en consolidation. Surveille la suite — un pattern peut émerger d\'ici quelques jours.</div>';
+    } else {
+      html += '<div class="pa-section-title">🎯 Patterns détectés (' + patterns.length + ')</div>'
+        + '<div class="pa-patterns">';
+      patterns.forEach(p => {
+        const cls = p.direction === 'bullish' ? 'bull' : p.direction === 'bearish' ? 'bear' : 'neutral';
+        const arrow = p.direction === 'bullish' ? '↗' : p.direction === 'bearish' ? '↘' : '↔';
+        const confLabel = { high: 'Fort', medium: 'Moyen', low: 'Faible' }[p.confidence || 'medium'];
+        html += '<div class="pa-pat ' + cls + '">'
+          + '<div class="pa-pat-head">'
+          +   '<span class="pa-pat-ico">' + p.icon + '</span>'
+          +   '<span class="pa-pat-name">' + escapeHTML(p.name) + ' ' + arrow + '</span>'
+          +   '<span class="pa-pat-conf ' + (p.confidence||'medium') + '">' + confLabel + '</span>'
+          + '</div>'
+          + '<p class="pa-pat-desc">' + escapeHTML(p.description) + '</p>'
+          + (p.why ? '<div class="pa-pat-why"><strong>Pourquoi :</strong> ' + escapeHTML(p.why) + '</div>' : '');
+        const lvls = [];
+        if (p.neckline) lvls.push('<span><em>Neckline</em> ' + fmt(p.neckline) + '</span>');
+        if (p.target)   lvls.push('<span><em>Cible</em> ' + fmt(p.target) + '</span>');
+        if (p.stop)     lvls.push('<span><em>Stop</em> ' + fmt(p.stop) + '</span>');
+        if (lvls.length) html += '<div class="pa-pat-lvls">' + lvls.join('') + '</div>';
+        html += '</div>';
+      });
+      html += '</div>';
+    }
+
+    // Plan d'action si pattern directionnel
+    const main = patterns.find(p => p.direction !== 'neutral' && (p.target || p.stop));
+    if (main) {
+      const dir = main.direction === 'bullish' ? 'long' : 'short';
+      const entry = lastPrice;
+      const stop = main.stop || (main.direction === 'bullish' ? lastPrice * 0.97 : lastPrice * 1.03);
+      const tp1 = main.neckline || (main.direction === 'bullish' ? lastPrice * 1.025 : lastPrice * 0.975);
+      const tp2 = main.target || (main.direction === 'bullish' ? lastPrice * 1.05 : lastPrice * 0.95);
+      const risk = Math.abs(entry - stop);
+      const reward = Math.abs(tp2 - entry);
+      const rr = risk > 0 ? (reward / risk).toFixed(2) : '—';
+      html += '<div class="pa-section-title">💡 Si tu jouais ce setup</div>'
+        + '<div class="pa-plan">'
+        +   '<div class="pa-plan-row"><span>Direction</span><strong>' + (dir === 'long' ? '📈 Long (achat)' : '📉 Short (vente)') + '</strong></div>'
+        +   '<div class="pa-plan-row"><span>Entrée</span><strong>' + fmt(entry) + '</strong></div>'
+        +   '<div class="pa-plan-row"><span>Stop loss</span><strong>' + fmt(stop) + '</strong></div>'
+        +   '<div class="pa-plan-row"><span>Cible 1</span><strong>' + fmt(tp1) + '</strong></div>'
+        +   '<div class="pa-plan-row"><span>Cible 2</span><strong>' + fmt(tp2) + '</strong></div>'
+        +   '<div class="pa-plan-row"><span>Risk / Reward</span><strong>1:' + rr + '</strong></div>'
+        + '</div>';
+      const tradePayload = encodeURIComponent(JSON.stringify({
+        asset: asset.name, kind: asset.kind, direction: dir,
+        entry: entry, stop: stop, tp1: tp1, tp2: tp2,
+        label: 'Pattern · ' + main.name, source: 'pattern',
+      }));
+      html += '<button class="pa-track-btn" onclick="trackPatternTrade(\'' + tradePayload + '\')">📌 Tracker ce trade dans le journal</button>';
+    }
+
+    html += '<div class="ai-disclaimer"><strong>⚠ Pédagogique uniquement.</strong> L\'analyse chartiste aide à structurer une réflexion, pas à garantir un résultat. Ne risque jamais plus de 1-2 % de ton capital sur un trade.</div>';
+    return html;
+  }
+
+  function trackPatternTrade(payload) {
+    try {
+      const p = JSON.parse(decodeURIComponent(payload));
+      const TRADE_KEY = 'tg_tracked_trades';
+      let arr = [];
+      try { arr = JSON.parse(localStorage.getItem(TRADE_KEY) || '[]'); } catch {}
+      if (!Array.isArray(arr)) arr = [];
+      arr.unshift({
+        id: 'tr_' + Date.now(),
+        ts: Date.now(),
+        asset: p.asset, kind: p.kind, direction: p.direction,
+        entry: p.entry, stop: p.stop, tp1: p.tp1, tp2: p.tp2,
+        label: p.label, source: p.source || 'pattern',
+        status: 'open',
+      });
+      arr = arr.slice(0, 50);
+      localStorage.setItem(TRADE_KEY, JSON.stringify(arr));
+      if (typeof showXPToast === 'function') showXPToast(5, 'Trade tracké');
+      if (navigator.vibrate) navigator.vibrate([10, 30, 20]);
+      closePatternModal();
+      const btn = document.querySelector('.pa-track-btn');
+      if (btn) { btn.textContent = '✓ Trade ajouté au journal'; btn.disabled = true; }
+      setTimeout(() => { if (typeof showView === 'function') showView('bilans'); }, 600);
+    } catch (e) {
+      console.warn('trackPatternTrade failed', e);
+    }
+  }
+
   /* ===== v2.28 — Vue Journal (carnet de bord simu) ===== */
   const JOURNAL_KEY_FEED = 'tradegenius_m4_journal';
   const STREAK_KEY_FEED = 'tradegenius_streak';
@@ -7639,7 +8213,7 @@
         + '<span class="v-placeholder-ico">📓</span>'
         + '<div class="v-placeholder-txt"><strong>Aucune session simu enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=249\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=250\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -7684,7 +8258,7 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=249\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=250\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
   }
@@ -8350,7 +8924,7 @@
         cls: 'fc-news', label: '📅 Samedi', time: now,
         title: 'Marchés fermés · bon moment pour réviser',
         body: 'Indices et actions ne tournent pas. La crypto, elle, ne dort jamais. Le simulateur attend.',
-        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=249'",
+        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=250'",
       });
     }
 
@@ -8920,11 +9494,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=249';
+      location.href = 'scene-05.html?v=250';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=249';
+      location.href = 'scene-06.html?v=250';
       return;
     }
 
@@ -8947,11 +9521,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=249"></script>
+  <script type="module" src="tg-common.js?v=250"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=249').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=250').catch(() => {});
       });
     }
   </script>
