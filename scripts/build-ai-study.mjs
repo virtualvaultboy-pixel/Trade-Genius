@@ -19,12 +19,28 @@ import {
   computeAllIndicators, globalVerdict, atrPct, sma,
 } from './indicators.mjs';
 
+// v2.47 — élargissement de la couverture
 const ASSETS = [
+  // Indices US + EU + Asie
   { kind: 'index',  symbol: '^GSPC', label: 'S&P 500' },
   { kind: 'index',  symbol: '^IXIC', label: 'Nasdaq' },
+  { kind: 'index',  symbol: '^DJI',  label: 'Dow Jones' },
   { kind: 'index',  symbol: '^FCHI', label: 'CAC 40' },
-  { kind: 'crypto', id: 'bitcoin',   label: 'BTC' },
-  { kind: 'crypto', id: 'ethereum',  label: 'ETH' },
+  { kind: 'index',  symbol: '^GDAXI',label: 'DAX' },
+  { kind: 'index',  symbol: '^FTSE', label: 'FTSE 100' },
+  { kind: 'index',  symbol: '^N225', label: 'Nikkei 225' },
+  // Crypto majors
+  { kind: 'crypto', id: 'bitcoin',     label: 'BTC' },
+  { kind: 'crypto', id: 'ethereum',    label: 'ETH' },
+  { kind: 'crypto', id: 'solana',      label: 'SOL' },
+  { kind: 'crypto', id: 'binancecoin', label: 'BNB' },
+  { kind: 'crypto', id: 'cardano',     label: 'ADA' },
+  { kind: 'crypto', id: 'ripple',      label: 'XRP' },
+  // Actions US majors
+  { kind: 'action', symbol: 'AAPL', label: 'Apple' },
+  { kind: 'action', symbol: 'TSLA', label: 'Tesla' },
+  { kind: 'action', symbol: 'NVDA', label: 'Nvidia' },
+  { kind: 'action', symbol: 'MSFT', label: 'Microsoft' },
 ];
 
 async function fetchOne(a) {
@@ -87,13 +103,13 @@ function detectSetup(a) {
   if (rsi != null && rsi < 32 && ind.boll && ind.boll.value < 0.18) {
     const entry = last;
     const stop = entry - 1.2 * atr;
-    // TP1 = retour vers MA20 (mean reversion) MAIS clamped pour rester < TP2
     const tp1Raw = ind.ma20?.value || (entry + 1.5 * atr);
     const tp2 = entry + 3 * atr;
-    const tp1 = Math.min(tp1Raw, tp2 * 0.95); // garantit TP1 < TP2
+    const tp1 = Math.min(tp1Raw, tp2 * 0.95);
     return {
       type: 'rebond-survente',
       label: 'Rebond technique sur survente',
+      timeframe: 'Court terme · 1-3 jours', // v2.47
       config: 'RSI ' + rsi.toFixed(0) + ' (zone survente) + prix sur bande basse de Bollinger. Configuration que les traders contrarians surveillent.',
       entry, stop, tp1, tp2,
       rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
@@ -112,6 +128,7 @@ function detectSetup(a) {
     return {
       type: 'pullback-haussier',
       label: 'Pullback dans une tendance haussière',
+      timeframe: 'Swing · 1-2 semaines', // v2.47
       config: 'MA20 > MA50 (tendance MT haussière) · RSI ' + rsi.toFixed(0) + ' (neutre, pas surchauffé) · MACD positif · ADX ' + adx.toFixed(0) + ' (tendance présente).',
       entry, stop, tp1, tp2,
       rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
@@ -130,6 +147,7 @@ function detectSetup(a) {
     return {
       type: 'breakout-haussier',
       label: 'Cassure haussière sur volatilité contractée',
+      timeframe: 'Trend follow · 2-4 semaines', // v2.47
       config: 'Prix sur bande haute de Bollinger après période de compression (ATR ' + ind.atr.value.toFixed(1) + '%). RSI ' + rsi.toFixed(0) + ' · ADX ' + adx.toFixed(0) + ' (force confirmée).',
       entry, stop, tp1, tp2,
       rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
@@ -139,7 +157,27 @@ function detectSetup(a) {
     };
   }
 
-  // Pas de setup clair : marche en range ou signaux contradictoires
+  // v2.47 — Setup 4 : Continuation haussière douce (RSI sain, ADX moyen, momentum positif)
+  // Plus permissif : pour aussi proposer des setups quand pas de bord extrême
+  const mom = ind.mom?.valuePct;
+  if (rsi != null && rsi >= 50 && rsi <= 70 && ind.maCross?.signal === 'bull' && mom != null && mom > 0.5 && adx > 14) {
+    const entry = last;
+    const stop = entry - 1.8 * atr;
+    const tp1 = entry + 1.8 * atr;
+    const tp2 = entry + 3.5 * atr;
+    return {
+      type: 'continuation-haussiere',
+      label: 'Continuation dans le mouvement haussier',
+      timeframe: 'Swing · 1-3 semaines',
+      config: 'Tendance positive (MA20 > MA50) · momentum 10j +' + mom.toFixed(1) + '% · RSI ' + rsi.toFixed(0) + ' (zone haussière sans surchauffe extrême).',
+      entry, stop, tp1, tp2,
+      rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
+      rr2: ((tp2 - entry) / (entry - stop)).toFixed(2),
+      rationale: 'Configuration où le marché monte sans être encore en surchauffe. La momentum positive et la MA20 au-dessus de la MA50 indiquent une dynamique acheteuse qui peut continuer. R/R symétrique avec stop sous 1.8 ATR.',
+      direction: 'long',
+    };
+  }
+
   return null;
 }
 
@@ -345,6 +383,7 @@ async function main() {
     // v2.44 — liste de TOUS les setups propices (1 par actif max)
     setups: setupsAll.map(s => ({
       asset: s.asset, kind: s.kind, type: s.type, label: s.label,
+      timeframe: s.timeframe || null,
       direction: s.direction, config: s.config, rationale: s.rationale,
       entry: s.entry, stop: s.stop, tp1: s.tp1, tp2: s.tp2,
       rr1: s.rr1, rr2: s.rr2, currency: s.currency,
@@ -352,7 +391,8 @@ async function main() {
     // Retro-compat : setup principal (le meilleur R/R)
     setup: bestSetup ? {
       asset: bestSetup.asset, kind: bestSetup.kind, type: bestSetup.type,
-      label: bestSetup.label, direction: bestSetup.direction, config: bestSetup.config,
+      label: bestSetup.label, timeframe: bestSetup.timeframe || null,
+      direction: bestSetup.direction, config: bestSetup.config,
       rationale: bestSetup.rationale, entry: bestSetup.entry, stop: bestSetup.stop,
       tp1: bestSetup.tp1, tp2: bestSetup.tp2, rr1: bestSetup.rr1, rr2: bestSetup.rr2,
       currency: bestSetup.currency,
