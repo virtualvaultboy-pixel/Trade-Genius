@@ -2702,6 +2702,217 @@
     letter-spacing: 0.04em;
   }
 
+  /* === v2.26 — Carte "Mon marché" + watchlist === */
+  .market-card {
+    background: linear-gradient(180deg, rgba(190,242,100,0.04) 0%, rgba(255,255,255,0.03) 100%);
+    border: 1px solid rgba(190,242,100,0.22);
+    border-radius: 16px;
+    padding: 12px 14px 10px;
+    margin: 0 0 18px;
+  }
+  .market-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .mc-title {
+    font-family: var(--font-d); font-size: 14.5px; font-weight: 800;
+    color: var(--text); letter-spacing: -0.01em;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .mc-title .mc-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--acid);
+    box-shadow: 0 0 8px rgba(190,242,100,0.6);
+    animation: mcDot 1.6s ease-in-out infinite;
+  }
+  @keyframes mcDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.55; transform: scale(0.85); }
+  }
+  .mc-edit {
+    appearance: none; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border); border-radius: 999px;
+    color: var(--text-dim);
+    padding: 4px 10px; font-family: var(--font-m); font-size: 10.5px;
+    font-weight: 700; letter-spacing: 0.04em; cursor: pointer;
+    transition: transform 0.16s, color 0.18s, border-color 0.18s;
+  }
+  .mc-edit:active { transform: scale(0.94); }
+  .mc-edit:hover { color: var(--acid); border-color: rgba(190,242,100,0.4); }
+
+  .market-empty {
+    text-align: center; padding: 16px 4px 10px;
+  }
+  .market-empty-ico { font-size: 32px; display: block; margin-bottom: 6px; }
+  .market-empty p {
+    font-family: var(--font-d); font-size: 13px; color: var(--text-dim);
+    margin: 0 0 12px; line-height: 1.45;
+  }
+  .market-empty button {
+    appearance: none;
+    background: linear-gradient(135deg, var(--acid) 0%, var(--green) 100%);
+    color: #0a0a0f; border: 0; border-radius: 12px;
+    padding: 10px 16px;
+    font-family: var(--font-d); font-size: 13px; font-weight: 800;
+    letter-spacing: 0.01em; cursor: pointer;
+    box-shadow: 0 6px 16px rgba(190,242,100,0.32);
+  }
+  .market-empty button:active { transform: scale(0.97); }
+
+  .market-rows { display: flex; flex-direction: column; gap: 4px; }
+  .market-row {
+    display: grid;
+    grid-template-columns: 38px 1fr auto;
+    gap: 10px; align-items: center;
+    padding: 8px 4px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.16s;
+  }
+  .market-row:hover { background: rgba(255,255,255,0.03); }
+  .market-row + .market-row { border-top: 1px dashed rgba(255,255,255,0.05); }
+  .mr-symbol {
+    font-family: var(--font-m); font-size: 11px; font-weight: 800;
+    letter-spacing: 0.04em; color: var(--text);
+    text-align: center;
+  }
+  .mr-name { min-width: 0; }
+  .mr-name-1 {
+    font-family: var(--font-d); font-size: 13px; font-weight: 700;
+    color: var(--text); line-height: 1.2;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .mr-verdict {
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.06em; color: var(--text-faint);
+    margin-top: 2px;
+  }
+  .mr-verdict.bull { color: var(--acid); }
+  .mr-verdict.bear { color: var(--red); }
+  .mr-verdict.neutral { color: var(--text-faint); }
+  .mr-price {
+    text-align: right;
+    font-family: var(--font-m); font-size: 12.5px; font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .mr-change {
+    font-family: var(--font-m); font-size: 10.5px; font-weight: 700;
+    margin-top: 2px; letter-spacing: 0.02em;
+  }
+  .mr-change.up { color: var(--acid); }
+  .mr-change.down { color: var(--red); }
+  .mr-change.flat { color: var(--text-faint); }
+  .mr-price.loading,
+  .mr-change.loading { color: var(--text-faint); opacity: 0.65; }
+
+  .mc-cta-deep {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 10px; margin-top: 6px;
+    border-top: 1px solid var(--border);
+  }
+  .mc-cta-deep .ccd-txt {
+    font-family: var(--font-d); font-size: 12px; color: var(--text-dim);
+  }
+  .mc-cta-deep .ccd-btn {
+    appearance: none; background: none; border: 0;
+    color: var(--acid); font-family: var(--font-m); font-size: 11px; font-weight: 800;
+    letter-spacing: 0.06em; cursor: pointer; padding: 4px 0;
+  }
+  .mc-cta-deep .ccd-btn.locked { color: var(--gold); }
+
+  /* === Modal sélecteur watchlist === */
+  .market-modal { /* hérite du look profile-modal */ }
+  .mm-card {
+    width: 100%; max-width: 420px; max-height: 86vh;
+    background: linear-gradient(180deg, #14141f 0%, #0c0c12 100%);
+    border: 1px solid rgba(190,242,100,0.22);
+    border-radius: 20px;
+    padding: 22px 18px 18px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.04);
+    overflow-y: auto;
+    animation: pmSlideUp 0.42s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+  }
+  .mm-card h2 {
+    font-family: var(--font-d); font-size: 22px; font-weight: 800;
+    color: var(--text); margin: 0 0 4px; letter-spacing: -0.02em;
+  }
+  .mm-card h2 em { color: var(--acid); font-style: normal; }
+  .mm-card .mm-sub {
+    font-family: var(--font-d); font-size: 13px; color: var(--text-dim);
+    margin: 0 0 14px; line-height: 1.4;
+  }
+  .mm-section {
+    font-family: var(--font-m); font-size: 10px; font-weight: 800;
+    letter-spacing: 0.18em; color: var(--text-faint); text-transform: uppercase;
+    margin: 14px 0 8px;
+  }
+  .mm-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+  }
+  .mm-asset {
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 8px; align-items: center;
+    padding: 9px 11px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border); border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    transition: transform 0.14s, border-color 0.18s, background 0.18s;
+  }
+  .mm-asset:active { transform: scale(0.97); }
+  .mm-asset.selected {
+    border-color: var(--acid);
+    background: rgba(190,242,100,0.10);
+    box-shadow: 0 0 0 2px rgba(190,242,100,0.18);
+  }
+  .mm-asset-sym {
+    font-family: var(--font-m); font-size: 10.5px; font-weight: 800;
+    color: var(--text); letter-spacing: 0.04em;
+  }
+  .mm-asset-name {
+    font-family: var(--font-d); font-size: 11.5px;
+    color: var(--text-dim); line-height: 1.2;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .mm-asset-check {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: transparent;
+  }
+  .mm-asset.selected .mm-asset-check {
+    background: var(--acid); border-color: var(--acid);
+    color: #0a0a0f;
+  }
+  .mm-asset.coming { opacity: 0.5; cursor: default; }
+  .mm-asset.coming::after {
+    content: 'BIENTÔT';
+    position: absolute;
+  }
+  .mm-coming-tag {
+    font-family: var(--font-m); font-size: 8.5px; font-weight: 800;
+    letter-spacing: 0.1em; color: var(--text-faint);
+    padding: 1px 5px; background: rgba(255,255,255,0.04);
+    border-radius: 4px; border: 1px solid var(--border);
+  }
+  .mm-count {
+    font-family: var(--font-m); font-size: 10px; font-weight: 700;
+    color: var(--text-faint); letter-spacing: 0.08em;
+    text-align: center; margin-top: 6px;
+  }
+  .mm-count strong { color: var(--acid); }
+  .mm-actions {
+    display: flex; gap: 8px; margin-top: 18px;
+  }
+  .mm-actions .pm-btn { flex: 1; }
+  .mm-actions .mm-cancel {
+    background: rgba(255,255,255,0.04);
+    color: var(--text-dim);
+    box-shadow: none;
+    border: 1px solid var(--border);
+  }
+
   /* === Disclaimer pédagogique (v2.20) === */
   .feed-disclaimer {
     margin: 22px -18px -2px;
@@ -2883,7 +3094,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.25</div>
+        <div class="bd-brand-ver" id="bd-version">v2.26</div>
       </div>
     </div>
 
@@ -2894,17 +3105,17 @@
     <a class="bd-item" href="glossary.html"><span class="bd-ico">📑</span><span>Glossaire (26 termes)</span></a>
 
     <div class="bd-section-title">Apprendre</div>
-    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=225')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=225')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=225')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=225')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=225')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(5, 'scene-11.html?v=225')"><span class="bd-ico" style="color:var(--green);">💰</span><span>M5 · Fiscalité FR</span><span class="bd-count" id="bd-prog-m5">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=226')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=226')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=226')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=226')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=226')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(5, 'scene-11.html?v=226')"><span class="bd-ico" style="color:var(--green);">💰</span><span>M5 · Fiscalité FR</span><span class="bd-count" id="bd-prog-m5">—</span></a>
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=225')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=225')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=225')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=226')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=226')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=226')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
     <a class="bd-item bd-premium" onclick="closeBurger();openCoachIA()"><span class="bd-ico">🤖</span><span>Coach IA <span class="bd-mini">Bientôt</span></span></a>
 
     <div class="bd-section-title">Tes stats</div>
@@ -3159,7 +3370,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=225')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=226')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -3178,7 +3389,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=225')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=226')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -3197,7 +3408,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=225')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=226')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -3216,7 +3427,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=225')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=226')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -3235,7 +3446,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=225')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=226')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -3254,7 +3465,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=225')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=226')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -3293,7 +3504,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.25</span>
+      <span class="hbb-tag" id="hbb-tag">v2.26</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -3334,13 +3545,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=225'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=226'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=225'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=226'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -3392,7 +3603,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=225'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=226'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -3404,25 +3615,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=225" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=226" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=225" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=226" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 6 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=225" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=226" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=225" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=226" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -3505,6 +3716,21 @@
       <div class="fb-txt"><strong>Formation 100 % gratuite</strong><br>6 modules · simu illimité · biblio</div>
     </div>
 
+    <!-- v2.26 — Carte Mon marché (watchlist live) -->
+    <div class="market-card" id="market-card">
+      <div class="market-head">
+        <div class="mc-title"><span class="mc-dot"></span>Mon marché</div>
+        <button class="mc-edit" onclick="openMarketPicker()">⚙ Choisir</button>
+      </div>
+      <div id="market-body">
+        <div class="market-empty">
+          <span class="market-empty-ico">📡</span>
+          <p>Choisis tes <strong>indices et actifs préférés</strong>.<br>L'app suit leurs indicateurs et te dit où ça en est.</p>
+          <button onclick="openMarketPicker()">Choisir mes actifs →</button>
+        </div>
+      </div>
+    </div>
+
     <div class="feed-date" id="feed-date">20 mai 2026</div>
 
     <div id="feed-posts">
@@ -3521,7 +3747,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=225'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=226'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -3550,7 +3776,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=225'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=226'">OUVRIR →</button>
         </div>
       </article>
 
@@ -3590,7 +3816,7 @@
         <strong>Bientôt</strong> · P&amp;L hebdo, mensuel et cumulé, agrégés depuis tes sessions simu.<br>
         Pour démarrer ton historique, ouvre le <strong>simulateur</strong>.
       </div>
-      <button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href='scene-05.html?v=225'">Ouvrir le simulateur →</button>
+      <button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href='scene-05.html?v=226'">Ouvrir le simulateur →</button>
     </div>
   </div>
 
@@ -3652,22 +3878,22 @@
         <p class="pp-tag">Les modules expert sont débloqués. Bonne exploration.</p>
       </div>
       <div class="pp-unlocked">
-        <a class="pp-unlock-card" href="scene-10.html?v=225">
+        <a class="pp-unlock-card" href="scene-10.html?v=226">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 6 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=225">
+        <a class="pp-unlock-card" href="scene-08.html?v=226">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=225">
+        <a class="pp-unlock-card" href="scene-09.html?v=226">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=225">
+        <a class="pp-unlock-card" href="scene-07.html?v=226">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -3702,6 +3928,32 @@
         <button class="pm-avatar" data-emoji="🦈">🦈</button>
       </div>
       <button id="pm-save" class="pm-btn" onclick="saveProfile()" disabled>Commencer →</button>
+    </div>
+  </div>
+
+  <!-- ============================================
+       v2.26 — MODAL : sélecteur de watchlist
+       ============================================ -->
+  <div id="market-modal" class="profile-modal market-modal" role="dialog" aria-modal="true">
+    <div class="mm-card">
+      <h2>Choisis tes <em>actifs</em></h2>
+      <p class="mm-sub">Jusqu'à 6 actifs. L'app les suit, calcule les indicateurs côté navigateur, et te montre où ça en est.</p>
+
+      <div class="mm-section">Crypto · données live</div>
+      <div class="mm-grid" id="mm-crypto"></div>
+
+      <div class="mm-section">Indices · bientôt</div>
+      <div class="mm-grid" id="mm-index"></div>
+
+      <div class="mm-section">Actions · bientôt</div>
+      <div class="mm-grid" id="mm-action"></div>
+
+      <div class="mm-count" id="mm-count"><strong>0</strong> / 6 sélectionnés</div>
+
+      <div class="mm-actions">
+        <button class="pm-btn mm-cancel" onclick="closeMarketPicker()">Annuler</button>
+        <button class="pm-btn" onclick="saveWatchlist()">Valider</button>
+      </div>
     </div>
   </div>
 
@@ -3788,10 +4040,12 @@
     if (name === 'feed') {
       refreshFeedProfile();
       setupFeedLikes();
-      setupPullRefresh();  // v2.21
+      setupPullRefresh();   // v2.21
       syncXPFromProgress(); // v2.22 — catch up XP depuis chapitres validés
       renderXPBadge();      // v2.22
       setupQuizzes();       // v2.22
+      renderMarketCard();   // v2.26
+      refreshWatchlistData(true); // v2.26 — utilise cache si frais
       // v2.19 — tuto pivot auto si jamais vu (v2.23 : ne pas le lancer si popup profil ouverte ou profil absent)
       if (shouldShowFeedTuto()) {
         setTimeout(() => {
@@ -4679,7 +4933,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=225';
+        location.href = 'scene-10.html?v=226';
       });
       widget._linked = true;
     }
@@ -4732,7 +4986,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=225';
+      location.href = 'scene-05.html?v=226';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -4858,9 +5112,9 @@
       return '✓ Reset complet. Reload...';
     },
     resetprofile: () => {
-      ['tg_profile','tg_feed_tuto','tg_post_likes','tg_xp'].forEach(k => localStorage.removeItem(k));
+      ['tg_profile','tg_feed_tuto','tg_post_likes','tg_xp','tg_watchlist','tg_watchlist_cache'].forEach(k => localStorage.removeItem(k));
       setTimeout(() => location.reload(), 600);
-      return '✓ Profil + feed + XP reset.';
+      return '✓ Profil + feed + XP + watchlist reset.';
     },
     resetmodules: () => {
       ['tradegenius_v1','tradegenius_m1','tradegenius_m2','tradegenius_m3'].forEach(k => localStorage.removeItem(k));
@@ -5147,7 +5401,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=225'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=226'; };
         block.style.display = 'block';
         return;
       }
@@ -5189,7 +5443,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=225';
+        card.onclick = () => location.href = 'scene-05.html?v=226';
         block.style.display = 'block';
         return;
       }
@@ -5209,7 +5463,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=225';
+          card.onclick = () => location.href = 'scene-06.html?v=226';
           block.style.display = 'block';
           return;
         }
@@ -5223,7 +5477,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=225';
+        card.onclick = () => location.href = 'scene-06.html?v=226';
         block.style.display = 'block';
         return;
       }
@@ -5238,7 +5492,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=225';
+    card.onclick = () => location.href = 'scene-05.html?v=226';
     block.style.display = 'block';
   }
 
@@ -5584,6 +5838,209 @@
     });
   }
 
+  /* ===== v2.26 — WATCHLIST + carte Marché live ===== */
+  const WATCHLIST_KEY = 'tg_watchlist';
+  const WATCHLIST_CACHE_KEY = 'tg_watchlist_cache';
+  const WATCHLIST_MAX = 6;
+  const WATCHLIST_CACHE_TTL = 5 * 60 * 1000;
+
+  const MARKET_ASSETS = [
+    { id: 'bitcoin',     symbol: 'BTC',  name: 'Bitcoin',   kind: 'crypto', live: true },
+    { id: 'ethereum',    symbol: 'ETH',  name: 'Ethereum',  kind: 'crypto', live: true },
+    { id: 'solana',      symbol: 'SOL',  name: 'Solana',    kind: 'crypto', live: true },
+    { id: 'binancecoin', symbol: 'BNB',  name: 'BNB',       kind: 'crypto', live: true },
+    { id: 'cardano',     symbol: 'ADA',  name: 'Cardano',   kind: 'crypto', live: true },
+    { id: 'ripple',      symbol: 'XRP',  name: 'XRP',       kind: 'crypto', live: true },
+    { id: '^FCHI',       symbol: 'CAC',  name: 'CAC 40',    kind: 'index',  live: false },
+    { id: '^GSPC',       symbol: 'S&P',  name: 'S&P 500',   kind: 'index',  live: false },
+    { id: '^IXIC',       symbol: 'NDX',  name: 'Nasdaq',    kind: 'index',  live: false },
+    { id: '^DJI',        symbol: 'DJI',  name: 'Dow Jones', kind: 'index',  live: false },
+    { id: 'AAPL',        symbol: 'AAPL', name: 'Apple',     kind: 'action', live: false },
+    { id: 'TSLA',        symbol: 'TSLA', name: 'Tesla',     kind: 'action', live: false },
+    { id: 'NVDA',        symbol: 'NVDA', name: 'Nvidia',    kind: 'action', live: false },
+    { id: 'MSFT',        symbol: 'MSFT', name: 'Microsoft', kind: 'action', live: false },
+  ];
+  function getAsset(id) { return MARKET_ASSETS.find(a => a.id === id); }
+  function loadWatchlist() {
+    try {
+      const r = JSON.parse(localStorage.getItem(WATCHLIST_KEY));
+      return Array.isArray(r) ? r.slice(0, WATCHLIST_MAX) : [];
+    } catch { return []; }
+  }
+  function persistWatchlist(arr) {
+    try { localStorage.setItem(WATCHLIST_KEY, JSON.stringify(arr.slice(0, WATCHLIST_MAX))); } catch {}
+  }
+
+  let _mpSelected = [];
+  function openMarketPicker() {
+    _mpSelected = loadWatchlist().slice();
+    renderPicker();
+    document.getElementById('market-modal').classList.add('show');
+  }
+  function closeMarketPicker() {
+    document.getElementById('market-modal').classList.remove('show');
+  }
+  function renderPicker() {
+    const groups = { crypto: 'mm-crypto', index: 'mm-index', action: 'mm-action' };
+    Object.entries(groups).forEach(([kind, containerId]) => {
+      const el = document.getElementById(containerId);
+      if (!el) return;
+      el.innerHTML = MARKET_ASSETS.filter(a => a.kind === kind).map(a => {
+        const selected = _mpSelected.includes(a.id);
+        const coming = !a.live;
+        const click = coming ? '' : `onclick="toggleMarketAsset('${a.id}')"`;
+        const tag = coming ? '<span class="mm-coming-tag">SOON</span>' : '<span></span>';
+        return '<button class="mm-asset ' + (selected ? 'selected' : '') + (coming ? ' coming' : '') + '" ' + click + '>'
+          + '<span class="mm-asset-check">✓</span>'
+          + '<div><div class="mm-asset-sym">' + a.symbol + '</div><div class="mm-asset-name">' + a.name + '</div></div>'
+          + tag
+          + '</button>';
+      }).join('');
+    });
+    const cnt = document.getElementById('mm-count');
+    if (cnt) cnt.innerHTML = '<strong>' + _mpSelected.length + '</strong> / ' + WATCHLIST_MAX + ' sélectionnés';
+  }
+  function toggleMarketAsset(id) {
+    const idx = _mpSelected.indexOf(id);
+    if (idx >= 0) {
+      _mpSelected.splice(idx, 1);
+    } else {
+      if (_mpSelected.length >= WATCHLIST_MAX) {
+        if (navigator.vibrate) navigator.vibrate([10, 50, 10]);
+        return;
+      }
+      _mpSelected.push(id);
+      if (navigator.vibrate) navigator.vibrate(6);
+    }
+    renderPicker();
+  }
+  function saveWatchlist() {
+    persistWatchlist(_mpSelected);
+    closeMarketPicker();
+    renderMarketCard();
+    refreshWatchlistData(false);
+    if (navigator.vibrate) navigator.vibrate([12, 40, 28]);
+  }
+
+  function renderMarketCard() {
+    const list = loadWatchlist();
+    const body = document.getElementById('market-body');
+    if (!body) return;
+    if (list.length === 0) {
+      body.innerHTML = '<div class="market-empty">'
+        + '<span class="market-empty-ico">📡</span>'
+        + '<p>Choisis tes <strong>indices et actifs préférés</strong>.<br>L\'app suit leurs indicateurs et te dit où ça en est.</p>'
+        + '<button onclick="openMarketPicker()">Choisir mes actifs →</button>'
+        + '</div>';
+      return;
+    }
+    const isPremium = _isPremiumSafe();
+    let rows = '<div class="market-rows">';
+    list.forEach(id => {
+      const a = getAsset(id);
+      if (!a) return;
+      rows += '<div class="market-row" onclick="onMarketRowClick(\'' + a.id + '\')">'
+        + '<div class="mr-symbol">' + a.symbol + '</div>'
+        + '<div class="mr-name">'
+        +   '<div class="mr-name-1">' + a.name + '</div>'
+        +   '<div class="mr-verdict neutral" id="mrv-' + a.id + '">' + (a.live ? 'Chargement…' : 'Données bientôt') + '</div>'
+        + '</div>'
+        + '<div>'
+        +   '<div class="mr-price ' + (a.live ? 'loading' : '') + '" id="mrp-' + a.id + '">—</div>'
+        +   '<div class="mr-change ' + (a.live ? 'loading' : '') + ' flat" id="mrc-' + a.id + '">—</div>'
+        + '</div>'
+        + '</div>';
+    });
+    rows += '</div>';
+    rows += '<div class="mc-cta-deep">'
+      + '<span class="ccd-txt">Analyse complète + 6 indicateurs</span>'
+      + '<button class="ccd-btn ' + (isPremium ? '' : 'locked') + '" onclick="openMarketDeep()">'
+      + (isPremium ? 'OUVRIR →' : '✦ PREMIUM →')
+      + '</button>'
+      + '</div>';
+    body.innerHTML = rows;
+  }
+
+  function onMarketRowClick(id) {
+    const asset = getAsset(id);
+    if (!asset) return;
+    if (_isPremiumSafe()) {
+      location.href = 'scene-10.html?v=226&asset=' + encodeURIComponent(id);
+    } else {
+      showView('premium');
+    }
+  }
+  function openMarketDeep() {
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=226';
+    else showView('premium');
+  }
+
+  async function refreshWatchlistData(useCache) {
+    const list = loadWatchlist();
+    const cryptos = list.map(getAsset).filter(a => a && a.kind === 'crypto');
+    if (cryptos.length === 0) return;
+    if (useCache !== false) {
+      try {
+        const cache = JSON.parse(localStorage.getItem(WATCHLIST_CACHE_KEY));
+        if (cache && cache.ts && (Date.now() - cache.ts < WATCHLIST_CACHE_TTL)) {
+          applyMarketData(cache.data);
+          return;
+        }
+      } catch {}
+    }
+    try {
+      const ids = cryptos.map(a => a.id).join(',');
+      const url = 'https://api.coingecko.com/api/v3/simple/price?ids=' + ids + '&vs_currencies=usd&include_24hr_change=true';
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('CoinGecko ' + res.status);
+      const data = await res.json();
+      try { localStorage.setItem(WATCHLIST_CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); } catch {}
+      applyMarketData(data);
+    } catch {
+      applyMarketError();
+    }
+  }
+  function applyMarketData(data) {
+    Object.keys(data || {}).forEach(id => {
+      const a = getAsset(id);
+      if (!a) return;
+      const d = data[id] || {};
+      const price = d.usd, change = d.usd_24h_change;
+      const priceEl = document.getElementById('mrp-' + id);
+      const changeEl = document.getElementById('mrc-' + id);
+      const verdictEl = document.getElementById('mrv-' + id);
+      if (priceEl) { priceEl.textContent = formatPrice(price); priceEl.classList.remove('loading'); }
+      if (changeEl) {
+        const cls = (change > 0.1) ? 'up' : (change < -0.1) ? 'down' : 'flat';
+        changeEl.textContent = (change > 0 ? '+' : '') + (change != null ? change.toFixed(2) : '0.00') + '%';
+        changeEl.className = 'mr-change ' + cls;
+      }
+      if (verdictEl) {
+        const v = computeMarketVerdict(change);
+        verdictEl.textContent = v.label;
+        verdictEl.className = 'mr-verdict ' + v.cls;
+      }
+    });
+  }
+  function applyMarketError() {
+    document.querySelectorAll('.mr-price.loading').forEach(el => { el.textContent = '—'; el.classList.remove('loading'); });
+    document.querySelectorAll('.mr-change.loading').forEach(el => { el.textContent = 'API indispo'; el.classList.remove('loading'); });
+  }
+  function formatPrice(p) {
+    if (p == null) return '—';
+    if (p >= 1000) return Math.round(p).toLocaleString('fr-FR') + ' $';
+    if (p >= 1) return p.toFixed(2) + ' $';
+    return p.toFixed(4) + ' $';
+  }
+  function computeMarketVerdict(change24h) {
+    if (change24h == null) return { label: 'neutre', cls: 'neutral' };
+    if (change24h > 3) return { label: '↑ haussier court terme', cls: 'bull' };
+    if (change24h < -3) return { label: '↓ baissier court terme', cls: 'bear' };
+    if (change24h > 0.5) return { label: '→ légère hausse', cls: 'bull' };
+    if (change24h < -0.5) return { label: '→ légère baisse', cls: 'bear' };
+    return { label: 'range hésitant', cls: 'neutral' };
+  }
+
   /* ===== v2.25 — Activation Premium (démo) ===== */
   function activatePremiumDemo() {
     if (window.TG && typeof window.TG.setPremium === 'function') {
@@ -5817,6 +6274,9 @@
         setTimeout(() => {
           refreshFeedProfile();
           setupFeedLikes();
+          // v2.26 — refresh forcé du marché (bypass cache)
+          try { localStorage.removeItem(WATCHLIST_CACHE_KEY); } catch {}
+          refreshWatchlistData(false);
           clearOffset();
           indicator.classList.remove('spinning');
           refreshing = false;
@@ -5862,11 +6322,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=225';
+      location.href = 'scene-05.html?v=226';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=225';
+      location.href = 'scene-06.html?v=226';
       return;
     }
 
@@ -5889,11 +6349,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=225"></script>
+  <script type="module" src="tg-common.js?v=226"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=225').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=226').catch(() => {});
       });
     }
   </script>
