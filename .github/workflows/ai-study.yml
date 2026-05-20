@@ -1,8 +1,9 @@
 name: AI study
 on:
   schedule:
-    # 23h UTC tous les jours (= 00h Paris hiver / 01h été)
-    - cron: '0 23 * * *'
+    # v2.48 — 4 runs par jour pour fraîcheur : 00h, 06h, 12h, 18h UTC
+    # En heure Paris (été) ça donne approximativement : 02h, 08h, 14h, 20h
+    - cron: '0 0,6,12,18 * * *'
   push:
     branches: [main]
     paths:

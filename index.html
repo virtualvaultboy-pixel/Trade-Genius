@@ -3496,6 +3496,55 @@
   .daily-report-card .fc-type { color: var(--gold); }
   .daily-report-card { border-left-color: var(--gold); }
 
+  /* === v2.48 — Carte IA compacte (résumé + bouton 'Lire') === */
+  .ai-study-compact {
+    background-color: rgba(13,13,20,0.94);
+    border: 1px solid rgba(245,158,11,0.32);
+    border-left: 3px solid var(--gold);
+    border-radius: 14px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+  .aic-head {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; margin-bottom: 6px; flex-wrap: wrap;
+  }
+  .aic-tag {
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+    letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase;
+  }
+  .aic-verdict {
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+    letter-spacing: 0.06em;
+    padding: 3px 9px; border-radius: 999px;
+  }
+  .aic-verdict.bull { background: rgba(190,242,100,0.14); color: var(--acid); border: 1px solid rgba(190,242,100,0.4); }
+  .aic-verdict.bear { background: rgba(239,68,68,0.14); color: #fca5a5; border: 1px solid rgba(239,68,68,0.4); }
+  .aic-verdict.neutral { background: rgba(245,158,11,0.14); color: var(--gold); border: 1px solid rgba(245,158,11,0.4); }
+  .aic-title {
+    font-family: var(--font-d); font-size: 15.5px; font-weight: 800;
+    color: var(--text); margin: 0 0 6px; line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .aic-setups-count {
+    font-family: var(--font-m); font-size: 11px; font-weight: 700;
+    color: var(--acid); letter-spacing: 0.04em;
+    margin-bottom: 10px;
+  }
+  .aic-setups-count.empty { color: var(--text-faint); }
+  .aic-read-btn {
+    width: 100%; appearance: none; cursor: pointer;
+    background: linear-gradient(135deg, rgba(245,158,11,0.16), rgba(255,255,255,0.04));
+    border: 1px solid rgba(245,158,11,0.4);
+    color: var(--gold);
+    padding: 10px 14px; border-radius: 10px;
+    font-family: var(--font-d); font-size: 12.5px; font-weight: 800;
+    letter-spacing: 0.02em;
+    transition: transform 0.16s, background 0.18s;
+  }
+  .aic-read-btn:active { transform: scale(0.98); }
+  .aic-read-btn:hover { background: rgba(245,158,11,0.22); }
+
   /* === v2.39 — Étude IA (vue résultats refondue) === */
   .ai-study {
     background-color: rgba(13,13,20,0.94);
@@ -3982,7 +4031,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.47</div>
+        <div class="bd-brand-ver" id="bd-version">v2.48</div>
       </div>
     </div>
 
@@ -3995,8 +4044,8 @@
     <!-- v2.32 — Section 'Apprendre' (M0-M5) retiree : redondant avec l'onglet Formation -->
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=247')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=247')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=248')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=248')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
     <!-- v2.46 — 'Krachs historiques' retiré du burger (deplace en Module 6 dans Formation) -->
     <!-- v2.44 — 'Coach IA · Bientôt' retire du burger (deja accessible via l'onglet IA en bottom-nav) -->
 
@@ -4252,7 +4301,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=247')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=248')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -4271,7 +4320,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=247')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=248')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -4290,7 +4339,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=247')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=248')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -4309,7 +4358,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=247')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=248')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -4328,7 +4377,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=247')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=248')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -4347,7 +4396,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=247')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=248')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -4367,7 +4416,7 @@
       </div>
 
       <!-- v2.46 — Module 6 : Krachs historiques (Premium, deplace depuis le burger) -->
-      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=247')">
+      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=248')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💥</div>
@@ -4404,7 +4453,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.47</span>
+      <span class="hbb-tag" id="hbb-tag">v2.48</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -4445,13 +4494,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=247'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=248'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=247'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=248'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -4503,7 +4552,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=247'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=248'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -4515,25 +4564,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=247" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=248" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=247" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=248" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 10 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=247" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=248" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=247" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=248" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -4611,10 +4660,7 @@
       <span class="fx-pts" id="fx-pts">0 / 50 XP</span>
     </div>
 
-    <div class="feed-banner" onclick="showView('modules')">
-      <div class="fb-ico">✦</div>
-      <div class="fb-txt"><strong>Formation 100 % gratuite</strong><br>6 modules · simu illimité · biblio</div>
-    </div>
+    <!-- v2.48 — bandeau 'Formation 100 % gratuite' retiré (jugé non utile dans l'accueil) -->
 
     <!-- v2.26 — Carte Mon marché (watchlist live) -->
     <div class="market-card" id="market-card">
@@ -4643,7 +4689,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=247'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=248'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -4672,7 +4718,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=247'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=248'">OUVRIR →</button>
         </div>
       </article>
 
@@ -4758,22 +4804,22 @@
         <p class="pp-tag">Les modules expert sont débloqués. Bonne exploration.</p>
       </div>
       <div class="pp-unlocked">
-        <a class="pp-unlock-card" href="scene-10.html?v=247">
+        <a class="pp-unlock-card" href="scene-10.html?v=248">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=247">
+        <a class="pp-unlock-card" href="scene-08.html?v=248">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=247">
+        <a class="pp-unlock-card" href="scene-09.html?v=248">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=247">
+        <a class="pp-unlock-card" href="scene-07.html?v=248">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -4850,6 +4896,17 @@
       <h3 class="tp-title" id="tp-title">—</h3>
       <p class="tp-body" id="tp-body">—</p>
       <a class="tp-link" id="tp-link" style="display:none;" href="glossary.html">Ouvrir le glossaire →</a>
+    </div>
+  </div>
+
+  <!-- v2.48 — Modal détail de l'étude IA (mini popup centré) -->
+  <div id="ai-study-detail-modal" class="term-popup ai-howto-popup" role="dialog" aria-modal="true" onclick="if(event.target===this)closeAIStudyDetail()">
+    <div class="tp-card ai-howto-card">
+      <div class="tp-head" style="margin-bottom: 4px;">
+        <span class="tp-tag" style="color: var(--gold);">📊 ANALYSE COMPLÈTE</span>
+        <button class="tp-close" onclick="closeAIStudyDetail()" aria-label="Fermer">✕</button>
+      </div>
+      <div id="ai-study-detail-body"></div>
     </div>
   </div>
 
@@ -5878,7 +5935,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=247';
+        location.href = 'scene-10.html?v=248';
       });
       widget._linked = true;
     }
@@ -5931,7 +5988,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=247';
+      location.href = 'scene-05.html?v=248';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -6346,7 +6403,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=247'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=248'; };
         block.style.display = 'block';
         return;
       }
@@ -6388,7 +6445,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=247';
+        card.onclick = () => location.href = 'scene-05.html?v=248';
         block.style.display = 'block';
         return;
       }
@@ -6408,7 +6465,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=247';
+          card.onclick = () => location.href = 'scene-06.html?v=248';
           block.style.display = 'block';
           return;
         }
@@ -6422,7 +6479,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=247';
+        card.onclick = () => location.href = 'scene-06.html?v=248';
         block.style.display = 'block';
         return;
       }
@@ -6437,7 +6494,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=247';
+    card.onclick = () => location.href = 'scene-05.html?v=248';
     block.style.display = 'block';
   }
 
@@ -6921,13 +6978,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=247&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=248&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=247';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=248';
     else showView('premium');
   }
 
@@ -7582,7 +7639,7 @@
         + '<span class="v-placeholder-ico">📓</span>'
         + '<div class="v-placeholder-txt"><strong>Aucune session simu enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=247\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=248\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -7627,7 +7684,7 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=247\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=248\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
   }
@@ -8108,21 +8165,65 @@
     } catch { return null; }
   }
 
+  // v2.48 — Etude IA refondue : carte compacte (résumé + bouton 'Lire l'analyse')
+  // qui ouvre le détail complet en mini popup centré.
+  let _currentAIStudy = null;
+
+  function _relativeDateLabel(dStr) {
+    if (!dStr) return '';
+    const d = new Date(dStr + 'T00:00:00');
+    if (isNaN(d.getTime())) return dStr;
+    const today = new Date();
+    const todayDay = Math.floor(today.getTime() / 86400000);
+    const dDay = Math.floor(d.getTime() / 86400000);
+    const diff = todayDay - dDay;
+    if (diff === 0) return 'aujourd\'hui';
+    if (diff === 1) return 'hier';
+    if (diff === 2) return 'avant-hier';
+    return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
+  }
+
   async function renderAIStudy() {
     const container = document.getElementById('ai-study-container');
     if (!container) return;
     container.innerHTML = '';
     const data = await fetchAIStudy();
-    // Pas de data ou vide : on garde le placeholder de la vue
     if (!data || !data.title || data.title === 'Étude IA en attente') return;
+    _currentAIStudy = data;
 
+    const v = data.verdict || {};
+    const cls = v.cls || 'neutral';
+    const dateLabel = _relativeDateLabel(data.date);
+    const setupsCount = Array.isArray(data.setups) ? data.setups.length : (data.setup ? 1 : 0);
+
+    // Carte compacte : verdict + titre + date relative + bouton 'Lire'
+    const compactHTML = '<article class="ai-study-compact">'
+      + '<div class="aic-head">'
+      +   '<span class="aic-tag">🤖 Étude · ' + escapeHTML(dateLabel) + '</span>'
+      +   (v.label ? '<span class="aic-verdict ' + cls + '">' + escapeHTML(v.label) + ' · ' + (v.score || 50) + '</span>' : '')
+      + '</div>'
+      + '<h3 class="aic-title">' + escapeHTML(data.title) + '</h3>'
+      + (setupsCount > 0
+          ? '<div class="aic-setups-count">🎯 ' + setupsCount + ' setup' + (setupsCount > 1 ? 's' : '') + ' propice' + (setupsCount > 1 ? 's' : '') + ' aujourd\'hui</div>'
+          : '<div class="aic-setups-count empty">Aucun setup propice détecté</div>')
+      + '<button class="aic-read-btn" onclick="openAIStudyDetail()">📖 Lire l\'analyse complète</button>'
+      + '</article>';
+
+    // Les setups restent affichés sous la carte compacte (pour usage rapide sans ouvrir)
+    const setupsHTML = renderAllSetups(data.setups || (data.setup ? [data.setup] : []));
+
+    container.innerHTML = compactHTML + setupsHTML;
+  }
+
+  function openAIStudyDetail() {
+    const data = _currentAIStudy;
+    if (!data) return;
     const v = data.verdict || {};
     const cls = v.cls || 'neutral';
     const obs = Array.isArray(data.observations) ? data.observations : [];
     const plan = Array.isArray(data.plan_pedago) ? data.plan_pedago : [];
     const isPremium = _isPremiumSafe();
-    const dt = data.date ? new Date(data.date + 'T00:00:00') : new Date();
-    const dateLabel = dt.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
+    const dateLabel = _relativeDateLabel(data.date);
 
     const obsHTML = obs.length
       ? '<div class="ai-study-section-title">Ce qu\'on observe</div><ul class="ai-study-obs">'
@@ -8140,15 +8241,16 @@
       } else {
         planHTML = '<div class="ai-plan locked">'
           + '<span class="ai-plan-locked-ico">✦</span>'
-          + '<p class="ai-plan-locked-txt"><strong>Plan d\'action pédagogique</strong> : ' + plan.length + ' points concrets sur les outils à surveiller. Réservé Premium.</p>'
-          + '<button class="pm-btn" style="max-width:240px;margin:0 auto;" onclick="showView(\'premium\')">Passer en Premium →</button>'
+          + '<p class="ai-plan-locked-txt"><strong>Plan d\'action pédagogique</strong> : ' + plan.length + ' points concrets. Réservé Premium.</p>'
+          + '<button class="pm-btn" style="max-width:240px;margin:0 auto;" onclick="closeAIStudyDetail();showView(\'premium\')">Passer en Premium →</button>'
           + '</div>';
       }
     }
 
-    const html = '<article class="ai-study">'
+    const detail = document.getElementById('ai-study-detail-body');
+    detail.innerHTML = ''
       + '<div class="ai-study-head">'
-      +   '<span class="ai-study-tag">🤖 Étude du ' + dateLabel + '</span>'
+      +   '<span class="ai-study-tag">🤖 Étude · ' + escapeHTML(dateLabel) + '</span>'
       +   '<span class="ai-study-source">' + escapeHTML(data.source || '') + '</span>'
       + '</div>'
       + '<h3 class="ai-study-title">' + escapeHTML(data.title) + '</h3>'
@@ -8156,11 +8258,13 @@
       + (data.summary ? '<p class="ai-study-summary">' + escapeHTML(data.summary) + '</p>' : '')
       + obsHTML
       + planHTML
-      + renderAllSetups(data.setups || (data.setup ? [data.setup] : []))  // v2.44 — liste de setups propices
-      + '<div class="ai-disclaimer"><strong>⚠ Pédagogique uniquement.</strong> Cette analyse n\'est pas un conseil en investissement personnalisé. Les marchés financiers comportent un risque de perte en capital.</div>'
-      + '</article>';
+      + '<div class="ai-disclaimer"><strong>⚠ Pédagogique uniquement.</strong> Cette analyse n\'est pas un conseil en investissement personnalisé.</div>';
 
-    container.innerHTML = html;
+    document.getElementById('ai-study-detail-modal').classList.add('show');
+    if (navigator.vibrate) navigator.vibrate(4);
+  }
+  function closeAIStudyDetail() {
+    document.getElementById('ai-study-detail-modal').classList.remove('show');
   }
 
   /* ===== v2.34 — Posts dynamiques generes selon l'heure + jour ===== */
@@ -8245,7 +8349,7 @@
         cls: 'fc-news', label: '📅 Samedi', time: now,
         title: 'Marchés fermés · bon moment pour réviser',
         body: 'Indices et actions ne tournent pas. La crypto, elle, ne dort jamais. Le simulateur attend.',
-        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=247'",
+        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=248'",
       });
     }
 
@@ -8800,11 +8904,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=247';
+      location.href = 'scene-05.html?v=248';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=247';
+      location.href = 'scene-06.html?v=248';
       return;
     }
 
@@ -8827,11 +8931,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=247"></script>
+  <script type="module" src="tg-common.js?v=248"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=247').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=248').catch(() => {});
       });
     }
   </script>
