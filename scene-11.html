@@ -25,7 +25,7 @@
   <meta name="description" content="Module 5 — Fiscalité française : PEA, CTO, flat tax 30%, abattements, crypto, dividendes, ETF, plan fiscal optimal.">
   <link rel="manifest" href="manifest.json">
   <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
-  <script type="module" src="tg-common.js?v=216"></script>
+  <script type="module" src="tg-common.js?v=217"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -248,6 +248,22 @@
     .point.gold-pt .point-text strong { color: var(--gold); }
     .point.red-pt { border-color: rgba(239,68,68,0.3); }
     .point.red-pt .point-text strong { color: var(--red); }
+
+    /* Canvas pédago (v2.17) */
+    .demo-canvas {
+      width: 100%; height: 240px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.25) 100%);
+      border: 1px solid rgba(34,197,94,0.22);
+      border-radius: 14px;
+      display: block;
+      margin: 14px 0 6px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.32), inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+    .demo-caption {
+      font-family: var(--font-m); font-size: 10.5px;
+      color: var(--text-faint); letter-spacing: 0.05em;
+      text-align: center; margin: 0 0 14px;
+    }
 
     /* Tableau comparatif */
     .compare-table {
@@ -499,6 +515,17 @@
             <div class="ct-row"><strong>CTO illimités</strong></div>
           </div>
         `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.1 · IMPACT 30 ANS</div>
+          <h1 class="h1">L'écart fiscal sur <em>la durée</em></h1>
+          <p class="lead"><strong>10 000 €</strong> placés à <em class="green">7%/an</em> pendant <strong>30 ans</strong>. À la sortie, le PEA encaisse les <em class="acid">PS 17,2%</em> sur la PV. Le CTO subit la <em class="red">flat tax 30%</em>.</p>
+          <canvas class="demo-canvas" id="canvas-pea-vs-cto" width="600" height="240"></canvas>
+          <p class="demo-caption">PEA vs CTO · capital net après impôts sur 30 ans</p>
+          <div class="callout">
+            <div class="ck-lbl">CHIFFRE CLÉ</div>
+            <div class="ck-txt">Sur ce scénario, le PEA finit avec <strong>~8 460 € de plus</strong> que le CTO. C'est le poids de 12,8 % d'IR sur la plus-value après 3 décennies.</div>
+          </div>
+        `},
         { type: 'example', html: `
           <div class="eyebrow">CH.1 · QUI CHOISIR ?</div>
           <h1 class="h1">Le bon choix <em>pour toi</em></h1>
@@ -555,6 +582,17 @@
               <div class="point-icon">⚖️</div>
               <div class="point-text"><strong>Compensation des pertes</strong> : tu peux déduire tes moins-values de tes plus-values. Report sur <em class="acid">10 ans</em>.</div>
             </div>
+          </div>
+        `},
+        { type: 'concept', html: `
+          <div class="eyebrow">CH.2 · DÉCOMPOSITION</div>
+          <h1 class="h1">À quoi <em>servent</em> les 30% ?</h1>
+          <p class="lead">Sur <strong>1 000 € de plus-value</strong>, voici ce que l'État prend, et ce qu'il te reste vraiment.</p>
+          <canvas class="demo-canvas" id="canvas-flat-tax" width="600" height="240"></canvas>
+          <p class="demo-caption">PFU 30% · répartition IR + Prélèvements sociaux</p>
+          <div class="callout">
+            <div class="ck-lbl">À RETENIR</div>
+            <div class="ck-txt"><strong>17,2 %</strong> de prélèvements sociaux financent la Sécu, l'autonomie, le chômage. <strong>12,8 %</strong> d'IR vont au budget de l'État. Tu touches <strong>700 €</strong> net pour 1 000 € de PV.</div>
           </div>
         `},
         { type: 'example', html: `
@@ -1048,6 +1086,16 @@
       navPrev.disabled = cur === 0;
       navNext.textContent = cur === total - 1 ? '✓ Valider' : 'Suivant →';
       if (currentChapter != null) saveBookmark(currentChapter, cur);
+
+      // Canvas pédago (v2.17)
+      const activeSlide = slides[cur];
+      if (activeSlide) {
+        activeSlide.querySelectorAll('canvas').forEach(c => {
+          if (c._drawn) return;
+          const fn = CANVAS_DRAWERS[c.id];
+          if (fn) { fn(c); c._drawn = true; }
+        });
+      }
     }
 
     function next() {
@@ -1106,6 +1154,206 @@
     }
 
     function goBack() { window.location.href = 'index.html#modules'; }
+
+    /* ===== CANVAS PÉDAGO (v2.17) ===== */
+    function setupCanvas(canvas) {
+      const DPR = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = canvas.offsetWidth * DPR;
+      canvas.height = canvas.offsetHeight * DPR;
+      return { ctx: canvas.getContext('2d'), w: canvas.width, h: canvas.height, DPR };
+    }
+
+    // CH.1 — PEA vs CTO : croissance composée 30 ans, 10k€ initial, 7%/an
+    function drawPeaVsCto(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const padL = 48 * DPR, padR = 22 * DPR, padT = 28 * DPR, padB = 38 * DPR;
+      const useW = w - padL - padR;
+      const useH = h - padT - padB;
+
+      const years = 30, initial = 10000, rate = 0.07;
+      const brut = [], peaNet = [], ctoNet = [];
+      for (let i = 0; i <= years; i++) {
+        const val = initial * Math.pow(1 + rate, i);
+        const pv = val - initial;
+        brut.push(val);
+        peaNet.push(initial + pv * (1 - 0.172));   // PEA après 5 ans : PS 17,2%
+        ctoNet.push(initial + pv * (1 - 0.30));    // CTO : flat tax 30%
+      }
+      const mn = initial * 0.95;
+      const mx = Math.max(...brut) * 1.05;
+      const xAt = (i) => padL + (i / years) * useW;
+      const yAt = (v) => padT + (1 - (v - mn) / (mx - mn)) * useH;
+
+      function pathCurve(arr, color, glow, upTo) {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2.5 * DPR;
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.shadowColor = glow; ctx.shadowBlur = 8 * DPR;
+        ctx.beginPath();
+        for (let i = 0; i <= upTo; i++) {
+          const px = xAt(i), py = yAt(arr[i]);
+          if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+      }
+
+      let progress = 0;
+      function frame() {
+        ctx.clearRect(0, 0, w, h);
+
+        // Grille horizontale
+        ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+        ctx.lineWidth = 1 * DPR;
+        ctx.font = `${10 * DPR}px JetBrains Mono`;
+        ctx.fillStyle = 'rgba(168,168,179,0.7)';
+        ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+        for (let g = 0; g <= 4; g++) {
+          const gv = mn + (mx - mn) * (g / 4);
+          const gy = yAt(gv);
+          ctx.beginPath(); ctx.moveTo(padL, gy); ctx.lineTo(padL + useW, gy); ctx.stroke();
+          ctx.fillText(Math.round(gv / 1000) + 'k', padL - 6 * DPR, gy);
+        }
+        // Axe X (années) : 0, 10, 20, 30
+        ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+        ctx.fillStyle = 'rgba(168,168,179,0.7)';
+        [0, 10, 20, 30].forEach(yr => {
+          ctx.fillText(yr + ' ans', xAt(yr), padT + useH + 8 * DPR);
+        });
+
+        const upTo = Math.floor(progress * years);
+
+        // Aire sous PEA (acid)
+        const gradPea = ctx.createLinearGradient(0, padT, 0, padT + useH);
+        gradPea.addColorStop(0, 'rgba(190,242,100,0.30)');
+        gradPea.addColorStop(1, 'rgba(190,242,100,0.02)');
+        ctx.fillStyle = gradPea;
+        ctx.beginPath();
+        ctx.moveTo(xAt(0), padT + useH);
+        for (let i = 0; i <= upTo; i++) ctx.lineTo(xAt(i), yAt(peaNet[i]));
+        ctx.lineTo(xAt(upTo), padT + useH);
+        ctx.closePath(); ctx.fill();
+
+        // Courbes
+        pathCurve(ctoNet, '#ef4444', '#ef4444', upTo);
+        pathCurve(peaNet, '#bef264', '#bef264', upTo);
+
+        // Étiquettes finales
+        if (progress >= 1) {
+          ctx.font = `bold ${11 * DPR}px JetBrains Mono`;
+          ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+          const finalPea = Math.round(peaNet[years] / 1000);
+          const finalCto = Math.round(ctoNet[years] / 1000);
+          ctx.fillStyle = '#bef264';
+          ctx.fillText('PEA ' + finalPea + 'k', xAt(years), yAt(peaNet[years]) - 12 * DPR);
+          ctx.fillStyle = '#ef4444';
+          ctx.fillText('CTO ' + finalCto + 'k', xAt(years), yAt(ctoNet[years]) + 12 * DPR);
+        }
+
+        if (progress < 1) { progress = Math.min(1, progress + 0.022); requestAnimationFrame(frame); }
+      }
+      frame();
+    }
+
+    // CH.2 — Décomposition flat tax 30% sur 1000€ de PV
+    function drawFlatTax(canvas) {
+      const { ctx, w, h, DPR } = setupCanvas(canvas);
+      const padX = 24 * DPR, padT = 30 * DPR, padB = 46 * DPR;
+      const useW = w - padX * 2;
+      const useH = h - padT - padB;
+      const total = 1000;
+      const parts = [
+        { lbl: 'IR 12,8%', amt: 128, color: '#ef4444', glow: '#ef4444' },
+        { lbl: 'PS 17,2%', amt: 172, color: '#f59e0b', glow: '#f59e0b' },
+        { lbl: 'Net 70%',  amt: 700, color: '#bef264', glow: '#bef264' },
+      ];
+
+      let progress = 0;
+      function frame() {
+        ctx.clearRect(0, 0, w, h);
+
+        // Titre brut
+        ctx.font = `${10.5 * DPR}px JetBrains Mono`;
+        ctx.fillStyle = 'rgba(168,168,179,0.75)';
+        ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+        ctx.fillText('PLUS-VALUE BRUTE', padX, padT - 22 * DPR);
+        ctx.font = `bold ${14 * DPR}px Inter`;
+        ctx.fillStyle = '#f8f5ee';
+        ctx.textAlign = 'right';
+        ctx.fillText('1 000 €', padX + useW, padT - 24 * DPR);
+
+        // Barre empilée horizontale
+        const barH = 48 * DPR;
+        const barY = padT + useH / 2 - barH / 2;
+        let x = padX;
+        parts.forEach((p, i) => {
+          const pw = (p.amt / total) * useW * Math.min(progress * (i + 1), 1);
+          const pwFull = (p.amt / total) * useW;
+          // Ombre/glow
+          ctx.shadowColor = p.glow; ctx.shadowBlur = 10 * DPR;
+          ctx.fillStyle = p.color;
+          ctx.fillRect(x, barY, pw, barH);
+          ctx.shadowBlur = 0;
+          // Bordure inter-segments
+          if (i < parts.length - 1) {
+            ctx.fillStyle = 'rgba(10,10,15,0.7)';
+            ctx.fillRect(x + pwFull - 1 * DPR, barY, 2 * DPR, barH);
+          }
+          x += pwFull;
+        });
+
+        // Étiquettes
+        if (progress > 0.6) {
+          const aLab = Math.min((progress - 0.6) * 2.5, 1);
+          ctx.globalAlpha = aLab;
+          ctx.font = `bold ${11 * DPR}px JetBrains Mono`;
+          ctx.textBaseline = 'top';
+          let cx = padX;
+          parts.forEach(p => {
+            const pwFull = (p.amt / total) * useW;
+            ctx.fillStyle = p.color;
+            ctx.textAlign = 'center';
+            ctx.fillText(p.lbl, cx + pwFull / 2, barY + barH + 10 * DPR);
+            // Montant à l'intérieur si segment assez large
+            if (pwFull > 70 * DPR) {
+              ctx.fillStyle = '#0a0a0f';
+              ctx.font = `bold ${13 * DPR}px Inter`;
+              ctx.textBaseline = 'middle';
+              ctx.fillText(p.amt + ' €', cx + pwFull / 2, barY + barH / 2);
+              ctx.font = `bold ${11 * DPR}px JetBrains Mono`;
+              ctx.textBaseline = 'top';
+            }
+            cx += pwFull;
+          });
+          ctx.globalAlpha = 1;
+        }
+
+        // Accolade "État prend" sur les 2 premiers segments
+        if (progress >= 1) {
+          const braceX1 = padX;
+          const braceX2 = padX + (300 / total) * useW;
+          const by = barY - 10 * DPR;
+          ctx.strokeStyle = 'rgba(239,68,68,0.55)';
+          ctx.lineWidth = 1.5 * DPR;
+          ctx.beginPath();
+          ctx.moveTo(braceX1, by); ctx.lineTo(braceX1, by - 6 * DPR);
+          ctx.lineTo(braceX2, by - 6 * DPR); ctx.lineTo(braceX2, by);
+          ctx.stroke();
+          ctx.font = `bold ${10 * DPR}px JetBrains Mono`;
+          ctx.fillStyle = '#ef4444';
+          ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
+          ctx.fillText('L’ÉTAT PREND 300 €', (braceX1 + braceX2) / 2, by - 8 * DPR);
+        }
+
+        if (progress < 1) { progress = Math.min(1, progress + 0.03); requestAnimationFrame(frame); }
+      }
+      frame();
+    }
+
+    const CANVAS_DRAWERS = {
+      'canvas-pea-vs-cto': drawPeaVsCto,
+      'canvas-flat-tax':   drawFlatTax,
+    };
 
     /* ===== INIT ===== */
     window.addEventListener('load', renderHub);
