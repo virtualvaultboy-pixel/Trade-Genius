@@ -1,0 +1,37 @@
+name: Weekly decryptage
+on:
+  schedule:
+    # Dimanche 18h UTC = 19h Paris hiver / 20h Paris été.
+    - cron: '0 18 * * 0'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build-weekly-decryptage.mjs'
+      - 'scripts/indicators.mjs'
+      - '.github/workflows/weekly-decryptage.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build weekly decryptage
+        run: node scripts/build-weekly-decryptage.mjs
+      - name: Commit data/decryptages.json if changed
+        run: |
+          git config user.name 'trade-genius-bot'
+          git config user.email 'bot@deponchy.studio'
+          if [[ -n "$(git status --porcelain data/decryptages.json)" ]]; then
+            git add data/decryptages.json
+            git commit -m "chore: refresh weekly decryptage [skip ci]"
+            git push
+          else
+            echo "Weekly decryptage unchanged."
+          fi

@@ -1,0 +1,37 @@
+name: Daily market report
+on:
+  schedule:
+    # 22h UTC = 23h Paris hiver / 00h Paris été. Après clôture US (22h Paris = 16h ET).
+    - cron: '0 22 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build-daily-report.mjs'
+      - 'scripts/indicators.mjs'
+      - '.github/workflows/daily-report.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build daily report
+        run: node scripts/build-daily-report.mjs
+      - name: Commit data/daily.json if changed
+        run: |
+          git config user.name 'trade-genius-bot'
+          git config user.email 'bot@deponchy.studio'
+          if [[ -n "$(git status --porcelain data/daily.json)" ]]; then
+            git add data/daily.json
+            git commit -m "chore: refresh daily report [skip ci]"
+            git push
+          else
+            echo "Daily report unchanged."
+          fi
