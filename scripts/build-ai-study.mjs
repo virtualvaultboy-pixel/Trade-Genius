@@ -87,8 +87,10 @@ function detectSetup(a) {
   if (rsi != null && rsi < 32 && ind.boll && ind.boll.value < 0.18) {
     const entry = last;
     const stop = entry - 1.2 * atr;
-    const tp1 = ind.ma20?.value || entry + 1.5 * atr;
+    // TP1 = retour vers MA20 (mean reversion) MAIS clamped pour rester < TP2
+    const tp1Raw = ind.ma20?.value || (entry + 1.5 * atr);
     const tp2 = entry + 3 * atr;
+    const tp1 = Math.min(tp1Raw, tp2 * 0.95); // garantit TP1 < TP2
     return {
       type: 'rebond-survente',
       label: 'Rebond technique sur survente',
