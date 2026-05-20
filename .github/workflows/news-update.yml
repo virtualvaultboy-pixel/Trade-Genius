@@ -1,0 +1,35 @@
+name: Update news feed
+on:
+  schedule:
+    # Toutes les 30 minutes (la granularité réelle de GH Actions cron est ~5-15 min de drift)
+    - cron: '*/30 * * * *'
+  workflow_dispatch: {}    # déclenchement manuel via UI GitHub si besoin
+
+permissions:
+  contents: write          # nécessaire pour commit data/news.json
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch news from CryptoCompare + Yahoo Finance RSS
+        run: node scripts/fetch-news.mjs
+
+      - name: Commit data/news.json if changed
+        run: |
+          git config user.name 'trade-genius-bot'
+          git config user.email 'bot@deponchy.studio'
+          if [[ -n "$(git status --porcelain data/news.json)" ]]; then
+            git add data/news.json
+            git commit -m "chore: refresh news feed [skip ci]"
+            git push
+          else
+            echo "No change in news feed."
+          fi
