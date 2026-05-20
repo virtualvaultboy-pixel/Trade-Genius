@@ -45,7 +45,8 @@ const ASSETS = [
 
 async function fetchOne(a) {
   try {
-    if (a.kind === 'index') {
+    // v2.49 — Actions ET indices passent par Yahoo (les actions étaient à tort routées vers CoinGecko)
+    if (a.kind === 'index' || a.kind === 'action') {
       const d = await fetchYahooHistorical(a.symbol, '3mo');
       return { ...a, prices: d.prices, price: d.price, prevClose: d.prevClose };
     }
@@ -158,7 +159,6 @@ function detectSetup(a) {
   }
 
   // v2.47 — Setup 4 : Continuation haussière douce (RSI sain, ADX moyen, momentum positif)
-  // Plus permissif : pour aussi proposer des setups quand pas de bord extrême
   const mom = ind.mom?.valuePct;
   if (rsi != null && rsi >= 50 && rsi <= 70 && ind.maCross?.signal === 'bull' && mom != null && mom > 0.5 && adx > 14) {
     const entry = last;
@@ -173,9 +173,51 @@ function detectSetup(a) {
       entry, stop, tp1, tp2,
       rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
       rr2: ((tp2 - entry) / (entry - stop)).toFixed(2),
-      rationale: 'Configuration où le marché monte sans être encore en surchauffe. La momentum positive et la MA20 au-dessus de la MA50 indiquent une dynamique acheteuse qui peut continuer. R/R symétrique avec stop sous 1.8 ATR.',
+      rationale: 'Configuration où le marché monte sans être encore en surchauffe. La momentum positive et la MA20 au-dessus de la MA50 indiquent une dynamique acheteuse qui peut continuer.',
       direction: 'long',
     };
+  }
+
+  // v2.49 — Setup 5 : Range/Pullback dans tendance, plus permissif
+  // Couvre les cas où prix tient au-dessus de MA50 sans excès
+  if (ind.maCross?.signal === 'bull' && rsi != null && rsi >= 40 && rsi <= 70 && ind.ma20?.signal === 'bull') {
+    const entry = last;
+    const stop = entry - 2 * atr;
+    const tp1 = entry + 2 * atr;
+    const tp2 = entry + 4 * atr;
+    return {
+      type: 'tendance-haussiere-acheteuse',
+      label: 'Tendance acheteuse en place',
+      timeframe: 'Swing · 1-3 semaines',
+      config: 'Prix au-dessus de MA20 et MA20 > MA50 · RSI ' + rsi.toFixed(0) + ' (zone d\'achat sans surchauffe). Configuration de trend follow standard.',
+      entry, stop, tp1, tp2,
+      rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
+      rr2: ((tp2 - entry) / (entry - stop)).toFixed(2),
+      rationale: 'Configuration de tendance haussière confirmée par la position du prix par rapport aux moyennes mobiles. Stop à 2 ATR sous l\'entrée pour absorber la volatilité. Cibles symétriques 2 et 4 ATR.',
+      direction: 'long',
+    };
+  }
+
+  // v2.49 — Setup 6 : Rebond technique sur MA50 (mean reversion soft)
+  // Pour quand le prix touche la MA50 par le haut en tendance positive
+  if (ind.ma50?.value && rsi != null && rsi >= 38 && rsi <= 55 && last <= ind.ma50.value * 1.02 && last >= ind.ma50.value * 0.98) {
+    const entry = last;
+    const stop = ind.ma50.value * 0.97; // sous la MA50
+    const tp1 = entry + 1.5 * atr;
+    const tp2 = entry + 3 * atr;
+    if (entry > stop) {
+      return {
+        type: 'rebond-ma50',
+        label: 'Rebond technique sur la MA50',
+        timeframe: 'Swing · 1-2 semaines',
+        config: 'Prix à ±2% de la MA50 (' + ind.ma50.value.toFixed(2) + ') · RSI ' + rsi.toFixed(0) + ' (sain). La MA50 est souvent un support dynamique dans une tendance haussière.',
+        entry, stop, tp1, tp2,
+        rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
+        rr2: ((tp2 - entry) / (entry - stop)).toFixed(2),
+        rationale: 'La MA50 est un support technique majeur. Quand le prix la teste sans la casser, c\'est souvent une opportunité d\'entrée pour les acheteurs. Stop technique placé sous le niveau.',
+        direction: 'long',
+      };
+    }
   }
 
   return null;
@@ -189,21 +231,40 @@ function priceFmt(p, kind) {
   return p.toFixed(4);
 }
 
+// v2.49 — Mixe les actifs : on veut indices + crypto + actions représentés
+function pickMixed(assets, nIdx = 3, nCrypto = 3, nAction = 2) {
+  const byKind = (k) => assets.filter(a => a.kind === k);
+  const out = [
+    ...byKind('index').slice(0, nIdx),
+    ...byKind('crypto').slice(0, nCrypto),
+    ...byKind('action').slice(0, nAction),
+  ];
+  // Si certaines catégories sont vides, on complète avec d'autres
+  if (out.length < (nIdx + nCrypto + nAction)) {
+    for (const a of assets) {
+      if (!out.includes(a)) out.push(a);
+      if (out.length >= (nIdx + nCrypto + nAction)) break;
+    }
+  }
+  return out;
+}
+
 function buildPrompt(assets) {
+  // v2.49 — tableau complet pour le LLM (il a besoin de la vue d'ensemble)
   const table = assets
-    .map((a) => `${a.label}: prix ${a.price?.toFixed(2)} (${a.change}%) · RSI ${a.rsi} · MA ${a.maCross} · MACD histo ${a.macdHist} · Bollinger ${a.boll} · ADX ${a.adx} · ATR ${a.atr} → verdict ${a.verdict} (${a.score}/100)`)
+    .map((a) => `${a.label} [${a.kind}]: prix ${a.price?.toFixed(2)} (${a.change}%) · RSI ${a.rsi} · MA ${a.maCross} · MACD histo ${a.macdHist} · Bollinger ${a.boll} · ADX ${a.adx} · ATR ${a.atr} → verdict ${a.verdict} (${a.score}/100)`)
     .join('\n');
 
   return `Tu es analyste technique pour une app pédagogique de bourse (Trade Genius). Tu écris en français pour des débutants/intermédiaires.
 
-CONTEXTE — données techniques d'aujourd'hui :
+CONTEXTE — données techniques d'aujourd'hui (indices + crypto + actions) :
 ${table}
 
 CONSIGNES :
 1. Écris une analyse pédagogique synthétique (max 200 mots) qui présente la situation technique générale.
 2. Ne dis JAMAIS "achète", "vends", "il faut" — c'est interdit (cadre légal AMF français).
 3. Utilise plutôt : "on observe", "schéma classique", "un trader expérimenté surveillerait", "à considérer".
-4. Mentionne 2-3 actifs spécifiques avec leur lecture technique.
+4. **OBLIGATOIRE** : mentionne au moins 1 indice, 1 crypto et 1 action dans le summary (mix des 3 univers).
 5. Termine par une mini-section "ce que regarderait un trader" avec 3 points concrets.
 
 Réponds EN JSON STRICT avec cette structure :
@@ -279,16 +340,24 @@ function buildFallbackStudy(valid) {
   else if (bearN > bullN) title = 'Marchés mitigés, biais baissier modéré';
   else title = 'Marchés sans direction nette';
 
-  const head = valid.slice(0, 3).map(a =>
+  // v2.49 — Pick un mix indices + crypto + actions au lieu des 5 premiers
+  const mixHead = pickMixed(valid, 2, 2, 1); // 2 idx + 2 crypto + 1 action
+  const head = mixHead.slice(0, 5).map(a =>
     `${a.label} ${a.change > 0 ? '+' : ''}${a.change}% (RSI ${a.rsi}, ${a.verdict.toLowerCase()})`
   ).join(' · ');
 
-  const summary = `Sur les 5 actifs majeurs suivis aujourd'hui : ${head}. ` +
+  const idxN = valid.filter(a => a.kind === 'index').length;
+  const cryN = valid.filter(a => a.kind === 'crypto').length;
+  const actN = valid.filter(a => a.kind === 'action').length;
+
+  const summary = `Tour d'horizon multi-univers (${idxN} indices · ${cryN} crypto · ${actN} actions) : ${head}. ` +
     `Globalement, ${bullN} actifs en biais haussier contre ${bearN} en baissier. ` +
     `On observe une configuration ${bullN > bearN ? 'plutôt favorable aux acheteurs' : bearN > bullN ? 'plutôt favorable aux vendeurs' : 'partagée sans direction claire'}. ` +
-    `Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timing un entry, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.`;
+    `Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.`;
 
-  const observations = valid.slice(0, 4).map(a => {
+  // v2.49 — Observations mixées aussi (1 par catégorie minimum)
+  const obsAssets = pickMixed(valid, 2, 2, 1);
+  const observations = obsAssets.slice(0, 5).map(a => {
     if (a.cls === 'bull') return `${a.label} : tendance haussière confirmée (RSI ${a.rsi}, ${a.maCross} MA50)`;
     if (a.cls === 'bear') return `${a.label} : pression vendeuse persistante (RSI ${a.rsi})`;
     return `${a.label} : sans direction nette (RSI ${a.rsi})`;
