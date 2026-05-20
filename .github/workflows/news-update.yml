@@ -3,7 +3,13 @@ on:
   schedule:
     # Toutes les 30 minutes (la granularité réelle de GH Actions cron est ~5-15 min de drift)
     - cron: '*/30 * * * *'
-  workflow_dispatch: {}    # déclenchement manuel via UI GitHub si besoin
+  push:
+    # v2.37 — tourne aussi a chaque push code (1er run automatique apres deploy)
+    branches: [main]
+    paths:
+      - 'scripts/fetch-news.mjs'
+      - '.github/workflows/news-update.yml'
+  workflow_dispatch: {}    # declenchement manuel via UI GitHub si besoin
 
 permissions:
   contents: write          # nécessaire pour commit data/news.json
