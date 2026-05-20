@@ -1,12 +1,136 @@
 {
-  "generated": "2026-05-20T00:00:00.000Z",
+  "generated": "2026-05-20T22:03:09.074Z",
   "source": "Pollinations · openai",
   "date": "2026-05-20",
-  "title": "Étude IA en attente",
-  "summary": "La première étude IA sera générée automatiquement par le workflow GitHub Actions. Elle apparaîtra ici dans quelques minutes.",
-  "observations": [],
-  "plan_pedago": [],
-  "verdict": { "score": 50, "cls": "neutral", "label": "En attente" },
-  "assets": [],
-  "disclaimer": "Analyse pédagogique générée par IA — pas un conseil en investissement personnalisé."
+  "title": "Marchés sans direction nette",
+  "summary": "Sur les 5 actifs majeurs suivis aujourd'hui : S&P 500 +1.08% (RSI 67, haussier fort) · Nasdaq +1.54% (RSI 70, plutôt haussier) · CAC 40 +1.63% (RSI 45, baissier fort). Globalement, 2 actifs en biais haussier contre 2 en baissier. On observe une configuration partagée sans direction claire. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timing un entry, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "observations": [
+    "S&P 500 : tendance haussière confirmée (RSI 67, bull MA50)",
+    "Nasdaq : tendance haussière confirmée (RSI 70, bull MA50)",
+    "CAC 40 : pression vendeuse persistante (RSI 45)",
+    "BTC : pression vendeuse persistante (RSI 35)"
+  ],
+  "plan_pedago": [
+    "Vérifier la position du prix par rapport à la MA50 pour identifier la tendance moyen terme",
+    "Surveiller les croisements MACD pour confirmer un changement de momentum",
+    "Calculer la taille de position pour ne pas risquer plus de 1-2% du capital",
+    "Définir stop loss et take profit AVANT d'entrer sur le marché"
+  ],
+  "verdict": {
+    "score": 47,
+    "cls": "neutral",
+    "label": "Indécis"
+  },
+  "assets": [
+    {
+      "label": "S&P 500",
+      "kind": "index",
+      "price": 7432.97,
+      "change": "1.08",
+      "rsi": "67",
+      "maCross": "bull",
+      "macdHist": "-8.74",
+      "boll": "77%",
+      "adx": "34",
+      "atr": "0.6%",
+      "verdict": "Haussier fort",
+      "score": 80,
+      "cls": "bull"
+    },
+    {
+      "label": "Nasdaq",
+      "kind": "index",
+      "price": 26270.36,
+      "change": "1.54",
+      "rsi": "70",
+      "maCross": "bull",
+      "macdHist": "-51.10",
+      "boll": "75%",
+      "adx": "40",
+      "atr": "0.9%",
+      "verdict": "Plutôt haussier",
+      "score": 63,
+      "cls": "bull"
+    },
+    {
+      "label": "CAC 40",
+      "kind": "index",
+      "price": 8117.42,
+      "change": "1.63",
+      "rsi": "45",
+      "maCross": "bull",
+      "macdHist": "-17.05",
+      "boll": "20%",
+      "adx": "11",
+      "atr": "1.0%",
+      "verdict": "Baissier fort",
+      "score": 24,
+      "cls": "bear"
+    },
+    {
+      "label": "BTC",
+      "kind": "crypto",
+      "price": 77405.37924817005,
+      "change": "0.78",
+      "rsi": "35",
+      "maCross": "bull",
+      "macdHist": "-700.27",
+      "boll": "18%",
+      "adx": "31",
+      "atr": "1.2%",
+      "verdict": "Baissier fort",
+      "score": 20,
+      "cls": "bear"
+    },
+    {
+      "label": "ETH",
+      "kind": "crypto",
+      "price": 2128.1189041092402,
+      "change": "0.78",
+      "rsi": "26",
+      "maCross": "bull",
+      "macdHist": "-26.02",
+      "boll": "9%",
+      "adx": "48",
+      "atr": "1.5%",
+      "verdict": "Indécis",
+      "score": 50,
+      "cls": "neutral"
+    }
+  ],
+  "setups": [
+    {
+      "asset": "ETH",
+      "kind": "crypto",
+      "type": "rebond-survente",
+      "label": "Rebond technique sur survente",
+      "direction": "long",
+      "config": "RSI 26 (zone survente) + prix sur bande basse de Bollinger. Configuration que les traders contrarians surveillent.",
+      "rationale": "Le couple RSI<30 + bande basse Bollinger marque historiquement des zones de rebond technique. Le stop sous le swing low + 1.2 ATR protège contre la continuation. Cible 1 = retour vers la MA20 (mean reversion). Cible 2 = +3 ATR.",
+      "entry": 2128.1189041092402,
+      "stop": 2088.7633012617666,
+      "tp1": 2266.959045906223,
+      "tp2": 2226.507911227924,
+      "rr1": "3.53",
+      "rr2": "2.50",
+      "currency": "USD"
+    }
+  ],
+  "setup": {
+    "asset": "ETH",
+    "kind": "crypto",
+    "type": "rebond-survente",
+    "label": "Rebond technique sur survente",
+    "direction": "long",
+    "config": "RSI 26 (zone survente) + prix sur bande basse de Bollinger. Configuration que les traders contrarians surveillent.",
+    "rationale": "Le couple RSI<30 + bande basse Bollinger marque historiquement des zones de rebond technique. Le stop sous le swing low + 1.2 ATR protège contre la continuation. Cible 1 = retour vers la MA20 (mean reversion). Cible 2 = +3 ATR.",
+    "entry": 2128.1189041092402,
+    "stop": 2088.7633012617666,
+    "tp1": 2266.959045906223,
+    "tp2": 2226.507911227924,
+    "rr1": "3.53",
+    "rr2": "2.50",
+    "currency": "USD"
+  },
+  "disclaimer": "Cas pédagogique basé sur l'analyse technique — pas un conseil en investissement personnalisé. Les marchés financiers comportent un risque de perte en capital. Tu décides si tu copies ce plan ou pas."
 }
