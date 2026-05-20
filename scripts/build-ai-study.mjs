@@ -16,7 +16,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {
   fetchYahooHistorical, fetchCoinGeckoHistorical,
-  computeAllIndicators, globalVerdict,
+  computeAllIndicators, globalVerdict, atrPct, sma,
 } from './indicators.mjs';
 
 const ASSETS = [
@@ -48,7 +48,9 @@ function summarizeAsset(a) {
   const change = a.prevClose ? ((a.price - a.prevClose) / a.prevClose) * 100 : 0;
   return {
     label: a.label,
+    kind: a.kind,
     price: a.price,
+    prices: a.prices,
     change: change.toFixed(2),
     rsi: ind.rsi?.value.toFixed(0),
     maCross: ind.maCross?.signal,
@@ -56,10 +58,95 @@ function summarizeAsset(a) {
     boll: ind.boll ? (ind.boll.value * 100).toFixed(0) + '%' : null,
     adx: ind.adx?.value.toFixed(0),
     atr: ind.atr ? ind.atr.value.toFixed(1) + '%' : null,
+    atrAbs: ind.atr ? (ind.atr.value / 100) * a.price : null,
+    indRaw: ind,
     verdict: v.label,
     score: v.score,
     cls: v.cls,
   };
+}
+
+/**
+ * Detecte un setup techniquement pertinent sur l'actif.
+ * Retourne {type, label, config, entry, stop, tp1, tp2, rr1, rr2, rationale}
+ * ou null si aucune configuration claire (marche en range / signaux contradictoires).
+ *
+ * IMPORTANT — Cadre legal AMF : ce sont des CAS PEDAGOGIQUES bases sur
+ * l'analyse technique objective. Pas un conseil personnalise. Le wording
+ * dans l'app doit dire 'cas d'ecole', 'configuration observee', etc.
+ */
+function detectSetup(a) {
+  if (!a || !a.indRaw || !a.atrAbs) return null;
+  const ind = a.indRaw;
+  const last = a.prices[a.prices.length - 1];
+  const atr = a.atrAbs;
+  const rsi = ind.rsi?.value;
+  const adx = ind.adx?.value || 0;
+
+  // Setup 1 : Rebond survente (RSI <30, Bollinger bande basse)
+  if (rsi != null && rsi < 32 && ind.boll && ind.boll.value < 0.18) {
+    const entry = last;
+    const stop = entry - 1.2 * atr;
+    const tp1 = ind.ma20?.value || entry + 1.5 * atr;
+    const tp2 = entry + 3 * atr;
+    return {
+      type: 'rebond-survente',
+      label: 'Rebond technique sur survente',
+      config: 'RSI ' + rsi.toFixed(0) + ' (zone survente) + prix sur bande basse de Bollinger. Configuration que les traders contrarians surveillent.',
+      entry, stop, tp1, tp2,
+      rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
+      rr2: ((tp2 - entry) / (entry - stop)).toFixed(2),
+      rationale: 'Le couple RSI<30 + bande basse Bollinger marque historiquement des zones de rebond technique. Le stop sous le swing low + 1.2 ATR protège contre la continuation. Cible 1 = retour vers la MA20 (mean reversion). Cible 2 = +3 ATR.',
+      direction: 'long',
+    };
+  }
+
+  // Setup 2 : Pullback haussier (prix > MA50, MA20 > MA50, RSI 40-60, MACD ≥ 0)
+  if (ind.maCross?.signal === 'bull' && rsi != null && rsi >= 38 && rsi <= 62 && ind.macd?.value >= 0 && adx > 18) {
+    const entry = last;
+    const stop = entry - 1.5 * atr;
+    const tp1 = entry + 1.5 * atr;
+    const tp2 = entry + 3 * atr;
+    return {
+      type: 'pullback-haussier',
+      label: 'Pullback dans une tendance haussière',
+      config: 'MA20 > MA50 (tendance MT haussière) · RSI ' + rsi.toFixed(0) + ' (neutre, pas surchauffé) · MACD positif · ADX ' + adx.toFixed(0) + ' (tendance présente).',
+      entry, stop, tp1, tp2,
+      rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
+      rr2: ((tp2 - entry) / (entry - stop)).toFixed(2),
+      rationale: 'Schéma classique : tendance haussière confirmée par les MA + momentum sain (RSI neutre) + MACD au-dessus de zéro. Stop technique à 1.5 ATR pour absorber le bruit. Cibles symétriques 1.5 et 3 ATR (R/R 1:1 et 1:2).',
+      direction: 'long',
+    };
+  }
+
+  // Setup 3 : Breakout haussier (RSI > 55, prix > Bollinger upper après compression)
+  if (rsi != null && rsi > 55 && ind.boll && ind.boll.value > 0.85 && ind.atr && ind.atr.value < 4 && adx > 20) {
+    const entry = last;
+    const stop = entry - 2 * atr;
+    const tp1 = entry + 2 * atr;
+    const tp2 = entry + 4 * atr;
+    return {
+      type: 'breakout-haussier',
+      label: 'Cassure haussière sur volatilité contractée',
+      config: 'Prix sur bande haute de Bollinger après période de compression (ATR ' + ind.atr.value.toFixed(1) + '%). RSI ' + rsi.toFixed(0) + ' · ADX ' + adx.toFixed(0) + ' (force confirmée).',
+      entry, stop, tp1, tp2,
+      rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
+      rr2: ((tp2 - entry) / (entry - stop)).toFixed(2),
+      rationale: 'Après une phase de compression (ATR bas), une cassure de la bande haute marque souvent le début d\'une nouvelle phase directionnelle. Le stop sous le niveau de cassure + 2 ATR évite les faux signaux. Cibles symétriques R/R 1:1 et 1:2.',
+      direction: 'long',
+    };
+  }
+
+  // Pas de setup clair : marche en range ou signaux contradictoires
+  return null;
+}
+
+function priceFmt(p, kind) {
+  if (p == null) return '—';
+  if (p >= 10000) return Math.round(p).toLocaleString('fr-FR');
+  if (p >= 100) return p.toFixed(0);
+  if (p >= 1) return p.toFixed(2);
+  return p.toFixed(4);
 }
 
 function buildPrompt(assets) {
@@ -157,6 +244,16 @@ async function main() {
     throw new Error('No asset data available — abort');
   }
 
+  // Détection du setup le plus pertinent parmi les actifs
+  const setups = valid
+    .map(a => {
+      const s = detectSetup(a);
+      return s ? { ...s, asset: a.label, kind: a.kind, score: a.score, currency: a.kind === 'crypto' || a.label === 'S&P 500' || a.label === 'Nasdaq' || a.label === 'Dow' ? 'USD' : 'EUR' } : null;
+    })
+    .filter(Boolean);
+  // On retient le setup avec le meilleur ratio R/R (ou le plus haut conviction)
+  const bestSetup = setups.sort((a, b) => Number(b.rr2) - Number(a.rr2))[0] || null;
+
   const prompt = buildPrompt(valid);
   const ai = await generateStudy(prompt);
 
@@ -171,6 +268,13 @@ async function main() {
     avgScore >= 30 ? 'Plutôt baissier' : 'Baissier fort';
 
   const now = new Date();
+  // Nettoyage : on ne stocke pas les indRaw ni prices dans le JSON public
+  const assetsClean = valid.map(a => ({
+    label: a.label, kind: a.kind, price: a.price, change: a.change,
+    rsi: a.rsi, maCross: a.maCross, macdHist: a.macdHist, boll: a.boll,
+    adx: a.adx, atr: a.atr, verdict: a.verdict, score: a.score, cls: a.cls,
+  }));
+
   const out = {
     generated: now.toISOString(),
     source: process.env.GROQ_API_KEY ? 'Groq · llama-3.3-70b' : 'Pollinations · openai',
@@ -180,8 +284,24 @@ async function main() {
     observations: Array.isArray(ai.observations) ? ai.observations.slice(0, 6) : [],
     plan_pedago: Array.isArray(ai.plan_pedago) ? ai.plan_pedago.slice(0, 5) : [],
     verdict: { score: avgScore, cls: avgCls, label: avgLabel },
-    assets: valid,
-    disclaimer: "Analyse pédagogique générée par IA — pas un conseil en investissement personnalisé. Les marchés financiers comportent un risque de perte en capital.",
+    assets: assetsClean,
+    setup: bestSetup ? {
+      asset: bestSetup.asset,
+      kind: bestSetup.kind,
+      type: bestSetup.type,
+      label: bestSetup.label,
+      direction: bestSetup.direction,
+      config: bestSetup.config,
+      rationale: bestSetup.rationale,
+      entry: bestSetup.entry,
+      stop: bestSetup.stop,
+      tp1: bestSetup.tp1,
+      tp2: bestSetup.tp2,
+      rr1: bestSetup.rr1,
+      rr2: bestSetup.rr2,
+      currency: bestSetup.currency,
+    } : null,
+    disclaimer: "Cas pédagogique basé sur l'analyse technique — pas un conseil en investissement personnalisé. Les marchés financiers comportent un risque de perte en capital. Tu décides si tu copies ce plan ou pas.",
   };
 
   const target = path.join(process.cwd(), 'data', 'ai-study.json');
