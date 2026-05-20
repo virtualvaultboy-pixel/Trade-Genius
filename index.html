@@ -3340,6 +3340,112 @@
   .daily-report-card .fc-type { color: var(--gold); }
   .daily-report-card { border-left-color: var(--gold); }
 
+  /* === v2.39 — Étude IA (vue résultats refondue) === */
+  .ai-study {
+    background-color: rgba(13,13,20,0.94);
+    border: 1px solid rgba(245,158,11,0.32);
+    border-left: 3px solid var(--gold);
+    border-radius: 16px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+  .ai-study-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 10px; gap: 12px;
+  }
+  .ai-study-tag {
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+    letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase;
+  }
+  .ai-study-source {
+    font-family: var(--font-m); font-size: 9px; color: var(--text-faint);
+    letter-spacing: 0.06em;
+  }
+  .ai-study-title {
+    font-family: var(--font-d); font-size: 17px; font-weight: 800;
+    color: var(--text); margin: 0 0 8px; letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .ai-study-verdict {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 9px; border-radius: 999px;
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+    letter-spacing: 0.08em; margin-bottom: 10px;
+  }
+  .ai-study-verdict.bull { background: rgba(190,242,100,0.14); color: var(--acid); border: 1px solid rgba(190,242,100,0.4); }
+  .ai-study-verdict.bear { background: rgba(239,68,68,0.14); color: #fca5a5; border: 1px solid rgba(239,68,68,0.4); }
+  .ai-study-verdict.neutral { background: rgba(245,158,11,0.14); color: var(--gold); border: 1px solid rgba(245,158,11,0.4); }
+  .ai-study-summary {
+    font-family: var(--font-d); font-size: 13.5px; color: var(--text);
+    line-height: 1.5; margin: 0 0 12px;
+  }
+  .ai-study-section-title {
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+    letter-spacing: 0.14em; color: var(--text-faint);
+    text-transform: uppercase; margin: 12px 0 6px;
+  }
+  .ai-study-obs {
+    margin: 0 0 12px; padding-left: 18px;
+    font-family: var(--font-d); font-size: 12.5px;
+    color: var(--text-dim); line-height: 1.5;
+  }
+  .ai-study-obs li {
+    margin-bottom: 4px; list-style: none; position: relative;
+  }
+  .ai-study-obs li::before {
+    content: '▸'; position: absolute; left: -14px; color: var(--gold);
+  }
+
+  /* Plan d'action pédago : section paywall si free, contenu si premium */
+  .ai-plan {
+    margin-top: 12px; padding: 12px 14px;
+    background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.32);
+    border-radius: 12px;
+  }
+  .ai-plan-head {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+  }
+  .ai-plan-tag {
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+    letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase;
+  }
+  .ai-plan-list {
+    margin: 0; padding-left: 20px;
+    font-family: var(--font-d); font-size: 13px;
+    color: var(--text); line-height: 1.55;
+  }
+  .ai-plan-list li {
+    margin-bottom: 5px; list-style: none; position: relative;
+  }
+  .ai-plan-list li::before {
+    content: '✓'; position: absolute; left: -18px;
+    color: var(--acid); font-weight: 800;
+  }
+  .ai-plan.locked {
+    background: rgba(13,13,20,0.94);
+    text-align: center;
+  }
+  .ai-plan.locked .ai-plan-locked-ico {
+    font-size: 26px; color: var(--gold); display: block; margin-bottom: 6px;
+  }
+  .ai-plan.locked .ai-plan-locked-txt {
+    font-family: var(--font-d); font-size: 12.5px;
+    color: var(--text-dim); line-height: 1.45; margin-bottom: 10px;
+  }
+  .ai-plan.locked .ai-plan-locked-txt strong { color: var(--gold); }
+
+  .ai-disclaimer {
+    margin-top: 12px; padding: 8px 12px;
+    background: rgba(239,68,68,0.05);
+    border: 1px solid rgba(239,68,68,0.20);
+    border-radius: 8px;
+    font-family: var(--font-m); font-size: 10px;
+    color: var(--text-faint); letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+  .ai-disclaimer strong { color: #fca5a5; }
+
   /* === Disclaimer pédagogique (v2.20) === */
   .feed-disclaimer {
     margin: 22px -18px -2px;
@@ -3524,7 +3630,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.38</div>
+        <div class="bd-brand-ver" id="bd-version">v2.39</div>
       </div>
     </div>
 
@@ -3537,9 +3643,9 @@
     <!-- v2.32 — Section 'Apprendre' (M0-M5) retiree : redondant avec l'onglet Formation -->
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=238')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=238')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=238')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=239')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=239')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=239')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
     <a class="bd-item bd-premium" onclick="closeBurger();openCoachIA()"><span class="bd-ico">🤖</span><span>Coach IA <span class="bd-mini">Bientôt</span></span></a>
 
     <div class="bd-section-title">Tes stats</div>
@@ -3794,7 +3900,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=238')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=239')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -3813,7 +3919,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=238')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=239')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -3832,7 +3938,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=238')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=239')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -3851,7 +3957,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=238')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=239')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -3870,7 +3976,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=238')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=239')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -3889,7 +3995,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=238')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=239')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -3926,7 +4032,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.38</span>
+      <span class="hbb-tag" id="hbb-tag">v2.39</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -3967,13 +4073,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=238'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=239'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=238'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=239'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -4025,7 +4131,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=238'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=239'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -4037,25 +4143,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=238" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=239" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=238" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=239" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 10 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=238" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=239" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=238" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=239" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -4165,7 +4271,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=238'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=239'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -4194,7 +4300,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=238'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=239'">OUVRIR →</button>
         </div>
       </article>
 
@@ -4235,51 +4341,14 @@
        v2.18 — VIEW : RÉSULTATS (analyses marché hebdo)
        ============================================ -->
   <div id="view-resultats" class="view">
-    <h1 class="v-head">Nos <em style="color:var(--gold);font-style:normal;">décryptages</em>.</h1>
-    <p class="v-sub">Notre lecture du marché, semaine par semaine. <em>Tape sur un terme</em> pour la définition. <strong style="color:var(--gold);">Étude technique complète</strong> en Premium.</p>
-
-    <article class="feed-card fc-analyse" style="margin-bottom:14px;">
-      <header><span class="fc-type">🔍 Décryptage hebdo</span><span class="fc-time">Sem. 21</span></header>
-      <div class="fc-title">Indices : la résilience des techs</div>
-      <p class="fc-body">
-        <button class="dec-term" onclick="openTermPopup('nasdaq')">Nasdaq</button> +1,8 % sur la semaine,
-        <button class="dec-term" onclick="openTermPopup('sp500')">S&amp;P 500</button> +0,9 %.
-        <button class="dec-term" onclick="openTermPopup('cac')">CAC 40</button> à la peine -0,3 % sur la séance de jeudi (banques sous pression).
-        Le marché ignore largement les craintes
-        <button class="dec-term" onclick="openTermPopup('inflation')">inflationnistes</button> — pour le moment.
-      </p>
-      <div class="dec-study" data-study="sem21">
-        <button class="ds-toggle" onclick="toggleDeepStudy('sem21')">
-          <span><span class="ds-lock">✦</span> Étude technique complète</span>
-          <span class="ds-arrow">→</span>
-        </button>
-        <div class="ds-content" id="ds-content-sem21"></div>
-      </div>
-    </article>
-
-    <article class="feed-card fc-analyse" style="margin-bottom:14px;">
-      <header><span class="fc-type">🔍 Décryptage hebdo</span><span class="fc-time">Sem. 20</span></header>
-      <div class="fc-title">Or et Bitcoin : décorrélation actée</div>
-      <p class="fc-body">
-        L'<button class="dec-term" onclick="openTermPopup('or')">or</button> fait +2,2 %,
-        <button class="dec-term" onclick="openTermPopup('btc')">BTC</button> -1,4 %.
-        La <button class="dec-term" onclick="openTermPopup('digital-gold')">narrative « digital gold »</button> prend du plomb dans l'aile à court terme.
-        Les flux <button class="dec-term" onclick="openTermPopup('etf')">ETF</button> BTC restent positifs sur le mois mais ralentissent.
-      </p>
-      <div class="dec-study" data-study="sem20">
-        <button class="ds-toggle" onclick="toggleDeepStudy('sem20')">
-          <span><span class="ds-lock">✦</span> Étude technique complète</span>
-          <span class="ds-arrow">→</span>
-        </button>
-        <div class="ds-content" id="ds-content-sem20"></div>
-      </div>
-    </article>
-
+    <h1 class="v-head">🤖 Études <em style="color:var(--gold);font-style:normal;">IA</em>.</h1>
+    <p class="v-sub">Analyses techniques générées par IA chaque jour à la clôture US. <strong style="color:var(--gold);">Plan d'action pédagogique complet</strong> en Premium.</p>
+    <div id="ai-study-container"></div>
     <div class="v-placeholder" style="margin-top:14px;">
-      <span class="v-placeholder-ico">📅</span>
+      <span class="v-placeholder-ico">🤖</span>
       <div class="v-placeholder-txt">
-        <strong>Un nouveau décryptage chaque dimanche.</strong><br>
-        Pas de prédiction, pas de signal — juste ce qu'on voit dans le graph.
+        <strong>Une nouvelle étude IA chaque soir.</strong><br>
+        Générée automatiquement à partir de l'analyse technique de 5 indices et crypto majors. <em>Pédagogique uniquement, jamais un conseil personnalisé.</em>
       </div>
     </div>
   </div>
@@ -4314,22 +4383,22 @@
         <p class="pp-tag">Les modules expert sont débloqués. Bonne exploration.</p>
       </div>
       <div class="pp-unlocked">
-        <a class="pp-unlock-card" href="scene-10.html?v=238">
+        <a class="pp-unlock-card" href="scene-10.html?v=239">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=238">
+        <a class="pp-unlock-card" href="scene-08.html?v=239">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=238">
+        <a class="pp-unlock-card" href="scene-09.html?v=239">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=238">
+        <a class="pp-unlock-card" href="scene-07.html?v=239">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -4431,7 +4500,7 @@
       <span class="bn-cta-icon">✦</span><span class="bn-label">Premium</span>
     </button>
     <button class="bn-item" data-tab="resultats" onclick="showView('resultats')">
-      <span class="bn-ico">🔍</span><span class="bn-label">Décryptages</span>
+      <span class="bn-ico">🤖</span><span class="bn-label">IA</span>
     </button>
     <button class="bn-item" data-tab="formation" onclick="showView('modules')">
       <span class="bn-ico">🎓</span><span class="bn-label">Formation</span>
@@ -4519,7 +4588,7 @@
 
     if (name === 'modules') refreshModules();
     if (name === 'bilans') renderJournal();         // v2.28
-    if (name === 'resultats') renderDecryptagesView(); // v2.38
+    if (name === 'resultats') renderAIStudy(); // v2.39 — vue IA
     if (name === 'accueil') {
       refreshAccueil();
       animateAccueilEntrance();
@@ -5394,7 +5463,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=238';
+        location.href = 'scene-10.html?v=239';
       });
       widget._linked = true;
     }
@@ -5447,7 +5516,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=238';
+      location.href = 'scene-05.html?v=239';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -5573,7 +5642,7 @@
       return '✓ Reset complet. Reload...';
     },
     resetprofile: () => {
-      ['tg_profile','tg_feed_tuto','tg_post_likes','tg_xp','tg_watchlist','tg_watchlist_cache','tg_watchlist_hist','tg_watchlist_yahoo','tg_news_cache','tg_daily_cache','tg_decr_cache'].forEach(k => localStorage.removeItem(k));
+      ['tg_profile','tg_feed_tuto','tg_post_likes','tg_xp','tg_watchlist','tg_watchlist_cache','tg_watchlist_hist','tg_watchlist_yahoo','tg_news_cache','tg_daily_cache','tg_decr_cache','tg_ai_study_cache'].forEach(k => localStorage.removeItem(k));
       setTimeout(() => location.reload(), 600);
       return '✓ Profil + feed + XP + watchlist reset.';
     },
@@ -5862,7 +5931,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=238'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=239'; };
         block.style.display = 'block';
         return;
       }
@@ -5904,7 +5973,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=238';
+        card.onclick = () => location.href = 'scene-05.html?v=239';
         block.style.display = 'block';
         return;
       }
@@ -5924,7 +5993,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=238';
+          card.onclick = () => location.href = 'scene-06.html?v=239';
           block.style.display = 'block';
           return;
         }
@@ -5938,7 +6007,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=238';
+        card.onclick = () => location.href = 'scene-06.html?v=239';
         block.style.display = 'block';
         return;
       }
@@ -5953,7 +6022,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=238';
+    card.onclick = () => location.href = 'scene-05.html?v=239';
     block.style.display = 'block';
   }
 
@@ -6432,13 +6501,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=238&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=239&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=238';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=239';
     else showView('premium');
   }
 
@@ -7037,7 +7106,7 @@
         + '<div class="v-placeholder-txt"><strong>Aucune session enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici, '
         + 'session par session.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=238\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=239\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -7081,7 +7150,7 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=238\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=239\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
   }
@@ -7278,61 +7347,77 @@
     container.insertBefore(tmp.firstChild, insertBefore);
   }
 
-  async function fetchDecryptages() {
+  // v2.39 — Etude IA (Pollinations / Groq), cache 2h
+  const AI_CACHE_KEY = 'tg_ai_study_cache';
+  const AI_CACHE_TTL = 2 * 60 * 60 * 1000;
+
+  async function fetchAIStudy() {
     try {
-      const c = JSON.parse(localStorage.getItem(DECR_CACHE_KEY));
-      if (c && c.ts && (Date.now() - c.ts < DECR_CACHE_TTL) && c.data) return c.data;
+      const c = JSON.parse(localStorage.getItem(AI_CACHE_KEY));
+      if (c && c.ts && (Date.now() - c.ts < AI_CACHE_TTL) && c.data) return c.data;
     } catch {}
     try {
-      const bust = Math.floor(Date.now() / (30 * 60 * 1000));
-      const r = await fetch('./data/decryptages.json?t=' + bust, { cache: 'no-cache' });
-      if (!r.ok) throw new Error('decr ' + r.status);
+      const bust = Math.floor(Date.now() / (15 * 60 * 1000));
+      const r = await fetch('./data/ai-study.json?t=' + bust, { cache: 'no-cache' });
+      if (!r.ok) throw new Error('ai ' + r.status);
       const j = await r.json();
-      try { localStorage.setItem(DECR_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: j })); } catch {}
+      try { localStorage.setItem(AI_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: j })); } catch {}
       return j;
     } catch { return null; }
   }
 
-  function renderDecryptageArticle(entry) {
-    const id = entry.id || ('e' + Math.random().toString(36).slice(2, 8));
-    // Body court : 1re ligne basee sur les 2 plus grosses convictions
-    const top = (entry.indicators || []).slice(0, 3)
-      .map(i => i.sym + ' ' + (i.val ? i.val.toLowerCase() : ''))
-      .join(' · ');
-    const body = top + '. ' + (entry.method ? '' : '');
-    return '<article class="feed-card fc-analyse" style="margin-bottom:14px;">'
-      + '<header><span class="fc-type">🔍 Décryptage hebdo</span><span class="fc-time">' + escapeHTML(entry.week || '') + '</span></header>'
-      + '<div class="fc-title">' + escapeHTML(entry.title || 'Décryptage hebdo') + '</div>'
-      + '<p class="fc-body">' + escapeHTML(body) + '</p>'
-      + '<div class="dec-study" data-study="' + id + '">'
-      +   '<button class="ds-toggle" onclick="toggleDeepStudy(\'' + id + '\')">'
-      +     '<span><span class="ds-lock">✦</span> Étude technique complète</span>'
-      +     '<span class="ds-arrow">→</span>'
-      +   '</button>'
-      +   '<div class="ds-content" id="ds-content-' + id + '"></div>'
-      + '</div>'
-      + '</article>';
-  }
+  async function renderAIStudy() {
+    const container = document.getElementById('ai-study-container');
+    if (!container) return;
+    container.innerHTML = '';
+    const data = await fetchAIStudy();
+    // Pas de data ou vide : on garde le placeholder de la vue
+    if (!data || !data.title || data.title === 'Étude IA en attente') return;
 
-  async function renderDecryptagesView() {
-    const view = document.getElementById('view-resultats');
-    if (!view) return;
-    const data = await fetchDecryptages();
-    if (!data || !Array.isArray(data.entries) || data.entries.length === 0) return; // garde le fallback hardcoded
-    // Enregistre les entries dans DEEP_STUDIES pour que toggleDeepStudy fonctionne
-    data.entries.forEach(e => {
-      if (e.id) DEEP_STUDIES[e.id] = e;
-    });
-    // Retire les anciens articles dynamiques + les hardcoded fallback
-    view.querySelectorAll('article.feed-card.fc-analyse').forEach(el => el.remove());
-    const placeholder = view.querySelector('.v-placeholder');
-    // Insere les entries en ordre (le plus recent en haut)
-    data.entries.forEach(entry => {
-      const tmp = document.createElement('div');
-      tmp.innerHTML = renderDecryptageArticle(entry);
-      if (placeholder) view.insertBefore(tmp.firstChild, placeholder);
-      else view.appendChild(tmp.firstChild);
-    });
+    const v = data.verdict || {};
+    const cls = v.cls || 'neutral';
+    const obs = Array.isArray(data.observations) ? data.observations : [];
+    const plan = Array.isArray(data.plan_pedago) ? data.plan_pedago : [];
+    const isPremium = _isPremiumSafe();
+    const dt = data.date ? new Date(data.date + 'T00:00:00') : new Date();
+    const dateLabel = dt.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
+
+    const obsHTML = obs.length
+      ? '<div class="ai-study-section-title">Ce qu\'on observe</div><ul class="ai-study-obs">'
+        + obs.map(o => '<li>' + escapeHTML(o) + '</li>').join('') + '</ul>'
+      : '';
+
+    let planHTML = '';
+    if (plan.length > 0) {
+      if (isPremium) {
+        planHTML = '<div class="ai-plan">'
+          + '<div class="ai-plan-head"><span class="ai-plan-tag">📋 Plan d\'action pédago</span></div>'
+          + '<ul class="ai-plan-list">'
+          + plan.map(p => '<li>' + escapeHTML(p) + '</li>').join('')
+          + '</ul></div>';
+      } else {
+        planHTML = '<div class="ai-plan locked">'
+          + '<span class="ai-plan-locked-ico">✦</span>'
+          + '<p class="ai-plan-locked-txt"><strong>Plan d\'action pédagogique</strong> : ' + plan.length + ' points concrets sur les outils à surveiller. Réservé Premium.</p>'
+          + '<button class="pm-btn" style="max-width:240px;margin:0 auto;" onclick="showView(\'premium\')">Passer en Premium →</button>'
+          + '</div>';
+      }
+    }
+
+    const html = '<article class="ai-study">'
+      + '<div class="ai-study-head">'
+      +   '<span class="ai-study-tag">🤖 Étude du ' + dateLabel + '</span>'
+      +   '<span class="ai-study-source">' + escapeHTML(data.source || '') + '</span>'
+      + '</div>'
+      + '<h3 class="ai-study-title">' + escapeHTML(data.title) + '</h3>'
+      + (v.label ? '<span class="ai-study-verdict ' + cls + '">' + escapeHTML(v.label) + ' · ' + (v.score || 50) + '/100</span>' : '')
+      + (data.summary ? '<p class="ai-study-summary">' + escapeHTML(data.summary) + '</p>' : '')
+      + obsHTML
+      + planHTML
+      + '<div class="ai-disclaimer"><strong>⚠ Pédagogique uniquement.</strong> Cette analyse n\'est pas un conseil en investissement personnalisé. Les marchés financiers comportent un risque de perte en capital.</div>'
+      + '</article>';
+
+    container.innerHTML = html;
   }
 
   /* ===== v2.34 — Posts dynamiques generes selon l'heure + jour ===== */
@@ -7417,7 +7502,7 @@
         cls: 'fc-news', label: '📅 Samedi', time: now,
         title: 'Marchés fermés · bon moment pour réviser',
         body: 'Indices et actions ne tournent pas. La crypto, elle, ne dort jamais. Le simulateur attend.',
-        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=238'",
+        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=239'",
       });
     }
 
@@ -7963,11 +8048,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=238';
+      location.href = 'scene-05.html?v=239';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=238';
+      location.href = 'scene-06.html?v=239';
       return;
     }
 
@@ -7990,11 +8075,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=238"></script>
+  <script type="module" src="tg-common.js?v=239"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=238').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=239').catch(() => {});
       });
     }
   </script>

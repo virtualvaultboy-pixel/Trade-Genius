@@ -1,0 +1,41 @@
+name: AI study
+on:
+  schedule:
+    # 23h UTC tous les jours (= 00h Paris hiver / 01h été)
+    - cron: '0 23 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build-ai-study.mjs'
+      - 'scripts/indicators.mjs'
+      - '.github/workflows/ai-study.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Generate AI study
+        env:
+          # Si Aurélien ajoute GROQ_API_KEY dans Settings > Secrets, on l'utilise.
+          # Sinon, Pollinations.ai prend le relais (gratuit, sans clé).
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: node scripts/build-ai-study.mjs
+      - name: Commit data/ai-study.json if changed
+        run: |
+          git config user.name 'trade-genius-bot'
+          git config user.email 'bot@deponchy.studio'
+          if [[ -n "$(git status --porcelain data/ai-study.json)" ]]; then
+            git add data/ai-study.json
+            git commit -m "chore: refresh AI study [skip ci]"
+            git push
+          else
+            echo "AI study unchanged."
+          fi
