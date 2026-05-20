@@ -149,63 +149,58 @@
     const s = findSwings(prices, 3);
     const out = [];
 
-    // Double bottom
+    // Double bottom — v2.52 : on prend les 2 derniers lows uniquement, exigences serrées
     if (s.lows.length >= 2) {
-      const r = s.lows.slice(-3);
-      for (let i = 0; i < r.length - 1; i++) {
-        const l1 = r[i], l2 = r[i+1];
-        if (l2.idx - l1.idx < 5) continue;
-        const diff = Math.abs(l1.price - l2.price) / l1.price;
-        if (diff > 0.04) continue;
-        const between = s.highs.filter(h => h.idx > l1.idx && h.idx < l2.idx);
-        if (!between.length) continue;
-        const neckline = Math.max(...between.map(h => h.price));
+      const l1 = s.lows[s.lows.length - 2];
+      const l2 = s.lows[s.lows.length - 1];
+      const diff = Math.abs(l1.price - l2.price) / l1.price;
+      const between = s.highs.filter(h => h.idx > l1.idx && h.idx < l2.idx);
+      if (l2.idx - l1.idx >= 5 && diff <= 0.04 && between.length > 0) {
+        const neckline = Math.max.apply(null, between.map(h => h.price));
         const minLow = Math.min(l1.price, l2.price);
-        const target = neckline + (neckline - minLow);
-        if (last < minLow * 0.97) continue;
-        out.push({ name: 'Double bottom', icon: 'W', direction: 'bullish',
-          confidence: (diff < 0.02 && last > neckline) ? 'high' : 'medium',
-          description: 'Deux creux au même niveau (~' + minLow.toFixed(2) + ') séparés par un sommet (~' + neckline.toFixed(2) + ').',
-          why: 'Le marché a testé deux fois le même support sans le casser : les vendeurs s\'essoufflent.',
-          neckline, target, stop: minLow * 0.98 });
-        break;
+        if (last >= minLow * 1.005) {
+          out.push({ name: 'Double bottom', icon: 'W', direction: 'bullish',
+            confidence: (diff < 0.02 && last > neckline) ? 'high' : 'medium',
+            description: 'Deux creux au même niveau (~' + minLow.toFixed(2) + ') séparés par un sommet (~' + neckline.toFixed(2) + ').',
+            why: 'Le marché a testé deux fois le même support sans le casser : les vendeurs s\'essoufflent.',
+            neckline, target: neckline + (neckline - minLow), stop: minLow * 0.98,
+            lastIdx: l2.idx });
+        }
       }
     }
     // Double top
     if (s.highs.length >= 2) {
-      const r = s.highs.slice(-3);
-      for (let i = 0; i < r.length - 1; i++) {
-        const h1 = r[i], h2 = r[i+1];
-        if (h2.idx - h1.idx < 5) continue;
-        const diff = Math.abs(h1.price - h2.price) / h1.price;
-        if (diff > 0.04) continue;
-        const between = s.lows.filter(l => l.idx > h1.idx && l.idx < h2.idx);
-        if (!between.length) continue;
-        const neckline = Math.min(...between.map(l => l.price));
+      const h1 = s.highs[s.highs.length - 2];
+      const h2 = s.highs[s.highs.length - 1];
+      const diff = Math.abs(h1.price - h2.price) / h1.price;
+      const between = s.lows.filter(l => l.idx > h1.idx && l.idx < h2.idx);
+      if (h2.idx - h1.idx >= 5 && diff <= 0.04 && between.length > 0) {
+        const neckline = Math.min.apply(null, between.map(l => l.price));
         const maxHigh = Math.max(h1.price, h2.price);
-        const target = neckline - (maxHigh - neckline);
-        if (last > maxHigh * 1.03) continue;
-        out.push({ name: 'Double top', icon: 'M', direction: 'bearish',
-          confidence: (diff < 0.02 && last < neckline) ? 'high' : 'medium',
-          description: 'Deux sommets au même niveau (~' + maxHigh.toFixed(2) + ') séparés par un creux (~' + neckline.toFixed(2) + ').',
-          why: 'Le marché a tenté deux fois de passer la même résistance sans y arriver.',
-          neckline, target, stop: maxHigh * 1.02 });
-        break;
+        if (last <= maxHigh * 0.995) {
+          out.push({ name: 'Double top', icon: 'M', direction: 'bearish',
+            confidence: (diff < 0.02 && last < neckline) ? 'high' : 'medium',
+            description: 'Deux sommets au même niveau (~' + maxHigh.toFixed(2) + ') séparés par un creux (~' + neckline.toFixed(2) + ').',
+            why: 'Le marché a tenté deux fois de passer la même résistance sans y arriver.',
+            neckline, target: neckline - (maxHigh - neckline), stop: maxHigh * 1.02,
+            lastIdx: h2.idx });
+        }
       }
     }
     // Tendance HH/HL ou LH/LL
     if (s.lows.length >= 2 && s.highs.length >= 2) {
       const lh = s.highs.slice(-2), ll = s.lows.slice(-2);
+      const lastIdx = Math.max(lh[1].idx, ll[1].idx);
       const hhH = lh[1].price > lh[0].price;
       const hhL = ll[1].price > ll[0].price;
       const lhH = lh[1].price < lh[0].price;
       const lhL = ll[1].price < ll[0].price;
       if (hhH && hhL) out.push({ name: 'Tendance haussière (HH + HL)', icon: '↗', direction: 'bullish', confidence: 'medium',
         description: 'Sommets et creux progressent vers le haut.',
-        why: 'Chaque correction trouve un support plus haut : les acheteurs dominent.' });
+        why: 'Chaque correction trouve un support plus haut : les acheteurs dominent.', lastIdx });
       else if (lhH && lhL) out.push({ name: 'Tendance baissière (LH + LL)', icon: '↘', direction: 'bearish', confidence: 'medium',
         description: 'Sommets et creux descendent.',
-        why: 'Chaque rebond échoue plus bas que le précédent : les vendeurs dominent.' });
+        why: 'Chaque rebond échoue plus bas que le précédent : les vendeurs dominent.', lastIdx });
     }
     // Triangles
     const rH = s.highs.filter(h => h.idx >= prices.length - 30);
@@ -213,25 +208,45 @@
     if (rH.length >= 2 && rL.length >= 2) {
       const hiT = (rH[rH.length-1].price - rH[0].price) / rH[0].price;
       const loT = (rL[rL.length-1].price - rL[0].price) / rL[0].price;
+      const lastIdx = Math.max(rH[rH.length-1].idx, rL[rL.length-1].idx);
       if (Math.abs(hiT) < 0.015 && loT > 0.02) {
         const res = rH.map(h => h.price).reduce((a, b) => a + b, 0) / rH.length;
         out.push({ name: 'Triangle ascendant', icon: '◢', direction: 'bullish', confidence: 'medium',
           description: 'Sommets sur ligne horizontale (~' + res.toFixed(2) + '), creux montants.',
           why: 'Le prix bute sur la même résistance mais les acheteurs entrent de plus en plus haut.',
-          target: res + (res - rL[0].price), stop: rL[rL.length-1].price * 0.98 });
+          target: res + (res - rL[0].price), stop: rL[rL.length-1].price * 0.98, lastIdx });
       } else if (Math.abs(loT) < 0.015 && hiT < -0.02) {
         const sup = rL.map(l => l.price).reduce((a, b) => a + b, 0) / rL.length;
         out.push({ name: 'Triangle descendant', icon: '◣', direction: 'bearish', confidence: 'medium',
           description: 'Creux sur ligne horizontale (~' + sup.toFixed(2) + '), sommets descendants.',
           why: 'Les acheteurs défendent le même support mais les vendeurs entrent de plus en plus bas.',
-          target: sup - (rH[0].price - sup), stop: rH[rH.length-1].price * 1.02 });
+          target: sup - (rH[0].price - sup), stop: rH[rH.length-1].price * 1.02, lastIdx });
       } else if (hiT < -0.012 && loT > 0.012) {
         out.push({ name: 'Triangle symétrique', icon: '◆', direction: 'neutral', confidence: 'medium',
           description: 'Sommets et creux convergent : compression de volatilité.',
-          why: 'La volatilité se contracte avant d\'"exploser". La direction de cassure suit la tendance précédente.' });
+          why: 'La volatilité se contracte avant d\'"exploser". La direction de cassure suit la tendance précédente.',
+          lastIdx });
       }
     }
-    return out;
+    // v2.52 — Filtrage des contradictions (bullish + bearish coexistants)
+    return filterContradictions(out);
+  }
+
+  function filterContradictions(patterns) {
+    if (patterns.length <= 1) return patterns;
+    const bull = patterns.filter(p => p.direction === 'bullish');
+    const bear = patterns.filter(p => p.direction === 'bearish');
+    const neutral = patterns.filter(p => p.direction === 'neutral');
+    if (bull.length === 0 || bear.length === 0) return patterns;
+    const bullMax = Math.max.apply(null, bull.map(p => p.lastIdx || 0));
+    const bearMax = Math.max.apply(null, bear.map(p => p.lastIdx || 0));
+    if (bullMax > bearMax + 1) return bull.concat(neutral);
+    if (bearMax > bullMax + 1) return bear.concat(neutral);
+    const bullHigh = bull.some(p => p.confidence === 'high');
+    const bearHigh = bear.some(p => p.confidence === 'high');
+    if (bullHigh && !bearHigh) return bull.concat(neutral);
+    if (bearHigh && !bullHigh) return bear.concat(neutral);
+    return neutral;
   }
 
   // ───────────────────────────────────────────────────────────────────

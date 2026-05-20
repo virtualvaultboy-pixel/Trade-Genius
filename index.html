@@ -2893,7 +2893,37 @@
     transition: color 0.16s, border-color 0.16s, background 0.16s;
   }
   .mr-analyze:hover { color: #fff; border-color: #60a5fa; background: linear-gradient(135deg, rgba(96,165,250,0.32), rgba(139,92,246,0.32)); }
-  /* v2.50 — Popup analyse de patterns */
+  /* v2.52 — Analyse pattern dans la vue IA (plus en popup) */
+  .iap-card {
+    background: rgba(13,13,20,0.94);
+    border: 1px solid rgba(96,165,250,0.32);
+    border-radius: 14px; padding: 14px; margin: 0 0 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  }
+  .iap-head-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 10px; margin: -2px 0 8px;
+    padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .iap-tag {
+    font-family: var(--font-m); font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; color: #93c5fd;
+  }
+  .iap-close {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+    color: #fff; font-size: 12px; font-weight: 700; cursor: pointer; line-height: 1;
+  }
+  .iap-loading {
+    text-align: center; padding: 32px 8px; font-size: 14px; opacity: 0.85;
+  }
+  .iap-spin {
+    display: inline-block; width: 26px; height: 26px; border-radius: 50%;
+    border: 3px solid rgba(96,165,250,0.25); border-top-color: #60a5fa;
+    animation: iap-spin 0.9s linear infinite; margin: 0 auto 10px;
+  }
+  @keyframes iap-spin { to { transform: rotate(360deg); } }
+  /* v2.50 — Analyse de patterns (carte + sous-sections) */
   .pa-head {
     display: flex; justify-content: space-between; align-items: baseline;
     gap: 12px; margin-bottom: 10px;
@@ -4186,7 +4216,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.51</div>
+        <div class="bd-brand-ver" id="bd-version">v2.52</div>
       </div>
     </div>
 
@@ -4199,8 +4229,8 @@
     <!-- v2.32 — Section 'Apprendre' (M0-M5) retiree : redondant avec l'onglet Formation -->
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=251')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=251')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=252')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=252')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
     <!-- v2.46 — 'Krachs historiques' retiré du burger (deplace en Module 6 dans Formation) -->
     <!-- v2.44 — 'Coach IA · Bientôt' retire du burger (deja accessible via l'onglet IA en bottom-nav) -->
 
@@ -4456,7 +4486,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=251')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=252')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -4475,7 +4505,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=251')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=252')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -4494,7 +4524,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=251')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=252')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -4513,7 +4543,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=251')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=252')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -4532,7 +4562,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=251')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=252')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -4551,7 +4581,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=251')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=252')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -4571,7 +4601,7 @@
       </div>
 
       <!-- v2.46 — Module 6 : Krachs historiques (Premium, deplace depuis le burger) -->
-      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=251')">
+      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=252')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💥</div>
@@ -4608,7 +4638,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.51</span>
+      <span class="hbb-tag" id="hbb-tag">v2.52</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -4649,13 +4679,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=251'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=252'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=251'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=252'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -4707,7 +4737,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=251'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=252'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -4719,25 +4749,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=251" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=252" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=251" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=252" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 10 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=251" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=252" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=251" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=252" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -4847,7 +4877,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=251'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=252'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -4876,7 +4906,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=251'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=252'">OUVRIR →</button>
         </div>
       </article>
 
@@ -4922,6 +4952,8 @@
       <button class="v-howto-btn" onclick="openAIHowto()" aria-label="Comment ça marche">?</button>
     </div>
     <p class="v-sub">Analyses techniques générées par IA chaque jour à la clôture US. <strong style="color:var(--gold);">Plan d'action pédagogique complet</strong> en Premium.</p>
+    <!-- v2.52 — Zone pattern analysis ciblée (déclenchée depuis "🔍 Analyse" sur Mon marché) -->
+    <div id="ia-pattern-analysis" style="display:none;"></div>
     <div id="ai-study-container"></div>
     <div class="v-placeholder" style="margin-top:14px;">
       <span class="v-placeholder-ico">🤖</span>
@@ -4962,22 +4994,22 @@
         <p class="pp-tag">Les modules expert sont débloqués. Bonne exploration.</p>
       </div>
       <div class="pp-unlocked">
-        <a class="pp-unlock-card" href="scene-10.html?v=251">
+        <a class="pp-unlock-card" href="scene-10.html?v=252">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=251">
+        <a class="pp-unlock-card" href="scene-08.html?v=252">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=251">
+        <a class="pp-unlock-card" href="scene-09.html?v=252">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=251">
+        <a class="pp-unlock-card" href="scene-07.html?v=252">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -6105,7 +6137,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=251';
+        location.href = 'scene-10.html?v=252';
       });
       widget._linked = true;
     }
@@ -6158,7 +6190,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=251';
+      location.href = 'scene-05.html?v=252';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -6573,7 +6605,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=251'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=252'; };
         block.style.display = 'block';
         return;
       }
@@ -6615,7 +6647,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=251';
+        card.onclick = () => location.href = 'scene-05.html?v=252';
         block.style.display = 'block';
         return;
       }
@@ -6635,7 +6667,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=251';
+          card.onclick = () => location.href = 'scene-06.html?v=252';
           block.style.display = 'block';
           return;
         }
@@ -6649,7 +6681,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=251';
+        card.onclick = () => location.href = 'scene-06.html?v=252';
         block.style.display = 'block';
         return;
       }
@@ -6664,7 +6696,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=251';
+    card.onclick = () => location.href = 'scene-05.html?v=252';
     block.style.display = 'block';
   }
 
@@ -7151,13 +7183,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=251&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=252&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=251';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=252';
     else showView('premium');
   }
 
@@ -7830,53 +7862,52 @@
     const swings = _findSwings(prices, 3);
     const patterns = [];
 
-    // 1. Double bottom
+    // 1. Double bottom — exigences renforcées (v2.52)
+    // - 2 lows réellement consécutifs (pas de plus bas entre les 2)
+    // - prix actuel doit confirmer le pattern (au-dessus du low ou de la neckline)
     if (swings.lows.length >= 2) {
-      const recent = swings.lows.slice(-3);
-      for (let i = 0; i < recent.length - 1; i++) {
-        const l1 = recent[i], l2 = recent[i+1];
-        if (l2.idx - l1.idx < 5) continue;
-        const diff = Math.abs(l1.price - l2.price) / l1.price;
-        if (diff > 0.04) continue;
-        const between = swings.highs.filter(h => h.idx > l1.idx && h.idx < l2.idx);
-        if (!between.length) continue;
+      const l1 = swings.lows[swings.lows.length - 2];
+      const l2 = swings.lows[swings.lows.length - 1];
+      const diff = Math.abs(l1.price - l2.price) / l1.price;
+      const between = swings.highs.filter(h => h.idx > l1.idx && h.idx < l2.idx);
+      if (l2.idx - l1.idx >= 5 && diff <= 0.04 && between.length > 0) {
         const neckline = Math.max(...between.map(h => h.price));
         const minLow = Math.min(l1.price, l2.price);
-        const target = neckline + (neckline - minLow);
-        if (last < minLow * 0.97) continue;
-        patterns.push({
-          name: 'Double bottom', icon: 'W', direction: 'bullish',
-          confidence: (diff < 0.02 && last > neckline) ? 'high' : 'medium',
-          description: 'Deux creux à un même niveau (~' + minLow.toFixed(2) + ') séparés par un sommet (~' + neckline.toFixed(2) + '). Figure de retournement haussier.',
-          why: 'Le marché a testé deux fois le même support sans le casser : les vendeurs s\'essoufflent. Si le prix passe au-dessus de la neckline, c\'est souvent la confirmation que les acheteurs reprennent le contrôle.',
-          neckline: neckline, target: target, stop: minLow * 0.98,
-        });
-        break;
+        // v2.52 : exiger que le prix soit en rebond (>= minLow)
+        //         + ne pas être trop loin sous la neckline
+        if (last >= minLow && last >= minLow * 1.005) {
+          patterns.push({
+            name: 'Double bottom', icon: 'W', direction: 'bullish',
+            confidence: (diff < 0.02 && last > neckline) ? 'high' : 'medium',
+            description: 'Deux creux à un même niveau (~' + minLow.toFixed(2) + ') séparés par un sommet (~' + neckline.toFixed(2) + '). Figure de retournement haussier.',
+            why: 'Le marché a testé deux fois le même support sans le casser : les vendeurs s\'essoufflent. Si le prix passe au-dessus de la neckline, c\'est souvent la confirmation que les acheteurs reprennent le contrôle.',
+            neckline: neckline, target: neckline + (neckline - minLow), stop: minLow * 0.98,
+            lastIdx: l2.idx,
+          });
+        }
       }
     }
 
-    // 2. Double top
+    // 2. Double top — exigences renforcées
     if (swings.highs.length >= 2) {
-      const recent = swings.highs.slice(-3);
-      for (let i = 0; i < recent.length - 1; i++) {
-        const h1 = recent[i], h2 = recent[i+1];
-        if (h2.idx - h1.idx < 5) continue;
-        const diff = Math.abs(h1.price - h2.price) / h1.price;
-        if (diff > 0.04) continue;
-        const between = swings.lows.filter(l => l.idx > h1.idx && l.idx < h2.idx);
-        if (!between.length) continue;
+      const h1 = swings.highs[swings.highs.length - 2];
+      const h2 = swings.highs[swings.highs.length - 1];
+      const diff = Math.abs(h1.price - h2.price) / h1.price;
+      const between = swings.lows.filter(l => l.idx > h1.idx && l.idx < h2.idx);
+      if (h2.idx - h1.idx >= 5 && diff <= 0.04 && between.length > 0) {
         const neckline = Math.min(...between.map(l => l.price));
         const maxHigh = Math.max(h1.price, h2.price);
-        const target = neckline - (maxHigh - neckline);
-        if (last > maxHigh * 1.03) continue;
-        patterns.push({
-          name: 'Double top', icon: 'M', direction: 'bearish',
-          confidence: (diff < 0.02 && last < neckline) ? 'high' : 'medium',
-          description: 'Deux sommets à un même niveau (~' + maxHigh.toFixed(2) + ') séparés par un creux (~' + neckline.toFixed(2) + '). Figure de retournement baissier.',
-          why: 'Le marché a tenté deux fois de passer la même résistance sans y arriver : les acheteurs n\'ont plus assez de force. Une cassure de la neckline confirme souvent que les vendeurs prennent la main.',
-          neckline: neckline, target: target, stop: maxHigh * 1.02,
-        });
-        break;
+        // v2.52 : exiger que le prix soit en repli (<= maxHigh)
+        if (last <= maxHigh && last <= maxHigh * 0.995) {
+          patterns.push({
+            name: 'Double top', icon: 'M', direction: 'bearish',
+            confidence: (diff < 0.02 && last < neckline) ? 'high' : 'medium',
+            description: 'Deux sommets à un même niveau (~' + maxHigh.toFixed(2) + ') séparés par un creux (~' + neckline.toFixed(2) + '). Figure de retournement baissier.',
+            why: 'Le marché a tenté deux fois de passer la même résistance sans y arriver : les acheteurs n\'ont plus assez de force. Une cassure de la neckline confirme souvent que les vendeurs prennent la main.',
+            neckline: neckline, target: neckline - (maxHigh - neckline), stop: maxHigh * 1.02,
+            lastIdx: h2.idx,
+          });
+        }
       }
     }
 
@@ -7887,17 +7918,20 @@
       const hl = ll2[1].price > ll2[0].price;
       const lh = lh2[1].price < lh2[0].price;
       const ll = ll2[1].price < ll2[0].price;
+      const lastIdx = Math.max(lh2[1].idx, ll2[1].idx);
       if (hh && hl) {
         patterns.push({
           name: 'Tendance haussière (HH + HL)', icon: '↗', direction: 'bullish', confidence: 'medium',
           description: 'Les sommets et les creux progressent vers le haut. Structure de tendance haussière propre.',
           why: 'Chaque correction trouve un support plus haut que la précédente : les acheteurs sont structurellement plus forts. C\'est le schéma classique d\'un "uptrend".',
+          lastIdx,
         });
       } else if (lh && ll) {
         patterns.push({
           name: 'Tendance baissière (LH + LL)', icon: '↘', direction: 'bearish', confidence: 'medium',
           description: 'Les sommets et les creux descendent. Structure de tendance baissière propre.',
           why: 'Chaque rebond échoue plus bas que le précédent : les vendeurs dominent. C\'est le schéma classique d\'un "downtrend".',
+          lastIdx,
         });
       }
     }
@@ -7908,6 +7942,7 @@
     if (recHi.length >= 2 && recLo.length >= 2) {
       const hiTrend = (recHi[recHi.length-1].price - recHi[0].price) / recHi[0].price;
       const loTrend = (recLo[recLo.length-1].price - recLo[0].price) / recLo[0].price;
+      const lastIdx = Math.max(recHi[recHi.length-1].idx, recLo[recLo.length-1].idx);
       if (Math.abs(hiTrend) < 0.015 && loTrend > 0.02) {
         const resistance = recHi.map(h => h.price).reduce((a,b)=>a+b,0)/recHi.length;
         patterns.push({
@@ -7915,6 +7950,7 @@
           description: 'Sommets sur ligne horizontale (~' + resistance.toFixed(2) + '), creux montants. Compression haussière qui se résout souvent par une cassure du toit.',
           why: 'Le prix bute sur la même résistance mais les acheteurs entrent de plus en plus haut : la pression s\'accumule. Statistiquement la cassure se fait vers le haut dans ~70 % des cas en marché haussier.',
           target: resistance + (resistance - recLo[0].price), stop: recLo[recLo.length-1].price * 0.98,
+          lastIdx,
         });
       } else if (Math.abs(loTrend) < 0.015 && hiTrend < -0.02) {
         const support = recLo.map(l => l.price).reduce((a,b)=>a+b,0)/recLo.length;
@@ -7923,27 +7959,56 @@
           description: 'Creux sur ligne horizontale (~' + support.toFixed(2) + '), sommets descendants. Compression baissière.',
           why: 'Les acheteurs défendent le même support mais les vendeurs entrent de plus en plus bas. Statistiquement la cassure se fait vers le bas dans ~70 % des cas.',
           target: support - (recHi[0].price - support), stop: recHi[recHi.length-1].price * 1.02,
+          lastIdx,
         });
       } else if (hiTrend < -0.012 && loTrend > 0.012) {
         patterns.push({
           name: 'Triangle symétrique', icon: '◆', direction: 'neutral', confidence: 'medium',
           description: 'Sommets et creux convergent : compression de la volatilité. Pattern de continuation, la direction qui suit dépend du contexte précédent.',
           why: 'La volatilité se contracte avant d\'"exploser" dans un sens. La direction de la cassure suit généralement la tendance qui précédait l\'entrée dans le triangle.',
+          lastIdx,
         });
       }
     }
 
-    return patterns;
+    // v2.52 — Filtrage des contradictions : on ne peut pas avoir bullish ET bearish
+    // simultanément qui soient tous deux vrais. On garde le bloc qui contient
+    // le pattern le plus RÉCENT (= le plus pertinent maintenant).
+    return _filterContradictoryPatterns(patterns);
   }
 
-  // Ouvre le popup d'analyse complète pour un actif de la watchlist
+  function _filterContradictoryPatterns(patterns) {
+    if (patterns.length <= 1) return patterns;
+    const bull = patterns.filter(p => p.direction === 'bullish');
+    const bear = patterns.filter(p => p.direction === 'bearish');
+    const neutral = patterns.filter(p => p.direction === 'neutral');
+    if (bull.length === 0 || bear.length === 0) return patterns;
+    const bullMax = Math.max.apply(null, bull.map(p => p.lastIdx || 0));
+    const bearMax = Math.max.apply(null, bear.map(p => p.lastIdx || 0));
+    // Le bloc dont le dernier swing est le plus récent l'emporte
+    if (bullMax > bearMax + 1) return bull.concat(neutral);
+    if (bearMax > bullMax + 1) return bear.concat(neutral);
+    // Égalité (~même date) : on regarde la confidence
+    const bullHigh = bull.some(p => p.confidence === 'high');
+    const bearHigh = bear.some(p => p.confidence === 'high');
+    if (bullHigh && !bearHigh) return bull.concat(neutral);
+    if (bearHigh && !bullHigh) return bear.concat(neutral);
+    // Sinon : trop contradictoire, on ne garde que le neutre (ou rien)
+    return neutral;
+  }
+
+  // v2.52 — Ouvre l'analyse complète dans la vue IA (plus de popup)
   async function openPatternModal(id) {
     const a = getAsset(id);
     if (!a) return;
-    // Ouvre immédiatement le popup avec un état "chargement"
-    const body = document.getElementById('pattern-body');
-    if (body) body.innerHTML = '<p style="text-align:center;padding:32px 8px;opacity:0.75">⏳ Analyse en cours…</p>';
-    document.getElementById('pattern-modal').classList.add('show');
+    // Bascule sur la vue IA et y injecte l'analyse en haut
+    if (typeof showView === 'function') showView('resultats');
+    const body = document.getElementById('ia-pattern-analysis');
+    if (body) {
+      body.style.display = 'block';
+      body.innerHTML = '<div class="iap-card"><div class="iap-loading"><div class="iap-spin"></div>Analyse de ' + escapeHTML(a.name) + ' en cours…</div></div>';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     if (navigator.vibrate) navigator.vibrate(4);
     const data = _verdicts[id];
     let prices = null;
@@ -7984,13 +8049,22 @@
     const last = prices[prices.length - 1];
     body.innerHTML = renderPatternAnalysisHTML(a, patterns, data.indicators, data.verdict, last);
   }
+  // v2.52 — Ferme l'analyse dans la vue IA (clear le container)
   function closePatternModal() {
-    document.getElementById('pattern-modal').classList.remove('show');
+    const m = document.getElementById('pattern-modal');
+    if (m) m.classList.remove('show');
+    const body = document.getElementById('ia-pattern-analysis');
+    if (body) { body.style.display = 'none'; body.innerHTML = ''; }
   }
 
   function renderPatternAnalysisHTML(asset, patterns, indicators, verdict, lastPrice) {
     const fmt = (v) => formatPrice(v, asset);
-    let html = ''
+    // v2.52 — header avec bouton de fermeture (puisqu'on est dans la vue IA)
+    let html = '<div class="iap-card">'
+      + '<div class="iap-head-bar">'
+      +   '<span class="iap-tag">🔍 Analyse · ' + escapeHTML(asset.name) + '</span>'
+      +   '<button class="iap-close" onclick="closePatternModal()" aria-label="Fermer">✕</button>'
+      + '</div>'
       + '<div class="pa-head">'
       +   '<div class="pa-asset"><strong>' + escapeHTML(asset.name) + '</strong> · ' + escapeHTML(asset.symbol) + '</div>'
       +   '<div class="pa-price">' + fmt(lastPrice) + '</div>'
@@ -7999,7 +8073,7 @@
       +   '<div class="pa-verdict-score">' + verdict.score + '<small>/100</small></div>'
       +   '<div class="pa-verdict-label">' + escapeHTML(verdict.label) + '</div>'
       + '</div>'
-      + (verdict.takeaway ? '<p class="pa-takeaway">' + escapeHTML(verdict.takeaway) + '</p>' : '');
+      + (verdict.takeaway ? '<p class="pa-takeaway">' + verdict.takeaway + '</p>' : '');
 
     if (patterns.length === 0) {
       html += '<div class="pa-section-title">🎯 Patterns chartistes</div>'
@@ -8058,6 +8132,7 @@
     }
 
     html += '<div class="ai-disclaimer"><strong>⚠ Pédagogique uniquement.</strong> L\'analyse chartiste aide à structurer une réflexion, pas à garantir un résultat. Ne risque jamais plus de 1-2 % de ton capital sur un trade.</div>';
+    html += '</div>'; // close .iap-card
     return html;
   }
 
@@ -8213,7 +8288,7 @@
         + '<span class="v-placeholder-ico">📓</span>'
         + '<div class="v-placeholder-txt"><strong>Aucune session simu enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=251\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=252\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -8258,7 +8333,7 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=251\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=252\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
   }
@@ -8924,7 +8999,7 @@
         cls: 'fc-news', label: '📅 Samedi', time: now,
         title: 'Marchés fermés · bon moment pour réviser',
         body: 'Indices et actions ne tournent pas. La crypto, elle, ne dort jamais. Le simulateur attend.',
-        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=251'",
+        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=252'",
       });
     }
 
@@ -9494,11 +9569,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=251';
+      location.href = 'scene-05.html?v=252';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=251';
+      location.href = 'scene-06.html?v=252';
       return;
     }
 
@@ -9521,12 +9596,12 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=251"></script>
-  <script src="tg-analyst.js?v=251"></script>
+  <script type="module" src="tg-common.js?v=252"></script>
+  <script src="tg-analyst.js?v=252"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=251').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=252').catch(() => {});
       });
     }
   </script>
