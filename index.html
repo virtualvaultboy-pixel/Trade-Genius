@@ -2575,6 +2575,133 @@
     margin-left: auto;
   }
 
+  /* === v2.22 — XP & Niveaux === */
+  .feed-profile { position: relative; }
+  .fp-level {
+    position: absolute; bottom: -4px; right: -4px;
+    min-width: 18px; height: 18px;
+    background: linear-gradient(135deg, var(--acid) 0%, var(--green) 100%);
+    color: #0a0a0f; font-family: var(--font-m); font-size: 10px; font-weight: 900;
+    border-radius: 999px; padding: 0 4px;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 6px rgba(190,242,100,0.4), 0 0 0 2px var(--bg);
+    line-height: 1;
+  }
+  .feed-xp {
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 10px; align-items: center;
+    margin: -2px 0 16px;
+    padding: 8px 12px;
+    background: linear-gradient(180deg, rgba(190,242,100,0.06) 0%, rgba(190,242,100,0.02) 100%);
+    border: 1px solid rgba(190,242,100,0.18);
+    border-radius: 10px;
+  }
+  .fx-label {
+    font-family: var(--font-m); font-size: 10px; font-weight: 800;
+    letter-spacing: 0.12em; color: var(--acid); text-transform: uppercase;
+  }
+  .fx-bar {
+    height: 6px; background: rgba(255,255,255,0.06);
+    border-radius: 999px; overflow: hidden;
+    position: relative;
+  }
+  .fx-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--acid) 0%, var(--green) 100%);
+    border-radius: 999px;
+    box-shadow: 0 0 8px rgba(190,242,100,0.45);
+    transition: width 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+  }
+  .fx-pts {
+    font-family: var(--font-m); font-size: 10.5px; color: var(--text-dim);
+    font-weight: 600; white-space: nowrap;
+  }
+
+  .xp-toast {
+    position: fixed; top: 30%; left: 50%;
+    transform: translate(-50%, -20px);
+    background: linear-gradient(135deg, var(--acid) 0%, var(--green) 100%);
+    color: #0a0a0f;
+    padding: 14px 22px; border-radius: 14px;
+    font-family: var(--font-d); font-weight: 900;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 16px 38px rgba(190,242,100,0.42);
+    opacity: 0; pointer-events: none; z-index: 220;
+    transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2), opacity 0.35s;
+  }
+  .xp-toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    animation: xpToastPulse 0.45s ease-out;
+  }
+  @keyframes xpToastPulse {
+    0%   { transform: translate(-50%, -20px) scale(0.7); }
+    60%  { transform: translate(-50%, 4px) scale(1.06); }
+    100% { transform: translate(-50%, 0) scale(1); }
+  }
+  .xpt-plus { font-size: 22px; }
+  .xpt-lbl { font-size: 13px; letter-spacing: 0.06em; }
+  .xpt-src {
+    font-family: var(--font-m); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.06em; opacity: 0.85; margin-left: 4px;
+    text-transform: uppercase;
+  }
+
+  /* === v2.22 — Quiz cas d'école === */
+  .fc-quiz {
+    margin-top: 10px;
+    padding: 12px 0 4px;
+    border-top: 1px dashed rgba(96,165,250,0.25);
+  }
+  .fcq-prompt {
+    font-family: var(--font-m); font-size: 10.5px; font-weight: 800;
+    letter-spacing: 0.12em; color: var(--blue); text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .fcq-options { display: flex; flex-direction: column; gap: 6px; }
+  .fcq-opt {
+    appearance: none; text-align: left;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-family: var(--font-d); font-size: 13px; font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.16s, border-color 0.18s, background 0.18s;
+  }
+  .fcq-opt:active { transform: scale(0.985); }
+  .fcq-opt:hover { border-color: rgba(96,165,250,0.4); background: rgba(96,165,250,0.05); }
+  .fc-quiz.answered .fcq-opt { cursor: default; }
+  .fc-quiz.answered .fcq-opt:not(.correct):not(.wrong) { opacity: 0.45; }
+  .fcq-opt.correct {
+    border-color: var(--acid);
+    background: rgba(190,242,100,0.14);
+    color: var(--acid); font-weight: 800;
+    box-shadow: 0 0 0 2px rgba(190,242,100,0.22);
+  }
+  .fcq-opt.wrong {
+    border-color: var(--red);
+    background: rgba(239,68,68,0.12);
+    color: #fca5a5; font-weight: 800;
+  }
+  .fcq-reveal {
+    margin-top: 10px;
+    background: rgba(96,165,250,0.06);
+    border: 1px solid rgba(96,165,250,0.22);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-family: var(--font-d); font-size: 12.5px;
+    color: var(--text); line-height: 1.45;
+  }
+  .fcq-reveal strong { color: var(--acid); }
+  .fcq-xp {
+    display: inline-block; margin-left: 6px;
+    color: var(--acid); font-weight: 800;
+    font-family: var(--font-m); font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+
   /* === Disclaimer pédagogique (v2.20) === */
   .feed-disclaimer {
     margin: 22px -18px -2px;
@@ -2663,7 +2790,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.21</div>
+        <div class="bd-brand-ver" id="bd-version">v2.22</div>
       </div>
     </div>
 
@@ -2674,17 +2801,17 @@
     <a class="bd-item" href="glossary.html"><span class="bd-ico">📑</span><span>Glossaire (26 termes)</span></a>
 
     <div class="bd-section-title">Apprendre</div>
-    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=221')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=221')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=221')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=221')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=221')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(5, 'scene-11.html?v=221')"><span class="bd-ico" style="color:var(--green);">💰</span><span>M5 · Fiscalité FR</span><span class="bd-count" id="bd-prog-m5">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=222')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=222')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=222')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=222')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=222')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(5, 'scene-11.html?v=222')"><span class="bd-ico" style="color:var(--green);">💰</span><span>M5 · Fiscalité FR</span><span class="bd-count" id="bd-prog-m5">—</span></a>
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=221')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=221')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=221')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=222')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=222')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=222')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
     <a class="bd-item bd-premium" onclick="closeBurger();openCoachIA()"><span class="bd-ico">🤖</span><span>Coach IA <span class="bd-mini">Bientôt</span></span></a>
 
     <div class="bd-section-title">Tes stats</div>
@@ -2939,7 +3066,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=221')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=222')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -2958,7 +3085,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=221')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=222')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -2977,7 +3104,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=221')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=222')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -2996,7 +3123,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=221')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=222')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -3015,7 +3142,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=221')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=222')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -3034,7 +3161,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=221')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=222')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -3073,7 +3200,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.21</span>
+      <span class="hbb-tag" id="hbb-tag">v2.22</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -3114,13 +3241,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=221'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=222'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=221'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=222'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -3172,7 +3299,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=221'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=222'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -3184,25 +3311,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=221" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=222" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=221" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=222" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 6 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=221" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=222" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=221" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=222" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -3270,9 +3397,15 @@
       <h1 class="feed-title">Accueil</h1>
       <button class="feed-profile" id="feed-profile-btn" onclick="openProfileModal(true)" aria-label="Profil">
         <span id="feed-profile-avatar">👤</span>
+        <span class="fp-level" id="fp-level">1</span>
       </button>
     </div>
     <div class="feed-greet" id="feed-greet">Salut <strong>trader</strong> 👋</div>
+    <div class="feed-xp" id="feed-xp">
+      <span class="fx-label" id="fx-label">Niveau 1</span>
+      <div class="fx-bar"><div class="fx-fill" id="fx-fill" style="width: 0%"></div></div>
+      <span class="fx-pts" id="fx-pts">0 / 50 XP</span>
+    </div>
 
     <div class="feed-banner" onclick="showView('premium')">
       <div class="fb-ico">✦</div>
@@ -3295,14 +3428,26 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=221'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=222'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
       <article class="feed-card fc-suivi" data-post="p3">
         <header><span class="fc-type">🎯 Cas d'école</span><span class="fc-time">11:42</span></header>
         <div class="fc-title">Le pullback sur MA20, exercice d'œil</div>
-        <p class="fc-body">DAX H1 — le prix retest la moyenne mobile 20 après cassure haussière. Schéma classique de continuation à reconnaître. <em>Pas un signal, juste un cas à étudier pour entraîner le regard.</em></p>
+        <p class="fc-body">DAX H1 — le prix retest la moyenne mobile 20 après cassure haussière. Schéma classique à reconnaître. <em>Pas un signal, juste un cas à étudier pour entraîner le regard.</em></p>
+        <div class="fc-quiz" data-quiz="p3" data-correct="continuation">
+          <div class="fcq-prompt">▸ Ta lecture : que va-t-il se passer ?</div>
+          <div class="fcq-options">
+            <button class="fcq-opt" data-val="continuation">📈 Continuation haussière</button>
+            <button class="fcq-opt" data-val="reversal">📉 Retournement baissier</button>
+            <button class="fcq-opt" data-val="range">⏸ Range latéral prolongé</button>
+          </div>
+          <div class="fcq-reveal" hidden>
+            <strong>Continuation, le plus probable.</strong> Le retest de la MA20 après cassure haussière, sans rejet violent, signale une simple respiration avant la suite du mouvement. <em>Probable ne veut pas dire certain — le marché reste libre.</em>
+            <span class="fcq-xp" id="fcq-xp-p3">+10 XP</span>
+          </div>
+        </div>
         <div class="fc-actions"><button class="fc-like" data-post="p3">♡ <span>0</span></button></div>
       </article>
 
@@ -3312,7 +3457,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=221'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=222'">OUVRIR →</button>
         </div>
       </article>
 
@@ -3352,7 +3497,7 @@
         <strong>Bientôt</strong> · P&amp;L hebdo, mensuel et cumulé, agrégés depuis tes sessions simu.<br>
         Pour démarrer ton historique, ouvre le <strong>simulateur</strong>.
       </div>
-      <button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href='scene-05.html?v=221'">Ouvrir le simulateur →</button>
+      <button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href='scene-05.html?v=222'">Ouvrir le simulateur →</button>
     </div>
   </div>
 
@@ -3425,6 +3570,15 @@
       </div>
       <button id="pm-save" class="pm-btn" onclick="saveProfile()" disabled>Commencer →</button>
     </div>
+  </div>
+
+  <!-- ============================================
+       v2.22 — TOAST XP (gain animé)
+       ============================================ -->
+  <div class="xp-toast" id="xp-toast" aria-hidden="true">
+    <span class="xpt-plus" id="xpt-plus">+5</span>
+    <span class="xpt-lbl">XP</span>
+    <span class="xpt-src" id="xpt-src"></span>
   </div>
 
   <!-- ============================================
@@ -3501,7 +3655,10 @@
     if (name === 'feed') {
       refreshFeedProfile();
       setupFeedLikes();
-      setupPullRefresh(); // v2.21
+      setupPullRefresh();  // v2.21
+      syncXPFromProgress(); // v2.22 — catch up XP depuis chapitres validés
+      renderXPBadge();      // v2.22
+      setupQuizzes();       // v2.22
       // v2.19 — tuto pivot auto si jamais vu
       if (shouldShowFeedTuto()) {
         setTimeout(() => { if (shouldShowFeedTuto()) startFeedTuto(); }, 700);
@@ -4383,7 +4540,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=221';
+        location.href = 'scene-10.html?v=222';
       });
       widget._linked = true;
     }
@@ -4436,7 +4593,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=221';
+      location.href = 'scene-05.html?v=222';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -4562,9 +4719,9 @@
       return '✓ Reset complet. Reload...';
     },
     resetprofile: () => {
-      ['tg_profile','tg_feed_tuto','tg_post_likes'].forEach(k => localStorage.removeItem(k));
+      ['tg_profile','tg_feed_tuto','tg_post_likes','tg_xp'].forEach(k => localStorage.removeItem(k));
       setTimeout(() => location.reload(), 600);
-      return '✓ Profil + feed reset.';
+      return '✓ Profil + feed + XP reset.';
     },
     resetmodules: () => {
       ['tradegenius_v1','tradegenius_m1','tradegenius_m2','tradegenius_m3'].forEach(k => localStorage.removeItem(k));
@@ -4851,7 +5008,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=221'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=222'; };
         block.style.display = 'block';
         return;
       }
@@ -4893,7 +5050,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=221';
+        card.onclick = () => location.href = 'scene-05.html?v=222';
         block.style.display = 'block';
         return;
       }
@@ -4913,7 +5070,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=221';
+          card.onclick = () => location.href = 'scene-06.html?v=222';
           block.style.display = 'block';
           return;
         }
@@ -4927,7 +5084,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=221';
+        card.onclick = () => location.href = 'scene-06.html?v=222';
         block.style.display = 'block';
         return;
       }
@@ -4942,7 +5099,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=221';
+    card.onclick = () => location.href = 'scene-05.html?v=222';
     block.style.display = 'block';
   }
 
@@ -5266,9 +5423,168 @@
           persistLikes(m);
           btn.classList.toggle('liked', !!m[id]);
           if (span) span.textContent = m[id] ? '1' : '0';
-          if (m[id] && navigator.vibrate) navigator.vibrate(6);
+          if (m[id]) {
+            // v2.22 — +1 XP par post liké pour la 1re fois
+            const x = loadXP();
+            x.likedPosts = x.likedPosts || {};
+            if (!x.likedPosts[id]) {
+              x.likedPosts[id] = Date.now();
+              persistXP(x);
+              addXP(1, 'LIKE');
+            } else if (navigator.vibrate) {
+              navigator.vibrate(6);
+            }
+          }
         });
       }
+    });
+  }
+
+  /* ===== v2.22 — XP & NIVEAUX (Duolingo-style) ===== */
+  const XP_KEY = 'tg_xp';
+  const XP_PER_LEVEL = 50;
+
+  function loadXP() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(XP_KEY));
+      if (!raw || typeof raw !== 'object') throw new Error();
+      return Object.assign({ total: 0, history: [], quizAnswers: {}, likedPosts: {} }, raw);
+    } catch {
+      return { total: 0, history: [], quizAnswers: {}, likedPosts: {} };
+    }
+  }
+  function persistXP(state) {
+    try { localStorage.setItem(XP_KEY, JSON.stringify(state)); } catch {}
+  }
+  function getLevel(total) { return Math.floor(total / XP_PER_LEVEL) + 1; }
+  function levelStart(level) { return (level - 1) * XP_PER_LEVEL; }
+  function levelEnd(level)   { return level * XP_PER_LEVEL; }
+
+  // Rétro-calcul depuis chapitres complétés (5 XP/chap + 20 XP bonus par module complet)
+  function syncXPFromProgress() {
+    const xp = loadXP();
+    let earned = 0;
+    if (typeof MODULES !== 'undefined' && typeof loadProg === 'function' && typeof countDone === 'function') {
+      MODULES.forEach(m => {
+        try {
+          const prog = loadProg(m.storage);
+          const done = countDone(prog);
+          earned += done * 5;
+          if (m.total && done >= m.total) earned += 20;
+        } catch {}
+      });
+    }
+    // XP des likes + quizz s'ajoutent par-dessus le rétro-calculé
+    let extras = 0;
+    Object.values(xp.quizAnswers || {}).forEach(a => { if (a && a.correct) extras += 10; });
+    extras += Object.keys(xp.likedPosts || {}).length * 1;
+    const target = earned + extras;
+    if (target > xp.total) {
+      xp.total = target;
+      persistXP(xp);
+    }
+  }
+
+  function addXP(amount, source) {
+    if (!amount) return;
+    const xp = loadXP();
+    const before = xp.total;
+    xp.total += amount;
+    xp.history = xp.history || [];
+    xp.history.push({ ts: Date.now(), amount, source });
+    if (xp.history.length > 200) xp.history = xp.history.slice(-200);
+    persistXP(xp);
+    showXPToast(amount, source);
+    const newLevel = getLevel(xp.total);
+    if (getLevel(before) < newLevel) {
+      // Level up : double-tap haptique + toast spécial
+      if (navigator.vibrate) navigator.vibrate([15, 50, 30]);
+      setTimeout(() => showXPToast(0, 'NIVEAU ' + newLevel + ' 🎉', true), 480);
+    } else if (navigator.vibrate) {
+      navigator.vibrate(8);
+    }
+    renderXPBadge();
+  }
+
+  function showXPToast(amount, source, levelUp) {
+    const toast = document.getElementById('xp-toast');
+    if (!toast) return;
+    const plus = document.getElementById('xpt-plus');
+    const src = document.getElementById('xpt-src');
+    if (levelUp) {
+      plus.textContent = '✦';
+      toast.querySelector('.xpt-lbl').textContent = source || 'LEVEL UP';
+      src.textContent = '';
+    } else {
+      plus.textContent = '+' + amount;
+      toast.querySelector('.xpt-lbl').textContent = 'XP';
+      src.textContent = source || '';
+    }
+    toast.classList.remove('show');
+    void toast.offsetWidth;
+    toast.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => toast.classList.remove('show'), 1400);
+  }
+
+  function renderXPBadge() {
+    const xp = loadXP();
+    const total = xp.total || 0;
+    const lvl = getLevel(total);
+    const start = levelStart(lvl), end = levelEnd(lvl);
+    const inLvl = total - start;
+    const pct = Math.min(100, Math.round((inLvl / XP_PER_LEVEL) * 100));
+
+    const lblEl = document.getElementById('fx-label');
+    const fillEl = document.getElementById('fx-fill');
+    const ptsEl = document.getElementById('fx-pts');
+    const chipEl = document.getElementById('fp-level');
+    if (lblEl) lblEl.textContent = 'Niveau ' + lvl;
+    if (fillEl) fillEl.style.width = pct + '%';
+    if (ptsEl) ptsEl.textContent = inLvl + ' / ' + XP_PER_LEVEL + ' XP';
+    if (chipEl) chipEl.textContent = lvl;
+  }
+
+  /* ===== v2.22 — QUIZ CAS D'ÉCOLE ===== */
+  function setupQuizzes() {
+    document.querySelectorAll('.fc-quiz').forEach(quiz => {
+      if (quiz._wired) return;
+      quiz._wired = true;
+      const id = quiz.dataset.quiz;
+      const correct = quiz.dataset.correct;
+      const reveal = quiz.querySelector('.fcq-reveal');
+      const xp = loadXP();
+      const previous = xp.quizAnswers && xp.quizAnswers[id];
+
+      function applyState(picked, didCorrect, skipXP) {
+        quiz.classList.add('answered');
+        quiz.querySelectorAll('.fcq-opt').forEach(o => {
+          const val = o.dataset.val;
+          if (val === correct) o.classList.add('correct');
+          else if (val === picked) o.classList.add('wrong');
+        });
+        if (reveal) reveal.hidden = false;
+        if (didCorrect && !skipXP) addXP(10, 'QUIZ');
+      }
+
+      if (previous) {
+        applyState(previous.picked, previous.correct, true);
+        return;
+      }
+
+      quiz.querySelectorAll('.fcq-opt').forEach(opt => {
+        opt.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (quiz.classList.contains('answered')) return;
+          const picked = opt.dataset.val;
+          const didCorrect = picked === correct;
+          const state = loadXP();
+          state.quizAnswers = state.quizAnswers || {};
+          state.quizAnswers[id] = { picked, correct: didCorrect, ts: Date.now() };
+          persistXP(state);
+          applyState(picked, didCorrect, false);
+        });
+      });
     });
   }
 
@@ -5382,11 +5698,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=221';
+      location.href = 'scene-05.html?v=222';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=221';
+      location.href = 'scene-06.html?v=222';
       return;
     }
 
@@ -5408,11 +5724,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=221"></script>
+  <script type="module" src="tg-common.js?v=222"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=221').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=222').catch(() => {});
       });
     }
   </script>
