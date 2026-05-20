@@ -533,24 +533,39 @@
 
   function injectFAB() {
     if (document.getElementById('tga-fab')) return;
-    // Pages où on ne veut PAS le FAB
-    const path = location.pathname.split('/').pop();
-    if (/^(privacy|404)\.html$/i.test(path)) return;
+    // v2.53 — Le FAB n'est visible QUE dans la vue IA (#view-resultats).
+    // Sur les autres pages (welcome, scene-XX, glossary, etc.) on ne l'injecte pas.
+    const viewIA = document.getElementById('view-resultats');
+    if (!viewIA) return;
     const fab = document.createElement('button');
     fab.id = 'tga-fab';
     fab.className = 'tga-fab';
     fab.setAttribute('aria-label', 'Analyste IA');
     fab.innerHTML = '<span aria-hidden="true">🤖</span>';
     fab.onclick = onFABClick;
+    fab.style.display = 'none';
     document.body.appendChild(fab);
     const lbl = document.createElement('div');
     lbl.className = 'tga-fab-label';
     lbl.textContent = '🔍 Analyser';
+    lbl.style.display = 'none';
     document.body.appendChild(lbl);
     // Détecte si on a une bottom-nav
     if (!document.querySelector('.bottom-nav, #bottom-nav')) {
       document.body.classList.add('tga-no-bottomnav');
     }
+    // Affiche/cache selon la vue active
+    function updateVis() {
+      const active = viewIA.classList.contains('active');
+      fab.style.display = active ? '' : 'none';
+      lbl.style.display = active ? '' : 'none';
+      // S'assure que rien n'est caché : ajoute du padding-bottom à la vue IA
+      // (l'espace de 110px laisse passer le FAB + bottom-nav sans recouvrement)
+      if (active) viewIA.style.paddingBottom = '110px';
+    }
+    const mo = new MutationObserver(updateVis);
+    mo.observe(viewIA, { attributes: true, attributeFilter: ['class'] });
+    updateVis();
   }
 
   function ensureOverlay() {
