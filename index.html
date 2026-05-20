@@ -2863,7 +2863,18 @@
     font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
     letter-spacing: 0.08em; color: var(--text-faint);
     text-transform: uppercase;
+    /* v2.32 — version bouton cliquable */
+    appearance: none; background: none; border: 0; padding: 0;
+    cursor: pointer; text-align: left; display: inline-flex; align-items: center; gap: 4px;
+    transition: color 0.15s;
   }
+  button.mrd-cell-name:hover,
+  button.mrd-cell-name:active { color: var(--acid); }
+  .mrd-cell-info {
+    font-size: 9px; opacity: 0.55;
+    transition: opacity 0.15s;
+  }
+  button.mrd-cell-name:hover .mrd-cell-info { opacity: 1; }
   .mrd-cell-val {
     font-family: var(--font-m); font-size: 13px; font-weight: 700;
     color: var(--text); margin-top: 1px;
@@ -3494,7 +3505,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.31</div>
+        <div class="bd-brand-ver" id="bd-version">v2.32</div>
       </div>
     </div>
 
@@ -3504,18 +3515,12 @@
     <a class="bd-item" href="scene-06.html"><span class="bd-ico">📖</span><span>Bibliothèque (26 fiches)</span></a>
     <a class="bd-item" href="glossary.html"><span class="bd-ico">📑</span><span>Glossaire (26 termes)</span></a>
 
-    <div class="bd-section-title">Apprendre</div>
-    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=231')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=231')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=231')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=231')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=231')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(5, 'scene-11.html?v=231')"><span class="bd-ico" style="color:var(--green);">💰</span><span>M5 · Fiscalité FR</span><span class="bd-count" id="bd-prog-m5">—</span></a>
+    <!-- v2.32 — Section 'Apprendre' (M0-M5) retiree : redondant avec l'onglet Formation -->
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=231')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=231')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=231')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=232')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=232')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=232')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
     <a class="bd-item bd-premium" onclick="closeBurger();openCoachIA()"><span class="bd-ico">🤖</span><span>Coach IA <span class="bd-mini">Bientôt</span></span></a>
 
     <div class="bd-section-title">Tes stats</div>
@@ -3770,7 +3775,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=231')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=232')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -3789,7 +3794,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=231')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=232')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -3808,7 +3813,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=231')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=232')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -3827,7 +3832,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=231')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=232')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -3846,7 +3851,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=231')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=232')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -3865,7 +3870,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=231')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=232')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -3902,7 +3907,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.31</span>
+      <span class="hbb-tag" id="hbb-tag">v2.32</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -3943,13 +3948,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=231'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=232'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=231'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=232'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -4001,7 +4006,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=231'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=232'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -4013,25 +4018,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=231" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=232" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=231" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=232" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
-        <div class="tool-sub-info">Crypto · Actions · ETF · 6 indicateurs</div>
+        <div class="tool-sub-info">Crypto · Actions · ETF · 10 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=231" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=232" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=231" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=232" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -4133,9 +4138,9 @@
 
     <div id="feed-posts">
       <article class="feed-card fc-info" data-post="p1">
-        <header><span class="fc-type">📊 Marché</span><span class="fc-time">15:14</span></header>
-        <div class="fc-title">Wall Street ouvre dans 15 minutes</div>
-        <p class="fc-body">Volatilité attendue côté tech (Nvidia, Tesla, Meta) avec les chiffres emploi US à 14h30 GMT. À surveiller : la réaction des taux 10Y en cas de surprise.</p>
+        <header><span class="fc-type">📊 Marché</span><span class="fc-time" data-rel="-30">15:14</span></header>
+        <div class="fc-title">Marchés US · le rendez-vous de 15h30</div>
+        <p class="fc-body">L'ouverture américaine (15h30 heure de Paris) reste le moment de bascule de la journée. À surveiller côté tech (Nvidia, Tesla, Meta) et sur la réaction des taux 10Y aux statistiques macro.</p>
         <div class="fc-actions"><button class="fc-like" data-post="p1">♡ <span>0</span></button></div>
       </article>
 
@@ -4145,7 +4150,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=231'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=232'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -4174,7 +4179,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=231'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=232'">OUVRIR →</button>
         </div>
       </article>
 
@@ -4276,7 +4281,7 @@
         <p class="pp-tag">Tu as déjà la formation gratuite. Premium, c'est l'étape d'après : mode expert et accompagnement.</p>
       </div>
       <div class="pp-feats">
-        <div class="pp-feat"><span class="pp-feat-ico">📊</span><span><strong>Marché Live</strong> · Crypto, Actions, ETF avec 6 indicateurs calculés en direct.</span></div>
+        <div class="pp-feat"><span class="pp-feat-ico">📊</span><span><strong>Marché Live</strong> · Crypto, Actions, ETF avec 10 indicateurs calculés en direct (RSI · MA · MACD · Bollinger · Stochastique · ADX · ATR · Williams %R · Momentum).</span></div>
         <div class="pp-feat"><span class="pp-feat-ico">🕯️</span><span><strong>Patterns Lab</strong> · 12 patterns chartistes détaillés avec exemples historiques.</span></div>
         <div class="pp-feat"><span class="pp-feat-ico">💥</span><span><strong>Krachs historiques</strong> · 1929, 1987, 2008, COVID décortiqués chapitre par chapitre.</span></div>
         <div class="pp-feat"><span class="pp-feat-ico">📈</span><span><strong>Module 4 chap. 4-7</strong> · Dow, Volume Profile, Order book, Equity curve.</span></div>
@@ -4294,22 +4299,22 @@
         <p class="pp-tag">Les modules expert sont débloqués. Bonne exploration.</p>
       </div>
       <div class="pp-unlocked">
-        <a class="pp-unlock-card" href="scene-10.html?v=231">
+        <a class="pp-unlock-card" href="scene-10.html?v=232">
           <span class="ppu-ico">📊</span>
-          <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 6 indicateurs en direct</div></div>
+          <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=231">
+        <a class="pp-unlock-card" href="scene-08.html?v=232">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=231">
+        <a class="pp-unlock-card" href="scene-09.html?v=232">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=231">
+        <a class="pp-unlock-card" href="scene-07.html?v=232">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -4481,6 +4486,7 @@
       renderMarketCard();           // v2.26
       refreshWatchlistData(true);   // v2.26 — utilise cache si frais
       refreshGlobalVerdicts();      // v2.27 — calcule indicateurs + verdict global en background
+      applyRelativeTimes();         // v2.32 — affichage 'il y a Xh' au lieu d'heures fixes
       // v2.19 — tuto pivot auto si jamais vu (v2.23 : ne pas le lancer si popup profil ouverte ou profil absent)
       if (shouldShowFeedTuto()) {
         setTimeout(() => {
@@ -5369,7 +5375,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=231';
+        location.href = 'scene-10.html?v=232';
       });
       widget._linked = true;
     }
@@ -5422,7 +5428,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=231';
+      location.href = 'scene-05.html?v=232';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -5837,7 +5843,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=231'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=232'; };
         block.style.display = 'block';
         return;
       }
@@ -5879,7 +5885,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=231';
+        card.onclick = () => location.href = 'scene-05.html?v=232';
         block.style.display = 'block';
         return;
       }
@@ -5899,7 +5905,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=231';
+          card.onclick = () => location.href = 'scene-06.html?v=232';
           block.style.display = 'block';
           return;
         }
@@ -5913,7 +5919,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=231';
+        card.onclick = () => location.href = 'scene-06.html?v=232';
         block.style.display = 'block';
         return;
       }
@@ -5928,7 +5934,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=231';
+    card.onclick = () => location.href = 'scene-05.html?v=232';
     block.style.display = 'block';
   }
 
@@ -6394,7 +6400,7 @@
     });
     rows += '</div>';
     rows += '<div class="mc-cta-deep">'
-      + '<span class="ccd-txt">Analyse complète + 6 indicateurs</span>'
+      + '<span class="ccd-txt">Analyse complète + 10 indicateurs</span>'
       + '<button class="ccd-btn ' + (isPremium ? '' : 'locked') + '" onclick="openMarketDeep()">'
       + (isPremium ? 'OUVRIR →' : '✦ PREMIUM →')
       + '</button>'
@@ -6406,13 +6412,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=231&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=232&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=231';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=232';
     else showView('premium');
   }
 
@@ -6836,8 +6842,12 @@
   function renderAssetDetailHTML(indicators, verdict) {
     let cells = '';
     Object.entries(indicators).forEach(([key, ind]) => {
+      // v2.32 — nom d'indicateur cliquable → popup explicative
+      const clickable = TERMS && TERMS[key]
+        ? '<button class="mrd-cell-name" onclick="event.stopPropagation();openTermPopup(\'' + key + '\')">' + ind.name + ' <span class="mrd-cell-info">ⓘ</span></button>'
+        : '<div class="mrd-cell-name">' + ind.name + '</div>';
       cells += '<div class="mrd-cell ' + ind.signal + '">'
-        + '<div class="mrd-cell-name">' + ind.name + '</div>'
+        + clickable
         + '<div class="mrd-cell-val">' + ind.value + '</div>'
         + '<div class="mrd-cell-read">' + ind.read + '</div>'
         + '</div>';
@@ -6918,7 +6928,7 @@
         + '<div class="v-placeholder-txt"><strong>Aucune session enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici, '
         + 'session par session.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=231\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=232\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -6962,9 +6972,32 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=231\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=232\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
+  }
+
+  /* ===== v2.32 — Timestamps relatifs sur les posts du feed ===== */
+  function applyRelativeTimes() {
+    const now = new Date();
+    document.querySelectorAll('#feed-posts .fc-time').forEach(el => {
+      if (!el.dataset.orig) el.dataset.orig = el.textContent.trim();
+      const m = el.dataset.orig.match(/^(\d{1,2}):(\d{2})$/);
+      if (!m) return;
+      const postH = parseInt(m[1], 10);
+      const postM = parseInt(m[2], 10);
+      const postTime = new Date(now.getFullYear(), now.getMonth(), now.getDate(), postH, postM, 0);
+      let diffMin = Math.round((now - postTime) / 60000);
+      let txt;
+      if (diffMin >= -2 && diffMin <= 2) txt = "à l'instant";
+      else if (diffMin < 0) {
+        const f = -diffMin;
+        txt = f < 60 ? 'dans ' + f + ' min' : 'dans ' + Math.floor(f / 60) + 'h';
+      } else if (diffMin < 60) txt = 'il y a ' + diffMin + ' min';
+      else if (diffMin < 24 * 60) txt = 'il y a ' + Math.floor(diffMin / 60) + 'h';
+      else txt = el.dataset.orig;
+      el.textContent = txt;
+    });
   }
 
   /* ===== v2.31 — Décryptages : popup termes + étude technique complète ===== */
@@ -7003,24 +7036,52 @@
       link: 'scene-06.html',
     },
     rsi: {
-      title: 'RSI · Relative Strength Index',
-      body: 'Oscillateur 0-100 qui mesure la <strong>force du mouvement</strong>. <em>Sous 30</em> = survente (rebond possible). <em>Au-dessus de 70</em> = surachat (essoufflement possible).',
+      title: 'RSI 14 · Relative Strength Index',
+      body: '<strong>À quoi ça sert :</strong> oscillateur 0-100 qui mesure la <em>force du mouvement</em>. Détecte les zones de survente (rebond possible) et de surachat (essoufflement).<br><br><strong>Lecture :</strong> sous 30 = survente · 30-45 = pression vendeuse · 45-55 = équilibre · 55-70 = pression acheteuse · &gt; 70 = surachat.<br><br><strong>Calcul :</strong> RSI = 100 − (100 / (1 + RS)) où RS = moyenne des gains / moyenne des pertes sur 14 périodes.',
+    },
+    ma20: {
+      title: 'Prix vs MA20',
+      body: '<strong>À quoi ça sert :</strong> situer le prix actuel par rapport à la moyenne court terme. Quand le prix est au-dessus de sa <em>MA20</em>, la dynamique récente est acheteuse.<br><br><strong>Lecture :</strong> prix &gt; MA20 = biais court terme haussier. Prix &lt; MA20 = baissier. Cassure dans un sens ou l\'autre = inflexion.<br><br><strong>Calcul :</strong> MA20 = somme des 20 dernières clôtures / 20.',
     },
     ma50: {
       title: 'MA50 · Moyenne mobile 50',
-      body: 'Moyenne des <strong>50 dernières clôtures</strong>. Référence pour la tendance moyen terme. Le prix la respecte souvent comme un support/résistance dynamique.',
+      body: '<strong>À quoi ça sert :</strong> mesurer la <em>tendance moyen terme</em>. Le prix la respecte souvent comme un support/résistance dynamique.<br><br><strong>Lecture :</strong> prix au-dessus = trend MT haussière. En-dessous = baissière. Croisement haussier MA20 &gt; MA50 (« golden cross ») = signal d\'inversion classique.<br><br><strong>Calcul :</strong> MA50 = somme des 50 dernières clôtures / 50.',
+    },
+    maCross: {
+      title: 'MA20 vs MA50 · croisement',
+      body: '<strong>À quoi ça sert :</strong> détecter les changements de tendance moyen terme. Le croisement des deux moyennes mobiles signale souvent une bascule.<br><br><strong>Lecture :</strong> MA20 &gt; MA50 = <em>golden cross</em> (tendance positive). MA20 &lt; MA50 = <em>death cross</em> (tendance négative).<br><br><strong>Calcul :</strong> comparaison directe des 2 moyennes mobiles 20 et 50 périodes.',
     },
     macd: {
       title: 'MACD',
-      body: '<strong>Moving Average Convergence Divergence</strong>. Indicateur de momentum : quand sa courbe croise sa "signale" vers le haut = signal haussier. Vers le bas = baissier.',
+      body: '<strong>À quoi ça sert :</strong> mesurer le <em>momentum</em> et détecter les changements de direction.<br><br><strong>Lecture :</strong> histogramme &gt; 0 = momentum haussier. Histo &lt; 0 = baissier. Croisement vers le haut = signal long. Vers le bas = signal court.<br><br><strong>Calcul :</strong> MACD = EMA(12) − EMA(26). Signale = EMA(9) du MACD. Histogramme = MACD − Signale.',
     },
     bollinger: {
       title: 'Bandes de Bollinger',
-      body: 'Tunnel autour du prix calculé sur la <strong>volatilité</strong> (écart-type). Quand le prix touche la bande haute = tendu, bande basse = surventé.',
+      body: '<strong>À quoi ça sert :</strong> tunnel autour du prix calculé sur la <em>volatilité</em>. Sert à repérer les extrêmes et les phases de compression.<br><br><strong>Lecture :</strong> prix sur bande haute = tendu, prix sur bande basse = surventé. Bandes serrées = breakout imminent.<br><br><strong>Calcul :</strong> bande médiane = MA20. Haute = MA20 + 2 × écart-type. Basse = MA20 − 2 × écart-type.',
+    },
+    boll: {
+      title: 'Bandes de Bollinger',
+      body: '<strong>À quoi ça sert :</strong> tunnel autour du prix calculé sur la <em>volatilité</em>. Sert à repérer les extrêmes et les phases de compression.<br><br><strong>Lecture :</strong> prix sur bande haute = tendu, prix sur bande basse = surventé. Bandes serrées = breakout imminent.<br><br><strong>Calcul :</strong> bande médiane = MA20. Haute = MA20 + 2 × écart-type. Basse = MA20 − 2 × écart-type.',
+    },
+    mom: {
+      title: 'Momentum 10 jours',
+      body: '<strong>À quoi ça sert :</strong> mesurer la vitesse du mouvement de prix sur une fenêtre courte. Détecter l\'accélération ou l\'essoufflement.<br><br><strong>Lecture :</strong> momentum &gt; 0 = prix en hausse vs il y a 10 jours. Momentum &lt; 0 = baisse. Plus la valeur est élevée, plus le mouvement est rapide.<br><br><strong>Calcul :</strong> Momentum = Prix actuel − Prix d\'il y a 10 périodes.',
+    },
+    stoch: {
+      title: 'Stochastique · %K / %D',
+      body: '<strong>À quoi ça sert :</strong> situer le prix dans son range récent. Comme le RSI, détecte survente et surachat.<br><br><strong>Lecture :</strong> %K &lt; 20 = survente · %K &gt; 80 = surachat · %K croise %D vers le haut = signal long.<br><br><strong>Calcul :</strong> %K = 100 × (Prix − Plus bas N) / (Plus haut N − Plus bas N). %D = SMA(3) de %K. Période N = 14.',
     },
     adx: {
       title: 'ADX · force de tendance',
-      body: 'Mesure la <strong>vigueur d\'une tendance</strong> (peu importe la direction). Sous 25 = marché en range. Au-dessus = trend confirmé.',
+      body: '<strong>À quoi ça sert :</strong> mesurer la <em>vigueur d\'une tendance</em>, indépendamment de sa direction. Permet de savoir si on est en trend ou en range.<br><br><strong>Lecture :</strong> ADX &lt; 20 = pas de tendance (range). 20-25 = tendance qui démarre. 25-40 = tendance forte. &gt; 40 = très forte.<br><br><strong>Calcul :</strong> dérivé des +DI et -DI (Directional Indicators) sur 14 périodes, lissé par EMA.',
+    },
+    atr: {
+      title: 'ATR · Average True Range',
+      body: '<strong>À quoi ça sert :</strong> mesurer la <em>volatilité</em> moyenne. Utile pour positionner stops et tailles de position.<br><br><strong>Lecture :</strong> ATR élevé = grosses variations attendues, prudence. ATR très bas = compression, breakout possible.<br><br><strong>Calcul :</strong> ATR = moyenne sur 14 périodes du True Range (= max entre |H-L|, |H-Cn-1|, |L-Cn-1|). Affiché en % du prix.',
+    },
+    wr: {
+      title: 'Williams %R',
+      body: '<strong>À quoi ça sert :</strong> oscillateur similaire au Stochastique, mesure la position du prix dans son range. Échelle inversée : valeurs négatives.<br><br><strong>Lecture :</strong> &lt; −80 = survente (rebond possible). &gt; −20 = surachat. Entre les deux = neutre.<br><br><strong>Calcul :</strong> %R = ((Plus haut 14p − Prix actuel) / (Plus haut 14p − Plus bas 14p)) × −100.',
     },
   };
 
@@ -7089,7 +7150,7 @@
       container.innerHTML =
         '<div class="ds-paywall">'
         + '<div class="ds-paywall-ico">✦</div>'
-        + '<p class="ds-paywall-txt"><strong>Étude technique complète</strong> réservée Premium.<br>Verdict global pondéré + 6 indicateurs détaillés + conclusion pédago.</p>'
+        + '<p class="ds-paywall-txt"><strong>Étude technique complète</strong> réservée Premium.<br>Verdict global pondéré + 10 indicateurs détaillés + conclusion pédago.</p>'
         + '<button class="pm-btn" onclick="showView(\'premium\')">Passer en Premium →</button>'
         + '</div>';
       return;
@@ -7373,6 +7434,8 @@
           // v2.27 — refresh forcé des verdicts globaux (bypass cache historique)
           try { localStorage.removeItem(HIST_CACHE_KEY); } catch {}
           refreshGlobalVerdicts();
+          // v2.32 — re-calcul des timestamps relatifs
+          applyRelativeTimes();
           clearOffset();
           indicator.classList.remove('spinning');
           refreshing = false;
@@ -7420,11 +7483,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=231';
+      location.href = 'scene-05.html?v=232';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=231';
+      location.href = 'scene-06.html?v=232';
       return;
     }
 
@@ -7447,11 +7510,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=231"></script>
+  <script type="module" src="tg-common.js?v=232"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=231').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=232').catch(() => {});
       });
     }
   </script>
