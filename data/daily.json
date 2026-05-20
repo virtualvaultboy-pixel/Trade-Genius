@@ -1,8 +1,82 @@
 {
-  "generated": "2026-05-20T00:00:00.000Z",
+  "generated": "2026-05-20T21:04:32.449Z",
   "date": "2026-05-20",
-  "title": "Rapport en attente",
-  "summary": "Le rapport journalier sera généré automatiquement après la prochaine clôture US (22h UTC).",
-  "highlights": [],
-  "items": []
+  "title": "Rapport du 20 mai 2026",
+  "summary": "Séance largement positive sur les principaux indices et la crypto.",
+  "highlights": [
+    "undefined +1.08% · ↗ légère hausse",
+    "undefined +1.54% · ↗ légère hausse",
+    "undefined +1.70% · ↗ légère hausse",
+    "undefined +1.31% · ↗ légère hausse",
+    "undefined +1.06% · ↗ légère hausse",
+    "undefined +1.05% · ↗ légère hausse"
+  ],
+  "items": [
+    {
+      "kind": "index",
+      "symbol": "S&P 500",
+      "name": "S&P 500",
+      "price": 7432.97,
+      "change": 1.0791997154352573,
+      "rsi": 67,
+      "verdict": "bull-soft",
+      "verdictLabel": "↗ légère hausse",
+      "currency": "USD"
+    },
+    {
+      "kind": "index",
+      "symbol": "Nasdaq",
+      "name": "Nasdaq Composite",
+      "price": 26270.36,
+      "change": 1.5447935059283702,
+      "rsi": 70,
+      "verdict": "bull-soft",
+      "verdictLabel": "↗ légère hausse",
+      "currency": "USD"
+    },
+    {
+      "kind": "index",
+      "symbol": "CAC 40",
+      "name": "CAC 40",
+      "price": 8117.42,
+      "change": 1.6996281316213904,
+      "rsi": 51.8,
+      "verdict": "bull-soft",
+      "verdictLabel": "↗ légère hausse",
+      "currency": "EUR"
+    },
+    {
+      "kind": "index",
+      "symbol": "Dow",
+      "name": "Dow Jones",
+      "price": 50009.35,
+      "change": 1.3075777431831332,
+      "rsi": 54.2,
+      "verdict": "bull-soft",
+      "verdictLabel": "↗ légère hausse",
+      "currency": "USD"
+    },
+    {
+      "kind": "crypto",
+      "symbol": "BTC",
+      "name": "Bitcoin",
+      "price": 77624.3162937114,
+      "change": 1.0617346306044864,
+      "rsi": 35.6,
+      "verdict": "bull-soft",
+      "verdictLabel": "↗ légère hausse",
+      "currency": "USD"
+    },
+    {
+      "kind": "crypto",
+      "symbol": "ETH",
+      "name": "Ethereum",
+      "price": 2133.9747147889784,
+      "change": 1.0525460517930696,
+      "rsi": 26.7,
+      "verdict": "bull-soft",
+      "verdictLabel": "↗ légère hausse",
+      "currency": "USD"
+    }
+  ]
 }
