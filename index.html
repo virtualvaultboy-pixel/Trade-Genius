@@ -3135,6 +3135,181 @@
   /* Detail expand verdict : fond quasi-opaque pour la grille indicateurs */
   .mr-detail { background-color: rgba(8,8,12,0.96); }
 
+  /* === v2.31 — Décryptages cliquables (termes + étude complète) === */
+  .dec-term {
+    appearance: none; background: none; border: 0; padding: 0;
+    color: var(--acid);
+    font-family: inherit; font-size: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    border-bottom: 1px dashed rgba(190,242,100,0.5);
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .dec-term:active,
+  .dec-term:hover {
+    color: var(--text);
+    background: rgba(190,242,100,0.12);
+    border-radius: 3px;
+    border-bottom-color: transparent;
+  }
+
+  .term-popup {
+    position: fixed; inset: 0; z-index: 210;
+    background: rgba(0,0,0,0.78);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    display: none; align-items: center; justify-content: center;
+    padding: 22px;
+  }
+  .term-popup.show { display: flex; animation: pmFadeIn 0.22s ease-out; }
+  .tp-card {
+    width: 100%; max-width: 360px;
+    background: linear-gradient(180deg, #14141f 0%, #0c0c12 100%);
+    border: 1px solid rgba(190,242,100,0.28);
+    border-radius: 16px;
+    padding: 20px 18px 16px;
+    box-shadow: 0 24px 50px rgba(0,0,0,0.65);
+    animation: pmSlideUp 0.32s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+  }
+  .tp-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 8px;
+  }
+  .tp-tag {
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+    letter-spacing: 0.14em; color: var(--acid);
+    text-transform: uppercase;
+  }
+  .tp-close {
+    appearance: none; background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border); color: var(--text);
+    width: 26px; height: 26px; border-radius: 999px;
+    font-size: 14px; cursor: pointer; line-height: 1;
+  }
+  .tp-title {
+    font-family: var(--font-d); font-size: 19px; font-weight: 800;
+    color: var(--text); margin: 0 0 8px; letter-spacing: -0.02em;
+  }
+  .tp-body {
+    font-family: var(--font-d); font-size: 13.5px; color: var(--text-dim);
+    line-height: 1.5; margin: 0 0 14px;
+  }
+  .tp-body strong { color: var(--acid); font-weight: 700; }
+  .tp-link {
+    display: inline-block; appearance: none;
+    background: rgba(190,242,100,0.10);
+    border: 1px solid rgba(190,242,100,0.35);
+    color: var(--acid); text-decoration: none;
+    padding: 7px 12px; border-radius: 8px;
+    font-family: var(--font-m); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.06em; cursor: pointer;
+  }
+  .tp-link:active { transform: scale(0.97); }
+
+  /* Étude technique complète */
+  .dec-study {
+    margin-top: 12px; padding-top: 12px;
+    border-top: 1px dashed rgba(255,255,255,0.06);
+  }
+  .ds-toggle {
+    width: 100%; appearance: none;
+    background: rgba(245,158,11,0.06);
+    border: 1px solid rgba(245,158,11,0.28);
+    color: var(--gold);
+    padding: 11px 14px; border-radius: 12px;
+    font-family: var(--font-m); font-size: 11px; font-weight: 800;
+    letter-spacing: 0.08em; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: transform 0.16s, background 0.18s;
+  }
+  .ds-toggle:active { transform: scale(0.985); }
+  .ds-toggle .ds-arrow { font-size: 16px; }
+  .ds-toggle.locked .ds-lock { font-size: 13px; opacity: 0.85; margin-right: 6px; }
+  .ds-content { display: none; padding-top: 14px; }
+  .ds-content.open { display: block; }
+
+  .ds-verdict {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px;
+    background: rgba(13,13,20,0.94);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+  .ds-verdict-badge {
+    font-family: var(--font-m); font-size: 10px; font-weight: 800;
+    letter-spacing: 0.1em; padding: 4px 9px; border-radius: 999px;
+  }
+  .ds-verdict-badge.bull { background: rgba(190,242,100,0.14); color: var(--acid); border: 1px solid rgba(190,242,100,0.4); }
+  .ds-verdict-badge.bear { background: rgba(239,68,68,0.14); color: #fca5a5; border: 1px solid rgba(239,68,68,0.4); }
+  .ds-verdict-badge.neutral { background: rgba(245,158,11,0.10); color: var(--gold); border: 1px solid rgba(245,158,11,0.4); }
+  .ds-verdict-score {
+    font-family: var(--font-m); font-size: 12px; font-weight: 700;
+    color: var(--text-dim);
+  }
+  .ds-verdict-score strong { color: var(--text); font-size: 16px; font-weight: 900; }
+
+  .ds-section-title {
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+    letter-spacing: 0.14em; color: var(--text-faint);
+    text-transform: uppercase; margin: 14px 0 8px;
+  }
+
+  .ds-row {
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 10px; align-items: center;
+    padding: 9px 12px;
+    background: rgba(13,13,20,0.94);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-left: 3px solid var(--text-faint);
+    border-radius: 10px;
+    margin-bottom: 6px;
+  }
+  .ds-row.bull { border-left-color: var(--acid); }
+  .ds-row.bear { border-left-color: var(--red); }
+  .ds-row.neutral { border-left-color: var(--gold); }
+  .ds-row-label {
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+    letter-spacing: 0.08em; color: var(--text-faint);
+    text-transform: uppercase;
+    min-width: 56px;
+  }
+  .ds-row-read {
+    font-family: var(--font-d); font-size: 12.5px;
+    color: var(--text-dim); line-height: 1.4;
+  }
+  .ds-row-val {
+    font-family: var(--font-m); font-size: 12.5px; font-weight: 800;
+    color: var(--text); white-space: nowrap;
+  }
+  .ds-row.bull .ds-row-val { color: var(--acid); }
+  .ds-row.bear .ds-row-val { color: var(--red); }
+  .ds-row.neutral .ds-row-val { color: var(--gold); }
+
+  .ds-conclusion {
+    margin-top: 12px; padding: 12px 14px;
+    background: rgba(190,242,100,0.04);
+    border: 1px solid rgba(190,242,100,0.22);
+    border-radius: 12px;
+    font-family: var(--font-d); font-size: 13px;
+    color: var(--text); line-height: 1.5;
+  }
+  .ds-conclusion strong { color: var(--acid); }
+
+  .ds-paywall {
+    margin-top: 10px; padding: 16px 14px;
+    background: rgba(13,13,20,0.94);
+    border: 1px solid rgba(245,158,11,0.28);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .ds-paywall-ico { font-size: 26px; color: var(--gold); }
+  .ds-paywall-txt {
+    font-family: var(--font-d); font-size: 13px; color: var(--text-dim);
+    margin: 6px 0 12px; line-height: 1.45;
+  }
+  .ds-paywall-txt strong { color: var(--gold); }
+  .ds-paywall .pm-btn { max-width: 240px; margin: 0 auto; }
+
   /* === Disclaimer pédagogique (v2.20) === */
   .feed-disclaimer {
     margin: 22px -18px -2px;
@@ -3319,7 +3494,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.30</div>
+        <div class="bd-brand-ver" id="bd-version">v2.31</div>
       </div>
     </div>
 
@@ -3330,17 +3505,17 @@
     <a class="bd-item" href="glossary.html"><span class="bd-ico">📑</span><span>Glossaire (26 termes)</span></a>
 
     <div class="bd-section-title">Apprendre</div>
-    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=230')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=230')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=230')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=230')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=230')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(5, 'scene-11.html?v=230')"><span class="bd-ico" style="color:var(--green);">💰</span><span>M5 · Fiscalité FR</span><span class="bd-count" id="bd-prog-m5">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=231')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=231')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=231')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=231')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=231')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(5, 'scene-11.html?v=231')"><span class="bd-ico" style="color:var(--green);">💰</span><span>M5 · Fiscalité FR</span><span class="bd-count" id="bd-prog-m5">—</span></a>
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=230')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=230')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=230')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=231')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=231')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=231')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
     <a class="bd-item bd-premium" onclick="closeBurger();openCoachIA()"><span class="bd-ico">🤖</span><span>Coach IA <span class="bd-mini">Bientôt</span></span></a>
 
     <div class="bd-section-title">Tes stats</div>
@@ -3595,7 +3770,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=230')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=231')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -3614,7 +3789,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=230')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=231')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -3633,7 +3808,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=230')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=231')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -3652,7 +3827,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=230')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=231')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -3671,7 +3846,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=230')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=231')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -3690,7 +3865,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=230')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=231')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -3727,7 +3902,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.30</span>
+      <span class="hbb-tag" id="hbb-tag">v2.31</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -3768,13 +3943,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=230'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=231'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=230'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=231'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -3826,7 +4001,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=230'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=231'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -3838,25 +4013,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=230" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=231" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=230" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=231" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 6 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=230" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=231" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=230" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=231" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -3970,7 +4145,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=230'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=231'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -3999,7 +4174,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=230'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=231'">OUVRIR →</button>
         </div>
       </article>
 
@@ -4041,18 +4216,43 @@
        ============================================ -->
   <div id="view-resultats" class="view">
     <h1 class="v-head">Nos <em style="color:var(--gold);font-style:normal;">décryptages</em>.</h1>
-    <p class="v-sub">Notre lecture du marché, semaine par semaine. Aucun signal, juste du contexte.</p>
+    <p class="v-sub">Notre lecture du marché, semaine par semaine. <em>Tape sur un terme</em> pour la définition. <strong style="color:var(--gold);">Étude technique complète</strong> en Premium.</p>
 
     <article class="feed-card fc-analyse" style="margin-bottom:14px;">
       <header><span class="fc-type">🔍 Décryptage hebdo</span><span class="fc-time">Sem. 21</span></header>
       <div class="fc-title">Indices : la résilience des techs</div>
-      <p class="fc-body">Nasdaq +1,8 % sur la semaine, S&amp;P +0,9 %. CAC à la peine -0,3 % sur la séance de jeudi (banques sous pression). Le marché ignore largement les craintes inflationnistes — pour le moment.</p>
+      <p class="fc-body">
+        <button class="dec-term" onclick="openTermPopup('nasdaq')">Nasdaq</button> +1,8 % sur la semaine,
+        <button class="dec-term" onclick="openTermPopup('sp500')">S&amp;P 500</button> +0,9 %.
+        <button class="dec-term" onclick="openTermPopup('cac')">CAC 40</button> à la peine -0,3 % sur la séance de jeudi (banques sous pression).
+        Le marché ignore largement les craintes
+        <button class="dec-term" onclick="openTermPopup('inflation')">inflationnistes</button> — pour le moment.
+      </p>
+      <div class="dec-study" data-study="sem21">
+        <button class="ds-toggle" onclick="toggleDeepStudy('sem21')">
+          <span><span class="ds-lock">✦</span> Étude technique complète</span>
+          <span class="ds-arrow">→</span>
+        </button>
+        <div class="ds-content" id="ds-content-sem21"></div>
+      </div>
     </article>
 
     <article class="feed-card fc-analyse" style="margin-bottom:14px;">
       <header><span class="fc-type">🔍 Décryptage hebdo</span><span class="fc-time">Sem. 20</span></header>
       <div class="fc-title">Or et Bitcoin : décorrélation actée</div>
-      <p class="fc-body">L'or fait +2,2 %, BTC -1,4 %. La narrative « digital gold » prend du plomb dans l'aile à court terme. Les flux ETF BTC restent positifs sur le mois mais ralentissent.</p>
+      <p class="fc-body">
+        L'<button class="dec-term" onclick="openTermPopup('or')">or</button> fait +2,2 %,
+        <button class="dec-term" onclick="openTermPopup('btc')">BTC</button> -1,4 %.
+        La <button class="dec-term" onclick="openTermPopup('digital-gold')">narrative « digital gold »</button> prend du plomb dans l'aile à court terme.
+        Les flux <button class="dec-term" onclick="openTermPopup('etf')">ETF</button> BTC restent positifs sur le mois mais ralentissent.
+      </p>
+      <div class="dec-study" data-study="sem20">
+        <button class="ds-toggle" onclick="toggleDeepStudy('sem20')">
+          <span><span class="ds-lock">✦</span> Étude technique complète</span>
+          <span class="ds-arrow">→</span>
+        </button>
+        <div class="ds-content" id="ds-content-sem20"></div>
+      </div>
     </article>
 
     <div class="v-placeholder" style="margin-top:14px;">
@@ -4094,22 +4294,22 @@
         <p class="pp-tag">Les modules expert sont débloqués. Bonne exploration.</p>
       </div>
       <div class="pp-unlocked">
-        <a class="pp-unlock-card" href="scene-10.html?v=230">
+        <a class="pp-unlock-card" href="scene-10.html?v=231">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 6 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=230">
+        <a class="pp-unlock-card" href="scene-08.html?v=231">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=230">
+        <a class="pp-unlock-card" href="scene-09.html?v=231">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=230">
+        <a class="pp-unlock-card" href="scene-07.html?v=231">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -4170,6 +4370,21 @@
         <button class="pm-btn mm-cancel" onclick="closeMarketPicker()">Annuler</button>
         <button class="pm-btn" onclick="saveWatchlist()">Valider</button>
       </div>
+    </div>
+  </div>
+
+  <!-- ============================================
+       v2.31 — POPUP terme cliquable (décryptages)
+       ============================================ -->
+  <div id="term-popup" class="term-popup" role="dialog" aria-modal="true" onclick="if(event.target===this)closeTermPopup()">
+    <div class="tp-card">
+      <div class="tp-head">
+        <span class="tp-tag" id="tp-tag">DÉFINITION</span>
+        <button class="tp-close" onclick="closeTermPopup()" aria-label="Fermer">✕</button>
+      </div>
+      <h3 class="tp-title" id="tp-title">—</h3>
+      <p class="tp-body" id="tp-body">—</p>
+      <a class="tp-link" id="tp-link" style="display:none;" href="glossary.html">Ouvrir le glossaire →</a>
     </div>
   </div>
 
@@ -5154,7 +5369,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=230';
+        location.href = 'scene-10.html?v=231';
       });
       widget._linked = true;
     }
@@ -5207,7 +5422,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=230';
+      location.href = 'scene-05.html?v=231';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -5622,7 +5837,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=230'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=231'; };
         block.style.display = 'block';
         return;
       }
@@ -5664,7 +5879,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=230';
+        card.onclick = () => location.href = 'scene-05.html?v=231';
         block.style.display = 'block';
         return;
       }
@@ -5684,7 +5899,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=230';
+          card.onclick = () => location.href = 'scene-06.html?v=231';
           block.style.display = 'block';
           return;
         }
@@ -5698,7 +5913,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=230';
+        card.onclick = () => location.href = 'scene-06.html?v=231';
         block.style.display = 'block';
         return;
       }
@@ -5713,7 +5928,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=230';
+    card.onclick = () => location.href = 'scene-05.html?v=231';
     block.style.display = 'block';
   }
 
@@ -6191,13 +6406,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=230&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=231&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=230';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=231';
     else showView('premium');
   }
 
@@ -6703,7 +6918,7 @@
         + '<div class="v-placeholder-txt"><strong>Aucune session enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici, '
         + 'session par session.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=230\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=231\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -6747,9 +6962,176 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=230\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=231\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
+  }
+
+  /* ===== v2.31 — Décryptages : popup termes + étude technique complète ===== */
+  const TERMS = {
+    nasdaq: {
+      title: 'Nasdaq',
+      body: 'Indice américain à forte composante <strong>technologique</strong> (Apple, Microsoft, Nvidia, Meta, Tesla...). Très sensible aux taux directeurs et aux résultats des géants tech.',
+    },
+    sp500: {
+      title: 'S&P 500',
+      body: 'Indice des <strong>500 plus grandes capitalisations</strong> US. Référence mondiale pour mesurer la santé du marché actions américain.',
+    },
+    cac: {
+      title: 'CAC 40',
+      body: 'Indice phare de la <strong>bourse de Paris</strong>. 40 plus grandes capitalisations françaises (LVMH, TotalEnergies, BNP, Air Liquide...).',
+    },
+    inflation: {
+      title: 'Pression inflationniste',
+      body: 'Tendance à la <strong>hausse durable des prix</strong>. Quand elle revient, les banques centrales relèvent les taux — ce qui pèse souvent sur les actions tech et la croissance.',
+    },
+    or: {
+      title: 'Or',
+      body: 'Métal précieux, <strong>valeur refuge</strong> historique. Monte souvent quand l\'incertitude économique grimpe ou quand le dollar baisse.',
+    },
+    btc: {
+      title: 'Bitcoin (BTC)',
+      body: 'Première crypto-monnaie, créée en 2009. Plafond de <strong>21 millions d\'unités</strong>. Souvent comparé à l\'or pour son côté rare et décentralisé.',
+    },
+    'digital-gold': {
+      title: 'Bitcoin = "or numérique" ?',
+      body: 'Narrative selon laquelle <strong>BTC remplacerait l\'or</strong> comme valeur refuge à long terme. Vraie sur certains cycles, fausse sur d\'autres — actuellement les deux <em>se décorrèlent</em>.',
+    },
+    etf: {
+      title: 'ETF',
+      body: '<strong>Exchange Traded Fund</strong> = fonds coté en bourse, qui réplique un indice ou un panier d\'actifs. Pratique pour s\'exposer à un thème sans acheter chaque action une par une.',
+      link: 'scene-06.html',
+    },
+    rsi: {
+      title: 'RSI · Relative Strength Index',
+      body: 'Oscillateur 0-100 qui mesure la <strong>force du mouvement</strong>. <em>Sous 30</em> = survente (rebond possible). <em>Au-dessus de 70</em> = surachat (essoufflement possible).',
+    },
+    ma50: {
+      title: 'MA50 · Moyenne mobile 50',
+      body: 'Moyenne des <strong>50 dernières clôtures</strong>. Référence pour la tendance moyen terme. Le prix la respecte souvent comme un support/résistance dynamique.',
+    },
+    macd: {
+      title: 'MACD',
+      body: '<strong>Moving Average Convergence Divergence</strong>. Indicateur de momentum : quand sa courbe croise sa "signale" vers le haut = signal haussier. Vers le bas = baissier.',
+    },
+    bollinger: {
+      title: 'Bandes de Bollinger',
+      body: 'Tunnel autour du prix calculé sur la <strong>volatilité</strong> (écart-type). Quand le prix touche la bande haute = tendu, bande basse = surventé.',
+    },
+    adx: {
+      title: 'ADX · force de tendance',
+      body: 'Mesure la <strong>vigueur d\'une tendance</strong> (peu importe la direction). Sous 25 = marché en range. Au-dessus = trend confirmé.',
+    },
+  };
+
+  function openTermPopup(termId) {
+    const t = TERMS[termId];
+    const modal = document.getElementById('term-popup');
+    if (!t || !modal) return;
+    document.getElementById('tp-title').textContent = t.title;
+    document.getElementById('tp-body').innerHTML = t.body;
+    const link = document.getElementById('tp-link');
+    if (t.link) {
+      link.href = t.link;
+      link.style.display = 'inline-block';
+    } else {
+      link.style.display = 'none';
+    }
+    modal.classList.add('show');
+    if (navigator.vibrate) navigator.vibrate(4);
+  }
+  function closeTermPopup() {
+    document.getElementById('term-popup').classList.remove('show');
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeTermPopup();
+  });
+
+  // Études techniques complètes (contenu éditorial Premium, mis à jour à chaque décryptage hebdo)
+  const DEEP_STUDIES = {
+    sem21: {
+      title: 'Étude technique · semaine 21',
+      verdict: { score: 62, cls: 'bull', label: 'Plutôt haussier' },
+      method: 'Lecture des 3 principaux indices US + CAC sur le tf daily, agrégation des outils RSI · MA50 · MACD · Bollinger · ADX.',
+      indicators: [
+        { sym: 'NASDAQ', read: 'RSI 64 · au-dessus de la MA50 · MACD histo positif', sig: 'bull', val: 'Bull' },
+        { sym: 'S&P 500', read: 'RSI 59 · MA20 > MA50 · ADX 28 (trend modéré)', sig: 'bull', val: 'Bull' },
+        { sym: 'CAC 40', read: 'RSI 47 · range autour MA50 · ADX 18 (sans direction)', sig: 'neutral', val: 'Range' },
+        { sym: 'VIX', read: 'Sous 16 — appétit pour le risque maintenu', sig: 'bull', val: 'Calme' },
+        { sym: 'Sector', read: 'Tech surperforme · Banques sous pression · Énergie en retrait', sig: 'bull', val: 'Tech-lead' },
+        { sym: 'Volume', read: 'Volume Nasdaq supérieur à la moyenne 20j sur les hausses', sig: 'bull', val: 'Confirmé' },
+      ],
+      conclusion: '<strong>Biais haussier dominant côté US</strong>, porté par les techs avec confirmation volume. Le <em>CAC</em> reste à la traîne mais sans rupture technique — la zone MA50 fait support. Risque principal à surveiller : un retour brutal des craintes <em>inflationnistes</em> qui ferait re-décoller les rendements et casserait la dynamique tech.',
+    },
+    sem20: {
+      title: 'Étude technique · semaine 20',
+      verdict: { score: 48, cls: 'neutral', label: 'Indécis' },
+      method: 'Comparatif Or / BTC sur le tf daily. Corrélation 30 jours, indicateurs de momentum, lecture des flux ETF.',
+      indicators: [
+        { sym: 'OR XAU', read: 'RSI 71 · proche surachat · MA20 ascendante', sig: 'neutral', val: '+2,2%' },
+        { sym: 'BTC', read: 'RSI 48 · sous MA20 · MACD histo négatif', sig: 'bear', val: '-1,4%' },
+        { sym: 'Corrélation', read: 'BTC × Or sur 30j = -0,18 (décorrélation actée)', sig: 'neutral', val: '-0.18' },
+        { sym: 'ETF BTC', read: 'Flux nets positifs sur le mois mais 60% sous le pic d\'avril', sig: 'neutral', val: 'Ralenti' },
+        { sym: 'Dom. BTC', read: 'Dominance BTC 53,1% (stable). Alts ne prennent pas la main', sig: 'neutral', val: '53%' },
+        { sym: 'Volat.', read: 'ATR BTC 3,1% (sous moyenne) — compression possible', sig: 'bull', val: 'Basse' },
+      ],
+      conclusion: 'La narrative "<em>digital gold</em>" ne tient pas à court terme : l\'<em>or</em> rejoue son rôle de refuge classique, <em>BTC</em> respire en attendant un catalyseur. Les flux <em>ETF</em> restent OK structurellement, mais l\'attention se porte ailleurs. <strong>Pas de prise de position franche</strong> avant cassure de range BTC dans un sens ou l\'autre.',
+    },
+  };
+
+  function renderDeepStudy(id) {
+    const s = DEEP_STUDIES[id];
+    const container = document.getElementById('ds-content-' + id);
+    if (!s || !container) return;
+
+    if (!_isPremiumSafe()) {
+      // Paywall : free voit un teaser, pas le contenu
+      container.innerHTML =
+        '<div class="ds-paywall">'
+        + '<div class="ds-paywall-ico">✦</div>'
+        + '<p class="ds-paywall-txt"><strong>Étude technique complète</strong> réservée Premium.<br>Verdict global pondéré + 6 indicateurs détaillés + conclusion pédago.</p>'
+        + '<button class="pm-btn" onclick="showView(\'premium\')">Passer en Premium →</button>'
+        + '</div>';
+      return;
+    }
+
+    let rows = '';
+    s.indicators.forEach(ind => {
+      rows += '<div class="ds-row ' + ind.sig + '">'
+        + '<div class="ds-row-label">' + ind.sym + '</div>'
+        + '<div class="ds-row-read">' + ind.read + '</div>'
+        + '<div class="ds-row-val">' + ind.val + '</div>'
+        + '</div>';
+    });
+
+    container.innerHTML =
+      '<div class="ds-section-title">Méthode</div>'
+      + '<p class="ds-row-read" style="padding:0 4px;">' + s.method + '</p>'
+      + '<div class="ds-section-title">Verdict global</div>'
+      + '<div class="ds-verdict">'
+      +   '<span class="ds-verdict-badge ' + s.verdict.cls + '">' + s.verdict.label + '</span>'
+      +   '<span class="ds-verdict-score">SCORE <strong>' + s.verdict.score + '</strong>/100</span>'
+      + '</div>'
+      + '<div class="ds-section-title">Lecture par outil</div>'
+      + rows
+      + '<div class="ds-section-title">Conclusion</div>'
+      + '<div class="ds-conclusion">' + s.conclusion + '</div>';
+  }
+
+  function toggleDeepStudy(id) {
+    const container = document.getElementById('ds-content-' + id);
+    const toggle = document.querySelector('.dec-study[data-study="' + id + '"] .ds-toggle');
+    if (!container || !toggle) return;
+    const isOpen = container.classList.contains('open');
+    if (isOpen) {
+      container.classList.remove('open');
+      toggle.querySelector('.ds-arrow').textContent = '→';
+      return;
+    }
+    renderDeepStudy(id);
+    container.classList.add('open');
+    toggle.querySelector('.ds-arrow').textContent = '✕';
+    if (navigator.vibrate) navigator.vibrate(4);
   }
 
   /* ===== v2.25 — Activation Premium (démo) ===== */
@@ -7038,11 +7420,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=230';
+      location.href = 'scene-05.html?v=231';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=230';
+      location.href = 'scene-06.html?v=231';
       return;
     }
 
@@ -7065,11 +7447,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=230"></script>
+  <script type="module" src="tg-common.js?v=231"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=230').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=231').catch(() => {});
       });
     }
   </script>
