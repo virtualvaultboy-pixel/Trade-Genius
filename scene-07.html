@@ -26,7 +26,7 @@
   <meta name="description" content="Module 4 — Analyse technique avancée : patterns chandeliers, RSI, MACD, Fibonacci, volume profile, backtesting.">
   <link rel="manifest" href="manifest.json">
   <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
-  <script type="module" src="tg-common.js?v=227"></script>
+  <script type="module" src="tg-common.js?v=228"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -714,8 +714,9 @@
     }
 
     function goPremium() {
+      // v2.28 — paywall : on amène l'utilisateur sur la page conversion Premium
       if (navigator.vibrate) navigator.vibrate(8);
-      window.location.href = 'index.html#feed';
+      window.location.href = 'index.html#premium';
     }
 
     /* ===== SLIDES CONTENT ===== */
@@ -1557,9 +1558,11 @@
         return;
       }
       // Sécurité : ch.4-7 réservés Premium (normalement non visibles en free)
+      // v2.28 — paywall : redirige sur la page conversion Premium au lieu du feed
       const isPremium = window.TG && window.TG.isPremium && window.TG.isPremium();
       if (n >= 4 && !isPremium) {
-        window.location.href = 'index.html#feed';
+        if (navigator.vibrate) navigator.vibrate([20, 40, 20]);
+        window.location.href = 'index.html#premium';
         return;
       }
       currentChapter = n;

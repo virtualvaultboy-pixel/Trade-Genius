@@ -1,24 +1,24 @@
 // Trade Genius — Service Worker
-const VERSION = 'tg-v2.27';
+const VERSION = 'tg-v2.28';
 const CACHE_NAME = `trade-genius-${VERSION}`;
 
 const CORE = [
   './',
   './index.html',
-  './scene-01.html?v=227',
-  './scene-02.html?v=227',
-  './scene-03.html?v=227',
-  './scene-04.html?v=227',
-  './scene-05.html?v=227',
-  './scene-06.html?v=227',
-  './scene-07.html?v=227',
-  './scene-08.html?v=227',
-  './scene-09.html?v=227',
-  './scene-10.html?v=227',
-  './scene-11.html?v=227',
+  './scene-01.html?v=228',
+  './scene-02.html?v=228',
+  './scene-03.html?v=228',
+  './scene-04.html?v=228',
+  './scene-05.html?v=228',
+  './scene-06.html?v=228',
+  './scene-07.html?v=228',
+  './scene-08.html?v=228',
+  './scene-09.html?v=228',
+  './scene-10.html?v=228',
+  './scene-11.html?v=228',
   './bill_20.webp?v=1',
   './bill_20.png?v=1',
-  './tg-common.js?v=227',
+  './tg-common.js?v=228',
   './icon.svg',
   './icon-192.png',
   './icon-512.png',
