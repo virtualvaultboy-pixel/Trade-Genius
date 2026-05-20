@@ -2806,6 +2806,88 @@
   .mr-price.loading,
   .mr-change.loading { color: var(--text-faint); opacity: 0.65; }
 
+  /* v2.27 — verdict global + détail expand */
+  .mr-toggle {
+    background: none; border: 0; padding: 4px 0; margin-top: 2px;
+    color: var(--text-faint);
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.06em; cursor: pointer;
+  }
+  .mr-toggle:hover { color: var(--acid); }
+  .mr-detail {
+    grid-column: 1 / -1;
+    margin: 8px 0 4px;
+    padding: 10px 12px;
+    background: rgba(0,0,0,0.28);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px;
+    display: none;
+  }
+  .mr-detail.open { display: block; }
+  .mr-detail-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 8px; margin-bottom: 8px;
+    border-bottom: 1px dashed rgba(255,255,255,0.06);
+  }
+  .mrd-score {
+    font-family: var(--font-m); font-size: 10px; font-weight: 800;
+    letter-spacing: 0.1em; color: var(--text-faint);
+  }
+  .mrd-score strong { color: var(--text); font-size: 14px; }
+  .mrd-takeaway {
+    font-family: var(--font-d); font-size: 12.5px;
+    color: var(--text); line-height: 1.45; margin: 0 0 10px;
+  }
+  .mrd-takeaway strong { color: var(--acid); }
+  .mrd-takeaway strong.bear { color: var(--red); }
+  .mrd-takeaway strong.bull { color: var(--acid); }
+  .mrd-takeaway strong.neutral { color: var(--gold); }
+  .mrd-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .mrd-cell {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--text-faint);
+    border-radius: 8px;
+    padding: 7px 9px;
+  }
+  .mrd-cell.bull { border-left-color: var(--acid); }
+  .mrd-cell.bear { border-left-color: var(--red); }
+  .mrd-cell.neutral { border-left-color: var(--gold); }
+  .mrd-cell-name {
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+    letter-spacing: 0.08em; color: var(--text-faint);
+    text-transform: uppercase;
+  }
+  .mrd-cell-val {
+    font-family: var(--font-m); font-size: 13px; font-weight: 700;
+    color: var(--text); margin-top: 1px;
+  }
+  .mrd-cell.bull .mrd-cell-val { color: var(--acid); }
+  .mrd-cell.bear .mrd-cell-val { color: var(--red); }
+  .mrd-cell.neutral .mrd-cell-val { color: var(--gold); }
+  .mrd-cell-read {
+    font-family: var(--font-d); font-size: 10.5px;
+    color: var(--text-dim); line-height: 1.35; margin-top: 4px;
+  }
+
+  .mr-global-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 7px; border-radius: 999px;
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 800;
+    letter-spacing: 0.06em;
+    margin-top: 3px;
+  }
+  .mr-global-badge.bull { background: rgba(190,242,100,0.12); color: var(--acid); border: 1px solid rgba(190,242,100,0.32); }
+  .mr-global-badge.bear { background: rgba(239,68,68,0.12); color: #fca5a5; border: 1px solid rgba(239,68,68,0.32); }
+  .mr-global-badge.neutral { background: rgba(245,158,11,0.10); color: var(--gold); border: 1px solid rgba(245,158,11,0.32); }
+  .mr-global-badge.loading { background: rgba(255,255,255,0.04); color: var(--text-faint); border: 1px solid var(--border); }
+  .mr-global-badge .mrgb-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: currentColor;
+  }
+
   .mc-cta-deep {
     display: flex; justify-content: space-between; align-items: center;
     padding-top: 10px; margin-top: 6px;
@@ -3094,7 +3176,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.26</div>
+        <div class="bd-brand-ver" id="bd-version">v2.27</div>
       </div>
     </div>
 
@@ -3105,17 +3187,17 @@
     <a class="bd-item" href="glossary.html"><span class="bd-ico">📑</span><span>Glossaire (26 termes)</span></a>
 
     <div class="bd-section-title">Apprendre</div>
-    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=226')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=226')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=226')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=226')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=226')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(5, 'scene-11.html?v=226')"><span class="bd-ico" style="color:var(--green);">💰</span><span>M5 · Fiscalité FR</span><span class="bd-count" id="bd-prog-m5">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=227')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=227')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=227')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=227')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=227')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(5, 'scene-11.html?v=227')"><span class="bd-ico" style="color:var(--green);">💰</span><span>M5 · Fiscalité FR</span><span class="bd-count" id="bd-prog-m5">—</span></a>
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=226')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=226')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=226')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=227')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=227')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=227')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
     <a class="bd-item bd-premium" onclick="closeBurger();openCoachIA()"><span class="bd-ico">🤖</span><span>Coach IA <span class="bd-mini">Bientôt</span></span></a>
 
     <div class="bd-section-title">Tes stats</div>
@@ -3370,7 +3452,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=226')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=227')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -3389,7 +3471,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=226')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=227')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -3408,7 +3490,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=226')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=227')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -3427,7 +3509,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=226')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=227')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -3446,7 +3528,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=226')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=227')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -3465,7 +3547,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=226')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=227')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -3504,7 +3586,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.26</span>
+      <span class="hbb-tag" id="hbb-tag">v2.27</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -3545,13 +3627,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=226'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=227'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=226'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=227'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -3603,7 +3685,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=226'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=227'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -3615,25 +3697,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=226" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=227" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=226" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=227" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 6 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=226" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=227" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=226" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=227" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -3747,7 +3829,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=226'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=227'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -3776,7 +3858,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=226'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=227'">OUVRIR →</button>
         </div>
       </article>
 
@@ -3816,7 +3898,7 @@
         <strong>Bientôt</strong> · P&amp;L hebdo, mensuel et cumulé, agrégés depuis tes sessions simu.<br>
         Pour démarrer ton historique, ouvre le <strong>simulateur</strong>.
       </div>
-      <button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href='scene-05.html?v=226'">Ouvrir le simulateur →</button>
+      <button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href='scene-05.html?v=227'">Ouvrir le simulateur →</button>
     </div>
   </div>
 
@@ -3878,22 +3960,22 @@
         <p class="pp-tag">Les modules expert sont débloqués. Bonne exploration.</p>
       </div>
       <div class="pp-unlocked">
-        <a class="pp-unlock-card" href="scene-10.html?v=226">
+        <a class="pp-unlock-card" href="scene-10.html?v=227">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 6 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=226">
+        <a class="pp-unlock-card" href="scene-08.html?v=227">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=226">
+        <a class="pp-unlock-card" href="scene-09.html?v=227">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=226">
+        <a class="pp-unlock-card" href="scene-07.html?v=227">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -4044,8 +4126,9 @@
       syncXPFromProgress(); // v2.22 — catch up XP depuis chapitres validés
       renderXPBadge();      // v2.22
       setupQuizzes();       // v2.22
-      renderMarketCard();   // v2.26
-      refreshWatchlistData(true); // v2.26 — utilise cache si frais
+      renderMarketCard();           // v2.26
+      refreshWatchlistData(true);   // v2.26 — utilise cache si frais
+      refreshGlobalVerdicts();      // v2.27 — calcule indicateurs + verdict global en background
       // v2.19 — tuto pivot auto si jamais vu (v2.23 : ne pas le lancer si popup profil ouverte ou profil absent)
       if (shouldShowFeedTuto()) {
         setTimeout(() => {
@@ -4933,7 +5016,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=226';
+        location.href = 'scene-10.html?v=227';
       });
       widget._linked = true;
     }
@@ -4986,7 +5069,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=226';
+      location.href = 'scene-05.html?v=227';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -5112,7 +5195,7 @@
       return '✓ Reset complet. Reload...';
     },
     resetprofile: () => {
-      ['tg_profile','tg_feed_tuto','tg_post_likes','tg_xp','tg_watchlist','tg_watchlist_cache'].forEach(k => localStorage.removeItem(k));
+      ['tg_profile','tg_feed_tuto','tg_post_likes','tg_xp','tg_watchlist','tg_watchlist_cache','tg_watchlist_hist'].forEach(k => localStorage.removeItem(k));
       setTimeout(() => location.reload(), 600);
       return '✓ Profil + feed + XP + watchlist reset.';
     },
@@ -5401,7 +5484,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=226'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=227'; };
         block.style.display = 'block';
         return;
       }
@@ -5443,7 +5526,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=226';
+        card.onclick = () => location.href = 'scene-05.html?v=227';
         block.style.display = 'block';
         return;
       }
@@ -5463,7 +5546,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=226';
+          card.onclick = () => location.href = 'scene-06.html?v=227';
           block.style.display = 'block';
           return;
         }
@@ -5477,7 +5560,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=226';
+        card.onclick = () => location.href = 'scene-06.html?v=227';
         block.style.display = 'block';
         return;
       }
@@ -5492,7 +5575,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=226';
+    card.onclick = () => location.href = 'scene-05.html?v=227';
     block.style.display = 'block';
   }
 
@@ -5939,16 +6022,21 @@
     list.forEach(id => {
       const a = getAsset(id);
       if (!a) return;
-      rows += '<div class="market-row" onclick="onMarketRowClick(\'' + a.id + '\')">'
+      const liveBadge = a.live
+        ? '<span class="mr-global-badge loading" id="mrgb-' + a.id + '"><span class="mrgb-dot"></span>Analyse…</span>'
+        : '<span class="mr-global-badge loading"><span class="mrgb-dot"></span>Bientôt live</span>';
+      rows += '<div class="market-row">'
         + '<div class="mr-symbol">' + a.symbol + '</div>'
-        + '<div class="mr-name">'
+        + '<div class="mr-name" onclick="onMarketRowClick(\'' + a.id + '\')">'
         +   '<div class="mr-name-1">' + a.name + '</div>'
-        +   '<div class="mr-verdict neutral" id="mrv-' + a.id + '">' + (a.live ? 'Chargement…' : 'Données bientôt') + '</div>'
+        +   liveBadge
+        +   (a.live ? '<button class="mr-toggle" data-target="mrd-' + a.id + '" onclick="event.stopPropagation(); toggleAssetDetail(\'' + a.id + '\')">📐 Voir les outils</button>' : '')
         + '</div>'
-        + '<div>'
+        + '<div onclick="onMarketRowClick(\'' + a.id + '\')">'
         +   '<div class="mr-price ' + (a.live ? 'loading' : '') + '" id="mrp-' + a.id + '">—</div>'
         +   '<div class="mr-change ' + (a.live ? 'loading' : '') + ' flat" id="mrc-' + a.id + '">—</div>'
         + '</div>'
+        + (a.live ? '<div class="mr-detail" id="mrd-' + a.id + '"></div>' : '')
         + '</div>';
     });
     rows += '</div>';
@@ -5965,13 +6053,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=226&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=227&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=226';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=227';
     else showView('premium');
   }
 
@@ -6039,6 +6127,374 @@
     if (change24h > 0.5) return { label: '→ légère hausse', cls: 'bull' };
     if (change24h < -0.5) return { label: '→ légère baisse', cls: 'bear' };
     return { label: 'range hésitant', cls: 'neutral' };
+  }
+
+  /* ===== v2.27 — INDICATEURS TECHNIQUES (purs JS, calcul côté navigateur) ===== */
+  // Toutes les fonctions prennent un tableau de prix `p` (clôtures, plus ancien -> plus récent)
+  // et renvoient soit un nombre, soit un objet, soit null si données insuffisantes.
+
+  function _last(arr) { return arr[arr.length - 1]; }
+  function _sma(arr, period) {
+    if (arr.length < period) return null;
+    let s = 0; for (let i = arr.length - period; i < arr.length; i++) s += arr[i];
+    return s / period;
+  }
+  function _smaAt(arr, period, idx) {
+    if (idx < period - 1) return null;
+    let s = 0; for (let i = idx - period + 1; i <= idx; i++) s += arr[i];
+    return s / period;
+  }
+  function _emaSeries(arr, period) {
+    if (arr.length < period) return null;
+    const k = 2 / (period + 1);
+    const out = new Array(arr.length).fill(null);
+    let ema = 0;
+    for (let i = 0; i < period; i++) ema += arr[i];
+    ema /= period;
+    out[period - 1] = ema;
+    for (let i = period; i < arr.length; i++) {
+      ema = arr[i] * k + ema * (1 - k);
+      out[i] = ema;
+    }
+    return out;
+  }
+  function calcRSI(prices, period) {
+    period = period || 14;
+    if (prices.length < period + 1) return null;
+    let gains = 0, losses = 0;
+    for (let i = prices.length - period; i < prices.length; i++) {
+      const d = prices[i] - prices[i - 1];
+      if (d > 0) gains += d; else losses -= d;
+    }
+    if (losses === 0) return 100;
+    const rs = (gains / period) / (losses / period);
+    return 100 - 100 / (1 + rs);
+  }
+  function calcMACD(prices) {
+    const e12 = _emaSeries(prices, 12);
+    const e26 = _emaSeries(prices, 26);
+    if (!e12 || !e26) return null;
+    const macd = e12.map((v, i) => (v != null && e26[i] != null) ? v - e26[i] : null);
+    const macdValid = macd.filter(v => v != null);
+    if (macdValid.length < 9) return null;
+    const signal = _emaSeries(macdValid, 9);
+    if (!signal) return null;
+    const sigLast = _last(signal);
+    const macdLast = _last(macd);
+    return { macd: macdLast, signal: sigLast, hist: macdLast - sigLast };
+  }
+  function calcBollinger(prices, period, mult) {
+    period = period || 20; mult = mult || 2;
+    if (prices.length < period) return null;
+    const ma = _sma(prices, period);
+    let v = 0;
+    for (let i = prices.length - period; i < prices.length; i++) v += (prices[i] - ma) ** 2;
+    const std = Math.sqrt(v / period);
+    const last = _last(prices);
+    return { ma, upper: ma + mult * std, lower: ma - mult * std, pos: (last - (ma - mult * std)) / (2 * mult * std) };
+  }
+  function calcMomentum(prices, period) {
+    period = period || 10;
+    if (prices.length < period + 1) return null;
+    return prices[prices.length - 1] - prices[prices.length - 1 - period];
+  }
+  function calcStochastic(prices, period) {
+    period = period || 14;
+    if (prices.length < period) return null;
+    const slice = prices.slice(-period);
+    const hi = Math.max(...slice);
+    const lo = Math.min(...slice);
+    if (hi === lo) return { k: 50, d: 50 };
+    const k = ((_last(prices) - lo) / (hi - lo)) * 100;
+    // D = SMA 3 du %K (approximation : on prend les 3 derniers %K)
+    const ks = [];
+    for (let j = 0; j < 3; j++) {
+      const end = prices.length - j;
+      const sub = prices.slice(end - period, end);
+      if (sub.length < period) { ks.push(k); continue; }
+      const h = Math.max(...sub), l = Math.min(...sub);
+      ks.push(h === l ? 50 : ((sub[sub.length - 1] - l) / (h - l)) * 100);
+    }
+    const d = ks.reduce((a, b) => a + b, 0) / ks.length;
+    return { k, d };
+  }
+  // ADX simplifié (sans haut/bas séparés : on approxime avec |Δprice|)
+  function calcADX(prices, period) {
+    period = period || 14;
+    if (prices.length < period * 2 + 1) return null;
+    const dms = [], trs = [];
+    for (let i = 1; i < prices.length; i++) {
+      const d = prices[i] - prices[i - 1];
+      dms.push({ plus: d > 0 ? d : 0, minus: d < 0 ? -d : 0 });
+      trs.push(Math.abs(d));
+    }
+    const recent = dms.slice(-period);
+    const trRecent = trs.slice(-period);
+    const plusDM = recent.reduce((a, b) => a + b.plus, 0);
+    const minusDM = recent.reduce((a, b) => a + b.minus, 0);
+    const trSum = trRecent.reduce((a, b) => a + b, 0);
+    if (trSum === 0) return 0;
+    const plusDI = 100 * (plusDM / trSum);
+    const minusDI = 100 * (minusDM / trSum);
+    const denom = plusDI + minusDI;
+    if (denom === 0) return 0;
+    return Math.abs(plusDI - minusDI) / denom * 100;
+  }
+  // ATR % du prix actuel (vol relative)
+  function calcATR(prices, period) {
+    period = period || 14;
+    if (prices.length < period + 1) return null;
+    const trs = [];
+    for (let i = 1; i < prices.length; i++) trs.push(Math.abs(prices[i] - prices[i - 1]));
+    const recent = trs.slice(-period);
+    const atr = recent.reduce((a, b) => a + b, 0) / period;
+    return atr / _last(prices) * 100; // en %
+  }
+  function calcWilliamsR(prices, period) {
+    period = period || 14;
+    if (prices.length < period) return null;
+    const slice = prices.slice(-period);
+    const hi = Math.max(...slice);
+    const lo = Math.min(...slice);
+    if (hi === lo) return -50;
+    return ((hi - _last(prices)) / (hi - lo)) * -100;
+  }
+
+  // Calcule tous les indicateurs + signal individuel (bull/bear/neutral)
+  function computeAllIndicators(prices) {
+    if (!prices || prices.length < 30) return null;
+    const last = _last(prices);
+    const rsi = calcRSI(prices);
+    const ma20 = _sma(prices, 20);
+    const ma50 = _sma(prices, 50) || _sma(prices, Math.min(50, prices.length - 1));
+    const macd = calcMACD(prices);
+    const boll = calcBollinger(prices);
+    const mom = calcMomentum(prices);
+    const stoch = calcStochastic(prices);
+    const adx = calcADX(prices);
+    const atr = calcATR(prices);
+    const wr = calcWilliamsR(prices);
+
+    const out = {};
+    // RSI : <30 sursurvendu (bull contrarian) / >70 surachat (bear contrarian) / sinon neutre
+    if (rsi != null) {
+      let sig = 'neutral'; let read = 'Pression équilibrée';
+      if (rsi < 30) { sig = 'bull'; read = 'Survente : rebond possible'; }
+      else if (rsi > 70) { sig = 'bear'; read = 'Surachat : essoufflement possible'; }
+      else if (rsi > 55) { sig = 'bull'; read = 'Acheteurs au-dessus'; }
+      else if (rsi < 45) { sig = 'bear'; read = 'Vendeurs au-dessus'; }
+      out.rsi = { name: 'RSI 14', value: rsi.toFixed(1), signal: sig, read };
+    }
+    // MA20 vs prix : prix > MA20 = bull court terme
+    if (ma20 != null) {
+      const above = last > ma20;
+      out.ma20 = { name: 'Prix vs MA20', value: above ? '> MA20' : '< MA20', signal: above ? 'bull' : 'bear',
+        read: above ? 'Au-dessus de la moyenne court terme' : 'Sous la moyenne court terme' };
+    }
+    // MA20 vs MA50 : golden/death cross approximation
+    if (ma20 != null && ma50 != null) {
+      const golden = ma20 > ma50;
+      out.maCross = { name: 'MA20 vs MA50', value: golden ? 'MA20 > MA50' : 'MA20 < MA50', signal: golden ? 'bull' : 'bear',
+        read: golden ? 'Tendance moyen terme positive' : 'Tendance moyen terme négative' };
+    }
+    // MACD histogramme : > 0 = bull
+    if (macd) {
+      const h = macd.hist;
+      let sig = 'neutral'; let read = 'Momentum plat';
+      if (h > 0) { sig = 'bull'; read = 'MACD au-dessus de sa signale'; }
+      else if (h < 0) { sig = 'bear'; read = 'MACD sous sa signale'; }
+      out.macd = { name: 'MACD', value: h.toFixed(2), signal: sig, read };
+    }
+    // Bollinger position : 0-1 (lower-upper). <0.2 = bull contrarian, >0.8 = bear contrarian
+    if (boll) {
+      const pos = boll.pos;
+      let sig = 'neutral'; let read = 'Dans la bande';
+      if (pos < 0.15) { sig = 'bull'; read = 'Touche bande basse : rebond possible'; }
+      else if (pos > 0.85) { sig = 'bear'; read = 'Touche bande haute : pause possible'; }
+      else if (pos > 0.55) { sig = 'bull'; read = 'Moitié haute de la bande'; }
+      else if (pos < 0.45) { sig = 'bear'; read = 'Moitié basse de la bande'; }
+      out.boll = { name: 'Bollinger', value: (pos * 100).toFixed(0) + '%', signal: sig, read };
+    }
+    // Momentum
+    if (mom != null) {
+      const sig = mom > 0 ? 'bull' : mom < 0 ? 'bear' : 'neutral';
+      const read = mom > 0 ? 'Prix en hausse vs il y a 10 jours' : mom < 0 ? 'Prix en baisse vs il y a 10 jours' : 'Pas de mouvement net';
+      out.mom = { name: 'Momentum 10j', value: (mom > 0 ? '+' : '') + (mom / last * 100).toFixed(1) + '%', signal: sig, read };
+    }
+    // Stochastic : %K < 20 bull contrarian, > 80 bear contrarian
+    if (stoch) {
+      const k = stoch.k;
+      let sig = 'neutral'; let read = 'Range';
+      if (k < 20) { sig = 'bull'; read = 'Zone de survente'; }
+      else if (k > 80) { sig = 'bear'; read = 'Zone de surachat'; }
+      else if (k > stoch.d) { sig = 'bull'; read = '%K au-dessus de %D'; }
+      else if (k < stoch.d) { sig = 'bear'; read = '%K sous %D'; }
+      out.stoch = { name: 'Stochastique', value: k.toFixed(0) + '/' + stoch.d.toFixed(0), signal: sig, read };
+    }
+    // ADX : 0-100, > 25 = trend fort (neutre on signal, mais on amplifie ailleurs)
+    if (adx != null) {
+      let sig = 'neutral'; let read = 'Pas de tendance claire';
+      if (adx > 40) { sig = 'neutral'; read = 'Tendance très forte (suivre)'; }
+      else if (adx > 25) { sig = 'neutral'; read = 'Tendance présente'; }
+      else read = 'Marché en range';
+      out.adx = { name: 'ADX', value: adx.toFixed(0), signal: sig, read, weight: adx > 25 ? 'strong' : 'weak' };
+    }
+    // ATR % : volatilité relative
+    if (atr != null) {
+      let read = 'Volatilité normale';
+      if (atr > 5) read = 'Volatilité élevée : prudence';
+      else if (atr < 1) read = 'Volatilité très basse : breakout proche ?';
+      out.atr = { name: 'ATR (vol.)', value: atr.toFixed(1) + '%', signal: 'neutral', read };
+    }
+    // Williams %R : -100 (très bas) à 0 (très haut). < -80 = bull contrarian, > -20 = bear contrarian
+    if (wr != null) {
+      let sig = 'neutral'; let read = 'Position médiane';
+      if (wr < -80) { sig = 'bull'; read = 'Zone de survente'; }
+      else if (wr > -20) { sig = 'bear'; read = 'Zone de surachat'; }
+      else if (wr > -50) { sig = 'bull'; read = 'Moitié haute du range'; }
+      else if (wr < -50) { sig = 'bear'; read = 'Moitié basse du range'; }
+      out.wr = { name: 'Williams %R', value: wr.toFixed(0), signal: sig, read };
+    }
+    return out;
+  }
+
+  // Pondérations : score weighted bull/bear/neutral -> 0-100
+  const INDICATOR_WEIGHTS = {
+    rsi: 12,
+    ma20: 10,
+    maCross: 14,
+    macd: 14,
+    boll: 9,
+    mom: 11,
+    stoch: 9,
+    adx: 6,   // signal lui-même neutre, mais utilisé en amplificateur
+    atr: 4,   // neutre, contexte de volatilité
+    wr: 11,
+  };
+
+  function computeGlobalVerdict(indicators) {
+    if (!indicators) return null;
+    let totalW = 0, score = 0, bullN = 0, bearN = 0, neutralN = 0;
+    Object.entries(indicators).forEach(([key, ind]) => {
+      const w = INDICATOR_WEIGHTS[key] || 0;
+      totalW += w;
+      if (ind.signal === 'bull') { score += w; bullN++; }
+      else if (ind.signal === 'bear') { score -= w; bearN++; }
+      else neutralN++;
+    });
+    // Amplification si ADX > 25 (trend confirmé) : on multiplie la conviction
+    if (indicators.adx && indicators.adx.weight === 'strong') score *= 1.15;
+    // Normalisation : -totalW -> 0, 0 -> 50, +totalW -> 100
+    const norm = totalW ? Math.max(0, Math.min(100, 50 + (score / totalW) * 50)) : 50;
+    const cls = norm >= 60 ? 'bull' : norm <= 40 ? 'bear' : 'neutral';
+    return {
+      score: Math.round(norm),
+      cls,
+      bullN, bearN, neutralN,
+      label: verdictLabel(norm),
+      takeaway: verdictTakeaway(norm, bullN, bearN, neutralN),
+    };
+  }
+  function verdictLabel(s) {
+    if (s >= 75) return 'Haussier fort';
+    if (s >= 60) return 'Plutôt haussier';
+    if (s >= 45) return 'Indécis';
+    if (s >= 30) return 'Plutôt baissier';
+    return 'Baissier fort';
+  }
+  function verdictTakeaway(s, b, r, n) {
+    if (s >= 75) return '<strong class="bull">Configuration haussière nette.</strong> La majorité des outils pointent vers une dynamique acheteuse.';
+    if (s >= 60) return '<strong class="bull">Biais haussier modéré.</strong> Plus de signaux acheteurs que vendeurs, mais pas unanime.';
+    if (s >= 45) return '<strong class="neutral">Sans direction claire.</strong> Les outils sont partagés — attendre une confirmation.';
+    if (s >= 30) return '<strong class="bear">Biais baissier modéré.</strong> Plus de signaux vendeurs qu\'acheteurs.';
+    return '<strong class="bear">Configuration baissière nette.</strong> La majorité des outils pointent vers une dynamique vendeuse.';
+  }
+
+  /* ===== v2.27 — Fetch historique CoinGecko + cache 30 min ===== */
+  const HIST_CACHE_KEY = 'tg_watchlist_hist';
+  const HIST_CACHE_TTL = 30 * 60 * 1000;
+  const _verdicts = {}; // id -> {indicators, verdict}
+
+  async function fetchHistorical(id) {
+    let cache = null;
+    try { cache = JSON.parse(localStorage.getItem(HIST_CACHE_KEY)) || {}; } catch { cache = {}; }
+    if (cache[id] && (Date.now() - cache[id].ts < HIST_CACHE_TTL)) return cache[id].prices;
+    try {
+      const url = 'https://api.coingecko.com/api/v3/coins/' + id + '/market_chart?vs_currency=usd&days=60&interval=daily';
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('hist ' + res.status);
+      const data = await res.json();
+      const prices = (data.prices || []).map(p => p[1]);
+      cache[id] = { ts: Date.now(), prices };
+      try { localStorage.setItem(HIST_CACHE_KEY, JSON.stringify(cache)); } catch {}
+      return prices;
+    } catch { return null; }
+  }
+
+  async function refreshGlobalVerdicts() {
+    const list = loadWatchlist();
+    const cryptos = list.map(getAsset).filter(a => a && a.kind === 'crypto');
+    if (cryptos.length === 0) return;
+    for (const a of cryptos) {
+      const prices = await fetchHistorical(a.id);
+      if (!prices) continue;
+      const indicators = computeAllIndicators(prices);
+      if (!indicators) continue;
+      const verdict = computeGlobalVerdict(indicators);
+      _verdicts[a.id] = { indicators, verdict };
+      applyVerdictBadge(a.id, verdict);
+    }
+  }
+
+  function applyVerdictBadge(id, verdict) {
+    const badge = document.getElementById('mrgb-' + id);
+    if (!badge) return;
+    badge.textContent = verdict.label + ' · ' + verdict.score;
+    badge.className = 'mr-global-badge ' + verdict.cls;
+  }
+
+  function toggleAssetDetail(id) {
+    const el = document.getElementById('mrd-' + id);
+    if (!el) return;
+    const isOpen = el.classList.contains('open');
+    // Ferme tous les autres
+    document.querySelectorAll('.mr-detail.open').forEach(d => { if (d !== el) d.classList.remove('open'); });
+    document.querySelectorAll('.mr-toggle').forEach(t => {
+      if (t.dataset.target !== 'mrd-' + id) t.textContent = '📐 Voir les outils';
+    });
+    if (isOpen) {
+      el.classList.remove('open');
+      const tog = document.querySelector('.mr-toggle[data-target="mrd-' + id + '"]');
+      if (tog) tog.textContent = '📐 Voir les outils';
+      return;
+    }
+    const data = _verdicts[id];
+    if (!data) {
+      el.innerHTML = '<div class="mrd-takeaway" style="opacity:0.7">Indicateurs en cours de calcul…</div>';
+    } else {
+      el.innerHTML = renderAssetDetailHTML(data.indicators, data.verdict);
+    }
+    el.classList.add('open');
+    const tog = document.querySelector('.mr-toggle[data-target="mrd-' + id + '"]');
+    if (tog) tog.textContent = '✕ Masquer';
+    if (navigator.vibrate) navigator.vibrate(4);
+  }
+
+  function renderAssetDetailHTML(indicators, verdict) {
+    let cells = '';
+    Object.entries(indicators).forEach(([key, ind]) => {
+      cells += '<div class="mrd-cell ' + ind.signal + '">'
+        + '<div class="mrd-cell-name">' + ind.name + '</div>'
+        + '<div class="mrd-cell-val">' + ind.value + '</div>'
+        + '<div class="mrd-cell-read">' + ind.read + '</div>'
+        + '</div>';
+    });
+    return '<div class="mr-detail-head">'
+      + '<span class="mrd-score">SCORE GLOBAL · <strong>' + verdict.score + '</strong>/100</span>'
+      + '<span class="mr-global-badge ' + verdict.cls + '">' + verdict.label + '</span>'
+      + '</div>'
+      + '<p class="mrd-takeaway">' + verdict.takeaway + '</p>'
+      + '<div class="mrd-grid">' + cells + '</div>';
   }
 
   /* ===== v2.25 — Activation Premium (démo) ===== */
@@ -6277,6 +6733,9 @@
           // v2.26 — refresh forcé du marché (bypass cache)
           try { localStorage.removeItem(WATCHLIST_CACHE_KEY); } catch {}
           refreshWatchlistData(false);
+          // v2.27 — refresh forcé des verdicts globaux (bypass cache historique)
+          try { localStorage.removeItem(HIST_CACHE_KEY); } catch {}
+          refreshGlobalVerdicts();
           clearOffset();
           indicator.classList.remove('spinning');
           refreshing = false;
@@ -6322,11 +6781,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=226';
+      location.href = 'scene-05.html?v=227';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=226';
+      location.href = 'scene-06.html?v=227';
       return;
     }
 
@@ -6349,11 +6808,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=226"></script>
+  <script type="module" src="tg-common.js?v=227"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=226').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=227').catch(() => {});
       });
     }
   </script>
