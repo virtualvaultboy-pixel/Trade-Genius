@@ -227,13 +227,57 @@ function parseAIResponse(raw) {
   return JSON.parse(s);
 }
 
-async function generateStudy(prompt) {
+function buildFallbackStudy(valid) {
+  // Si l'IA échoue : on génère du contenu pédago par template à partir des
+  // vraies données techniques. Pas aussi varié qu'une IA, mais utile et stable.
+  const bullN = valid.filter(a => a.cls === 'bull').length;
+  const bearN = valid.filter(a => a.cls === 'bear').length;
+  let title;
+  if (bullN >= 4) title = 'Marchés bien orientés sur les majeurs';
+  else if (bearN >= 4) title = 'Marchés sous pression — biais vendeur';
+  else if (bullN > bearN) title = 'Marchés mitigés, biais haussier modéré';
+  else if (bearN > bullN) title = 'Marchés mitigés, biais baissier modéré';
+  else title = 'Marchés sans direction nette';
+
+  const head = valid.slice(0, 3).map(a =>
+    `${a.label} ${a.change > 0 ? '+' : ''}${a.change}% (RSI ${a.rsi}, ${a.verdict.toLowerCase()})`
+  ).join(' · ');
+
+  const summary = `Sur les 5 actifs majeurs suivis aujourd'hui : ${head}. ` +
+    `Globalement, ${bullN} actifs en biais haussier contre ${bearN} en baissier. ` +
+    `On observe une configuration ${bullN > bearN ? 'plutôt favorable aux acheteurs' : bearN > bullN ? 'plutôt favorable aux vendeurs' : 'partagée sans direction claire'}. ` +
+    `Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timing un entry, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.`;
+
+  const observations = valid.slice(0, 4).map(a => {
+    if (a.cls === 'bull') return `${a.label} : tendance haussière confirmée (RSI ${a.rsi}, ${a.maCross} MA50)`;
+    if (a.cls === 'bear') return `${a.label} : pression vendeuse persistante (RSI ${a.rsi})`;
+    return `${a.label} : sans direction nette (RSI ${a.rsi})`;
+  });
+
+  return {
+    title,
+    summary,
+    observations,
+    plan_pedago: [
+      'Vérifier la position du prix par rapport à la MA50 pour identifier la tendance moyen terme',
+      'Surveiller les croisements MACD pour confirmer un changement de momentum',
+      'Calculer la taille de position pour ne pas risquer plus de 1-2% du capital',
+      'Définir stop loss et take profit AVANT d\'entrer sur le marché',
+    ],
+  };
+}
+
+async function generateStudy(prompt, valid) {
   const groqKey = process.env.GROQ_API_KEY;
   if (groqKey) {
     try { return parseAIResponse(await callGroq(prompt, groqKey)); }
     catch (e) { console.warn('Groq failed, fallback Pollinations:', e.message); }
   }
-  return parseAIResponse(await callPollinations(prompt));
+  try { return parseAIResponse(await callPollinations(prompt)); }
+  catch (e) {
+    console.warn('Pollinations failed, fallback template:', e.message);
+    return buildFallbackStudy(valid);
+  }
 }
 
 async function main() {
@@ -244,18 +288,29 @@ async function main() {
     throw new Error('No asset data available — abort');
   }
 
-  // Détection du setup le plus pertinent parmi les actifs
-  const setups = valid
+  // Détection des setups propices sur TOUS les actifs (pas seulement le meilleur)
+  // Chaque actif peut produire 0 ou 1 setup. On expose la liste complète pour
+  // que l'utilisateur ait soit notre reco directe (suivre l'IA), soit la matière
+  // pour faire sa propre analyse dans Marché en direct.
+  const setupsAll = valid
     .map(a => {
       const s = detectSetup(a);
-      return s ? { ...s, asset: a.label, kind: a.kind, score: a.score, currency: a.kind === 'crypto' || a.label === 'S&P 500' || a.label === 'Nasdaq' || a.label === 'Dow' ? 'USD' : 'EUR' } : null;
+      if (!s) return null;
+      return {
+        ...s,
+        asset: a.label,
+        kind: a.kind,
+        score: a.score,
+        currency: a.kind === 'crypto' || a.label === 'S&P 500' || a.label === 'Nasdaq' || a.label === 'Dow' ? 'USD' : 'EUR',
+      };
     })
-    .filter(Boolean);
-  // On retient le setup avec le meilleur ratio R/R (ou le plus haut conviction)
-  const bestSetup = setups.sort((a, b) => Number(b.rr2) - Number(a.rr2))[0] || null;
+    .filter(Boolean)
+    .sort((a, b) => Number(b.rr2) - Number(a.rr2));
+  // Setup principal (pour rétrocompat) = celui avec meilleur R/R
+  const bestSetup = setupsAll[0] || null;
 
   const prompt = buildPrompt(valid);
-  const ai = await generateStudy(prompt);
+  const ai = await generateStudy(prompt, valid);
 
   // Verdict moyen pour la card
   const scores = valid.map((a) => a.score);
@@ -285,20 +340,19 @@ async function main() {
     plan_pedago: Array.isArray(ai.plan_pedago) ? ai.plan_pedago.slice(0, 5) : [],
     verdict: { score: avgScore, cls: avgCls, label: avgLabel },
     assets: assetsClean,
+    // v2.44 — liste de TOUS les setups propices (1 par actif max)
+    setups: setupsAll.map(s => ({
+      asset: s.asset, kind: s.kind, type: s.type, label: s.label,
+      direction: s.direction, config: s.config, rationale: s.rationale,
+      entry: s.entry, stop: s.stop, tp1: s.tp1, tp2: s.tp2,
+      rr1: s.rr1, rr2: s.rr2, currency: s.currency,
+    })),
+    // Retro-compat : setup principal (le meilleur R/R)
     setup: bestSetup ? {
-      asset: bestSetup.asset,
-      kind: bestSetup.kind,
-      type: bestSetup.type,
-      label: bestSetup.label,
-      direction: bestSetup.direction,
-      config: bestSetup.config,
-      rationale: bestSetup.rationale,
-      entry: bestSetup.entry,
-      stop: bestSetup.stop,
-      tp1: bestSetup.tp1,
-      tp2: bestSetup.tp2,
-      rr1: bestSetup.rr1,
-      rr2: bestSetup.rr2,
+      asset: bestSetup.asset, kind: bestSetup.kind, type: bestSetup.type,
+      label: bestSetup.label, direction: bestSetup.direction, config: bestSetup.config,
+      rationale: bestSetup.rationale, entry: bestSetup.entry, stop: bestSetup.stop,
+      tp1: bestSetup.tp1, tp2: bestSetup.tp2, rr1: bestSetup.rr1, rr2: bestSetup.rr2,
       currency: bestSetup.currency,
     } : null,
     disclaimer: "Cas pédagogique basé sur l'analyse technique — pas un conseil en investissement personnalisé. Les marchés financiers comportent un risque de perte en capital. Tu décides si tu copies ce plan ou pas.",

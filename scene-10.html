@@ -19,7 +19,7 @@
   <meta name="theme-color" content="#0a0a0c">
   <title>Trade Genius — Analyse de marché</title>
   <link rel="manifest" href="manifest.json">
-  <script type="module" src="tg-common.js?v=243"></script>
+  <script type="module" src="tg-common.js?v=244"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -246,6 +246,21 @@
       border-radius: 10px;
       border: 1px solid var(--border);
     }
+    /* v2.44 — bouton broker affilie sous chaque coin-card */
+    .cc-broker-btn {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin-top: 8px;
+      padding: 10px 14px;
+      background: linear-gradient(135deg, rgba(245,158,11,0.12) 0%, rgba(255,255,255,0.04) 100%);
+      border: 1px solid rgba(245,158,11,0.4);
+      border-radius: 10px;
+      color: #f59e0b;
+      text-decoration: none;
+      font-family: var(--font-d); font-size: 12.5px; font-weight: 700;
+      transition: transform 0.16s, border-color 0.18s, background 0.18s;
+    }
+    .cc-broker-btn:active { transform: scale(0.98); }
+    .cc-broker-btn:hover { border-color: rgba(245,158,11,0.7); background: rgba(245,158,11,0.16); }
     .cc-verdict-bar.bullish {
       background: linear-gradient(135deg, rgba(34,197,94,0.18), rgba(34,197,94,0.04));
       border-color: rgba(34,197,94,0.4);
@@ -554,6 +569,19 @@ function renderSkeleton(tabId, list) {
   `).join('');
 }
 
+// v2.44 — config brokers affilies (sync avec index.html BROKER_LINKS)
+const BROKER_REF = {
+  binance: 'CPA_00OPLGOBMC',
+  traderepublic: 'r37Oswtt',
+};
+function brokerForTab(tabId) {
+  if (tabId === 'crypto') {
+    return { name: 'Binance', ico: '🟡', url: 'https://accounts.binance.com/register?ref=' + BROKER_REF.binance };
+  }
+  // actions + ETF -> Trade Republic
+  return { name: 'Trade Republic', ico: '📈', url: 'https://refnocode.trade.re/' + BROKER_REF.traderepublic };
+}
+
 function renderAsset(tabId, asset, prices, currentPrice, chgPct, fmt) {
   const card = document.querySelector(`#tab-${tabId} .coin-card[data-id="${asset.sym}"]`);
   if (!card) return;
@@ -621,6 +649,9 @@ function renderAsset(tabId, asset, prices, currentPrice, chgPct, fmt) {
       <div class="vb-label">${verdict.label}</div>
       <div class="vb-score">${verdict.score}</div>
     </div>
+    <a class="cc-broker-btn" href="${brokerForTab(tabId).url}" target="_blank" rel="noopener noreferrer sponsored">
+      ${brokerForTab(tabId).ico} Trader ${asset.sym} sur ${brokerForTab(tabId).name} →
+    </a>
   `;
   drawSpark(card.querySelector('.cc-spark'), prices, asset.color);
 }
