@@ -1,7 +1,7 @@
 {
-  "name": "Trade Genius — Apprendre la bourse",
+  "name": "Trade Genius — App pédago bourse",
   "short_name": "Trade Genius",
-  "description": "Apprends la bourse de zéro. 4 modules pédago + simulateur de trading sur cas historiques + bibliothèque. Pas de pub, pas de gourous, juste de la pédagogie.",
+  "description": "Feed quotidien d'analyses marché + 6 modules pédago + simulateur de trading + bibliothèque. Apprends, observe, entraîne-toi. Pas de signal, pas de pub, juste de la pédagogie. 100 % gratuit côté apprentissage.",
   "id": "/Trade-Genius/",
   "start_url": "./index.html?source=pwa",
   "scope": "./",
@@ -52,9 +52,23 @@
   ],
   "shortcuts": [
     {
-      "name": "Continuer le parcours",
-      "short_name": "Modules",
-      "description": "Reprendre les modules pédago",
+      "name": "Accueil — Feed du jour",
+      "short_name": "Accueil",
+      "description": "Le feed quotidien : marché, décryptages, cas d'école",
+      "url": "./index.html?shortcut=feed",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Décryptages hebdo",
+      "short_name": "Décryptages",
+      "description": "Notre lecture du marché chaque semaine",
+      "url": "./index.html?shortcut=resultats",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Formation — 6 modules",
+      "short_name": "Formation",
+      "description": "M0 Monnaie · M1 Marché · M2 Chart · M3 Psycho · M4 Courbes · M5 Fiscalité",
       "url": "./index.html?shortcut=modules",
       "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
     },
@@ -64,13 +78,6 @@
       "description": "Trader sur des cas historiques",
       "url": "./scene-05.html?shortcut=simu",
       "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
-    },
-    {
-      "name": "Bibliothèque",
-      "short_name": "Biblio",
-      "description": "26 fiches de placements expliqués",
-      "url": "./scene-06.html?shortcut=biblio",
-      "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
     }
   ],
   "screenshots": [
@@ -79,21 +86,21 @@
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Hub accueil — Citation du jour, stats, parcours"
+      "label": "Accueil — feed quotidien d'analyses marché"
     },
     {
       "src": "screenshot-2.png",
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Modules pédago — Apprends la bourse de zéro"
+      "label": "Formation — 6 modules pour apprendre la bourse"
     },
     {
       "src": "screenshot-3.png",
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Simulateur de trading — 10 cas historiques"
+      "label": "Simulateur — trader des cas historiques"
     },
     {
       "src": "screenshot-4.png",

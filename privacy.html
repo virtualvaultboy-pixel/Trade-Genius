@@ -135,12 +135,17 @@
   <h2>Données stockées sur ton appareil</h2>
   <p>Ta progression est stockée en <strong>localStorage</strong> sur ton navigateur/app, jamais envoyée à un serveur :</p>
   <ul>
-    <li>Modules validés et chapitres complétés</li>
+    <li>Modules validés et chapitres complétés (6 modules)</li>
     <li>Slide où tu t'es arrêté (bookmark)</li>
     <li>Streak quotidien (compteur de jours consécutifs)</li>
     <li>Sessions de trading simulé (carnet)</li>
     <li>Fiches biblio favorites et lues</li>
+    <li><strong>Profil local</strong> (pseudo + avatar choisis à la 1<sup>re</sup> visite) — clé <code>tg_profile</code></li>
+    <li><strong>Likes du feed</strong> (posts marqués comme aimés) — clé <code>tg_post_likes</code></li>
+    <li><strong>Tuto vu</strong> (flag pour ne pas relancer la visite guidée) — clé <code>tg_feed_tuto</code></li>
+    <li>Activation Premium en démo — clé <code>tg_premium</code></li>
   </ul>
+  <p><em>Aucune donnée n'est envoyée à un serveur. Aucun compte, aucun email, aucun mot de passe.</em></p>
   <p>Si tu désinstalles l'app, ces données sont effacées. Pas de backup cloud.</p>
 
   <h2>Service Worker (cache offline)</h2>
@@ -161,7 +166,7 @@
   <script>
     function resetConsent() {
       try { localStorage.removeItem('tradegenius_analytics_consent'); } catch {}
-      location.href = 'index.html#accueil';
+      location.href = 'index.html#feed';
     }
   </script>
 
