@@ -2625,29 +2625,28 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.18</div>
+        <div class="bd-brand-ver" id="bd-version">v2.19</div>
       </div>
     </div>
 
     <div class="bd-section-title">Navigation</div>
-    <a class="bd-item" onclick="closeBurger();showView('accueil')"><span class="bd-ico">🏠</span><span>Accueil</span></a>
-    <a class="bd-item" onclick="closeBurger();showView('modules')"><span class="bd-ico">📚</span><span>Modules (5)</span></a>
+    <a class="bd-item" onclick="closeBurger();openProfileModal(true)"><span class="bd-ico">👤</span><span>Modifier profil</span></a>
     <a class="bd-item" href="scene-05.html"><span class="bd-ico">🎮</span><span>Entraînement (simu)</span></a>
     <a class="bd-item" href="scene-06.html"><span class="bd-ico">📖</span><span>Bibliothèque (26 fiches)</span></a>
     <a class="bd-item" href="glossary.html"><span class="bd-ico">📑</span><span>Glossaire (26 termes)</span></a>
 
     <div class="bd-section-title">Apprendre</div>
-    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=218')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=218')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=218')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=218')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=218')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
-    <a class="bd-item" onclick="closeBurger();openModule(5, 'scene-11.html?v=218')"><span class="bd-ico" style="color:var(--green);">💰</span><span>M5 · Fiscalité FR</span><span class="bd-count" id="bd-prog-m5">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(0, 'scene-01.html?v=219')"><span class="bd-ico bd-mod-acid">🪙</span><span>M0 · Monnaie</span><span class="bd-count" id="bd-prog-m0">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(1, 'scene-02.html?v=219')"><span class="bd-ico bd-mod-acid">📈</span><span>M1 · Marché</span><span class="bd-count" id="bd-prog-m1">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(2, 'scene-03.html?v=219')"><span class="bd-ico bd-mod-clay">📊</span><span>M2 · Chart</span><span class="bd-count" id="bd-prog-m2">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(3, 'scene-04.html?v=219')"><span class="bd-ico bd-mod-purple">🧠</span><span>M3 · Psycho</span><span class="bd-count" id="bd-prog-m3">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(4, 'scene-07.html?v=219')"><span class="bd-ico bd-mod-blue">📊</span><span>M4 · Courbes</span><span class="bd-count" id="bd-prog-m4">—</span></a>
+    <a class="bd-item" onclick="closeBurger();openModule(5, 'scene-11.html?v=219')"><span class="bd-ico" style="color:var(--green);">💰</span><span>M5 · Fiscalité FR</span><span class="bd-count" id="bd-prog-m5">—</span></a>
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=218')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=218')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=218')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=219')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=219')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=219')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
     <a class="bd-item bd-premium" onclick="closeBurger();openCoachIA()"><span class="bd-ico">🤖</span><span>Coach IA <span class="bd-mini">Bientôt</span></span></a>
 
     <div class="bd-section-title">Tes stats</div>
@@ -2898,7 +2897,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=218')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=219')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -2917,7 +2916,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=218')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=219')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -2936,7 +2935,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=218')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=219')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -2955,7 +2954,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=218')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=219')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -2974,7 +2973,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=218')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=219')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -2993,7 +2992,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=218')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=219')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -3032,7 +3031,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.18</span>
+      <span class="hbb-tag" id="hbb-tag">v2.19</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -3073,13 +3072,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=218'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=219'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=218'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=219'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -3131,7 +3130,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=218'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=219'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -3143,25 +3142,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=218" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=219" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=218" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=219" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 6 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=218" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=219" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=218" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=219" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -3239,53 +3238,53 @@
 
     <div id="feed-posts">
       <article class="feed-card fc-info" data-post="p1">
-        <header><span class="fc-type">💡 Information</span><span class="fc-time">15:14</span></header>
-        <div class="fc-title">🇺🇸 Session US dans 15 min</div>
-        <p class="fc-body">Ouverture des marchés américains imminente. Volatilité attendue sur tech (Nvidia, Tesla, Meta) avec stats emploi US à 14h30.</p>
+        <header><span class="fc-type">📊 Marché</span><span class="fc-time">15:14</span></header>
+        <div class="fc-title">Wall Street ouvre dans 15 minutes</div>
+        <p class="fc-body">Volatilité attendue côté tech (Nvidia, Tesla, Meta) avec les chiffres emploi US à 14h30 GMT. À surveiller : la réaction des taux 10Y en cas de surprise.</p>
         <div class="fc-actions"><button class="fc-like" data-post="p1">♡ <span>0</span></button></div>
       </article>
 
       <article class="feed-card fc-analyse" data-post="p2">
-        <header><span class="fc-type">📈 Analyse</span><span class="fc-time">12:53</span></header>
-        <div class="fc-title">CAC 40 · zone de résistance 8 100</div>
-        <p class="fc-body">Le CAC bute sur 8 100 pour la 3e fois en 10 jours. RSI quotidien à 68 (proche surachat). Si cassure haussière, prochaine zone 8 280. Si rejet, retour possible vers 7 950 (MA50).</p>
+        <header><span class="fc-type">🔍 Décryptage</span><span class="fc-time">12:53</span></header>
+        <div class="fc-title">CAC 40 : ce qu'on voit sur le graph aujourd'hui</div>
+        <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=218'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=219'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
       <article class="feed-card fc-suivi" data-post="p3">
-        <header><span class="fc-type">⏳ Suivi pédago</span><span class="fc-time">11:42</span></header>
-        <div class="fc-title">Setup du jour : pullback sur MA20</div>
-        <p class="fc-body">Exemple pédagogique : sur DAX H1, le prix retest la moyenne mobile 20 après cassure haussière. Schéma classique de continuation. <em>À étudier, pas un signal d'achat.</em></p>
+        <header><span class="fc-type">🎯 Cas d'école</span><span class="fc-time">11:42</span></header>
+        <div class="fc-title">Le pullback sur MA20, exercice d'œil</div>
+        <p class="fc-body">DAX H1 — le prix retest la moyenne mobile 20 après cassure haussière. Schéma classique de continuation à reconnaître. <em>Pas un signal, juste un cas à étudier pour entraîner le regard.</em></p>
         <div class="fc-actions"><button class="fc-like" data-post="p3">♡ <span>0</span></button></div>
       </article>
 
       <article class="feed-card fc-news" data-post="p4">
-        <header><span class="fc-type">📚 News</span><span class="fc-time">10:30</span></header>
-        <div class="fc-title">Nouveau Module 5 disponible · Fiscalité FR</div>
-        <p class="fc-body">7 chapitres pour comprendre PEA, CTO, flat tax, abattements, crypto et plan optimal. 100 % gratuit, comme tout le reste.</p>
+        <header><span class="fc-type">🎁 Côté app</span><span class="fc-time">10:30</span></header>
+        <div class="fc-title">Module 5 · Fiscalité française disponible</div>
+        <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=218'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=219'">OUVRIR →</button>
         </div>
       </article>
 
       <article class="feed-card fc-info" data-post="p5">
-        <header><span class="fc-type">💡 Information</span><span class="fc-time">09:15</span></header>
-        <div class="fc-title">📊 Bitcoin · consolidation sous 67k</div>
-        <p class="fc-body">BTC range entre 64 800 et 67 200 depuis 5 jours. Volume en baisse → compression de volatilité. Habituel avant un mouvement marqué.</p>
+        <header><span class="fc-type">📊 Marché</span><span class="fc-time">09:15</span></header>
+        <div class="fc-title">Bitcoin coince sous les 67k</div>
+        <p class="fc-body">Range entre 64 800 et 67 200 depuis 5 jours. Volume en baisse, compression de volatilité visible sur le 4H. Statistiquement, un mouvement marqué finit toujours par sortir de ce genre de zone.</p>
         <div class="fc-actions"><button class="fc-like" data-post="p5">♡ <span>0</span></button></div>
       </article>
 
       <article class="feed-card fc-analyse" data-post="p6">
-        <header><span class="fc-type">📈 Analyse</span><span class="fc-time">08:31</span></header>
-        <div class="fc-title">Notre lecture · semaine du 18 mai</div>
-        <p class="fc-body">Indices US toujours portés par les techs, l'or fait un nouvel ATH, l'euro recule sur les anticipations BCE. Semaine technique avant les chiffres d'inflation US jeudi.</p>
+        <header><span class="fc-type">🔍 Décryptage</span><span class="fc-time">08:31</span></header>
+        <div class="fc-title">Notre décryptage de la semaine</div>
+        <p class="fc-body">Indices US portés par les techs, or à l'ATH, l'euro recule sur les anticipations BCE. Semaine technique avant les chiffres d'inflation US de jeudi — préparation plutôt qu'agitation.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p6">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); showView('resultats')">BILAN HEBDO →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); showView('resultats')">DÉCRYPTAGE HEBDO →</button>
         </div>
       </article>
     </div>
@@ -3295,15 +3294,15 @@
        v2.18 — VIEW : BILANS (perfo simu user)
        ============================================ -->
   <div id="view-bilans" class="view">
-    <h1 class="v-head">Tes <em style="color:var(--acid);font-style:normal;">bilans</em>.</h1>
-    <p class="v-sub">Performance de ton compte simulé sur Trade Genius.</p>
+    <h1 class="v-head">Ton <em style="color:var(--acid);font-style:normal;">journal</em>.</h1>
+    <p class="v-sub">Le carnet de bord de ton compte simulé. P&amp;L, sessions, séries.</p>
     <div class="v-placeholder">
-      <span class="v-placeholder-ico">📊</span>
+      <span class="v-placeholder-ico">📓</span>
       <div class="v-placeholder-txt">
-        <strong>Bientôt</strong> · ton P&amp;L hebdo, mensuel et total.<br>
-        Pour l'instant : ouvre le <strong>simulateur</strong> pour générer ton historique.
+        <strong>Bientôt</strong> · P&amp;L hebdo, mensuel et cumulé, agrégés depuis tes sessions simu.<br>
+        Pour démarrer ton historique, ouvre le <strong>simulateur</strong>.
       </div>
-      <button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href='scene-05.html?v=218'">Ouvrir le simulateur →</button>
+      <button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href='scene-05.html?v=219'">Ouvrir le simulateur →</button>
     </div>
   </div>
 
@@ -3311,17 +3310,17 @@
        v2.18 — VIEW : RÉSULTATS (analyses marché hebdo)
        ============================================ -->
   <div id="view-resultats" class="view">
-    <h1 class="v-head">Nos <em style="color:var(--gold);font-style:normal;">analyses</em>.</h1>
-    <p class="v-sub">Le bilan technique du marché, chaque semaine.</p>
+    <h1 class="v-head">Nos <em style="color:var(--gold);font-style:normal;">décryptages</em>.</h1>
+    <p class="v-sub">Notre lecture du marché, semaine par semaine. Aucun signal, juste du contexte.</p>
 
     <article class="feed-card fc-analyse" style="margin-bottom:14px;">
-      <header><span class="fc-type">📈 Bilan hebdo</span><span class="fc-time">Sem. 21</span></header>
+      <header><span class="fc-type">🔍 Décryptage hebdo</span><span class="fc-time">Sem. 21</span></header>
       <div class="fc-title">Indices : la résilience des techs</div>
       <p class="fc-body">Nasdaq +1,8 % sur la semaine, S&amp;P +0,9 %. CAC à la peine -0,3 % sur la séance de jeudi (banques sous pression). Le marché ignore largement les craintes inflationnistes — pour le moment.</p>
     </article>
 
     <article class="feed-card fc-analyse" style="margin-bottom:14px;">
-      <header><span class="fc-type">📈 Bilan hebdo</span><span class="fc-time">Sem. 20</span></header>
+      <header><span class="fc-type">🔍 Décryptage hebdo</span><span class="fc-time">Sem. 20</span></header>
       <div class="fc-title">Or et Bitcoin : décorrélation actée</div>
       <p class="fc-body">L'or fait +2,2 %, BTC -1,4 %. La narrative « digital gold » prend du plomb dans l'aile à court terme. Les flux ETF BTC restent positifs sur le mois mais ralentissent.</p>
     </article>
@@ -3329,8 +3328,8 @@
     <div class="v-placeholder" style="margin-top:14px;">
       <span class="v-placeholder-ico">📅</span>
       <div class="v-placeholder-txt">
-        <strong>Une nouvelle analyse chaque dimanche.</strong><br>
-        Pas de signal directif — juste notre lecture pédagogique du marché.
+        <strong>Un nouveau décryptage chaque dimanche.</strong><br>
+        Pas de prédiction, pas de signal — juste ce qu'on voit dans le graph.
       </div>
     </div>
   </div>
@@ -3386,13 +3385,13 @@
       <span class="bn-ico">🏠</span><span class="bn-label">Accueil</span>
     </button>
     <button class="bn-item" data-tab="bilans" onclick="showView('bilans')">
-      <span class="bn-ico">📊</span><span class="bn-label">Bilans</span>
+      <span class="bn-ico">📓</span><span class="bn-label">Journal</span>
     </button>
     <button class="bn-item bn-cta" data-tab="premium" onclick="showView('premium')">
-      <span class="bn-cta-icon">✦</span><span class="bn-label">Devenir<br>Premium</span>
+      <span class="bn-cta-icon">✦</span><span class="bn-label">Premium</span>
     </button>
     <button class="bn-item" data-tab="resultats" onclick="showView('resultats')">
-      <span class="bn-ico">📈</span><span class="bn-label">Résultats</span>
+      <span class="bn-ico">🔍</span><span class="bn-label">Décryptages</span>
     </button>
     <button class="bn-item" data-tab="formation" onclick="showView('modules')">
       <span class="bn-ico">🎓</span><span class="bn-label">Formation</span>
@@ -3449,7 +3448,14 @@
     }
 
     // v2.18 — déclenchements vue feed
-    if (name === 'feed') { refreshFeedProfile(); setupFeedLikes(); }
+    if (name === 'feed') {
+      refreshFeedProfile();
+      setupFeedLikes();
+      // v2.19 — tuto pivot auto si jamais vu
+      if (shouldShowFeedTuto()) {
+        setTimeout(() => { if (shouldShowFeedTuto()) startFeedTuto(); }, 700);
+      }
+    }
 
     if (name === 'modules') refreshModules();
     if (name === 'accueil') {
@@ -3904,8 +3910,8 @@
   }
 
   function resetAll() {
-    if (!confirm('⚠️ Reset COMPLET ?\n\nTout sera réinitialisé : onboarding, modules, progression. Comme si tu ouvrais l\'app pour la 1ère fois.\n\nContinuer ?')) return;
-    Object.keys(localStorage).filter(k => k.startsWith('tradegenius')).forEach(k => localStorage.removeItem(k));
+    if (!confirm('⚠️ Reset COMPLET ?\n\nTout sera réinitialisé : onboarding, modules, progression, profil, feed. Comme si tu ouvrais l\'app pour la 1ère fois.\n\nContinuer ?')) return;
+    Object.keys(localStorage).filter(k => k.startsWith('tradegenius') || k.startsWith('tg_')).forEach(k => localStorage.removeItem(k));
     location.reload();
   }
 
@@ -4337,7 +4343,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=218';
+        location.href = 'scene-10.html?v=219';
       });
       widget._linked = true;
     }
@@ -4390,7 +4396,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=218';
+      location.href = 'scene-05.html?v=219';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -4510,10 +4516,15 @@
   const CODE_HANDLERS = {
     help: () => '📋 Codes : resetall · resetmodules · resetsimu · resetbiblio · resetstreak · premium · unpremium · streak10 · streak50 · alldone · confetti · about',
     resetall: () => {
-      if (!confirm('⚠️ Reset complet ? Tous les progrès seront effacés.')) return '✗ Annulé';
-      Object.keys(localStorage).filter(k => k.startsWith('tradegenius')).forEach(k => localStorage.removeItem(k));
+      if (!confirm('⚠️ Reset complet ? Tous les progrès, profil et feed seront effacés.')) return '✗ Annulé';
+      Object.keys(localStorage).filter(k => k.startsWith('tradegenius') || k.startsWith('tg_')).forEach(k => localStorage.removeItem(k));
       setTimeout(() => location.reload(), 600);
       return '✓ Reset complet. Reload...';
+    },
+    resetprofile: () => {
+      ['tg_profile','tg_feed_tuto','tg_post_likes'].forEach(k => localStorage.removeItem(k));
+      setTimeout(() => location.reload(), 600);
+      return '✓ Profil + feed reset.';
     },
     resetmodules: () => {
       ['tradegenius_v1','tradegenius_m1','tradegenius_m2','tradegenius_m3'].forEach(k => localStorage.removeItem(k));
@@ -4538,7 +4549,7 @@
       return '✓ Streak reset à 0.';
     },
     resettuto: () => {
-      ['tradegenius_accueil_tuto','tradegenius_premium_tuto','tradegenius_m4_tuto'].forEach(k => localStorage.removeItem(k));
+      ['tradegenius_accueil_tuto','tradegenius_premium_tuto','tradegenius_m4_tuto','tg_feed_tuto'].forEach(k => localStorage.removeItem(k));
       setTimeout(() => location.reload(), 600);
       return '✓ Tutos reset.';
     },
@@ -4802,7 +4813,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=218'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=219'; };
         block.style.display = 'block';
         return;
       }
@@ -4844,7 +4855,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=218';
+        card.onclick = () => location.href = 'scene-05.html?v=219';
         block.style.display = 'block';
         return;
       }
@@ -4864,7 +4875,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=218';
+          card.onclick = () => location.href = 'scene-06.html?v=219';
           block.style.display = 'block';
           return;
         }
@@ -4878,7 +4889,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=218';
+        card.onclick = () => location.href = 'scene-06.html?v=219';
         block.style.display = 'block';
         return;
       }
@@ -4893,7 +4904,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=218';
+    card.onclick = () => location.href = 'scene-05.html?v=219';
     block.style.display = 'block';
   }
 
@@ -5033,19 +5044,62 @@
     },
   ];
 
+  // v2.19 — Tuto FEED (nouveau format pivot Passion-Trade-like)
+  const FEED_TUTO_KEY = 'tg_feed_tuto';
+  const FEED_TUTO_STEPS = [
+    {
+      target: '#feed-greet',
+      placement: 'bottom',
+      title: 'Bienvenue dans ton accueil 👋',
+      body: 'Ton feed perso — <strong>marché</strong>, <strong>décryptages</strong> et <strong>cas d\'école</strong> au fil de la journée. Pas de signal d\'achat, juste ce qu\'on voit dans les graphs.',
+    },
+    {
+      target: '.feed-banner',
+      placement: 'bottom',
+      title: '🎓 La formation gratuite',
+      body: '<strong>6 modules</strong>, simu illimité, biblio, glossaire — 100 % gratuit. C\'est ton plan de base, accessible sans rien payer.',
+    },
+    {
+      target: '.feed-card.fc-analyse',
+      placement: 'top',
+      title: '🔍 Nos décryptages',
+      body: 'Notre lecture du marché, pédago. Pas de prédiction, pas de "achète ici" — juste ce qu\'on voit techniquement.',
+    },
+    {
+      target: '#bottom-nav .bn-cta',
+      placement: 'top',
+      title: '✦ Premium · l\'étape d\'après',
+      body: 'Marché live, Patterns Lab, Krachs historiques, Module 4 chap. 4-7. Pour aller plus loin quand la base est solide.',
+    },
+    {
+      target: '#bottom-nav',
+      placement: 'top',
+      title: '5 onglets, c\'est tout',
+      body: '<strong>Accueil</strong> · <strong>Journal</strong> · <strong>Premium</strong> · <strong>Décryptages</strong> · <strong>Formation</strong>. Le burger en haut à gauche pour le reste (profil, simu, biblio…).',
+    },
+  ];
+
   let _tutoStep = 0;
   let _tutoTargetEl = null;
-  let _tutoActiveSteps = ACCUEIL_TUTO_STEPS_FREE;
-  let _tutoActiveKey = ACCUEIL_TUTO_KEY;
+  let _tutoActiveSteps = FEED_TUTO_STEPS;
+  let _tutoActiveKey = FEED_TUTO_KEY;
   let _tutoLabel = 'Découverte';
 
-  function shouldShowAccueilTuto() {
-    if (_isPremiumSafe()) return false; // tuto free ne joue pas si déjà premium
-    return localStorage.getItem(ACCUEIL_TUTO_KEY) !== '1';
+  // v2.19 — Anciens tutos désactivés en auto (le pivot rend ces écrans secondaires)
+  function shouldShowAccueilTuto() { return false; }
+  function shouldShowPremiumTuto() { return false; }
+
+  function shouldShowFeedTuto() {
+    return localStorage.getItem(FEED_TUTO_KEY) !== '1';
   }
-  function shouldShowPremiumTuto() {
-    if (!_isPremiumSafe()) return false;
-    return localStorage.getItem(PREMIUM_TUTO_KEY) !== '1';
+  function startFeedTuto() {
+    _tutoStep = 0;
+    _tutoActiveSteps = FEED_TUTO_STEPS;
+    _tutoActiveKey = FEED_TUTO_KEY;
+    _tutoLabel = '🎓 Découverte';
+    document.getElementById('tuto-overlay').classList.add('active');
+    document.getElementById('tuto-bubble').classList.add('active');
+    renderAccueilTutoStep();
   }
 
   function startAccueilTuto() {
@@ -5058,17 +5112,14 @@
     renderAccueilTutoStep();
   }
 
-  // v2.07 : relancer manuellement le tuto adapté au mode actuel (depuis burger)
+  // v2.19 : relancer manuellement le tuto feed (depuis burger)
   function replayTuto() {
     if (navigator.vibrate) navigator.vibrate(8);
-    // Forcer la vue accueil si on est ailleurs
-    if (!document.getElementById('view-accueil').classList.contains('active')) {
-      showView('accueil');
+    localStorage.removeItem(FEED_TUTO_KEY);
+    if (!document.getElementById('view-feed').classList.contains('active')) {
+      showView('feed');
     }
-    setTimeout(() => {
-      if (_isPremiumSafe()) startPremiumTuto();
-      else startAccueilTuto();
-    }, 200);
+    setTimeout(() => startFeedTuto(), 250);
   }
 
   function startPremiumTuto() {
@@ -5313,11 +5364,11 @@
     // Shortcut Android : ?shortcut=modules|simu|biblio
     if (shortcut === 'modules') { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=218';
+      location.href = 'scene-05.html?v=219';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=218';
+      location.href = 'scene-06.html?v=219';
       return;
     }
 
@@ -5339,11 +5390,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=218"></script>
+  <script type="module" src="tg-common.js?v=219"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=218').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=219').catch(() => {});
       });
     }
   </script>
