@@ -3446,6 +3446,67 @@
   }
   .ai-disclaimer strong { color: #fca5a5; }
 
+  /* === v2.40 — Boutons partenaires brokers (affiliation) === */
+  .broker-cta {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: rgba(13,13,20,0.94);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: 12px;
+  }
+  .broker-cta-head {
+    font-family: var(--font-m); font-size: 10px; font-weight: 800;
+    letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .broker-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+  }
+  .broker-btn {
+    appearance: none; text-decoration: none;
+    display: grid; grid-template-columns: 24px 1fr;
+    gap: 8px; align-items: center;
+    padding: 9px 11px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.10) 0%, rgba(255,255,255,0.03) 100%);
+    border: 1px solid rgba(245,158,11,0.32);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: var(--font-d); font-size: 12.5px; font-weight: 700;
+    transition: transform 0.16s, border-color 0.18s, background 0.18s;
+    cursor: pointer;
+  }
+  .broker-btn:active { transform: scale(0.97); }
+  .broker-btn:hover { border-color: rgba(245,158,11,0.55); }
+  .broker-btn-ico { font-size: 18px; text-align: center; line-height: 1; }
+  .broker-btn-body { min-width: 0; }
+  .broker-btn-name { color: var(--gold); font-weight: 800; font-size: 12px; line-height: 1.2; }
+  .broker-btn-sub {
+    font-family: var(--font-m); font-size: 9.5px;
+    color: var(--text-faint); letter-spacing: 0.04em;
+    line-height: 1.2; margin-top: 1px;
+  }
+  .broker-disclaimer {
+    margin-top: 10px;
+    font-family: var(--font-m); font-size: 9.5px;
+    color: var(--text-faint); letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+  .broker-disclaimer strong { color: var(--gold); }
+
+  /* Mini bouton broker sur les rows watchlist */
+  .mr-broker {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-left: 8px;
+    padding: 3px 8px;
+    background: rgba(245,158,11,0.10);
+    border: 1px solid rgba(245,158,11,0.32);
+    border-radius: 999px;
+    font-family: var(--font-m); font-size: 9.5px; font-weight: 700;
+    color: var(--gold); text-decoration: none; letter-spacing: 0.04em;
+    cursor: pointer;
+  }
+  .mr-broker:active { transform: scale(0.94); }
+
   /* === Disclaimer pédagogique (v2.20) === */
   .feed-disclaimer {
     margin: 22px -18px -2px;
@@ -3630,7 +3691,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.39</div>
+        <div class="bd-brand-ver" id="bd-version">v2.40</div>
       </div>
     </div>
 
@@ -3643,9 +3704,9 @@
     <!-- v2.32 — Section 'Apprendre' (M0-M5) retiree : redondant avec l'onglet Formation -->
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=239')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=239')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=239')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=240')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=240')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-09.html?v=240')"><span class="bd-ico">📜</span><span>Krachs historiques</span></a>
     <a class="bd-item bd-premium" onclick="closeBurger();openCoachIA()"><span class="bd-ico">🤖</span><span>Coach IA <span class="bd-mini">Bientôt</span></span></a>
 
     <div class="bd-section-title">Tes stats</div>
@@ -3900,7 +3961,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=239')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=240')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -3919,7 +3980,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=239')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=240')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -3938,7 +3999,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=239')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=240')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -3957,7 +4018,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=239')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=240')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -3976,7 +4037,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=239')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=240')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -3995,7 +4056,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=239')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=240')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -4032,7 +4093,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.39</span>
+      <span class="hbb-tag" id="hbb-tag">v2.40</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -4073,13 +4134,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=239'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=240'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=239'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=240'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -4131,7 +4192,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=239'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=240'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -4143,25 +4204,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=239" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=240" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=239" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=240" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 10 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=239" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=240" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=239" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=240" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -4271,7 +4332,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=239'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=240'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -4300,7 +4361,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=239'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=240'">OUVRIR →</button>
         </div>
       </article>
 
@@ -4383,22 +4444,22 @@
         <p class="pp-tag">Les modules expert sont débloqués. Bonne exploration.</p>
       </div>
       <div class="pp-unlocked">
-        <a class="pp-unlock-card" href="scene-10.html?v=239">
+        <a class="pp-unlock-card" href="scene-10.html?v=240">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=239">
+        <a class="pp-unlock-card" href="scene-08.html?v=240">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=239">
+        <a class="pp-unlock-card" href="scene-09.html?v=240">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=239">
+        <a class="pp-unlock-card" href="scene-07.html?v=240">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -5463,7 +5524,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=239';
+        location.href = 'scene-10.html?v=240';
       });
       widget._linked = true;
     }
@@ -5516,7 +5577,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=239';
+      location.href = 'scene-05.html?v=240';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -5931,7 +5992,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=239'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=240'; };
         block.style.display = 'block';
         return;
       }
@@ -5973,7 +6034,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=239';
+        card.onclick = () => location.href = 'scene-05.html?v=240';
         block.style.display = 'block';
         return;
       }
@@ -5993,7 +6054,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=239';
+          card.onclick = () => location.href = 'scene-06.html?v=240';
           block.style.display = 'block';
           return;
         }
@@ -6007,7 +6068,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=239';
+        card.onclick = () => location.href = 'scene-06.html?v=240';
         block.style.display = 'block';
         return;
       }
@@ -6022,7 +6083,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=239';
+    card.onclick = () => location.href = 'scene-05.html?v=240';
     block.style.display = 'block';
   }
 
@@ -6479,6 +6540,7 @@
         +   '<div class="mr-name-1">' + a.name + '</div>'
         +   liveBadge
         +   (a.live ? '<button class="mr-toggle" data-target="mrd-' + a.id + '" onclick="event.stopPropagation(); toggleAssetDetail(\'' + a.id + '\')">📐 Voir les outils</button>' : '')
+        +   (a.live ? renderBrokerMiniBtn(a) : '')   // v2.40 — bouton broker affilie
         + '</div>'
         + '<div onclick="onMarketRowClick(\'' + a.id + '\')">'
         +   '<div class="mr-price ' + (a.live ? 'loading' : '') + '" id="mrp-' + a.id + '">—</div>'
@@ -6501,13 +6563,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=239&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=240&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=239';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=240';
     else showView('premium');
   }
 
@@ -7106,7 +7168,7 @@
         + '<div class="v-placeholder-txt"><strong>Aucune session enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici, '
         + 'session par session.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=239\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=240\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -7150,7 +7212,7 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=239\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=240\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
   }
@@ -7347,6 +7409,98 @@
     container.insertBefore(tmp.firstChild, insertBefore);
   }
 
+  /* ===== v2.40 — Brokers partenaires (affiliation) =====
+     ⚠️ TODO Aurélien : créer tes comptes affiliés sur chaque broker
+     et remplacer les `refCode` ci-dessous par tes vrais codes.
+     Sans code, les liens marchent quand même mais tu ne touches
+     pas de commission. Inscriptions :
+       Binance  → https://accounts.binance.com/register puis /affiliate
+       Bitpanda → partners.bitpanda.com
+       Trade Republic → app Trade Republic > Parrainage
+       eToro    → partners.etoro.com
+  */
+  const BROKER_LINKS = {
+    binance: {
+      name: 'Binance',
+      ico: '🟡',
+      sub: 'Crypto · API · 0,1% frais',
+      refCode: '',     // ← À remplir : ton code affilié Binance
+      kindSupported: ['crypto'],
+      buildUrl(asset) {
+        const ref = this.refCode ? `?ref=${encodeURIComponent(this.refCode)}` : '';
+        return `https://accounts.binance.com/register${ref}`;
+      },
+    },
+    bitpanda: {
+      name: 'Bitpanda',
+      ico: '🟢',
+      sub: 'Crypto + actions FR · pédago',
+      refCode: '',     // ← À remplir : ton code affilié Bitpanda
+      kindSupported: ['crypto', 'action'],
+      buildUrl(asset) {
+        return this.refCode
+          ? `https://www.bitpanda.com/r/${encodeURIComponent(this.refCode)}`
+          : 'https://www.bitpanda.com/fr';
+      },
+    },
+    traderepublic: {
+      name: 'Trade Republic',
+      ico: '📈',
+      sub: 'Actions + ETF · 1€ par trade',
+      refCode: '',     // ← À remplir : ton code parrainage Trade Republic
+      kindSupported: ['index', 'action'],
+      buildUrl(asset) {
+        return this.refCode
+          ? `https://ref.trade.re/${encodeURIComponent(this.refCode)}`
+          : 'https://traderepublic.com/fr-fr';
+      },
+    },
+    etoro: {
+      name: 'eToro',
+      ico: '🔵',
+      sub: 'Copy-trading · CFD · multi-actifs',
+      refCode: '',     // ← À remplir : ton code affilié eToro
+      kindSupported: ['crypto', 'action', 'index'],
+      buildUrl(asset) {
+        return this.refCode
+          ? `https://med.etoro.com/aw.aspx?A=${encodeURIComponent(this.refCode)}`
+          : 'https://www.etoro.com/fr/';
+      },
+    },
+  };
+
+  function getBrokersForAsset(asset) {
+    if (!asset) return Object.values(BROKER_LINKS);
+    return Object.values(BROKER_LINKS).filter(b => b.kindSupported.includes(asset.kind));
+  }
+
+  function renderBrokerCTA(asset) {
+    // Bloc 'Passer à l'action' affiché sur les vues d'analyse
+    const brokers = getBrokersForAsset(asset);
+    if (brokers.length === 0) return '';
+    const grid = brokers.map(b => {
+      const url = b.buildUrl(asset);
+      return `<a class="broker-btn" href="${url}" target="_blank" rel="noopener noreferrer sponsored">`
+        + `<span class="broker-btn-ico">${b.ico}</span>`
+        + `<span class="broker-btn-body"><div class="broker-btn-name">${b.name}</div><div class="broker-btn-sub">${b.sub}</div></span>`
+        + `</a>`;
+    }).join('');
+    return '<div class="broker-cta">'
+      + '<div class="broker-cta-head">🎯 Passer à l\'action</div>'
+      + '<div class="broker-grid">' + grid + '</div>'
+      + '<p class="broker-disclaimer"><strong>Liens d\'affiliation</strong> · Trade Genius peut toucher une commission si tu ouvres un compte. Tu trades chez le broker, pas chez nous. Vérifie que le broker est régulé pour ton pays.</p>'
+      + '</div>';
+  }
+
+  function renderBrokerMiniBtn(asset) {
+    const brokers = getBrokersForAsset(asset);
+    if (brokers.length === 0) return '';
+    // 1er broker compatible (Binance pour crypto, Trade Republic pour indices/actions)
+    const b = brokers[0];
+    const url = b.buildUrl(asset);
+    return `<a class="mr-broker" href="${url}" target="_blank" rel="noopener noreferrer sponsored" onclick="event.stopPropagation()">${b.ico} ${b.name} →</a>`;
+  }
+
   // v2.39 — Etude IA (Pollinations / Groq), cache 2h
   const AI_CACHE_KEY = 'tg_ai_study_cache';
   const AI_CACHE_TTL = 2 * 60 * 60 * 1000;
@@ -7414,6 +7568,7 @@
       + (data.summary ? '<p class="ai-study-summary">' + escapeHTML(data.summary) + '</p>' : '')
       + obsHTML
       + planHTML
+      + renderBrokerCTA(null)      // v2.40 — section 'Passer a l'action' avec brokers affilies
       + '<div class="ai-disclaimer"><strong>⚠ Pédagogique uniquement.</strong> Cette analyse n\'est pas un conseil en investissement personnalisé. Les marchés financiers comportent un risque de perte en capital.</div>'
       + '</article>';
 
@@ -7502,7 +7657,7 @@
         cls: 'fc-news', label: '📅 Samedi', time: now,
         title: 'Marchés fermés · bon moment pour réviser',
         body: 'Indices et actions ne tournent pas. La crypto, elle, ne dort jamais. Le simulateur attend.',
-        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=239'",
+        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=240'",
       });
     }
 
@@ -8048,11 +8203,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=239';
+      location.href = 'scene-05.html?v=240';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=239';
+      location.href = 'scene-06.html?v=240';
       return;
     }
 
@@ -8075,11 +8230,11 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=239"></script>
+  <script type="module" src="tg-common.js?v=240"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=239').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=240').catch(() => {});
       });
     }
   </script>
