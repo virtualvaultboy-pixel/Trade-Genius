@@ -104,7 +104,8 @@ async function fetchOne(a) {
 }
 
 function summarizeAsset(a) {
-  const ind = computeAllIndicators(a.prices);
+  // v2.72 — Passe les volumes pour permettre VWAP, OBV, MFI, Force Index
+  const ind = computeAllIndicators(a.prices, a.volumes);
   if (!ind) return null;
   const v = globalVerdict(ind);
   const change = a.prevClose ? ((a.price - a.prevClose) / a.prevClose) * 100 : 0;
@@ -113,6 +114,7 @@ function summarizeAsset(a) {
     kind: a.kind,
     price: a.price,
     prices: a.prices,
+    volumes: a.volumes || [],
     change: change.toFixed(2),
     rsi: ind.rsi?.value.toFixed(0),
     maCross: ind.maCross?.signal,
@@ -717,16 +719,15 @@ async function generateStudy(prompt, valid) {
    ═══════════════════════════════════════════════════════════════════ */
 
 /**
- * ATLAS — Le Gardien
- * Focus : tendance LONG terme structurelle uniquement
- * Outils internes : Ichimoku (au-dessus du nuage) + MA20>MA50 + ADX>28
- *                  + RSI 45-65 (sain) + Volume normal+
- * Refuse tout setup contre-tendance ou contrarian
+ * ATLAS — Le Gardien (v2.72)
+ * Focus : tendance LT prouvée + qualité du flux (volume + force directionnelle)
+ * Outils privés : SMA200 + MA50 + Ichimoku + OBV + +DI/-DI + ADX + RSI sain
+ *                + distance % à SMA200 (rejet si trop étiré)
  */
 function _detectAtlas(asset) {
   const ind = asset.indRaw;
   const prices = asset.prices;
-  if (!ind || !prices || prices.length < 52) return null;
+  if (!ind || !prices || prices.length < 60) return null;
   const last = prices[prices.length - 1];
   const atr = asset.atrAbs;
   const rsi = ind.rsi?.value;
@@ -735,25 +736,45 @@ function _detectAtlas(asset) {
   const ichi = ind.ichimoku;
   const ma20 = ind.ma20?.value;
   const ma50 = ind.ma50?.value;
-  if (!ichi || ichi.position !== 'above-cloud') return null;
-  if (ichi.signal !== 'bull') return null;
-  if (adx < 28) return null;
+  const sma200 = ind.sma200?.value;
+  const sma200Dist = ind.sma200?.distance;
+  const obv = ind.obv;
+  const di = ind.directional;
+  // ── Filtres structurels stricts ──
+  // 1) Si on a SMA200 : prix > SMA200 ET MA50 > SMA200 (golden cross structurel)
+  if (sma200) {
+    if (last <= sma200) return null;
+    if (ma50 && ma50 <= sma200) return null;
+    // Distance pas trop étirée
+    if (sma200Dist != null && (sma200Dist > 25 || sma200Dist < 2)) return null;
+  }
+  // 2) Ichimoku au-dessus du nuage avec signal bull
+  if (!ichi || ichi.position !== 'above-cloud' || ichi.signal !== 'bull') return null;
+  // 3) Tendance MT confirmée
   if (!ma20 || !ma50 || ma20 <= ma50) return null;
   if (last <= ma20) return null;
+  // 4) Force directionnelle
+  if (adx < 25) return null;
+  if (di && di.plusDI <= di.minusDI) return null;
+  // 5) Volume confirmant (OBV en tendance haussière)
+  if (obv && obv.trend === 'down') return null;
+  // 6) RSI sain (pas surchauffe, pas faiblesse)
   if (rsi == null || rsi < 45 || rsi > 65) return null;
+  // 7) MACD positif
   if (macdH == null || macdH <= 0) return null;
+  // ── Niveaux ──
   const entry = last;
-  const stop = Math.min(entry - 1.2 * atr, ma20 * 0.99);
+  const stop = Math.min(entry - 1.3 * atr, ma20 * 0.99);
   const tp1 = entry + 2.5 * atr;
-  const tp2 = entry + 4 * atr;
+  const tp2 = entry + 5 * atr;
   const risk = entry - stop;
   if (risk <= 0 || tp1 <= entry || tp2 <= tp1) return null;
   if ((tp2 - entry) / risk < 2.5) return null;
   return {
     type: 'atlas-tendance', label: 'Tendance long terme confirmée',
-    timeframe: 'Long terme · 2-6 semaines', confidence: 'very-high',
-    config: 'Tous les filtres structurels alignés (tendance MT + force + zone d\'achat).',
-    rationale: 'Configuration acheteuse safe : la structure long terme est complète. Stop technique serré sous la moyenne mobile dynamique.',
+    timeframe: 'Long terme · 3-8 semaines', confidence: 'very-high',
+    config: 'Structure haussière complète : tendance MT et LT alignées avec volume confirmant.',
+    rationale: 'Configuration acheteuse safe : tous les indicateurs structurels et le flux volume sont alignés. Stop technique serré sous la moyenne mobile dynamique. Cible 1 à +2.5 ATR, cible 2 à +5 ATR pour capter la suite du mouvement.',
     direction: 'long', entry, stop, tp1, tp2,
     rr1: ((tp1 - entry) / risk).toFixed(2),
     rr2: ((tp2 - entry) / risk).toFixed(2),
@@ -761,10 +782,10 @@ function _detectAtlas(asset) {
 }
 
 /**
- * ZEN — L'Équilibriste
- * Focus : SWING dans tendance + setups Stromboli
- * Outils internes : MA20/MA50 cross + MACD positif + Bollinger position
- *                  + RSI 40-60 + détection Stromboli
+ * ZEN — L'Équilibriste (v2.72)
+ * Focus : SWING dans tendance avec ENTRÉE TACTIQUE (VWAP / Stromboli / Pullback)
+ * Outils privés : MA20/MA50 + MACD + VWAP (entrée fair-price) + Bollinger pos
+ *                + RSI 40-60 + Stromboli + Hull MA (timing)
  */
 function _detectZen(asset) {
   const ind = asset.indRaw;
@@ -778,32 +799,73 @@ function _detectZen(asset) {
   const ma50 = ind.ma50?.value;
   const boll = ind.boll?.value;
   const adx = ind.adx?.value || 0;
+  const vw = ind.vwap;
+  // Filtres structurels
   if (!ma20 || !ma50 || ma20 <= ma50) return null;
   if (macdH == null || macdH <= 0) return null;
   if (adx < 18) return null;
-  // ZEN aime soit pullback dans tendance, soit Stromboli haussier
+  // ZEN cherche une entrée tactique parmi 3 voies :
+  // 1) Stromboli haussier détecté (signal pédagogique fort)
   const stromboli = detectStromboli(prices, atr);
-  const isPullback = rsi != null && rsi >= 40 && rsi <= 60 && boll != null && boll >= 0.25 && boll <= 0.55;
-  if (!isPullback && (!stromboli || stromboli.direction !== 'long')) return null;
-  const entry = last;
-  const stop = stromboli && stromboli.direction === 'long'
-    ? Math.min(stromboli.stopLevel, entry - 1.5 * atr)
-    : Math.min(entry - 1.5 * atr, ma50 * 0.985);
-  const tp1 = entry + 2 * atr;
-  const tp2 = entry + 4 * atr;
-  const risk = entry - stop;
-  if (risk <= 0 || tp1 <= entry || tp2 <= tp1) return null;
-  if ((tp2 - entry) / risk < 2.0) return null;
-  return {
-    type: stromboli && stromboli.direction === 'long' ? 'zen-stromboli' : 'zen-pullback',
-    label: stromboli && stromboli.direction === 'long' ? 'Stromboli haussier confirmé' : 'Pullback dans tendance haussière',
-    timeframe: 'Swing · 1-3 semaines', confidence: 'high',
-    config: stromboli && stromboli.direction === 'long' ? 'Configuration de retournement après combat acheteur/vendeur.' : 'Repli sain dans une tendance acheteuse confirmée.',
-    rationale: 'Approche patient : on entre après un signal clair de reprise, avec stop technique. Ratio R/R minimum 1:2.',
-    direction: 'long', entry, stop, tp1, tp2,
-    rr1: ((tp1 - entry) / risk).toFixed(2),
-    rr2: ((tp2 - entry) / risk).toFixed(2),
-  };
+  if (stromboli && stromboli.direction === 'long') {
+    const entry = last;
+    const stop = Math.min(stromboli.stopLevel, entry - 1.5 * atr);
+    const tp1 = entry + 2 * atr;
+    const tp2 = entry + 4 * atr;
+    const risk = entry - stop;
+    if (risk > 0 && (tp2 - entry) / risk >= 2.0) {
+      return {
+        type: 'zen-stromboli', label: 'Stromboli haussier (entrée swing)',
+        timeframe: 'Swing · 1-3 semaines', confidence: 'high',
+        config: 'Doji-reversal validé dans tendance MT haussière. Confirmation MACD>0 + ADX>18.',
+        rationale: 'Entrée tactique sur un signal de retournement court terme dans une tendance MT confirmée. Stop sous le swing low, cible swing avec R/R 1:2 minimum.',
+        direction: 'long', entry, stop, tp1, tp2,
+        rr1: ((tp1 - entry) / risk).toFixed(2),
+        rr2: ((tp2 - entry) / risk).toFixed(2),
+      };
+    }
+  }
+  // 2) Entrée sur retest VWAP en zone neutre (rebond VWAP)
+  if (vw && vw.distancePct >= -2 && vw.distancePct <= 0.5
+      && rsi != null && rsi >= 40 && rsi <= 60) {
+    const entry = last;
+    const stop = Math.min(entry - 1.4 * atr, (vw.value || entry) * 0.99);
+    const tp1 = entry + 2 * atr;
+    const tp2 = entry + 3.5 * atr;
+    const risk = entry - stop;
+    if (risk > 0 && (tp2 - entry) / risk >= 2.0) {
+      return {
+        type: 'zen-vwap-retest', label: 'Retest VWAP — entrée tactique',
+        timeframe: 'Swing · 1-2 semaines', confidence: 'high',
+        config: 'Prix au niveau du VWAP 20j (zone d\'équilibre acheteur/vendeur) dans une tendance haussière confirmée.',
+        rationale: 'Le VWAP est le "fair price" calculé sur 20 séances pondéré par les volumes. Acheter au VWAP dans tendance haussière = entrée institutionnelle classique. Stop sous le VWAP, cibles à +2 et +3.5 ATR.',
+        direction: 'long', entry, stop, tp1, tp2,
+        rr1: ((tp1 - entry) / risk).toFixed(2),
+        rr2: ((tp2 - entry) / risk).toFixed(2),
+      };
+    }
+  }
+  // 3) Pullback classique sur Bollinger médiane + RSI sain
+  if (rsi != null && rsi >= 40 && rsi <= 58
+      && boll != null && boll >= 0.25 && boll <= 0.55) {
+    const entry = last;
+    const stop = Math.min(entry - 1.5 * atr, ma50 * 0.985);
+    const tp1 = entry + 2 * atr;
+    const tp2 = entry + 4 * atr;
+    const risk = entry - stop;
+    if (risk > 0 && (tp2 - entry) / risk >= 2.0) {
+      return {
+        type: 'zen-pullback', label: 'Pullback dans tendance haussière',
+        timeframe: 'Swing · 1-3 semaines', confidence: 'high',
+        config: 'Tendance MT (MA20>MA50) + MACD positif + RSI ' + rsi.toFixed(0) + ' + Bollinger au milieu de bande.',
+        rationale: 'Repli sain dans une tendance confirmée, sans excès de volatilité. Stop technique sous la MA50, cibles symétriques.',
+        direction: 'long', entry, stop, tp1, tp2,
+        rr1: ((tp1 - entry) / risk).toFixed(2),
+        rr2: ((tp2 - entry) / risk).toFixed(2),
+      };
+    }
+  }
+  return null;
 }
 
 /**
@@ -842,36 +904,110 @@ function _detectNova(asset) {
 }
 
 /**
- * KAIRO — Le Chasseur
- * Focus : CONTRARIAN + momentum vif + opportunités cachées
- * Outils internes : RSI extrême (<35) + Bollinger position + Williams %R
- *                  + Momentum 5j vif + ATR squeeze
- * Ignore : ADX (n'a pas besoin de tendance établie)
+ * KAIRO — Le Chasseur (v2.72)
+ * Focus : CONTRARIAN + DIVERGENCES + capitulation volume
+ * Outils privés : RSI Divergence + MFI + Force Index + Hull MA + Momentum vif
+ *                + Stromboli baissier (short tactique)
+ * Ignore : ADX, MA200 (n'attend pas de tendance établie)
  */
 function _detectKairo(asset) {
-  // KAIRO utilise sa propre détection agressive (déjà implémentée v2.68)
-  // + bonus si Stromboli baissier détecté (short tactique)
+  const ind = asset.indRaw;
+  const prices = asset.prices;
+  if (!ind || !prices) return null;
+  const last = prices[prices.length - 1];
+  const atr = asset.atrAbs;
+  const rsi = ind.rsi?.value;
+  const div = ind.rsiDivergence;
+  const mf = ind.mfi?.value;
+  const fi = ind.forceIndex?.value;
+  const hma = ind.hullMA?.value;
+  const ma50 = ind.ma50?.value;
+
+  // VOIE 1 — Divergence RSI haussière (signal contrarian premium)
+  if (div && div.type === 'bullish' && div.strength >= 0.3
+      && ma50 && last > ma50 * 0.9) {
+    const entry = last;
+    const stop = entry - 2 * atr;
+    const tp1 = entry + 2.5 * atr;
+    const tp2 = entry + 5 * atr;
+    const risk = entry - stop;
+    if (risk > 0 && (tp2 - entry) / risk >= 2.0) {
+      return {
+        type: 'kairo-divergence', label: 'Divergence haussière confirmée',
+        timeframe: 'Swing court · 3-7 jours', confidence: div.strength > 0.6 ? 'high' : 'medium',
+        config: 'Le prix fait un plus bas mais l\'oscillateur fait un plus haut — signal de retournement classique.',
+        rationale: 'Divergence : le marché baisse mais perd de la force. Les vendeurs s\'essoufflent. KAIRO entre AVANT que les autres voient venir. Stop large pour absorber le bruit final.',
+        direction: 'long', entry, stop, tp1, tp2,
+        rr1: ((tp1 - entry) / risk).toFixed(2),
+        rr2: ((tp2 - entry) / risk).toFixed(2),
+      };
+    }
+  }
+
+  // VOIE 2 — Capitulation MFI (volume baissier massif)
+  if (mf != null && mf < 22 && rsi != null && rsi < 40
+      && hma && last > hma * 0.97) { // Hull MA proche = retournement potentiel
+    const entry = last;
+    const stop = entry - 2.2 * atr;
+    const tp1 = entry + 2 * atr;
+    const tp2 = entry + 5 * atr;
+    const risk = entry - stop;
+    if (risk > 0 && (tp2 - entry) / risk >= 2.0) {
+      return {
+        type: 'kairo-capitulation', label: 'Capitulation volume — rebond imminent',
+        timeframe: 'Court terme · 2-5 jours', confidence: 'medium',
+        config: 'MFI ' + mf.toFixed(0) + ' (capitulation vendeuse) + RSI bas + signal Hull MA proche.',
+        rationale: 'Money Flow Index très bas = volume vendeur extrême. Combiné à un RSI faible et au prix qui approche la Hull MA (ligne réactive), c\'est souvent le creux avant un rebond technique.',
+        direction: 'long', entry, stop, tp1, tp2,
+        rr1: ((tp1 - entry) / risk).toFixed(2),
+        rr2: ((tp2 - entry) / risk).toFixed(2),
+      };
+    }
+  }
+
+  // VOIE 3 — Force Index très négative + Stromboli haussier
+  const stromboli = detectStromboli(prices, atr);
+  if (stromboli && stromboli.direction === 'long' && fi != null && fi < 0) {
+    const entry = last;
+    const stop = Math.min(stromboli.stopLevel, entry - 2 * atr);
+    const tp1 = entry + 2 * atr;
+    const tp2 = entry + 5 * atr;
+    const risk = entry - stop;
+    if (risk > 0 && (tp2 - entry) / risk >= 2.0) {
+      return {
+        type: 'kairo-stromboli', label: 'Stromboli + Force Index négatif → reprise',
+        timeframe: 'Court terme · 3-7 jours', confidence: 'high',
+        config: 'Doji après bougie rouge confirmé par bougie verte alors que le Force Index est encore négatif.',
+        rationale: 'KAIRO chasse le creux : Stromboli haussier précoce + Force Index encore négatif = on entre avant la majorité. Plus risqué mais asymétrie de gain favorable.',
+        direction: 'long', entry, stop, tp1, tp2,
+        rr1: ((tp1 - entry) / risk).toFixed(2),
+        rr2: ((tp2 - entry) / risk).toFixed(2),
+      };
+    }
+  }
+
+  // VOIE 4 — Setups agressifs classiques (momentum vif, squeeze) déjà implémentés
   const aggressive = detectAggressiveSetup(asset);
   if (aggressive) return aggressive;
-  const stromboli = detectStromboli(asset.prices, asset.atrAbs);
+
+  // VOIE 5 — Stromboli baissier (short tactique)
   if (stromboli && stromboli.direction === 'short') {
-    const last = asset.prices[asset.prices.length - 1];
-    const atr = asset.atrAbs;
     const entry = last;
     const stop = stromboli.stopLevel;
     const tp1 = entry - 2 * atr;
     const tp2 = entry - 4 * atr;
     const risk = stop - entry;
-    if (risk <= 0 || (entry - tp2) / risk < 2.0) return null;
-    return {
-      type: 'kairo-stromboli-short', label: 'Stromboli baissier (short tactique)',
-      timeframe: 'Court terme · 2-5 jours', confidence: 'medium',
-      config: 'Doji après bougie verte puis bougie rouge — KAIRO joue le retournement.',
-      rationale: 'Short tactique réservé aux comptes qui shortent (futures crypto, CFD). Sinon : signal "sors de ton long".',
-      direction: 'short', entry, stop, tp1, tp2,
-      rr1: ((entry - tp1) / risk).toFixed(2),
-      rr2: ((entry - tp2) / risk).toFixed(2),
-    };
+    if (risk > 0 && (entry - tp2) / risk >= 2.0) {
+      return {
+        type: 'kairo-stromboli-short', label: 'Stromboli baissier (short tactique)',
+        timeframe: 'Court terme · 2-5 jours', confidence: 'medium',
+        config: 'Doji après bougie verte puis bougie rouge — retournement court terme.',
+        rationale: 'Short tactique réservé aux comptes qui shortent. Sinon : signal "sors de ton long".',
+        direction: 'short', entry, stop, tp1, tp2,
+        rr1: ((entry - tp1) / risk).toFixed(2),
+        rr2: ((entry - tp2) / risk).toFixed(2),
+      };
+    }
   }
   return null;
 }

@@ -139,6 +139,180 @@ export function ichimoku(prices) {
   };
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   v2.72 — Indicateurs avancés (privés aux agents)
+   ═══════════════════════════════════════════════════════════════════ */
+
+// SMA 200 — moyenne 200 jours, le "filtre vérité" du trend LT
+export function sma200(prices) {
+  if (!prices || prices.length < 200) return null;
+  let s = 0;
+  for (let i = prices.length - 200; i < prices.length; i++) s += prices[i];
+  return s / 200;
+}
+
+// VWAP — Volume Weighted Average Price sur N période
+export function vwap(prices, volumes, period = 20) {
+  if (!prices || !volumes || prices.length < period) return null;
+  let pv = 0, v = 0;
+  for (let i = prices.length - period; i < prices.length; i++) {
+    pv += prices[i] * (volumes[i] || 0);
+    v += (volumes[i] || 0);
+  }
+  return v > 0 ? pv / v : null;
+}
+
+// OBV (On-Balance Volume) — direction du volume cumulé sur N période
+// Retourne { value, trend: 'up'/'down'/'flat' }
+export function obv(prices, volumes, lookback = 20) {
+  if (!prices || !volumes || prices.length < lookback + 1) return null;
+  const series = [0];
+  for (let i = 1; i < prices.length; i++) {
+    const prev = series[series.length - 1];
+    if (prices[i] > prices[i - 1]) series.push(prev + (volumes[i] || 0));
+    else if (prices[i] < prices[i - 1]) series.push(prev - (volumes[i] || 0));
+    else series.push(prev);
+  }
+  // Trend = pente sur les `lookback` dernières valeurs
+  const recent = series.slice(-lookback);
+  const slope = (recent[recent.length - 1] - recent[0]) / Math.abs(recent[0] || 1);
+  return {
+    value: series[series.length - 1],
+    trend: slope > 0.05 ? 'up' : slope < -0.05 ? 'down' : 'flat',
+    slope,
+  };
+}
+
+// Money Flow Index — RSI pondéré par volume (close-only en proxy)
+export function mfi(prices, volumes, period = 14) {
+  if (!prices || !volumes || prices.length < period + 1) return null;
+  let posFlow = 0, negFlow = 0;
+  for (let i = prices.length - period; i < prices.length; i++) {
+    const flow = prices[i] * (volumes[i] || 0);
+    if (prices[i] > prices[i - 1]) posFlow += flow;
+    else if (prices[i] < prices[i - 1]) negFlow += flow;
+  }
+  if (negFlow === 0) return 100;
+  const ratio = posFlow / negFlow;
+  return 100 - (100 / (1 + ratio));
+}
+
+// Hull Moving Average — MA réactive (signale les retournements tôt)
+export function hullMA(prices, period = 14) {
+  if (!prices || prices.length < period) return null;
+  function wma(arr, p) {
+    if (arr.length < p) return null;
+    let sum = 0, w = 0;
+    for (let i = 0; i < p; i++) {
+      const weight = i + 1;
+      sum += arr[arr.length - p + i] * weight;
+      w += weight;
+    }
+    return sum / w;
+  }
+  const half = Math.floor(period / 2);
+  const sq = Math.floor(Math.sqrt(period));
+  const w1 = wma(prices, half);
+  const w2 = wma(prices, period);
+  if (w1 == null || w2 == null) return null;
+  // Pour la 2e WMA on a besoin d'une série, mais approximation : retour direct
+  return 2 * w1 - w2; // Hull approximé (raw, sans 2e lissage faute de série)
+}
+
+// Force Index (Elder) — flux acheteur/vendeur via volume
+export function forceIndex(prices, volumes, period = 13) {
+  if (!prices || !volumes || prices.length < period + 1) return null;
+  // Moyenne exponentielle de (close - prevClose) * volume sur period
+  const arr = [];
+  for (let i = prices.length - period; i < prices.length; i++) {
+    arr.push((prices[i] - prices[i - 1]) * (volumes[i] || 0));
+  }
+  // EMA simple sur arr
+  const k = 2 / (period + 1);
+  let e = arr[0];
+  for (let i = 1; i < arr.length; i++) e = arr[i] * k + e * (1 - k);
+  return e;
+}
+
+// +DI / -DI (composantes directionnelles de l'ADX, en close-only)
+export function directionalIndex(prices, period = 14) {
+  if (!prices || prices.length < period + 1) return null;
+  let plusDM = 0, minusDM = 0, tr = 0;
+  for (let i = prices.length - period; i < prices.length; i++) {
+    const move = prices[i] - prices[i - 1];
+    if (move > 0) plusDM += move;
+    if (move < 0) minusDM += -move;
+    tr += Math.abs(move);
+  }
+  if (tr === 0) return { plusDI: 50, minusDI: 50 };
+  return {
+    plusDI: (plusDM / tr) * 100,
+    minusDI: (minusDM / tr) * 100,
+  };
+}
+
+// Détection de divergence RSI haussière (prix fait LL, RSI fait HL)
+// Retourne { type: 'bullish'/'bearish'/null, strength: 0-1 }
+export function rsiDivergence(prices, period = 14, lookback = 30) {
+  if (!prices || prices.length < lookback + period + 1) return null;
+  // Calcule RSI sur chaque point dans la fenêtre
+  function rsiAt(idx) {
+    if (idx < period) return null;
+    let g = 0, l = 0;
+    for (let k = 1; k <= period; k++) {
+      const d = prices[idx - period + k] - prices[idx - period + k - 1];
+      if (d >= 0) g += d; else l -= d;
+    }
+    if (l === 0) return 100;
+    return 100 - (100 / (1 + (g / period) / (l / period)));
+  }
+  // Trouve les 2 plus bas locaux récents
+  function findRecentLows(window) {
+    const lows = [];
+    for (let i = 2; i < window.length - 2; i++) {
+      if (window[i].price < window[i - 1].price && window[i].price < window[i - 2].price
+          && window[i].price < window[i + 1].price && window[i].price < window[i + 2].price) {
+        lows.push(window[i]);
+      }
+    }
+    return lows;
+  }
+  // Fenêtre lookback récente avec (price, rsi)
+  const start = prices.length - lookback;
+  const window = [];
+  for (let i = start; i < prices.length; i++) {
+    const r = rsiAt(i);
+    if (r != null) window.push({ idx: i, price: prices[i], rsi: r });
+  }
+  const lows = findRecentLows(window);
+  if (lows.length >= 2) {
+    const [l1, l2] = lows.slice(-2);
+    // Divergence haussière : prix plus bas mais RSI plus haut
+    if (l2.price < l1.price * 0.985 && l2.rsi > l1.rsi + 3) {
+      return { type: 'bullish', strength: Math.min(1, (l2.rsi - l1.rsi) / 10) };
+    }
+  }
+  // Plus hauts pour divergence baissière (prix HH mais RSI LH)
+  function findRecentHighs(window) {
+    const highs = [];
+    for (let i = 2; i < window.length - 2; i++) {
+      if (window[i].price > window[i - 1].price && window[i].price > window[i - 2].price
+          && window[i].price > window[i + 1].price && window[i].price > window[i + 2].price) {
+        highs.push(window[i]);
+      }
+    }
+    return highs;
+  }
+  const highs = findRecentHighs(window);
+  if (highs.length >= 2) {
+    const [h1, h2] = highs.slice(-2);
+    if (h2.price > h1.price * 1.015 && h2.rsi < h1.rsi - 3) {
+      return { type: 'bearish', strength: Math.min(1, (h1.rsi - h2.rsi) / 10) };
+    }
+  }
+  return null;
+}
+
 export function atrPct(prices, period = 14) {
   if (prices.length < period + 1) return null;
   const trs = [];
@@ -152,7 +326,7 @@ export function atrPct(prices, period = 14) {
  * Calcule tous les indicateurs + signal bull/bear/neutral pour chaque.
  * Retourne null si pas assez de data.
  */
-export function computeAllIndicators(prices) {
+export function computeAllIndicators(prices, volumes) {
   if (!prices || prices.length < 30) return null;
   const last = prices[prices.length - 1];
   const out = {};
@@ -210,6 +384,33 @@ export function computeAllIndicators(prices) {
   const ichi = ichimoku(prices);
   if (ichi) out.ichimoku = ichi;
 
+  // v2.72 — Indicateurs avancés (privés aux agents)
+  const m200 = sma200(prices);
+  if (m200 != null) {
+    const distance = ((last - m200) / m200) * 100;
+    out.sma200 = {
+      value: m200, distance,
+      signal: last > m200 ? 'bull' : 'bear',
+      extended: Math.abs(distance) > 20,
+    };
+  }
+  if (Array.isArray(volumes) && volumes.length >= 20) {
+    const vw = vwap(prices, volumes, 20);
+    if (vw != null) out.vwap = { value: vw, signal: last > vw ? 'bull' : 'bear', distancePct: ((last - vw) / vw) * 100 };
+    const ob = obv(prices, volumes, 20);
+    if (ob) out.obv = { value: ob.value, trend: ob.trend, signal: ob.trend === 'up' ? 'bull' : ob.trend === 'down' ? 'bear' : 'neutral' };
+    const mf = mfi(prices, volumes);
+    if (mf != null) out.mfi = { value: mf, signal: mf < 20 ? 'bull' : mf > 80 ? 'bear' : 'neutral' };
+    const fi = forceIndex(prices, volumes);
+    if (fi != null) out.forceIndex = { value: fi, signal: fi > 0 ? 'bull' : 'bear' };
+  }
+  const hma = hullMA(prices, 14);
+  if (hma != null) out.hullMA = { value: hma, signal: last > hma ? 'bull' : 'bear' };
+  const di = directionalIndex(prices);
+  if (di) out.directional = { plusDI: di.plusDI, minusDI: di.minusDI, signal: di.plusDI > di.minusDI ? 'bull' : 'bear' };
+  const div = rsiDivergence(prices);
+  if (div) out.rsiDivergence = { type: div.type, strength: div.strength, signal: div.type === 'bullish' ? 'bull' : 'bear' };
+
   return out;
 }
 
@@ -243,34 +444,47 @@ export function globalVerdict(ind) {
 
 /* ============ Fetch helpers ============ */
 
-export async function fetchYahooHistorical(symbol, range = '3mo') {
+export async function fetchYahooHistorical(symbol, range = '6mo') {
+  // v2.72 — range étendu à 6mo pour permettre le calcul de SMA200
   const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=${range}`;
   const r = await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0 (trade-genius-bot)' } });
   if (!r.ok) throw new Error(`Yahoo ${symbol} HTTP ${r.status}`);
   const j = await r.json();
   const res = j?.chart?.result?.[0];
   if (!res) throw new Error(`Yahoo ${symbol} bad payload`);
-  const closes = (res.indicators?.quote?.[0]?.close || []).filter(v => v != null);
+  const quote = res.indicators?.quote?.[0] || {};
+  const rawCloses = quote.close || [];
+  const rawVolumes = quote.volume || [];
+  // On garde les paires (close, volume) où close existe
+  const closes = [], volumes = [];
+  for (let i = 0; i < rawCloses.length; i++) {
+    if (rawCloses[i] != null) {
+      closes.push(rawCloses[i]);
+      volumes.push(rawVolumes[i] != null ? rawVolumes[i] : 0);
+    }
+  }
   const meta = res.meta || {};
   return {
     symbol,
     name: meta.shortName || meta.longName || symbol,
     price: meta.regularMarketPrice ?? closes[closes.length - 1],
     prevClose: meta.previousClose ?? closes[closes.length - 2],
-    prices: closes,
+    prices: closes, volumes,
     currency: meta.currency || 'USD',
   };
 }
 
-export async function fetchCoinGeckoHistorical(id, days = 60) {
+export async function fetchCoinGeckoHistorical(id, days = 200) {
+  // v2.72 — 200j pour permettre SMA200
   const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${days}&interval=daily`;
   const r = await fetch(url, { headers: { 'user-agent': 'trade-genius-bot/1.0' } });
   if (!r.ok) throw new Error(`CoinGecko ${id} HTTP ${r.status}`);
   const j = await r.json();
   const prices = (j.prices || []).map(p => p[1]);
+  const volumes = (j.total_volumes || []).map(v => v[1]);
   return {
     id,
-    prices,
+    prices, volumes,
     price: prices[prices.length - 1],
     prevClose: prices[prices.length - 2],
     currency: 'USD',
