@@ -817,6 +817,37 @@
   }
   window.tgaAnalyze = tgaAnalyze;
 
+  /* ═════════════════════════════════════════════════════════════════
+     v2.67 — Comparaison historique
+     Cherche dans les 90j passés des configurations RSI similaires à la
+     actuelle et regarde ce qui s'est passé les 10 jours après. Donne un
+     échantillon empirique de ce qu'a fait l'actif dans ces conditions.
+     ═════════════════════════════════════════════════════════════════ */
+  function findHistoricalMatches(prices, currentRsi, currentMomentum) {
+    if (!prices || prices.length < 50 || currentRsi == null) return [];
+    function rsiAt(p) {
+      if (p < 14) return null;
+      let g = 0, l = 0;
+      for (let k = 1; k <= 14; k++) { const d = prices[p - 14 + k] - prices[p - 14 + k - 1]; if (d >= 0) g += d; else l -= d; }
+      if (l === 0) return 100;
+      return 100 - (100 / (1 + (g/14) / (l/14)));
+    }
+    const matches = [];
+    // On parcourt les points historiques et on regarde ceux dont le RSI est ±5 du current
+    for (let i = 30; i < prices.length - 10; i++) {
+      const rsi = rsiAt(i);
+      if (rsi == null) continue;
+      const mom = prices.length > i - 10 && i >= 10 ? ((prices[i] - prices[i - 10]) / prices[i - 10]) * 100 : 0;
+      // Match si RSI proche ET momentum dans le même sens
+      if (Math.abs(rsi - currentRsi) <= 5 && Math.sign(mom) === Math.sign(currentMomentum || 0)) {
+        const future = prices[i + 10];
+        const pct = ((future - prices[i]) / prices[i]) * 100;
+        matches.push({ i, rsi, mom, pct10d: pct });
+      }
+    }
+    return matches;
+  }
+
   // v2.66 — Comparaison verdict 1h vs 1d (multi-timeframe)
   function renderTfBlock(dailyV, hourlyV) {
     const sameDir = (dailyV.action === hourlyV.action)

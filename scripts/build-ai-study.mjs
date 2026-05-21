@@ -528,6 +528,116 @@ async function main() {
   // Setup principal (pour rétrocompat) = celui avec meilleure confidence puis R/R
   const bestSetup = setupsAll[0] || null;
 
+  // ─────────────────────────────────────────────────────────────────
+  // v2.67 — 4 AGENTS IA avec profils de risque distincts
+  // Chaque agent filtre les setups et recalibre les niveaux ATR.
+  // ─────────────────────────────────────────────────────────────────
+  const AGENT_PROFILES = [
+    {
+      id: 'atlas', name: 'ATLAS', role: 'Le Gardien',
+      tagline: 'Préserve avant tout',
+      desc: 'Confirmations maximales. Stop serré. R/R élevé. Ne sort que quand le ciel est dégagé.',
+      icon: '🛡️', color: '#60a5fa',
+      filters: { minConfRank: 3, minADX: 28, minRR: 2.5 },
+      atr: { stop: 1.2, tp1: 2.0, tp2: 3.5 },
+      acceptedTypes: ['pullback-haussier', 'breakout-haussier', 'continuation-haussiere'],
+    },
+    {
+      id: 'zen', name: 'ZEN', role: 'L\'Équilibriste',
+      tagline: 'Patience et précision',
+      desc: 'Setups confirmés sans excès. Patient, méthodique, prend les meilleures opportunités du jour.',
+      icon: '🌿', color: '#84cc16',
+      filters: { minConfRank: 2, minADX: 22, minRR: 2.0 },
+      atr: { stop: 1.5, tp1: 2.0, tp2: 4.0 },
+      acceptedTypes: ['pullback-haussier', 'breakout-haussier', 'continuation-haussiere', 'rebond-ma50'],
+    },
+    {
+      id: 'nova', name: 'NOVA', role: 'Le Tacticien',
+      tagline: 'Calculer chaque move',
+      desc: 'Équilibre opportunités et fiabilité. Le profil standard recommandé pour la plupart des traders.',
+      icon: '⚡', color: '#f59e0b',
+      filters: { minConfRank: 1, minADX: 16, minRR: 1.8 },
+      atr: { stop: 1.5, tp1: 1.5, tp2: 3.0 },
+      acceptedTypes: null, // tous types
+    },
+    {
+      id: 'kairo', name: 'KAIRO', role: 'Le Chasseur',
+      tagline: 'Frappe quand c\'est chaud',
+      desc: 'Saisit les opportunités contrariennes et les rebonds extrêmes. Plus risqué, plus de gains potentiels.',
+      icon: '🔥', color: '#ef4444',
+      filters: { minConfRank: 1, minADX: 10, minRR: 2.0 },
+      atr: { stop: 2.0, tp1: 2.5, tp2: 5.0 },
+      acceptedTypes: null, // tous y compris rebond-survente
+      bonusTypes: ['rebond-survente'], // boost priorité
+    },
+  ];
+
+  function applyAgentProfile(allSetups, agent) {
+    const out = [];
+    for (const s of allSetups) {
+      // Filtre type accepté
+      if (agent.acceptedTypes && !agent.acceptedTypes.includes(s.type)) continue;
+      // Filtre confidence
+      if ((CONF_RANK[s.confidence] || 0) < agent.filters.minConfRank) continue;
+      // Filtre R/R
+      if (Number(s.rr2) < agent.filters.minRR) continue;
+      // Recalcul niveaux selon ATR mult de l'agent
+      // On a besoin de l'ATR absolu. On reconstitue depuis le R/R existant.
+      const risk = s.entry - s.stop;
+      const atrAbs = risk / 1.5; // approximation : default stop = 1.5 ATR
+      const entry = s.entry;
+      const stop = entry - agent.atr.stop * atrAbs;
+      const tp1 = entry + agent.atr.tp1 * atrAbs;
+      const tp2 = entry + agent.atr.tp2 * atrAbs;
+      if (stop >= entry || tp1 <= entry || tp2 <= tp1) continue;
+      const newRR2 = (tp2 - entry) / (entry - stop);
+      if (newRR2 < agent.filters.minRR) continue;
+      out.push({
+        ...s,
+        entry, stop, tp1, tp2,
+        rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
+        rr2: newRR2.toFixed(2),
+        agentId: agent.id,
+      });
+    }
+    // Bonus types remontent en tête
+    if (agent.bonusTypes) {
+      out.sort((a, b) => {
+        const aBonus = agent.bonusTypes.includes(a.type) ? 1 : 0;
+        const bBonus = agent.bonusTypes.includes(b.type) ? 1 : 0;
+        if (aBonus !== bBonus) return bBonus - aBonus;
+        return Number(b.rr2) - Number(a.rr2);
+      });
+    } else {
+      out.sort((a, b) => {
+        const dc = (CONF_RANK[b.confidence] || 0) - (CONF_RANK[a.confidence] || 0);
+        if (dc !== 0) return dc;
+        return Number(b.rr2) - Number(a.rr2);
+      });
+    }
+    return out;
+  }
+
+  const agentsOutput = AGENT_PROFILES.map(agent => {
+    const setups = applyAgentProfile(setupsAll, agent);
+    return {
+      id: agent.id, name: agent.name, role: agent.role, tagline: agent.tagline,
+      desc: agent.desc, icon: agent.icon, color: agent.color,
+      filters_summary: 'Confidence ≥ ' + ['?','medium','high','very-high'][agent.filters.minConfRank]
+        + ' · ADX ≥ ' + agent.filters.minADX
+        + ' · R/R ≥ ' + agent.filters.minRR,
+      count: setups.length,
+      setups: setups.map(s => ({
+        asset: s.asset, kind: s.kind, type: s.type, label: s.label,
+        timeframe: s.timeframe || null, confidence: s.confidence || 'medium',
+        direction: s.direction, config: s.config, rationale: s.rationale,
+        entry: s.entry, stop: s.stop, tp1: s.tp1, tp2: s.tp2,
+        rr1: s.rr1, rr2: s.rr2, currency: s.currency,
+        prices60: Array.isArray(s.prices60) ? s.prices60.map(p => Number(p.toFixed(4))) : null,
+      })),
+    };
+  });
+
   // v2.56/v2.60 — Statistiques "Recommandations du jour" basées sur notre analyseur ULTRA FIABLE
   const recommended = {
     count: setupsAll.length,
@@ -582,6 +692,8 @@ async function main() {
     verdict: { score: avgScore, cls: avgCls, label: avgLabel },
     // v2.56 — Recommandations chiffrées issues de l'analyseur ULTRA FIABLE
     recommended: recommended,
+    // v2.67 — 4 agents IA avec profils de risque distincts
+    agents: agentsOutput,
     assets: assetsClean,
     // v2.44 — liste de TOUS les setups propices (1 par actif max)
     // v2.54 — confidence exposée
