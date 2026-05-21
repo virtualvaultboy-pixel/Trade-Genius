@@ -1,0 +1,36 @@
+name: Econ calendar
+on:
+  schedule:
+    # 1× par jour à 04h UTC (06h Paris été)
+    - cron: '0 4 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build-econ-calendar.mjs'
+      - '.github/workflows/econ-calendar.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Generate econ calendar
+        run: node scripts/build-econ-calendar.mjs
+      - name: Commit data/econ-calendar.json if changed
+        run: |
+          git config user.name 'trade-genius-bot'
+          git config user.email 'bot@deponchy.studio'
+          if [[ -n "$(git status --porcelain data/econ-calendar.json)" ]]; then
+            git add data/econ-calendar.json
+            git commit -m "chore: refresh econ calendar [skip ci]"
+            git push
+          else
+            echo "Econ calendar unchanged."
+          fi

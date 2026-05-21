@@ -156,7 +156,7 @@
     if (range === 0) return 0;
     return (Math.abs(upSum - dnSum) / range) * 100;
   }
-  function computeIndicators(prices) {
+  function computeIndicators(prices, volumes) {
     if (!prices || prices.length < 30) return null;
     const last = _last(prices);
     const r = rsi(prices);
@@ -167,7 +167,21 @@
     const at = atrPct(prices);
     const ax = adx(prices);
     const mom = prices.length > 11 ? ((last - prices[prices.length - 11]) / prices[prices.length - 11]) * 100 : 0;
-    return { last, rsi: r, ma20: m20, ma50: m50, macd, boll, atr: at, adx: ax, mom };
+    // v2.67 — Volume : ratio volume actuel / moyenne 20j
+    let volRatio = null, lastVol = null, avgVol = null;
+    if (Array.isArray(volumes) && volumes.length >= 20) {
+      lastVol = volumes[volumes.length - 1];
+      const last20 = volumes.slice(-20);
+      avgVol = last20.reduce((a, b) => a + b, 0) / last20.length;
+      if (avgVol > 0) volRatio = lastVol / avgVol;
+    }
+    // ATH / ATL sur la période
+    const high = Math.max.apply(null, prices);
+    const low = Math.min.apply(null, prices);
+    const fromHigh = ((last - high) / high) * 100;
+    const fromLow = ((last - low) / low) * 100;
+    return { last, rsi: r, ma20: m20, ma50: m50, macd, boll, atr: at, adx: ax, mom,
+      volRatio, lastVol, avgVol, high, low, fromHigh, fromLow };
   }
 
   // ───────────────────────────────────────────────────────────────────
@@ -426,29 +440,47 @@
   // Fetch prices
   // ───────────────────────────────────────────────────────────────────
   async function fetchPrices(asset) {
+    return _fetchYahooOrCG(asset, 'daily');
+  }
+
+  // v2.66 — Multi-timeframe : fetch 1h en plus du daily
+  async function _fetchYahooOrCG(asset, tf) {
     try {
-      // v2.60 — Crypto = CoinGecko ; indices/actions/forex/metal = Yahoo
       if (asset.kind === 'crypto') {
-        const url = 'https://api.coingecko.com/api/v3/coins/' + asset.id + '/market_chart?vs_currency=usd&days=90&interval=daily';
+        // CoinGecko : days=2 donne du hourly, days=90 donne du daily
+        const days = tf === 'hourly' ? 2 : 90;
+        const url = 'https://api.coingecko.com/api/v3/coins/' + asset.id + '/market_chart?vs_currency=usd&days=' + days + (tf === 'daily' ? '&interval=daily' : '');
         const r = await fetch(url);
         if (!r.ok) throw new Error('CG ' + r.status);
         const j = await r.json();
-        return (j.prices || []).map(p => p[1]);
+        return { prices: (j.prices || []).map(p => p[1]), volumes: (j.total_volumes || []).map(v => v[1]) };
       }
-      // Tout le reste passe par Yahoo (symbol)
-      const u = 'https://query1.finance.yahoo.com/v8/finance/chart/' + asset.id + '?interval=1d&range=3mo';
+      // Yahoo : 1h via interval=1h&range=1mo
+      const interval = tf === 'hourly' ? '1h' : '1d';
+      const range = tf === 'hourly' ? '1mo' : '3mo';
+      const u = 'https://query1.finance.yahoo.com/v8/finance/chart/' + asset.id + '?interval=' + interval + '&range=' + range;
       const proxied = 'https://corsproxy.io/?' + encodeURIComponent(u);
       const r = await fetch(proxied);
       if (!r.ok) throw new Error('YF ' + r.status);
       const j = await r.json();
       const res = j && j.chart && j.chart.result && j.chart.result[0];
       if (!res) throw new Error('Bad payload');
-      const closes = (res.indicators && res.indicators.quote && res.indicators.quote[0].close) || [];
-      return closes.filter(v => v != null);
+      const quote = res.indicators && res.indicators.quote && res.indicators.quote[0] || {};
+      const closes = (quote.close || []).filter(v => v != null);
+      const volumes = (quote.volume || []).filter(v => v != null);
+      return { prices: closes, volumes };
     } catch (e) {
-      console.warn('fetchPrices failed', e);
+      console.warn('fetch ' + tf + ' failed', e);
       return null;
     }
+  }
+  async function fetchPricesMulti(asset) {
+    // Lance daily + hourly en parallèle
+    const [d, h] = await Promise.all([
+      _fetchYahooOrCG(asset, 'daily'),
+      _fetchYahooOrCG(asset, 'hourly'),
+    ]);
+    return { daily: d, hourly: h };
   }
 
   // ───────────────────────────────────────────────────────────────────
@@ -574,6 +606,20 @@
     /* v2.61 — Graph SVG */
     .tga-graph { margin: 8px 0 12px; border-radius: 8px; overflow: hidden; }
     .tga-graph svg { max-width: 100%; }
+    /* v2.66 — Multi-timeframe */
+    .tga-tf { margin: 0 0 12px; padding: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; }
+    .tga-tf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+    .tga-tf-cell { padding: 8px; background: rgba(0,0,0,0.28); border-radius: 8px; }
+    .tga-tf-label { font-size: 9.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.65; margin-bottom: 4px; }
+    .tga-tf-val { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; }
+    .tga-tf-val.bull { color: #86efac; }
+    .tga-tf-val.bear { color: #fca5a5; }
+    .tga-tf-val.bull-soft { color: #bef264; }
+    .tga-tf-val.bear-soft { color: #fdba74; }
+    .tga-tf-val.neutral { color: #fde68a; }
+    .tga-tf-coh { display: block; text-align: center; font-size: 11.5px; font-weight: 600; padding: 6px; border-radius: 6px; }
+    .tga-tf-coh.ok { background: rgba(74,222,128,0.12); color: #86efac; }
+    .tga-tf-coh.warn { background: rgba(250,204,21,0.12); color: #fde68a; }
     .tga-verdict-headline { font-size: 22px; font-weight: 800; line-height: 1.2; margin-bottom: 6px; }
     .tga-verdict-score { font-family: 'Space Mono', monospace; font-size: 13px; opacity: 0.85; }
     .tga-verdict-score strong { font-size: 16px; }
@@ -743,23 +789,50 @@
   async function tgaAnalyze(id) {
     const asset = CATALOG.find(a => a.id === id);
     if (!asset) return;
-    openOverlay(loadingHTML('Récupération des données ' + asset.label + '…'));
-    const prices = await fetchPrices(asset);
-    if (!prices || prices.length < 30) {
+    openOverlay(loadingHTML('Récupération des données ' + asset.label + ' (multi-timeframe)…'));
+    // v2.66 — Multi-timeframe : daily + hourly en parallèle
+    const multi = await fetchPricesMulti(asset);
+    const daily = multi.daily;
+    if (!daily || !daily.prices || daily.prices.length < 30) {
       openOverlay(''
         + '<div class="tga-head"><span class="tga-tag">🤖 Analyste IA</span>'
         + '<button class="tga-close" onclick="tgaCloseOverlay()" aria-label="Fermer">✕</button></div>'
         + '<p style="padding: 24px 8px; text-align: center;">❌ Impossible de récupérer les données ' + esc(asset.label) + '. Vérifie ta connexion ou réessaie dans quelques instants.</p>');
       return;
     }
-    const ind = computeIndicators(prices);
+    const prices = daily.prices;
+    const volumes = daily.volumes || [];
+    const ind = computeIndicators(prices, volumes);
     const patterns = detectPatterns(prices);
     const verdict = tranchantVerdict(ind, patterns);
     const reco = recommendation(verdict, ind, patterns);
-    // v2.61 — Passe les 60 dernières bougies au render pour le mini-graph
-    openOverlay(renderAnalysis(asset, ind, patterns, verdict, reco, prices.slice(-60)));
+    // Mini-verdict 1h
+    let hourlyVerdict = null;
+    if (multi.hourly && multi.hourly.prices && multi.hourly.prices.length >= 30) {
+      const indH = computeIndicators(multi.hourly.prices, multi.hourly.volumes);
+      const patH = detectPatterns(multi.hourly.prices);
+      hourlyVerdict = tranchantVerdict(indH, patH);
+    }
+    openOverlay(renderAnalysis(asset, ind, patterns, verdict, reco, prices.slice(-60), volumes.slice(-60), hourlyVerdict));
   }
   window.tgaAnalyze = tgaAnalyze;
+
+  // v2.66 — Comparaison verdict 1h vs 1d (multi-timeframe)
+  function renderTfBlock(dailyV, hourlyV) {
+    const sameDir = (dailyV.action === hourlyV.action)
+      || (dailyV.action.startsWith('long') && hourlyV.action.startsWith('long'))
+      || (dailyV.action.startsWith('short') && hourlyV.action.startsWith('short'));
+    const cohesion = sameDir
+      ? '<span class="tga-tf-coh ok">✅ Court & moyen terme alignés — signal renforcé</span>'
+      : '<span class="tga-tf-coh warn">⚠ Divergence — court terme ≠ moyen terme, prudence</span>';
+    return '<div class="tga-tf">'
+      + '<div class="tga-tf-row">'
+      +   '<div class="tga-tf-cell"><div class="tga-tf-label">Court terme (1 h)</div><div class="tga-tf-val ' + hourlyV.cls + '">' + (hourlyV.score) + '/100 · ' + esc(hourlyV.headline.split(' — ')[0]) + '</div></div>'
+      +   '<div class="tga-tf-cell"><div class="tga-tf-label">Moyen terme (1 j)</div><div class="tga-tf-val ' + dailyV.cls + '">' + (dailyV.score) + '/100 · ' + esc(dailyV.headline.split(' — ')[0]) + '</div></div>'
+      + '</div>'
+      + cohesion
+      + '</div>';
+  }
 
   // v2.61 — Calcule les niveaux entry/stop/TP à dessiner selon le verdict
   function planLevelsFor(verdict, ind) {
@@ -782,7 +855,7 @@
     return lvls;
   }
 
-  function renderAnalysis(asset, ind, patterns, verdict, reco, prices60) {
+  function renderAnalysis(asset, ind, patterns, verdict, reco, prices60, volumes60, hourlyVerdict) {
     // v2.54 — Plan d'action SEULEMENT si direction tranchée (long/short).
     // Plus de plan pour "wait" ou les "soft" (on évite les fausses pistes).
     let planHTML = '';
@@ -855,6 +928,14 @@
     if (ind.macd != null) indHTML += indCell('MACD histo', ind.macd.toFixed(2), ind.macd > 0 ? 'bull' : 'bear');
     if (ind.adx != null) indHTML += indCell('Force tendance', ind.adx.toFixed(0), ind.adx > 25 ? 'bull' : '');
     if (ind.mom != null) indHTML += indCell('Momentum 10j', (ind.mom > 0 ? '+' : '') + ind.mom.toFixed(1) + '%', ind.mom > 0 ? 'bull' : 'bear');
+    // v2.67 — Volume (si dispo)
+    if (ind.volRatio != null) {
+      const volSig = ind.volRatio > 1.5 ? 'bull' : ind.volRatio < 0.6 ? 'bear' : '';
+      indHTML += indCell('Volume vs moy20', '×' + ind.volRatio.toFixed(2), volSig);
+    }
+    // v2.68 — ATH / ATL (sur la période fetchée, 90 j)
+    if (ind.fromHigh != null) indHTML += indCell('Vs plus haut 90j', ind.fromHigh.toFixed(1) + '%', ind.fromHigh > -5 ? 'bull' : ind.fromHigh < -20 ? 'bear' : '');
+    if (ind.fromLow != null)  indHTML += indCell('Vs plus bas 90j', '+' + ind.fromLow.toFixed(1) + '%', ind.fromLow < 5 ? 'bull' : '');
     indHTML += '</div>';
 
     return ''
@@ -868,8 +949,10 @@
       + '</div>'
       + '<div class="tga-verdict ' + verdict.cls + '">'
       +   '<div class="tga-verdict-headline">' + esc(verdict.headline) + '</div>'
-      +   '<div class="tga-verdict-score">Score technique <strong>' + verdict.score + '</strong> / 100</div>'
+      +   '<div class="tga-verdict-score">Score technique <strong>' + verdict.score + '</strong> / 100 · timeframe journalier (90 j)</div>'
       + '</div>'
+      // v2.66 — Verdict multi-timeframe (1h vs 1d)
+      + (hourlyVerdict ? renderTfBlock(verdict, hourlyVerdict) : '')
       // v2.61 — Mini-graph SVG
       + ((prices60 && window.TG && window.TG.renderMiniGraph)
           ? '<div class="tga-graph">' + window.TG.renderMiniGraph(prices60, planLevelsFor(verdict, ind), { width: 480, height: 200 }) + '</div>'
