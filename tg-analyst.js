@@ -308,8 +308,42 @@
           lastIdx });
       }
     }
+    // v2.69 — Stromboli (doji-reversal du formateur IVT Live Trading)
+    _detectStromboli(prices, out);
     // v2.52 — Filtrage des contradictions (bullish + bearish coexistants)
     return filterContradictions(out);
+  }
+
+  // v2.69 — Stromboli : Doji après bougie d'une couleur + confirmation par bougie opposée
+  function _detectStromboli(prices, out) {
+    if (!prices || prices.length < 5) return;
+    const N = prices.length;
+    const c1 = prices[N - 1], c2 = prices[N - 2], c3 = prices[N - 3], c4 = prices[N - 4];
+    const DOJI_TH = 0.003, BODY_TH = 0.005;
+    const mv = (a, b) => (a - b) / b;
+    const dojiMove = Math.abs(mv(c2, c3));
+    const confirmMove = mv(c1, c2);
+    const contextMove = mv(c3, c4);
+    if (contextMove < -BODY_TH && dojiMove < DOJI_TH && confirmMove > BODY_TH) {
+      out.push({
+        name: 'Stromboli haussier', icon: '🌋', direction: 'bullish',
+        confidence: confirmMove > 0.01 ? 'high' : 'medium',
+        description: 'Doji ' + (dojiMove * 100).toFixed(2) + '% après bougie rouge ' + (contextMove * 100).toFixed(1) + '%, puis bougie verte +' + (confirmMove * 100).toFixed(1) + '%.',
+        why: 'Méthode IVT Live Trading : après une chute, un doji marque le combat acheteur/vendeur. La bougie verte confirme que les acheteurs ont gagné. Stop technique au plus bas de la bougie rouge, sortie discrétionnaire au prochain Stromboli baissier.',
+        stop: Math.min(c3, c4) * 0.998,
+        lastIdx: N - 1,
+      });
+    }
+    if (contextMove > BODY_TH && dojiMove < DOJI_TH && confirmMove < -BODY_TH) {
+      out.push({
+        name: 'Stromboli baissier', icon: '🌋', direction: 'bearish',
+        confidence: Math.abs(confirmMove) > 0.01 ? 'high' : 'medium',
+        description: 'Doji après bougie verte +' + (contextMove * 100).toFixed(1) + '%, puis bougie rouge ' + (confirmMove * 100).toFixed(1) + '%.',
+        why: 'Inverse du Stromboli haussier : doji marque l\'épuisement des acheteurs, la bougie rouge confirme. Stop au plus haut de la bougie verte.',
+        stop: Math.max(c3, c4) * 1.002,
+        lastIdx: N - 1,
+      });
+    }
   }
 
   function filterContradictions(patterns) {

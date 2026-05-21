@@ -318,7 +318,111 @@ function detectSetup(a) {
     }
   }
 
+  // v2.69 — STROMBOLI haussier : Doji après bougie rouge + confirmation bougie verte
+  // Le marché a baissé, hésité (doji = combat), puis les acheteurs ont gagné
+  // Entry = close confirmation · Stop = bas de la bougie rouge · Exit = Stromboli baissier suivant
+  const stromboli = detectStromboli(prices, atr);
+  if (stromboli && stromboli.direction === 'long') {
+    const entry = last;
+    const stop = stromboli.stopLevel; // plus bas de la bougie rouge
+    if (stop < entry) {
+      // TP basé sur l'amplitude moyenne du mouvement (3 ATR conservateur, sortie réelle au prochain Stromboli baissier)
+      const tp1 = entry + 2 * atr;
+      const tp2 = entry + 4 * atr;
+      const risk = entry - stop;
+      const reward = tp2 - entry;
+      if (reward / risk >= 1.8) {
+        return {
+          type: 'stromboli-haussier',
+          label: 'Stromboli — Retournement haussier',
+          timeframe: 'Swing · 3-10 jours (sortie sur Stromboli inverse)',
+          confidence: 'high',
+          config: 'Doji détecté après bougie rouge (' + stromboli.redCandlePct + '%) puis bougie verte de confirmation (+' + stromboli.greenCandlePct + '%). Combat acheteurs/vendeurs résolu côté acheteur.',
+          rationale: 'Stratégie Heikin Ashi adaptée : après une chute, un doji marque une hésitation (combat acheteur/vendeur). La bougie verte qui suit confirme que les acheteurs ont gagné. Stop technique au plus bas de la bougie rouge. Sortie discrétionnaire au prochain Stromboli baissier (doji après bougie verte).',
+          direction: 'long',
+          entry, stop, tp1, tp2,
+          rr1: ((tp1 - entry) / risk).toFixed(2),
+          rr2: ((tp2 - entry) / risk).toFixed(2),
+        };
+      }
+    }
+  }
+  if (stromboli && stromboli.direction === 'short') {
+    const entry = last;
+    const stop = stromboli.stopLevel;
+    if (stop > entry) {
+      const tp1 = entry - 2 * atr;
+      const tp2 = entry - 4 * atr;
+      const risk = stop - entry;
+      const reward = entry - tp2;
+      if (reward / risk >= 1.8) {
+        return {
+          type: 'stromboli-baissier',
+          label: 'Stromboli — Retournement baissier',
+          timeframe: 'Swing · 3-10 jours (sortie sur Stromboli inverse)',
+          confidence: 'high',
+          config: 'Doji après bougie verte (+' + stromboli.greenCandlePct + '%) puis bougie rouge de confirmation (' + stromboli.redCandlePct + '%). Vendeurs ont pris le contrôle.',
+          rationale: 'Inverse du Stromboli haussier : après une hausse, un doji marque l\'épuisement des acheteurs. La bougie rouge confirme. Stop au plus haut de la bougie verte. Pour les comptes qui shortent — sinon, signal "sors de ton long".',
+          direction: 'short',
+          entry, stop, tp1, tp2,
+          rr1: ((entry - tp1) / risk).toFixed(2),
+          rr2: (reward / risk).toFixed(2),
+        };
+      }
+    }
+  }
+
   // Aucun setup propre détecté — on ne fabrique PAS un setup faible
+  return null;
+}
+
+/**
+ * v2.69 — Détection STROMBOLI (doji-reversal du formateur IVT Live Trading)
+ * Stromboli haussier  : bougie ROUGE → DOJI → bougie VERTE (confirmation)
+ * Stromboli baissier  : bougie VERTE → DOJI → bougie ROUGE (confirmation)
+ *
+ * Note : on travaille sur close-only (OHLC non récupéré par défaut), donc :
+ *   - "bougie rouge" = close[t] < close[t-1] de plus de 0.5%
+ *   - "doji"         = |close[t] - close[t-1]| / close[t-1] < 0.3% (variation minime)
+ *   - "bougie verte" = close[t] > close[t-1] de plus de 0.5%
+ *
+ * Stop = close de la bougie rouge (approximation du low en mode close-only)
+ */
+function detectStromboli(prices, atr) {
+  if (!prices || prices.length < 5) return null;
+  const N = prices.length;
+  const c1 = prices[N - 1]; // dernière bougie (confirmation)
+  const c2 = prices[N - 2]; // doji (Stromboli)
+  const c3 = prices[N - 3]; // bougie rouge ou verte (contexte)
+  const c4 = prices[N - 4]; // référence
+  const DOJI_TH = 0.003;    // 0.3%
+  const BODY_TH = 0.005;    // 0.5%
+
+  const move = (a, b) => (a - b) / b;
+  const dojiMove = Math.abs(move(c2, c3));
+  const confirmMove = move(c1, c2);
+  const contextMove = move(c3, c4);
+
+  // Stromboli haussier
+  if (contextMove < -BODY_TH && dojiMove < DOJI_TH && confirmMove > BODY_TH) {
+    return {
+      direction: 'long',
+      dojiPrice: c2,
+      redCandlePct: (contextMove * 100).toFixed(1),
+      greenCandlePct: (confirmMove * 100).toFixed(1),
+      stopLevel: Math.min(c3, c4) * 0.998, // sous le plus bas approximé
+    };
+  }
+  // Stromboli baissier
+  if (contextMove > BODY_TH && dojiMove < DOJI_TH && confirmMove < -BODY_TH) {
+    return {
+      direction: 'short',
+      dojiPrice: c2,
+      greenCandlePct: (contextMove * 100).toFixed(1),
+      redCandlePct: (confirmMove * 100).toFixed(1),
+      stopLevel: Math.max(c3, c4) * 1.002,
+    };
+  }
   return null;
 }
 
@@ -661,7 +765,7 @@ async function main() {
       icon: '🌿', color: '#84cc16',
       filters: { minConfRank: 2, minADX: 22, minRR: 2.0 },
       atr: { stop: 1.5, tp1: 2.0, tp2: 4.0 },
-      acceptedTypes: ['pullback-haussier', 'breakout-haussier', 'continuation-haussiere', 'rebond-ma50'],
+      acceptedTypes: ['pullback-haussier', 'breakout-haussier', 'continuation-haussiere', 'rebond-ma50', 'stromboli-haussier'],
     },
     {
       id: 'nova', name: 'NOVA', role: 'Le Tacticien',
