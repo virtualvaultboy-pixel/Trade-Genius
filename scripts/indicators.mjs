@@ -89,6 +89,56 @@ export function adx(prices, period = 14) {
   return denom === 0 ? 0 : (Math.abs(plusDI - minusDI) / denom) * 100;
 }
 
+/**
+ * v2.68 — Ichimoku Kinko Hyo (5 lignes japonais)
+ * - Tenkan-sen (9) : (max(9) + min(9)) / 2 — ligne rapide
+ * - Kijun-sen (26) : (max(26) + min(26)) / 2 — ligne de référence
+ * - Senkou Span A : (Tenkan + Kijun) / 2, projeté +26
+ * - Senkou Span B : (max(52) + min(52)) / 2, projeté +26
+ * - Chikou Span : close décalé -26 (lagging)
+ *
+ * Signal pratique :
+ *   - Prix > cloud + Tenkan > Kijun = setup haussier
+ *   - Prix < cloud + Tenkan < Kijun = setup baissier
+ *   - Prix DANS le cloud = indécis (range)
+ */
+export function ichimoku(prices) {
+  if (!prices || prices.length < 52) return null;
+  const hh = (n, end) => {
+    let m = -Infinity;
+    for (let i = end - n; i < end; i++) if (prices[i] > m) m = prices[i];
+    return m;
+  };
+  const ll = (n, end) => {
+    let m = Infinity;
+    for (let i = end - n; i < end; i++) if (prices[i] < m) m = prices[i];
+    return m;
+  };
+  const end = prices.length;
+  const tenkan = (hh(9, end) + ll(9, end)) / 2;
+  const kijun = (hh(26, end) + ll(26, end)) / 2;
+  const spanA = (tenkan + kijun) / 2;
+  const spanB = (hh(52, end) + ll(52, end)) / 2;
+  const cloudHigh = Math.max(spanA, spanB);
+  const cloudLow = Math.min(spanA, spanB);
+  const last = prices[end - 1];
+  // Signal global
+  let signal = 'neutral';
+  let position = 'cloud-inside';
+  if (last > cloudHigh) {
+    position = 'above-cloud';
+    signal = tenkan > kijun ? 'bull' : 'neutral';
+  } else if (last < cloudLow) {
+    position = 'below-cloud';
+    signal = tenkan < kijun ? 'bear' : 'neutral';
+  }
+  return {
+    tenkan, kijun, spanA, spanB, cloudHigh, cloudLow,
+    position, signal,
+    tenkanKijunCross: tenkan > kijun ? 'bull' : 'bear',
+  };
+}
+
 export function atrPct(prices, period = 14) {
   if (prices.length < period + 1) return null;
   const trs = [];
@@ -155,6 +205,10 @@ export function computeAllIndicators(prices) {
 
   const at = atrPct(prices);
   if (at != null) out.atr = { value: at, signal: 'neutral' };
+
+  // v2.68 — Ichimoku Kinko Hyo
+  const ichi = ichimoku(prices);
+  if (ichi) out.ichimoku = ichi;
 
   return out;
 }

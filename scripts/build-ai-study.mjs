@@ -322,6 +322,118 @@ function detectSetup(a) {
   return null;
 }
 
+/**
+ * v2.68 — Détection AGRESSIVE dédiée à KAIRO (Le Chasseur)
+ * Critères plus laxistes : on cherche les rebonds extrêmes, les momentums
+ * vifs, et les zones de retournement potentielles que les autres agents
+ * écarteraient. KAIRO trouve TOUJOURS quelque chose à chasser.
+ */
+function detectAggressiveSetup(a) {
+  if (!a || !a.indRaw || !a.atrAbs) return null;
+  const ind = a.indRaw;
+  const prices = a.prices;
+  const last = prices[prices.length - 1];
+  const atr = a.atrAbs;
+  const rsi = ind.rsi?.value;
+  const ma20 = ind.ma20?.value;
+  const ma50 = ind.ma50?.value;
+
+  function validate(entry, stop, tp1, tp2) {
+    if (stop >= entry) return null;
+    if (tp1 <= entry) return null;
+    if (tp2 <= tp1) return null;
+    const risk = entry - stop;
+    const reward = tp2 - entry;
+    if (reward / risk < 2.0) return null;
+    return { entry, stop, tp1, tp2,
+      rr1: ((tp1 - entry) / risk).toFixed(2),
+      rr2: ((tp2 - entry) / risk).toFixed(2) };
+  }
+
+  // 1) Rebond contrarien sur RSI < 35 (au lieu de 30 strict)
+  if (rsi != null && rsi < 35 && ma50 != null && last > ma50 * 0.88) {
+    const entry = last;
+    const stop = entry - 2 * atr;
+    const tp1 = ma20 && ma20 > entry ? ma20 : entry + 2 * atr;
+    const tp2 = entry + 5 * atr;
+    const v = validate(entry, stop, tp1, tp2);
+    if (v) return Object.assign({}, v, {
+      type: 'kairo-contrarien',
+      label: 'Rebond contrarien agressif',
+      timeframe: 'Court terme · 2-5 jours',
+      confidence: rsi < 28 ? 'high' : 'medium',
+      config: 'RSI ' + rsi.toFixed(0) + ' (zone faible) · prix au-dessus de la MA50 dégradée (' + ma50.toFixed(2) + '). KAIRO chasse le rebond avant que les autres voient venir.',
+      rationale: 'Pari contrarien : RSI bas + actif proche d\'un support clé. Plus risqué que les setups conventionnels mais potentiel de gain x2 ATR si le rebond se matérialise. À surveiller serré, le marché peut continuer sa baisse.',
+      direction: 'long',
+    });
+  }
+
+  // 2) Momentum vif récent : +5% sur 5 jours
+  if (prices.length >= 6) {
+    const p5 = prices.slice(-6);
+    const surge = (p5[5] - p5[0]) / p5[0];
+    if (surge > 0.05 && rsi != null && rsi < 78) {
+      const entry = last;
+      const stop = entry - 2.2 * atr;
+      const tp1 = entry + 2 * atr;
+      const tp2 = entry + 4.5 * atr;
+      const v = validate(entry, stop, tp1, tp2);
+      if (v) return Object.assign({}, v, {
+        type: 'kairo-momentum',
+        label: 'Momentum vif — saute dedans',
+        timeframe: 'Court terme · 1-3 jours',
+        confidence: 'medium',
+        config: 'Surge +' + (surge * 100).toFixed(1) + '% sur 5 jours + RSI ' + rsi.toFixed(0) + '. KAIRO entre dans un mouvement déjà engagé en pariant sur sa continuation.',
+        rationale: 'Stratégie momentum : on saute dans un mouvement vif en pariant sur sa continuation à court terme. Risque : retournement violent si le momentum casse. Stop large à 2.2 ATR.',
+        direction: 'long',
+      });
+    }
+    // Inverse : crash de -5% sur 5 jours = court bearish
+    if (surge < -0.05 && rsi != null && rsi > 22) {
+      const entry = last;
+      const stop = entry + 2.2 * atr;
+      const tp1 = entry - 2 * atr;
+      const tp2 = entry - 4.5 * atr;
+      const reward = entry - tp2;
+      const risk = stop - entry;
+      if (risk > 0 && reward / risk >= 2.0) {
+        return {
+          type: 'kairo-shortMomentum',
+          label: 'Crash vif — short tactique',
+          timeframe: 'Court terme · 1-3 jours',
+          confidence: 'medium',
+          config: 'Plongeon ' + (surge * 100).toFixed(1) + '% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.',
+          rationale: 'Stratégie momentum baissier : on suit le mouvement déjà engagé. Pour les traders qui savent shorter (ou crypto via futures). Sinon : éviter d\'acheter ici et attendre stabilisation.',
+          direction: 'short',
+          entry, stop, tp1, tp2,
+          rr1: ((entry - tp1) / risk).toFixed(2),
+          rr2: (reward / risk).toFixed(2),
+        };
+      }
+    }
+  }
+
+  // 3) Squeeze de volatilité : ATR très bas + Bollinger compressé → cassure proche
+  if (ind.atr && ind.atr.value < 1.5 && ind.boll && ind.boll.value > 0.3 && ind.boll.value < 0.7) {
+    const entry = last;
+    const stop = entry - 2.5 * atr;
+    const tp1 = entry + 2 * atr;
+    const tp2 = entry + 5 * atr;
+    const v = validate(entry, stop, tp1, tp2);
+    if (v) return Object.assign({}, v, {
+      type: 'kairo-squeeze',
+      label: 'Volatilité comprimée — cassure proche',
+      timeframe: 'Court terme · 3-7 jours',
+      confidence: 'medium',
+      config: 'ATR ' + ind.atr.value.toFixed(2) + '% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.',
+      rationale: 'Théorie : la volatilité finit toujours par revenir. Quand l\'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n\'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).',
+      direction: 'long',
+    });
+  }
+
+  return null;
+}
+
 function priceFmt(p, kind) {
   if (p == null) return '—';
   if (p >= 10000) return Math.round(p).toLocaleString('fr-FR');
@@ -618,14 +730,42 @@ async function main() {
     return out;
   }
 
+  // v2.68 — KAIRO a sa propre détection agressive en plus du filtrage standard
+  const kairoExtras = valid
+    .map(a => {
+      // Skip si l'actif a déjà un setup conventionnel (évite doublons)
+      if (setupsAll.some(s => s.asset === a.label)) return null;
+      const s = detectAggressiveSetup(a);
+      if (!s) return null;
+      return {
+        ...s,
+        asset: a.label,
+        kind: a.kind,
+        score: a.score,
+        prices60: a.prices.slice(-60),
+        currency: a.kind === 'crypto' || a.label === 'S&P 500' || a.label === 'Nasdaq' || a.label === 'Dow' ? 'USD' : 'EUR',
+      };
+    })
+    .filter(Boolean);
+
   const agentsOutput = AGENT_PROFILES.map(agent => {
-    const setups = applyAgentProfile(setupsAll, agent);
+    let setups = applyAgentProfile(setupsAll, agent);
+    // KAIRO ajoute ses setups agressifs en plus
+    if (agent.id === 'kairo' && kairoExtras.length > 0) {
+      // Tri : contrarien d'abord (bonus), puis momentum, puis squeeze
+      const ordered = kairoExtras.sort((a, b) => {
+        const order = { 'kairo-contrarien': 3, 'kairo-momentum': 2, 'kairo-shortMomentum': 1, 'kairo-squeeze': 0 };
+        return (order[b.type] || 0) - (order[a.type] || 0);
+      });
+      setups = ordered.concat(setups);
+    }
     return {
       id: agent.id, name: agent.name, role: agent.role, tagline: agent.tagline,
       desc: agent.desc, icon: agent.icon, color: agent.color,
       filters_summary: 'Confidence ≥ ' + ['?','medium','high','very-high'][agent.filters.minConfRank]
         + ' · ADX ≥ ' + agent.filters.minADX
-        + ' · R/R ≥ ' + agent.filters.minRR,
+        + ' · R/R ≥ ' + agent.filters.minRR
+        + (agent.id === 'kairo' ? ' · + détection contrarienne propre' : ''),
       count: setups.length,
       setups: setups.map(s => ({
         asset: s.asset, kind: s.kind, type: s.type, label: s.label,

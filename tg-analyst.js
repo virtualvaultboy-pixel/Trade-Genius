@@ -156,6 +156,25 @@
     if (range === 0) return 0;
     return (Math.abs(upSum - dnSum) / range) * 100;
   }
+  // v2.68 — Ichimoku Kinko Hyo
+  function ichimoku(prices) {
+    if (!prices || prices.length < 52) return null;
+    const hh = (n) => Math.max.apply(null, prices.slice(-n));
+    const ll = (n) => Math.min.apply(null, prices.slice(-n));
+    const tenkan = (hh(9) + ll(9)) / 2;
+    const kijun = (hh(26) + ll(26)) / 2;
+    const spanA = (tenkan + kijun) / 2;
+    const spanB = (hh(52) + ll(52)) / 2;
+    const cloudHigh = Math.max(spanA, spanB);
+    const cloudLow = Math.min(spanA, spanB);
+    const last = _last(prices);
+    let position = 'inside';
+    let signal = 'neutral';
+    if (last > cloudHigh) { position = 'above'; signal = tenkan > kijun ? 'bull' : 'neutral'; }
+    else if (last < cloudLow) { position = 'below'; signal = tenkan < kijun ? 'bear' : 'neutral'; }
+    return { tenkan, kijun, spanA, spanB, cloudHigh, cloudLow, position, signal, tkCross: tenkan > kijun ? 'bull' : 'bear' };
+  }
+
   function computeIndicators(prices, volumes) {
     if (!prices || prices.length < 30) return null;
     const last = _last(prices);
@@ -167,6 +186,7 @@
     const at = atrPct(prices);
     const ax = adx(prices);
     const mom = prices.length > 11 ? ((last - prices[prices.length - 11]) / prices[prices.length - 11]) * 100 : 0;
+    const ichi = ichimoku(prices);
     // v2.67 — Volume : ratio volume actuel / moyenne 20j
     let volRatio = null, lastVol = null, avgVol = null;
     if (Array.isArray(volumes) && volumes.length >= 20) {
@@ -181,7 +201,8 @@
     const fromHigh = ((last - high) / high) * 100;
     const fromLow = ((last - low) / low) * 100;
     return { last, rsi: r, ma20: m20, ma50: m50, macd, boll, atr: at, adx: ax, mom,
-      volRatio, lastVol, avgVol, high, low, fromHigh, fromLow };
+      volRatio, lastVol, avgVol, high, low, fromHigh, fromLow,
+      ichimoku: ichi };
   }
 
   // ───────────────────────────────────────────────────────────────────
@@ -967,6 +988,13 @@
     // v2.68 — ATH / ATL (sur la période fetchée, 90 j)
     if (ind.fromHigh != null) indHTML += indCell('Vs plus haut 90j', ind.fromHigh.toFixed(1) + '%', ind.fromHigh > -5 ? 'bull' : ind.fromHigh < -20 ? 'bear' : '');
     if (ind.fromLow != null)  indHTML += indCell('Vs plus bas 90j', '+' + ind.fromLow.toFixed(1) + '%', ind.fromLow < 5 ? 'bull' : '');
+    // v2.68 — Ichimoku
+    if (ind.ichimoku) {
+      const ich = ind.ichimoku;
+      const posLabel = ich.position === 'above' ? '☁️↑ Au-dessus' : ich.position === 'below' ? '☁️↓ Sous' : '☁ Dans';
+      indHTML += indCell('Ichimoku · Nuage', posLabel, ich.signal);
+      indHTML += indCell('Tenkan/Kijun', ich.tkCross === 'bull' ? '↗ Bull' : '↘ Bear', ich.tkCross);
+    }
     indHTML += '</div>';
 
     return ''
