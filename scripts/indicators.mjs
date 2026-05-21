@@ -151,6 +151,52 @@ export function sma200(prices) {
   return s / 200;
 }
 
+// v2.73 — MA7 (moyenne courte rapide) + direction
+// Retourne { value, slope: 'up'/'down'/'flat' } sur les 3 derniers points
+export function ma7(prices) {
+  if (!prices || prices.length < 10) return null;
+  const sma = (end) => {
+    let s = 0;
+    for (let i = end - 7; i < end; i++) s += prices[i];
+    return s / 7;
+  };
+  const now = sma(prices.length);
+  const prev3 = sma(prices.length - 3);
+  const slope = now > prev3 * 1.003 ? 'up' : now < prev3 * 0.997 ? 'down' : 'flat';
+  return { value: now, slope };
+}
+
+// v2.73 — Direction du cloud Ichimoku (ascendant/descendant/plat)
+// Comparé sur les 5 dernières périodes
+export function ichimokuDirection(prices) {
+  if (!prices || prices.length < 60) return null;
+  const calcCloud = (endIdx) => {
+    const subset = prices.slice(0, endIdx);
+    if (subset.length < 52) return null;
+    const hh = (n) => Math.max.apply(null, subset.slice(-n));
+    const ll = (n) => Math.min.apply(null, subset.slice(-n));
+    const tenkan = (hh(9) + ll(9)) / 2;
+    const kijun = (hh(26) + ll(26)) / 2;
+    const spanA = (tenkan + kijun) / 2;
+    const spanB = (hh(52) + ll(52)) / 2;
+    return { tenkan, kijun, spanA, spanB, cloudMid: (spanA + spanB) / 2 };
+  };
+  const now = calcCloud(prices.length);
+  const prev = calcCloud(prices.length - 5);
+  if (!now || !prev) return null;
+  const cloudGoingUp = now.cloudMid > prev.cloudMid * 1.005;
+  const cloudGoingDown = now.cloudMid < prev.cloudMid * 0.995;
+  const tenkanAboveKijun = now.tenkan > now.kijun;
+  const spanAAboveB = now.spanA > now.spanB; // cloud "vert" = haussier
+  return {
+    direction: cloudGoingUp ? 'up' : cloudGoingDown ? 'down' : 'flat',
+    tenkanAboveKijun,
+    spanAAboveB,
+    fullyBullish: cloudGoingUp && tenkanAboveKijun && spanAAboveB,
+    fullyBearish: cloudGoingDown && !tenkanAboveKijun && !spanAAboveB,
+  };
+}
+
 // VWAP — Volume Weighted Average Price sur N période
 export function vwap(prices, volumes, period = 20) {
   if (!prices || !volumes || prices.length < period) return null;

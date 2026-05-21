@@ -17,6 +17,7 @@ import path from 'node:path';
 import {
   fetchYahooHistorical, fetchCoinGeckoHistorical,
   computeAllIndicators, globalVerdict, atrPct, sma,
+  ma7, ichimokuDirection,
 } from './indicators.mjs';
 
 // v2.60 — Catalogue étendu (52 actifs) : indices monde + actions US/EU
@@ -380,13 +381,22 @@ function detectSetup(a) {
 
 /**
  * v2.69 — Détection STROMBOLI (doji-reversal du formateur IVT Live Trading)
+ * v2.73 — Avec confirmations IVT COMPLÈTES : Ichimoku ascendant + MA7 ascendante
+ *
  * Stromboli haussier  : bougie ROUGE → DOJI → bougie VERTE (confirmation)
  * Stromboli baissier  : bougie VERTE → DOJI → bougie ROUGE (confirmation)
  *
- * Note : on travaille sur close-only (OHLC non récupéré par défaut), donc :
+ * Note : on travaille sur close-only, donc :
  *   - "bougie rouge" = close[t] < close[t-1] de plus de 0.5%
- *   - "doji"         = |close[t] - close[t-1]| / close[t-1] < 0.3% (variation minime)
+ *   - "doji"         = |close[t] - close[t-1]| / close[t-1] < 0.3%
  *   - "bougie verte" = close[t] > close[t-1] de plus de 0.5%
+ *
+ * v2.73 — Le setup "IVT complet" exige EN PLUS :
+ *   - Ichimoku cloud ASCENDANT (cloud direction up)
+ *   - MA7 ASCENDANTE (slope up)
+ *
+ * Si ces 2 confirmations sont là → confidence very-high
+ * Sinon → setup détecté mais confidence medium (à l'utilisateur de décider)
  *
  * Stop = close de la bougie rouge (approximation du low en mode close-only)
  */
@@ -405,24 +415,43 @@ function detectStromboli(prices, atr) {
   const confirmMove = move(c1, c2);
   const contextMove = move(c3, c4);
 
+  // v2.73 — Vérification confirmations IVT (MA7 + Ichimoku ascendants)
+  const ma7Info = ma7(prices);
+  const ichiDir = ichimokuDirection(prices);
+  const ma7Up = ma7Info && ma7Info.slope === 'up';
+  const ma7Down = ma7Info && ma7Info.slope === 'down';
+  const cloudUp = ichiDir && ichiDir.direction === 'up' && ichiDir.tenkanAboveKijun;
+  const cloudDown = ichiDir && ichiDir.direction === 'down' && !ichiDir.tenkanAboveKijun;
+
   // Stromboli haussier
   if (contextMove < -BODY_TH && dojiMove < DOJI_TH && confirmMove > BODY_TH) {
+    const ivtComplete = ma7Up && cloudUp;
     return {
       direction: 'long',
       dojiPrice: c2,
       redCandlePct: (contextMove * 100).toFixed(1),
       greenCandlePct: (confirmMove * 100).toFixed(1),
-      stopLevel: Math.min(c3, c4) * 0.998, // sous le plus bas approximé
+      stopLevel: Math.min(c3, c4) * 0.998,
+      // v2.73 — Nouvelles infos méthodo IVT
+      ivtComplete,
+      ma7Trend: ma7Info ? ma7Info.slope : null,
+      cloudTrend: ichiDir ? ichiDir.direction : null,
+      cloudBullish: cloudUp,
     };
   }
   // Stromboli baissier
   if (contextMove > BODY_TH && dojiMove < DOJI_TH && confirmMove < -BODY_TH) {
+    const ivtCompleteShort = ma7Down && cloudDown;
     return {
       direction: 'short',
       dojiPrice: c2,
       greenCandlePct: (contextMove * 100).toFixed(1),
       redCandlePct: (confirmMove * 100).toFixed(1),
       stopLevel: Math.max(c3, c4) * 1.002,
+      ivtComplete: ivtCompleteShort,
+      ma7Trend: ma7Info ? ma7Info.slope : null,
+      cloudTrend: ichiDir ? ichiDir.direction : null,
+      cloudBearish: cloudDown,
     };
   }
   return null;
@@ -728,6 +757,31 @@ function _detectAtlas(asset) {
   const ind = asset.indRaw;
   const prices = asset.prices;
   if (!ind || !prices || prices.length < 60) return null;
+  // v2.73 — Bonus : si Stromboli IVT COMPLET détecté (3 confirmations alignées),
+  // ATLAS accepte exceptionnellement ce signal premium même sans toutes ses conditions LT
+  const ivt = detectStromboliIVTComplet(asset);
+  if (ivt) {
+    const last = prices[prices.length - 1];
+    const atr = asset.atrAbs;
+    const entry = last;
+    const stop = Math.min(ivt.stopLevel, entry - 1.5 * atr);
+    const tp1 = entry + 3 * atr;
+    const tp2 = entry + 6 * atr;
+    const risk = entry - stop;
+    if (risk > 0 && (tp2 - entry) / risk >= 2.5) {
+      return {
+        type: 'atlas-stromboli-ivt',
+        label: 'Stromboli IVT premium — 3 confirmations',
+        timeframe: 'Swing+ · 2-5 semaines',
+        confidence: 'very-high',
+        config: 'Triple confluence IVT : Stromboli haussier + Ichimoku cloud ascendant + MA7 ascendante.',
+        rationale: 'Le Gardien valide exceptionnellement ce signal court terme parce que les 3 confirmations structurelles sont alignées (ce qui est rare). Stop au plus bas de la bougie rouge. Cible étendue à +6 ATR pour capter les meilleurs mouvements. Sortie discrétionnaire sur le prochain Stromboli baissier OU rupture de MA20.',
+        direction: 'long', entry, stop, tp1, tp2,
+        rr1: ((tp1 - entry) / risk).toFixed(2),
+        rr2: ((tp2 - entry) / risk).toFixed(2),
+      };
+    }
+  }
   const last = prices[prices.length - 1];
   const atr = asset.atrAbs;
   const rsi = ind.rsi?.value;
@@ -782,6 +836,18 @@ function _detectAtlas(asset) {
 }
 
 /**
+ * v2.73 — Détection Stromboli IVT COMPLET (utilisé en bonus par ATLAS et ZEN)
+ * Trouve un Stromboli haussier ET vérifie les 2 confirmations IVT :
+ * Ichimoku cloud ascendant + MA7 ascendante. Si tout aligné, signal premium.
+ */
+function detectStromboliIVTComplet(asset) {
+  if (!asset.prices) return null;
+  const s = detectStromboli(asset.prices, asset.atrAbs);
+  if (!s || s.direction !== 'long' || !s.ivtComplete) return null;
+  return s;
+}
+
+/**
  * ZEN — L'Équilibriste (v2.72)
  * Focus : SWING dans tendance avec ENTRÉE TACTIQUE (VWAP / Stromboli / Pullback)
  * Outils privés : MA20/MA50 + MACD + VWAP (entrée fair-price) + Bollinger pos
@@ -805,20 +871,26 @@ function _detectZen(asset) {
   if (macdH == null || macdH <= 0) return null;
   if (adx < 18) return null;
   // ZEN cherche une entrée tactique parmi 3 voies :
-  // 1) Stromboli haussier détecté (signal pédagogique fort)
+  // 1) Stromboli haussier (avec bonus IVT si Ichimoku + MA7 confirment)
   const stromboli = detectStromboli(prices, atr);
   if (stromboli && stromboli.direction === 'long') {
     const entry = last;
     const stop = Math.min(stromboli.stopLevel, entry - 1.5 * atr);
     const tp1 = entry + 2 * atr;
-    const tp2 = entry + 4 * atr;
+    const tp2 = stromboli.ivtComplete ? entry + 5 * atr : entry + 4 * atr;
     const risk = entry - stop;
     if (risk > 0 && (tp2 - entry) / risk >= 2.0) {
       return {
-        type: 'zen-stromboli', label: 'Stromboli haussier (entrée swing)',
-        timeframe: 'Swing · 1-3 semaines', confidence: 'high',
-        config: 'Doji-reversal validé dans tendance MT haussière. Confirmation MACD>0 + ADX>18.',
-        rationale: 'Entrée tactique sur un signal de retournement court terme dans une tendance MT confirmée. Stop sous le swing low, cible swing avec R/R 1:2 minimum.',
+        type: stromboli.ivtComplete ? 'zen-stromboli-ivt' : 'zen-stromboli',
+        label: stromboli.ivtComplete ? 'Stromboli IVT complet (signal premium)' : 'Stromboli haussier (entrée swing)',
+        timeframe: 'Swing · 1-3 semaines',
+        confidence: stromboli.ivtComplete ? 'very-high' : 'high',
+        config: stromboli.ivtComplete
+          ? 'Triple confluence : Doji-reversal + Ichimoku cloud ascendant + MA7 ascendante. Signal premium.'
+          : 'Doji-reversal validé dans tendance MT haussière. Confirmation MACD>0 + ADX>18.',
+        rationale: stromboli.ivtComplete
+          ? 'Configuration IVT complète : retournement Stromboli + structure Ichimoku haussière (cloud monte) + moyenne mobile courte ascendante. Les 3 confirmations alignées = très haute conviction. Stop sous le swing low, cible étendue +5 ATR. Sortie discrétionnaire au prochain Stromboli baissier (méthode du formateur).'
+          : 'Entrée tactique sur un signal de retournement court terme dans une tendance MT confirmée. Stop sous le swing low, cible swing avec R/R 1:2 minimum.',
         direction: 'long', entry, stop, tp1, tp2,
         rr1: ((tp1 - entry) / risk).toFixed(2),
         rr2: ((tp2 - entry) / risk).toFixed(2),
