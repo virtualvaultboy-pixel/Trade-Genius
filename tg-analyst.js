@@ -17,26 +17,71 @@
   // ───────────────────────────────────────────────────────────────────
   // Catalogue d'actifs (mini-picker)
   // ───────────────────────────────────────────────────────────────────
+  // v2.60 — Catalogue étendu : crypto + indices + actions + forex + métaux
   const CATALOG = [
-    // Crypto (CoinGecko id)
+    // ── Crypto top 16 (CoinGecko id) ──
     { id: 'bitcoin',      label: 'Bitcoin',    sym: 'BTC',  kind: 'crypto', emoji: '₿',  currency: 'USD' },
     { id: 'ethereum',     label: 'Ethereum',   sym: 'ETH',  kind: 'crypto', emoji: 'Ξ',  currency: 'USD' },
     { id: 'solana',       label: 'Solana',     sym: 'SOL',  kind: 'crypto', emoji: '◎',  currency: 'USD' },
     { id: 'binancecoin',  label: 'BNB',        sym: 'BNB',  kind: 'crypto', emoji: '🟡', currency: 'USD' },
-    { id: 'cardano',      label: 'Cardano',    sym: 'ADA',  kind: 'crypto', emoji: '🔷', currency: 'USD' },
     { id: 'ripple',       label: 'XRP',        sym: 'XRP',  kind: 'crypto', emoji: '✕',  currency: 'USD' },
-    // Indices (Yahoo symbol)
-    { id: '^GSPC',  label: 'S&P 500',    sym: 'SPX',   kind: 'index', emoji: '🇺🇸', currency: 'USD' },
-    { id: '^IXIC',  label: 'Nasdaq',     sym: 'NDX',   kind: 'index', emoji: '💻', currency: 'USD' },
-    { id: '^DJI',   label: 'Dow Jones',  sym: 'DJI',   kind: 'index', emoji: '🏛', currency: 'USD' },
-    { id: '^FCHI',  label: 'CAC 40',     sym: 'CAC',   kind: 'index', emoji: '🇫🇷', currency: 'EUR' },
-    { id: '^GDAXI', label: 'DAX',        sym: 'DAX',   kind: 'index', emoji: '🇩🇪', currency: 'EUR' },
-    { id: '^FTSE',  label: 'FTSE 100',   sym: 'UKX',   kind: 'index', emoji: '🇬🇧', currency: 'GBP' },
-    // Actions
-    { id: 'AAPL', label: 'Apple',     sym: 'AAPL', kind: 'action', emoji: '🍎', currency: 'USD' },
-    { id: 'TSLA', label: 'Tesla',     sym: 'TSLA', kind: 'action', emoji: '🚗', currency: 'USD' },
-    { id: 'NVDA', label: 'Nvidia',    sym: 'NVDA', kind: 'action', emoji: '🟢', currency: 'USD' },
-    { id: 'MSFT', label: 'Microsoft', sym: 'MSFT', kind: 'action', emoji: '🪟', currency: 'USD' },
+    { id: 'cardano',      label: 'Cardano',    sym: 'ADA',  kind: 'crypto', emoji: '🔷', currency: 'USD' },
+    { id: 'dogecoin',     label: 'Dogecoin',   sym: 'DOGE', kind: 'crypto', emoji: '🐕', currency: 'USD' },
+    { id: 'avalanche-2',  label: 'Avalanche',  sym: 'AVAX', kind: 'crypto', emoji: '🔺', currency: 'USD' },
+    { id: 'polkadot',     label: 'Polkadot',   sym: 'DOT',  kind: 'crypto', emoji: '⚫', currency: 'USD' },
+    { id: 'chainlink',    label: 'Chainlink',  sym: 'LINK', kind: 'crypto', emoji: '🔗', currency: 'USD' },
+    { id: 'tron',         label: 'TRON',       sym: 'TRX',  kind: 'crypto', emoji: '🎮', currency: 'USD' },
+    { id: 'litecoin',     label: 'Litecoin',   sym: 'LTC',  kind: 'crypto', emoji: 'Ł',  currency: 'USD' },
+    { id: 'uniswap',      label: 'Uniswap',    sym: 'UNI',  kind: 'crypto', emoji: '🦄', currency: 'USD' },
+    { id: 'cosmos',       label: 'Cosmos',     sym: 'ATOM', kind: 'crypto', emoji: '⚛',  currency: 'USD' },
+    { id: 'stellar',      label: 'Stellar',    sym: 'XLM',  kind: 'crypto', emoji: '⭐', currency: 'USD' },
+    { id: 'near',         label: 'NEAR',       sym: 'NEAR', kind: 'crypto', emoji: '🌐', currency: 'USD' },
+    // ── Indices monde (Yahoo symbol) ──
+    { id: '^GSPC',     label: 'S&P 500',       sym: 'SPX',     kind: 'index', emoji: '🇺🇸', currency: 'USD' },
+    { id: '^IXIC',     label: 'Nasdaq',        sym: 'NDX',     kind: 'index', emoji: '💻', currency: 'USD' },
+    { id: '^DJI',      label: 'Dow Jones',     sym: 'DJI',     kind: 'index', emoji: '🏛', currency: 'USD' },
+    { id: '^RUT',      label: 'Russell 2000',  sym: 'RUT',     kind: 'index', emoji: '🏗', currency: 'USD' },
+    { id: '^FCHI',     label: 'CAC 40',        sym: 'CAC',     kind: 'index', emoji: '🇫🇷', currency: 'EUR' },
+    { id: '^GDAXI',    label: 'DAX',           sym: 'DAX',     kind: 'index', emoji: '🇩🇪', currency: 'EUR' },
+    { id: '^FTSE',     label: 'FTSE 100',      sym: 'UKX',     kind: 'index', emoji: '🇬🇧', currency: 'GBP' },
+    { id: '^STOXX50E', label: 'Euro Stoxx 50', sym: 'SX5E',    kind: 'index', emoji: '🇪🇺', currency: 'EUR' },
+    { id: '^N225',     label: 'Nikkei 225',    sym: 'N225',    kind: 'index', emoji: '🇯🇵', currency: 'JPY' },
+    { id: '^HSI',      label: 'Hang Seng',     sym: 'HSI',     kind: 'index', emoji: '🇭🇰', currency: 'HKD' },
+    // ── Actions US blue-chips ──
+    { id: 'AAPL',  label: 'Apple',     sym: 'AAPL',  kind: 'action', emoji: '🍎', currency: 'USD' },
+    { id: 'MSFT',  label: 'Microsoft', sym: 'MSFT',  kind: 'action', emoji: '🪟', currency: 'USD' },
+    { id: 'GOOGL', label: 'Alphabet',  sym: 'GOOGL', kind: 'action', emoji: '🔍', currency: 'USD' },
+    { id: 'AMZN',  label: 'Amazon',    sym: 'AMZN',  kind: 'action', emoji: '📦', currency: 'USD' },
+    { id: 'META',  label: 'Meta',      sym: 'META',  kind: 'action', emoji: '👤', currency: 'USD' },
+    { id: 'NVDA',  label: 'Nvidia',    sym: 'NVDA',  kind: 'action', emoji: '🟢', currency: 'USD' },
+    { id: 'TSLA',  label: 'Tesla',     sym: 'TSLA',  kind: 'action', emoji: '🚗', currency: 'USD' },
+    { id: 'AMD',   label: 'AMD',       sym: 'AMD',   kind: 'action', emoji: '🔴', currency: 'USD' },
+    { id: 'NFLX',  label: 'Netflix',   sym: 'NFLX',  kind: 'action', emoji: '🎬', currency: 'USD' },
+    { id: 'JPM',   label: 'JPMorgan',  sym: 'JPM',   kind: 'action', emoji: '🏦', currency: 'USD' },
+    { id: 'V',     label: 'Visa',      sym: 'V',     kind: 'action', emoji: '💳', currency: 'USD' },
+    { id: 'WMT',   label: 'Walmart',   sym: 'WMT',   kind: 'action', emoji: '🛒', currency: 'USD' },
+    { id: 'KO',    label: 'Coca-Cola', sym: 'KO',    kind: 'action', emoji: '🥤', currency: 'USD' },
+    // ── Actions EU ──
+    { id: 'MC.PA',  label: 'LVMH',           sym: 'MC',    kind: 'action', emoji: '👜', currency: 'EUR' },
+    { id: 'TTE.PA', label: 'TotalEnergies',  sym: 'TTE',   kind: 'action', emoji: '⛽', currency: 'EUR' },
+    { id: 'AIR.PA', label: 'Airbus',         sym: 'AIR',   kind: 'action', emoji: '✈',  currency: 'EUR' },
+    { id: 'SAN.PA', label: 'Sanofi',         sym: 'SAN',   kind: 'action', emoji: '💊', currency: 'EUR' },
+    { id: 'ASML.AS',label: 'ASML',           sym: 'ASML',  kind: 'action', emoji: '🔬', currency: 'EUR' },
+    // ── Forex majors ──
+    { id: 'EURUSD=X', label: 'EUR/USD', sym: 'EURUSD', kind: 'forex', emoji: '💱', currency: 'USD' },
+    { id: 'GBPUSD=X', label: 'GBP/USD', sym: 'GBPUSD', kind: 'forex', emoji: '💱', currency: 'USD' },
+    { id: 'USDJPY=X', label: 'USD/JPY', sym: 'USDJPY', kind: 'forex', emoji: '💱', currency: 'JPY' },
+    { id: 'USDCHF=X', label: 'USD/CHF', sym: 'USDCHF', kind: 'forex', emoji: '💱', currency: 'CHF' },
+    { id: 'AUDUSD=X', label: 'AUD/USD', sym: 'AUDUSD', kind: 'forex', emoji: '💱', currency: 'USD' },
+    { id: 'USDCAD=X', label: 'USD/CAD', sym: 'USDCAD', kind: 'forex', emoji: '💱', currency: 'CAD' },
+    { id: 'EURGBP=X', label: 'EUR/GBP', sym: 'EURGBP', kind: 'forex', emoji: '💱', currency: 'GBP' },
+    { id: 'EURJPY=X', label: 'EUR/JPY', sym: 'EURJPY', kind: 'forex', emoji: '💱', currency: 'JPY' },
+    // ── Métaux & matières premières ──
+    { id: 'GC=F', label: 'Or (Gold)',         sym: 'XAU', kind: 'metal', emoji: '🥇', currency: 'USD' },
+    { id: 'SI=F', label: 'Argent (Silver)',   sym: 'XAG', kind: 'metal', emoji: '🥈', currency: 'USD' },
+    { id: 'PL=F', label: 'Platine',           sym: 'XPT', kind: 'metal', emoji: '⚪', currency: 'USD' },
+    { id: 'PA=F', label: 'Palladium',         sym: 'XPD', kind: 'metal', emoji: '⚫', currency: 'USD' },
+    { id: 'HG=F', label: 'Cuivre',            sym: 'HG',  kind: 'metal', emoji: '🟠', currency: 'USD' },
   ];
 
   // ───────────────────────────────────────────────────────────────────
@@ -382,23 +427,24 @@
   // ───────────────────────────────────────────────────────────────────
   async function fetchPrices(asset) {
     try {
+      // v2.60 — Crypto = CoinGecko ; indices/actions/forex/metal = Yahoo
       if (asset.kind === 'crypto') {
         const url = 'https://api.coingecko.com/api/v3/coins/' + asset.id + '/market_chart?vs_currency=usd&days=90&interval=daily';
         const r = await fetch(url);
         if (!r.ok) throw new Error('CG ' + r.status);
         const j = await r.json();
         return (j.prices || []).map(p => p[1]);
-      } else {
-        const u = 'https://query1.finance.yahoo.com/v8/finance/chart/' + asset.id + '?interval=1d&range=3mo';
-        const proxied = 'https://corsproxy.io/?' + encodeURIComponent(u);
-        const r = await fetch(proxied);
-        if (!r.ok) throw new Error('YF ' + r.status);
-        const j = await r.json();
-        const res = j && j.chart && j.chart.result && j.chart.result[0];
-        if (!res) throw new Error('Bad payload');
-        const closes = (res.indicators && res.indicators.quote && res.indicators.quote[0].close) || [];
-        return closes.filter(v => v != null);
       }
+      // Tout le reste passe par Yahoo (symbol)
+      const u = 'https://query1.finance.yahoo.com/v8/finance/chart/' + asset.id + '?interval=1d&range=3mo';
+      const proxied = 'https://corsproxy.io/?' + encodeURIComponent(u);
+      const r = await fetch(proxied);
+      if (!r.ok) throw new Error('YF ' + r.status);
+      const j = await r.json();
+      const res = j && j.chart && j.chart.result && j.chart.result[0];
+      if (!res) throw new Error('Bad payload');
+      const closes = (res.indicators && res.indicators.quote && res.indicators.quote[0].close) || [];
+      return closes.filter(v => v != null);
     } catch (e) {
       console.warn('fetchPrices failed', e);
       return null;
@@ -686,7 +732,9 @@
       + '<p style="font-size: 12.5px; opacity: 0.75; line-height: 1.5; margin: 0 0 8px;">Je vais scanner les 90 derniers jours de prix, détecter les patterns chartistes, calculer les indicateurs techniques et te donner un verdict clair.</p>'
       + grp('crypto', '⚡ Crypto')
       + grp('index', '📊 Indices')
-      + grp('action', '🏢 Actions');
+      + grp('action', '🏢 Actions')
+      + grp('forex', '💱 Forex')
+      + grp('metal', '🥇 Métaux & matières premières');
   }
 
   async function tgaAnalyze(id) {

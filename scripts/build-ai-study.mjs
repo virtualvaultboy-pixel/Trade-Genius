@@ -19,38 +19,83 @@ import {
   computeAllIndicators, globalVerdict, atrPct, sma,
 } from './indicators.mjs';
 
-// v2.47 — élargissement de la couverture
+// v2.60 — Catalogue étendu (52 actifs) : indices monde + actions US/EU
+//        + crypto top 20 + forex majors + métaux précieux
 const ASSETS = [
-  // Indices US + EU + Asie
-  { kind: 'index',  symbol: '^GSPC', label: 'S&P 500' },
-  { kind: 'index',  symbol: '^IXIC', label: 'Nasdaq' },
-  { kind: 'index',  symbol: '^DJI',  label: 'Dow Jones' },
-  { kind: 'index',  symbol: '^FCHI', label: 'CAC 40' },
-  { kind: 'index',  symbol: '^GDAXI',label: 'DAX' },
-  { kind: 'index',  symbol: '^FTSE', label: 'FTSE 100' },
-  { kind: 'index',  symbol: '^N225', label: 'Nikkei 225' },
-  // Crypto majors
-  { kind: 'crypto', id: 'bitcoin',     label: 'BTC' },
-  { kind: 'crypto', id: 'ethereum',    label: 'ETH' },
-  { kind: 'crypto', id: 'solana',      label: 'SOL' },
-  { kind: 'crypto', id: 'binancecoin', label: 'BNB' },
-  { kind: 'crypto', id: 'cardano',     label: 'ADA' },
-  { kind: 'crypto', id: 'ripple',      label: 'XRP' },
-  // Actions US majors
-  { kind: 'action', symbol: 'AAPL', label: 'Apple' },
-  { kind: 'action', symbol: 'TSLA', label: 'Tesla' },
-  { kind: 'action', symbol: 'NVDA', label: 'Nvidia' },
-  { kind: 'action', symbol: 'MSFT', label: 'Microsoft' },
+  // ── Indices monde ──────────────────────────────────────────
+  { kind: 'index',  symbol: '^GSPC',     label: 'S&P 500' },
+  { kind: 'index',  symbol: '^IXIC',     label: 'Nasdaq' },
+  { kind: 'index',  symbol: '^DJI',      label: 'Dow Jones' },
+  { kind: 'index',  symbol: '^RUT',      label: 'Russell 2000' },
+  { kind: 'index',  symbol: '^FCHI',     label: 'CAC 40' },
+  { kind: 'index',  symbol: '^GDAXI',    label: 'DAX' },
+  { kind: 'index',  symbol: '^FTSE',     label: 'FTSE 100' },
+  { kind: 'index',  symbol: '^STOXX50E', label: 'Euro Stoxx 50' },
+  { kind: 'index',  symbol: '^N225',     label: 'Nikkei 225' },
+  { kind: 'index',  symbol: '^HSI',      label: 'Hang Seng' },
+  // ── Crypto top 20 (CoinGecko) ──────────────────────────────
+  { kind: 'crypto', id: 'bitcoin',         label: 'BTC' },
+  { kind: 'crypto', id: 'ethereum',        label: 'ETH' },
+  { kind: 'crypto', id: 'solana',          label: 'SOL' },
+  { kind: 'crypto', id: 'binancecoin',     label: 'BNB' },
+  { kind: 'crypto', id: 'ripple',          label: 'XRP' },
+  { kind: 'crypto', id: 'cardano',         label: 'ADA' },
+  { kind: 'crypto', id: 'dogecoin',        label: 'DOGE' },
+  { kind: 'crypto', id: 'avalanche-2',     label: 'AVAX' },
+  { kind: 'crypto', id: 'polkadot',        label: 'DOT' },
+  { kind: 'crypto', id: 'chainlink',       label: 'LINK' },
+  { kind: 'crypto', id: 'tron',            label: 'TRX' },
+  { kind: 'crypto', id: 'litecoin',        label: 'LTC' },
+  { kind: 'crypto', id: 'uniswap',         label: 'UNI' },
+  { kind: 'crypto', id: 'cosmos',          label: 'ATOM' },
+  { kind: 'crypto', id: 'stellar',         label: 'XLM' },
+  { kind: 'crypto', id: 'near',            label: 'NEAR' },
+  // ── Actions US blue-chips ──────────────────────────────────
+  { kind: 'action', symbol: 'AAPL',  label: 'Apple' },
+  { kind: 'action', symbol: 'MSFT',  label: 'Microsoft' },
+  { kind: 'action', symbol: 'GOOGL', label: 'Alphabet' },
+  { kind: 'action', symbol: 'AMZN',  label: 'Amazon' },
+  { kind: 'action', symbol: 'META',  label: 'Meta' },
+  { kind: 'action', symbol: 'NVDA',  label: 'Nvidia' },
+  { kind: 'action', symbol: 'TSLA',  label: 'Tesla' },
+  { kind: 'action', symbol: 'AMD',   label: 'AMD' },
+  { kind: 'action', symbol: 'NFLX',  label: 'Netflix' },
+  { kind: 'action', symbol: 'JPM',   label: 'JPMorgan' },
+  { kind: 'action', symbol: 'V',     label: 'Visa' },
+  { kind: 'action', symbol: 'WMT',   label: 'Walmart' },
+  { kind: 'action', symbol: 'KO',    label: 'Coca-Cola' },
+  // ── Actions EU ────────────────────────────────────────────
+  { kind: 'action', symbol: 'MC.PA',  label: 'LVMH' },
+  { kind: 'action', symbol: 'TTE.PA', label: 'TotalEnergies' },
+  { kind: 'action', symbol: 'AIR.PA', label: 'Airbus' },
+  { kind: 'action', symbol: 'SAN.PA', label: 'Sanofi' },
+  { kind: 'action', symbol: 'ASML.AS',label: 'ASML' },
+  // ── Forex majors ──────────────────────────────────────────
+  { kind: 'forex',  symbol: 'EURUSD=X', label: 'EUR/USD' },
+  { kind: 'forex',  symbol: 'GBPUSD=X', label: 'GBP/USD' },
+  { kind: 'forex',  symbol: 'USDJPY=X', label: 'USD/JPY' },
+  { kind: 'forex',  symbol: 'USDCHF=X', label: 'USD/CHF' },
+  { kind: 'forex',  symbol: 'AUDUSD=X', label: 'AUD/USD' },
+  { kind: 'forex',  symbol: 'USDCAD=X', label: 'USD/CAD' },
+  { kind: 'forex',  symbol: 'EURGBP=X', label: 'EUR/GBP' },
+  { kind: 'forex',  symbol: 'EURJPY=X', label: 'EUR/JPY' },
+  // ── Métaux précieux & matières premières ─────────────────
+  { kind: 'metal',  symbol: 'GC=F', label: 'Or (Gold)' },
+  { kind: 'metal',  symbol: 'SI=F', label: 'Argent (Silver)' },
+  { kind: 'metal',  symbol: 'PL=F', label: 'Platine' },
+  { kind: 'metal',  symbol: 'PA=F', label: 'Palladium' },
+  { kind: 'metal',  symbol: 'HG=F', label: 'Cuivre' },
 ];
 
 async function fetchOne(a) {
   try {
-    // v2.49 — Actions ET indices passent par Yahoo (les actions étaient à tort routées vers CoinGecko)
-    if (a.kind === 'index' || a.kind === 'action') {
-      const d = await fetchYahooHistorical(a.symbol, '3mo');
+    // v2.60 — Indices, actions, forex et métaux passent par Yahoo (symbol)
+    // Crypto via CoinGecko (id)
+    if (a.kind === 'crypto') {
+      const d = await fetchCoinGeckoHistorical(a.id, 60);
       return { ...a, prices: d.prices, price: d.price, prevClose: d.prevClose };
     }
-    const d = await fetchCoinGeckoHistorical(a.id, 60);
+    const d = await fetchYahooHistorical(a.symbol, '3mo');
     return { ...a, prices: d.prices, price: d.price, prevClose: d.prevClose };
   } catch (e) {
     console.warn(`Skipping ${a.label}:`, e.message);
@@ -285,19 +330,22 @@ function priceFmt(p, kind) {
   return p.toFixed(4);
 }
 
-// v2.49 — Mixe les actifs : on veut indices + crypto + actions représentés
-function pickMixed(assets, nIdx = 3, nCrypto = 3, nAction = 2) {
+// v2.60 — Mixe les actifs en piochant dans chaque catégorie (indices, crypto,
+// actions, forex, métaux). Garantit que le summary IA mentionne tous les univers.
+function pickMixed(assets, nIdx = 2, nCrypto = 2, nAction = 2, nForex = 1, nMetal = 1) {
   const byKind = (k) => assets.filter(a => a.kind === k);
   const out = [
     ...byKind('index').slice(0, nIdx),
     ...byKind('crypto').slice(0, nCrypto),
     ...byKind('action').slice(0, nAction),
+    ...byKind('forex').slice(0, nForex),
+    ...byKind('metal').slice(0, nMetal),
   ];
-  // Si certaines catégories sont vides, on complète avec d'autres
-  if (out.length < (nIdx + nCrypto + nAction)) {
+  const target = nIdx + nCrypto + nAction + nForex + nMetal;
+  if (out.length < target) {
     for (const a of assets) {
       if (!out.includes(a)) out.push(a);
-      if (out.length >= (nIdx + nCrypto + nAction)) break;
+      if (out.length >= target) break;
     }
   }
   return out;
@@ -478,10 +526,10 @@ async function main() {
   // Setup principal (pour rétrocompat) = celui avec meilleure confidence puis R/R
   const bestSetup = setupsAll[0] || null;
 
-  // v2.56 — Statistiques "Recommandations du jour" basées sur notre analyseur ULTRA FIABLE
+  // v2.56/v2.60 — Statistiques "Recommandations du jour" basées sur notre analyseur ULTRA FIABLE
   const recommended = {
     count: setupsAll.length,
-    byKind: { index: 0, crypto: 0, action: 0 },
+    byKind: { index: 0, crypto: 0, action: 0, forex: 0, metal: 0 },
     byConfidence: { 'very-high': 0, high: 0, medium: 0 },
     assets: setupsAll.map(s => ({
       label: s.asset, kind: s.kind, type: s.type, label_setup: s.label,
