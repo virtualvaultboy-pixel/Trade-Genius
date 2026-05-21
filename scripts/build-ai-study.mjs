@@ -92,134 +92,188 @@ function summarizeAsset(a) {
  * l'analyse technique objective. Pas un conseil personnalise. Le wording
  * dans l'app doit dire 'cas d'ecole', 'configuration observee', etc.
  */
+/**
+ * v2.54 — Mode ULTRA FIABLE
+ *
+ * Chaque setup exige maintenant :
+ *   - Au moins 3 indicateurs cohérents alignés (confirmation multi-facteurs)
+ *   - Aucun signal majeur contradictoire (ex : MA20<entry sur un long mean reversion)
+ *   - Niveaux logiquement valides (TP1 > entry pour long, R/R >= 1.8 sur TP2)
+ *   - Confidence calculée (medium / high / very-high) selon nombre de confirmations
+ *
+ * Si aucun setup ne passe ces filtres, on retourne null. Mieux vaut "rien" qu'un
+ * faux positif comme l'ETH précédent (TP1<entry).
+ */
 function detectSetup(a) {
   if (!a || !a.indRaw || !a.atrAbs) return null;
   const ind = a.indRaw;
-  const last = a.prices[a.prices.length - 1];
+  const prices = a.prices;
+  const last = prices[prices.length - 1];
   const atr = a.atrAbs;
   const rsi = ind.rsi?.value;
   const adx = ind.adx?.value || 0;
+  const ma20 = ind.ma20?.value;
+  const ma50 = ind.ma50?.value;
+  const macdH = ind.macd?.value;
+  const bollPos = ind.boll?.value;
+  const mom = ind.mom?.valuePct;
 
-  // Setup 1 : Rebond survente (RSI <30, Bollinger bande basse)
-  if (rsi != null && rsi < 32 && ind.boll && ind.boll.value < 0.18) {
-    const entry = last;
-    const stop = entry - 1.2 * atr;
-    const tp1Raw = ind.ma20?.value || (entry + 1.5 * atr);
-    const tp2 = entry + 3 * atr;
-    const tp1 = Math.min(tp1Raw, tp2 * 0.95);
-    return {
-      type: 'rebond-survente',
-      label: 'Rebond technique sur survente',
-      timeframe: 'Court terme · 1-3 jours', // v2.47
-      config: 'RSI ' + rsi.toFixed(0) + ' (zone survente) + prix sur bande basse de Bollinger. Configuration que les traders contrarians surveillent.',
-      entry, stop, tp1, tp2,
-      rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
-      rr2: ((tp2 - entry) / (entry - stop)).toFixed(2),
-      rationale: 'Le couple RSI<30 + bande basse Bollinger marque historiquement des zones de rebond technique. Le stop sous le swing low + 1.2 ATR protège contre la continuation. Cible 1 = retour vers la MA20 (mean reversion). Cible 2 = +3 ATR.',
-      direction: 'long',
-    };
+  // Dérivée du MACD (acceleration positive si les 3 dernières barres montent)
+  // Approche simple : on compare le prix actuel au prix d'il y a 3 jours
+  const recentTrend3 = prices.length > 3 ? (last - prices[prices.length - 4]) / prices[prices.length - 4] : 0;
+
+  // Helper : pour qu'un setup soit accepté, il faut un minimum de "score" interne
+  // basé sur le nombre de confirmations. On enregistre la confidence finale.
+  function validateLong(entry, stop, tp1, tp2) {
+    if (stop >= entry) return null;          // stop doit être SOUS entry
+    if (tp1 <= entry) return null;            // TP1 doit être AU-DESSUS pour un long
+    if (tp2 <= tp1) return null;              // TP2 doit être au-dessus de TP1
+    const risk = entry - stop;
+    const reward = tp2 - entry;
+    if (reward / risk < 1.8) return null;     // R/R minimum 1.8:1
+    return { entry, stop, tp1, tp2,
+      rr1: ((tp1 - entry) / risk).toFixed(2),
+      rr2: ((tp2 - entry) / risk).toFixed(2) };
   }
 
-  // Setup 2 : Pullback haussier (prix > MA50, MA20 > MA50, RSI 40-60, MACD ≥ 0)
-  if (ind.maCross?.signal === 'bull' && rsi != null && rsi >= 38 && rsi <= 62 && ind.macd?.value >= 0 && adx > 18) {
+  // ─────────────────────────────────────────────────────────────────
+  // Setup 1 : REBOND SURVENTE (long contrarian, court terme)
+  // Conditions : RSI<30 + Boll<0.15 + MA20>entry (mean reversion possible)
+  //              + dérivée 3j en train de se retourner (recentTrend3 > -2 %)
+  // ─────────────────────────────────────────────────────────────────
+  if (rsi != null && rsi < 30 && bollPos != null && bollPos < 0.15
+      && ma20 != null && ma20 > last
+      && recentTrend3 > -0.025) {
     const entry = last;
     const stop = entry - 1.5 * atr;
-    const tp1 = entry + 1.5 * atr;
-    const tp2 = entry + 3 * atr;
-    return {
-      type: 'pullback-haussier',
-      label: 'Pullback dans une tendance haussière',
-      timeframe: 'Swing · 1-2 semaines', // v2.47
-      config: 'MA20 > MA50 (tendance MT haussière) · RSI ' + rsi.toFixed(0) + ' (neutre, pas surchauffé) · MACD positif · ADX ' + adx.toFixed(0) + ' (tendance présente).',
-      entry, stop, tp1, tp2,
-      rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
-      rr2: ((tp2 - entry) / (entry - stop)).toFixed(2),
-      rationale: 'Schéma classique : tendance haussière confirmée par les MA + momentum sain (RSI neutre) + MACD au-dessus de zéro. Stop technique à 1.5 ATR pour absorber le bruit. Cibles symétriques 1.5 et 3 ATR (R/R 1:1 et 1:2).',
-      direction: 'long',
-    };
-  }
-
-  // Setup 3 : Breakout haussier (RSI > 55, prix > Bollinger upper après compression)
-  if (rsi != null && rsi > 55 && ind.boll && ind.boll.value > 0.85 && ind.atr && ind.atr.value < 4 && adx > 20) {
-    const entry = last;
-    const stop = entry - 2 * atr;
-    const tp1 = entry + 2 * atr;
-    const tp2 = entry + 4 * atr;
-    return {
-      type: 'breakout-haussier',
-      label: 'Cassure haussière sur volatilité contractée',
-      timeframe: 'Trend follow · 2-4 semaines', // v2.47
-      config: 'Prix sur bande haute de Bollinger après période de compression (ATR ' + ind.atr.value.toFixed(1) + '%). RSI ' + rsi.toFixed(0) + ' · ADX ' + adx.toFixed(0) + ' (force confirmée).',
-      entry, stop, tp1, tp2,
-      rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
-      rr2: ((tp2 - entry) / (entry - stop)).toFixed(2),
-      rationale: 'Après une phase de compression (ATR bas), une cassure de la bande haute marque souvent le début d\'une nouvelle phase directionnelle. Le stop sous le niveau de cassure + 2 ATR évite les faux signaux. Cibles symétriques R/R 1:1 et 1:2.',
-      direction: 'long',
-    };
-  }
-
-  // v2.47 — Setup 4 : Continuation haussière douce (RSI sain, ADX moyen, momentum positif)
-  const mom = ind.mom?.valuePct;
-  if (rsi != null && rsi >= 50 && rsi <= 70 && ind.maCross?.signal === 'bull' && mom != null && mom > 0.5 && adx > 14) {
-    const entry = last;
-    const stop = entry - 1.8 * atr;
-    const tp1 = entry + 1.8 * atr;
-    const tp2 = entry + 3.5 * atr;
-    return {
-      type: 'continuation-haussiere',
-      label: 'Continuation dans le mouvement haussier',
-      timeframe: 'Swing · 1-3 semaines',
-      config: 'Tendance positive (MA20 > MA50) · momentum 10j +' + mom.toFixed(1) + '% · RSI ' + rsi.toFixed(0) + ' (zone haussière sans surchauffe extrême).',
-      entry, stop, tp1, tp2,
-      rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
-      rr2: ((tp2 - entry) / (entry - stop)).toFixed(2),
-      rationale: 'Configuration où le marché monte sans être encore en surchauffe. La momentum positive et la MA20 au-dessus de la MA50 indiquent une dynamique acheteuse qui peut continuer.',
-      direction: 'long',
-    };
-  }
-
-  // v2.49 — Setup 5 : Range/Pullback dans tendance, plus permissif
-  // Couvre les cas où prix tient au-dessus de MA50 sans excès
-  if (ind.maCross?.signal === 'bull' && rsi != null && rsi >= 40 && rsi <= 70 && ind.ma20?.signal === 'bull') {
-    const entry = last;
-    const stop = entry - 2 * atr;
-    const tp1 = entry + 2 * atr;
-    const tp2 = entry + 4 * atr;
-    return {
-      type: 'tendance-haussiere-acheteuse',
-      label: 'Tendance acheteuse en place',
-      timeframe: 'Swing · 1-3 semaines',
-      config: 'Prix au-dessus de MA20 et MA20 > MA50 · RSI ' + rsi.toFixed(0) + ' (zone d\'achat sans surchauffe). Configuration de trend follow standard.',
-      entry, stop, tp1, tp2,
-      rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
-      rr2: ((tp2 - entry) / (entry - stop)).toFixed(2),
-      rationale: 'Configuration de tendance haussière confirmée par la position du prix par rapport aux moyennes mobiles. Stop à 2 ATR sous l\'entrée pour absorber la volatilité. Cibles symétriques 2 et 4 ATR.',
-      direction: 'long',
-    };
-  }
-
-  // v2.49 — Setup 6 : Rebond technique sur MA50 (mean reversion soft)
-  // Pour quand le prix touche la MA50 par le haut en tendance positive
-  if (ind.ma50?.value && rsi != null && rsi >= 38 && rsi <= 55 && last <= ind.ma50.value * 1.02 && last >= ind.ma50.value * 0.98) {
-    const entry = last;
-    const stop = ind.ma50.value * 0.97; // sous la MA50
-    const tp1 = entry + 1.5 * atr;
-    const tp2 = entry + 3 * atr;
-    if (entry > stop) {
-      return {
-        type: 'rebond-ma50',
-        label: 'Rebond technique sur la MA50',
-        timeframe: 'Swing · 1-2 semaines',
-        config: 'Prix à ±2% de la MA50 (' + ind.ma50.value.toFixed(2) + ') · RSI ' + rsi.toFixed(0) + ' (sain). La MA50 est souvent un support dynamique dans une tendance haussière.',
-        entry, stop, tp1, tp2,
-        rr1: ((tp1 - entry) / (entry - stop)).toFixed(2),
-        rr2: ((tp2 - entry) / (entry - stop)).toFixed(2),
-        rationale: 'La MA50 est un support technique majeur. Quand le prix la teste sans la casser, c\'est souvent une opportunité d\'entrée pour les acheteurs. Stop technique placé sous le niveau.',
+    const tp1 = Math.min(ma20, entry + 2 * atr); // MA20 garantie > entry maintenant
+    const tp2 = Math.max(entry + 3 * atr, tp1 + atr);
+    const lvl = validateLong(entry, stop, tp1, tp2);
+    if (lvl) {
+      const conf = (rsi < 25 && bollPos < 0.08) ? 'very-high' : 'high';
+      return Object.assign({}, lvl, {
+        type: 'rebond-survente',
+        label: 'Rebond technique sur survente',
+        timeframe: 'Court terme · 1-3 jours',
+        confidence: conf,
+        config: 'RSI ' + rsi.toFixed(0) + ' (vraie survente) · Bollinger ' + (bollPos*100).toFixed(0) + '% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j ' + (recentTrend3*100).toFixed(1) + '%).',
+        rationale: 'Couple RSI<30 + bande basse Bollinger + MA20 au-dessus + plus de continuation baissière = setup contrarian classique. Stop 1.5 ATR sous l\'entrée pour absorber la volatilité de survente. TP1 = retour à la MA20 (mean reversion). TP2 = +3 ATR.',
         direction: 'long',
-      };
+      });
     }
   }
 
+  // ─────────────────────────────────────────────────────────────────
+  // Setup 2 : PULLBACK HAUSSIER (long trend-follow, swing court)
+  // Conditions : MA20>MA50 + prix>=MA50 + RSI 38-60 + MACD>0 + ADX>20 + mom 10j>0
+  // ─────────────────────────────────────────────────────────────────
+  if (ma20 != null && ma50 != null && ma20 > ma50 && last >= ma50
+      && rsi != null && rsi >= 38 && rsi <= 60
+      && macdH != null && macdH > 0
+      && adx > 20
+      && mom != null && mom > 0) {
+    const entry = last;
+    const stop = Math.min(entry - 1.5 * atr, ma50 * 0.985);
+    const tp1 = entry + 1.5 * atr;
+    const tp2 = entry + 3 * atr;
+    const lvl = validateLong(entry, stop, tp1, tp2);
+    if (lvl) {
+      const conf = (adx > 28 && macdH > 0) ? 'very-high' : 'high';
+      return Object.assign({}, lvl, {
+        type: 'pullback-haussier',
+        label: 'Pullback dans une tendance haussière confirmée',
+        timeframe: 'Swing · 1-2 semaines',
+        confidence: conf,
+        config: 'MA20>MA50 (tendance MT) · prix>=MA50 · RSI ' + rsi.toFixed(0) + ' (neutre) · MACD ' + macdH.toFixed(2) + ' (>0) · ADX ' + adx.toFixed(0) + ' (forte tendance) · momentum +' + mom.toFixed(1) + '%.',
+        rationale: '5 confirmations alignées : tendance MT (MA), prix au-dessus du support MA50, RSI neutre (pas surchauffé), MACD positif, ADX fort. Le pullback dans cette config se résout généralement par une continuation haussière.',
+        direction: 'long',
+      });
+    }
+  }
+
+  // ─────────────────────────────────────────────────────────────────
+  // Setup 3 : BREAKOUT HAUSSIER (long trend follow, après compression)
+  // Conditions : RSI 55-70 + Boll>0.85 + ATR<4% + ADX>22 + MA20>MA50 + macd>0
+  // ─────────────────────────────────────────────────────────────────
+  if (rsi != null && rsi >= 55 && rsi <= 70
+      && bollPos != null && bollPos > 0.85
+      && ind.atr && ind.atr.value < 4
+      && adx > 22
+      && ma20 != null && ma50 != null && ma20 > ma50
+      && macdH != null && macdH > 0) {
+    const entry = last;
+    const stop = entry - 2 * atr;
+    const tp1 = entry + 2 * atr;
+    const tp2 = entry + 4 * atr;
+    const lvl = validateLong(entry, stop, tp1, tp2);
+    if (lvl) {
+      return Object.assign({}, lvl, {
+        type: 'breakout-haussier',
+        label: 'Cassure haussière sur volatilité contractée',
+        timeframe: 'Trend follow · 2-4 semaines',
+        confidence: adx > 30 ? 'very-high' : 'high',
+        config: 'Bollinger ' + (bollPos*100).toFixed(0) + '% (bande haute) · ATR ' + ind.atr.value.toFixed(1) + '% (compression) · ADX ' + adx.toFixed(0) + ' (force confirmée) · MA20>MA50 · MACD>0.',
+        rationale: 'Après une phase de compression (ATR bas), la cassure de la bande haute avec ADX>22 et MACD>0 marque souvent le début d\'une nouvelle phase directionnelle. Stop 2 ATR sous l\'entrée pour absorber les faux signaux.',
+        direction: 'long',
+      });
+    }
+  }
+
+  // ─────────────────────────────────────────────────────────────────
+  // Setup 4 : CONTINUATION HAUSSIÈRE (long trend follow)
+  // Conditions : MA20>MA50 + prix>MA20 + RSI 50-68 + mom>1% + ADX>16 + MACD>0
+  // ─────────────────────────────────────────────────────────────────
+  if (ma20 != null && ma50 != null && ma20 > ma50 && last > ma20
+      && rsi != null && rsi >= 50 && rsi <= 68
+      && mom != null && mom > 1
+      && adx > 16
+      && macdH != null && macdH > 0) {
+    const entry = last;
+    const stop = Math.min(entry - 1.8 * atr, ma20 * 0.985);
+    const tp1 = entry + 2 * atr;
+    const tp2 = entry + 4 * atr;
+    const lvl = validateLong(entry, stop, tp1, tp2);
+    if (lvl) {
+      return Object.assign({}, lvl, {
+        type: 'continuation-haussiere',
+        label: 'Continuation dans le mouvement haussier',
+        timeframe: 'Swing · 1-3 semaines',
+        confidence: 'medium',
+        config: 'MA20>MA50 · prix>MA20 · RSI ' + rsi.toFixed(0) + ' (sain) · momentum +' + mom.toFixed(1) + '% · ADX ' + adx.toFixed(0) + ' · MACD>0.',
+        rationale: 'Tendance haussière confirmée par 5 indicateurs alignés. Le marché monte sans être encore en surchauffe, le momentum positif et l\'ADX > 16 indiquent une dynamique acheteuse durable.',
+        direction: 'long',
+      });
+    }
+  }
+
+  // ─────────────────────────────────────────────────────────────────
+  // Setup 5 : REBOND MA50 (long mean reversion swing)
+  // Conditions : MA20>MA50 + prix entre ±1.5 % de MA50 + RSI 40-55 + ADX>14 + MACD>=0
+  // ─────────────────────────────────────────────────────────────────
+  if (ma20 != null && ma50 != null && ma20 > ma50
+      && rsi != null && rsi >= 40 && rsi <= 55
+      && last <= ma50 * 1.015 && last >= ma50 * 0.985
+      && adx > 14
+      && macdH != null && macdH >= 0) {
+    const entry = last;
+    const stop = Math.min(entry - 1.5 * atr, ma50 * 0.97);
+    const tp1 = entry + 1.5 * atr;
+    const tp2 = Math.max(ma20, entry + 3 * atr);
+    const lvl = validateLong(entry, stop, tp1, tp2);
+    if (lvl) {
+      return Object.assign({}, lvl, {
+        type: 'rebond-ma50',
+        label: 'Rebond technique sur la MA50',
+        timeframe: 'Swing · 1-2 semaines',
+        confidence: 'medium',
+        config: 'Prix à ±1.5 % de MA50 (' + ma50.toFixed(2) + ') · MA20>MA50 (tendance préservée) · RSI ' + rsi.toFixed(0) + ' · ADX ' + adx.toFixed(0) + ' · MACD ' + macdH.toFixed(2) + '.',
+        rationale: 'La MA50 est un support dynamique majeur en tendance haussière. Quand le prix la teste précisément sans la casser et que le MACD reste positif, c\'est une zone d\'entrée historiquement favorable.',
+        direction: 'long',
+      });
+    }
+  }
+
+  // Aucun setup propre détecté — on ne fabrique PAS un setup faible
   return null;
 }
 
@@ -401,6 +455,7 @@ async function main() {
   // Chaque actif peut produire 0 ou 1 setup. On expose la liste complète pour
   // que l'utilisateur ait soit notre reco directe (suivre l'IA), soit la matière
   // pour faire sa propre analyse dans Marché en direct.
+  const CONF_RANK = { 'very-high': 3, 'high': 2, 'medium': 1, 'low': 0 };
   const setupsAll = valid
     .map(a => {
       const s = detectSetup(a);
@@ -414,8 +469,13 @@ async function main() {
       };
     })
     .filter(Boolean)
-    .sort((a, b) => Number(b.rr2) - Number(a.rr2));
-  // Setup principal (pour rétrocompat) = celui avec meilleur R/R
+    // v2.54 — Tri par CONFIDENCE puis R/R (pas seulement R/R)
+    .sort((a, b) => {
+      const dc = (CONF_RANK[b.confidence] || 0) - (CONF_RANK[a.confidence] || 0);
+      if (dc !== 0) return dc;
+      return Number(b.rr2) - Number(a.rr2);
+    });
+  // Setup principal (pour rétrocompat) = celui avec meilleure confidence puis R/R
   const bestSetup = setupsAll[0] || null;
 
   const prompt = buildPrompt(valid);
@@ -450,17 +510,19 @@ async function main() {
     verdict: { score: avgScore, cls: avgCls, label: avgLabel },
     assets: assetsClean,
     // v2.44 — liste de TOUS les setups propices (1 par actif max)
+    // v2.54 — confidence exposée
     setups: setupsAll.map(s => ({
       asset: s.asset, kind: s.kind, type: s.type, label: s.label,
-      timeframe: s.timeframe || null,
+      timeframe: s.timeframe || null, confidence: s.confidence || 'medium',
       direction: s.direction, config: s.config, rationale: s.rationale,
       entry: s.entry, stop: s.stop, tp1: s.tp1, tp2: s.tp2,
       rr1: s.rr1, rr2: s.rr2, currency: s.currency,
     })),
-    // Retro-compat : setup principal (le meilleur R/R)
+    // Retro-compat : setup principal (meilleure confidence + R/R)
     setup: bestSetup ? {
       asset: bestSetup.asset, kind: bestSetup.kind, type: bestSetup.type,
       label: bestSetup.label, timeframe: bestSetup.timeframe || null,
+      confidence: bestSetup.confidence || 'medium',
       direction: bestSetup.direction, config: bestSetup.config,
       rationale: bestSetup.rationale, entry: bestSetup.entry, stop: bestSetup.stop,
       tp1: bestSetup.tp1, tp2: bestSetup.tp2, rr1: bestSetup.rr1, rr2: bestSetup.rr2,

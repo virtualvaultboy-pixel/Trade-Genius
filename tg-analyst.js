@@ -250,57 +250,108 @@
   }
 
   // ───────────────────────────────────────────────────────────────────
-  // Verdict tranché "quoi faire" — basé sur indicateurs + patterns
+  // v2.54 — Verdict tranché en mode ULTRA FIABLE
+  // Compte les confirmations alignées (bullish / bearish). Ne tranche que si
+  // on a un alignement net (>= 4 confirmations cohérentes sans contradiction).
+  // Sinon "attendre". Plus de faux signaux.
   // ───────────────────────────────────────────────────────────────────
   function tranchantVerdict(ind, patterns) {
+    // 1) Calcul du score continu (0-100) — pour affichage
     let score = 50;
-    // Indicateurs
     if (ind.rsi != null) {
       if (ind.rsi < 30) score += 12;
       else if (ind.rsi > 70) score -= 12;
       else if (ind.rsi > 55) score += 6;
       else if (ind.rsi < 45) score -= 6;
     }
-    if (ind.ma20 != null && ind.ma50 != null) {
-      if (ind.ma20 > ind.ma50) score += 8;
-      else score -= 8;
-    }
-    if (ind.last != null && ind.ma20 != null) {
-      if (ind.last > ind.ma20) score += 4;
-      else score -= 4;
-    }
+    if (ind.ma20 != null && ind.ma50 != null) score += ind.ma20 > ind.ma50 ? 8 : -8;
+    if (ind.last != null && ind.ma20 != null) score += ind.last > ind.ma20 ? 4 : -4;
     if (ind.macd != null) score += ind.macd > 0 ? 6 : -6;
     if (ind.boll != null) {
       if (ind.boll < 0.15) score += 8;
       else if (ind.boll > 0.85) score -= 8;
     }
     if (ind.mom != null) score += Math.max(-8, Math.min(8, ind.mom));
-    // Patterns
     const bullPat = patterns.filter(p => p.direction === 'bullish').length;
     const bearPat = patterns.filter(p => p.direction === 'bearish').length;
     score += bullPat * 7 - bearPat * 7;
-    // ADX amplifie
     if (ind.adx != null && ind.adx > 25) score = 50 + (score - 50) * 1.2;
     score = Math.round(Math.max(0, Math.min(100, score)));
 
-    let action, headline, cls, color;
-    if (score >= 65) {
-      action = 'long'; cls = 'bull'; color = '#22c55e';
-      headline = '📈 Configuration ACHETEUSE';
-    } else if (score <= 35) {
-      action = 'short'; cls = 'bear'; color = '#ef4444';
-      headline = '📉 Configuration VENDEUSE';
-    } else if (score >= 55) {
-      action = 'long_soft'; cls = 'bull-soft'; color = '#84cc16';
-      headline = '🟢 Biais haussier modéré';
-    } else if (score <= 45) {
-      action = 'short_soft'; cls = 'bear-soft'; color = '#f97316';
-      headline = '🟠 Biais baissier modéré';
-    } else {
-      action = 'wait'; cls = 'neutral'; color = '#facc15';
-      headline = '⏸ Pas de signal clair — Attendre';
+    // 2) Compte des CONFIRMATIONS alignées (strict) — c'est ce qui décide
+    const bullSignals = [];
+    const bearSignals = [];
+    if (ind.rsi != null) {
+      if (ind.rsi >= 50 && ind.rsi <= 70) bullSignals.push('RSI sain (' + ind.rsi.toFixed(0) + ')');
+      else if (ind.rsi < 30) bullSignals.push('RSI survente');
+      else if (ind.rsi > 70) bearSignals.push('RSI surachat');
+      else if (ind.rsi < 50) bearSignals.push('RSI faible (' + ind.rsi.toFixed(0) + ')');
     }
-    return { score, action, headline, cls, color };
+    if (ind.ma20 != null && ind.ma50 != null) {
+      if (ind.ma20 > ind.ma50) bullSignals.push('MA20 > MA50');
+      else bearSignals.push('MA20 < MA50');
+    }
+    if (ind.last != null && ind.ma20 != null) {
+      if (ind.last > ind.ma20) bullSignals.push('Prix > MA20');
+      else bearSignals.push('Prix < MA20');
+    }
+    if (ind.macd != null) {
+      if (ind.macd > 0) bullSignals.push('MACD positif');
+      else bearSignals.push('MACD négatif');
+    }
+    if (ind.mom != null) {
+      if (ind.mom > 1) bullSignals.push('Momentum +' + ind.mom.toFixed(1) + '%');
+      else if (ind.mom < -1) bearSignals.push('Momentum ' + ind.mom.toFixed(1) + '%');
+    }
+    if (ind.boll != null) {
+      if (ind.boll < 0.2) bullSignals.push('Bollinger basse');
+      else if (ind.boll > 0.8) bearSignals.push('Bollinger haute');
+    }
+    if (bullPat > 0) bullSignals.push(bullPat + ' pattern bullish');
+    if (bearPat > 0) bearSignals.push(bearPat + ' pattern bearish');
+    const trendStrong = ind.adx != null && ind.adx > 22;
+
+    const alignedBull = bullSignals.length;
+    const alignedBear = bearSignals.length;
+    const diff = alignedBull - alignedBear;
+
+    let action, headline, cls;
+    // Règle ULTRA FIABLE : tranche seulement si majorité claire ET tendance forte
+    if (diff >= 4 && alignedBear <= 1 && trendStrong) {
+      action = 'long'; cls = 'bull';
+      headline = '📈 Configuration ACHETEUSE — signaux alignés';
+    } else if (diff <= -4 && alignedBull <= 1 && trendStrong) {
+      action = 'short'; cls = 'bear';
+      headline = '📉 Configuration VENDEUSE — signaux alignés';
+    } else if (diff >= 3 && alignedBear <= 2) {
+      action = 'long_soft'; cls = 'bull-soft';
+      headline = '🟢 Biais haussier — attends confirmation';
+    } else if (diff <= -3 && alignedBull <= 2) {
+      action = 'short_soft'; cls = 'bear-soft';
+      headline = '🟠 Biais baissier — pas un bon moment pour acheter';
+    } else {
+      action = 'wait'; cls = 'neutral';
+      headline = '⏸ Signaux contradictoires — Attendre';
+    }
+    return { score, action, headline, cls, alignedBull, alignedBear, bullSignals, bearSignals, trendStrong };
+  }
+
+  // v2.54 — Valide qu'un plan long est cohérent (TP1>entry, stop<entry, R/R≥1.8)
+  function validateLongPlan(entry, stop, tp1, tp2) {
+    if (stop >= entry) return null;
+    if (tp1 <= entry) tp1 = entry + 1.5 * (entry - stop); // force TP1 cohérent
+    if (tp2 <= tp1) tp2 = tp1 + (entry - stop);
+    const rr2 = (tp2 - entry) / (entry - stop);
+    if (rr2 < 1.8) return null;
+    return { entry, stop, tp1, tp2, rr2 };
+  }
+  function validateShortPlan(entry, stop, tp1, tp2) {
+    if (stop <= entry) return null;
+    if (tp1 >= entry) tp1 = entry - 1.5 * (stop - entry);
+    if (tp2 >= tp1) tp2 = tp1 - (stop - entry);
+    const rr2 = (entry - tp2) / (stop - entry);
+    if (rr2 < 1.8) return null;
+    return { entry, stop, tp1, tp2, rr2 };
   }
 
   // Recommandation textuelle pédagogique (AMF-safe)
@@ -495,6 +546,14 @@
     .tga-ind-cell.bull .tga-ind-val { color: #86efac; }
     .tga-ind-cell.bear .tga-ind-val { color: #fca5a5; }
 
+    /* v2.54 — Signaux alignés (transparence sur la décision) */
+    .tga-signals { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 6px; }
+    .tga-sig { font-size: 11px; padding: 4px 8px; border-radius: 6px; font-weight: 600; }
+    .tga-sig.bull { background: rgba(34,197,94,0.12); color: #86efac; border: 1px solid rgba(34,197,94,0.28); }
+    .tga-sig.bear { background: rgba(239,68,68,0.12); color: #fca5a5; border: 1px solid rgba(239,68,68,0.28); }
+    .tga-align { font-size: 11.5px; opacity: 0.8; margin-bottom: 12px; text-align: center; padding: 6px; background: rgba(255,255,255,0.04); border-radius: 6px; }
+    .tga-align strong { color: #fff; }
+
     .tga-disc {
       font-size: 11px; padding: 10px; border-radius: 8px;
       background: rgba(0,0,0,0.32); border-left: 2px solid rgba(250,204,21,0.5);
@@ -647,40 +706,60 @@
   window.tgaAnalyze = tgaAnalyze;
 
   function renderAnalysis(asset, ind, patterns, verdict, reco) {
-    // Plan d'action si direction tranchée
+    // v2.54 — Plan d'action SEULEMENT si direction tranchée (long/short).
+    // Plus de plan pour "wait" ou les "soft" (on évite les fausses pistes).
     let planHTML = '';
     if (verdict.action === 'long' || verdict.action === 'long_soft') {
       const atr = ind.atr ? (ind.atr / 100) * ind.last : ind.last * 0.02;
       const entry = ind.last;
-      const stop = entry - 1.5 * atr;
+      const ma20 = ind.ma20;
+      // Stop : 1.5 ATR sous l'entrée OU sous MA20 si MA20 plus proche
+      const stop = ma20 != null && ma20 < entry
+        ? Math.min(entry - 1.5 * atr, ma20 * 0.99)
+        : entry - 1.5 * atr;
+      // TP1 = +1.5 ATR (toujours > entry), TP2 = +3 ATR
       const tp1 = entry + 1.5 * atr;
       const tp2 = entry + 3 * atr;
-      const rr = ((tp2 - entry) / (entry - stop)).toFixed(2);
-      planHTML = '<div class="tga-section-title">💡 Si tu jouais ce scénario</div>'
-        + '<div class="tga-plan">'
-        +   '<div class="tga-plan-row"><span>Direction</span><strong>📈 Achat (long)</strong></div>'
-        +   '<div class="tga-plan-row"><span>Entrée</span><strong>' + fmtPrice(entry, asset.currency) + '</strong></div>'
-        +   '<div class="tga-plan-row"><span>Stop loss</span><strong>' + fmtPrice(stop, asset.currency) + '</strong></div>'
-        +   '<div class="tga-plan-row"><span>Cible 1</span><strong>' + fmtPrice(tp1, asset.currency) + '</strong></div>'
-        +   '<div class="tga-plan-row"><span>Cible 2</span><strong>' + fmtPrice(tp2, asset.currency) + '</strong></div>'
-        +   '<div class="tga-plan-row"><span>Risk / Reward</span><strong>1:' + rr + '</strong></div>'
-        + '</div>';
+      const plan = validateLongPlan(entry, stop, tp1, tp2);
+      if (plan) {
+        planHTML = '<div class="tga-section-title">💡 Si tu jouais ce scénario</div>'
+          + '<div class="tga-plan">'
+          +   '<div class="tga-plan-row"><span>Direction</span><strong>📈 Achat (long)</strong></div>'
+          +   '<div class="tga-plan-row"><span>Entrée</span><strong>' + fmtPrice(plan.entry, asset.currency) + '</strong></div>'
+          +   '<div class="tga-plan-row"><span>Stop loss</span><strong>' + fmtPrice(plan.stop, asset.currency) + '</strong></div>'
+          +   '<div class="tga-plan-row"><span>Cible 1</span><strong>' + fmtPrice(plan.tp1, asset.currency) + '</strong></div>'
+          +   '<div class="tga-plan-row"><span>Cible 2</span><strong>' + fmtPrice(plan.tp2, asset.currency) + '</strong></div>'
+          +   '<div class="tga-plan-row"><span>Risk / Reward</span><strong>1:' + plan.rr2.toFixed(2) + '</strong></div>'
+          + '</div>';
+      }
     } else if (verdict.action === 'short' || verdict.action === 'short_soft') {
       const atr = ind.atr ? (ind.atr / 100) * ind.last : ind.last * 0.02;
       const entry = ind.last;
       const stop = entry + 1.5 * atr;
       const tp1 = entry - 1.5 * atr;
       const tp2 = entry - 3 * atr;
-      const rr = ((entry - tp2) / (stop - entry)).toFixed(2);
-      planHTML = '<div class="tga-section-title">💡 Si tu jouais ce scénario (vente)</div>'
-        + '<div class="tga-plan">'
-        +   '<div class="tga-plan-row"><span>Direction</span><strong>📉 Vente (short)</strong></div>'
-        +   '<div class="tga-plan-row"><span>Entrée</span><strong>' + fmtPrice(entry, asset.currency) + '</strong></div>'
-        +   '<div class="tga-plan-row"><span>Stop loss</span><strong>' + fmtPrice(stop, asset.currency) + '</strong></div>'
-        +   '<div class="tga-plan-row"><span>Cible 1</span><strong>' + fmtPrice(tp1, asset.currency) + '</strong></div>'
-        +   '<div class="tga-plan-row"><span>Cible 2</span><strong>' + fmtPrice(tp2, asset.currency) + '</strong></div>'
-        +   '<div class="tga-plan-row"><span>Risk / Reward</span><strong>1:' + rr + '</strong></div>'
-        + '</div>';
+      const plan = validateShortPlan(entry, stop, tp1, tp2);
+      if (plan) {
+        planHTML = '<div class="tga-section-title">💡 Si tu jouais ce scénario (vente à découvert)</div>'
+          + '<div class="tga-plan">'
+          +   '<div class="tga-plan-row"><span>Direction</span><strong>📉 Vente (short)</strong></div>'
+          +   '<div class="tga-plan-row"><span>Entrée</span><strong>' + fmtPrice(plan.entry, asset.currency) + '</strong></div>'
+          +   '<div class="tga-plan-row"><span>Stop loss</span><strong>' + fmtPrice(plan.stop, asset.currency) + '</strong></div>'
+          +   '<div class="tga-plan-row"><span>Cible 1</span><strong>' + fmtPrice(plan.tp1, asset.currency) + '</strong></div>'
+          +   '<div class="tga-plan-row"><span>Cible 2</span><strong>' + fmtPrice(plan.tp2, asset.currency) + '</strong></div>'
+          +   '<div class="tga-plan-row"><span>Risk / Reward</span><strong>1:' + plan.rr2.toFixed(2) + '</strong></div>'
+          + '</div>';
+      }
+    }
+
+    // v2.54 — Récap des signaux alignés (transparence sur la décision)
+    let signalsHTML = '';
+    if (verdict.bullSignals && (verdict.bullSignals.length || verdict.bearSignals.length)) {
+      signalsHTML = '<div class="tga-section-title">⚙ Signaux détectés</div><div class="tga-signals">';
+      verdict.bullSignals.forEach(s => signalsHTML += '<span class="tga-sig bull">✓ ' + esc(s) + '</span>');
+      verdict.bearSignals.forEach(s => signalsHTML += '<span class="tga-sig bear">✗ ' + esc(s) + '</span>');
+      signalsHTML += '</div>';
+      signalsHTML += '<div class="tga-align"><strong>' + verdict.alignedBull + '</strong> haussiers · <strong>' + verdict.alignedBear + '</strong> baissiers' + (verdict.trendStrong ? ' · ADX > 22 (tendance forte)' : ' · ADX faible (pas de tendance claire)') + '</div>';
     }
 
     // Patterns
@@ -718,6 +797,7 @@
       +   '<div class="tga-reco-title">📋 Ce que je te recommande</div>'
       +   reco.map(t => '<p>' + esc(t) + '</p>').join('')
       + '</div>'
+      + signalsHTML
       + planHTML
       + patternsHTML
       + indHTML
