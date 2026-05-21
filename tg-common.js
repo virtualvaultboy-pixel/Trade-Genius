@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v2.56';
+export const TG_VERSION = 'v2.57';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -1022,3 +1022,114 @@ function autoInit() {
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', autoInit);
 else autoInit();
+
+/* ═══════════════════════════════════════════════════════════════════
+   v2.57 — Module CURRENCY (sélecteur global de devise)
+   ═══════════════════════════════════════════════════════════════════
+   Permet à l'utilisateur de choisir la devise d'affichage globale :
+   - 'native' (default) : chaque actif dans sa devise naturelle (USD pour
+     crypto/indices US/actions US, EUR pour indices EU)
+   - 'USD' : tout converti en dollars
+   - 'EUR' : tout converti en euros
+
+   Le taux EUR/USD est récupéré depuis frankfurter.app (source ECB,
+   gratuit illimité sans clé). Cache local 1h.
+
+   Émission d'événement 'tg-currency-change' à chaque modification.
+   ═══════════════════════════════════════════════════════════════════ */
+
+const CURRENCY_PREF_KEY = 'tg_pref_currency';
+const FX_CACHE_KEY = 'tg_fx_rates';
+const FX_CACHE_TTL = 60 * 60 * 1000; // 1 heure
+
+function getCurrencyPref() {
+  try { return localStorage.getItem(CURRENCY_PREF_KEY) || 'native'; }
+  catch { return 'native'; }
+}
+function setCurrencyPref(val) {
+  if (!['native', 'USD', 'EUR'].includes(val)) val = 'native';
+  try { localStorage.setItem(CURRENCY_PREF_KEY, val); } catch {}
+  // Trigger un événement custom que les rendus peuvent écouter pour re-render
+  window.dispatchEvent(new CustomEvent('tg-currency-change', { detail: { pref: val } }));
+}
+
+// Récupère le taux de conversion EUR/USD via Frankfurter (ECB, gratuit illimité)
+// Retourne { USD_EUR: 0.92, EUR_USD: 1.087, ts: ... } depuis le cache ou fetch
+async function getExchangeRates() {
+  try {
+    const c = JSON.parse(localStorage.getItem(FX_CACHE_KEY));
+    if (c && c.ts && (Date.now() - c.ts < FX_CACHE_TTL) && c.USD_EUR) return c;
+  } catch {}
+  try {
+    const r = await fetch('https://api.frankfurter.app/latest?from=USD&to=EUR');
+    if (!r.ok) throw new Error('FX ' + r.status);
+    const j = await r.json();
+    const USD_EUR = j && j.rates && j.rates.EUR ? j.rates.EUR : null;
+    if (!USD_EUR) throw new Error('Bad payload');
+    const data = { ts: Date.now(), USD_EUR, EUR_USD: 1 / USD_EUR };
+    try { localStorage.setItem(FX_CACHE_KEY, JSON.stringify(data)); } catch {}
+    return data;
+  } catch (e) {
+    console.warn('FX fetch failed, using fallback rate 0.92', e.message);
+    return { USD_EUR: 0.92, EUR_USD: 1 / 0.92, ts: 0, fallback: true };
+  }
+}
+
+// Convertit une valeur de `from` (USD ou EUR) vers `to` en utilisant les rates en cache
+function _convertSync(value, from, to, rates) {
+  if (!value || !rates || from === to) return value;
+  if (from === 'USD' && to === 'EUR') return value * rates.USD_EUR;
+  if (from === 'EUR' && to === 'USD') return value * rates.EUR_USD;
+  // Autres devises (GBP, JPY) : on garde tel quel par défaut
+  return value;
+}
+
+// Lance un fetch FX au chargement (warm-up cache)
+async function _warmFXCache() {
+  await getExchangeRates();
+}
+
+// Détermine la devise d'affichage selon la pref + devise native d'un actif
+// nativeCur : la devise naturelle de l'actif (USD, EUR, GBP, etc.)
+// Retourne { display: 'USD'/'EUR', symbol: '$'/'€', convert: bool }
+function resolveDisplayCurrency(nativeCur) {
+  const pref = getCurrencyPref();
+  const native = (nativeCur || 'USD').toUpperCase();
+  if (pref === 'native') return { display: native, symbol: _currencySymbol(native), convert: false };
+  return { display: pref, symbol: _currencySymbol(pref), convert: native !== pref };
+}
+
+function _currencySymbol(cur) {
+  return { USD: '$', EUR: '€', GBP: '£', JPY: '¥' }[cur] || cur;
+}
+
+// Format universel : prend une value + sa devise native + retourne string formatée
+// dans la devise d'affichage (selon la préférence utilisateur)
+function formatPriceConverted(value, nativeCur, ratesOpt) {
+  if (value == null || isNaN(value)) return '—';
+  const ctx = resolveDisplayCurrency(nativeCur);
+  let v = value;
+  if (ctx.convert) {
+    const rates = ratesOpt || (window.TG && window.TG.fxRates);
+    if (rates && rates.USD_EUR) {
+      v = _convertSync(value, (nativeCur || 'USD').toUpperCase(), ctx.display, rates);
+    }
+  }
+  let txt;
+  if (v >= 10000) txt = Math.round(v).toLocaleString('fr-FR');
+  else if (v >= 100) txt = v.toFixed(0);
+  else if (v >= 1) txt = v.toFixed(2);
+  else txt = v.toFixed(4);
+  return txt + ' ' + ctx.symbol;
+}
+
+// Expose tout via window.TG
+window.TG = window.TG || {};
+Object.assign(window.TG, {
+  getCurrencyPref, setCurrencyPref,
+  getExchangeRates, resolveDisplayCurrency, formatPriceConverted,
+  fxRates: null, // sera rempli par warm-up
+});
+
+// Warm-up + stockage du rate pour usage sync
+getExchangeRates().then(r => { window.TG.fxRates = r; window.dispatchEvent(new CustomEvent('tg-fx-ready', { detail: r })); });

@@ -424,6 +424,10 @@
   // ───────────────────────────────────────────────────────────────────
   function fmtPrice(p, currency) {
     if (p == null) return '—';
+    // v2.57 — Utilise le formatter central si pref != native
+    if (window.TG && window.TG.formatPriceConverted && window.TG.getCurrencyPref && window.TG.getCurrencyPref() !== 'native') {
+      return window.TG.formatPriceConverted(p, currency || 'USD', window.TG.fxRates);
+    }
     let v;
     if (p >= 10000) v = Math.round(p).toLocaleString('fr-FR');
     else if (p >= 100) v = p.toFixed(0);
