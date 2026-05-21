@@ -707,6 +707,175 @@ async function generateStudy(prompt, valid) {
   }
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   v2.70 — MÉTHODOLOGIES PRIVÉES PAR AGENT
+   ───────────────────────────────────────────────────────────────────
+   Chaque agent applique SA propre logique de détection avec SES outils
+   privilégiés. Aucune information sur les outils utilisés n'est exposée
+   dans le JSON public — c'est la marque de fabrique Trade Genius.
+   Seul le résultat (setup) est partagé avec l'utilisateur.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/**
+ * ATLAS — Le Gardien
+ * Focus : tendance LONG terme structurelle uniquement
+ * Outils internes : Ichimoku (au-dessus du nuage) + MA20>MA50 + ADX>28
+ *                  + RSI 45-65 (sain) + Volume normal+
+ * Refuse tout setup contre-tendance ou contrarian
+ */
+function _detectAtlas(asset) {
+  const ind = asset.indRaw;
+  const prices = asset.prices;
+  if (!ind || !prices || prices.length < 52) return null;
+  const last = prices[prices.length - 1];
+  const atr = asset.atrAbs;
+  const rsi = ind.rsi?.value;
+  const adx = ind.adx?.value || 0;
+  const macdH = ind.macd?.value;
+  const ichi = ind.ichimoku;
+  const ma20 = ind.ma20?.value;
+  const ma50 = ind.ma50?.value;
+  if (!ichi || ichi.position !== 'above-cloud') return null;
+  if (ichi.signal !== 'bull') return null;
+  if (adx < 28) return null;
+  if (!ma20 || !ma50 || ma20 <= ma50) return null;
+  if (last <= ma20) return null;
+  if (rsi == null || rsi < 45 || rsi > 65) return null;
+  if (macdH == null || macdH <= 0) return null;
+  const entry = last;
+  const stop = Math.min(entry - 1.2 * atr, ma20 * 0.99);
+  const tp1 = entry + 2.5 * atr;
+  const tp2 = entry + 4 * atr;
+  const risk = entry - stop;
+  if (risk <= 0 || tp1 <= entry || tp2 <= tp1) return null;
+  if ((tp2 - entry) / risk < 2.5) return null;
+  return {
+    type: 'atlas-tendance', label: 'Tendance long terme confirmée',
+    timeframe: 'Long terme · 2-6 semaines', confidence: 'very-high',
+    config: 'Tous les filtres structurels alignés (tendance MT + force + zone d\'achat).',
+    rationale: 'Configuration acheteuse safe : la structure long terme est complète. Stop technique serré sous la moyenne mobile dynamique.',
+    direction: 'long', entry, stop, tp1, tp2,
+    rr1: ((tp1 - entry) / risk).toFixed(2),
+    rr2: ((tp2 - entry) / risk).toFixed(2),
+  };
+}
+
+/**
+ * ZEN — L'Équilibriste
+ * Focus : SWING dans tendance + setups Stromboli
+ * Outils internes : MA20/MA50 cross + MACD positif + Bollinger position
+ *                  + RSI 40-60 + détection Stromboli
+ */
+function _detectZen(asset) {
+  const ind = asset.indRaw;
+  const prices = asset.prices;
+  if (!ind || !prices || prices.length < 30) return null;
+  const last = prices[prices.length - 1];
+  const atr = asset.atrAbs;
+  const rsi = ind.rsi?.value;
+  const macdH = ind.macd?.value;
+  const ma20 = ind.ma20?.value;
+  const ma50 = ind.ma50?.value;
+  const boll = ind.boll?.value;
+  const adx = ind.adx?.value || 0;
+  if (!ma20 || !ma50 || ma20 <= ma50) return null;
+  if (macdH == null || macdH <= 0) return null;
+  if (adx < 18) return null;
+  // ZEN aime soit pullback dans tendance, soit Stromboli haussier
+  const stromboli = detectStromboli(prices, atr);
+  const isPullback = rsi != null && rsi >= 40 && rsi <= 60 && boll != null && boll >= 0.25 && boll <= 0.55;
+  if (!isPullback && (!stromboli || stromboli.direction !== 'long')) return null;
+  const entry = last;
+  const stop = stromboli && stromboli.direction === 'long'
+    ? Math.min(stromboli.stopLevel, entry - 1.5 * atr)
+    : Math.min(entry - 1.5 * atr, ma50 * 0.985);
+  const tp1 = entry + 2 * atr;
+  const tp2 = entry + 4 * atr;
+  const risk = entry - stop;
+  if (risk <= 0 || tp1 <= entry || tp2 <= tp1) return null;
+  if ((tp2 - entry) / risk < 2.0) return null;
+  return {
+    type: stromboli && stromboli.direction === 'long' ? 'zen-stromboli' : 'zen-pullback',
+    label: stromboli && stromboli.direction === 'long' ? 'Stromboli haussier confirmé' : 'Pullback dans tendance haussière',
+    timeframe: 'Swing · 1-3 semaines', confidence: 'high',
+    config: stromboli && stromboli.direction === 'long' ? 'Configuration de retournement après combat acheteur/vendeur.' : 'Repli sain dans une tendance acheteuse confirmée.',
+    rationale: 'Approche patient : on entre après un signal clair de reprise, avec stop technique. Ratio R/R minimum 1:2.',
+    direction: 'long', entry, stop, tp1, tp2,
+    rr1: ((tp1 - entry) / risk).toFixed(2),
+    rr2: ((tp2 - entry) / risk).toFixed(2),
+  };
+}
+
+/**
+ * NOVA — Le Tacticien
+ * Focus : multi-confirmations équilibrées (le profil polyvalent)
+ * Outils internes : tous les indicateurs, multi-confirmations
+ *                  Utilise detectSetup() standard
+ */
+function _detectNova(asset) {
+  const setup = detectSetup(asset);
+  if (setup) return setup;
+  // Si rien de propre, tente une détection Stromboli en backup
+  const stromboli = detectStromboli(asset.prices, asset.atrAbs);
+  if (stromboli && stromboli.direction === 'long') {
+    const ind = asset.indRaw;
+    if (!ind.maCross || ind.maCross.signal !== 'bull') return null;
+    const last = asset.prices[asset.prices.length - 1];
+    const atr = asset.atrAbs;
+    const entry = last;
+    const stop = stromboli.stopLevel;
+    const tp1 = entry + 2 * atr;
+    const tp2 = entry + 3.5 * atr;
+    const risk = entry - stop;
+    if (risk <= 0 || (tp2 - entry) / risk < 1.8) return null;
+    return {
+      type: 'nova-stromboli', label: 'Stromboli haussier (NOVA)',
+      timeframe: 'Swing · 1-2 semaines', confidence: 'medium',
+      config: 'Setup Stromboli détecté dans tendance MT haussière.',
+      rationale: 'Approche multi-conf : Stromboli + tendance MT confirmée = entrée swing.',
+      direction: 'long', entry, stop, tp1, tp2,
+      rr1: ((tp1 - entry) / risk).toFixed(2),
+      rr2: ((tp2 - entry) / risk).toFixed(2),
+    };
+  }
+  return null;
+}
+
+/**
+ * KAIRO — Le Chasseur
+ * Focus : CONTRARIAN + momentum vif + opportunités cachées
+ * Outils internes : RSI extrême (<35) + Bollinger position + Williams %R
+ *                  + Momentum 5j vif + ATR squeeze
+ * Ignore : ADX (n'a pas besoin de tendance établie)
+ */
+function _detectKairo(asset) {
+  // KAIRO utilise sa propre détection agressive (déjà implémentée v2.68)
+  // + bonus si Stromboli baissier détecté (short tactique)
+  const aggressive = detectAggressiveSetup(asset);
+  if (aggressive) return aggressive;
+  const stromboli = detectStromboli(asset.prices, asset.atrAbs);
+  if (stromboli && stromboli.direction === 'short') {
+    const last = asset.prices[asset.prices.length - 1];
+    const atr = asset.atrAbs;
+    const entry = last;
+    const stop = stromboli.stopLevel;
+    const tp1 = entry - 2 * atr;
+    const tp2 = entry - 4 * atr;
+    const risk = stop - entry;
+    if (risk <= 0 || (entry - tp2) / risk < 2.0) return null;
+    return {
+      type: 'kairo-stromboli-short', label: 'Stromboli baissier (short tactique)',
+      timeframe: 'Court terme · 2-5 jours', confidence: 'medium',
+      config: 'Doji après bougie verte puis bougie rouge — KAIRO joue le retournement.',
+      rationale: 'Short tactique réservé aux comptes qui shortent (futures crypto, CFD). Sinon : signal "sors de ton long".',
+      direction: 'short', entry, stop, tp1, tp2,
+      rr1: ((entry - tp1) / risk).toFixed(2),
+      rr2: ((entry - tp2) / risk).toFixed(2),
+    };
+  }
+  return null;
+}
+
 async function main() {
   console.log('Building AI study…');
   const results = await Promise.all(ASSETS.map(fetchOne));
@@ -834,42 +1003,43 @@ async function main() {
     return out;
   }
 
-  // v2.68 — KAIRO a sa propre détection agressive en plus du filtrage standard
-  const kairoExtras = valid
-    .map(a => {
-      // Skip si l'actif a déjà un setup conventionnel (évite doublons)
-      if (setupsAll.some(s => s.asset === a.label)) return null;
-      const s = detectAggressiveSetup(a);
-      if (!s) return null;
-      return {
-        ...s,
-        asset: a.label,
-        kind: a.kind,
-        score: a.score,
-        prices60: a.prices.slice(-60),
-        currency: a.kind === 'crypto' || a.label === 'S&P 500' || a.label === 'Nasdaq' || a.label === 'Dow' ? 'USD' : 'EUR',
-      };
-    })
-    .filter(Boolean);
+  // v2.70 — Chaque agent applique sa propre méthodologie privée
+  // Le JSON public ne révèle PAS les outils utilisés (marque de fabrique)
+  const _agentDetectors = {
+    atlas: _detectAtlas,
+    zen: _detectZen,
+    nova: _detectNova,
+    kairo: _detectKairo,
+  };
+  function runAgentOnAssets(agentId) {
+    const detect = _agentDetectors[agentId];
+    if (!detect) return [];
+    return valid
+      .map(a => {
+        const s = detect(a);
+        if (!s) return null;
+        return {
+          ...s,
+          asset: a.label, kind: a.kind, score: a.score,
+          prices60: a.prices.slice(-60),
+          currency: a.kind === 'crypto' || a.label === 'S&P 500' || a.label === 'Nasdaq' || a.label === 'Dow' ? 'USD' : 'EUR',
+        };
+      })
+      .filter(Boolean)
+      .sort((a, b) => {
+        const dc = (CONF_RANK[b.confidence] || 0) - (CONF_RANK[a.confidence] || 0);
+        if (dc !== 0) return dc;
+        return Number(b.rr2) - Number(a.rr2);
+      });
+  }
 
   const agentsOutput = AGENT_PROFILES.map(agent => {
-    let setups = applyAgentProfile(setupsAll, agent);
-    // KAIRO ajoute ses setups agressifs en plus
-    if (agent.id === 'kairo' && kairoExtras.length > 0) {
-      // Tri : contrarien d'abord (bonus), puis momentum, puis squeeze
-      const ordered = kairoExtras.sort((a, b) => {
-        const order = { 'kairo-contrarien': 3, 'kairo-momentum': 2, 'kairo-shortMomentum': 1, 'kairo-squeeze': 0 };
-        return (order[b.type] || 0) - (order[a.type] || 0);
-      });
-      setups = ordered.concat(setups);
-    }
+    const setups = runAgentOnAssets(agent.id);
     return {
+      // v2.70 — On expose UNIQUEMENT l'identité publique + les setups
+      // Aucune information sur la méthodologie / outils internes
       id: agent.id, name: agent.name, role: agent.role, tagline: agent.tagline,
       desc: agent.desc, icon: agent.icon, color: agent.color,
-      filters_summary: 'Confidence ≥ ' + ['?','medium','high','very-high'][agent.filters.minConfRank]
-        + ' · ADX ≥ ' + agent.filters.minADX
-        + ' · R/R ≥ ' + agent.filters.minRR
-        + (agent.id === 'kairo' ? ' · + détection contrarienne propre' : ''),
       count: setups.length,
       setups: setups.map(s => ({
         asset: s.asset, kind: s.kind, type: s.type, label: s.label,
