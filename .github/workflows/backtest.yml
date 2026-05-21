@@ -1,0 +1,40 @@
+name: Backtest agents IA
+on:
+  workflow_dispatch: {}
+  schedule:
+    # Tous les dimanches à 04h UTC (6h Paris)
+    - cron: '0 4 * * 0'
+  push:
+    paths:
+      - 'scripts/backtest-agents.mjs'
+      - 'scripts/indicators.mjs'
+      - '.github/workflows/backtest.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run backtest
+        run: node scripts/backtest-agents.mjs
+
+      - name: Commit data/agent-performance.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain data/agent-performance.json)" ]; then
+            git add data/agent-performance.json
+            git commit -m "chore: refresh agent backtest [skip ci]"
+            git push
+          else
+            echo "no change"
+          fi

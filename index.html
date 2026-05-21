@@ -4177,6 +4177,60 @@
   .bbc-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(96,165,250,0.4); }
   .bubble-card.active .bbc-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); }
 
+  /* v2.80 — Carte Performance long terme des agents (backtest hebdo) */
+  .agents-perf-card {
+    margin: 14px 0; padding: 14px 14px 12px; border-radius: 14px;
+    background: linear-gradient(135deg, rgba(132,204,22,0.08), rgba(96,165,250,0.06));
+    border: 1px solid rgba(132,204,22,0.25);
+  }
+  .apc-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .apc-ico { font-size: 22px; }
+  .apc-head-txt { flex: 1; min-width: 0; }
+  .apc-title { font-weight: 700; font-size: 14.5px; color: #f8fafc; }
+  .apc-sub { font-size: 11.5px; opacity: 0.75; margin-top: 1px; }
+  .apc-info-btn {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    color: #f8fafc; border-radius: 8px; padding: 4px 9px; font-size: 12px; cursor: pointer;
+  }
+  .apc-info-btn:hover { background: rgba(255,255,255,0.12); }
+  .apc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .apc-card {
+    padding: 10px 10px 8px; border-radius: 10px;
+    background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.06);
+  }
+  .apc-card-head { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .apc-card-ico { font-size: 16px; }
+  .apc-card-name { font-weight: 700; font-size: 13px; }
+  .apc-card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 8px; font-size: 11.5px; }
+  .apc-stat-lbl { opacity: 0.65; }
+  .apc-stat-val { font-weight: 600; text-align: right; }
+  .apc-stat-val.good { color: #22c55e; }
+  .apc-stat-val.bad { color: #ef4444; }
+  .apc-stat-val.neutral { color: #f8fafc; }
+  .apc-foot {
+    margin-top: 8px; font-size: 10.5px; opacity: 0.6; text-align: center; line-height: 1.4;
+  }
+  .apc-empty { padding: 12px 8px; text-align: center; opacity: 0.7; font-size: 12px; }
+  /* Bottom sheet détail */
+  .apc-sheet-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.65);
+    z-index: 9998; display: none; opacity: 0; transition: opacity 0.18s;
+  }
+  .apc-sheet-backdrop.open { display: block; opacity: 1; }
+  .apc-sheet {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999;
+    background: #0f1416; border-top: 1px solid rgba(132,204,22,0.3);
+    border-radius: 16px 16px 0 0; padding: 18px 16px 22px; max-height: 80vh; overflow-y: auto;
+    transform: translateY(100%); transition: transform 0.22s ease-out;
+  }
+  .apc-sheet.open { transform: translateY(0); }
+  .apc-sheet-title { font-weight: 700; font-size: 16px; margin-bottom: 10px; }
+  .apc-sheet-close { position: absolute; top: 12px; right: 12px; background: none; border: 0; color: #f8fafc; font-size: 22px; cursor: pointer; opacity: 0.7; }
+  .apc-eq-svg { width: 100%; height: 80px; margin: 8px 0 12px; display: block; }
+  .apc-tradelist { font-size: 11.5px; }
+  .apc-tradelist-row { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dashed rgba(255,255,255,0.06); }
+  .apc-tradelist-row:last-child { border-bottom: 0; }
+
   /* v2.61 — Mini-graph SVG dans setup pédago */
   .ai-setup-graph { margin: 8px 0 10px; border-radius: 8px; overflow: hidden; }
   .ai-setup-graph svg { max-width: 100%; }
@@ -4610,7 +4664,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.79</div>
+        <div class="bd-brand-ver" id="bd-version">v2.80</div>
       </div>
     </div>
 
@@ -4896,7 +4950,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=279')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=280')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -4915,7 +4969,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=279')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=280')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -4934,7 +4988,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=279')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=280')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -4953,7 +5007,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=279')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=280')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -4972,7 +5026,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=279')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=280')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -4991,7 +5045,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=279')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=280')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -5011,7 +5065,7 @@
       </div>
 
       <!-- v2.46 — Module 6 : Krachs historiques (Premium, deplace depuis le burger) -->
-      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=279')">
+      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=280')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💥</div>
@@ -5031,7 +5085,7 @@
       </div>
 
       <!-- v2.71 — Module 7 : Patterns Lab (Premium, déplacé depuis le burger) -->
-      <div class="module-card" data-module="7" data-storage="tradegenius_m7_patterns" data-requires="3" style="--module-color: var(--gold);" onclick="openModule(7, 'scene-08.html?v=279')">
+      <div class="module-card" data-module="7" data-storage="tradegenius_m7_patterns" data-requires="3" style="--module-color: var(--gold);" onclick="openModule(7, 'scene-08.html?v=280')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🔬</div>
@@ -5068,7 +5122,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.79</span>
+      <span class="hbb-tag" id="hbb-tag">v2.80</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -5109,13 +5163,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=279'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=280'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=279'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=280'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -5167,7 +5221,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=279'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=280'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -5179,25 +5233,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=279" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=280" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=279" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=280" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 10 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=279" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=280" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=279" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=280" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -5310,7 +5364,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=279'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=280'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -5350,7 +5404,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=279'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=280'">OUVRIR →</button>
         </div>
       </article>
 
@@ -5455,6 +5509,20 @@
         </div>
       </div>
 
+      <!-- v2.80 — Carte Performance long terme des agents (backtest hebdo) -->
+      <div class="agents-perf-card" id="agents-perf-card" style="display:none">
+        <div class="apc-head">
+          <span class="apc-ico">📊</span>
+          <div class="apc-head-txt">
+            <div class="apc-title">Performance long terme · Backtest</div>
+            <div class="apc-sub" id="apc-sub">Win rate & profit factor de chaque agent sur l'historique réel.</div>
+          </div>
+          <button class="apc-info-btn" onclick="openAgentsPerfDetail()" title="Détails">ℹ️</button>
+        </div>
+        <div class="apc-grid" id="apc-grid"></div>
+        <div class="apc-foot" id="apc-foot"></div>
+      </div>
+
       <p class="v-sub">Analyses techniques générées par IA, rafraîchies <strong style="color:var(--gold);">toutes les 15 minutes</strong>.</p>
       <!-- v2.52 — Zone pattern analysis ciblée (déclenchée depuis "🔍 Analyse" sur Mon marché) -->
       <div id="ia-pattern-analysis" style="display:none;"></div>
@@ -5499,22 +5567,22 @@
         <p class="pp-tag">Les modules expert sont débloqués. Bonne exploration.</p>
       </div>
       <div class="pp-unlocked">
-        <a class="pp-unlock-card" href="scene-10.html?v=279">
+        <a class="pp-unlock-card" href="scene-10.html?v=280">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=279">
+        <a class="pp-unlock-card" href="scene-08.html?v=280">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=279">
+        <a class="pp-unlock-card" href="scene-09.html?v=280">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=279">
+        <a class="pp-unlock-card" href="scene-07.html?v=280">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -6637,7 +6705,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=279';
+        location.href = 'scene-10.html?v=280';
       });
       widget._linked = true;
     }
@@ -6690,7 +6758,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=279';
+      location.href = 'scene-05.html?v=280';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -7220,7 +7288,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=279'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=280'; };
         block.style.display = 'block';
         return;
       }
@@ -7262,7 +7330,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=279';
+        card.onclick = () => location.href = 'scene-05.html?v=280';
         block.style.display = 'block';
         return;
       }
@@ -7282,7 +7350,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=279';
+          card.onclick = () => location.href = 'scene-06.html?v=280';
           block.style.display = 'block';
           return;
         }
@@ -7296,7 +7364,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=279';
+        card.onclick = () => location.href = 'scene-06.html?v=280';
         block.style.display = 'block';
         return;
       }
@@ -7311,7 +7379,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=279';
+    card.onclick = () => location.href = 'scene-05.html?v=280';
     block.style.display = 'block';
   }
 
@@ -7798,13 +7866,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=279&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=280&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=279';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=280';
     else showView('premium');
   }
 
@@ -9068,7 +9136,7 @@
         + '<span class="v-placeholder-ico">📓</span>'
         + '<div class="v-placeholder-txt"><strong>Aucune session simu enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=279\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=280\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -9113,7 +9181,7 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=279\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=280\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
   }
@@ -10001,7 +10069,155 @@
   // Init : check la carte bulle quand la vue IA s'ouvre
   window.addEventListener('DOMContentLoaded', () => {
     setTimeout(_updateBubbleCard, 800);
+    setTimeout(loadAgentPerformance, 1200);
   });
+
+  /* ──────────────────────────────────────────────────────────────────
+   * v2.80 — Carte Performance long terme des agents (backtest hebdo)
+   * Lit data/agent-performance.json généré par scripts/backtest-agents.mjs
+   * ────────────────────────────────────────────────────────────────── */
+  let _agentPerfData = null;
+
+  async function loadAgentPerformance() {
+    const card = document.getElementById('agents-perf-card');
+    if (!card) return;
+    try {
+      const bust = Math.floor(Date.now() / (60 * 60 * 1000)); // 1h cache
+      const r = await fetch('./data/agent-performance.json?t=' + bust, { cache: 'no-cache' });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const data = await r.json();
+      _agentPerfData = data;
+      renderAgentsPerfCard(data);
+      card.style.display = '';
+    } catch (e) {
+      // Pas de data encore (1er run du workflow pas encore terminé) → on cache
+      console.info('[agents-perf] data indisponible:', e.message);
+      card.style.display = 'none';
+    }
+  }
+
+  function _agentIco(id) {
+    return ({ atlas: '🛡️', zen: '🌿', nova: '⚡', kairo: '🔥' })[id] || '🤖';
+  }
+  function _agentName(id) {
+    return ({ atlas: 'ATLAS', zen: 'ZEN', nova: 'NOVA', kairo: 'KAIRO' })[id] || id.toUpperCase();
+  }
+
+  function renderAgentsPerfCard(data) {
+    const grid = document.getElementById('apc-grid');
+    const foot = document.getElementById('apc-foot');
+    const sub = document.getElementById('apc-sub');
+    if (!grid || !data || !data.by_agent) return;
+    const order = ['atlas', 'zen', 'nova', 'kairo'];
+    grid.innerHTML = order.map(id => {
+      const a = data.by_agent[id];
+      if (!a) return '';
+      const wrCls = a.win_rate >= 55 ? 'good' : a.win_rate <= 40 ? 'bad' : 'neutral';
+      const pfCls = a.profit_factor === null ? 'neutral' : a.profit_factor >= 1.5 ? 'good' : a.profit_factor < 1 ? 'bad' : 'neutral';
+      const pnlCls = a.total_pnl >= 0 ? 'good' : 'bad';
+      const pfTxt = a.profit_factor === null ? '∞' : a.profit_factor.toFixed(2);
+      return ''
+        + '<div class="apc-card" onclick="openAgentsPerfDetail(\'' + id + '\')" style="cursor:pointer">'
+        +   '<div class="apc-card-head">'
+        +     '<span class="apc-card-ico">' + _agentIco(id) + '</span>'
+        +     '<span class="apc-card-name">' + _agentName(id) + '</span>'
+        +   '</div>'
+        +   '<div class="apc-card-stats">'
+        +     '<span class="apc-stat-lbl">Trades</span><span class="apc-stat-val neutral">' + a.num_trades + '</span>'
+        +     '<span class="apc-stat-lbl">Win rate</span><span class="apc-stat-val ' + wrCls + '">' + a.win_rate + '%</span>'
+        +     '<span class="apc-stat-lbl">Profit factor</span><span class="apc-stat-val ' + pfCls + '">' + pfTxt + '</span>'
+        +     '<span class="apc-stat-lbl">PnL cumulé</span><span class="apc-stat-val ' + pnlCls + '">' + (a.total_pnl >= 0 ? '+' : '') + a.total_pnl.toFixed(1) + 'R</span>'
+        +   '</div>'
+        + '</div>';
+    }).join('');
+    if (data.num_assets && data.period_bars && sub) {
+      const months = Math.round((data.period_bars / 22)); // ~22 bars/mois
+      sub.textContent = `Sur ${data.num_assets} actifs × ${months} mois — recalculé chaque dimanche.`;
+    }
+    if (foot && data.generated) {
+      const dt = new Date(data.generated);
+      foot.textContent = 'Dernier backtest : ' + dt.toLocaleDateString('fr-FR') + ' · PnL en unité de risque (1R = 1× risque par trade)';
+    }
+  }
+
+  function openAgentsPerfDetail(agentId) {
+    if (!_agentPerfData) return;
+    // Si pas d'agentId, ouvre l'agent avec le plus de trades
+    let id = agentId;
+    if (!id || typeof id !== 'string') {
+      const ids = Object.keys(_agentPerfData.by_agent);
+      id = ids.reduce((best, k) => _agentPerfData.by_agent[k].num_trades > (_agentPerfData.by_agent[best]?.num_trades || 0) ? k : best, ids[0]);
+    }
+    const a = _agentPerfData.by_agent[id];
+    if (!a) return;
+    // Build SVG equity curve
+    let svg = '';
+    if (a.equity_curve && a.equity_curve.length > 1) {
+      const ec = a.equity_curve;
+      const min = Math.min(0, ...ec);
+      const max = Math.max(0, ...ec);
+      const range = max - min || 1;
+      const W = 320, H = 80;
+      const pts = ec.map((v, i) => {
+        const x = (i / (ec.length - 1)) * W;
+        const y = H - ((v - min) / range) * H;
+        return x.toFixed(1) + ',' + y.toFixed(1);
+      }).join(' ');
+      const cls = ec[ec.length - 1] >= 0 ? '#22c55e' : '#ef4444';
+      // ligne de zéro
+      const zeroY = (H - ((0 - min) / range) * H).toFixed(1);
+      svg = `<svg class="apc-eq-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">`
+        + `<line x1="0" y1="${zeroY}" x2="${W}" y2="${zeroY}" stroke="rgba(255,255,255,0.15)" stroke-dasharray="2,3"/>`
+        + `<polyline points="${pts}" fill="none" stroke="${cls}" stroke-width="1.5"/>`
+        + `</svg>`;
+    }
+    const byKind = a.byKind || {};
+    const kindRows = ['index', 'crypto', 'action', 'forex', 'metal']
+      .filter(k => byKind[k] && byKind[k].num_trades > 0)
+      .map(k => `<div class="apc-tradelist-row"><span>${k}</span><span>${byKind[k].num_trades} trades · ${byKind[k].win_rate}% win · PF ${byKind[k].profit_factor || '∞'}</span></div>`)
+      .join('');
+    const bestRows = (a.best_trades || []).map(t =>
+      `<div class="apc-tradelist-row"><span>${t.asset} · ${t.type}</span><span class="apc-stat-val good">+${t.pnl}R</span></div>`).join('');
+    const worstRows = (a.worst_trades || []).map(t =>
+      `<div class="apc-tradelist-row"><span>${t.asset} · ${t.type}</span><span class="apc-stat-val bad">${t.pnl}R</span></div>`).join('');
+    const body = ''
+      + '<button class="apc-sheet-close" onclick="closeAgentsPerfDetail()" aria-label="Fermer">✕</button>'
+      + '<div class="apc-sheet-title">' + _agentIco(id) + ' ' + _agentName(id) + ' — performance détaillée</div>'
+      + '<div style="font-size:12px;opacity:0.75;margin-bottom:8px">' + a.num_trades + ' trades · ' + a.win_rate + '% gagnants · expectancy ' + a.expectancy + 'R/trade</div>'
+      + (svg ? '<div style="font-size:11.5px;opacity:0.7;margin-bottom:2px">Courbe d\'équité (cumul R)</div>' + svg : '')
+      + (kindRows ? '<div style="font-size:12px;font-weight:600;margin:8px 0 4px">Par classe d\'actif</div><div class="apc-tradelist">' + kindRows + '</div>' : '')
+      + (bestRows ? '<div style="font-size:12px;font-weight:600;margin:10px 0 4px">Top 5 trades</div><div class="apc-tradelist">' + bestRows + '</div>' : '')
+      + (worstRows ? '<div style="font-size:12px;font-weight:600;margin:10px 0 4px">5 pires trades</div><div class="apc-tradelist">' + worstRows + '</div>' : '');
+    let bd = document.getElementById('apc-sheet-backdrop');
+    let sh = document.getElementById('apc-sheet');
+    if (!bd) {
+      bd = document.createElement('div');
+      bd.id = 'apc-sheet-backdrop';
+      bd.className = 'apc-sheet-backdrop';
+      bd.onclick = closeAgentsPerfDetail;
+      document.body.appendChild(bd);
+    }
+    if (!sh) {
+      sh = document.createElement('div');
+      sh.id = 'apc-sheet';
+      sh.className = 'apc-sheet';
+      document.body.appendChild(sh);
+    }
+    sh.innerHTML = body;
+    requestAnimationFrame(() => {
+      bd.classList.add('open');
+      sh.classList.add('open');
+    });
+  }
+  function closeAgentsPerfDetail() {
+    const bd = document.getElementById('apc-sheet-backdrop');
+    const sh = document.getElementById('apc-sheet');
+    if (bd) bd.classList.remove('open');
+    if (sh) sh.classList.remove('open');
+  }
+  window.openAgentsPerfDetail = openAgentsPerfDetail;
+  window.closeAgentsPerfDetail = closeAgentsPerfDetail;
+  window.loadAgentPerformance = loadAgentPerformance;
 
   async function renderAIStudy() {
     const picker = document.getElementById('ia-agent-picker');
@@ -10250,7 +10466,7 @@
         cls: 'fc-news', label: '📅 Samedi', time: now,
         title: 'Marchés fermés · bon moment pour réviser',
         body: 'Indices et actions ne tournent pas. La crypto, elle, ne dort jamais. Le simulateur attend.',
-        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=279'",
+        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=280'",
       });
     }
 
@@ -10820,11 +11036,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=279';
+      location.href = 'scene-05.html?v=280';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=279';
+      location.href = 'scene-06.html?v=280';
       return;
     }
 
@@ -10847,13 +11063,13 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=279"></script>
-  <script src="tg-analyst.js?v=279"></script>
-  <script src="tg-bubble.js?v=279"></script>
+  <script type="module" src="tg-common.js?v=280"></script>
+  <script src="tg-analyst.js?v=280"></script>
+  <script src="tg-bubble.js?v=280"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=279').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=280').catch(() => {});
       });
     }
   </script>
