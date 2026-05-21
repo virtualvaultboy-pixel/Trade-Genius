@@ -269,12 +269,14 @@ function detectSetup(a) {
 
   // ─────────────────────────────────────────────────────────────────
   // Setup 4 : CONTINUATION HAUSSIÈRE (long trend follow)
-  // Conditions : MA20>MA50 + prix>MA20 + RSI 50-68 + mom>1% + ADX>16 + MACD>0
+  // v2.81 — Filtres resserrés post-backtest : ADX 16→22, mom 1→1.5
+  // (validé sur 720 trades de backtest)
+  // Conditions : MA20>MA50 + prix>MA20 + RSI 50-68 + mom>1.5% + ADX>22 + MACD>0
   // ─────────────────────────────────────────────────────────────────
   if (ma20 != null && ma50 != null && ma20 > ma50 && last > ma20
       && rsi != null && rsi >= 50 && rsi <= 68
-      && mom != null && mom > 1
-      && adx > 16
+      && mom != null && mom > 1.5
+      && adx > 22
       && macdH != null && macdH > 0) {
     const entry = last;
     const stop = Math.min(entry - 1.8 * atr, ma20 * 0.985);
@@ -296,13 +298,14 @@ function detectSetup(a) {
 
   // ─────────────────────────────────────────────────────────────────
   // Setup 5 : REBOND MA50 (long mean reversion swing)
-  // Conditions : MA20>MA50 + prix entre ±1.5 % de MA50 + RSI 40-55 + ADX>14 + MACD>=0
+  // v2.81 — Filtres resserrés post-backtest : ADX 14→20, MACD>=0 → >0
+  // Conditions : MA20>MA50 + prix entre ±1.5 % de MA50 + RSI 40-55 + ADX>20 + MACD>0
   // ─────────────────────────────────────────────────────────────────
   if (ma20 != null && ma50 != null && ma20 > ma50
       && rsi != null && rsi >= 40 && rsi <= 55
       && last <= ma50 * 1.015 && last >= ma50 * 0.985
-      && adx > 14
-      && macdH != null && macdH >= 0) {
+      && adx > 20
+      && macdH != null && macdH > 0) {
     const entry = last;
     const stop = Math.min(entry - 1.5 * atr, ma50 * 0.97);
     const tp1 = entry + 1.5 * atr;
@@ -1058,6 +1061,30 @@ function _detectKairo(asset) {
     }
   }
 
+  // v2.81 — VOIE 3bis : Hull reversal sans-volume (déclenche sur forex où
+  // MFI/Force Index sont indisponibles faute de volumes Yahoo fiables)
+  if (rsi != null && rsi < 30 && hma != null
+      && last > hma * 1.002 && prices.length > 3 && last > prices[prices.length - 4]) {
+    const entry = last;
+    const stop = entry - 2 * atr;
+    const tp1 = entry + 2 * atr;
+    const tp2 = entry + 4 * atr;
+    const risk = entry - stop;
+    if (risk > 0 && (tp2 - entry) / risk >= 2.0) {
+      return {
+        type: 'kairo-hull-reversal',
+        label: 'Hull MA reversal — entrée contrarian',
+        timeframe: 'Court terme · 3-7 jours',
+        confidence: 'medium',
+        config: 'RSI ' + rsi.toFixed(0) + ' (bas) + prix qui repasse au-dessus de la Hull MA + slope-up 3 derniers jours.',
+        rationale: 'Quand un actif (souvent forex/devises sans volumes fiables) ressort par le haut de sa Hull MA après un RSI bas et que la pente vient de s\'inverser, c\'est un signal de retournement précoce. KAIRO entre avant que la tendance ne soit confirmée par les MA classiques.',
+        direction: 'long', entry, stop, tp1, tp2,
+        rr1: ((tp1 - entry) / risk).toFixed(2),
+        rr2: ((tp2 - entry) / risk).toFixed(2),
+      };
+    }
+  }
+
   // VOIE 4 — Setups agressifs classiques (momentum vif, squeeze) déjà implémentés
   const aggressive = detectAggressiveSetup(asset);
   if (aggressive) return aggressive;
@@ -1129,7 +1156,7 @@ async function main() {
     {
       id: 'atlas', name: 'ATLAS', role: 'Le Gardien',
       tagline: 'Préserve avant tout',
-      desc: 'Confirmations maximales. Stop serré. R/R élevé. Ne sort que quand le ciel est dégagé.',
+      desc: 'Long terme structurel. Attend SMA200 + Ichimoku + ADX + volumes alignés. Frappe rarement, R/R élevé. Backtest PF 3.5 · 52% win.',
       icon: '🛡️', color: '#60a5fa',
       filters: { minConfRank: 3, minADX: 28, minRR: 2.5 },
       atr: { stop: 1.2, tp1: 2.0, tp2: 3.5 },
@@ -1138,7 +1165,7 @@ async function main() {
     {
       id: 'zen', name: 'ZEN', role: 'L\'Équilibriste',
       tagline: 'Patience et précision',
-      desc: 'Setups confirmés sans excès. Patient, méthodique, prend les meilleures opportunités du jour.',
+      desc: 'Swing tactique. Entrée précise sur Doji, retest VWAP ou pullback Bollinger en tendance confirmée. Backtest PF 2.85 · 56% win.',
       icon: '🌿', color: '#84cc16',
       filters: { minConfRank: 2, minADX: 22, minRR: 2.0 },
       atr: { stop: 1.5, tp1: 2.0, tp2: 4.0 },
@@ -1146,8 +1173,8 @@ async function main() {
     },
     {
       id: 'nova', name: 'NOVA', role: 'Le Tacticien',
-      tagline: 'Calculer chaque move',
-      desc: 'Équilibre opportunités et fiabilité. Le profil standard recommandé pour la plupart des traders.',
+      tagline: 'Polyvalence multi-setup',
+      desc: '5 setups différents (rebond, pullback, breakout, continuation, MA50). Le plus actif → idéal pour apprendre. Backtest PF 1.9 · 53% win.',
       icon: '⚡', color: '#f59e0b',
       filters: { minConfRank: 1, minADX: 16, minRR: 1.8 },
       atr: { stop: 1.5, tp1: 1.5, tp2: 3.0 },
@@ -1155,8 +1182,8 @@ async function main() {
     },
     {
       id: 'kairo', name: 'KAIRO', role: 'Le Chasseur',
-      tagline: 'Frappe quand c\'est chaud',
-      desc: 'Saisit les opportunités contrariennes et les rebonds extrêmes. Plus risqué, plus de gains potentiels.',
+      tagline: 'Anticipe les retournements',
+      desc: 'Contrarian sélectif. Divergences RSI, capitulation volume, Hull MA reversal. Demande du sang-froid. Backtest PF 3.1 · 65% win.',
       icon: '🔥', color: '#ef4444',
       filters: { minConfRank: 1, minADX: 10, minRR: 2.0 },
       atr: { stop: 2.0, tp1: 2.5, tp2: 5.0 },

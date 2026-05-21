@@ -29,38 +29,72 @@ import {
   computeAllIndicators, atrPct,
 } from './indicators.mjs';
 
-// ── Panier d'actifs pour le backtest (sélection liquide) ─────────────
-// On limite à ~25 pour que le backtest tienne dans le temps imparti du
-// workflow GitHub Actions. Mix indices / crypto / actions / forex / métaux.
+// ── Panier d'actifs étendu (v2.81 — 55 actifs liquides multi-classes) ──
+// Mix indices monde + crypto top 12 + actions US/EU blue-chips + forex
+// majors + matières premières + métaux précieux. Le panier large permet
+// d'avoir des intervalles de confiance plus serrés sur les stats des agents.
 const ASSETS = [
-  // Indices
+  // ── Indices monde (12) ─────────────────────────────────────
   { kind: 'index',  symbol: '^GSPC',     label: 'S&P 500' },
   { kind: 'index',  symbol: '^IXIC',     label: 'Nasdaq' },
   { kind: 'index',  symbol: '^DJI',      label: 'Dow Jones' },
+  { kind: 'index',  symbol: '^RUT',      label: 'Russell 2000' },
   { kind: 'index',  symbol: '^FCHI',     label: 'CAC 40' },
   { kind: 'index',  symbol: '^GDAXI',    label: 'DAX' },
+  { kind: 'index',  symbol: '^FTSE',     label: 'FTSE 100' },
+  { kind: 'index',  symbol: '^STOXX50E', label: 'Euro Stoxx 50' },
   { kind: 'index',  symbol: '^N225',     label: 'Nikkei 225' },
-  // Crypto
+  { kind: 'index',  symbol: '^HSI',      label: 'Hang Seng' },
+  { kind: 'index',  symbol: '^BVSP',     label: 'Bovespa' },
+  { kind: 'index',  symbol: '^AXJO',     label: 'ASX 200' },
+  // ── Crypto top 12 (CoinGecko) ──────────────────────────────
   { kind: 'crypto', id: 'bitcoin',       label: 'BTC' },
   { kind: 'crypto', id: 'ethereum',      label: 'ETH' },
   { kind: 'crypto', id: 'solana',        label: 'SOL' },
   { kind: 'crypto', id: 'binancecoin',   label: 'BNB' },
   { kind: 'crypto', id: 'ripple',        label: 'XRP' },
   { kind: 'crypto', id: 'cardano',       label: 'ADA' },
-  // Actions
+  { kind: 'crypto', id: 'dogecoin',      label: 'DOGE' },
+  { kind: 'crypto', id: 'avalanche-2',   label: 'AVAX' },
+  { kind: 'crypto', id: 'polkadot',      label: 'DOT' },
+  { kind: 'crypto', id: 'chainlink',     label: 'LINK' },
+  { kind: 'crypto', id: 'tron',          label: 'TRX' },
+  { kind: 'crypto', id: 'litecoin',      label: 'LTC' },
+  // ── Actions US blue-chips (15) ─────────────────────────────
   { kind: 'action', symbol: 'AAPL',      label: 'Apple' },
   { kind: 'action', symbol: 'MSFT',      label: 'Microsoft' },
   { kind: 'action', symbol: 'GOOGL',     label: 'Alphabet' },
+  { kind: 'action', symbol: 'AMZN',      label: 'Amazon' },
+  { kind: 'action', symbol: 'META',      label: 'Meta' },
   { kind: 'action', symbol: 'NVDA',      label: 'Nvidia' },
   { kind: 'action', symbol: 'TSLA',      label: 'Tesla' },
-  { kind: 'action', symbol: 'META',      label: 'Meta' },
-  // Forex
+  { kind: 'action', symbol: 'AMD',       label: 'AMD' },
+  { kind: 'action', symbol: 'NFLX',      label: 'Netflix' },
+  { kind: 'action', symbol: 'JPM',       label: 'JPMorgan' },
+  { kind: 'action', symbol: 'V',         label: 'Visa' },
+  { kind: 'action', symbol: 'WMT',       label: 'Walmart' },
+  { kind: 'action', symbol: 'KO',        label: 'Coca-Cola' },
+  { kind: 'action', symbol: 'DIS',       label: 'Disney' },
+  { kind: 'action', symbol: 'JNJ',       label: 'Johnson & J.' },
+  // ── Actions EU (5) ─────────────────────────────────────────
+  { kind: 'action', symbol: 'MC.PA',     label: 'LVMH' },
+  { kind: 'action', symbol: 'TTE.PA',    label: 'TotalEnergies' },
+  { kind: 'action', symbol: 'AIR.PA',    label: 'Airbus' },
+  { kind: 'action', symbol: 'SAN.PA',    label: 'Sanofi' },
+  { kind: 'action', symbol: 'ASML.AS',   label: 'ASML' },
+  // ── Forex majors (6) ───────────────────────────────────────
   { kind: 'forex',  symbol: 'EURUSD=X',  label: 'EUR/USD' },
   { kind: 'forex',  symbol: 'GBPUSD=X',  label: 'GBP/USD' },
   { kind: 'forex',  symbol: 'USDJPY=X',  label: 'USD/JPY' },
-  // Métaux
+  { kind: 'forex',  symbol: 'USDCHF=X',  label: 'USD/CHF' },
+  { kind: 'forex',  symbol: 'AUDUSD=X',  label: 'AUD/USD' },
+  { kind: 'forex',  symbol: 'USDCAD=X',  label: 'USD/CAD' },
+  // ── Métaux & matières premières (5) ────────────────────────
   { kind: 'metal',  symbol: 'GC=F',      label: 'Or' },
   { kind: 'metal',  symbol: 'SI=F',      label: 'Argent' },
+  { kind: 'metal',  symbol: 'HG=F',      label: 'Cuivre' },
+  { kind: 'metal',  symbol: 'CL=F',      label: 'Pétrole WTI' },
+  { kind: 'metal',  symbol: 'BZ=F',      label: 'Brent' },
 ];
 
 const LOOK_AHEAD = 30;   // bars de look-ahead pour résoudre un trade
@@ -108,7 +142,7 @@ function isPonchy(prices, ind, i, atrAbs) {
 }
 
 // ─── ATLAS — Le Gardien (LT, structure complète) ──────────────────────
-function detectAtlas(prices, ind, atrAbs, i) {
+function detectAtlas(prices, ind, atrAbs, i, kind) {
   if (prices.length < 60) return null;
   const last = prices[i];
   // Bonus Ponchy
@@ -159,7 +193,7 @@ function detectAtlas(prices, ind, atrAbs, i) {
 }
 
 // ─── ZEN — L'Équilibriste (3 voies tactiques) ──────────────────────────
-function detectZen(prices, ind, atrAbs, i) {
+function detectZen(prices, ind, atrAbs, i, kind) {
   if (prices.length < 30) return null;
   const last = prices[i];
   const rsi = ind.rsi?.value;
@@ -216,7 +250,9 @@ function detectZen(prices, ind, atrAbs, i) {
 
 // ─── NOVA — Le Tacticien (multi-confirmations équilibrées) ─────────────
 // Reproduit detectSetup() simplifié + fallback Doji
-function detectNova(prices, ind, atrAbs, i) {
+// v2.81 — Filtres resserrés : ADX continuation 16→22, ADX rebond-MA50 14→20,
+//         filtre global ATR<5 (refuse les actifs hyper-volatiles).
+function detectNova(prices, ind, atrAbs, i, kind) {
   if (prices.length < 30) return null;
   const last = prices[i];
   const rsi = ind.rsi?.value;
@@ -269,10 +305,10 @@ function detectNova(prices, ind, atrAbs, i) {
     const r = validate(entry, stop, tp1, tp2);
     if (r) return Object.assign(r, { type: 'breakout' });
   }
-  // Setup 4 : continuation
+  // Setup 4 : continuation (v2.81 — ADX min 22, mom min 1.5)
   if (ma20 && ma50 && ma20 > ma50 && last > ma20
       && rsi != null && rsi >= 50 && rsi <= 68
-      && mom != null && mom > 1 && adx > 16
+      && mom != null && mom > 1.5 && adx > 22
       && macdH != null && macdH > 0) {
     const entry = last;
     const stop = Math.min(entry - 1.8 * atrAbs, ma20 * 0.985);
@@ -281,11 +317,11 @@ function detectNova(prices, ind, atrAbs, i) {
     const r = validate(entry, stop, tp1, tp2);
     if (r) return Object.assign(r, { type: 'continuation' });
   }
-  // Setup 5 : rebond MA50
+  // Setup 5 : rebond MA50 (v2.81 — ADX min 20, MACD>0 strict)
   if (ma20 && ma50 && ma20 > ma50
       && rsi != null && rsi >= 40 && rsi <= 55
       && last <= ma50 * 1.015 && last >= ma50 * 0.985
-      && adx > 14 && macdH != null && macdH >= 0) {
+      && adx > 20 && macdH != null && macdH > 0) {
     const entry = last;
     const stop = Math.min(entry - 1.5 * atrAbs, ma50 * 0.97);
     const tp1 = entry + 1.5 * atrAbs;
@@ -297,7 +333,10 @@ function detectNova(prices, ind, atrAbs, i) {
 }
 
 // ─── KAIRO — Le Chasseur (contrarian) ──────────────────────────────────
-function detectKairo(prices, ind, atrAbs, i) {
+// v2.81 — Ajout voie 3 "sans-volume" pour pouvoir trader le forex (Yahoo
+// ne fournit pas de volumes fiables → MFI/forceIndex undefined → voie 2
+// jamais déclenchée). La voie 3 utilise uniquement RSI + Hull MA.
+function detectKairo(prices, ind, atrAbs, i, kind) {
   if (prices.length < 30) return null;
   const last = prices[i];
   const rsi = ind.rsi?.value;
@@ -318,7 +357,7 @@ function detectKairo(prices, ind, atrAbs, i) {
                rr2: (tp2 - entry) / (entry - stop) };
     }
   }
-  // Voie 2 : capitulation MFI
+  // Voie 2 : capitulation MFI (suppose volumes dispos)
   if (mf != null && mf < 22 && rsi != null && rsi < 40
       && hma && last > hma * 0.97) {
     const entry = last;
@@ -327,6 +366,20 @@ function detectKairo(prices, ind, atrAbs, i) {
     const tp2 = entry + 5 * atrAbs;
     if (stop < entry && tp1 > entry && tp2 > tp1 && (tp2 - entry) / (entry - stop) >= 2.0) {
       return { agent: 'kairo', type: 'capitulation', entry, stop, tp1, tp2,
+               rr1: (tp1 - entry) / (entry - stop),
+               rr2: (tp2 - entry) / (entry - stop) };
+    }
+  }
+  // Voie 3 : retournement Hull MA sans-volume (forex, ou si MFI indispo)
+  // Conditions : RSI bas + bougie qui repasse au-dessus de Hull MA + slope-up
+  if (rsi != null && rsi < 30 && hma != null
+      && last > hma * 1.002 && i > 3 && last > prices[i - 3]) {
+    const entry = last;
+    const stop = entry - 2 * atrAbs;
+    const tp1 = entry + 2 * atrAbs;
+    const tp2 = entry + 4 * atrAbs;
+    if (stop < entry && tp1 > entry && tp2 > tp1 && (tp2 - entry) / (entry - stop) >= 2.0) {
+      return { agent: 'kairo', type: 'hull-reversal', entry, stop, tp1, tp2,
                rr1: (tp1 - entry) / (entry - stop),
                rr2: (tp2 - entry) / (entry - stop) };
     }
@@ -417,7 +470,7 @@ function backtestAsset(asset) {
     const last = subset[subset.length - 1];
     const atrAbs = (atrPctVal / 100) * last;
     for (const ag of AGENTS) {
-      const sig = ag.detect(subset, ind, atrAbs, t);
+      const sig = ag.detect(subset, ind, atrAbs, t, asset.kind);
       if (!sig) continue;
       const res = resolveTrade(prices, t, sig);
       trades.push({
@@ -521,7 +574,7 @@ async function main() {
   for (const a of ASSETS) {
     const r = await fetchAsset(a);
     if (r) fetched.push(r);
-    await new Promise(r => setTimeout(r, 600)); // rate-limit polite
+    await new Promise(r => setTimeout(r, 1200)); // rate-limit polite (CoinGecko free très strict)
   }
   console.log(`[backtest] ${fetched.length}/${ASSETS.length} actifs récupérés`);
   const results = fetched.map(backtestAsset);
