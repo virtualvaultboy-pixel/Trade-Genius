@@ -31,4 +31,8 @@ done
 sed -i "s|tg-common\.js?v=[0-9]*|tg-common.js?v=${VINT}|g" sw.js
 sed -i "s|tg-analyst\.js?v=[0-9]*|tg-analyst.js?v=${VINT}|g" sw.js
 
-echo "Bumped to v$V ($VINT)"
+# 6) v2.59 — Sync auto des badges UI #bd-version et #hbb-tag (était manuel avant)
+sed -i "s|id=\"bd-version\">v[0-9.]*<|id=\"bd-version\">v${V}<|" index.html
+sed -i "s|id=\"hbb-tag\">v[0-9.]*<|id=\"hbb-tag\">v${V}<|" index.html
+
+echo "Bumped to v$V ($VINT) — badges UI inclus"

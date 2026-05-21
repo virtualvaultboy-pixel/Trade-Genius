@@ -1,11 +1,25 @@
 # Trade Genius — Contexte projet
 
-> **Version courante : v2.16** · PWA pédago bourse · 6 modules + simu + biblio + 3 scenes Premium · Infra 0€
+> **Version courante : v2.58** · PWA pédago bourse · 6 modules + simu + biblio + 3 scenes Premium + IA + Pattern Detector · Infra 0€
 
 ## 🎯 Avant tout
 
-1. **Lis `HANDOFF.md`** (228 lignes) — récap complet v1.95→v2.16, architecture, pièges connus, roadmap
+1. **Lis `HANDOFF.md`** — récap complet, architecture, pièges connus, roadmap
 2. **Lis `~/.claude/projects/C--Users-qfichet/memory/project_trade_genius.md`** — résumé synthétique
+
+## ⚡ Nouveautés majeures depuis v2.16
+
+- **v2.18-v2.22** : pivot architectural complet (bottom nav 5 onglets, feed daté, XP/niveaux Duolingo-style)
+- **v2.26-v2.27** : Watchlist + 10 indicateurs techniques calculés client-side
+- **v2.33-v2.35** : Indices live (Yahoo) + actus live (CryptoCompare + Yahoo RSS)
+- **v2.36-v2.38** : Workflows GitHub Actions pour news + daily + décryptages hebdo (illimité gratuit)
+- **v2.39-v2.48** : Onglet IA · études techniques via Pollinations/Groq + setups pédago + affiliation brokers (Binance, Trade Republic)
+- **v2.50** : Pattern detector chartiste (double top/bottom, triangles, tendances HH/HL) + poll quotidien "Devine demain"
+- **v2.51-v2.53** : FAB Analyste IA universel (popup analyse en temps réel d'un actif)
+- **v2.54** : Analyseur ULTRA FIABLE (validateLong, multi-confirmations, TP1>entry, R/R≥1.8 obligatoires)
+- **v2.55** : Cron 15 min + bouton refresh manuel
+- **v2.56** : Carte "Recommandations du jour" issue de l'analyseur
+- **v2.57-v2.58** : Sélecteur de devise global (USD/EUR/Native) + fix taux FX obsolète
 
 ## ⚙️ Règles de communication (Aurélien, dev solo)
 
@@ -57,6 +71,11 @@ git add -A && git commit -m "vX.YZ — message" && git push
 6. **bump.sh** boucle 01-11 + édite tg-common.js + sw.js (mais PAS `#bd-version`/`#hbb-tag` dans index.html — manuel)
 7. **Filesystem Windows case-insensitive** : `HANDOFF.md` est tracké en `handoff.md` par Git
 8. Push direct sur main autorisé (workflow normal, pas de PR)
+9. **Pattern detector** : `detectPatterns()` côté index.html **et** tg-analyst.js — toujours synchroniser les 2. Le `_filterContradictoryPatterns` élimine les bullish+bearish coexistants.
+10. **Setup detection** ULTRA FIABLE (v2.54) : `validateLong()` refuse stop>=entry, TP1<=entry, R/R<1.8. Ne pas relâcher.
+11. **FAB Analyste** (tg-analyst.js) : visible UNIQUEMENT dans view-resultats (MutationObserver sur .active). Pas sur les autres pages.
+12. **Conversion devise** : taux FX via frankfurter.app (BCE) avec fallback Yahoo EURUSD=X. **Jamais de fallback hardcoded** (cf bug v2.57→v2.58 où 0.92 obsolète donnait +7%).
+13. **Workflow ai-study** : cron 15 min (`*/15 * * * *`). Cache local 5 min pour cohérence.
 
 ## 🎓 Freemium philosophie
 
@@ -67,8 +86,19 @@ Pas de paywall sur les bases — c'est non négociable.
 
 ## 🛣️ Roadmap priorité immédiate
 
-1. Test Samsung v2.16 → reporter bugs
-2. Canvas visuels Module 5 (PEA vs CTO croissance composée, comme M4 v2.12)
-3. +5 scenarios simu historiques (1987, 1929, Lehman 2008, COVID 2020, FTX 2022)
+1. **Test Samsung v2.58** → reporter bugs (sélecteur devise, refresh IA, FAB analyste, pattern detector)
+2. **Onboarding 3 écrans** pour nouveaux users (pédagogie + valeur Premium + add-to-home)
+3. **Badges XP** Duolingo-style ("1er trade tracké", "10 patterns analysés", "Streak 7 jours")
+4. **Multi-timeframe** sur le pattern detector (1h / 4h / 1j pour contextualisation)
+5. **Mini-graph SVG** dans le popup IA (60 dernières bougies + lignes neckline/target/stop)
+6. **Notifs push web** quand un pattern apparaît sur la watchlist (Web Push API, sans backend)
+7. **TWA Play Store** soumission (TWA-ready, sans surcouche native)
+8. **Lighthouse audit** + Three.js local (gain ~600 KB initial load)
 
-Pour le détail complet, voir HANDOFF.md section "Roadmap restante".
+## 🚀 Projet long terme (NATIF, hors PWA)
+
+Aurélien envisage une **surcouche d'analyse de graph par-dessus une autre app** (Binance, TradingView mobile).
+**Impossible en PWA pure** : nécessite Android natif (Kotlin/Capacitor) +
+SYSTEM_ALERT_WINDOW + MediaProjection + ML Kit Vision. ~2-3 mois solo. Projet séparé.
+
+Pour le détail complet historique, voir HANDOFF.md.
