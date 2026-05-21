@@ -1,9 +1,10 @@
 name: AI study
 on:
   schedule:
-    # v2.48 — 4 runs par jour pour fraîcheur : 00h, 06h, 12h, 18h UTC
-    # En heure Paris (été) ça donne approximativement : 02h, 08h, 14h, 20h
-    - cron: '0 0,6,12,18 * * *'
+    # v2.55 — Refresh toutes les 15 min (minimum réaliste sur GH Actions, qui
+    # ajoute 5-10 min de latence aux schedules cron). Repo public = gratuit
+    # illimité, donc on peut se le permettre.
+    - cron: '*/15 * * * *'
   push:
     branches: [main]
     paths:

@@ -4062,6 +4062,20 @@
   }
   .v-howto-btn:active { transform: scale(0.92); }
   .v-howto-btn:hover { background: rgba(245,158,11,0.2); }
+  /* v2.55 — Bouton refresh manuel sur la vue IA */
+  .v-refresh-btn {
+    appearance: none; background: rgba(96,165,250,0.10);
+    border: 1px solid rgba(96,165,250,0.4);
+    color: #93c5fd;
+    width: 32px; height: 32px; border-radius: 50%;
+    font-size: 14px; cursor: pointer; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.16s, background 0.18s;
+  }
+  .v-refresh-btn:hover { background: rgba(96,165,250,0.22); }
+  .v-refresh-btn:active { transform: scale(0.92); }
+  .v-refresh-btn.spinning { animation: v-spin 0.8s linear infinite; }
+  @keyframes v-spin { to { transform: rotate(360deg); } }
   .v-sub {
     font-family: var(--font-d); font-size: 14px; color: var(--text-dim);
     margin: 0 0 22px; line-height: 1.4;
@@ -4228,7 +4242,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.54</div>
+        <div class="bd-brand-ver" id="bd-version">v2.55</div>
       </div>
     </div>
 
@@ -4241,8 +4255,8 @@
     <!-- v2.32 — Section 'Apprendre' (M0-M5) retiree : redondant avec l'onglet Formation -->
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=254')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=254')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=255')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=255')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
     <!-- v2.46 — 'Krachs historiques' retiré du burger (deplace en Module 6 dans Formation) -->
     <!-- v2.44 — 'Coach IA · Bientôt' retire du burger (deja accessible via l'onglet IA en bottom-nav) -->
 
@@ -4498,7 +4512,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=254')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=255')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -4517,7 +4531,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=254')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=255')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -4536,7 +4550,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=254')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=255')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -4555,7 +4569,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=254')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=255')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -4574,7 +4588,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=254')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=255')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -4593,7 +4607,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=254')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=255')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -4613,7 +4627,7 @@
       </div>
 
       <!-- v2.46 — Module 6 : Krachs historiques (Premium, deplace depuis le burger) -->
-      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=254')">
+      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=255')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💥</div>
@@ -4650,7 +4664,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.54</span>
+      <span class="hbb-tag" id="hbb-tag">v2.55</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -4691,13 +4705,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=254'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=255'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=254'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=255'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -4749,7 +4763,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=254'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=255'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -4761,25 +4775,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=254" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=255" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=254" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=255" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 10 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=254" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=255" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=254" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=255" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -4889,7 +4903,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=254'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=255'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -4918,7 +4932,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=254'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=255'">OUVRIR →</button>
         </div>
       </article>
 
@@ -4961,9 +4975,12 @@
   <div id="view-resultats" class="view">
     <div class="v-head-row">
       <h1 class="v-head" style="margin:0;">🤖 Études <em style="color:var(--gold);font-style:normal;">IA</em>.</h1>
-      <button class="v-howto-btn" onclick="openAIHowto()" aria-label="Comment ça marche">?</button>
+      <div style="display:flex;gap:6px;align-items:center;">
+        <button class="v-refresh-btn" onclick="refreshAIStudyNow()" aria-label="Rafraîchir maintenant" title="Rafraîchir maintenant">🔄</button>
+        <button class="v-howto-btn" onclick="openAIHowto()" aria-label="Comment ça marche">?</button>
+      </div>
     </div>
-    <p class="v-sub">Analyses techniques générées par IA chaque jour à la clôture US. <strong style="color:var(--gold);">Plan d'action pédagogique complet</strong> en Premium.</p>
+    <p class="v-sub">Analyses techniques générées par IA, rafraîchies <strong style="color:var(--gold);">toutes les 15 minutes</strong>. <strong style="color:var(--gold);">Plan d'action complet</strong> en Premium.</p>
     <!-- v2.52 — Zone pattern analysis ciblée (déclenchée depuis "🔍 Analyse" sur Mon marché) -->
     <div id="ia-pattern-analysis" style="display:none;"></div>
     <div id="ai-study-container"></div>
@@ -5006,22 +5023,22 @@
         <p class="pp-tag">Les modules expert sont débloqués. Bonne exploration.</p>
       </div>
       <div class="pp-unlocked">
-        <a class="pp-unlock-card" href="scene-10.html?v=254">
+        <a class="pp-unlock-card" href="scene-10.html?v=255">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=254">
+        <a class="pp-unlock-card" href="scene-08.html?v=255">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=254">
+        <a class="pp-unlock-card" href="scene-09.html?v=255">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=254">
+        <a class="pp-unlock-card" href="scene-07.html?v=255">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -6149,7 +6166,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=254';
+        location.href = 'scene-10.html?v=255';
       });
       widget._linked = true;
     }
@@ -6202,7 +6219,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=254';
+      location.href = 'scene-05.html?v=255';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -6617,7 +6634,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=254'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=255'; };
         block.style.display = 'block';
         return;
       }
@@ -6659,7 +6676,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=254';
+        card.onclick = () => location.href = 'scene-05.html?v=255';
         block.style.display = 'block';
         return;
       }
@@ -6679,7 +6696,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=254';
+          card.onclick = () => location.href = 'scene-06.html?v=255';
           block.style.display = 'block';
           return;
         }
@@ -6693,7 +6710,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=254';
+        card.onclick = () => location.href = 'scene-06.html?v=255';
         block.style.display = 'block';
         return;
       }
@@ -6708,7 +6725,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=254';
+    card.onclick = () => location.href = 'scene-05.html?v=255';
     block.style.display = 'block';
   }
 
@@ -7195,13 +7212,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=254&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=255&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=254';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=255';
     else showView('premium');
   }
 
@@ -8300,7 +8317,7 @@
         + '<span class="v-placeholder-ico">📓</span>'
         + '<div class="v-placeholder-txt"><strong>Aucune session simu enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=254\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=255\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -8345,7 +8362,7 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=254\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=255\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
   }
@@ -8801,9 +8818,10 @@
     return `<a class="mr-broker" href="${url}" target="_blank" rel="noopener noreferrer sponsored" onclick="event.stopPropagation()">${b.ico} ${b.name} →</a>`;
   }
 
-  // v2.39 — Etude IA (Pollinations / Groq), cache 2h
+  // v2.39 — Etude IA (Pollinations / Groq)
+  // v2.55 — cache 5 min (au lieu de 2h) pour matcher le cron 15 min du workflow
   const AI_CACHE_KEY = 'tg_ai_study_cache';
-  const AI_CACHE_TTL = 2 * 60 * 60 * 1000;
+  const AI_CACHE_TTL = 5 * 60 * 1000;
 
   // v2.45 — détecte si le contenu est un placeholder (pas encore généré)
   function _aiIsPlaceholder(d) {
@@ -8812,6 +8830,27 @@
     if (Array.isArray(d.assets) && d.assets.length === 0) return true;
     return false;
   }
+  // v2.55 — Refresh manuel : vide le cache local et force re-fetch sans cache HTTP
+  async function refreshAIStudyNow() {
+    const btn = document.querySelector('.v-refresh-btn');
+    if (btn) { btn.classList.add('spinning'); btn.disabled = true; }
+    try { localStorage.removeItem(AI_CACHE_KEY); } catch {}
+    try {
+      // Bust cache HTTP avec timestamp pas tronqué
+      const r = await fetch('./data/ai-study.json?t=' + Date.now(), { cache: 'no-store' });
+      if (r.ok) {
+        const j = await r.json();
+        if (!_aiIsPlaceholder(j)) {
+          try { localStorage.setItem(AI_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: j })); } catch {}
+        }
+      }
+    } catch (e) { console.warn('refresh failed', e); }
+    await renderAIStudy();
+    if (btn) { btn.classList.remove('spinning'); btn.disabled = false; }
+    if (typeof showXPToast === 'function') showXPToast(0, 'IA rafraîchie');
+    if (navigator.vibrate) navigator.vibrate(8);
+  }
+
   async function fetchAIStudy() {
     try {
       const c = JSON.parse(localStorage.getItem(AI_CACHE_KEY));
@@ -9017,7 +9056,7 @@
         cls: 'fc-news', label: '📅 Samedi', time: now,
         title: 'Marchés fermés · bon moment pour réviser',
         body: 'Indices et actions ne tournent pas. La crypto, elle, ne dort jamais. Le simulateur attend.',
-        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=254'",
+        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=255'",
       });
     }
 
@@ -9587,11 +9626,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=254';
+      location.href = 'scene-05.html?v=255';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=254';
+      location.href = 'scene-06.html?v=255';
       return;
     }
 
@@ -9614,12 +9653,12 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=254"></script>
-  <script src="tg-analyst.js?v=254"></script>
+  <script type="module" src="tg-common.js?v=255"></script>
+  <script src="tg-analyst.js?v=255"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=254').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=255').catch(() => {});
       });
     }
   </script>
