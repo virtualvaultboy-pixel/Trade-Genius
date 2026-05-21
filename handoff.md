@@ -1,11 +1,18 @@
-# Trade Genius — HANDOFF v2.16
+# Trade Genius — HANDOFF v2.64
 
 > **Studio :** Deponchy Studio · **Dev solo :** Aurélien
-> **Version :** v2.16 (66 commits depuis v1.49)
-> **Date :** 2026-05-20
+> **Version :** v2.64 (~115 commits depuis v1.49)
+> **Date :** 2026-05-21
 > **Prod :** https://virtualvaultboy-pixel.github.io/Trade-Genius/
 > **Repo :** https://github.com/virtualvaultboy-pixel/Trade-Genius
 > **Local :** `C:\Users\qfichet\Desktop\Document IA\Trade Genius\files\`
+
+## 🆕 Récap v2.16 → v2.64
+
+- **v2.17-v2.22** Pivot architectural : bottom nav 5 onglets · feed daté · XP/niveaux Duolingo
+- **v2.26-v2.35** Live data : Watchlist · 10 indicateurs client-side · Indices Yahoo · Actus auto
+- **v2.36-v2.48** Workflows GH Actions illimités : news/daily/decryptages/ai-study auto-générés. IA via Pollinations + setup pédago + affiliation broker + cron 15 min
+- **v2.50-v2.64** Pattern detector (9 patterns) · analyseur ULTRA FIABLE · FAB Analyste 🤖 · sélecteur devise · mini-graph SVG · backtest client-side · cas rejouable · badges Duolingo · notifs · catalogue 52 actifs (indices/crypto/actions/forex/métaux)
 
 ---
 
