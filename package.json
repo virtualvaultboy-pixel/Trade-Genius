@@ -1,0 +1,23 @@
+{
+  "name": "trade-genius",
+  "version": "2.75.0",
+  "description": "Trade Genius — PWA + app Android (Capacitor) pédago bourse avec bulle native d'analyse de graphs.",
+  "private": true,
+  "scripts": {
+    "cap:sync": "npx cap sync android",
+    "cap:open": "npx cap open android",
+    "cap:run": "npx cap run android",
+    "cap:build": "npx cap sync android && cd android && ./gradlew assembleDebug",
+    "cap:release": "npx cap sync android && cd android && ./gradlew assembleRelease"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.1.0"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.1.0",
+    "@capacitor/core": "^6.1.0",
+    "@capacitor/preferences": "^6.0.2",
+    "@capacitor/splash-screen": "^6.0.2",
+    "@capacitor/status-bar": "^6.0.1"
+  }
+}

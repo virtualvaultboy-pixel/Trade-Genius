@@ -1,0 +1,20 @@
+{
+  "appId": "studio.deponchy.tradegenius",
+  "appName": "Trade Genius",
+  "webDir": ".",
+  "server": {
+    "androidScheme": "https",
+    "cleartext": false
+  },
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": true
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "backgroundColor": "#0a0a0c",
+      "showSpinner": false
+    }
+  }
+}
