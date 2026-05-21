@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v2.57';
+export const TG_VERSION = 'v2.58';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -1040,7 +1040,15 @@ else autoInit();
 
 const CURRENCY_PREF_KEY = 'tg_pref_currency';
 const FX_CACHE_KEY = 'tg_fx_rates';
-const FX_CACHE_TTL = 60 * 60 * 1000; // 1 heure
+// v2.58 — Cache court 15 min (au lieu de 1h) pour suivre les fluctuations FX
+const FX_CACHE_TTL = 15 * 60 * 1000;
+
+// v2.58 — Invalidation immédiate des anciens caches "fallback" 0.92 (taux 2024
+// hardcoded qui était devenu obsolète et donnait un écart de ~7% en 2026).
+try {
+  const _c = JSON.parse(localStorage.getItem(FX_CACHE_KEY));
+  if (_c && _c.fallback) localStorage.removeItem(FX_CACHE_KEY);
+} catch {}
 
 function getCurrencyPref() {
   try { return localStorage.getItem(CURRENCY_PREF_KEY) || 'native'; }
@@ -1053,26 +1061,51 @@ function setCurrencyPref(val) {
   window.dispatchEvent(new CustomEvent('tg-currency-change', { detail: { pref: val } }));
 }
 
-// Récupère le taux de conversion EUR/USD via Frankfurter (ECB, gratuit illimité)
-// Retourne { USD_EUR: 0.92, EUR_USD: 1.087, ts: ... } depuis le cache ou fetch
+// v2.58 — Récupère le taux EUR/USD avec 2 sources de secours.
+// Ordre : 1) Frankfurter (ECB officiel) → 2) Yahoo EURUSD=X via corsproxy
+//         → 3) Dernier cache même périmé → 4) Fallback raisonnable
 async function getExchangeRates() {
+  // 1) Cache frais
   try {
     const c = JSON.parse(localStorage.getItem(FX_CACHE_KEY));
-    if (c && c.ts && (Date.now() - c.ts < FX_CACHE_TTL) && c.USD_EUR) return c;
+    if (c && c.ts && (Date.now() - c.ts < FX_CACHE_TTL) && c.USD_EUR && !c.fallback) return c;
   } catch {}
+  // 2) Frankfurter (BCE)
   try {
     const r = await fetch('https://api.frankfurter.app/latest?from=USD&to=EUR');
-    if (!r.ok) throw new Error('FX ' + r.status);
-    const j = await r.json();
-    const USD_EUR = j && j.rates && j.rates.EUR ? j.rates.EUR : null;
-    if (!USD_EUR) throw new Error('Bad payload');
-    const data = { ts: Date.now(), USD_EUR, EUR_USD: 1 / USD_EUR };
-    try { localStorage.setItem(FX_CACHE_KEY, JSON.stringify(data)); } catch {}
-    return data;
-  } catch (e) {
-    console.warn('FX fetch failed, using fallback rate 0.92', e.message);
-    return { USD_EUR: 0.92, EUR_USD: 1 / 0.92, ts: 0, fallback: true };
-  }
+    if (r.ok) {
+      const j = await r.json();
+      const usdEur = j && j.rates && j.rates.EUR;
+      if (usdEur && usdEur > 0.3 && usdEur < 3) {
+        const data = { ts: Date.now(), USD_EUR: usdEur, EUR_USD: 1 / usdEur, source: 'frankfurter' };
+        try { localStorage.setItem(FX_CACHE_KEY, JSON.stringify(data)); } catch {}
+        return data;
+      }
+    }
+  } catch (e) { console.warn('FX frankfurter failed', e.message); }
+  // 3) Yahoo via corsproxy (notre route déjà utilisée pour les indices)
+  try {
+    const u = 'https://query1.finance.yahoo.com/v8/finance/chart/EURUSD=X?interval=1d&range=5d';
+    const r = await fetch('https://corsproxy.io/?' + encodeURIComponent(u));
+    if (r.ok) {
+      const j = await r.json();
+      const eurUsd = j && j.chart && j.chart.result && j.chart.result[0]
+        && j.chart.result[0].meta && j.chart.result[0].meta.regularMarketPrice;
+      if (eurUsd && eurUsd > 0.5 && eurUsd < 3) {
+        const data = { ts: Date.now(), USD_EUR: 1 / eurUsd, EUR_USD: eurUsd, source: 'yahoo' };
+        try { localStorage.setItem(FX_CACHE_KEY, JSON.stringify(data)); } catch {}
+        return data;
+      }
+    }
+  } catch (e) { console.warn('FX yahoo failed', e.message); }
+  // 4) Dernier cache même périmé (mieux que rien)
+  try {
+    const c = JSON.parse(localStorage.getItem(FX_CACHE_KEY));
+    if (c && c.USD_EUR) return Object.assign({}, c, { stale: true });
+  } catch {}
+  // 5) Aucune source : retourne null pour qu'on N'AFFICHE PAS de prix faux
+  console.warn('FX: toutes les sources ont échoué — pas de conversion possible');
+  return null;
 }
 
 // Convertit une valeur de `from` (USD ou EUR) vers `to` en utilisant les rates en cache
@@ -1109,10 +1142,17 @@ function formatPriceConverted(value, nativeCur, ratesOpt) {
   if (value == null || isNaN(value)) return '—';
   const ctx = resolveDisplayCurrency(nativeCur);
   let v = value;
+  let displaySym = ctx.symbol;
+  let displayCur = ctx.display;
   if (ctx.convert) {
     const rates = ratesOpt || (window.TG && window.TG.fxRates);
-    if (rates && rates.USD_EUR) {
+    // v2.58 — Si pas de rate fiable disponible : on REVIENT en devise native
+    // (mieux qu'afficher un prix faux). On signale par un astérisque léger.
+    if (rates && rates.USD_EUR && !rates.fallback) {
       v = _convertSync(value, (nativeCur || 'USD').toUpperCase(), ctx.display, rates);
+    } else {
+      displayCur = (nativeCur || 'USD').toUpperCase();
+      displaySym = _currencySymbol(displayCur);
     }
   }
   let txt;
@@ -1120,7 +1160,7 @@ function formatPriceConverted(value, nativeCur, ratesOpt) {
   else if (v >= 100) txt = v.toFixed(0);
   else if (v >= 1) txt = v.toFixed(2);
   else txt = v.toFixed(4);
-  return txt + ' ' + ctx.symbol;
+  return txt + ' ' + displaySym;
 }
 
 // Expose tout via window.TG
@@ -1132,4 +1172,11 @@ Object.assign(window.TG, {
 });
 
 // Warm-up + stockage du rate pour usage sync
-getExchangeRates().then(r => { window.TG.fxRates = r; window.dispatchEvent(new CustomEvent('tg-fx-ready', { detail: r })); });
+// v2.58 — Si rates retourne null (toutes sources échouent), on n'écrase pas
+// window.TG.fxRates pour que formatPriceConverted retombe sur la devise native
+getExchangeRates().then(r => {
+  if (r && r.USD_EUR) {
+    window.TG.fxRates = r;
+    window.dispatchEvent(new CustomEvent('tg-fx-ready', { detail: r }));
+  }
+});
