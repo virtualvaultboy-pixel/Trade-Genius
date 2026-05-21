@@ -1,5 +1,61 @@
 {
-  "generated": "2026-05-20T00:00:00.000Z",
-  "sources": ["Yahoo Finance", "CoinGecko"],
-  "entries": []
+  "generated": "2026-05-21T21:20:43.694Z",
+  "sources": [
+    "Yahoo Finance",
+    "CoinGecko"
+  ],
+  "entries": [
+    {
+      "id": "sem21-2026",
+      "week": "Sem. 21",
+      "date": "2026-05-21",
+      "title": "Marchés en pause · pas de direction nette",
+      "method": "Lecture des 4 grands indices (S&P, Nasdaq, CAC, Dow) + 2 crypto majors (BTC, ETH) sur le tf daily. Agrégation des outils RSI · MA20/MA50 · MACD · Bollinger · ADX · ATR · Momentum.",
+      "verdict": {
+        "score": 48,
+        "cls": "neutral",
+        "label": "Indécis"
+      },
+      "indicators": [
+        {
+          "sym": "S&P 500",
+          "read": "RSI 67 · MA20 > MA50 · MACD négatif · -0.7% / 5j",
+          "sig": "bull",
+          "val": "Haussier fort"
+        },
+        {
+          "sym": "Nasdaq",
+          "read": "RSI 68 · MA20 > MA50 · MACD négatif · -1.3% / 5j",
+          "sig": "bull",
+          "val": "Haussier fort"
+        },
+        {
+          "sym": "CAC 40",
+          "read": "RSI 49 · MA20 > MA50 · MACD négatif",
+          "sig": "bear",
+          "val": "Plutôt baissier"
+        },
+        {
+          "sym": "Dow",
+          "read": "RSI 59 · MA20 > MA50 · MACD négatif · +0.4% / 5j",
+          "sig": "bull",
+          "val": "Plutôt haussier"
+        },
+        {
+          "sym": "BTC",
+          "read": "RSI 40 · MA20 > MA50 · MACD négatif · -0.6% / 5j",
+          "sig": "bear",
+          "val": "Baissier fort"
+        },
+        {
+          "sym": "ETH",
+          "read": "RSI 31 · MA20 < MA50 · MACD négatif · -2.0% / 5j",
+          "sig": "bear",
+          "val": "Baissier fort"
+        }
+      ],
+      "conclusion": "<strong class=\"neutral\">Marché sans conviction.</strong> Les outils sont partagés, aucun signal franc d'un côté ou de l'autre. Mieux vaut attendre une confirmation avant de prendre position.",
+      "generated": "2026-05-21T21:20:43.694Z"
+    }
+  ]
 }
