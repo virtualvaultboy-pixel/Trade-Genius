@@ -95,11 +95,48 @@ const ASSETS = [
   { kind: 'metal',  symbol: 'HG=F',      label: 'Cuivre' },
   { kind: 'metal',  symbol: 'CL=F',      label: 'Pétrole WTI' },
   { kind: 'metal',  symbol: 'BZ=F',      label: 'Brent' },
+  // ── v2.82 — ETF US (8) ─────────────────────────────────────
+  { kind: 'action', symbol: 'SPY',       label: 'SPY (S&P ETF)' },
+  { kind: 'action', symbol: 'QQQ',       label: 'QQQ (Nasdaq ETF)' },
+  { kind: 'action', symbol: 'IWM',       label: 'IWM (Russell ETF)' },
+  { kind: 'action', symbol: 'VTI',       label: 'VTI (Total US)' },
+  { kind: 'action', symbol: 'VOO',       label: 'VOO (Vanguard S&P)' },
+  { kind: 'action', symbol: 'EEM',       label: 'EEM (Émergents)' },
+  { kind: 'action', symbol: 'GLD',       label: 'GLD (Or ETF)' },
+  { kind: 'action', symbol: 'TLT',       label: 'TLT (Treasury 20Y)' },
+  // ── v2.82 — Actions US blue-chips additionnelles (10) ──────
+  { kind: 'action', symbol: 'BRK-B',     label: 'Berkshire' },
+  { kind: 'action', symbol: 'BAC',       label: 'Bank of America' },
+  { kind: 'action', symbol: 'MA',        label: 'Mastercard' },
+  { kind: 'action', symbol: 'PG',        label: 'Procter & G.' },
+  { kind: 'action', symbol: 'HD',        label: 'Home Depot' },
+  { kind: 'action', symbol: 'UNH',       label: 'UnitedHealth' },
+  { kind: 'action', symbol: 'PFE',       label: 'Pfizer' },
+  { kind: 'action', symbol: 'VZ',        label: 'Verizon' },
+  { kind: 'action', symbol: 'XOM',       label: 'Exxon Mobil' },
+  { kind: 'action', symbol: 'INTC',      label: 'Intel' },
 ];
 
-const LOOK_AHEAD = 30;   // bars de look-ahead pour résoudre un trade
+// ── v2.82 — Fenêtres de hold différenciées par agent ─────────
+// Chaque agent a sa "fenêtre de trade" cohérente avec son style :
+//  - ATLAS long terme  : 60 bars max (la tendance LT prend du temps)
+//  - ZEN swing         : 30 bars max
+//  - NOVA swing court  : 21 bars max
+//  - KAIRO contrarian  : 12 bars max (les retournements rapides)
+const AGENT_HOLD_DAYS = {
+  atlas: 60,
+  zen: 30,
+  nova: 21,
+  kairo: 12,
+};
+
+// v2.82 — Look-ahead par agent (voir AGENT_HOLD_DAYS plus bas).
+// MAX_LOOK_AHEAD = limite supérieure pour réserver de la marge end-of-history.
+const MAX_LOOK_AHEAD = 60;
 const WARMUP = 220;      // bars d'historique minimum (SMA200 + 20j buffer)
-const RISK_PER_TRADE = 1; // unité normalisée (les R/R sont multiples de ça)
+// v2.82 — historique paramétrable via env (override pour deep-backtest)
+const HISTORY_RANGE = process.env.TG_BACKTEST_RANGE || '10y';
+const OUTPUT_FILE = process.env.TG_BACKTEST_OUTPUT || 'data/agent-performance.json';
 
 // ─────────────────────────────────────────────────────────────────────
 // Détecteurs simplifiés des 4 agents
@@ -395,12 +432,14 @@ const AGENTS = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────
-// Résolution du trade : on regarde les LOOK_AHEAD closes suivants
+// Résolution du trade : on regarde les holdDays closes suivants
+// (fenêtre spécifique à chaque agent — voir AGENT_HOLD_DAYS)
 // ─────────────────────────────────────────────────────────────────────
-function resolveTrade(prices, t, trade) {
+function resolveTrade(prices, t, trade, holdDays) {
   const { entry, stop, tp1, tp2, rr1, rr2 } = trade;
   let touchedTp1 = false;
-  for (let i = t + 1; i <= Math.min(t + LOOK_AHEAD, prices.length - 1); i++) {
+  const lookAhead = holdDays || MAX_LOOK_AHEAD;
+  for (let i = t + 1; i <= Math.min(t + lookAhead, prices.length - 1); i++) {
     const c = prices[i];
     // Stop touché en premier (avant tp1)
     if (c <= stop) {
@@ -420,8 +459,8 @@ function resolveTrade(prices, t, trade) {
       return { outcome: 'FULL_WIN', exit_bar: i - t, pnl: rr2 };
     }
   }
-  // Timeout : sortie au close J+LOOK_AHEAD
-  const exitIdx = Math.min(t + LOOK_AHEAD, prices.length - 1);
+  // Timeout : sortie au close J+holdDays
+  const exitIdx = Math.min(t + lookAhead, prices.length - 1);
   const exitClose = prices[exitIdx];
   const pnl = (exitClose - entry) / (entry - stop);
   if (touchedTp1) {
@@ -440,7 +479,7 @@ async function fetchAsset(a) {
       const d = await fetchCoinGeckoHistorical(a.id, 700);
       return { ...a, prices: d.prices, volumes: d.volumes };
     }
-    const d = await fetchYahooHistorical(a.symbol, '2y');
+    const d = await fetchYahooHistorical(a.symbol, HISTORY_RANGE);
     return { ...a, prices: d.prices, volumes: d.volumes };
   } catch (e) {
     console.warn(`Skip ${a.label}: ${e.message}`);
@@ -453,14 +492,14 @@ async function fetchAsset(a) {
 // ─────────────────────────────────────────────────────────────────────
 function backtestAsset(asset) {
   const { prices, volumes } = asset;
-  if (!prices || prices.length < WARMUP + LOOK_AHEAD + 5) {
+  if (!prices || prices.length < WARMUP + MAX_LOOK_AHEAD + 5) {
     return { asset: asset.label, kind: asset.kind, trades: [], skipped: true,
              reason: `not enough data (${prices?.length || 0})` };
   }
   const trades = [];
   const N = prices.length;
-  // On stoppe à N-LOOK_AHEAD pour avoir de la marge de résolution
-  for (let t = WARMUP; t < N - LOOK_AHEAD; t++) {
+  // On stoppe à N-MAX_LOOK_AHEAD pour avoir assez de marge pour TOUS les agents
+  for (let t = WARMUP; t < N - MAX_LOOK_AHEAD; t++) {
     const subset = prices.slice(0, t + 1);
     const subVol = volumes ? volumes.slice(0, t + 1) : null;
     const ind = computeAllIndicators(subset, subVol);
@@ -472,7 +511,8 @@ function backtestAsset(asset) {
     for (const ag of AGENTS) {
       const sig = ag.detect(subset, ind, atrAbs, t, asset.kind);
       if (!sig) continue;
-      const res = resolveTrade(prices, t, sig);
+      const holdDays = AGENT_HOLD_DAYS[ag.id] || 30;
+      const res = resolveTrade(prices, t, sig, holdDays);
       trades.push({
         bar: t,
         agent: ag.id,
@@ -568,7 +608,8 @@ function aggregate(allResults) {
 // Main
 // ─────────────────────────────────────────────────────────────────────
 async function main() {
-  console.log(`[backtest] ${ASSETS.length} actifs, look-ahead ${LOOK_AHEAD}j, warm-up ${WARMUP}j`);
+  console.log(`[backtest] ${ASSETS.length} actifs, historique ${HISTORY_RANGE}, warm-up ${WARMUP}j`);
+  console.log(`[backtest] Fenêtres hold : atlas=${AGENT_HOLD_DAYS.atlas}j zen=${AGENT_HOLD_DAYS.zen}j nova=${AGENT_HOLD_DAYS.nova}j kairo=${AGENT_HOLD_DAYS.kairo}j`);
   // Fetch séquentiel pour ne pas DDOS CoinGecko (rate limit free)
   const fetched = [];
   for (const a of ASSETS) {
@@ -588,7 +629,9 @@ async function main() {
   const agg = aggregate(results);
   const out = {
     generated: new Date().toISOString(),
-    look_ahead_days: LOOK_AHEAD,
+    look_ahead_days_max: MAX_LOOK_AHEAD,
+    hold_days_per_agent: AGENT_HOLD_DAYS,
+    history_range: HISTORY_RANGE,
     warmup_days: WARMUP,
     num_assets: fetched.length,
     assets_tested: fetched.map(a => a.label),
@@ -606,7 +649,7 @@ async function main() {
     by_agent: agg.by_agent,
     disclaimer: "Performances passées ne préjugent pas des performances futures. Cas pédagogique strictement.",
   };
-  const target = path.join(process.cwd(), 'data', 'agent-performance.json');
+  const target = path.join(process.cwd(), OUTPUT_FILE);
   await fs.mkdir(path.dirname(target), { recursive: true });
   await fs.writeFile(target, JSON.stringify(out, null, 2) + '\n', 'utf8');
   console.log(`[backtest] Wrote ${target}`);

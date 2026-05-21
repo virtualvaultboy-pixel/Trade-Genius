@@ -1,0 +1,50 @@
+name: Deep backtest agents (20 ans)
+# v2.82 — Run profond : ~80 actifs sur l'historique MAX (Yahoo)
+# Tourne uniquement à la demande (workflow_dispatch) car peut prendre ~1h
+# et consomme du quota Yahoo. Output : data/agent-performance-deep.json
+
+on:
+  workflow_dispatch:
+    inputs:
+      history_range:
+        description: "Range Yahoo (10y, 15y, 20y, max)"
+        required: false
+        default: "max"
+
+permissions:
+  contents: write
+
+jobs:
+  deep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run deep backtest
+        env:
+          HISTORY_RANGE: ${{ github.event.inputs.history_range }}
+          OUTPUT_FILE: data/agent-performance-deep.json
+        run: |
+          # On override HISTORY_RANGE via une env var lue par le script
+          node -e "
+            process.env.TG_BACKTEST_RANGE = process.env.HISTORY_RANGE || 'max';
+            process.env.TG_BACKTEST_OUTPUT = process.env.OUTPUT_FILE || 'data/agent-performance-deep.json';
+            import('./scripts/backtest-agents.mjs');
+          "
+
+      - name: Commit data/agent-performance-deep.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain data/agent-performance-deep.json)" ]; then
+            git add data/agent-performance-deep.json
+            git commit -m "chore: deep backtest agents (${{ github.event.inputs.history_range }}) [skip ci]"
+            git push
+          else
+            echo "no change"
+          fi
