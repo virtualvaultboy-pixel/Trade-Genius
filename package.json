@@ -4,11 +4,12 @@
   "description": "Trade Genius — PWA + app Android (Capacitor) pédago bourse avec bulle native d'analyse de graphs.",
   "private": true,
   "scripts": {
-    "cap:sync": "npx cap sync android",
-    "cap:open": "npx cap open android",
-    "cap:run": "npx cap run android",
-    "cap:build": "npx cap sync android && cd android && ./gradlew assembleDebug",
-    "cap:release": "npx cap sync android && cd android && ./gradlew assembleRelease"
+    "prepare-web": "node mobile/sync-web.cjs",
+    "cap:sync": "npm run prepare-web && npx cap sync android",
+    "cap:open": "npm run prepare-web && npx cap open android",
+    "cap:run": "npm run prepare-web && npx cap run android",
+    "cap:build": "npm run prepare-web && npx cap sync android && cd android && ./gradlew assembleDebug",
+    "cap:release": "npm run prepare-web && npx cap sync android && cd android && ./gradlew assembleRelease"
   },
   "devDependencies": {
     "@capacitor/cli": "^6.1.0"

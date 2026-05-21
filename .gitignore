@@ -17,3 +17,15 @@ node_modules/
 # Local dev
 .env
 .env.local
+
+# v2.75 — Capacitor / Android builds (générés localement)
+www/
+android/.gradle/
+android/build/
+android/app/build/
+android/captures/
+android/local.properties
+android/*.iml
+android/app/*.iml
+*.apk
+*.aab
