@@ -571,6 +571,9 @@
     .tga-verdict.bull-soft { background: linear-gradient(135deg, rgba(132,204,22,0.16), rgba(132,204,22,0.04)); border: 1.5px solid rgba(132,204,22,0.4); }
     .tga-verdict.bear-soft { background: linear-gradient(135deg, rgba(249,115,22,0.16), rgba(249,115,22,0.04)); border: 1.5px solid rgba(249,115,22,0.4); }
     .tga-verdict.neutral { background: linear-gradient(135deg, rgba(250,204,21,0.14), rgba(250,204,21,0.04)); border: 1.5px solid rgba(250,204,21,0.4); }
+    /* v2.61 — Graph SVG */
+    .tga-graph { margin: 8px 0 12px; border-radius: 8px; overflow: hidden; }
+    .tga-graph svg { max-width: 100%; }
     .tga-verdict-headline { font-size: 22px; font-weight: 800; line-height: 1.2; margin-bottom: 6px; }
     .tga-verdict-score { font-family: 'Space Mono', monospace; font-size: 13px; opacity: 0.85; }
     .tga-verdict-score strong { font-size: 16px; }
@@ -753,11 +756,33 @@
     const patterns = detectPatterns(prices);
     const verdict = tranchantVerdict(ind, patterns);
     const reco = recommendation(verdict, ind, patterns);
-    openOverlay(renderAnalysis(asset, ind, patterns, verdict, reco));
+    // v2.61 — Passe les 60 dernières bougies au render pour le mini-graph
+    openOverlay(renderAnalysis(asset, ind, patterns, verdict, reco, prices.slice(-60)));
   }
   window.tgaAnalyze = tgaAnalyze;
 
-  function renderAnalysis(asset, ind, patterns, verdict, reco) {
+  // v2.61 — Calcule les niveaux entry/stop/TP à dessiner selon le verdict
+  function planLevelsFor(verdict, ind) {
+    const lvls = {};
+    if (!ind || ind.last == null) return lvls;
+    const atr = ind.atr ? (ind.atr / 100) * ind.last : ind.last * 0.02;
+    if (verdict.action === 'long' || verdict.action === 'long_soft') {
+      lvls.entry = ind.last;
+      lvls.stop = ind.last - 1.5 * atr;
+      lvls.tp1 = ind.last + 1.5 * atr;
+      lvls.tp2 = ind.last + 3 * atr;
+    } else if (verdict.action === 'short' || verdict.action === 'short_soft') {
+      lvls.entry = ind.last;
+      lvls.stop = ind.last + 1.5 * atr;
+      lvls.tp1 = ind.last - 1.5 * atr;
+      lvls.tp2 = ind.last - 3 * atr;
+    } else {
+      lvls.entry = ind.last; // pour situer le prix actuel sur le graph
+    }
+    return lvls;
+  }
+
+  function renderAnalysis(asset, ind, patterns, verdict, reco, prices60) {
     // v2.54 — Plan d'action SEULEMENT si direction tranchée (long/short).
     // Plus de plan pour "wait" ou les "soft" (on évite les fausses pistes).
     let planHTML = '';
@@ -845,6 +870,10 @@
       +   '<div class="tga-verdict-headline">' + esc(verdict.headline) + '</div>'
       +   '<div class="tga-verdict-score">Score technique <strong>' + verdict.score + '</strong> / 100</div>'
       + '</div>'
+      // v2.61 — Mini-graph SVG
+      + ((prices60 && window.TG && window.TG.renderMiniGraph)
+          ? '<div class="tga-graph">' + window.TG.renderMiniGraph(prices60, planLevelsFor(verdict, ind), { width: 480, height: 200 }) + '</div>'
+          : '')
       + '<div class="tga-reco">'
       +   '<div class="tga-reco-title">📋 Ce que je te recommande</div>'
       +   reco.map(t => '<p>' + esc(t) + '</p>').join('')

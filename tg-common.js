@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v2.60';
+export const TG_VERSION = 'v2.61';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -1019,6 +1019,8 @@ function autoInit() {
   initGlossary();
   prefetchScenes();
   checkStreakDangerNotify();
+  // v2.63 — Vérifie les badges au chargement de chaque page
+  setTimeout(() => { try { checkBadges(); } catch {} }, 1200);
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', autoInit);
 else autoInit();
@@ -1163,11 +1165,167 @@ function formatPriceConverted(value, nativeCur, ratesOpt) {
   return txt + ' ' + displaySym;
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   v2.63 — Système de BADGES (déblocages Duolingo-style)
+   ═══════════════════════════════════════════════════════════════════ */
+const BADGES_KEY = 'tg_badges';
+const BADGES_DEF = [
+  { id: 'first_track',   icon: '🎯', name: 'Premier trade', desc: 'Tu as tracké ton 1er setup' },
+  { id: 'ten_tracks',    icon: '📋', name: 'Stratège',      desc: '10 setups trackés' },
+  { id: 'first_pattern', icon: '🔍', name: 'Œil affûté',    desc: 'Tu as analysé ton 1er pattern' },
+  { id: 'first_poll',    icon: '🔮', name: 'Devin du marché', desc: '1er pari quotidien' },
+  { id: 'three_wins',    icon: '🏆', name: 'Triple touche', desc: '3 pronostics gagnés' },
+  { id: 'streak_3',      icon: '🔥', name: 'Engagé', desc: 'Streak de 3 jours' },
+  { id: 'streak_7',      icon: '⚡', name: 'Régulier', desc: 'Streak de 7 jours' },
+  { id: 'streak_30',     icon: '👑', name: 'Roi du focus', desc: 'Streak de 30 jours' },
+  { id: 'level_5',       icon: '⭐', name: 'Apprenti', desc: 'Niveau 5 atteint' },
+  { id: 'level_10',      icon: '🌟', name: 'Confirmé', desc: 'Niveau 10 atteint' },
+  { id: 'all_modules',   icon: '🎓', name: 'Diplômé', desc: 'Les 6 modules validés' },
+];
+function loadBadges() {
+  try { const b = JSON.parse(localStorage.getItem(BADGES_KEY)); return Array.isArray(b) ? b : []; }
+  catch { return []; }
+}
+function saveBadges(arr) {
+  try { localStorage.setItem(BADGES_KEY, JSON.stringify(arr)); } catch {}
+}
+function unlockBadge(id) {
+  const owned = loadBadges();
+  if (owned.includes(id)) return false;
+  const def = BADGES_DEF.find(b => b.id === id);
+  if (!def) return false;
+  owned.push(id);
+  saveBadges(owned);
+  // Toast custom
+  showBadgeToast(def);
+  return true;
+}
+function showBadgeToast(def) {
+  const el = document.createElement('div');
+  el.className = 'tg-badge-toast';
+  el.innerHTML = '<div class="tgbt-ico">' + def.icon + '</div>'
+    + '<div class="tgbt-body"><div class="tgbt-title">Badge débloqué !</div>'
+    + '<div class="tgbt-name">' + def.name + '</div>'
+    + '<div class="tgbt-desc">' + def.desc + '</div></div>';
+  document.body.appendChild(el);
+  if (!document.getElementById('tgbt-styles')) {
+    const s = document.createElement('style');
+    s.id = 'tgbt-styles';
+    s.textContent = `
+      .tg-badge-toast {
+        position: fixed; top: 16px; left: 50%; transform: translateX(-50%) translateY(-20px);
+        z-index: 10010; max-width: 340px; padding: 12px 14px;
+        background: linear-gradient(135deg, rgba(245,158,11,0.96), rgba(217,119,6,0.96));
+        color: #1c1410; border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(245,158,11,0.45), 0 2px 8px rgba(0,0,0,0.4);
+        display: flex; align-items: center; gap: 12px;
+        opacity: 0; transition: opacity 0.3s, transform 0.3s;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+      .tg-badge-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+      .tgbt-ico { font-size: 32px; line-height: 1; flex-shrink: 0; }
+      .tgbt-body { flex: 1; min-width: 0; }
+      .tgbt-title { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; }
+      .tgbt-name { font-size: 16px; font-weight: 800; margin: 2px 0; }
+      .tgbt-desc { font-size: 12px; opacity: 0.85; line-height: 1.3; }
+    `;
+    document.head.appendChild(s);
+  }
+  requestAnimationFrame(() => el.classList.add('show'));
+  if (navigator.vibrate) navigator.vibrate([30, 50, 30, 50, 60]);
+  setTimeout(() => {
+    el.classList.remove('show');
+    setTimeout(() => el.remove(), 400);
+  }, 4500);
+}
+// Vérifie les conditions automatiques à partir d'événements externes
+function checkBadges() {
+  try {
+    // Streak
+    const streak = JSON.parse(localStorage.getItem('tradegenius_streak') || '{}');
+    if (streak.count >= 3)  unlockBadge('streak_3');
+    if (streak.count >= 7)  unlockBadge('streak_7');
+    if (streak.count >= 30) unlockBadge('streak_30');
+    // XP / Level
+    const xp = JSON.parse(localStorage.getItem('tg_xp') || '{}');
+    const lvl = xp.level || 0;
+    if (lvl >= 5)  unlockBadge('level_5');
+    if (lvl >= 10) unlockBadge('level_10');
+    // Trades trackés
+    const trades = JSON.parse(localStorage.getItem('tg_tracked_trades') || '[]');
+    if (Array.isArray(trades) && trades.length >= 1)  unlockBadge('first_track');
+    if (Array.isArray(trades) && trades.length >= 10) unlockBadge('ten_tracks');
+    // Polls gagnés
+    const poll = JSON.parse(localStorage.getItem('tg_poll_history') || '{}');
+    const wins = Object.values(poll).filter(p => p && p.correct).length;
+    if (wins >= 1) unlockBadge('first_poll');
+    if (wins >= 3) unlockBadge('three_wins');
+    // Modules (les 6)
+    const mods = ['tradegenius_v1','tradegenius_m1','tradegenius_m2','tradegenius_m3','tradegenius_m4','tradegenius_m5'];
+    const allDone = mods.every(k => {
+      try { const d = JSON.parse(localStorage.getItem(k) || '{}'); return d && (d.done || (d.progress && d.progress >= 100)); } catch { return false; }
+    });
+    if (allDone) unlockBadge('all_modules');
+  } catch {}
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   v2.61 — Mini-graph SVG partagé (popup IA + FAB Analyste)
+   ═══════════════════════════════════════════════════════════════════ */
+function renderMiniGraph(prices, levels, opts) {
+  if (!prices || prices.length < 5) return '';
+  levels = levels || {};
+  opts = opts || {};
+  const w = opts.width || 480;
+  const h = opts.height || 220;
+  const pad = 10;
+  const padR = 70;
+  const ipw = w - pad - padR;
+  const iph = h - 2 * pad;
+  const pts = [...prices];
+  ['entry','stop','tp1','tp2','neckline'].forEach(k => { if (levels[k] != null) pts.push(levels[k]); });
+  const mn = Math.min(...pts), mx = Math.max(...pts);
+  const pad_ = (mx - mn) * 0.05 || 1;
+  const min = mn - pad_, max = mx + pad_;
+  const range = max - min || 1;
+  const xS = (i) => pad + (i / (prices.length - 1)) * ipw;
+  const yS = (v) => pad + iph - ((v - min) / range) * iph;
+  const linePath = prices.map((p, i) => (i ? 'L' : 'M') + xS(i).toFixed(1) + ',' + yS(p).toFixed(1)).join(' ');
+  const lastX = xS(prices.length - 1).toFixed(1);
+  const areaPath = linePath + ' L' + lastX + ',' + (pad + iph) + ' L' + pad + ',' + (pad + iph) + ' Z';
+  const trend = prices[prices.length - 1] - prices[0];
+  const lc = trend >= 0 ? '#4ade80' : '#f87171';
+  const fc = trend >= 0 ? 'rgba(74,222,128,0.10)' : 'rgba(248,113,113,0.10)';
+  const lineFor = (val, color, lbl) => {
+    if (val == null) return '';
+    const y = yS(val).toFixed(1);
+    return '<line x1="' + pad + '" y1="' + y + '" x2="' + (pad + ipw) + '" y2="' + y +
+      '" stroke="' + color + '" stroke-width="1" stroke-dasharray="3,3" opacity="0.85"/>' +
+      '<text x="' + (pad + ipw + 4) + '" y="' + (Number(y) + 3) + '" fill="' + color +
+      '" font-size="10" font-family="monospace" font-weight="700">' + lbl + '</text>';
+  };
+  const lastY = yS(prices[prices.length - 1]).toFixed(1);
+  const lastMarker = '<circle cx="' + lastX + '" cy="' + lastY + '" r="3" fill="' + lc + '" stroke="#fff" stroke-width="1.5"/>';
+  return '<svg viewBox="0 0 ' + w + ' ' + h + '" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;display:block;background:rgba(0,0,0,0.28);border-radius:8px">'
+    + '<path d="' + areaPath + '" fill="' + fc + '"/>'
+    + '<path d="' + linePath + '" fill="none" stroke="' + lc + '" stroke-width="1.6"/>'
+    + lineFor(levels.neckline, '#a78bfa', 'Neckline')
+    + lineFor(levels.entry, '#60a5fa', 'Entrée')
+    + lineFor(levels.stop, '#ef4444', 'Stop')
+    + lineFor(levels.tp1, '#84cc16', 'TP1')
+    + lineFor(levels.tp2, '#22c55e', 'TP2')
+    + lastMarker
+    + '</svg>';
+}
+
 // Expose tout via window.TG
 window.TG = window.TG || {};
 Object.assign(window.TG, {
   getCurrencyPref, setCurrencyPref,
   getExchangeRates, resolveDisplayCurrency, formatPriceConverted,
+  renderMiniGraph,
+  // v2.63 — Badges
+  loadBadges, unlockBadge, checkBadges, BADGES_DEF,
   fxRates: null, // sera rempli par warm-up
 });
 

@@ -513,6 +513,8 @@ async function main() {
         asset: a.label,
         kind: a.kind,
         score: a.score,
+        // v2.61 — embarquer les 60 dernières bougies pour rendu graph SVG
+        prices60: a.prices.slice(-60),
         currency: a.kind === 'crypto' || a.label === 'S&P 500' || a.label === 'Nasdaq' || a.label === 'Dow' ? 'USD' : 'EUR',
       };
     })
@@ -583,12 +585,14 @@ async function main() {
     assets: assetsClean,
     // v2.44 — liste de TOUS les setups propices (1 par actif max)
     // v2.54 — confidence exposée
+    // v2.61 — prices60 pour rendu graph SVG
     setups: setupsAll.map(s => ({
       asset: s.asset, kind: s.kind, type: s.type, label: s.label,
       timeframe: s.timeframe || null, confidence: s.confidence || 'medium',
       direction: s.direction, config: s.config, rationale: s.rationale,
       entry: s.entry, stop: s.stop, tp1: s.tp1, tp2: s.tp2,
       rr1: s.rr1, rr2: s.rr2, currency: s.currency,
+      prices60: Array.isArray(s.prices60) ? s.prices60.map(p => Number(p.toFixed(4))) : null,
     })),
     // Retro-compat : setup principal (meilleure confidence + R/R)
     setup: bestSetup ? {
@@ -599,6 +603,7 @@ async function main() {
       rationale: bestSetup.rationale, entry: bestSetup.entry, stop: bestSetup.stop,
       tp1: bestSetup.tp1, tp2: bestSetup.tp2, rr1: bestSetup.rr1, rr2: bestSetup.rr2,
       currency: bestSetup.currency,
+      prices60: Array.isArray(bestSetup.prices60) ? bestSetup.prices60.map(p => Number(p.toFixed(4))) : null,
     } : null,
     disclaimer: "Cas pédagogique basé sur l'analyse technique — pas un conseil en investissement personnalisé. Les marchés financiers comportent un risque de perte en capital. Tu décides si tu copies ce plan ou pas.",
   };
