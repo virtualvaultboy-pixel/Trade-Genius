@@ -4368,7 +4368,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.61</div>
+        <div class="bd-brand-ver" id="bd-version">v2.62</div>
       </div>
     </div>
 
@@ -4378,7 +4378,7 @@
     <a class="bd-item" href="scene-06.html"><span class="bd-ico">📖</span><span>Bibliothèque (26 fiches)</span></a>
     <a class="bd-item" href="glossary.html"><span class="bd-ico">📑</span><span>Glossaire (26 termes)</span></a>
 
-    <!-- v2.57 — Paramètres : sélecteur de devise -->
+    <!-- v2.57/v2.62 — Paramètres : devise + notifications -->
     <div class="bd-section-title">Paramètres</div>
     <div class="bd-item bd-settings-row">
       <span class="bd-ico">💱</span>
@@ -4389,12 +4389,17 @@
         <option value="EUR">EUR (€)</option>
       </select>
     </div>
+    <a class="bd-item" id="bd-notif-toggle" onclick="toggleNotifications()">
+      <span class="bd-ico">🔔</span>
+      <span>Notifications</span>
+      <span class="bd-mini" id="bd-notif-status">désactivées</span>
+    </a>
 
     <!-- v2.32 — Section 'Apprendre' (M0-M5) retiree : redondant avec l'onglet Formation -->
 
     <div class="bd-section-title" id="bd-expert-title">Mode Expert <span class="bd-locked" id="bd-expert-locked">🔒</span></div>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=261')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
-    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=261')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-10.html?v=262')"><span class="bd-ico">📡</span><span>Marché en direct</span></a>
+    <a class="bd-item bd-premium" onclick="closeBurger();_burgerNavPremium('scene-08.html?v=262')"><span class="bd-ico">🔬</span><span>Patterns Lab</span></a>
     <!-- v2.46 — 'Krachs historiques' retiré du burger (deplace en Module 6 dans Formation) -->
     <!-- v2.44 — 'Coach IA · Bientôt' retire du burger (deja accessible via l'onglet IA en bottom-nav) -->
 
@@ -4654,7 +4659,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=261')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=262')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -4673,7 +4678,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=261')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=262')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -4692,7 +4697,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=261')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=262')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -4711,7 +4716,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=261')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=262')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -4730,7 +4735,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=261')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=262')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -4749,7 +4754,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=261')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=262')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -4769,7 +4774,7 @@
       </div>
 
       <!-- v2.46 — Module 6 : Krachs historiques (Premium, deplace depuis le burger) -->
-      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=261')">
+      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=262')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💥</div>
@@ -4806,7 +4811,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.61</span>
+      <span class="hbb-tag" id="hbb-tag">v2.62</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -4847,13 +4852,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=261'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=262'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=261'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=262'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -4905,7 +4910,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=261'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=262'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -4917,25 +4922,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=261" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=262" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=261" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=262" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 10 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=261" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=262" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=261" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=262" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -5045,7 +5050,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=261'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=262'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -5074,7 +5079,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=261'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=262'">OUVRIR →</button>
         </div>
       </article>
 
@@ -5165,22 +5170,22 @@
         <p class="pp-tag">Les modules expert sont débloqués. Bonne exploration.</p>
       </div>
       <div class="pp-unlocked">
-        <a class="pp-unlock-card" href="scene-10.html?v=261">
+        <a class="pp-unlock-card" href="scene-10.html?v=262">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=261">
+        <a class="pp-unlock-card" href="scene-08.html?v=262">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=261">
+        <a class="pp-unlock-card" href="scene-09.html?v=262">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=261">
+        <a class="pp-unlock-card" href="scene-07.html?v=262">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -5412,6 +5417,7 @@
       refreshGlobalVerdicts();      // v2.27 — calcule indicateurs + verdict global en background
       renderPollCard();             // v2.50 — poll quotidien "Devine demain"
       applyRelativeTimes();         // v2.32 — affichage 'il y a Xh' au lieu d'heures fixes
+      if (typeof checkNotifications === 'function') setTimeout(checkNotifications, 1500); // v2.62
       // v2.19 — tuto pivot auto si jamais vu (v2.23 : ne pas le lancer si popup profil ouverte ou profil absent)
       if (shouldShowFeedTuto()) {
         setTimeout(() => {
@@ -6301,7 +6307,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=261';
+        location.href = 'scene-10.html?v=262';
       });
       widget._linked = true;
     }
@@ -6354,7 +6360,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=261';
+      location.href = 'scene-05.html?v=262';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -6398,6 +6404,8 @@
     // v2.63 — Re-check + render des badges
     if (window.TG && window.TG.checkBadges) window.TG.checkBadges();
     renderBurgerBadges();
+    // v2.62 — sync status notifications
+    updateNotifStatusLabel();
   }
 
   // v2.63 — Affiche les badges dans le burger (débloqués + verrouillés)
@@ -6419,6 +6427,78 @@
   function onCurrencyChange(val) {
     if (window.TG && window.TG.setCurrencyPref) window.TG.setCurrencyPref(val);
     if (navigator.vibrate) navigator.vibrate(6);
+  }
+
+  /* ═════════════════════════════════════════════════════════════════
+     v2.62 — Notifications navigateur (Web Notifications API)
+     Permission demandée à l'utilisateur. Si accordée :
+     - Au chargement, si pattern haute confiance détecté sur watchlist → notif
+     - Si pari poll réglé hier → notif "Tu as gagné/perdu"
+     ═════════════════════════════════════════════════════════════════ */
+  function _notifSupported() { return typeof Notification !== 'undefined'; }
+  function _notifGranted() { return _notifSupported() && Notification.permission === 'granted'; }
+  function updateNotifStatusLabel() {
+    const el = document.getElementById('bd-notif-status');
+    if (!el) return;
+    if (!_notifSupported()) { el.textContent = 'indispo'; return; }
+    el.textContent = Notification.permission === 'granted' ? 'actives ✓'
+      : Notification.permission === 'denied' ? 'bloquées'
+      : 'désactivées';
+    el.style.color = Notification.permission === 'granted' ? '#86efac'
+      : Notification.permission === 'denied' ? '#fca5a5' : '';
+  }
+  async function toggleNotifications() {
+    if (!_notifSupported()) {
+      alert('Ton navigateur ne supporte pas les notifications.');
+      return;
+    }
+    if (Notification.permission === 'granted') {
+      // Test rapide
+      try { new Notification('Trade Genius ✓', { body: 'Les notifications sont actives.', icon: './icon-192.png' }); }
+      catch {}
+      return;
+    }
+    if (Notification.permission === 'denied') {
+      alert('Les notifications sont bloquées au niveau navigateur. Active-les dans les paramètres de ton navigateur.');
+      return;
+    }
+    const perm = await Notification.requestPermission();
+    updateNotifStatusLabel();
+    if (perm === 'granted') {
+      try { new Notification('🤖 Trade Genius', { body: 'Notifications activées — tu seras averti des nouveaux setups.', icon: './icon-192.png' }); }
+      catch {}
+      if (navigator.vibrate) navigator.vibrate([20, 50, 30]);
+    }
+  }
+  // Notif locale quand un événement intéressant se produit
+  function sendNotifIfAllowed(title, body, tag) {
+    if (!_notifGranted()) return false;
+    try {
+      new Notification(title, { body, icon: './icon-192.png', tag: tag || 'tg', badge: './icon-192.png' });
+      return true;
+    } catch { return false; }
+  }
+  // Au chargement : check si on doit notifier
+  function checkNotifications() {
+    if (!_notifGranted()) return;
+    // 1) Pari poll d'hier réglé ?
+    try {
+      const poll = JSON.parse(localStorage.getItem('tg_poll_history') || '{}');
+      const lastSeenKey = 'tg_notif_lastseen_poll';
+      const lastSeen = localStorage.getItem(lastSeenKey);
+      const settledRecently = Object.entries(poll)
+        .filter(([_, p]) => p && p.settled && p.correct != null)
+        .sort((a, b) => b[0].localeCompare(a[0]))[0];
+      if (settledRecently && settledRecently[0] !== lastSeen) {
+        const won = settledRecently[1].correct;
+        sendNotifIfAllowed(
+          won ? '🎯 Pari gagné !' : '❌ Pari perdu',
+          won ? 'Tu as eu raison sur la direction du BTC hier.' : 'Le marché a fait l\'inverse de ton pronostic.',
+          'poll'
+        );
+        localStorage.setItem(lastSeenKey, settledRecently[0]);
+      }
+    } catch {}
   }
 
   // v2.57 — Écoute le changement de devise pour re-render les zones impactées
@@ -6810,7 +6890,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=261'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=262'; };
         block.style.display = 'block';
         return;
       }
@@ -6852,7 +6932,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=261';
+        card.onclick = () => location.href = 'scene-05.html?v=262';
         block.style.display = 'block';
         return;
       }
@@ -6872,7 +6952,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=261';
+          card.onclick = () => location.href = 'scene-06.html?v=262';
           block.style.display = 'block';
           return;
         }
@@ -6886,7 +6966,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=261';
+        card.onclick = () => location.href = 'scene-06.html?v=262';
         block.style.display = 'block';
         return;
       }
@@ -6901,7 +6981,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=261';
+    card.onclick = () => location.href = 'scene-05.html?v=262';
     block.style.display = 'block';
   }
 
@@ -7388,13 +7468,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=261&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=262&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=261';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=262';
     else showView('premium');
   }
 
@@ -8510,7 +8590,7 @@
         + '<span class="v-placeholder-ico">📓</span>'
         + '<div class="v-placeholder-txt"><strong>Aucune session simu enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=261\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=262\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -8555,7 +8635,7 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=261\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=262\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
   }
@@ -9424,7 +9504,7 @@
         cls: 'fc-news', label: '📅 Samedi', time: now,
         title: 'Marchés fermés · bon moment pour réviser',
         body: 'Indices et actions ne tournent pas. La crypto, elle, ne dort jamais. Le simulateur attend.',
-        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=261'",
+        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=262'",
       });
     }
 
@@ -9994,11 +10074,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=261';
+      location.href = 'scene-05.html?v=262';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=261';
+      location.href = 'scene-06.html?v=262';
       return;
     }
 
@@ -10021,12 +10101,12 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=261"></script>
-  <script src="tg-analyst.js?v=261"></script>
+  <script type="module" src="tg-common.js?v=262"></script>
+  <script src="tg-analyst.js?v=262"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=261').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=262').catch(() => {});
       });
     }
   </script>
