@@ -1,18 +1,21 @@
 name: Android APK build
 on:
+  workflow_dispatch: {}
   push:
     branches: [main]
     paths:
-      - 'android/**'
-      - 'mobile/**'
-      - 'tg-*.js'
       - 'index.html'
-      - 'scene-*.html'
+      - 'sw.js'
+      - 'manifest.json'
       - 'glossary.html'
+      - 'privacy.html'
+      - 'scene-*.html'
+      - 'tg-*.js'
       - 'capacitor.config.json'
       - 'package.json'
+      - 'android-native/**'
       - '.github/workflows/android-build.yml'
-  workflow_dispatch: {}
+      - 'icon-*.png'
 
 permissions:
   contents: write
@@ -20,6 +23,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 
@@ -37,34 +41,248 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install npm deps
-        run: npm ci
+      - name: Prepare web assets
+        run: |
+          mkdir -p www
+          cp index.html www/
+          [ -f sw.js ] && cp sw.js www/ || echo "no sw.js"
+          [ -f manifest.json ] && cp manifest.json www/ || echo "no manifest.json"
+          [ -f glossary.html ] && cp glossary.html www/ || echo "no glossary.html"
+          [ -f privacy.html ] && cp privacy.html www/ || echo "no privacy.html"
+          shopt -s nullglob
+          for f in scene-*.html tg-*.js icon*.png favicon*.png favicon*.ico *.svg apple-touch-icon*.png bill_20.*; do
+            cp "$f" www/ 2>/dev/null && echo "copied $f"
+          done
+          # data/ pour les feeds JSON statiques (news, decryptages, ai-study)
+          if [ -d data ]; then
+            mkdir -p www/data
+            cp -r data/* www/data/ 2>/dev/null && echo "copied data/"
+          fi
+          echo "=== Contents of www/ ==="
+          ls -la www/
 
-      - name: Sync web assets
-        run: npm run prepare-web
+      - name: Install Capacitor
+        run: npm install --no-fund --no-audit
 
-      - name: Capacitor sync
-        run: npx cap sync android
+      - name: Add or sync Android platform
+        run: |
+          if [ ! -d "android" ]; then
+            echo "Adding Android platform"
+            npx cap add android
+          else
+            echo "Syncing existing Android platform"
+            npx cap sync android
+          fi
 
-      - name: Make gradlew executable
-        run: chmod +x android/gradlew
+      - name: Generate Android icons from icon-512.png
+        run: |
+          if [ ! -f icon-512.png ]; then
+            echo "icon-512.png not found at repo root, skipping icon gen"
+            exit 0
+          fi
+          rm -rf android/app/src/main/res/mipmap-anydpi-v26
+          python3 -c "from PIL import Image" 2>/dev/null || \
+            pip install --break-system-packages --quiet pillow
+          python3 << 'PYEOF'
+          from PIL import Image
+          import os
+          src = Image.open('icon-512.png')
+          sizes = [('mdpi', 48), ('hdpi', 72), ('xhdpi', 96),
+                   ('xxhdpi', 144), ('xxxhdpi', 192)]
+          for dpi, size in sizes:
+              out_dir = f'android/app/src/main/res/mipmap-{dpi}'
+              os.makedirs(out_dir, exist_ok=True)
+              resized = src.resize((size, size), Image.LANCZOS)
+              resized.save(f'{out_dir}/ic_launcher.png', optimize=True)
+              resized.save(f'{out_dir}/ic_launcher_round.png', optimize=True)
+              print(f'  mipmap-{dpi} ({size}x{size})')
+          PYEOF
 
-      - name: Build debug APK
-        run: cd android && ./gradlew assembleDebug --no-daemon
+      - name: Enable Kotlin in Android Gradle build
+        run: |
+          python3 << 'PYEOF'
+          import re
+
+          path_top = "android/build.gradle"
+          with open(path_top, "r", encoding="utf-8") as f:
+              c = f.read()
+          if "kotlin-gradle-plugin" not in c:
+              if "kotlin_version" not in c:
+                  c = re.sub(
+                      r'(buildscript\s*\{)',
+                      r'\1\n    ext.kotlin_version = "1.9.22"',
+                      c, count=1
+                  )
+              c = re.sub(
+                  r'(buildscript\s*\{(?:[^{}]|\{[^{}]*\})*?dependencies\s*\{)',
+                  r'\1\n        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"',
+                  c, count=1, flags=re.DOTALL
+              )
+              with open(path_top, "w", encoding="utf-8") as f:
+                  f.write(c)
+              print("Kotlin classpath added to top-level build.gradle")
+          else:
+              print("Kotlin classpath already present")
+
+          path_mod = "android/app/build.gradle"
+          with open(path_mod, "r", encoding="utf-8") as f:
+              c = f.read()
+          if "kotlin-android" not in c:
+              c = re.sub(
+                  r"(apply plugin:\s*['\"]com\.android\.application['\"])",
+                  r"\1\napply plugin: 'kotlin-android'",
+                  c, count=1
+              )
+              with open(path_mod, "w", encoding="utf-8") as f:
+                  f.write(c)
+              print("kotlin-android plugin applied to app/build.gradle")
+          else:
+              print("kotlin-android plugin already applied")
+          PYEOF
+
+      - name: Copy native Android sources (TGBubble v1.0)
+        run: |
+          set -e
+          SRC_DIR="android-native"
+          DEST_PKG="studio/deponchy/tradegenius"
+          DEST_DIR="android/app/src/main/java/${DEST_PKG}"
+          if [ ! -d "$SRC_DIR" ]; then
+            echo "WARN: $SRC_DIR not found. Bubble feature won't be built."
+            exit 0
+          fi
+          mkdir -p "$DEST_DIR"
+          for f in "$SRC_DIR"/*.kt "$SRC_DIR"/*.java; do
+            if [ -f "$f" ]; then
+              cp "$f" "$DEST_DIR/"
+              echo "  Copied $(basename $f) -> $DEST_DIR/"
+            fi
+          done
+          echo "=== Native files in place ==="
+          ls -la "$DEST_DIR/"
+
+      - name: Patch AndroidManifest.xml (idempotent)
+        run: |
+          python3 << 'PYEOF'
+          import re, sys
+          import xml.etree.ElementTree as ET
+          path = "android/app/src/main/AndroidManifest.xml"
+          with open(path, "r", encoding="utf-8") as f:
+              content = f.read()
+
+          bubble_perms = (
+              '    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />\n'
+              '    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />\n'
+              '    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />\n'
+              '    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />\n'
+          )
+          if "SYSTEM_ALERT_WINDOW" not in content:
+              content = content.replace("</manifest>", bubble_perms + "</manifest>")
+              print("Bubble permissions injected")
+          else:
+              print("Bubble permissions already present")
+
+          service_decl = (
+              '        <service\n'
+              '            android:name="studio.deponchy.tradegenius.TGBubbleService"\n'
+              '            android:exported="false"\n'
+              '            android:foregroundServiceType="specialUse">\n'
+              '            <property\n'
+              '                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"\n'
+              '                android:value="floating_assistant_bubble" />\n'
+              '        </service>\n'
+          )
+          if "TGBubbleService" not in content:
+              content = content.replace("</application>", service_decl + "    </application>")
+              print("Bubble service declared")
+          else:
+              print("Bubble service already declared")
+
+          def add_activity_attr(content, attr_name, attr_value):
+              m = re.search(r'<activity\b[^>]*>', content)
+              if not m:
+                  return content
+              tag = m.group(0)
+              if f'android:{attr_name}=' in tag:
+                  return content
+              new_tag = tag.replace('<activity', f'<activity android:{attr_name}="{attr_value}"', 1)
+              return content.replace(tag, new_tag, 1)
+
+          content = add_activity_attr(content, 'screenOrientation', 'portrait')
+          content = add_activity_attr(content, 'configChanges',
+              'screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden')
+
+          try:
+              ET.fromstring(content)
+              print("XML validation: OK")
+          except ET.ParseError as e:
+              print(f"FATAL: XML validation FAILED: {e}")
+              sys.exit(1)
+
+          with open(path, "w", encoding="utf-8") as f:
+              f.write(content)
+          PYEOF
+
+      - name: Patch MainActivity.java (register TGBubble plugin)
+        run: |
+          python3 << 'PYEOF'
+          import os, glob, re, textwrap
+          matches = glob.glob("android/app/src/main/java/**/MainActivity.java", recursive=True)
+          if not matches:
+              print("WARN: MainActivity.java not found, skipping patch")
+          else:
+              path = matches[0]
+              print(f"Patching {path}")
+              with open(path, "r", encoding="utf-8") as f:
+                  content = f.read()
+              m = re.match(r'package\s+([^;]+);', content)
+              if not m:
+                  print("WARN: package declaration not found, skipping")
+              elif 'TGBubblePlugin' in content:
+                  print("MainActivity already patched, skipping")
+              else:
+                  package = m.group(1)
+                  new_content = textwrap.dedent(f"""\
+                      package {package};
+
+                      import android.os.Bundle;
+                      import com.getcapacitor.BridgeActivity;
+                      import studio.deponchy.tradegenius.TGBubblePlugin;
+
+                      public class MainActivity extends BridgeActivity {{
+                          @Override
+                          public void onCreate(Bundle savedInstanceState) {{
+                              registerPlugin(TGBubblePlugin.class);
+                              super.onCreate(savedInstanceState);
+                          }}
+                      }}
+                      """)
+                  with open(path, "w", encoding="utf-8") as f:
+                      f.write(new_content)
+                  print("MainActivity.java patched (TGBubble registered)")
+          PYEOF
+
+      - name: Build Debug APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Read version
         id: version
         run: |
-          VER=$(grep -oE "TG_VERSION = 'v[0-9.]+'" tg-common.js | grep -oE "[0-9.]+")
+          VER=$(grep -oE "TG_VERSION = 'v[0-9.]+'" tg-common.js | grep -oE "[0-9.]+" | head -1)
+          if [ -z "$VER" ]; then VER="0.0.0"; fi
           echo "version=$VER" >> $GITHUB_OUTPUT
           echo "Detected version: $VER"
 
       - name: Upload APK as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: trade-genius-debug-${{ steps.version.outputs.version }}
+          name: trade-genius-debug-${{ steps.version.outputs.version }}-${{ github.run_number }}
           path: android/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
+          if-no-files-found: error
+          overwrite: true
 
       - name: Create / update Release
         uses: softprops/action-gh-release@v2
@@ -79,7 +297,7 @@ jobs:
             2. Sur ton Samsung : Paramètres → Apps → Autoriser sources inconnues
             3. Ouvre l'APK pour installer
 
-            **Activer la bulle 🤖 :** ouvre l'app puis suis l'onboarding (3 permissions en 1 minute).
+            **Activer la bulle 🤖 :** ouvre l'app → onglet IA → carte "Bulle d'analyse" → bouton Activer.
           files: android/app/build/outputs/apk/debug/app-debug.apk
           prerelease: true
           token: ${{ secrets.GITHUB_TOKEN }}

@@ -896,6 +896,9 @@
   async function tgaAnalyze(id) {
     const asset = CATALOG.find(a => a.id === id);
     if (!asset) return;
+    // v2.79 — Persiste le dernier asset analysé pour que la bulle (tg-bubble.js)
+    // puisse re-déclencher l'analyse via le bouton scan.
+    try { localStorage.setItem('tg_last_analyzed_asset', id); } catch {}
     openOverlay(loadingHTML('Récupération des données ' + asset.label + ' (multi-timeframe)…'));
     // v2.66 — Multi-timeframe : daily + hourly en parallèle
     const multi = await fetchPricesMulti(asset);

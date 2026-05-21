@@ -1,26 +1,55 @@
 /**
- * tg-bubble.js — v2.75
+ * tg-bubble.js — v2.79
  *
- * Interface JS ↔ plugin natif Android BubbleOverlay.
- * Détecte l'environnement (Capacitor vs PWA) et fournit l'API unifiée.
+ * Interface JS ↔ plugin natif Android TGBubble (forké du pattern BJ Genius).
+ * Détecte l'environnement (Capacitor vs PWA) et fournit une API unifiée.
  *
- * Inclus sur les pages où on veut le contrôle de la bulle (paramètres / IA).
+ * Inclus sur les pages où on veut le contrôle de la bulle (vue IA).
  *
- * Côté Capacitor : appelle le plugin natif (Kotlin) via window.Capacitor.
+ * Côté Capacitor APK : appelle le plugin natif Java/Kotlin via window.Capacitor.Plugins.TGBubble
  * Côté PWA pure : no-op silencieux (la bulle native n'existe pas).
+ *
+ * API publique exposée sur window.TGBubble :
+ *   - isNative : boolean
+ *   - showBubble() / hideBubble()
+ *   - hasOverlayPermission() / requestOverlayPermission()
+ *   - setDecision({text, color})
+ *   - onScanResult(cb) → unsubscribe fn (cb reçoit {type, ticker?, ...})
+ *   - getDiagnostic() → objet de debug
  */
 (function () {
   'use strict';
 
-  const isCapacitor = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
+  const ua = (navigator.userAgent || '').toLowerCase();
+  const isAndroid = /android/.test(ua);
+  const hasCapacitor = !!window.Capacitor;
+  const capacitorIsNative = !!(hasCapacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
+  const platform = hasCapacitor && window.Capacitor.getPlatform ? window.Capacitor.getPlatform() : 'web';
+  const isCapacitor = capacitorIsNative;
 
   function getPlugin() {
-    if (!isCapacitor) return null;
+    if (!hasCapacitor) return null;
     const plugins = window.Capacitor.Plugins || {};
-    return plugins.BubbleOverlay || null;
+    // Nouveau plugin TGBubble (v2.79+). Fallback BubbleOverlay pour compat ascendante.
+    return plugins.TGBubble || plugins.BubbleOverlay || null;
   }
 
-  /** Demande la permission SYSTEM_ALERT_WINDOW (renvoie vers settings si nécessaire) */
+  function getDiagnostic() {
+    const p = getPlugin();
+    return {
+      isAndroid,
+      hasCapacitor,
+      capacitorIsNative,
+      platform,
+      hasBubblePlugin: !!p,
+      pluginName: p ? (window.Capacitor.Plugins.TGBubble ? 'TGBubble' : 'BubbleOverlay') : null,
+      reason: !hasCapacitor ? 'Capacitor non chargé (mode navigateur web pur)'
+        : !capacitorIsNative ? 'Capacitor en mode web (pas natif)'
+        : !p ? 'Plugin TGBubble non enregistré (problème de build Android)'
+        : 'OK',
+    };
+  }
+
   async function requestOverlayPermission() {
     const p = getPlugin();
     if (!p) return { granted: false, native: false };
@@ -28,7 +57,7 @@
       const r = await p.requestOverlayPermission();
       return Object.assign({ native: true }, r);
     } catch (e) {
-      console.warn('requestOverlayPermission failed', e);
+      console.warn('[tg-bubble] requestOverlayPermission failed', e);
       return { granted: false, native: true, error: e.message };
     }
   }
@@ -37,12 +66,13 @@
     const p = getPlugin();
     if (!p) return { granted: false, native: false };
     try {
-      const r = await p.hasOverlayPermission();
+      // TGBubble expose hasOverlayPermission ET checkOverlayPermission
+      const fn = p.hasOverlayPermission || p.checkOverlayPermission;
+      const r = await fn.call(p);
       return Object.assign({ native: true }, r);
     } catch { return { granted: false, native: true }; }
   }
 
-  /** Lance le service qui affiche la bulle système (par-dessus toutes les apps) */
   async function showBubble() {
     const p = getPlugin();
     if (!p) {
@@ -55,8 +85,10 @@
       if (!req.granted) return { shown: false, native: true, needsPermission: true };
     }
     try {
-      const r = await p.showBubble();
-      return Object.assign({ native: true }, r);
+      // TGBubble expose start() (BJ pattern). showBubble en fallback.
+      const fn = p.start || p.showBubble;
+      const r = await fn.call(p);
+      return Object.assign({ shown: true, native: true }, r);
     } catch (e) { return { shown: false, native: true, error: e.message }; }
   }
 
@@ -64,46 +96,70 @@
     const p = getPlugin();
     if (!p) return { hidden: false, native: false };
     try {
-      const r = await p.hideBubble();
-      return Object.assign({ native: true }, r);
+      const fn = p.stop || p.hideBubble;
+      const r = await fn.call(p);
+      return Object.assign({ hidden: true, native: true }, r);
     } catch (e) { return { hidden: false, native: true, error: e.message }; }
   }
 
-  /** Déclenche un scan ponctuel (sans avoir la bulle visible) */
+  async function setDecision(text, color) {
+    const p = getPlugin();
+    if (!p || !p.setDecision) return null;
+    try {
+      return await p.setDecision({ text: String(text || ''), color: color || '#22c55e' });
+    } catch (e) { console.warn('[tg-bubble] setDecision failed', e); return null; }
+  }
+
   async function triggerScan() {
     const p = getPlugin();
     if (!p) return null;
     try {
-      const r = await p.triggerScan();
-      return r;
-    } catch (e) { console.warn('triggerScan failed', e); return null; }
+      if (p.triggerScan) return await p.triggerScan();
+      // Fallback : on simule via emit local
+      return null;
+    } catch (e) { console.warn('[tg-bubble] triggerScan failed', e); return null; }
   }
 
   /**
-   * Écoute les résultats de scan (déclenché par tap sur la bulle ou triggerScan).
-   * Callback reçoit { text, ticker, price, ts }
-   * Le code JS doit ensuite identifier l'actif et lancer l'analyse de l'agent actif.
+   * Écoute les events de la bulle (tap scan, tap bulle, tap close).
+   * Callback reçoit { type: 'scan_tap' | 'bubble_tap' | 'close_tap', ... }
    */
   function onScanResult(cb) {
     const p = getPlugin();
     if (!p) return () => {};
-    const handle = p.addListener('bubbleScanResult', (event) => {
-      try { cb(event); } catch (e) { console.warn(e); }
+    // TGBubble emit 'bubbleEvent'. Compat ancien: 'bubbleScanResult'.
+    const eventName = (p === window.Capacitor.Plugins.TGBubble) ? 'bubbleEvent' : 'bubbleScanResult';
+    const handle = p.addListener(eventName, (event) => {
+      try { cb(event); } catch (e) { console.warn('[tg-bubble] onScanResult cb failed', e); }
     });
     return () => { try { handle.remove && handle.remove(); } catch {} };
   }
 
   /**
-   * Helper : à partir d'un ticker OCRisé, identifie l'actif dans le catalogue
-   * et lance l'analyse via le FAB Analyste (tg-analyst.js).
+   * Helper : à partir d'un ticker OCRisé (ou tap scan), identifie l'actif et
+   * lance l'analyse via le FAB Analyste (tg-analyst.js).
+   *
+   * Pour l'instant (v2.79) le scan déclenche juste l'analyse de l'actif
+   * courant sans OCR. L'OCR ML Kit viendra dans une version ultérieure.
    */
   function handleScanResult(scanData) {
-    if (!scanData || !scanData.ticker) {
-      console.info('[tg-bubble] Ticker non détecté dans le scan');
+    if (!scanData) return;
+    // Cas 1 : event natif {type: 'scan_tap'} → on lance l'analyse du dernier actif vu
+    if (scanData.type === 'scan_tap') {
+      const lastAsset = localStorage.getItem('tg_last_analyzed_asset') || 'bitcoin';
+      if (typeof window.tgaAnalyze === 'function') {
+        window.tgaAnalyze(lastAsset);
+      } else {
+        console.warn('[tg-bubble] tgaAnalyze indisponible');
+      }
+      return;
+    }
+    // Cas 2 : OCR ticker (à venir)
+    if (!scanData.ticker) {
+      console.info('[tg-bubble] Pas de ticker dans le scan', scanData);
       return;
     }
     const ticker = scanData.ticker.toUpperCase().replace(/\//g, '');
-    // Mapping ticker → asset id (catalog tg-analyst.js)
     const map = {
       'BTC': 'bitcoin', 'BTCUSDT': 'bitcoin', 'BTCUSD': 'bitcoin',
       'ETH': 'ethereum', 'ETHUSDT': 'ethereum', 'ETHUSD': 'ethereum',
@@ -120,10 +176,9 @@
     };
     const assetId = map[ticker];
     if (!assetId) {
-      console.info('[tg-bubble] Ticker', ticker, 'non reconnu dans le catalogue');
+      console.info('[tg-bubble] Ticker', ticker, 'non reconnu');
       return;
     }
-    // Lance l'analyse via le FAB Analyste (tg-analyst.js)
     if (typeof window.tgaAnalyze === 'function') {
       window.tgaAnalyze(assetId);
     } else {
@@ -133,10 +188,12 @@
 
   window.TGBubble = {
     isNative: isCapacitor,
+    getDiagnostic,
     requestOverlayPermission,
     hasOverlayPermission,
     showBubble,
     hideBubble,
+    setDecision,
     triggerScan,
     onScanResult,
     handleScanResult,
@@ -145,7 +202,7 @@
   // Auto-wire : si on est natif, brancher onScanResult sur handleScanResult
   if (isCapacitor) {
     onScanResult((data) => {
-      console.log('[tg-bubble] Scan reçu :', data);
+      console.log('[tg-bubble] Event reçu :', data);
       handleScanResult(data);
     });
   }
