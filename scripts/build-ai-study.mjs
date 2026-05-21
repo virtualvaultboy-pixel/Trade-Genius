@@ -478,6 +478,28 @@ async function main() {
   // Setup principal (pour rétrocompat) = celui avec meilleure confidence puis R/R
   const bestSetup = setupsAll[0] || null;
 
+  // v2.56 — Statistiques "Recommandations du jour" basées sur notre analyseur ULTRA FIABLE
+  const recommended = {
+    count: setupsAll.length,
+    byKind: { index: 0, crypto: 0, action: 0 },
+    byConfidence: { 'very-high': 0, high: 0, medium: 0 },
+    assets: setupsAll.map(s => ({
+      label: s.asset, kind: s.kind, type: s.type, label_setup: s.label,
+      confidence: s.confidence || 'medium', direction: s.direction, rr2: s.rr2,
+    })),
+  };
+  setupsAll.forEach(s => {
+    recommended.byKind[s.kind] = (recommended.byKind[s.kind] || 0) + 1;
+    recommended.byConfidence[s.confidence] = (recommended.byConfidence[s.confidence] || 0) + 1;
+  });
+  // Verdict global cohérent avec le nombre d'opportunités détectées
+  let opportunityVerdict;
+  if (setupsAll.length === 0) opportunityVerdict = { cls: 'neutral', label: 'Aucune opportunité claire aujourd\'hui', desc: 'Notre analyseur n\'a détecté aucun setup propre passant les filtres ultra-fiables. Patience : un signal clean arrive toujours.' };
+  else if (setupsAll.length === 1) opportunityVerdict = { cls: 'neutral', label: '1 opportunité détectée', desc: 'Un seul actif présente une configuration alignée selon notre analyseur — sélectivité maximale.' };
+  else if (setupsAll.length <= 3) opportunityVerdict = { cls: 'bull-soft', label: setupsAll.length + ' opportunités détectées', desc: 'Marché offrant quelques setups propres. Profil sélectif favorable.' };
+  else opportunityVerdict = { cls: 'bull', label: setupsAll.length + ' opportunités détectées', desc: 'Plusieurs actifs alignés simultanément — contexte large favorable aux acheteurs trend-follow.' };
+  recommended.opportunityVerdict = opportunityVerdict;
+
   const prompt = buildPrompt(valid);
   const ai = await generateStudy(prompt, valid);
 
@@ -508,6 +530,8 @@ async function main() {
     observations: Array.isArray(ai.observations) ? ai.observations.slice(0, 6) : [],
     plan_pedago: Array.isArray(ai.plan_pedago) ? ai.plan_pedago.slice(0, 5) : [],
     verdict: { score: avgScore, cls: avgCls, label: avgLabel },
+    // v2.56 — Recommandations chiffrées issues de l'analyseur ULTRA FIABLE
+    recommended: recommended,
     assets: assetsClean,
     // v2.44 — liste de TOUS les setups propices (1 par actif max)
     // v2.54 — confidence exposée
