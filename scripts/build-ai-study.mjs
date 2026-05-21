@@ -321,27 +321,27 @@ function detectSetup(a) {
     }
   }
 
-  // v2.69 — STROMBOLI haussier : Doji après bougie rouge + confirmation bougie verte
+  // v2.69 — DOJI haussier : Doji après bougie rouge + confirmation bougie verte
   // Le marché a baissé, hésité (doji = combat), puis les acheteurs ont gagné
-  // Entry = close confirmation · Stop = bas de la bougie rouge · Exit = Stromboli baissier suivant
-  const stromboli = detectStromboli(prices, atr);
-  if (stromboli && stromboli.direction === 'long') {
+  // Entry = close confirmation · Stop = bas de la bougie rouge · Exit = Doji baissier suivant
+  const doji = detectDoji(prices, atr);
+  if (doji && doji.direction === 'long') {
     const entry = last;
-    const stop = stromboli.stopLevel; // plus bas de la bougie rouge
+    const stop = doji.stopLevel; // plus bas de la bougie rouge
     if (stop < entry) {
-      // TP basé sur l'amplitude moyenne du mouvement (3 ATR conservateur, sortie réelle au prochain Stromboli baissier)
+      // TP basé sur l'amplitude moyenne du mouvement (3 ATR conservateur, sortie réelle au prochain Doji baissier)
       const tp1 = entry + 2 * atr;
       const tp2 = entry + 4 * atr;
       const risk = entry - stop;
       const reward = tp2 - entry;
       if (reward / risk >= 1.8) {
         return {
-          type: 'stromboli-haussier',
-          label: 'Stromboli — Retournement haussier',
-          timeframe: 'Swing · 3-10 jours (sortie sur Stromboli inverse)',
+          type: 'doji-haussier',
+          label: 'Doji — Retournement haussier',
+          timeframe: 'Swing · 3-10 jours (sortie sur Doji inverse)',
           confidence: 'high',
-          config: 'Doji détecté après bougie rouge (' + stromboli.redCandlePct + '%) puis bougie verte de confirmation (+' + stromboli.greenCandlePct + '%). Combat acheteurs/vendeurs résolu côté acheteur.',
-          rationale: 'Stratégie Heikin Ashi adaptée : après une chute, un doji marque une hésitation (combat acheteur/vendeur). La bougie verte qui suit confirme que les acheteurs ont gagné. Stop technique au plus bas de la bougie rouge. Sortie discrétionnaire au prochain Stromboli baissier (doji après bougie verte).',
+          config: 'Doji détecté après bougie rouge (' + doji.redCandlePct + '%) puis bougie verte de confirmation (+' + doji.greenCandlePct + '%). Combat acheteurs/vendeurs résolu côté acheteur.',
+          rationale: 'Stratégie Heikin Ashi adaptée : après une chute, un doji marque une hésitation (combat acheteur/vendeur). La bougie verte qui suit confirme que les acheteurs ont gagné. Stop technique au plus bas de la bougie rouge. Sortie discrétionnaire au prochain Doji baissier (doji après bougie verte).',
           direction: 'long',
           entry, stop, tp1, tp2,
           rr1: ((tp1 - entry) / risk).toFixed(2),
@@ -350,9 +350,9 @@ function detectSetup(a) {
       }
     }
   }
-  if (stromboli && stromboli.direction === 'short') {
+  if (doji && doji.direction === 'short') {
     const entry = last;
-    const stop = stromboli.stopLevel;
+    const stop = doji.stopLevel;
     if (stop > entry) {
       const tp1 = entry - 2 * atr;
       const tp2 = entry - 4 * atr;
@@ -360,12 +360,12 @@ function detectSetup(a) {
       const reward = entry - tp2;
       if (reward / risk >= 1.8) {
         return {
-          type: 'stromboli-baissier',
-          label: 'Stromboli — Retournement baissier',
-          timeframe: 'Swing · 3-10 jours (sortie sur Stromboli inverse)',
+          type: 'doji-baissier',
+          label: 'Doji — Retournement baissier',
+          timeframe: 'Swing · 3-10 jours (sortie sur Doji inverse)',
           confidence: 'high',
-          config: 'Doji après bougie verte (+' + stromboli.greenCandlePct + '%) puis bougie rouge de confirmation (' + stromboli.redCandlePct + '%). Vendeurs ont pris le contrôle.',
-          rationale: 'Inverse du Stromboli haussier : après une hausse, un doji marque l\'épuisement des acheteurs. La bougie rouge confirme. Stop au plus haut de la bougie verte. Pour les comptes qui shortent — sinon, signal "sors de ton long".',
+          config: 'Doji après bougie verte (+' + doji.greenCandlePct + '%) puis bougie rouge de confirmation (' + doji.redCandlePct + '%). Vendeurs ont pris le contrôle.',
+          rationale: 'Inverse du Doji haussier : après une hausse, un doji marque l\'épuisement des acheteurs. La bougie rouge confirme. Stop au plus haut de la bougie verte. Pour les comptes qui shortent — sinon, signal "sors de ton long".',
           direction: 'short',
           entry, stop, tp1, tp2,
           rr1: ((entry - tp1) / risk).toFixed(2),
@@ -380,11 +380,11 @@ function detectSetup(a) {
 }
 
 /**
- * v2.69 — Détection STROMBOLI (doji-reversal du formateur IVT Live Trading)
+ * v2.69 — Détection DOJI (doji-reversal du formateur IVT Live Trading)
  * v2.73 — Avec confirmations IVT COMPLÈTES : Ichimoku ascendant + MA7 ascendante
  *
- * Stromboli haussier  : bougie ROUGE → DOJI → bougie VERTE (confirmation)
- * Stromboli baissier  : bougie VERTE → DOJI → bougie ROUGE (confirmation)
+ * Doji haussier  : bougie ROUGE → DOJI → bougie VERTE (confirmation)
+ * Doji baissier  : bougie VERTE → DOJI → bougie ROUGE (confirmation)
  *
  * Note : on travaille sur close-only, donc :
  *   - "bougie rouge" = close[t] < close[t-1] de plus de 0.5%
@@ -400,11 +400,11 @@ function detectSetup(a) {
  *
  * Stop = close de la bougie rouge (approximation du low en mode close-only)
  */
-function detectStromboli(prices, atr) {
+function detectDoji(prices, atr) {
   if (!prices || prices.length < 5) return null;
   const N = prices.length;
   const c1 = prices[N - 1]; // dernière bougie (confirmation)
-  const c2 = prices[N - 2]; // doji (Stromboli)
+  const c2 = prices[N - 2]; // doji (Doji)
   const c3 = prices[N - 3]; // bougie rouge ou verte (contexte)
   const c4 = prices[N - 4]; // référence
   const DOJI_TH = 0.003;    // 0.3%
@@ -423,7 +423,7 @@ function detectStromboli(prices, atr) {
   const cloudUp = ichiDir && ichiDir.direction === 'up' && ichiDir.tenkanAboveKijun;
   const cloudDown = ichiDir && ichiDir.direction === 'down' && !ichiDir.tenkanAboveKijun;
 
-  // Stromboli haussier
+  // Doji haussier
   if (contextMove < -BODY_TH && dojiMove < DOJI_TH && confirmMove > BODY_TH) {
     const ivtComplete = ma7Up && cloudUp;
     return {
@@ -439,7 +439,7 @@ function detectStromboli(prices, atr) {
       cloudBullish: cloudUp,
     };
   }
-  // Stromboli baissier
+  // Doji baissier
   if (contextMove > BODY_TH && dojiMove < DOJI_TH && confirmMove < -BODY_TH) {
     const ivtCompleteShort = ma7Down && cloudDown;
     return {
@@ -757,9 +757,9 @@ function _detectAtlas(asset) {
   const ind = asset.indRaw;
   const prices = asset.prices;
   if (!ind || !prices || prices.length < 60) return null;
-  // v2.73 — Bonus : si Stromboli IVT COMPLET détecté (3 confirmations alignées),
+  // v2.73 — Bonus : si Ponchy COMPLET détecté (3 confirmations alignées),
   // ATLAS accepte exceptionnellement ce signal premium même sans toutes ses conditions LT
-  const ivt = detectStromboliIVTComplet(asset);
+  const ivt = detectPonchy(asset);
   if (ivt) {
     const last = prices[prices.length - 1];
     const atr = asset.atrAbs;
@@ -770,12 +770,12 @@ function _detectAtlas(asset) {
     const risk = entry - stop;
     if (risk > 0 && (tp2 - entry) / risk >= 2.5) {
       return {
-        type: 'atlas-stromboli-ivt',
-        label: 'Stromboli IVT premium — 3 confirmations',
+        type: 'atlas-ponchy',
+        label: 'Ponchy premium — 3 confirmations',
         timeframe: 'Swing+ · 2-5 semaines',
         confidence: 'very-high',
-        config: 'Triple confluence IVT : Stromboli haussier + Ichimoku cloud ascendant + MA7 ascendante.',
-        rationale: 'Le Gardien valide exceptionnellement ce signal court terme parce que les 3 confirmations structurelles sont alignées (ce qui est rare). Stop au plus bas de la bougie rouge. Cible étendue à +6 ATR pour capter les meilleurs mouvements. Sortie discrétionnaire sur le prochain Stromboli baissier OU rupture de MA20.',
+        config: 'Triple confluence IVT : Doji haussier + Ichimoku cloud ascendant + MA7 ascendante.',
+        rationale: 'Le Gardien valide exceptionnellement ce signal court terme parce que les 3 confirmations structurelles sont alignées (ce qui est rare). Stop au plus bas de la bougie rouge. Cible étendue à +6 ATR pour capter les meilleurs mouvements. Sortie discrétionnaire sur le prochain Doji baissier OU rupture de MA20.',
         direction: 'long', entry, stop, tp1, tp2,
         rr1: ((tp1 - entry) / risk).toFixed(2),
         rr2: ((tp2 - entry) / risk).toFixed(2),
@@ -836,22 +836,22 @@ function _detectAtlas(asset) {
 }
 
 /**
- * v2.73 — Détection Stromboli IVT COMPLET (utilisé en bonus par ATLAS et ZEN)
- * Trouve un Stromboli haussier ET vérifie les 2 confirmations IVT :
+ * v2.73 — Détection Ponchy COMPLET (utilisé en bonus par ATLAS et ZEN)
+ * Trouve un Doji haussier ET vérifie les 2 confirmations IVT :
  * Ichimoku cloud ascendant + MA7 ascendante. Si tout aligné, signal premium.
  */
-function detectStromboliIVTComplet(asset) {
+function detectPonchy(asset) {
   if (!asset.prices) return null;
-  const s = detectStromboli(asset.prices, asset.atrAbs);
+  const s = detectDoji(asset.prices, asset.atrAbs);
   if (!s || s.direction !== 'long' || !s.ivtComplete) return null;
   return s;
 }
 
 /**
  * ZEN — L'Équilibriste (v2.72)
- * Focus : SWING dans tendance avec ENTRÉE TACTIQUE (VWAP / Stromboli / Pullback)
+ * Focus : SWING dans tendance avec ENTRÉE TACTIQUE (VWAP / Doji / Pullback)
  * Outils privés : MA20/MA50 + MACD + VWAP (entrée fair-price) + Bollinger pos
- *                + RSI 40-60 + Stromboli + Hull MA (timing)
+ *                + RSI 40-60 + Doji + Hull MA (timing)
  */
 function _detectZen(asset) {
   const ind = asset.indRaw;
@@ -871,25 +871,25 @@ function _detectZen(asset) {
   if (macdH == null || macdH <= 0) return null;
   if (adx < 18) return null;
   // ZEN cherche une entrée tactique parmi 3 voies :
-  // 1) Stromboli haussier (avec bonus IVT si Ichimoku + MA7 confirment)
-  const stromboli = detectStromboli(prices, atr);
-  if (stromboli && stromboli.direction === 'long') {
+  // 1) Doji haussier (avec bonus IVT si Ichimoku + MA7 confirment)
+  const doji = detectDoji(prices, atr);
+  if (doji && doji.direction === 'long') {
     const entry = last;
-    const stop = Math.min(stromboli.stopLevel, entry - 1.5 * atr);
+    const stop = Math.min(doji.stopLevel, entry - 1.5 * atr);
     const tp1 = entry + 2 * atr;
-    const tp2 = stromboli.ivtComplete ? entry + 5 * atr : entry + 4 * atr;
+    const tp2 = doji.ivtComplete ? entry + 5 * atr : entry + 4 * atr;
     const risk = entry - stop;
     if (risk > 0 && (tp2 - entry) / risk >= 2.0) {
       return {
-        type: stromboli.ivtComplete ? 'zen-stromboli-ivt' : 'zen-stromboli',
-        label: stromboli.ivtComplete ? 'Stromboli IVT complet (signal premium)' : 'Stromboli haussier (entrée swing)',
+        type: doji.ivtComplete ? 'zen-ponchy' : 'zen-doji',
+        label: doji.ivtComplete ? 'Ponchy complet (signal premium)' : 'Doji haussier (entrée swing)',
         timeframe: 'Swing · 1-3 semaines',
-        confidence: stromboli.ivtComplete ? 'very-high' : 'high',
-        config: stromboli.ivtComplete
+        confidence: doji.ivtComplete ? 'very-high' : 'high',
+        config: doji.ivtComplete
           ? 'Triple confluence : Doji-reversal + Ichimoku cloud ascendant + MA7 ascendante. Signal premium.'
           : 'Doji-reversal validé dans tendance MT haussière. Confirmation MACD>0 + ADX>18.',
-        rationale: stromboli.ivtComplete
-          ? 'Configuration IVT complète : retournement Stromboli + structure Ichimoku haussière (cloud monte) + moyenne mobile courte ascendante. Les 3 confirmations alignées = très haute conviction. Stop sous le swing low, cible étendue +5 ATR. Sortie discrétionnaire au prochain Stromboli baissier (méthode du formateur).'
+        rationale: doji.ivtComplete
+          ? 'Configuration IVT complète : retournement Doji + structure Ichimoku haussière (cloud monte) + moyenne mobile courte ascendante. Les 3 confirmations alignées = très haute conviction. Stop sous le swing low, cible étendue +5 ATR. Sortie discrétionnaire au prochain Doji baissier (méthode du formateur).'
           : 'Entrée tactique sur un signal de retournement court terme dans une tendance MT confirmée. Stop sous le swing low, cible swing avec R/R 1:2 minimum.',
         direction: 'long', entry, stop, tp1, tp2,
         rr1: ((tp1 - entry) / risk).toFixed(2),
@@ -949,24 +949,24 @@ function _detectZen(asset) {
 function _detectNova(asset) {
   const setup = detectSetup(asset);
   if (setup) return setup;
-  // Si rien de propre, tente une détection Stromboli en backup
-  const stromboli = detectStromboli(asset.prices, asset.atrAbs);
-  if (stromboli && stromboli.direction === 'long') {
+  // Si rien de propre, tente une détection Doji en backup
+  const doji = detectDoji(asset.prices, asset.atrAbs);
+  if (doji && doji.direction === 'long') {
     const ind = asset.indRaw;
     if (!ind.maCross || ind.maCross.signal !== 'bull') return null;
     const last = asset.prices[asset.prices.length - 1];
     const atr = asset.atrAbs;
     const entry = last;
-    const stop = stromboli.stopLevel;
+    const stop = doji.stopLevel;
     const tp1 = entry + 2 * atr;
     const tp2 = entry + 3.5 * atr;
     const risk = entry - stop;
     if (risk <= 0 || (tp2 - entry) / risk < 1.8) return null;
     return {
-      type: 'nova-stromboli', label: 'Stromboli haussier (NOVA)',
+      type: 'nova-doji', label: 'Doji haussier (NOVA)',
       timeframe: 'Swing · 1-2 semaines', confidence: 'medium',
-      config: 'Setup Stromboli détecté dans tendance MT haussière.',
-      rationale: 'Approche multi-conf : Stromboli + tendance MT confirmée = entrée swing.',
+      config: 'Setup Doji détecté dans tendance MT haussière.',
+      rationale: 'Approche multi-conf : Doji + tendance MT confirmée = entrée swing.',
       direction: 'long', entry, stop, tp1, tp2,
       rr1: ((tp1 - entry) / risk).toFixed(2),
       rr2: ((tp2 - entry) / risk).toFixed(2),
@@ -979,7 +979,7 @@ function _detectNova(asset) {
  * KAIRO — Le Chasseur (v2.72)
  * Focus : CONTRARIAN + DIVERGENCES + capitulation volume
  * Outils privés : RSI Divergence + MFI + Force Index + Hull MA + Momentum vif
- *                + Stromboli baissier (short tactique)
+ *                + Doji baissier (short tactique)
  * Ignore : ADX, MA200 (n'attend pas de tendance établie)
  */
 function _detectKairo(asset) {
@@ -1037,20 +1037,20 @@ function _detectKairo(asset) {
     }
   }
 
-  // VOIE 3 — Force Index très négative + Stromboli haussier
-  const stromboli = detectStromboli(prices, atr);
-  if (stromboli && stromboli.direction === 'long' && fi != null && fi < 0) {
+  // VOIE 3 — Force Index très négative + Doji haussier
+  const doji = detectDoji(prices, atr);
+  if (doji && doji.direction === 'long' && fi != null && fi < 0) {
     const entry = last;
-    const stop = Math.min(stromboli.stopLevel, entry - 2 * atr);
+    const stop = Math.min(doji.stopLevel, entry - 2 * atr);
     const tp1 = entry + 2 * atr;
     const tp2 = entry + 5 * atr;
     const risk = entry - stop;
     if (risk > 0 && (tp2 - entry) / risk >= 2.0) {
       return {
-        type: 'kairo-stromboli', label: 'Stromboli + Force Index négatif → reprise',
+        type: 'kairo-doji', label: 'Doji + Force Index négatif → reprise',
         timeframe: 'Court terme · 3-7 jours', confidence: 'high',
         config: 'Doji après bougie rouge confirmé par bougie verte alors que le Force Index est encore négatif.',
-        rationale: 'KAIRO chasse le creux : Stromboli haussier précoce + Force Index encore négatif = on entre avant la majorité. Plus risqué mais asymétrie de gain favorable.',
+        rationale: 'KAIRO chasse le creux : Doji haussier précoce + Force Index encore négatif = on entre avant la majorité. Plus risqué mais asymétrie de gain favorable.',
         direction: 'long', entry, stop, tp1, tp2,
         rr1: ((tp1 - entry) / risk).toFixed(2),
         rr2: ((tp2 - entry) / risk).toFixed(2),
@@ -1062,16 +1062,16 @@ function _detectKairo(asset) {
   const aggressive = detectAggressiveSetup(asset);
   if (aggressive) return aggressive;
 
-  // VOIE 5 — Stromboli baissier (short tactique)
-  if (stromboli && stromboli.direction === 'short') {
+  // VOIE 5 — Doji baissier (short tactique)
+  if (doji && doji.direction === 'short') {
     const entry = last;
-    const stop = stromboli.stopLevel;
+    const stop = doji.stopLevel;
     const tp1 = entry - 2 * atr;
     const tp2 = entry - 4 * atr;
     const risk = stop - entry;
     if (risk > 0 && (entry - tp2) / risk >= 2.0) {
       return {
-        type: 'kairo-stromboli-short', label: 'Stromboli baissier (short tactique)',
+        type: 'kairo-doji-short', label: 'Doji baissier (short tactique)',
         timeframe: 'Court terme · 2-5 jours', confidence: 'medium',
         config: 'Doji après bougie verte puis bougie rouge — retournement court terme.',
         rationale: 'Short tactique réservé aux comptes qui shortent. Sinon : signal "sors de ton long".',
@@ -1142,7 +1142,7 @@ async function main() {
       icon: '🌿', color: '#84cc16',
       filters: { minConfRank: 2, minADX: 22, minRR: 2.0 },
       atr: { stop: 1.5, tp1: 2.0, tp2: 4.0 },
-      acceptedTypes: ['pullback-haussier', 'breakout-haussier', 'continuation-haussiere', 'rebond-ma50', 'stromboli-haussier'],
+      acceptedTypes: ['pullback-haussier', 'breakout-haussier', 'continuation-haussiere', 'rebond-ma50', 'doji-haussier'],
     },
     {
       id: 'nova', name: 'NOVA', role: 'Le Tacticien',
