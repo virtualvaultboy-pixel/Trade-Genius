@@ -39,6 +39,89 @@ async function loadNewsWindow() {
   } catch { return []; }
 }
 
+// v4.2 — MACRO CONTEXT FETCHER : VIX (peur du marché) + DXY (dollar fort/faible)
+// Ces deux indices conditionnent le comportement des actifs risqués.
+//   VIX > 30 = marché stressé, downgrade les setups (sauf contrarian profond)
+//   DXY bull = dollar fort, pénalise les commodities (or, argent, cuivre)
+//   DXY bear = dollar faible, booste les commodities
+async function fetchMacroContext() {
+  const ctx = { vix: null, vixRegime: 'unknown', dxy: null, dxyTrend: 'unknown' };
+  try {
+    const vixData = await fetchYahooHistorical('^VIX', '3mo');
+    if (vixData?.prices?.length) {
+      const last = vixData.prices[vixData.prices.length - 1];
+      ctx.vix = Number(last.toFixed(2));
+      if (last < 15) ctx.vixRegime = 'calm';
+      else if (last < 25) ctx.vixRegime = 'normal';
+      else if (last < 35) ctx.vixRegime = 'stressed';
+      else if (last < 45) ctx.vixRegime = 'panic';
+      else ctx.vixRegime = 'extreme-panic';
+    }
+  } catch (e) { console.warn('VIX fetch failed:', e.message); }
+  try {
+    // DX-Y.NYB = US Dollar Index (basket EUR/JPY/GBP/CAD/SEK/CHF)
+    const dxyData = await fetchYahooHistorical('DX-Y.NYB', '6mo');
+    if (dxyData?.prices?.length >= 100) {
+      const last = dxyData.prices[dxyData.prices.length - 1];
+      const ago60 = dxyData.prices[dxyData.prices.length - 60];
+      const chg60d = (last - ago60) / ago60;
+      ctx.dxy = Number(last.toFixed(2));
+      if (chg60d > 0.04) ctx.dxyTrend = 'strong-bull';
+      else if (chg60d > 0.01) ctx.dxyTrend = 'bull';
+      else if (chg60d < -0.04) ctx.dxyTrend = 'strong-bear';
+      else if (chg60d < -0.01) ctx.dxyTrend = 'bear';
+      else ctx.dxyTrend = 'neutral';
+    }
+  } catch (e) { console.warn('DXY fetch failed:', e.message); }
+  console.log(`v4.2 Macro context: VIX=${ctx.vix} (${ctx.vixRegime}) · DXY=${ctx.dxy} (${ctx.dxyTrend})`);
+  return ctx;
+}
+
+/**
+ * v4.2 — Applique filtres macro à un setup :
+ *   - Si VIX panic (>35), refuse les Pattern B/C (trend-follow) qui marchent
+ *     mal en panic. Pattern A (contrarian) reste autorisé : un VIX panic
+ *     EST une opportunité contrarian.
+ *   - Si VIX extreme-panic (>45) : downgrade quality_score de 25%.
+ *   - Si VIX stressed (25-35) : downgrade quality_score de 10%.
+ *   - Si DXY strong-bull et asset = metal/commodity : downgrade 15%.
+ *   - Si DXY strong-bear et asset = metal : booster 10%.
+ * Retourne {keep: bool, qualityMult: 0..1.1, reason: string}
+ */
+function applyMacroFilter(setup, macroCtx) {
+  if (!setup || !macroCtx) return { keep: true, qualityMult: 1, reason: null };
+  const reasons = [];
+  let mult = 1;
+  // VIX rules
+  if (macroCtx.vixRegime === 'extreme-panic') {
+    if (!setup.type || !setup.type.includes('-a')) {
+      return { keep: false, qualityMult: 0, reason: 'VIX extrême (panique) — seuls les setups contrarian sont autorisés' };
+    }
+    mult *= 0.75;
+    reasons.push(`VIX panic ${macroCtx.vix}`);
+  } else if (macroCtx.vixRegime === 'panic') {
+    if (setup.type && (setup.type.includes('-b') || setup.type.includes('-c'))) {
+      return { keep: false, qualityMult: 0, reason: 'VIX panic — trend-follow trop risqué' };
+    }
+    mult *= 0.85;
+    reasons.push(`VIX panic ${macroCtx.vix}`);
+  } else if (macroCtx.vixRegime === 'stressed') {
+    mult *= 0.90;
+    reasons.push(`VIX stress ${macroCtx.vix}`);
+  }
+  // DXY rules : impacte les commodities et certains forex
+  if (setup.kind === 'metal') {
+    if (macroCtx.dxyTrend === 'strong-bull') {
+      mult *= 0.85;
+      reasons.push(`DXY strong-bull ${macroCtx.dxy} → headwind`);
+    } else if (macroCtx.dxyTrend === 'strong-bear') {
+      mult *= 1.10;
+      reasons.push(`DXY strong-bear ${macroCtx.dxy} → tailwind métaux`);
+    }
+  }
+  return { keep: true, qualityMult: mult, reason: reasons.length ? reasons.join(' · ') : null };
+}
+
 // v4.0 — ML rules loader (optionnel : si data/ml/rules.json existe, on l'utilise
 // pour pondérer le quality_score par l'AUC de chaque horizon. Fallback safe si
 // le fichier n'existe pas — comportement v3.4 inchangé).
@@ -224,12 +307,15 @@ async function fetchOne(a) {
   try {
     // v2.60 — Indices, actions, forex et métaux passent par Yahoo (symbol)
     // Crypto via CoinGecko (id)
+    // v4.1 FIX CRITIQUE — On récupère AUSSI les volumes (oubliés avant v4.1).
+    // Sans volumes, OBV/MFI/ForceIndex étaient null et les filtres volume des
+    // patterns ne s'appliquaient jamais → tous les setups passaient.
     if (a.kind === 'crypto') {
       const d = await fetchCoinGeckoHistorical(a.id, 60);
-      return { ...a, prices: d.prices, price: d.price, prevClose: d.prevClose };
+      return { ...a, prices: d.prices, volumes: d.volumes || [], price: d.price, prevClose: d.prevClose };
     }
     const d = await fetchYahooHistorical(a.symbol, '3mo');
-    return { ...a, prices: d.prices, price: d.price, prevClose: d.prevClose };
+    return { ...a, prices: d.prices, volumes: d.volumes || [], price: d.price, prevClose: d.prevClose };
   } catch (e) {
     console.warn(`Skipping ${a.label}:`, e.message);
     return null;
@@ -1751,9 +1837,25 @@ async function main() {
 
   // v4.0 — Charge les rules ML si dispo (fallback safe si absent)
   const mlRules = await loadMlRules();
+  // v4.2 — Récupère VIX + DXY pour conditionner les setups
+  const macroCtx = await fetchMacroContext();
 
   const agentsOutput = AGENT_PROFILES.map(agent => {
-    const setups = runAgentOnAssets(agent.id);
+    let setups = runAgentOnAssets(agent.id);
+    // v4.2 — Filtres macro (VIX panic, DXY trend)
+    setups = setups.filter(s => {
+      const m = applyMacroFilter(s, macroCtx);
+      if (!m.keep) {
+        console.log(`v4.2 macro reject ${s.asset} (${s.type}) : ${m.reason}`);
+        return false;
+      }
+      if (m.qualityMult !== 1 && s.quality_score != null) {
+        s.quality_score_pre_macro = s.quality_score;
+        s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * m.qualityMult)));
+        s.macro_reason = m.reason;
+      }
+      return true;
+    });
     // v4.0 — Booste quality_score par AUC ML de l'horizon de l'agent
     if (mlRules) {
       setups.forEach(s => {
@@ -1783,6 +1885,8 @@ async function main() {
         sizing_label: s.sizing_label || null,
         // v4.1 — flag trailing stop (move stop=entry quand TP1 touché)
         trailing_after_tp1: s.trailing_after_tp1 === true,
+        // v4.2 — raison macro éventuelle (downgrade VIX/DXY, dev-only utile)
+        macro_reason: s.macro_reason || null,
         // v2.86 — news context attaché si l'actif a des news <48h
         news_context: buildNewsContext(s, newsMatches),
       })),
@@ -1864,6 +1968,8 @@ async function main() {
       window_news: recentNews.length,
       matched_assets: newsMatchCount,
     },
+    // v4.2 — Contexte macro (VIX, DXY) qui conditionne les setups du jour
+    macro: macroCtx,
     // Retro-compat : setup principal (meilleure confidence + R/R)
     setup: bestSetup ? {
       asset: bestSetup.asset, kind: bestSetup.kind, type: bestSetup.type,
