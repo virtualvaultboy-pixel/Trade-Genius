@@ -46,6 +46,8 @@ FEATURE_KEYS = [
     "ma20_rel", "ma50_rel", "ma200_rel", "ma50_slope",
     "boll_pos", "atr_pct", "adx", "stoch_k", "stoch_d",
     "ichi_pos", "ichi_sig", "vol20", "chg5", "chg20", "regime",
+    # v4.1 — Volume + Multi-TF
+    "obv_slope_10", "mfi", "vol_rel_20", "rsi_weekly", "ma20_rel_weekly",
 ]
 
 HORIZONS = [

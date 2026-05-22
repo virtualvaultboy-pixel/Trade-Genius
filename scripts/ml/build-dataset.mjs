@@ -26,7 +26,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {
   fetchYahooHistorical,
-  computeAllIndicators, atrPct, sma, macd,
+  computeAllIndicators, atrPct, sma, macd, rsi, obv, mfi,
 } from '../indicators.mjs';
 
 const HISTORY_RANGE = process.env.TG_ML_RANGE || '20y';
@@ -147,11 +147,26 @@ function stochasticK(prices, period = 14) {
   return ((prices[prices.length - 1] - lo) / (hi - lo)) * 100;
 }
 
-function extractFeatures(prices, idx) {
+// v4.1 — Resample daily prices/volumes en weekly (5-day non-overlapping buckets)
+// pour vraies features multi-TF. Retourne {prices: [...], volumes: [...]} avec
+// 1 entrée par "semaine" (close = dernier close du bucket, volume = somme).
+function resampleWeekly(prices, volumes) {
+  const wp = [], wv = [];
+  for (let i = 4; i < prices.length; i += 5) {
+    wp.push(prices[i]);
+    let v = 0;
+    for (let j = i - 4; j <= i; j++) v += (volumes?.[j] || 0);
+    wv.push(v);
+  }
+  return { prices: wp, volumes: wv };
+}
+
+function extractFeatures(prices, idx, volumes) {
   // Slice strictement causal
   const sub = prices.slice(0, idx + 1);
+  const subV = Array.isArray(volumes) ? volumes.slice(0, idx + 1) : null;
   if (sub.length < WARMUP) return null;
-  const ind = computeAllIndicators(sub);
+  const ind = computeAllIndicators(sub, subV);
   if (!ind || !ind.rsi || !ind.macd || !ind.boll) return null;
   const atrPctVal = atrPct(sub);
   if (atrPctVal == null) return null;
@@ -190,6 +205,47 @@ function extractFeatures(prices, idx) {
   const chg5 = sub.length >= 6 ? (last - sub[sub.length - 6]) / sub[sub.length - 6] : 0;
   const chg20 = sub.length >= 21 ? (last - sub[sub.length - 21]) / sub[sub.length - 21] : 0;
 
+  // v4.1 — VOLUME FEATURES
+  // obv_slope_10 : pente normalisée de l'OBV sur 10j (positif = accumulation)
+  let obvSlope10 = 0;
+  let mfiVal = 50;
+  let volRel20 = 1;
+  if (subV && subV.length === sub.length) {
+    const obvSeries = [];
+    let cum = 0;
+    for (let i = 1; i < sub.length; i++) {
+      if (sub[i] > sub[i - 1]) cum += (subV[i] || 0);
+      else if (sub[i] < sub[i - 1]) cum -= (subV[i] || 0);
+      obvSeries.push(cum);
+    }
+    if (obvSeries.length >= 11) {
+      const o0 = obvSeries[obvSeries.length - 11];
+      const o1 = obvSeries[obvSeries.length - 1];
+      const ref = Math.abs(o0) || 1;
+      obvSlope10 = (o1 - o0) / ref;
+    }
+    const mf = mfi(sub, subV, 14);
+    if (mf != null) mfiVal = mf;
+    // Volume actuel / moyenne 20j
+    if (subV.length >= 21) {
+      const vMean = subV.slice(-20).reduce((s, v) => s + (v || 0), 0) / 20;
+      if (vMean > 0) volRel20 = (subV[subV.length - 1] || 0) / vMean;
+    }
+  }
+
+  // v4.1 — MULTI-TIMEFRAME FEATURES (resample weekly)
+  // Vrai multi-TF : on regroupe les daily en weekly (1 candle/semaine) puis
+  // on calcule RSI + slope MA sur cette série hebdomadaire.
+  let rsiWeekly = 50;
+  let ma20RelWeekly = 0;
+  const wk = resampleWeekly(sub, subV);
+  if (wk.prices.length >= 30) {
+    const rW = rsi(wk.prices, 14);
+    if (rW != null) rsiWeekly = rW;
+    const ma20W = sma(wk.prices, 20);
+    if (ma20W) ma20RelWeekly = (wk.prices[wk.prices.length - 1] - ma20W) / ma20W;
+  }
+
   return {
     rsi: Number(ind.rsi.value) || 50,
     macd_line: Number(mFull?.macd) || 0,
@@ -210,6 +266,13 @@ function extractFeatures(prices, idx) {
     chg5,
     chg20,
     regime: detectRegime(sub),
+    // v4.1 — Volume
+    obv_slope_10: obvSlope10,
+    mfi: mfiVal,
+    vol_rel_20: volRel20,
+    // v4.1 — Multi-TF (weekly)
+    rsi_weekly: rsiWeekly,
+    ma20_rel_weekly: ma20RelWeekly,
   };
 }
 
@@ -218,6 +281,8 @@ const FEATURE_KEYS = [
   'ma20_rel', 'ma50_rel', 'ma200_rel', 'ma50_slope',
   'boll_pos', 'atr_pct', 'adx', 'stoch_k', 'stoch_d',
   'ichi_pos', 'ichi_sig', 'vol20', 'chg5', 'chg20', 'regime',
+  // v4.1 — 5 nouvelles features
+  'obv_slope_10', 'mfi', 'vol_rel_20', 'rsi_weekly', 'ma20_rel_weekly',
 ];
 
 async function processAsset(asset, csvRows) {
@@ -229,11 +294,12 @@ async function processAsset(asset, csvRows) {
     return 0;
   }
   const prices = d.prices;
+  const volumes = d.volumes || []; // v4.1 — volumes Yahoo
   if (!prices || prices.length < WARMUP + 30) {
     console.warn(`SKIP ${asset.label}: not enough history (${prices?.length || 0})`);
     return 0;
   }
-  console.log(`${asset.label} : ${prices.length} candles`);
+  console.log(`${asset.label} : ${prices.length} candles${volumes.length ? ' (+volumes)' : ''}`);
   let added = 0;
   // On échantillonne 1 sur 2 pour éviter dataset trop massif (~500k lignes vs 1M)
   for (let i = WARMUP; i < prices.length - HOLD_MONTH - 1; i += 2) {
@@ -243,7 +309,7 @@ async function processAsset(asset, csvRows) {
     const last = sub[sub.length - 1];
     const atrAbs = (atrPctVal / 100) * last;
     if (!atrAbs || atrAbs <= 0) continue;
-    const feats = extractFeatures(prices, i);
+    const feats = extractFeatures(prices, i, volumes);
     if (!feats) continue;
     const labelDay = labelForward(prices, i, atrAbs, TP_DAY, HOLD_DAY);
     const labelWeek = labelForward(prices, i, atrAbs, TP_WEEK, HOLD_WEEK);

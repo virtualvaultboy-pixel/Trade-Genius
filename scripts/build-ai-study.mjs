@@ -957,6 +957,11 @@ function _detectGridContrarian(asset, params) {
   // un dip dans un bear market = catastrophe sur 5+ années de bear séculaire)
   const regime = detectMarketRegime(prices);
   if (regime === 'bear') return null;
+  // v4.1 — FILTRE VOLUME : si MFI > 70 sur RSI<25, c'est un rebond fictif
+  // (le RSI dit "oversold" mais le money flow ne suit pas → distribution
+  // déguisée en accumulation). Statistiquement les pires entrées contrarian.
+  const mfiVal = ind.mfi?.value;
+  if (mfiVal != null && mfiVal > 70) return null;
   const last = prices[prices.length - 1];
   const atr = asset.atrAbs;
   if (!atr) return null;
@@ -970,11 +975,12 @@ function _detectGridContrarian(asset, params) {
   return {
     type: params.type, label: params.label,
     timeframe: params.timeframe, confidence: 'high',
-    config: 'RSI ' + rsi.toFixed(0) + ' (survente extrême) · Bollinger ' + (boll*100).toFixed(0) + '% (bande basse) · MACD ' + macdH.toFixed(2) + ' (correction confirmée)' + (params.requireMaBull && ma20 && ma50 ? ' · MA20>MA50 (tendance MT préservée)' : '') + ' · stop ' + params.atrStop + ' ATR · cible ' + params.atrTp2 + ' ATR.',
+    config: 'RSI ' + rsi.toFixed(0) + ' (survente extrême) · Bollinger ' + (boll*100).toFixed(0) + '% (bande basse) · MACD ' + macdH.toFixed(2) + ' (correction confirmée)' + (params.requireMaBull && ma20 && ma50 ? ' · MA20>MA50 (tendance MT préservée)' : '') + (mfiVal != null ? ' · MFI ' + mfiVal.toFixed(0) + ' (flux validé)' : '') + ' · stop ' + params.atrStop + ' ATR · cible ' + params.atrTp2 + ' ATR.',
     rationale: 'Configuration contrarian validée sur 20 ans × 50 actifs (PF ' + params.expectedPF + ' walk-forward OOS). Le marché est en survente technique extrême + correction MACD confirmée. Stop technique serré, cible étendue pour capter le retournement complet.',
     direction: 'long', entry, stop, tp1, tp2,
     rr1: ((tp1 - entry) / risk).toFixed(2),
     rr2: ((tp2 - entry) / risk).toFixed(2),
+    trailing_after_tp1: true, // v4.1 — Stop monte à entry quand TP1 touché
   };
 }
 
@@ -996,6 +1002,13 @@ function _detectGridPullbackTrend(asset, params) {
   // si la tendance LT globale est bull ou au moins sideways)
   const regime = detectMarketRegime(prices);
   if (regime === 'bear') return null;
+  // v4.1 — FILTRE VOLUME : pullback dans tendance LT confirmée = on a besoin
+  // que le volume confirme la continuation du trend. OBV en down ou ForceIndex
+  // négatif = le smart money sort, le pullback n'est pas une opportunité.
+  const obvTrend = ind.obv?.trend;
+  if (obvTrend === 'down') return null;
+  const forceSig = ind.forceIndex?.signal;
+  if (forceSig === 'bear') return null;
   const last = prices[prices.length - 1];
   const atr = asset.atrAbs;
   if (!atr) return null;
@@ -1013,11 +1026,12 @@ function _detectGridPullbackTrend(asset, params) {
     // v3.1 — Confidence pondérée par le régime
     confidence: regime === 'bull' ? 'very-high' : 'high',
     regime,
-    config: 'RSI ' + rsi.toFixed(0) + ' (mid-neutre) · Bollinger ' + (boll*100).toFixed(0) + '% (bande basse = retracement) · Ichimoku above-cloud · Régime ' + regime + ' (' + regimeLabel + ') · stop ' + params.atrStop + ' ATR · cible ' + params.atrTp2 + ' ATR.',
-    rationale: 'Configuration premium découverte par walk-forward 491 520 combos (PF OOS 5.65). Le prix est en pullback dans une tendance LT confirmée par 2 filtres indépendants (Ichimoku + SMA200 slope). C\'est le "buy the dip" mathématiquement validé : on achète une correction dans un trend établi, pas un début de bear market.',
+    config: 'RSI ' + rsi.toFixed(0) + ' (mid-neutre) · Bollinger ' + (boll*100).toFixed(0) + '% (bande basse = retracement) · Ichimoku above-cloud · Régime ' + regime + ' (' + regimeLabel + ')' + (obvTrend ? ' · OBV ' + obvTrend + ' (volume confirme)' : '') + ' · stop ' + params.atrStop + ' ATR · cible ' + params.atrTp2 + ' ATR.',
+    rationale: 'Configuration premium découverte par walk-forward 491 520 combos (PF OOS 5.65). Le prix est en pullback dans une tendance LT confirmée par 2 filtres indépendants (Ichimoku + SMA200 slope) + volume validé (OBV/ForceIndex). C\'est le "buy the dip" mathématiquement validé : on achète une correction dans un trend établi, pas un début de bear market.',
     direction: 'long', entry, stop, tp1, tp2,
     rr1: ((tp1 - entry) / risk).toFixed(2),
     rr2: ((tp2 - entry) / risk).toFixed(2),
+    trailing_after_tp1: true, // v4.1 — Stop monte à entry quand TP1 touché
   };
 }
 
@@ -1039,6 +1053,10 @@ function _detectGridTrendFollow(asset, params) {
   // est dans le sens du trade (bull). En bear ou sideways, signal moins fiable.
   const regime = detectMarketRegime(prices);
   if (regime === 'bear') return null;
+  // v4.1 — FILTRE VOLUME : trend-follow exige que le volume confirme la tendance.
+  // OBV en down = le trend s'essouffle, on n'achète pas la correction.
+  const obvTrend = ind.obv?.trend;
+  if (obvTrend === 'down') return null;
   const last = prices[prices.length - 1];
   const atr = asset.atrAbs;
   if (!atr) return null;
@@ -1052,11 +1070,12 @@ function _detectGridTrendFollow(asset, params) {
   return {
     type: params.type, label: params.label,
     timeframe: params.timeframe, confidence: 'high',
-    config: 'RSI ' + rsi.toFixed(0) + ' (neutre+) · ADX ' + adx.toFixed(0) + ' (tendance forte) · Bollinger ' + (boll*100).toFixed(0) + '% (milieu de bande) · MACD ' + macdH.toFixed(2) + ' (correction en cours) · stop ' + params.atrStop + ' ATR · cible ' + params.atrTp2 + ' ATR.',
-    rationale: 'Configuration trend-follow validée sur 20 ans (PF 3.42 walk-forward OOS). Une forte tendance (ADX ≥ 30) en correction courte (MACD<0, Boll mid) est statistiquement le meilleur point d\'entrée pour suivre le mouvement principal.',
+    config: 'RSI ' + rsi.toFixed(0) + ' (neutre+) · ADX ' + adx.toFixed(0) + ' (tendance forte) · Bollinger ' + (boll*100).toFixed(0) + '% (milieu de bande) · MACD ' + macdH.toFixed(2) + ' (correction en cours)' + (obvTrend ? ' · OBV ' + obvTrend : '') + ' · stop ' + params.atrStop + ' ATR · cible ' + params.atrTp2 + ' ATR.',
+    rationale: 'Configuration trend-follow validée sur 20 ans (PF 3.42 walk-forward OOS). Une forte tendance (ADX ≥ 30) en correction courte (MACD<0, Boll mid) avec volume confirmant (OBV non-baissier) est statistiquement le meilleur point d\'entrée pour suivre le mouvement principal.',
     direction: 'long', entry, stop, tp1, tp2,
     rr1: ((tp1 - entry) / risk).toFixed(2),
     rr2: ((tp2 - entry) / risk).toFixed(2),
+    trailing_after_tp1: true, // v4.1 — Stop monte à entry quand TP1 touché
   };
 }
 
@@ -1762,6 +1781,8 @@ async function main() {
         quality_score: s.quality_score || null,
         sizing_pct: s.sizing_pct || null,
         sizing_label: s.sizing_label || null,
+        // v4.1 — flag trailing stop (move stop=entry quand TP1 touché)
+        trailing_after_tp1: s.trailing_after_tp1 === true,
         // v2.86 — news context attaché si l'actif a des news <48h
         news_context: buildNewsContext(s, newsMatches),
       })),
