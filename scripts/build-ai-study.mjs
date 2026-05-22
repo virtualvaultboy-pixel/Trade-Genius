@@ -1021,6 +1021,77 @@ function _detectGridTrendFollow(asset, params) {
   };
 }
 
+/* ═══════════════════════════════════════════════════════════════════
+   v3.4 — QUALITY SCORE + POSITION SIZING
+   ═══════════════════════════════════════════════════════════════════
+   Score 0-100 par setup basé sur :
+     - Type de pattern (statistique walk-forward + 5-fold CV)
+         · Pattern A (ULTRA_ROBUSTE std 0.21) : base 70
+         · Pattern C bull regime               : base 75
+         · Pattern C sideways                  : base 55
+         · Pattern B trend-follow              : base 60
+         · Ponchy premium                      : base 85
+         · Legacy fallback                     : base 50
+     - Régime de marché aligné (+0/+5/+10)
+     - Force de tendance ADX (+0/+5/+10)
+     - R/R ratio (+0/+5/+10)
+     - Confirmation volume OBV (+0/+5)
+
+   Position sizing recommandé (% du capital) :
+     - score >= 85 : 3% (high conviction)
+     - score 70-84 : 2% (medium-high)
+     - score 55-69 : 1% (medium)
+     - score < 55  : 0.5% (low, skip recommandé)
+   ═══════════════════════════════════════════════════════════════════ */
+function _computeQualityScore(setup, asset) {
+  if (!setup) return { score: 0, sizing_pct: 0, sizing_label: 'skip' };
+  const ind = asset?.indRaw || {};
+  const t = (setup.type || '').toLowerCase();
+
+  // Base par pattern
+  let base = 50;
+  if (t.includes('ponchy')) base = 85;
+  else if (t.includes('-c')) base = setup.regime === 'bull' ? 75 : 55;
+  else if (t.includes('-a')) base = 70;            // Pattern A ULTRA_ROBUSTE
+  else if (t.includes('-b')) base = 60;
+  // legacy reste 50
+
+  // Bonus régime (Pattern C l'inclut déjà mais on récompense la cohérence)
+  const regime = setup.regime || (asset?.prices ? detectMarketRegime(asset.prices) : null);
+  let regimeBonus = 0;
+  if (regime === 'bull') regimeBonus = 10;
+  else if (regime === 'sideways') regimeBonus = 5;
+
+  // Bonus ADX (force de la tendance directionnelle)
+  const adx = Number(ind.adx?.value) || 0;
+  let adxBonus = 0;
+  if (adx >= 35) adxBonus = 10;
+  else if (adx >= 25) adxBonus = 5;
+
+  // Bonus R/R
+  const rr2 = Number(setup.rr2) || 0;
+  let rrBonus = 0;
+  if (rr2 >= 3) rrBonus = 10;
+  else if (rr2 >= 2) rrBonus = 5;
+
+  // Bonus OBV (confirmation volume si dispo)
+  let obvBonus = 0;
+  const obvSig = ind.obv?.signal || ind.obv?.trend;
+  if (obvSig === 'bull' || obvSig === 'bullish' || obvSig === 'up') obvBonus = 5;
+
+  const score = Math.min(100, base + regimeBonus + adxBonus + rrBonus + obvBonus);
+
+  let sizing_pct = 0.5, sizing_label = 'low';
+  if (score >= 85) { sizing_pct = 3; sizing_label = 'high'; }
+  else if (score >= 70) { sizing_pct = 2; sizing_label = 'medium-high'; }
+  else if (score >= 55) { sizing_pct = 1; sizing_label = 'medium'; }
+
+  return {
+    score, sizing_pct, sizing_label,
+    breakdown: { base, regimeBonus, adxBonus, rrBonus, obvBonus, regime },
+  };
+}
+
 // Wrappers v3.0 : 3 patterns grid en priorité → fallback legacy
 // Pattern C (NEW v3.0) prioritaire car PF OOS 5.65 vs 3.42 max v2.96
 function _detectAtlasGrid(asset) {
@@ -1591,15 +1662,23 @@ async function main() {
       .map(a => {
         const s = detect(a);
         if (!s) return null;
+        // v3.4 — Quality score + position sizing
+        const q = _computeQualityScore(s, a);
         return {
           ...s,
           asset: a.label, kind: a.kind, score: a.score,
+          quality_score: q.score,
+          sizing_pct: q.sizing_pct,
+          sizing_label: q.sizing_label,
           prices60: a.prices.slice(-60),
           currency: a.kind === 'crypto' || a.label === 'S&P 500' || a.label === 'Nasdaq' || a.label === 'Dow' ? 'USD' : 'EUR',
         };
       })
       .filter(Boolean)
       .sort((a, b) => {
+        // v3.4 — Tri primaire par quality_score décroissant, puis confidence, puis RR
+        const dq = (b.quality_score || 0) - (a.quality_score || 0);
+        if (dq !== 0) return dq;
         const dc = (CONF_RANK[b.confidence] || 0) - (CONF_RANK[a.confidence] || 0);
         if (dc !== 0) return dc;
         return Number(b.rr2) - Number(a.rr2);
@@ -1627,6 +1706,10 @@ async function main() {
         entry: s.entry, stop: s.stop, tp1: s.tp1, tp2: s.tp2,
         rr1: s.rr1, rr2: s.rr2, currency: s.currency,
         prices60: Array.isArray(s.prices60) ? s.prices60.map(p => Number(p.toFixed(4))) : null,
+        // v3.4 — quality score + position sizing recommandé (dev-only côté UI)
+        quality_score: s.quality_score || null,
+        sizing_pct: s.sizing_pct || null,
+        sizing_label: s.sizing_label || null,
         // v2.86 — news context attaché si l'actif a des news <48h
         news_context: buildNewsContext(s, newsMatches),
       })),
