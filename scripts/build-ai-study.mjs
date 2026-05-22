@@ -496,6 +496,32 @@ function detectSetup(a) {
  *
  * Stop = close de la bougie rouge (approximation du low en mode close-only)
  */
+/**
+ * v3.1 — Détection du régime de marché par actif (bull/bear/sideways)
+ *
+ * Filtre supplémentaire crucial pour éviter d'acheter le dip dans un
+ * marché en bear (= attraper un couteau qui tombe). Le walk-forward
+ * v2.97 a montré que cette absence de filtre coûtait du PF en OOS.
+ *
+ *   BULL    : prix > SMA200 ET slope SMA200 sur 20j > +0.5%
+ *   BEAR    : prix < SMA200 ET slope SMA200 sur 20j < -0.5%
+ *   SIDEWAYS: tout le reste (range, transition, indécis)
+ */
+function detectMarketRegime(prices) {
+  if (!prices || prices.length < 220) return 'unknown';
+  const last = prices[prices.length - 1];
+  const sma200_now = sma(prices, 200);
+  if (sma200_now == null) return 'unknown';
+  const prices_20ago = prices.slice(0, prices.length - 20);
+  if (prices_20ago.length < 200) return 'unknown';
+  const sma200_20ago = sma(prices_20ago, 200);
+  if (sma200_20ago == null) return 'unknown';
+  const slopePct = ((sma200_now - sma200_20ago) / sma200_20ago) * 100;
+  if (last > sma200_now && slopePct > 0.5) return 'bull';
+  if (last < sma200_now && slopePct < -0.5) return 'bear';
+  return 'sideways';
+}
+
 function detectDoji(prices, atr) {
   if (!prices || prices.length < 5) return null;
   const N = prices.length;
@@ -871,6 +897,7 @@ async function generateStudy(prompt, valid) {
    ═══════════════════════════════════════════════════════════════════ */
 
 // PATTERN A — Contrarian fond (RSI bas + Boll low + MACD négatif)
+// v3.1 — Ajout filtre régime de marché
 function _detectGridContrarian(asset, params) {
   const ind = asset.indRaw;
   const prices = asset.prices;
@@ -887,6 +914,10 @@ function _detectGridContrarian(asset, params) {
   if (params.requireMaBull) {                              // v2.96 : optionnel (WEEK/DAY) vs facultatif (MONTH)
     if (!ma20 || !ma50 || ma20 <= ma50) return null;
   }
+  // v3.1 — FILTRE RÉGIME : refuser si bear market (signal contrarian ↔ acheter
+  // un dip dans un bear market = catastrophe sur 5+ années de bear séculaire)
+  const regime = detectMarketRegime(prices);
+  if (regime === 'bear') return null;
   const last = prices[prices.length - 1];
   const atr = asset.atrAbs;
   if (!atr) return null;
@@ -909,9 +940,8 @@ function _detectGridContrarian(asset, params) {
 }
 
 // PATTERN C — Pullback dans tendance LT confirmée Ichimoku (v3.0, NEW)
+// v3.1 — Ajout filtre régime de marché : skip en bear (anti couteau qui tombe)
 // Découvert par walk-forward v2.97 sur 491 520 combos : PF OOS 5.65 (vs 3.42 max actuel)
-// Conditions : RSI > 35 · Bollinger < 25% · Ichimoku above-cloud · MACD négatif ou any
-// "Acheter le pullback dans une tendance LT confirmée par Ichimoku"
 function _detectGridPullbackTrend(asset, params) {
   const ind = asset.indRaw;
   const prices = asset.prices;
@@ -923,6 +953,10 @@ function _detectGridPullbackTrend(asset, params) {
   if (rsi == null || rsi <= 35) return null;
   if (boll == null || boll >= 0.25) return null;
   if (!ichi || ichi.position !== 'above-cloud' || ichi.signal !== 'bull') return null;
+  // v3.1 — FILTRE RÉGIME : refuser si bear market (le pattern ne marche que
+  // si la tendance LT globale est bull ou au moins sideways)
+  const regime = detectMarketRegime(prices);
+  if (regime === 'bear') return null;
   const last = prices[prices.length - 1];
   const atr = asset.atrAbs;
   if (!atr) return null;
@@ -933,11 +967,15 @@ function _detectGridPullbackTrend(asset, params) {
   if (stop >= entry || tp1 <= entry || tp2 <= tp1) return null;
   const risk = entry - stop;
   if ((tp2 - entry) / risk < 1.5) return null;
+  const regimeLabel = regime === 'bull' ? 'tendance LT haussière confirmée' : (regime === 'sideways' ? 'tendance LT neutre (sideways)' : 'tendance LT non confirmée');
   return {
     type: params.type, label: params.label,
-    timeframe: params.timeframe, confidence: 'very-high',  // signal premium
-    config: 'RSI ' + rsi.toFixed(0) + ' (mid-neutre) · Bollinger ' + (boll*100).toFixed(0) + '% (bande basse = retracement) · Ichimoku above-cloud (tendance LT confirmée) · stop ' + params.atrStop + ' ATR · cible ' + params.atrTp2 + ' ATR.',
-    rationale: 'Configuration premium découverte par walk-forward 491 520 combos (PF OOS 5.65). Le prix est en pullback (Bollinger basse) MAIS la tendance LT est confirmée (Ichimoku above-cloud). C\'est le "buy the dip" mathématiquement validé : on achète une correction dans un trend établi, pas un début de bear market.',
+    timeframe: params.timeframe,
+    // v3.1 — Confidence pondérée par le régime
+    confidence: regime === 'bull' ? 'very-high' : 'high',
+    regime,
+    config: 'RSI ' + rsi.toFixed(0) + ' (mid-neutre) · Bollinger ' + (boll*100).toFixed(0) + '% (bande basse = retracement) · Ichimoku above-cloud · Régime ' + regime + ' (' + regimeLabel + ') · stop ' + params.atrStop + ' ATR · cible ' + params.atrTp2 + ' ATR.',
+    rationale: 'Configuration premium découverte par walk-forward 491 520 combos (PF OOS 5.65). Le prix est en pullback dans une tendance LT confirmée par 2 filtres indépendants (Ichimoku + SMA200 slope). C\'est le "buy the dip" mathématiquement validé : on achète une correction dans un trend établi, pas un début de bear market.',
     direction: 'long', entry, stop, tp1, tp2,
     rr1: ((tp1 - entry) / risk).toFixed(2),
     rr2: ((tp2 - entry) / risk).toFixed(2),
@@ -945,6 +983,7 @@ function _detectGridPullbackTrend(asset, params) {
 }
 
 // PATTERN B — Trend-follow correction (v2.96, NEW)
+// v3.1 — Ajout filtre régime de marché
 function _detectGridTrendFollow(asset, params) {
   const ind = asset.indRaw;
   const prices = asset.prices;
@@ -957,6 +996,10 @@ function _detectGridTrendFollow(asset, params) {
   if (adx < (params.adxMin || 30)) return null;
   if (boll == null || boll < 0.25 || boll > 0.75) return null; // mid
   if (macdH == null || macdH >= 0) return null;
+  // v3.1 — FILTRE RÉGIME : la trend-follow ne fait sens que si la tendance LT
+  // est dans le sens du trade (bull). En bear ou sideways, signal moins fiable.
+  const regime = detectMarketRegime(prices);
+  if (regime === 'bear') return null;
   const last = prices[prices.length - 1];
   const atr = asset.atrAbs;
   if (!atr) return null;
