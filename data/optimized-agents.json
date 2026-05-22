@@ -1,0 +1,247 @@
+{
+  "generated": "2026-05-22T09:59:59.648Z",
+  "grid_source": {
+    "file": "data/grid-search-results.json",
+    "generated": "2026-05-22T09:56:48.635Z",
+    "history_range": "20y",
+    "num_combos": 49152,
+    "num_assets": 50
+  },
+  "optimized_per_window": {
+    "DAY": {
+      "combo_id": "rsibelow25_mabull_macdnegative_adx0_atr1-4_h5",
+      "params": {
+        "rsi": "below 25",
+        "ma_cross": "bull",
+        "macd_hist": "negative",
+        "min_adx": 0,
+        "boll_pos": "low",
+        "atr_stop_mult": 1,
+        "atr_tp2_mult": 4,
+        "hold_days": 5
+      },
+      "stats": {
+        "num_trades": 3313,
+        "win_rate": 52.3,
+        "profit_factor": 2.49,
+        "expectancy": 0.673
+      },
+      "profile": "ÉQUILIBRÉ"
+    },
+    "WEEK": {
+      "combo_id": "rsibelow25_mabull_macdnegative_adx0_atr1-5_h15",
+      "params": {
+        "rsi": "below 25",
+        "ma_cross": "bull",
+        "macd_hist": "negative",
+        "min_adx": 0,
+        "boll_pos": "low",
+        "atr_stop_mult": 1,
+        "atr_tp2_mult": 5,
+        "hold_days": 15
+      },
+      "stats": {
+        "num_trades": 3310,
+        "win_rate": 46.1,
+        "profit_factor": 2.95,
+        "expectancy": 1.049
+      },
+      "profile": "AGRESSIF"
+    },
+    "MONTH": {
+      "combo_id": "rsibelow25_mabull_macdnegative_adx0_atr1-7_h60",
+      "params": {
+        "rsi": "below 25",
+        "ma_cross": "bull",
+        "macd_hist": "negative",
+        "min_adx": 0,
+        "boll_pos": "low",
+        "atr_stop_mult": 1,
+        "atr_tp2_mult": 7,
+        "hold_days": 60
+      },
+      "stats": {
+        "num_trades": 3276,
+        "win_rate": 39.7,
+        "profit_factor": 3.38,
+        "expectancy": 1.436
+      },
+      "profile": "AGRESSIF"
+    },
+    "CRYPTO": null
+  },
+  "top_per_profile": {
+    "CONSERVATEUR": {
+      "combo_id": "rsibelow25_mabull_macdnegative_adx0_atr1.5-4_h60",
+      "params": {
+        "rsi": "below 25",
+        "ma_cross": "bull",
+        "macd_hist": "negative",
+        "min_adx": 0,
+        "boll_pos": "low",
+        "atr_stop_mult": 1.5,
+        "atr_tp2_mult": 4,
+        "hold_days": 60
+      },
+      "stats": {
+        "num_trades": 3276,
+        "win_rate": 55.7,
+        "profit_factor": 2.78,
+        "expectancy": 0.787
+      },
+      "profile": "CONSERVATEUR"
+    },
+    "ÉQUILIBRÉ": {
+      "combo_id": "rsibelow25_mabull_macdnegative_adx0_atr1-4_h60",
+      "params": {
+        "rsi": "below 25",
+        "ma_cross": "bull",
+        "macd_hist": "negative",
+        "min_adx": 0,
+        "boll_pos": "low",
+        "atr_stop_mult": 1,
+        "atr_tp2_mult": 4,
+        "hold_days": 60
+      },
+      "stats": {
+        "num_trades": 3276,
+        "win_rate": 49.6,
+        "profit_factor": 3.2,
+        "expectancy": 1.109
+      },
+      "profile": "ÉQUILIBRÉ"
+    },
+    "AGRESSIF": {
+      "combo_id": "rsibelow25_mabull_macdnegative_adx0_atr1-7_h60",
+      "params": {
+        "rsi": "below 25",
+        "ma_cross": "bull",
+        "macd_hist": "negative",
+        "min_adx": 0,
+        "boll_pos": "low",
+        "atr_stop_mult": 1,
+        "atr_tp2_mult": 7,
+        "hold_days": 60
+      },
+      "stats": {
+        "num_trades": 3276,
+        "win_rate": 39.7,
+        "profit_factor": 3.38,
+        "expectancy": 1.436
+      },
+      "profile": "AGRESSIF"
+    }
+  },
+  "comparison_vs_current": {
+    "DAY": {
+      "from": {
+        "name": "KAIRO",
+        "mapped_to": "DAY",
+        "num_trades": 5677,
+        "win_rate": 55.1,
+        "profit_factor": 1.69,
+        "expectancy": 0.29
+      },
+      "to": {
+        "combo_id": "rsibelow25_mabull_macdnegative_adx0_atr1-4_h5",
+        "params": {
+          "rsi": "below 25",
+          "ma_cross": "bull",
+          "macd_hist": "negative",
+          "min_adx": 0,
+          "boll_pos": "low",
+          "atr_stop_mult": 1,
+          "atr_tp2_mult": 4,
+          "hold_days": 5
+        },
+        "stats": {
+          "num_trades": 3313,
+          "win_rate": 52.3,
+          "profit_factor": 2.49,
+          "expectancy": 0.673
+        },
+        "profile": "ÉQUILIBRÉ"
+      },
+      "gain": {
+        "win_rate_delta": -2.8,
+        "pf_delta": 0.8,
+        "expectancy_delta": 0.383,
+        "relative_pf_gain_pct": 47.3
+      }
+    },
+    "WEEK": {
+      "from": {
+        "name": "NOVA",
+        "mapped_to": "WEEK",
+        "num_trades": 8753,
+        "win_rate": 56.2,
+        "profit_factor": 2.1,
+        "expectancy": 0.48
+      },
+      "to": {
+        "combo_id": "rsibelow25_mabull_macdnegative_adx0_atr1-5_h15",
+        "params": {
+          "rsi": "below 25",
+          "ma_cross": "bull",
+          "macd_hist": "negative",
+          "min_adx": 0,
+          "boll_pos": "low",
+          "atr_stop_mult": 1,
+          "atr_tp2_mult": 5,
+          "hold_days": 15
+        },
+        "stats": {
+          "num_trades": 3310,
+          "win_rate": 46.1,
+          "profit_factor": 2.95,
+          "expectancy": 1.049
+        },
+        "profile": "AGRESSIF"
+      },
+      "gain": {
+        "win_rate_delta": -10.1,
+        "pf_delta": 0.85,
+        "expectancy_delta": 0.569,
+        "relative_pf_gain_pct": 40.5
+      }
+    },
+    "MONTH": {
+      "from": {
+        "name": "ATLAS",
+        "mapped_to": "MONTH",
+        "num_trades": 2597,
+        "win_rate": 44.6,
+        "profit_factor": 2.53,
+        "expectancy": 0.85
+      },
+      "to": {
+        "combo_id": "rsibelow25_mabull_macdnegative_adx0_atr1-7_h60",
+        "params": {
+          "rsi": "below 25",
+          "ma_cross": "bull",
+          "macd_hist": "negative",
+          "min_adx": 0,
+          "boll_pos": "low",
+          "atr_stop_mult": 1,
+          "atr_tp2_mult": 7,
+          "hold_days": 60
+        },
+        "stats": {
+          "num_trades": 3276,
+          "win_rate": 39.7,
+          "profit_factor": 3.38,
+          "expectancy": 1.436
+        },
+        "profile": "AGRESSIF"
+      },
+      "gain": {
+        "win_rate_delta": -4.9,
+        "pf_delta": 0.85,
+        "expectancy_delta": 0.586,
+        "relative_pf_gain_pct": 33.6
+      }
+    }
+  },
+  "methodology": "Pour chaque fenêtre temporelle (DAY 5j / WEEK 15j / MONTH 60j), on sélectionne le combo paramétrique avec la plus haute expectancy parmi ceux classés profile != WEAK/INVALID dans le grid-search. Le tableau comparison_vs_current montre le delta vs les agents actuels mappés sur la même fenêtre.",
+  "next_action": "Si gain positif sur expectancy → mettre à jour build-ai-study.mjs pour utiliser les nouveaux combos comme détecteurs internes des IA temporelles."
+}
