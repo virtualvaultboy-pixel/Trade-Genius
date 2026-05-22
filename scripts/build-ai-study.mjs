@@ -908,6 +908,42 @@ function _detectGridContrarian(asset, params) {
   };
 }
 
+// PATTERN C — Pullback dans tendance LT confirmée Ichimoku (v3.0, NEW)
+// Découvert par walk-forward v2.97 sur 491 520 combos : PF OOS 5.65 (vs 3.42 max actuel)
+// Conditions : RSI > 35 · Bollinger < 25% · Ichimoku above-cloud · MACD négatif ou any
+// "Acheter le pullback dans une tendance LT confirmée par Ichimoku"
+function _detectGridPullbackTrend(asset, params) {
+  const ind = asset.indRaw;
+  const prices = asset.prices;
+  if (!ind || !prices || prices.length < 30) return null;
+  const rsi = ind.rsi?.value;
+  const boll = ind.boll?.value;
+  const ichi = ind.ichimoku;
+  // 3 conditions exactes du combo TOP du walk-forward v2.97
+  if (rsi == null || rsi <= 35) return null;
+  if (boll == null || boll >= 0.25) return null;
+  if (!ichi || ichi.position !== 'above-cloud' || ichi.signal !== 'bull') return null;
+  const last = prices[prices.length - 1];
+  const atr = asset.atrAbs;
+  if (!atr) return null;
+  const entry = last;
+  const stop = entry - params.atrStop * atr;
+  const tp1 = entry + (params.atrTp2 * 0.5) * atr;
+  const tp2 = entry + params.atrTp2 * atr;
+  if (stop >= entry || tp1 <= entry || tp2 <= tp1) return null;
+  const risk = entry - stop;
+  if ((tp2 - entry) / risk < 1.5) return null;
+  return {
+    type: params.type, label: params.label,
+    timeframe: params.timeframe, confidence: 'very-high',  // signal premium
+    config: 'RSI ' + rsi.toFixed(0) + ' (mid-neutre) · Bollinger ' + (boll*100).toFixed(0) + '% (bande basse = retracement) · Ichimoku above-cloud (tendance LT confirmée) · stop ' + params.atrStop + ' ATR · cible ' + params.atrTp2 + ' ATR.',
+    rationale: 'Configuration premium découverte par walk-forward 491 520 combos (PF OOS 5.65). Le prix est en pullback (Bollinger basse) MAIS la tendance LT est confirmée (Ichimoku above-cloud). C\'est le "buy the dip" mathématiquement validé : on achète une correction dans un trend établi, pas un début de bear market.',
+    direction: 'long', entry, stop, tp1, tp2,
+    rr1: ((tp1 - entry) / risk).toFixed(2),
+    rr2: ((tp2 - entry) / risk).toFixed(2),
+  };
+}
+
 // PATTERN B — Trend-follow correction (v2.96, NEW)
 function _detectGridTrendFollow(asset, params) {
   const ind = asset.indRaw;
@@ -942,9 +978,16 @@ function _detectGridTrendFollow(asset, params) {
   };
 }
 
-// Wrappers v2.96 : 2 patterns grid en parallèle → fallback legacy
+// Wrappers v3.0 : 3 patterns grid en priorité → fallback legacy
+// Pattern C (NEW v3.0) prioritaire car PF OOS 5.65 vs 3.42 max v2.96
 function _detectAtlasGrid(asset) {
-  // MONTH (60j) : Pattern A (ma=any, +volume) ou Pattern B (trend-follow)
+  // MONTH (60j) — Pattern C (premium, Ichimoku) > Pattern A (contrarian) > Pattern B (trend-follow)
+  const c = _detectGridPullbackTrend(asset, {
+    atrStop: 1.0, atrTp2: 7.0,
+    type: 'grid-month-C', label: 'Pullback dans tendance LT (Ichimoku)',
+    timeframe: 'Long terme · 4-12 semaines',
+  });
+  if (c) return c;
   const a = _detectGridContrarian(asset, {
     rsiMax: 25, atrStop: 1.0, atrTp2: 7.0, requireMaBull: false,
     type: 'grid-month-A', label: 'Survente extrême + correction MACD',
@@ -959,6 +1002,12 @@ function _detectAtlasGrid(asset) {
   return b || _detectAtlas(asset);
 }
 function _detectNovaGrid(asset) {
+  const c = _detectGridPullbackTrend(asset, {
+    atrStop: 1.0, atrTp2: 5.0,
+    type: 'grid-week-C', label: 'Pullback dans tendance MT (Ichimoku)',
+    timeframe: 'Swing · 1-3 semaines',
+  });
+  if (c) return c;
   const a = _detectGridContrarian(asset, {
     rsiMax: 25, atrStop: 1.0, atrTp2: 5.0, requireMaBull: true,
     type: 'grid-week-A', label: 'Survente + tendance MT confirmée',
@@ -973,6 +1022,12 @@ function _detectNovaGrid(asset) {
   return b || _detectNova(asset);
 }
 function _detectKairoGrid(asset) {
+  const c = _detectGridPullbackTrend(asset, {
+    atrStop: 1.0, atrTp2: 4.0,
+    type: 'grid-day-C', label: 'Pullback dans tendance courte (Ichimoku)',
+    timeframe: 'Court terme · 3-7 jours',
+  });
+  if (c) return c;
   const a = _detectGridContrarian(asset, {
     rsiMax: 25, atrStop: 1.0, atrTp2: 4.0, requireMaBull: true,
     type: 'grid-day-A', label: 'Rebond rapide sur survente + correction',
