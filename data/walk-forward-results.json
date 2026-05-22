@@ -1,0 +1,2077 @@
+{
+  "generated": "2026-05-22T10:39:27.217Z",
+  "history_range": "20y",
+  "is_ratio": 0.7,
+  "num_assets": 50,
+  "num_combos_tested": 49152,
+  "methodology": {
+    "description": "Walk-forward validation : split historique 70%/30%, optimisation sur IS, validation OOS. Mesure du DECAY pour chaque combo. Robust si decay < 30%, overfit si decay > 50% ou PF OOS < 1.0.",
+    "classifications": {
+      "ROBUSTE": "IS PF ≥ 1.2, decay < 30% — VRAI EDGE",
+      "ROBUSTE_BONUS": "OOS PF > IS PF — possible chance",
+      "PASSABLE": "decay 30-50% — à monitorer",
+      "OVERFIT": "decay > 50% ou OOS PF < 1.0 — À EXCLURE",
+      "WEAK_IS": "PF IS < 1.2 — pas rentable en training",
+      "INVALID": "pas assez de trades pour stats fiables"
+    }
+  },
+  "summary": {
+    "ROBUSTE": 32797,
+    "PASSABLE": 120,
+    "OVERFIT": 11,
+    "total_evaluated": 32928
+  },
+  "top_robustes": [
+    {
+      "combo_id": "rsiabove35_maany_macdnegative_adx30_bollmid_atr1-7_h60",
+      "rsi_thr": 35,
+      "rsi_dir": "above",
+      "ma_cross": "any",
+      "macd_hist": "negative",
+      "min_adx": 30,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 1804,
+        "win_rate": 32.8,
+        "profit_factor": 2.7,
+        "expectancy": 1.139,
+        "total_pnl": 2055.3
+      },
+      "oos_stats": {
+        "num_trades": 747,
+        "win_rate": 38.3,
+        "profit_factor": 3.42,
+        "expectancy": 1.494,
+        "total_pnl": 1115.7
+      },
+      "decay_pct": -26.7,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsiabove40_maany_macdnegative_adx30_bollmid_atr1-7_h60",
+      "rsi_thr": 40,
+      "rsi_dir": "above",
+      "ma_cross": "any",
+      "macd_hist": "negative",
+      "min_adx": 30,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 1804,
+        "win_rate": 32.8,
+        "profit_factor": 2.7,
+        "expectancy": 1.139,
+        "total_pnl": 2055.3
+      },
+      "oos_stats": {
+        "num_trades": 747,
+        "win_rate": 38.3,
+        "profit_factor": 3.42,
+        "expectancy": 1.494,
+        "total_pnl": 1115.7
+      },
+      "decay_pct": -26.7,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsiabove35_mabull_macdnegative_adx30_bollmid_atr1-7_h60",
+      "rsi_thr": 35,
+      "rsi_dir": "above",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 30,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 1792,
+        "win_rate": 33,
+        "profit_factor": 2.72,
+        "expectancy": 1.154,
+        "total_pnl": 2067.3
+      },
+      "oos_stats": {
+        "num_trades": 746,
+        "win_rate": 38.2,
+        "profit_factor": 3.42,
+        "expectancy": 1.493,
+        "total_pnl": 1114
+      },
+      "decay_pct": -25.7,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsiabove40_mabull_macdnegative_adx30_bollmid_atr1-7_h60",
+      "rsi_thr": 40,
+      "rsi_dir": "above",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 30,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 1792,
+        "win_rate": 33,
+        "profit_factor": 2.72,
+        "expectancy": 1.154,
+        "total_pnl": 2067.3
+      },
+      "oos_stats": {
+        "num_trades": 746,
+        "win_rate": 38.2,
+        "profit_factor": 3.42,
+        "expectancy": 1.493,
+        "total_pnl": 1114
+      },
+      "decay_pct": -25.7,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdnegative_adx0_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "negative",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7103,
+        "win_rate": 34.6,
+        "profit_factor": 2.75,
+        "expectancy": 1.147,
+        "total_pnl": 8146.1
+      },
+      "oos_stats": {
+        "num_trades": 2882,
+        "win_rate": 40.7,
+        "profit_factor": 3.42,
+        "expectancy": 1.433,
+        "total_pnl": 4130.3
+      },
+      "decay_pct": -24.4,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdnegative_adx20_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "negative",
+      "min_adx": 20,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7103,
+        "win_rate": 34.6,
+        "profit_factor": 2.75,
+        "expectancy": 1.147,
+        "total_pnl": 8146.1
+      },
+      "oos_stats": {
+        "num_trades": 2882,
+        "win_rate": 40.7,
+        "profit_factor": 3.42,
+        "expectancy": 1.433,
+        "total_pnl": 4130.3
+      },
+      "decay_pct": -24.4,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdnegative_adx25_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "negative",
+      "min_adx": 25,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7103,
+        "win_rate": 34.6,
+        "profit_factor": 2.75,
+        "expectancy": 1.147,
+        "total_pnl": 8146.1
+      },
+      "oos_stats": {
+        "num_trades": 2882,
+        "win_rate": 40.7,
+        "profit_factor": 3.42,
+        "expectancy": 1.433,
+        "total_pnl": 4130.3
+      },
+      "decay_pct": -24.4,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdnegative_adx30_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "negative",
+      "min_adx": 30,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7103,
+        "win_rate": 34.6,
+        "profit_factor": 2.75,
+        "expectancy": 1.147,
+        "total_pnl": 8146.1
+      },
+      "oos_stats": {
+        "num_trades": 2882,
+        "win_rate": 40.7,
+        "profit_factor": 3.42,
+        "expectancy": 1.433,
+        "total_pnl": 4130.3
+      },
+      "decay_pct": -24.4,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsiabove35_maany_macdnegative_adx30_bollmid_atr1-7_h30",
+      "rsi_thr": 35,
+      "rsi_dir": "above",
+      "ma_cross": "any",
+      "macd_hist": "negative",
+      "min_adx": 30,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 30,
+      "is_stats": {
+        "num_trades": 1810,
+        "win_rate": 33.1,
+        "profit_factor": 2.56,
+        "expectancy": 1.039,
+        "total_pnl": 1880.8
+      },
+      "oos_stats": {
+        "num_trades": 750,
+        "win_rate": 38.4,
+        "profit_factor": 3.31,
+        "expectancy": 1.424,
+        "total_pnl": 1067.8
+      },
+      "decay_pct": -29.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsiabove40_maany_macdnegative_adx30_bollmid_atr1-7_h30",
+      "rsi_thr": 40,
+      "rsi_dir": "above",
+      "ma_cross": "any",
+      "macd_hist": "negative",
+      "min_adx": 30,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 30,
+      "is_stats": {
+        "num_trades": 1810,
+        "win_rate": 33.1,
+        "profit_factor": 2.56,
+        "expectancy": 1.039,
+        "total_pnl": 1880.8
+      },
+      "oos_stats": {
+        "num_trades": 750,
+        "win_rate": 38.4,
+        "profit_factor": 3.31,
+        "expectancy": 1.424,
+        "total_pnl": 1067.8
+      },
+      "decay_pct": -29.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsiabove35_mabull_macdnegative_adx30_bollmid_atr1-7_h30",
+      "rsi_thr": 35,
+      "rsi_dir": "above",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 30,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 30,
+      "is_stats": {
+        "num_trades": 1798,
+        "win_rate": 33.3,
+        "profit_factor": 2.58,
+        "expectancy": 1.053,
+        "total_pnl": 1892.8
+      },
+      "oos_stats": {
+        "num_trades": 749,
+        "win_rate": 38.3,
+        "profit_factor": 3.31,
+        "expectancy": 1.423,
+        "total_pnl": 1066.1
+      },
+      "decay_pct": -28.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsiabove40_mabull_macdnegative_adx30_bollmid_atr1-7_h30",
+      "rsi_thr": 40,
+      "rsi_dir": "above",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 30,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 30,
+      "is_stats": {
+        "num_trades": 1798,
+        "win_rate": 33.3,
+        "profit_factor": 2.58,
+        "expectancy": 1.053,
+        "total_pnl": 1892.8
+      },
+      "oos_stats": {
+        "num_trades": 749,
+        "win_rate": 38.3,
+        "profit_factor": 3.31,
+        "expectancy": 1.423,
+        "total_pnl": 1066.1
+      },
+      "decay_pct": -28.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdany_adx0_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "any",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7140,
+        "win_rate": 34.6,
+        "profit_factor": 2.75,
+        "expectancy": 1.147,
+        "total_pnl": 8192.4
+      },
+      "oos_stats": {
+        "num_trades": 2902,
+        "win_rate": 40.5,
+        "profit_factor": 3.39,
+        "expectancy": 1.422,
+        "total_pnl": 4126.3
+      },
+      "decay_pct": -23.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdany_adx20_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "any",
+      "min_adx": 20,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7140,
+        "win_rate": 34.6,
+        "profit_factor": 2.75,
+        "expectancy": 1.147,
+        "total_pnl": 8192.4
+      },
+      "oos_stats": {
+        "num_trades": 2902,
+        "win_rate": 40.5,
+        "profit_factor": 3.39,
+        "expectancy": 1.422,
+        "total_pnl": 4126.3
+      },
+      "decay_pct": -23.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdany_adx25_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "any",
+      "min_adx": 25,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7140,
+        "win_rate": 34.6,
+        "profit_factor": 2.75,
+        "expectancy": 1.147,
+        "total_pnl": 8192.4
+      },
+      "oos_stats": {
+        "num_trades": 2902,
+        "win_rate": 40.5,
+        "profit_factor": 3.39,
+        "expectancy": 1.422,
+        "total_pnl": 4126.3
+      },
+      "decay_pct": -23.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdany_adx30_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "any",
+      "min_adx": 30,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7140,
+        "win_rate": 34.6,
+        "profit_factor": 2.75,
+        "expectancy": 1.147,
+        "total_pnl": 8192.4
+      },
+      "oos_stats": {
+        "num_trades": 2902,
+        "win_rate": 40.5,
+        "profit_factor": 3.39,
+        "expectancy": 1.422,
+        "total_pnl": 4126.3
+      },
+      "decay_pct": -23.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdnegative_adx0_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "negative",
+      "min_adx": 0,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7434,
+        "win_rate": 34.5,
+        "profit_factor": 2.75,
+        "expectancy": 1.142,
+        "total_pnl": 8491
+      },
+      "oos_stats": {
+        "num_trades": 3015,
+        "win_rate": 40.5,
+        "profit_factor": 3.38,
+        "expectancy": 1.415,
+        "total_pnl": 4265.7
+      },
+      "decay_pct": -22.9,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdnegative_adx20_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "negative",
+      "min_adx": 20,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7434,
+        "win_rate": 34.5,
+        "profit_factor": 2.75,
+        "expectancy": 1.142,
+        "total_pnl": 8491
+      },
+      "oos_stats": {
+        "num_trades": 3015,
+        "win_rate": 40.5,
+        "profit_factor": 3.38,
+        "expectancy": 1.415,
+        "total_pnl": 4265.7
+      },
+      "decay_pct": -22.9,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdnegative_adx25_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "negative",
+      "min_adx": 25,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7434,
+        "win_rate": 34.5,
+        "profit_factor": 2.75,
+        "expectancy": 1.142,
+        "total_pnl": 8491
+      },
+      "oos_stats": {
+        "num_trades": 3015,
+        "win_rate": 40.5,
+        "profit_factor": 3.38,
+        "expectancy": 1.415,
+        "total_pnl": 4265.7
+      },
+      "decay_pct": -22.9,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdnegative_adx30_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "negative",
+      "min_adx": 30,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7434,
+        "win_rate": 34.5,
+        "profit_factor": 2.75,
+        "expectancy": 1.142,
+        "total_pnl": 8491
+      },
+      "oos_stats": {
+        "num_trades": 3015,
+        "win_rate": 40.5,
+        "profit_factor": 3.38,
+        "expectancy": 1.415,
+        "total_pnl": 4265.7
+      },
+      "decay_pct": -22.9,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdany_adx0_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "any",
+      "min_adx": 0,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7503,
+        "win_rate": 34.6,
+        "profit_factor": 2.75,
+        "expectancy": 1.145,
+        "total_pnl": 8593.8
+      },
+      "oos_stats": {
+        "num_trades": 3043,
+        "win_rate": 40.4,
+        "profit_factor": 3.36,
+        "expectancy": 1.404,
+        "total_pnl": 4272.7
+      },
+      "decay_pct": -22.2,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdany_adx20_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "any",
+      "min_adx": 20,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7503,
+        "win_rate": 34.6,
+        "profit_factor": 2.75,
+        "expectancy": 1.145,
+        "total_pnl": 8593.8
+      },
+      "oos_stats": {
+        "num_trades": 3043,
+        "win_rate": 40.4,
+        "profit_factor": 3.36,
+        "expectancy": 1.404,
+        "total_pnl": 4272.7
+      },
+      "decay_pct": -22.2,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdany_adx25_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "any",
+      "min_adx": 25,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7503,
+        "win_rate": 34.6,
+        "profit_factor": 2.75,
+        "expectancy": 1.145,
+        "total_pnl": 8593.8
+      },
+      "oos_stats": {
+        "num_trades": 3043,
+        "win_rate": 40.4,
+        "profit_factor": 3.36,
+        "expectancy": 1.404,
+        "total_pnl": 4272.7
+      },
+      "decay_pct": -22.2,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_maany_macdany_adx30_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "any",
+      "min_adx": 30,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7503,
+        "win_rate": 34.6,
+        "profit_factor": 2.75,
+        "expectancy": 1.145,
+        "total_pnl": 8593.8
+      },
+      "oos_stats": {
+        "num_trades": 3043,
+        "win_rate": 40.4,
+        "profit_factor": 3.36,
+        "expectancy": 1.404,
+        "total_pnl": 4272.7
+      },
+      "decay_pct": -22.2,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsiabove35_maany_macdpositive_adx20_bolllow_atr1-7_h60",
+      "rsi_thr": 35,
+      "rsi_dir": "above",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 20,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 449,
+        "win_rate": 33,
+        "profit_factor": 2.4,
+        "expectancy": 0.935,
+        "total_pnl": 420
+      },
+      "oos_stats": {
+        "num_trades": 180,
+        "win_rate": 37.2,
+        "profit_factor": 3.22,
+        "expectancy": 1.394,
+        "total_pnl": 251
+      },
+      "decay_pct": -34.2,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdnegative_adx0_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2196,
+        "win_rate": 38.7,
+        "profit_factor": 3.37,
+        "expectancy": 1.45,
+        "total_pnl": 3184.2
+      },
+      "oos_stats": {
+        "num_trades": 1059,
+        "win_rate": 41.5,
+        "profit_factor": 3.35,
+        "expectancy": 1.375,
+        "total_pnl": 1455.9
+      },
+      "decay_pct": 0.6,
+      "robustness": "ROBUSTE"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdnegative_adx20_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 20,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2196,
+        "win_rate": 38.7,
+        "profit_factor": 3.37,
+        "expectancy": 1.45,
+        "total_pnl": 3184.2
+      },
+      "oos_stats": {
+        "num_trades": 1059,
+        "win_rate": 41.5,
+        "profit_factor": 3.35,
+        "expectancy": 1.375,
+        "total_pnl": 1455.9
+      },
+      "decay_pct": 0.6,
+      "robustness": "ROBUSTE"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdnegative_adx25_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 25,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2196,
+        "win_rate": 38.7,
+        "profit_factor": 3.37,
+        "expectancy": 1.45,
+        "total_pnl": 3184.2
+      },
+      "oos_stats": {
+        "num_trades": 1059,
+        "win_rate": 41.5,
+        "profit_factor": 3.35,
+        "expectancy": 1.375,
+        "total_pnl": 1455.9
+      },
+      "decay_pct": 0.6,
+      "robustness": "ROBUSTE"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdnegative_adx30_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 30,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2196,
+        "win_rate": 38.7,
+        "profit_factor": 3.37,
+        "expectancy": 1.45,
+        "total_pnl": 3184.2
+      },
+      "oos_stats": {
+        "num_trades": 1059,
+        "win_rate": 41.5,
+        "profit_factor": 3.35,
+        "expectancy": 1.375,
+        "total_pnl": 1455.9
+      },
+      "decay_pct": 0.6,
+      "robustness": "ROBUSTE"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdany_adx0_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "any",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2196,
+        "win_rate": 38.7,
+        "profit_factor": 3.37,
+        "expectancy": 1.45,
+        "total_pnl": 3184.2
+      },
+      "oos_stats": {
+        "num_trades": 1059,
+        "win_rate": 41.5,
+        "profit_factor": 3.35,
+        "expectancy": 1.375,
+        "total_pnl": 1455.9
+      },
+      "decay_pct": 0.6,
+      "robustness": "ROBUSTE"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdany_adx20_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "any",
+      "min_adx": 20,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2196,
+        "win_rate": 38.7,
+        "profit_factor": 3.37,
+        "expectancy": 1.45,
+        "total_pnl": 3184.2
+      },
+      "oos_stats": {
+        "num_trades": 1059,
+        "win_rate": 41.5,
+        "profit_factor": 3.35,
+        "expectancy": 1.375,
+        "total_pnl": 1455.9
+      },
+      "decay_pct": 0.6,
+      "robustness": "ROBUSTE"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdany_adx25_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "any",
+      "min_adx": 25,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2196,
+        "win_rate": 38.7,
+        "profit_factor": 3.37,
+        "expectancy": 1.45,
+        "total_pnl": 3184.2
+      },
+      "oos_stats": {
+        "num_trades": 1059,
+        "win_rate": 41.5,
+        "profit_factor": 3.35,
+        "expectancy": 1.375,
+        "total_pnl": 1455.9
+      },
+      "decay_pct": 0.6,
+      "robustness": "ROBUSTE"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdany_adx30_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "any",
+      "min_adx": 30,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2196,
+        "win_rate": 38.7,
+        "profit_factor": 3.37,
+        "expectancy": 1.45,
+        "total_pnl": 3184.2
+      },
+      "oos_stats": {
+        "num_trades": 1059,
+        "win_rate": 41.5,
+        "profit_factor": 3.35,
+        "expectancy": 1.375,
+        "total_pnl": 1455.9
+      },
+      "decay_pct": 0.6,
+      "robustness": "ROBUSTE"
+    },
+    {
+      "combo_id": "rsiabove40_mabull_macdnegative_adx25_bollmid_atr1-7_h60",
+      "rsi_thr": 40,
+      "rsi_dir": "above",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 25,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2863,
+        "win_rate": 32.5,
+        "profit_factor": 2.6,
+        "expectancy": 1.081,
+        "total_pnl": 3094.4
+      },
+      "oos_stats": {
+        "num_trades": 1179,
+        "win_rate": 36.6,
+        "profit_factor": 3.16,
+        "expectancy": 1.373,
+        "total_pnl": 1618.6
+      },
+      "decay_pct": -21.5,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdnegative_adx0_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 0,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2275,
+        "win_rate": 38.4,
+        "profit_factor": 3.33,
+        "expectancy": 1.433,
+        "total_pnl": 3260.4
+      },
+      "oos_stats": {
+        "num_trades": 1089,
+        "win_rate": 41.3,
+        "profit_factor": 3.34,
+        "expectancy": 1.371,
+        "total_pnl": 1492.9
+      },
+      "decay_pct": -0.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdnegative_adx20_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 20,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2275,
+        "win_rate": 38.4,
+        "profit_factor": 3.33,
+        "expectancy": 1.433,
+        "total_pnl": 3260.4
+      },
+      "oos_stats": {
+        "num_trades": 1089,
+        "win_rate": 41.3,
+        "profit_factor": 3.34,
+        "expectancy": 1.371,
+        "total_pnl": 1492.9
+      },
+      "decay_pct": -0.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdnegative_adx25_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 25,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2275,
+        "win_rate": 38.4,
+        "profit_factor": 3.33,
+        "expectancy": 1.433,
+        "total_pnl": 3260.4
+      },
+      "oos_stats": {
+        "num_trades": 1089,
+        "win_rate": 41.3,
+        "profit_factor": 3.34,
+        "expectancy": 1.371,
+        "total_pnl": 1492.9
+      },
+      "decay_pct": -0.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdnegative_adx30_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 30,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2275,
+        "win_rate": 38.4,
+        "profit_factor": 3.33,
+        "expectancy": 1.433,
+        "total_pnl": 3260.4
+      },
+      "oos_stats": {
+        "num_trades": 1089,
+        "win_rate": 41.3,
+        "profit_factor": 3.34,
+        "expectancy": 1.371,
+        "total_pnl": 1492.9
+      },
+      "decay_pct": -0.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdany_adx0_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "any",
+      "min_adx": 0,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2275,
+        "win_rate": 38.4,
+        "profit_factor": 3.33,
+        "expectancy": 1.433,
+        "total_pnl": 3260.4
+      },
+      "oos_stats": {
+        "num_trades": 1089,
+        "win_rate": 41.3,
+        "profit_factor": 3.34,
+        "expectancy": 1.371,
+        "total_pnl": 1492.9
+      },
+      "decay_pct": -0.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdany_adx20_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "any",
+      "min_adx": 20,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2275,
+        "win_rate": 38.4,
+        "profit_factor": 3.33,
+        "expectancy": 1.433,
+        "total_pnl": 3260.4
+      },
+      "oos_stats": {
+        "num_trades": 1089,
+        "win_rate": 41.3,
+        "profit_factor": 3.34,
+        "expectancy": 1.371,
+        "total_pnl": 1492.9
+      },
+      "decay_pct": -0.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdany_adx25_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "any",
+      "min_adx": 25,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2275,
+        "win_rate": 38.4,
+        "profit_factor": 3.33,
+        "expectancy": 1.433,
+        "total_pnl": 3260.4
+      },
+      "oos_stats": {
+        "num_trades": 1089,
+        "win_rate": 41.3,
+        "profit_factor": 3.34,
+        "expectancy": 1.371,
+        "total_pnl": 1492.9
+      },
+      "decay_pct": -0.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow25_mabull_macdany_adx30_bollany_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "any",
+      "min_adx": 30,
+      "boll_pos": "any",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2275,
+        "win_rate": 38.4,
+        "profit_factor": 3.33,
+        "expectancy": 1.433,
+        "total_pnl": 3260.4
+      },
+      "oos_stats": {
+        "num_trades": 1089,
+        "win_rate": 41.3,
+        "profit_factor": 3.34,
+        "expectancy": 1.371,
+        "total_pnl": 1492.9
+      },
+      "decay_pct": -0.3,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsiabove40_maany_macdnegative_adx25_bollmid_atr1-7_h60",
+      "rsi_thr": 40,
+      "rsi_dir": "above",
+      "ma_cross": "any",
+      "macd_hist": "negative",
+      "min_adx": 25,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2913,
+        "win_rate": 32.5,
+        "profit_factor": 2.6,
+        "expectancy": 1.078,
+        "total_pnl": 3140.9
+      },
+      "oos_stats": {
+        "num_trades": 1192,
+        "win_rate": 36.4,
+        "profit_factor": 3.14,
+        "expectancy": 1.363,
+        "total_pnl": 1624.3
+      },
+      "decay_pct": -20.8,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsiabove30_mabull_macdnegative_adx30_bolllow_atr1-7_h60",
+      "rsi_thr": 30,
+      "rsi_dir": "above",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 30,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 3416,
+        "win_rate": 34.5,
+        "profit_factor": 2.7,
+        "expectancy": 1.115,
+        "total_pnl": 3808.5
+      },
+      "oos_stats": {
+        "num_trades": 1476,
+        "win_rate": 36.9,
+        "profit_factor": 3.15,
+        "expectancy": 1.36,
+        "total_pnl": 2006.7
+      },
+      "decay_pct": -16.7,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsiabove30_mabull_macdany_adx30_bolllow_atr1-7_h60",
+      "rsi_thr": 30,
+      "rsi_dir": "above",
+      "ma_cross": "bull",
+      "macd_hist": "any",
+      "min_adx": 30,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 3417,
+        "win_rate": 34.5,
+        "profit_factor": 2.7,
+        "expectancy": 1.114,
+        "total_pnl": 3807.5
+      },
+      "oos_stats": {
+        "num_trades": 1476,
+        "win_rate": 36.9,
+        "profit_factor": 3.15,
+        "expectancy": 1.36,
+        "total_pnl": 2006.7
+      },
+      "decay_pct": -16.7,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow35_mabull_macdnegative_adx0_bolllow_atr1-7_h60",
+      "rsi_thr": 35,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7916,
+        "win_rate": 36.6,
+        "profit_factor": 3.02,
+        "expectancy": 1.278,
+        "total_pnl": 10114.5
+      },
+      "oos_stats": {
+        "num_trades": 3665,
+        "win_rate": 38.1,
+        "profit_factor": 3.16,
+        "expectancy": 1.336,
+        "total_pnl": 4897.3
+      },
+      "decay_pct": -4.6,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow35_mabull_macdnegative_adx20_bolllow_atr1-7_h60",
+      "rsi_thr": 35,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 20,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7916,
+        "win_rate": 36.6,
+        "profit_factor": 3.02,
+        "expectancy": 1.278,
+        "total_pnl": 10114.5
+      },
+      "oos_stats": {
+        "num_trades": 3665,
+        "win_rate": 38.1,
+        "profit_factor": 3.16,
+        "expectancy": 1.336,
+        "total_pnl": 4897.3
+      },
+      "decay_pct": -4.6,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow35_mabull_macdnegative_adx25_bolllow_atr1-7_h60",
+      "rsi_thr": 35,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 25,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7916,
+        "win_rate": 36.6,
+        "profit_factor": 3.02,
+        "expectancy": 1.278,
+        "total_pnl": 10114.5
+      },
+      "oos_stats": {
+        "num_trades": 3665,
+        "win_rate": 38.1,
+        "profit_factor": 3.16,
+        "expectancy": 1.336,
+        "total_pnl": 4897.3
+      },
+      "decay_pct": -4.6,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow35_mabull_macdnegative_adx30_bolllow_atr1-7_h60",
+      "rsi_thr": 35,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 30,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7916,
+        "win_rate": 36.6,
+        "profit_factor": 3.02,
+        "expectancy": 1.278,
+        "total_pnl": 10114.5
+      },
+      "oos_stats": {
+        "num_trades": 3665,
+        "win_rate": 38.1,
+        "profit_factor": 3.16,
+        "expectancy": 1.336,
+        "total_pnl": 4897.3
+      },
+      "decay_pct": -4.6,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "combo_id": "rsibelow35_mabull_macdany_adx0_bolllow_atr1-7_h60",
+      "rsi_thr": 35,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "any",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 7917,
+        "win_rate": 36.6,
+        "profit_factor": 3.01,
+        "expectancy": 1.277,
+        "total_pnl": 10113.5
+      },
+      "oos_stats": {
+        "num_trades": 3665,
+        "win_rate": 38.1,
+        "profit_factor": 3.16,
+        "expectancy": 1.336,
+        "total_pnl": 4897.3
+      },
+      "decay_pct": -5,
+      "robustness": "ROBUSTE_BONUS"
+    }
+  ],
+  "top_passables": [
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx0_bollmid_atr1-5_h30",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 0,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 30,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 44.8,
+        "profit_factor": 3.17,
+        "expectancy": 1.199,
+        "total_pnl": 160.7
+      },
+      "oos_stats": {
+        "num_trades": 70,
+        "win_rate": 34.3,
+        "profit_factor": 2.2,
+        "expectancy": 0.789,
+        "total_pnl": 55.3
+      },
+      "decay_pct": 30.6,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx20_bollmid_atr1-5_h30",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 20,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 30,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 44.8,
+        "profit_factor": 3.17,
+        "expectancy": 1.199,
+        "total_pnl": 160.7
+      },
+      "oos_stats": {
+        "num_trades": 70,
+        "win_rate": 34.3,
+        "profit_factor": 2.2,
+        "expectancy": 0.789,
+        "total_pnl": 55.3
+      },
+      "decay_pct": 30.6,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx25_bollmid_atr1-5_h30",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 25,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 30,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 44.8,
+        "profit_factor": 3.17,
+        "expectancy": 1.199,
+        "total_pnl": 160.7
+      },
+      "oos_stats": {
+        "num_trades": 70,
+        "win_rate": 34.3,
+        "profit_factor": 2.2,
+        "expectancy": 0.789,
+        "total_pnl": 55.3
+      },
+      "decay_pct": 30.6,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx30_bollmid_atr1-5_h30",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 30,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 30,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 44.8,
+        "profit_factor": 3.17,
+        "expectancy": 1.199,
+        "total_pnl": 160.7
+      },
+      "oos_stats": {
+        "num_trades": 70,
+        "win_rate": 34.3,
+        "profit_factor": 2.2,
+        "expectancy": 0.789,
+        "total_pnl": 55.3
+      },
+      "decay_pct": 30.6,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx0_bollmid_atr1-5_h15",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 0,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 15,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 45.5,
+        "profit_factor": 2.93,
+        "expectancy": 1.028,
+        "total_pnl": 137.7
+      },
+      "oos_stats": {
+        "num_trades": 70,
+        "win_rate": 35.7,
+        "profit_factor": 2.02,
+        "expectancy": 0.644,
+        "total_pnl": 45.1
+      },
+      "decay_pct": 31.1,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx20_bollmid_atr1-5_h15",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 20,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 15,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 45.5,
+        "profit_factor": 2.93,
+        "expectancy": 1.028,
+        "total_pnl": 137.7
+      },
+      "oos_stats": {
+        "num_trades": 70,
+        "win_rate": 35.7,
+        "profit_factor": 2.02,
+        "expectancy": 0.644,
+        "total_pnl": 45.1
+      },
+      "decay_pct": 31.1,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx25_bollmid_atr1-5_h15",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 25,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 15,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 45.5,
+        "profit_factor": 2.93,
+        "expectancy": 1.028,
+        "total_pnl": 137.7
+      },
+      "oos_stats": {
+        "num_trades": 70,
+        "win_rate": 35.7,
+        "profit_factor": 2.02,
+        "expectancy": 0.644,
+        "total_pnl": 45.1
+      },
+      "decay_pct": 31.1,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx30_bollmid_atr1-5_h15",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 30,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 15,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 45.5,
+        "profit_factor": 2.93,
+        "expectancy": 1.028,
+        "total_pnl": 137.7
+      },
+      "oos_stats": {
+        "num_trades": 70,
+        "win_rate": 35.7,
+        "profit_factor": 2.02,
+        "expectancy": 0.644,
+        "total_pnl": 45.1
+      },
+      "decay_pct": 31.1,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx0_bollmid_atr1-5_h60",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 0,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 44.8,
+        "profit_factor": 3.25,
+        "expectancy": 1.243,
+        "total_pnl": 166.5
+      },
+      "oos_stats": {
+        "num_trades": 61,
+        "win_rate": 31.1,
+        "profit_factor": 1.9,
+        "expectancy": 0.623,
+        "total_pnl": 38
+      },
+      "decay_pct": 41.5,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx20_bollmid_atr1-5_h60",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 20,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 44.8,
+        "profit_factor": 3.25,
+        "expectancy": 1.243,
+        "total_pnl": 166.5
+      },
+      "oos_stats": {
+        "num_trades": 61,
+        "win_rate": 31.1,
+        "profit_factor": 1.9,
+        "expectancy": 0.623,
+        "total_pnl": 38
+      },
+      "decay_pct": 41.5,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx25_bollmid_atr1-5_h60",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 25,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 44.8,
+        "profit_factor": 3.25,
+        "expectancy": 1.243,
+        "total_pnl": 166.5
+      },
+      "oos_stats": {
+        "num_trades": 61,
+        "win_rate": 31.1,
+        "profit_factor": 1.9,
+        "expectancy": 0.623,
+        "total_pnl": 38
+      },
+      "decay_pct": 41.5,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx30_bollmid_atr1-5_h60",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 30,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 44.8,
+        "profit_factor": 3.25,
+        "expectancy": 1.243,
+        "total_pnl": 166.5
+      },
+      "oos_stats": {
+        "num_trades": 61,
+        "win_rate": 31.1,
+        "profit_factor": 1.9,
+        "expectancy": 0.623,
+        "total_pnl": 38
+      },
+      "decay_pct": 41.5,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx0_bollmid_atr1-4_h15",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 0,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 4,
+      "hold_days": 15,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 50,
+        "profit_factor": 3.01,
+        "expectancy": 0.982,
+        "total_pnl": 131.6
+      },
+      "oos_stats": {
+        "num_trades": 70,
+        "win_rate": 41.4,
+        "profit_factor": 2.06,
+        "expectancy": 0.619,
+        "total_pnl": 43.3
+      },
+      "decay_pct": 31.6,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx20_bollmid_atr1-4_h15",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 20,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 4,
+      "hold_days": 15,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 50,
+        "profit_factor": 3.01,
+        "expectancy": 0.982,
+        "total_pnl": 131.6
+      },
+      "oos_stats": {
+        "num_trades": 70,
+        "win_rate": 41.4,
+        "profit_factor": 2.06,
+        "expectancy": 0.619,
+        "total_pnl": 43.3
+      },
+      "decay_pct": 31.6,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx25_bollmid_atr1-4_h15",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 25,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 4,
+      "hold_days": 15,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 50,
+        "profit_factor": 3.01,
+        "expectancy": 0.982,
+        "total_pnl": 131.6
+      },
+      "oos_stats": {
+        "num_trades": 70,
+        "win_rate": 41.4,
+        "profit_factor": 2.06,
+        "expectancy": 0.619,
+        "total_pnl": 43.3
+      },
+      "decay_pct": 31.6,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx30_bollmid_atr1-4_h15",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 30,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 4,
+      "hold_days": 15,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 50,
+        "profit_factor": 3.01,
+        "expectancy": 0.982,
+        "total_pnl": 131.6
+      },
+      "oos_stats": {
+        "num_trades": 70,
+        "win_rate": 41.4,
+        "profit_factor": 2.06,
+        "expectancy": 0.619,
+        "total_pnl": 43.3
+      },
+      "decay_pct": 31.6,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx0_bollmid_atr1-4_h60",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 0,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 4,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 50,
+        "profit_factor": 3.25,
+        "expectancy": 1.124,
+        "total_pnl": 150.6
+      },
+      "oos_stats": {
+        "num_trades": 61,
+        "win_rate": 37.7,
+        "profit_factor": 1.87,
+        "expectancy": 0.541,
+        "total_pnl": 33
+      },
+      "decay_pct": 42.5,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx20_bollmid_atr1-4_h60",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 20,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 4,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 50,
+        "profit_factor": 3.25,
+        "expectancy": 1.124,
+        "total_pnl": 150.6
+      },
+      "oos_stats": {
+        "num_trades": 61,
+        "win_rate": 37.7,
+        "profit_factor": 1.87,
+        "expectancy": 0.541,
+        "total_pnl": 33
+      },
+      "decay_pct": 42.5,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx25_bollmid_atr1-4_h60",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 25,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 4,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 50,
+        "profit_factor": 3.25,
+        "expectancy": 1.124,
+        "total_pnl": 150.6
+      },
+      "oos_stats": {
+        "num_trades": 61,
+        "win_rate": 37.7,
+        "profit_factor": 1.87,
+        "expectancy": 0.541,
+        "total_pnl": 33
+      },
+      "decay_pct": 42.5,
+      "robustness": "PASSABLE"
+    },
+    {
+      "combo_id": "rsibelow30_maany_macdpositive_adx30_bollmid_atr1-4_h60",
+      "rsi_thr": 30,
+      "rsi_dir": "below",
+      "ma_cross": "any",
+      "macd_hist": "positive",
+      "min_adx": 30,
+      "boll_pos": "mid",
+      "atr_stop": 1,
+      "atr_tp2": 4,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 134,
+        "win_rate": 50,
+        "profit_factor": 3.25,
+        "expectancy": 1.124,
+        "total_pnl": 150.6
+      },
+      "oos_stats": {
+        "num_trades": 61,
+        "win_rate": 37.7,
+        "profit_factor": 1.87,
+        "expectancy": 0.541,
+        "total_pnl": 33
+      },
+      "decay_pct": 42.5,
+      "robustness": "PASSABLE"
+    }
+  ],
+  "reference_v293_combos": [
+    {
+      "name": "DAY (v2.93)",
+      "combo_id": "rsibelow25_mabull_macdnegative_adx0_bolllow_atr1-4_h5",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 4,
+      "hold_days": 5,
+      "is_stats": {
+        "num_trades": 2217,
+        "win_rate": 50.8,
+        "profit_factor": 2.35,
+        "expectancy": 0.632,
+        "total_pnl": 1401.9
+      },
+      "oos_stats": {
+        "num_trades": 1096,
+        "win_rate": 55.3,
+        "profit_factor": 2.8,
+        "expectancy": 0.756,
+        "total_pnl": 828.5
+      },
+      "decay_pct": -19.1,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "name": "WEEK (v2.93)",
+      "combo_id": "rsibelow25_mabull_macdnegative_adx0_bolllow_atr1-5_h15",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 15,
+      "is_stats": {
+        "num_trades": 2213,
+        "win_rate": 45,
+        "profit_factor": 2.84,
+        "expectancy": 1.006,
+        "total_pnl": 2225.9
+      },
+      "oos_stats": {
+        "num_trades": 1093,
+        "win_rate": 48.1,
+        "profit_factor": 3.17,
+        "expectancy": 1.122,
+        "total_pnl": 1226.6
+      },
+      "decay_pct": -11.6,
+      "robustness": "ROBUSTE_BONUS"
+    },
+    {
+      "name": "MONTH (v2.93)",
+      "combo_id": "rsibelow25_mabull_macdnegative_adx0_bolllow_atr1-7_h60",
+      "rsi_thr": 25,
+      "rsi_dir": "below",
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "is_stats": {
+        "num_trades": 2196,
+        "win_rate": 38.7,
+        "profit_factor": 3.37,
+        "expectancy": 1.45,
+        "total_pnl": 3184.2
+      },
+      "oos_stats": {
+        "num_trades": 1059,
+        "win_rate": 41.5,
+        "profit_factor": 3.35,
+        "expectancy": 1.375,
+        "total_pnl": 1455.9
+      },
+      "decay_pct": 0.6,
+      "robustness": "ROBUSTE"
+    }
+  ]
+}
