@@ -94,17 +94,24 @@ const ASSETS = [
   { kind: 'metal', symbol: 'BZ=F', label: 'Brent' },
 ];
 
-// PARAM SPACE identique au grid-search v2.93 (49 152 combos)
+// v2.97 — PARAM SPACE ÉTENDU : +3 indicateurs (Ichimoku, MFI, Hull MA)
+// + granularité RSI étendue (5 valeurs au lieu de 4)
+// Total : 5×2×2×3×4×4×4×4×4×2×2×2 = 122 880 combos (vs 49 152 v2.93)
 const PARAM_SPACE = {
-  rsi_thr: [25, 30, 35, 40],
-  rsi_dir: ['below', 'above'],
-  ma_cross: ['bull', 'any'],
-  macd_hist: ['positive', 'negative', 'any'],
-  min_adx: [0, 20, 25, 30],
-  boll_pos: ['low', 'mid', 'high', 'any'],
-  atr_stop: [1.0, 1.5, 2.0, 2.5],
-  atr_tp2: [3.0, 4.0, 5.0, 7.0],
-  hold_days: [5, 15, 30, 60],
+  // Dimensions existantes (granularité étendue)
+  rsi_thr: [20, 25, 30, 35, 40],                  // 5 (vs 4)
+  rsi_dir: ['below', 'above'],                    // 2
+  ma_cross: ['bull', 'any'],                      // 2
+  macd_hist: ['positive', 'negative', 'any'],     // 3
+  min_adx: [0, 20, 25, 30],                       // 4
+  boll_pos: ['low', 'mid', 'high', 'any'],        // 4
+  atr_stop: [1.0, 1.5, 2.0, 2.5],                 // 4
+  atr_tp2: [3.0, 4.0, 5.0, 7.0],                  // 4
+  hold_days: [5, 15, 30, 60],                     // 4
+  // v2.97 — Nouvelles dimensions (filtres on/off pour économiser le combo space)
+  ichi: ['above-cloud', 'any'],                   // 2 (NEW)
+  mfi:  ['low', 'any'],                           // 2 (NEW) - MFI<30 ou pas de filtre
+  hull: ['above', 'any'],                         // 2 (NEW) - prix > Hull MA ou pas de filtre
 };
 
 function* iterCombos(space) {
@@ -148,10 +155,15 @@ function precomputeFlags(prices, volumes) {
     const macdH = ind.macd?.value;
     const adx = ind.adx?.value || 0;
     const bollPos = ind.boll?.value;
+    // v2.97 — Nouveaux indicateurs
+    const ichi = ind.ichimoku;
+    const mfi = ind.mfi?.value;
+    const hullMa = ind.hullMA?.value;
     flags[t] = {
       price: last, atrAbs,
-      rsi_below_25: rsi < 25, rsi_below_30: rsi < 30, rsi_below_35: rsi < 35, rsi_below_40: rsi < 40,
-      rsi_above_25: rsi > 25, rsi_above_30: rsi > 30, rsi_above_35: rsi > 35, rsi_above_40: rsi > 40,
+      // RSI granular (5 seuils v2.97)
+      rsi_below_20: rsi < 20, rsi_below_25: rsi < 25, rsi_below_30: rsi < 30, rsi_below_35: rsi < 35, rsi_below_40: rsi < 40,
+      rsi_above_20: rsi > 20, rsi_above_25: rsi > 25, rsi_above_30: rsi > 30, rsi_above_35: rsi > 35, rsi_above_40: rsi > 40,
       ma_bull: ma20 != null && ma50 != null && ma20 > ma50,
       macd_pos: macdH != null && macdH > 0,
       macd_neg: macdH != null && macdH < 0,
@@ -159,6 +171,10 @@ function precomputeFlags(prices, volumes) {
       boll_low:  bollPos != null && bollPos < 0.25,
       boll_mid:  bollPos != null && bollPos >= 0.25 && bollPos <= 0.75,
       boll_high: bollPos != null && bollPos > 0.75,
+      // v2.97 — Nouveaux indicateurs
+      ichi_above_cloud: !!(ichi && ichi.position === 'above-cloud' && ichi.signal === 'bull'),
+      mfi_low: mfi != null && mfi < 30,
+      hull_above: hullMa != null && last > hullMa,
     };
   }
   return flags;
@@ -175,6 +191,10 @@ function evalCombo(combo, flags) {
   if (combo.boll_pos === 'low'  && !flags.boll_low)  return null;
   if (combo.boll_pos === 'mid'  && !flags.boll_mid)  return null;
   if (combo.boll_pos === 'high' && !flags.boll_high) return null;
+  // v2.97 — Nouveaux filtres
+  if (combo.ichi === 'above-cloud' && !flags.ichi_above_cloud) return null;
+  if (combo.mfi === 'low' && !flags.mfi_low) return null;
+  if (combo.hull === 'above' && !flags.hull_above) return null;
   const entry = flags.price;
   const stop = entry - combo.atr_stop * flags.atrAbs;
   const tp2 = entry + combo.atr_tp2 * flags.atrAbs;
@@ -262,7 +282,12 @@ function evalComboPhased(combo, assetDataList) {
 }
 
 function comboId(combo) {
-  return `rsi${combo.rsi_dir}${combo.rsi_thr}_ma${combo.ma_cross}_macd${combo.macd_hist}_adx${combo.min_adx}_boll${combo.boll_pos}_atr${combo.atr_stop}-${combo.atr_tp2}_h${combo.hold_days}`;
+  // v2.97 — Ajout dimensions ichi / mfi / hull (suffixés seulement si non-any)
+  let id = `rsi${combo.rsi_dir}${combo.rsi_thr}_ma${combo.ma_cross}_macd${combo.macd_hist}_adx${combo.min_adx}_boll${combo.boll_pos}_atr${combo.atr_stop}-${combo.atr_tp2}_h${combo.hold_days}`;
+  if (combo.ichi && combo.ichi !== 'any') id += `_ichi${combo.ichi}`;
+  if (combo.mfi  && combo.mfi  !== 'any') id += `_mfi${combo.mfi}`;
+  if (combo.hull && combo.hull !== 'any') id += `_hull${combo.hull}`;
+  return id;
 }
 
 function classifyRobustness(isStat, oosStat) {
@@ -369,11 +394,12 @@ async function main() {
     console.log(`    Decay: ${r.decay_pct}% (verdict ${r.robustness})`);
   }
 
-  // Test spécifique : nos 3 combos grid v2.93 sont-ils robustes ?
+  // v2.97 — Refs v2.93 ÉTENDUES avec les nouvelles dimensions (ichi/mfi/hull = any)
+  // pour qu'elles matchent avec le PARAM_SPACE v2.97
   const referenceCombos = [
-    { name: 'DAY (v2.93)',   spec: { rsi_thr: 25, rsi_dir: 'below', ma_cross: 'bull', macd_hist: 'negative', min_adx: 0, boll_pos: 'low', atr_stop: 1.0, atr_tp2: 4.0, hold_days: 5 } },
-    { name: 'WEEK (v2.93)',  spec: { rsi_thr: 25, rsi_dir: 'below', ma_cross: 'bull', macd_hist: 'negative', min_adx: 0, boll_pos: 'low', atr_stop: 1.0, atr_tp2: 5.0, hold_days: 15 } },
-    { name: 'MONTH (v2.93)', spec: { rsi_thr: 25, rsi_dir: 'below', ma_cross: 'bull', macd_hist: 'negative', min_adx: 0, boll_pos: 'low', atr_stop: 1.0, atr_tp2: 7.0, hold_days: 60 } },
+    { name: 'DAY (v2.93)',   spec: { rsi_thr: 25, rsi_dir: 'below', ma_cross: 'bull', macd_hist: 'negative', min_adx: 0, boll_pos: 'low', atr_stop: 1.0, atr_tp2: 4.0, hold_days: 5,  ichi: 'any', mfi: 'any', hull: 'any' } },
+    { name: 'WEEK (v2.93)',  spec: { rsi_thr: 25, rsi_dir: 'below', ma_cross: 'bull', macd_hist: 'negative', min_adx: 0, boll_pos: 'low', atr_stop: 1.0, atr_tp2: 5.0, hold_days: 15, ichi: 'any', mfi: 'any', hull: 'any' } },
+    { name: 'MONTH (v2.93)', spec: { rsi_thr: 25, rsi_dir: 'below', ma_cross: 'bull', macd_hist: 'negative', min_adx: 0, boll_pos: 'low', atr_stop: 1.0, atr_tp2: 7.0, hold_days: 60, ichi: 'any', mfi: 'any', hull: 'any' } },
   ];
   console.log('\n═══ VÉRIFICATION DES COMBOS v2.93 ACTUELS ═══');
   const refResults = [];
