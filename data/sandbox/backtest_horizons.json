@@ -1,0 +1,67 @@
+{
+  "generated": "2026-05-22T15:10:13.780Z",
+  "backtest_days": 1000,
+  "assets": 50,
+  "horizons": [
+    {
+      "horizon": "DAY1",
+      "holdMax": 1,
+      "atrTp2": 1,
+      "equity_final": 115.61,
+      "return_pct": 15.61,
+      "annualized_pct": 3.72,
+      "profit_factor": 1.48,
+      "max_dd_pct": -1.3,
+      "win_rate_pct": 56.7,
+      "trades_closed": 1845,
+      "trades_per_year": 464.9,
+      "avg_hold_days": 1,
+      "avg_pnl_per_trade": 0.008
+    },
+    {
+      "horizon": "SWING2",
+      "holdMax": 2,
+      "atrTp2": 1.5,
+      "equity_final": 127.03,
+      "return_pct": 27.03,
+      "annualized_pct": 6.21,
+      "profit_factor": 1.96,
+      "max_dd_pct": -1.45,
+      "win_rate_pct": 58.2,
+      "trades_closed": 1406,
+      "trades_per_year": 354.3,
+      "avg_hold_days": 1.5,
+      "avg_pnl_per_trade": 0.019
+    },
+    {
+      "horizon": "SWING5",
+      "holdMax": 5,
+      "atrTp2": 2.5,
+      "equity_final": 132.76,
+      "return_pct": 32.76,
+      "annualized_pct": 7.4,
+      "profit_factor": 2.26,
+      "max_dd_pct": -1.69,
+      "win_rate_pct": 52.1,
+      "trades_closed": 1045,
+      "trades_per_year": 263.3,
+      "avg_hold_days": 2.5,
+      "avg_pnl_per_trade": 0.031
+    },
+    {
+      "horizon": "SWING30",
+      "holdMax": 30,
+      "atrTp2": 5,
+      "equity_final": 140.06,
+      "return_pct": 40.06,
+      "annualized_pct": 8.86,
+      "profit_factor": 2.62,
+      "max_dd_pct": -1.85,
+      "win_rate_pct": 41.2,
+      "trades_closed": 701,
+      "trades_per_year": 176.7,
+      "avg_hold_days": 5.4,
+      "avg_pnl_per_trade": 0.055
+    }
+  ]
+}
