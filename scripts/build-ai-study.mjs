@@ -20,6 +20,99 @@ import {
   ma7, ichimokuDirection,
 } from './indicators.mjs';
 
+// ─────────────────────────────────────────────────────────────────────
+// v2.86 — Croisement IA × news en direct (phase D de la roadmap)
+//
+// Charge data/news.json (généré par fetch-news.mjs avec fenêtre 48h) et
+// pour chaque setup produit par les agents, vérifie si l'actif a des news
+// récentes qui le mentionnent. Si oui, attache un news_context qui sera
+// affiché dans l'UI pour avertir l'user d'un possible comportement
+// anormal lié à l'actualité (earnings, M&A, geopolitical, etc.).
+// ─────────────────────────────────────────────────────────────────────
+
+async function loadNewsWindow() {
+  try {
+    const newsPath = path.join(process.cwd(), 'data', 'news.json');
+    const txt = await fs.readFile(newsPath, 'utf8');
+    const j = JSON.parse(txt);
+    return Array.isArray(j?.news) ? j.news : [];
+  } catch { return []; }
+}
+
+function buildAssetPatterns(assets) {
+  const out = {};
+  const aliases = {
+    'bitcoin': ['btc'], 'ethereum': ['eth'], 'solana': ['sol'],
+    'binancecoin': ['bnb', 'binance coin'], 'ripple': ['xrp'],
+    'cardano': ['ada'], 'dogecoin': ['doge'], 'avalanche-2': ['avax', 'avalanche'],
+    'polkadot': ['dot'], 'chainlink': ['link'], 'tron': ['trx'],
+    'litecoin': ['ltc'],
+    's&p 500': ['s&p500', 's&p', 'sp500', 'spx'],
+    'nasdaq': ['composite', 'qqq'],
+    'dow jones': ['dow', 'djia'],
+    'cac 40': ['cac40', 'cac'],
+    'dax': ['germany 40'],
+    'nikkei 225': ['nikkei'],
+    'apple': ['aapl'], 'microsoft': ['msft'], 'alphabet': ['googl', 'google'],
+    'amazon': ['amzn'], 'meta': ['fb', 'facebook'], 'nvidia': ['nvda'],
+    'tesla': ['tsla'], 'netflix': ['nflx'],
+  };
+  for (const a of assets) {
+    const pats = new Set();
+    if (a.label) pats.add(a.label.toLowerCase());
+    if (a.symbol) {
+      const clean = a.symbol.toLowerCase().replace(/[\^=\.][\w-]+$/, '').replace(/[\^=]/g, '');
+      if (clean.length >= 3) pats.add(clean);
+    }
+    if (a.id) pats.add(a.id.toLowerCase());
+    const key = (a.label || a.id || '').toLowerCase();
+    if (aliases[key]) aliases[key].forEach(p => pats.add(p));
+    out[a.label] = [...pats].filter(p => p && p.length >= 3);
+  }
+  return out;
+}
+
+function matchNewsToAssets(news, assets) {
+  if (!news || news.length === 0) return {};
+  const patterns = buildAssetPatterns(assets);
+  const matches = {};
+  for (const n of news) {
+    const text = ((n.title || '') + ' ' + (n.body || '')).toLowerCase();
+    for (const [label, pats] of Object.entries(patterns)) {
+      for (const p of pats) {
+        const re = new RegExp(`\\b${p.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&')}\\b`, 'i');
+        if (re.test(text)) {
+          if (!matches[label]) matches[label] = [];
+          matches[label].push({ title: n.title, time: n.time, source: n.source, url: n.url });
+          break;
+        }
+      }
+    }
+  }
+  for (const k of Object.keys(matches)) {
+    matches[k].sort((a, b) => new Date(b.time) - new Date(a.time));
+    if (matches[k].length > 3) matches[k].length = 3;
+  }
+  return matches;
+}
+
+function buildNewsContext(setup, newsMatches) {
+  const m = newsMatches[setup.asset];
+  if (!m || m.length === 0) return null;
+  let risk = 'normal';
+  if (m.length >= 2) risk = 'caution';
+  if (m.length >= 3) risk = 'alert';
+  return {
+    count: m.length,
+    risk,
+    items: m.slice(0, 2).map(n => ({
+      title: n.title.length > 120 ? n.title.slice(0, 117) + '…' : n.title,
+      time: n.time,
+      source: n.source,
+    })),
+  };
+}
+
 // v2.60 — Catalogue étendu (52 actifs) : indices monde + actions US/EU
 //        + crypto top 20 + forex majors + métaux précieux
 const ASSETS = [
@@ -1268,6 +1361,12 @@ async function main() {
       });
   }
 
+  // v2.86 — Charge la fenêtre des news 48h et calcule les matches assets
+  const recentNews = await loadNewsWindow();
+  const newsMatches = matchNewsToAssets(recentNews, valid);
+  const newsMatchCount = Object.keys(newsMatches).length;
+  console.log(`v2.86 News context : ${recentNews.length} news chargées, ${newsMatchCount} actifs avec match`);
+
   const agentsOutput = AGENT_PROFILES.map(agent => {
     const setups = runAgentOnAssets(agent.id);
     return {
@@ -1283,6 +1382,8 @@ async function main() {
         entry: s.entry, stop: s.stop, tp1: s.tp1, tp2: s.tp2,
         rr1: s.rr1, rr2: s.rr2, currency: s.currency,
         prices60: Array.isArray(s.prices60) ? s.prices60.map(p => Number(p.toFixed(4))) : null,
+        // v2.86 — news context attaché si l'actif a des news <48h
+        news_context: buildNewsContext(s, newsMatches),
       })),
     };
   });
@@ -1354,7 +1455,14 @@ async function main() {
       entry: s.entry, stop: s.stop, tp1: s.tp1, tp2: s.tp2,
       rr1: s.rr1, rr2: s.rr2, currency: s.currency,
       prices60: Array.isArray(s.prices60) ? s.prices60.map(p => Number(p.toFixed(4))) : null,
+      // v2.86 — news context attaché si l'actif a des news <48h
+      news_context: buildNewsContext(s, newsMatches),
     })),
+    // v2.86 — Compteur global de news croisées
+    news_summary: {
+      window_news: recentNews.length,
+      matched_assets: newsMatchCount,
+    },
     // Retro-compat : setup principal (meilleure confidence + R/R)
     setup: bestSetup ? {
       asset: bestSetup.asset, kind: bestSetup.kind, type: bestSetup.type,

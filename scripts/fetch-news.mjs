@@ -13,8 +13,12 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const MAX_BODY = 240;
-const LIMIT_PER_SOURCE = 3;
-const TOTAL_LIMIT = 6;
+const LIMIT_PER_SOURCE = 6;
+// v2.86 — On accumule maintenant les news des 48 dernières heures pour permettre
+// au croisement IA × news (build-ai-study.mjs) de détecter les contextes
+// d'actualité récente sur les actifs.
+const KEEP_HOURS = 48;
+const MAX_KEPT_NEWS = 150;
 
 function trim(s, n) {
   if (!s) return '';
@@ -82,37 +86,52 @@ async function fetchYahooRSS() {
 
 async function main() {
   const [market, crypto] = await Promise.all([fetchYahooRSS(), fetchCryptoNews()]);
-  const all = [...market, ...crypto]
-    .filter((n) => n.title && n.title.length > 5)
-    .sort((a, b) => new Date(b.time) - new Date(a.time))
-    .slice(0, TOTAL_LIMIT);
-
-  const out = {
-    generated: new Date().toISOString(),
-    sources: ['CryptoCompare News', 'Yahoo Finance RSS'],
-    count: all.length,
-    news: all,
-  };
+  const fresh = [...market, ...crypto].filter((n) => n.title && n.title.length > 5);
 
   const target = path.join(process.cwd(), 'data', 'news.json');
   await fs.mkdir(path.dirname(target), { recursive: true });
 
-  // Ne pas commiter si rien n'a changé sur le contenu utile (ignore le champ generated)
-  let prev = null;
+  // v2.86 — Charge les news existantes et merge avec les fraîches.
+  // Garde uniquement celles < KEEP_HOURS, dédoublonne par URL+title.
+  let existing = [];
   try {
     const raw = await fs.readFile(target, 'utf8');
-    prev = JSON.parse(raw);
+    const prev = JSON.parse(raw);
+    existing = Array.isArray(prev?.news) ? prev.news : [];
   } catch {}
 
-  const newsFingerprint = (o) =>
-    JSON.stringify((o?.news || []).map((n) => ({ t: n.title, u: n.url, s: n.source })));
-  if (prev && newsFingerprint(prev) === newsFingerprint(out)) {
-    console.log('News unchanged — skipping write.');
+  const cutoff = Date.now() - KEEP_HOURS * 3600 * 1000;
+  const dedupKey = (n) => (n.url || '') + '|' + (n.title || '');
+  const seen = new Set();
+  const all = [];
+  for (const n of [...fresh, ...existing]) {
+    const k = dedupKey(n);
+    if (seen.has(k)) continue;
+    seen.add(k);
+    const t = new Date(n.time).getTime();
+    if (Number.isFinite(t) && t < cutoff) continue;
+    all.push(n);
+  }
+  all.sort((a, b) => new Date(b.time) - new Date(a.time));
+  if (all.length > MAX_KEPT_NEWS) all.length = MAX_KEPT_NEWS;
+
+  const out = {
+    generated: new Date().toISOString(),
+    sources: ['CryptoCompare News', 'Yahoo Finance RSS'],
+    window_hours: KEEP_HOURS,
+    count: all.length,
+    news: all,
+  };
+
+  // Skip si liste identique
+  const fingerprint = (arr) => JSON.stringify(arr.map((n) => ({ t: n.title, u: n.url })));
+  if (existing.length && fingerprint(existing) === fingerprint(all)) {
+    console.log('News list unchanged — skipping write.');
     return;
   }
 
   await fs.writeFile(target, JSON.stringify(out, null, 2) + '\n', 'utf8');
-  console.log(`Wrote ${all.length} news items to data/news.json`);
+  console.log(`Wrote ${all.length} news items (kept ${KEEP_HOURS}h window) to data/news.json`);
 }
 
 main().catch((e) => {
