@@ -56,7 +56,9 @@ async function fetchOne(a) {
 function buildHighlight(asset, change, verdict) {
   const arrow = change >= 0 ? '+' : '';
   const tag = VERDICT_LABELS[verdict] || '→';
-  return `${asset.label} ${arrow}${change.toFixed(2)}% · ${tag}`;
+  // v2.99 — Fix : items du map exposent `symbol` (label original), pas `label`
+  const name = asset.symbol || asset.label || asset.name || '?';
+  return `${name} ${arrow}${change.toFixed(2)}% · ${tag}`;
 }
 
 function buildSummary(items) {
