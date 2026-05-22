@@ -1,0 +1,46 @@
+name: Walk-forward validation
+# v2.94 — Test de robustesse OOS pour révéler l'overfitting du grid-search.
+# Split historique 70% in-sample / 30% out-of-sample. Mesure le decay du PF.
+# C'est le test de vérité : sans ça, on construit potentiellement sur du sable.
+on:
+  workflow_dispatch:
+    inputs:
+      history_range:
+        description: "Range Yahoo (10y, 15y, 20y, max)"
+        required: false
+        default: "20y"
+
+permissions:
+  contents: write
+
+jobs:
+  walk-forward:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run walk-forward validation
+        env:
+          TG_WF_RANGE: ${{ github.event.inputs.history_range }}
+        run: node --max-old-space-size=6144 scripts/walk-forward.mjs
+
+      - name: Commit data/walk-forward-results.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain data/walk-forward-results.json)" ]; then
+            git add data/walk-forward-results.json
+            git commit -m "chore: walk-forward results (${{ github.event.inputs.history_range }}) [skip ci]"
+            for i in 1 2 3; do
+              if git push; then break; fi
+              echo "Push attempt $i failed, pulling rebase..."
+              git pull --rebase origin main
+            done
+          else
+            echo "no change"
+          fi
