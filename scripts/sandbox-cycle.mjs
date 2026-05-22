@@ -136,6 +136,21 @@ function updatePosition(pos, currentPrice, dayOfCycle) {
   pos.current_price = currentPrice;
   pos.age_days = ageDays;
 
+  // v5.0 — Track high_since_entry pour trailing chandelier
+  if (pos.high_since_entry == null || currentPrice > pos.high_since_entry) {
+    pos.high_since_entry = currentPrice;
+  }
+
+  // v5.0 — TRAILING CHANDELIER : après TP1 touché, le stop trail à
+  // (high_since_entry - 1×risk_initial) au lieu de rester à breakeven fixe.
+  // Capture plus de gain quand la tendance se prolonge longtemps.
+  if (pos.touched_tp1 && pos.trailing_after_tp1) {
+    const initialRisk = pos.entry - (pos.initial_stop || pos.entry * (1 - (pos.risk_pct || 0)));
+    const chandStop = pos.high_since_entry - initialRisk;
+    // Jamais reculer le stop (monotone), jamais sous l'entry
+    if (chandStop > pos.stop) pos.stop = chandStop;
+  }
+
   // Stop touché
   if (currentPrice <= pos.stop) {
     pos.status = pos.touched_tp1 ? 'partial_then_stop' : (pos.trailing_active ? 'partial_then_breakeven' : 'loss');
@@ -297,12 +312,26 @@ async function main() {
   portfolio.positions = portfolio.positions.filter(p => p.status === 'open');
 
   // ── 2) OPEN nouvelles positions ─────────────────────────────
+  // v5.0 — Kelly-light : adapte le sizing selon les performances récentes
+  // (5 derniers trades). Boost +20% après 3 wins consécutifs, réduit -30%
+  // après 3 losses consécutifs. Préserve le capital quand on est dans une
+  // mauvaise passe statistique.
+  const recent5 = (portfolio.closed_trades || []).slice(-5);
+  let streakMult = 1;
+  if (recent5.length >= 3) {
+    const last3 = recent5.slice(-3);
+    const allWins = last3.every(t => (t.pnl_eur || 0) > 0);
+    const allLosses = last3.every(t => (t.pnl_eur || 0) <= 0);
+    if (allWins) streakMult = 1.2;
+    else if (allLosses) streakMult = 0.7;
+  }
+
   const slotsAvailable = MAX_POSITIONS - portfolio.positions.length;
   if (slotsAvailable > 0 && portfolio.cash > 1) {
     const candidates = selectSetupsToOpen(aiStudy, portfolio);
-    console.log(`${candidates.length} candidates, ${slotsAvailable} slots, cash=${portfolio.cash.toFixed(2)}€`);
+    console.log(`${candidates.length} candidates, ${slotsAvailable} slots, cash=${portfolio.cash.toFixed(2)}€ · Kelly mult=${streakMult}`);
     for (const s of candidates.slice(0, slotsAvailable)) {
-      const sizing_pct = (s.sizing_pct || 1) / 100; // converti %
+      const sizing_pct = ((s.sizing_pct || 1) * streakMult) / 100; // v5.0 Kelly adapté
       const size_eur = portfolio.cash * sizing_pct;
       if (size_eur < 1) continue; // trop petit
       const risk_pct = Math.abs(s.entry - s.stop) / s.entry;
@@ -311,6 +340,9 @@ async function main() {
         id: 'pos-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
         asset: s.asset, kind: s.kind, agent: s.agent_id, type: s.type,
         entry: s.entry, stop: s.stop, tp1: s.tp1, tp2: s.tp2,
+        // v5.0 — initial_stop conservé pour calculer le trailing chandelier
+        initial_stop: s.stop,
+        high_since_entry: s.entry,
         rr1: Number(s.rr1) || 0, rr2: Number(s.rr2) || 0,
         risk_pct, size_eur,
         quality_score: s.quality_score || null,

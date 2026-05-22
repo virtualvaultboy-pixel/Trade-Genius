@@ -95,15 +95,25 @@ def train_one(df: pd.DataFrame, horizon: dict) -> dict:
     y_train, y_test = y[:split], y[split:]
     print(f"  Train: {len(X_train)}  Test: {len(X_test)}")
 
-    # XGBoost classifier (params conservateurs)
+    # v5.0 — Rééquilibrage classes (dataset très déséquilibré, 80% non-wins).
+    # scale_pos_weight = ratio négatifs/positifs ≈ 4-5 selon horizon. Force
+    # le modèle à donner du poids aux wins minoritaires au lieu d'optimiser
+    # juste l'accuracy globale (trivialement haute avec "always predict loss").
+    pos = int((y_train == 1).sum())
+    neg = int((y_train == 0).sum())
+    spw = neg / max(pos, 1)
+    print(f"  Class balance: {pos} wins / {neg} non-wins · scale_pos_weight={spw:.2f}")
+
+    # XGBoost classifier (params conservateurs + rééquilibrage v5.0)
     clf = xgb.XGBClassifier(
-        n_estimators=300,
-        max_depth=5,
-        learning_rate=0.05,
+        n_estimators=400,        # +33% trees pour exploiter le rééquilibrage
+        max_depth=6,             # +1 niveau pour capturer interactions plus fines
+        learning_rate=0.04,
         subsample=0.85,
         colsample_bytree=0.85,
         min_child_weight=5,
         reg_lambda=1.0,
+        scale_pos_weight=spw,    # ← v5.0 rééquilibrage
         objective="binary:logistic",
         eval_metric="auc",
         tree_method="hist",

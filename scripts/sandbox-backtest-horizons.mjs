@@ -16,7 +16,7 @@
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { fetchYahooHistorical, computeAllIndicators, atrPct, sma } from './indicators.mjs';
+import { fetchYahooHistorical, computeAllIndicators, atrPct, sma, rsi } from './indicators.mjs';
 
 const CAPITAL_INITIAL = 100;
 const MIN_QUALITY = 60;
@@ -197,12 +197,34 @@ function runHorizon(data, minLen, horizon) {
       if (cur == null) return true;
       const ageDays = d - pos.opened_at;
 
+      // v5.0 — TRAILING CHANDELIER : track high_since_entry, trail le stop
+      // à (high - 1×risk_initial) après TP1 touché.
+      if (pos.high_since_entry == null || cur > pos.high_since_entry) {
+        pos.high_since_entry = cur;
+      }
+      if (pos.touched_tp1) {
+        const initialRisk = pos.entry - pos.initial_stop;
+        const chandStop = pos.high_since_entry - initialRisk;
+        if (chandStop > pos.stop) pos.stop = chandStop;
+      }
+
       if (cur <= pos.stop) {
-        const pnl = pos.touched_tp1
-          ? (pos.trailing_active ? pos.size_eur * pos.rr1 * 0.5 * pos.risk_pct : pos.size_eur * (pos.rr1 * 0.5 - 0.5) * pos.risk_pct)
-          : -pos.size_eur * pos.risk_pct;
+        // v5.0 — Si le trailing chandelier a poussé le stop AU-DESSUS de entry,
+        // alors le PnL final reflète ce gain capturé.
+        let pnl;
+        if (pos.trailing_active && pos.stop > pos.entry) {
+          // Trail au-dessus de entry : PnL = rr1*0.5 (TP1 vendu) + (stop_final - entry)/entry × size_eur (2e moitié captée)
+          const gainSecondHalf = ((pos.stop - pos.entry) / pos.entry) * pos.size_eur * 0.5;
+          pnl = pos.size_eur * pos.rr1 * 0.5 * pos.risk_pct + gainSecondHalf;
+        } else if (pos.touched_tp1) {
+          pnl = pos.trailing_active
+            ? pos.size_eur * pos.rr1 * 0.5 * pos.risk_pct
+            : pos.size_eur * (pos.rr1 * 0.5 - 0.5) * pos.risk_pct;
+        } else {
+          pnl = -pos.size_eur * pos.risk_pct;
+        }
         cash += pos.size_eur + pnl;
-        closed.push({ ...pos, pnl_eur: pnl, status: pos.trailing_active ? 'breakeven' : (pos.touched_tp1 ? 'partial' : 'loss'), closed_at: d });
+        closed.push({ ...pos, pnl_eur: pnl, status: pos.trailing_active ? (pos.stop > pos.entry ? 'trail_profit' : 'breakeven') : (pos.touched_tp1 ? 'partial' : 'loss'), closed_at: d });
         return false;
       }
       if (cur >= pos.tp2) {
@@ -213,8 +235,21 @@ function runHorizon(data, minLen, horizon) {
       }
       if (!pos.touched_tp1 && cur >= pos.tp1) {
         pos.touched_tp1 = true;
-        pos.stop = pos.entry;
+        pos.stop = pos.entry; // initialise au breakeven, le chandelier prendra le relais
         pos.trailing_active = true;
+      }
+      // v5.0 — SORTIE ANTICIPÉE sur RSI > 75 (overbought) si position en gain
+      if (pos.touched_tp1 && cur > pos.entry) {
+        const sliceForRsi = asset.prices.slice(0, tomorrow + 1);
+        const rsiNow = rsi(sliceForRsi);
+        if (rsiNow != null && rsiNow > 75) {
+          // Sortie au close du jour, capture le top avant retournement
+          const gainPct = (cur - pos.entry) / pos.entry;
+          const pnl = pos.size_eur * 0.5 * pos.rr1 * pos.risk_pct + pos.size_eur * 0.5 * gainPct;
+          cash += pos.size_eur + pnl;
+          closed.push({ ...pos, pnl_eur: pnl, status: 'rsi_exit', closed_at: d });
+          return false;
+        }
       }
       if (ageDays >= holdMax) {
         // Timeout : exit au close du jour
@@ -264,8 +299,16 @@ function runHorizon(data, minLen, horizon) {
       }
       candidates.sort((a, b) => b.setup.quality - a.setup.quality);
       const slots = MAX_POSITIONS - positions.length;
+      // v5.0 — Kelly-light : streak des 5 derniers trades
+      const recent5 = closed.slice(-5);
+      let streakMult = 1;
+      if (recent5.length >= 3) {
+        const last3 = recent5.slice(-3);
+        if (last3.every(t => (t.pnl_eur || 0) > 0)) streakMult = 1.2;
+        else if (last3.every(t => (t.pnl_eur || 0) <= 0)) streakMult = 0.7;
+      }
       for (const c of candidates.slice(0, slots)) {
-        const size_eur = cash * (c.setup.sizing_pct / 100);
+        const size_eur = cash * (c.setup.sizing_pct * streakMult / 100);
         if (size_eur < 0.5) continue;
         cash -= size_eur;
         const risk_pct = (c.entry - c.stop) / c.entry;
@@ -274,6 +317,8 @@ function runHorizon(data, minLen, horizon) {
           quality: c.setup.quality, sizing_pct: c.setup.sizing_pct,
           stacked: c.setup.stacked === true,
           entry: c.entry, stop: c.stop, tp1: c.tp1, tp2: c.tp2,
+          initial_stop: c.stop,           // v5.0 conservé pour trailing chandelier
+          high_since_entry: c.entry,      // v5.0
           rr1: (c.tp1 - c.entry) / (c.entry - c.stop),
           rr2: (c.tp2 - c.entry) / (c.entry - c.stop),
           size_eur, risk_pct,
