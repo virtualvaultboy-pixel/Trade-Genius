@@ -1,0 +1,45 @@
+name: Tournament des stratégies (20 ans)
+# v2.83 — Teste systématiquement N stratégies × M fenêtres sur le panier
+# d'actifs traditionnels (actions, ETF, indices, forex, métaux) pour
+# identifier les meilleurs combos par profil (conservateur/équilibré/agressif).
+#
+# Tourne à la demande (workflow_dispatch). Peut s'exécuter pendant 1-2 heures
+# pour tester un panier élargi ou un grand grid de paramètres.
+on:
+  workflow_dispatch:
+    inputs:
+      history_range:
+        description: "Range Yahoo (10y, 15y, 20y, max)"
+        required: false
+        default: "20y"
+
+permissions:
+  contents: write
+
+jobs:
+  tournament:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run tournament
+        env:
+          TG_TOURNAMENT_RANGE: ${{ github.event.inputs.history_range }}
+        run: node --expose-gc --max-old-space-size=6144 scripts/tournament-strategies.mjs
+
+      - name: Commit data/strategy-tournament.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain data/strategy-tournament.json)" ]; then
+            git add data/strategy-tournament.json
+            git commit -m "chore: tournament strategies (${{ github.event.inputs.history_range }}) [skip ci]"
+            git push
+          else
+            echo "no change"
+          fi
