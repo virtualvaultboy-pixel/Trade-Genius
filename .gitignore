@@ -29,3 +29,10 @@ android/*.iml
 android/app/*.iml
 *.apk
 *.aab
+
+# v4.0 ML pipeline — gros artifacts (dataset + binaires XGBoost)
+# On commit UNIQUEMENT data/ml/rules.json et data/ml/metrics.json
+data/ml/dataset.csv
+data/ml/model_day.json
+data/ml/model_week.json
+data/ml/model_month.json

@@ -39,6 +39,45 @@ async function loadNewsWindow() {
   } catch { return []; }
 }
 
+// v4.0 — ML rules loader (optionnel : si data/ml/rules.json existe, on l'utilise
+// pour pondérer le quality_score par l'AUC de chaque horizon. Fallback safe si
+// le fichier n'existe pas — comportement v3.4 inchangé).
+async function loadMlRules() {
+  try {
+    const p = path.join(process.cwd(), 'data', 'ml', 'rules.json');
+    const txt = await fs.readFile(p, 'utf8');
+    const j = JSON.parse(txt);
+    if (j?.horizons) {
+      console.log(`v4.0 ML rules loaded (trained ${j.trained_at}) — DAY auc=${j.horizons.day?.auc?.toFixed?.(3)} WEEK=${j.horizons.week?.auc?.toFixed?.(3)} MONTH=${j.horizons.month?.auc?.toFixed?.(3)}`);
+      return j;
+    }
+  } catch { /* fichier absent : comportement v3.4 préservé */ }
+  return null;
+}
+
+// v4.0 — Map agent_id → horizon ML clé. kairo=day, nova=week, atlas=month.
+const _ML_HORIZON_BY_AGENT = { kairo: 'day', nova: 'week', atlas: 'month' };
+
+/**
+ * v4.0 — Pondère un quality_score par l'AUC ML de l'horizon correspondant.
+ *   AUC 0.50 (random) → multiplicateur 1.00 (neutre)
+ *   AUC 0.60         → multiplicateur 1.05
+ *   AUC 0.70         → multiplicateur 1.10
+ *   AUC 0.80+        → multiplicateur 1.15 (cap)
+ *   AUC < 0.50       → multiplicateur 0.95 (signal anti-edge, downgrade léger)
+ * Cappé à [0,100] final.
+ */
+function _applyMlBoost(score, agentId, mlRules) {
+  if (!mlRules || !mlRules.horizons || score == null) return score;
+  const horizon = _ML_HORIZON_BY_AGENT[agentId];
+  if (!horizon) return score;
+  const auc = Number(mlRules.horizons[horizon]?.auc);
+  if (!Number.isFinite(auc)) return score;
+  const edge = auc - 0.5;            // -0.5..+0.5
+  const mult = 1 + Math.max(-0.05, Math.min(0.15, edge * 0.3));
+  return Math.max(0, Math.min(100, Math.round(score * mult)));
+}
+
 function buildAssetPatterns(assets) {
   const out = {};
   const aliases = {
@@ -1691,8 +1730,21 @@ async function main() {
   const newsMatchCount = Object.keys(newsMatches).length;
   console.log(`v2.86 News context : ${recentNews.length} news chargées, ${newsMatchCount} actifs avec match`);
 
+  // v4.0 — Charge les rules ML si dispo (fallback safe si absent)
+  const mlRules = await loadMlRules();
+
   const agentsOutput = AGENT_PROFILES.map(agent => {
     const setups = runAgentOnAssets(agent.id);
+    // v4.0 — Booste quality_score par AUC ML de l'horizon de l'agent
+    if (mlRules) {
+      setups.forEach(s => {
+        const boosted = _applyMlBoost(s.quality_score, agent.id, mlRules);
+        if (boosted !== s.quality_score) {
+          s.quality_score_pre_ml = s.quality_score;
+          s.quality_score = boosted;
+        }
+      });
+    }
     return {
       // v2.70 — On expose UNIQUEMENT l'identité publique + les setups
       // Aucune information sur la méthodologie / outils internes
