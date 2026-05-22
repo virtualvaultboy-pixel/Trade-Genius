@@ -39,7 +39,12 @@ jobs:
           if [ -n "$(git status --porcelain data/grid-search-results.json)" ]; then
             git add data/grid-search-results.json
             git commit -m "chore: grid-search results (${{ github.event.inputs.history_range }}) [skip ci]"
-            git push
+            # v2.90 — rebase sur main si push rejected (commits poussés entre-temps)
+            for i in 1 2 3; do
+              if git push; then break; fi
+              echo "Push attempt $i failed, pulling rebase..."
+              git pull --rebase origin main
+            done
           else
             echo "no change"
           fi

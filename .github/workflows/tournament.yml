@@ -39,7 +39,12 @@ jobs:
           if [ -n "$(git status --porcelain data/strategy-tournament.json)" ]; then
             git add data/strategy-tournament.json
             git commit -m "chore: tournament strategies (${{ github.event.inputs.history_range }}) [skip ci]"
-            git push
+            # v2.90 — rebase sur main si push rejected
+            for i in 1 2 3; do
+              if git push; then break; fi
+              echo "Push attempt $i failed, pulling rebase..."
+              git pull --rebase origin main
+            done
           else
             echo "no change"
           fi
