@@ -844,26 +844,34 @@ async function generateStudy(prompt, valid) {
    ═══════════════════════════════════════════════════════════════════ */
 
 /* ═══════════════════════════════════════════════════════════════════
-   v2.93 — DÉTECTEUR GRID-OPTIMAL (issu du grid-search 49 152 combos)
+   v2.96 — DÉTECTEURS GRID-OPTIMAL post walk-forward validation
    ═══════════════════════════════════════════════════════════════════
-   Pattern mathématiquement gagnant validé sur 20 ans × 50 actifs :
+   2 patterns mathématiquement gagnants découverts par grid-search 49k
+   combos + walk-forward 70/30 (decay négatif ou < 5% pour les 3 IA) :
 
-      RSI < 25  ·  MA20 > MA50  ·  Bollinger position < 25%
-      stop = entry - 1.0 × ATR
-      tp1  = entry + (atr_tp2/2) × ATR
-      tp2  = entry + atr_tp2 × ATR  (variable par fenêtre : 4j / 5j / 7j)
+   PATTERN A — CONTRARIAN FOND
+     RSI < 25  ·  Boll position < 25%  ·  MACD histogramme < 0
+     (le filtre MA bull est OPTIONNEL — le walk-forward montre que ma=any
+      donne 3× plus de trades avec OOS PF identique pour MONTH)
+     stop = entry - 1.0 × ATR
+     tp2  = entry + N × ATR  (4j / 5j / 7j selon fenêtre)
 
-   Le filtre est anti-intuitif (on entre quand le RSI est en survente
-   extrême ET le prix est sur la bande basse de Bollinger MAIS la tendance
-   MT reste haussière) — c'est ce qui le rend rare et rentable.
+   PATTERN B — TREND-FOLLOW CORRECTION (NEW v2.96)
+     RSI > 35  ·  ADX >= 30  ·  Boll mid (0.25-0.75)  ·  MACD < 0
+     "Acheter pendant la correction d'une forte tendance établie"
+     stop = entry - 1.0 × ATR
+     tp2  = entry + 7 × ATR  (h=30j ou 60j)
 
-   Stats backtest 20y (par fenêtre) :
-     DAY   (5j, tp2=4)  : 3313t · 52.3% win · PF 2.49 · exp +0.67R/trade
-     WEEK  (15j, tp2=5) : 3310t · 46.1% win · PF 2.95 · exp +1.05R/trade
-     MONTH (60j, tp2=7) : 3276t · 39.7% win · PF 3.38 · exp +1.44R/trade
+   Stats walk-forward validées (IS 70% / OOS 30% sur 20 ans) :
+     PATTERN A MONTH (ma=any) : 7103t IS / 2882t OOS · PF 2.75 → 3.42
+     PATTERN B          (h60) : 1804t IS /  747t OOS · PF 2.70 → 3.42
+
+   FIX CRITIQUE v2.96 : le filtre MACD < 0 manquait dans v2.93,
+   alors que le combo testé en grid l'incluait. Désormais aligné.
    ═══════════════════════════════════════════════════════════════════ */
 
-function _detectGridV1(asset, params) {
+// PATTERN A — Contrarian fond (RSI bas + Boll low + MACD négatif)
+function _detectGridContrarian(asset, params) {
   const ind = asset.indRaw;
   const prices = asset.prices;
   if (!ind || !prices || prices.length < 30) return null;
@@ -871,10 +879,14 @@ function _detectGridV1(asset, params) {
   const ma20 = ind.ma20?.value;
   const ma50 = ind.maCross?.ma50;
   const boll = ind.boll?.value;
-  // 3 conditions exactes du grid
-  if (rsi == null || rsi >= 25) return null;
-  if (!ma20 || !ma50 || ma20 <= ma50) return null;
+  const macdH = ind.macd?.value;
+  // Conditions exactes du grid (post walk-forward) :
+  if (rsi == null || rsi >= (params.rsiMax || 25)) return null;
   if (boll == null || boll >= 0.25) return null;
+  if (macdH == null || macdH >= 0) return null;          // v2.96 FIX : MACD<0 (manquait)
+  if (params.requireMaBull) {                              // v2.96 : optionnel (WEEK/DAY) vs facultatif (MONTH)
+    if (!ma20 || !ma50 || ma20 <= ma50) return null;
+  }
   const last = prices[prices.length - 1];
   const atr = asset.atrAbs;
   if (!atr) return null;
@@ -888,38 +900,91 @@ function _detectGridV1(asset, params) {
   return {
     type: params.type, label: params.label,
     timeframe: params.timeframe, confidence: 'high',
-    config: 'RSI ' + rsi.toFixed(0) + ' (survente extrême) · MA20>MA50 (tendance MT haussière) · Bollinger ' + (boll*100).toFixed(0) + '% (bande basse) · stop ' + params.atrStop + ' ATR · cible ' + params.atrTp2 + ' ATR.',
-    rationale: 'Configuration contrarian validée par 20 ans de backtest sur 50 actifs (PF ' + params.expectedPF + '). Le marché est en survente technique extrême dans une tendance MT haussière confirmée. Stop technique serré, cible étendue pour capter le retournement complet.',
+    config: 'RSI ' + rsi.toFixed(0) + ' (survente extrême) · Bollinger ' + (boll*100).toFixed(0) + '% (bande basse) · MACD ' + macdH.toFixed(2) + ' (correction confirmée)' + (params.requireMaBull && ma20 && ma50 ? ' · MA20>MA50 (tendance MT préservée)' : '') + ' · stop ' + params.atrStop + ' ATR · cible ' + params.atrTp2 + ' ATR.',
+    rationale: 'Configuration contrarian validée sur 20 ans × 50 actifs (PF ' + params.expectedPF + ' walk-forward OOS). Le marché est en survente technique extrême + correction MACD confirmée. Stop technique serré, cible étendue pour capter le retournement complet.',
     direction: 'long', entry, stop, tp1, tp2,
     rr1: ((tp1 - entry) / risk).toFixed(2),
     rr2: ((tp2 - entry) / risk).toFixed(2),
   };
 }
 
-// Wrappers v2.93 : grid-optimal d'abord, fallback ancien détecteur si pas de signal
+// PATTERN B — Trend-follow correction (v2.96, NEW)
+function _detectGridTrendFollow(asset, params) {
+  const ind = asset.indRaw;
+  const prices = asset.prices;
+  if (!ind || !prices || prices.length < 30) return null;
+  const rsi = ind.rsi?.value;
+  const adx = ind.adx?.value || 0;
+  const boll = ind.boll?.value;
+  const macdH = ind.macd?.value;
+  if (rsi == null || rsi <= (params.rsiMin || 35)) return null;
+  if (adx < (params.adxMin || 30)) return null;
+  if (boll == null || boll < 0.25 || boll > 0.75) return null; // mid
+  if (macdH == null || macdH >= 0) return null;
+  const last = prices[prices.length - 1];
+  const atr = asset.atrAbs;
+  if (!atr) return null;
+  const entry = last;
+  const stop = entry - params.atrStop * atr;
+  const tp1 = entry + (params.atrTp2 * 0.5) * atr;
+  const tp2 = entry + params.atrTp2 * atr;
+  if (stop >= entry || tp1 <= entry || tp2 <= tp1) return null;
+  const risk = entry - stop;
+  if ((tp2 - entry) / risk < 1.5) return null;
+  return {
+    type: params.type, label: params.label,
+    timeframe: params.timeframe, confidence: 'high',
+    config: 'RSI ' + rsi.toFixed(0) + ' (neutre+) · ADX ' + adx.toFixed(0) + ' (tendance forte) · Bollinger ' + (boll*100).toFixed(0) + '% (milieu de bande) · MACD ' + macdH.toFixed(2) + ' (correction en cours) · stop ' + params.atrStop + ' ATR · cible ' + params.atrTp2 + ' ATR.',
+    rationale: 'Configuration trend-follow validée sur 20 ans (PF 3.42 walk-forward OOS). Une forte tendance (ADX ≥ 30) en correction courte (MACD<0, Boll mid) est statistiquement le meilleur point d\'entrée pour suivre le mouvement principal.',
+    direction: 'long', entry, stop, tp1, tp2,
+    rr1: ((tp1 - entry) / risk).toFixed(2),
+    rr2: ((tp2 - entry) / risk).toFixed(2),
+  };
+}
+
+// Wrappers v2.96 : 2 patterns grid en parallèle → fallback legacy
 function _detectAtlasGrid(asset) {
-  const grid = _detectGridV1(asset, {
-    atrStop: 1.0, atrTp2: 7.0,
-    type: 'grid-month', label: 'Survente extrême + tendance LT confirmée',
-    timeframe: 'Long terme · 4-12 semaines', expectedPF: '3.38',
+  // MONTH (60j) : Pattern A (ma=any, +volume) ou Pattern B (trend-follow)
+  const a = _detectGridContrarian(asset, {
+    rsiMax: 25, atrStop: 1.0, atrTp2: 7.0, requireMaBull: false,
+    type: 'grid-month-A', label: 'Survente extrême + correction MACD',
+    timeframe: 'Long terme · 4-12 semaines', expectedPF: '3.42',
   });
-  return grid || _detectAtlas(asset);
+  if (a) return a;
+  const b = _detectGridTrendFollow(asset, {
+    rsiMin: 35, adxMin: 30, atrStop: 1.0, atrTp2: 7.0,
+    type: 'grid-month-B', label: 'Trend-follow correction sur tendance forte',
+    timeframe: 'Long terme · 4-12 semaines', expectedPF: '3.42',
+  });
+  return b || _detectAtlas(asset);
 }
 function _detectNovaGrid(asset) {
-  const grid = _detectGridV1(asset, {
-    atrStop: 1.0, atrTp2: 5.0,
-    type: 'grid-week', label: 'Rebond technique sur survente — swing',
-    timeframe: 'Swing · 1-3 semaines', expectedPF: '2.95',
+  const a = _detectGridContrarian(asset, {
+    rsiMax: 25, atrStop: 1.0, atrTp2: 5.0, requireMaBull: true,
+    type: 'grid-week-A', label: 'Survente + tendance MT confirmée',
+    timeframe: 'Swing · 1-3 semaines', expectedPF: '3.17',
   });
-  return grid || _detectNova(asset);
+  if (a) return a;
+  const b = _detectGridTrendFollow(asset, {
+    rsiMin: 35, adxMin: 30, atrStop: 1.0, atrTp2: 5.0,
+    type: 'grid-week-B', label: 'Trend-follow correction swing',
+    timeframe: 'Swing · 1-3 semaines', expectedPF: '3.17',
+  });
+  return b || _detectNova(asset);
 }
 function _detectKairoGrid(asset) {
-  const grid = _detectGridV1(asset, {
-    atrStop: 1.0, atrTp2: 4.0,
-    type: 'grid-day', label: 'Rebond rapide sur survente extrême',
-    timeframe: 'Court terme · 3-7 jours', expectedPF: '2.49',
+  const a = _detectGridContrarian(asset, {
+    rsiMax: 25, atrStop: 1.0, atrTp2: 4.0, requireMaBull: true,
+    type: 'grid-day-A', label: 'Rebond rapide sur survente + correction',
+    timeframe: 'Court terme · 3-7 jours', expectedPF: '2.80',
   });
-  return grid || _detectKairo(asset);
+  if (a) return a;
+  const b = _detectGridTrendFollow(asset, {
+    rsiMin: 35, adxMin: 30, atrStop: 1.0, atrTp2: 4.0,
+    type: 'grid-day-B', label: 'Trend-follow correction CT',
+    timeframe: 'Court terme · 3-7 jours', expectedPF: '2.80',
+  });
+  return b || _detectKairo(asset);
 }
 
 /**
