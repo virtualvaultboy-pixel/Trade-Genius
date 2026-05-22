@@ -1223,7 +1223,14 @@ function _computeQualityScore(setup, asset) {
   const obvSig = ind.obv?.signal || ind.obv?.trend;
   if (obvSig === 'bull' || obvSig === 'bullish' || obvSig === 'up') obvBonus = 5;
 
-  const score = Math.min(100, base + regimeBonus + adxBonus + rrBonus + obvBonus);
+  // v4.3 — Bonus STACKING : si plusieurs patterns convergents firent sur ce
+  // setup, on récompense la confluence (signal indépendant doublé = +rare et +fiable)
+  let stackingBonus = 0;
+  if (setup.stacked) {
+    stackingBonus = setup.stacked_count >= 3 ? 20 : 15; // 3 patterns = jackpot
+  }
+
+  const score = Math.min(100, base + regimeBonus + adxBonus + rrBonus + obvBonus + stackingBonus);
 
   let sizing_pct = 0.5, sizing_label = 'low';
   if (score >= 85) { sizing_pct = 3; sizing_label = 'high'; }
@@ -1236,68 +1243,90 @@ function _computeQualityScore(setup, asset) {
   };
 }
 
-// Wrappers v3.0 : 3 patterns grid en priorité → fallback legacy
-// Pattern C (NEW v3.0) prioritaire car PF OOS 5.65 vs 3.42 max v2.96
+/**
+ * v4.3 — STACKING ENSEMBLE
+ * Si plusieurs patterns firent sur le même actif simultanément (typiquement
+ * B + C : trend-follow correction ET pullback Ichimoku), c'est une
+ * configuration RARE et STATISTIQUEMENT puissante (deux signaux indépendants
+ * confirment la même thèse). On garde le setup avec la plus haute confidence
+ * et on flag stacked=true → bonus quality_score +15 dans _computeQualityScore.
+ *
+ * Pattern A est généralement exclusif avec B/C (RSI<25 vs RSI>=35), donc le
+ * stacking se concentre sur B + C dans la majorité des cas.
+ */
+const CONF_RANK_STACK = { 'very-high': 4, high: 3, medium: 2, low: 1 };
+function _stackPatterns(hits, fallbackLegacy) {
+  const valid = hits.filter(Boolean);
+  if (valid.length === 0) return fallbackLegacy;
+  if (valid.length === 1) return valid[0];
+  const best = [...valid].sort((a, b) =>
+    (CONF_RANK_STACK[b.confidence] || 0) - (CONF_RANK_STACK[a.confidence] || 0)
+  )[0];
+  best.stacked = true;
+  best.stacked_count = valid.length;
+  best.stacked_patterns = valid.map(h => h.type);
+  best.confidence = 'very-high'; // upgrade auto
+  best.rationale = '🔗 STACKING ' + valid.length + ' patterns convergents (' + best.stacked_patterns.join('+') + ') · ' + best.rationale;
+  return best;
+}
+
+// Wrappers v3.0 : 3 patterns grid → v4.3 stacking ensemble
 function _detectAtlasGrid(asset) {
-  // MONTH (60j) — Pattern C (premium, Ichimoku) > Pattern A (contrarian) > Pattern B (trend-follow)
+  // MONTH (60j)
   const c = _detectGridPullbackTrend(asset, {
     atrStop: 1.0, atrTp2: 7.0,
     type: 'grid-month-C', label: 'Pullback dans tendance LT (Ichimoku)',
     timeframe: 'Long terme · 4-12 semaines',
   });
-  if (c) return c;
   const a = _detectGridContrarian(asset, {
     rsiMax: 25, atrStop: 1.0, atrTp2: 7.0, requireMaBull: false,
     type: 'grid-month-A', label: 'Survente extrême + correction MACD',
     timeframe: 'Long terme · 4-12 semaines', expectedPF: '3.42',
   });
-  if (a) return a;
   const b = _detectGridTrendFollow(asset, {
     rsiMin: 35, adxMin: 30, atrStop: 1.0, atrTp2: 7.0,
     type: 'grid-month-B', label: 'Trend-follow correction sur tendance forte',
     timeframe: 'Long terme · 4-12 semaines', expectedPF: '3.42',
   });
-  return b || _detectAtlas(asset);
+  return _stackPatterns([c, a, b], _detectAtlas(asset));
 }
 function _detectNovaGrid(asset) {
+  // WEEK (15-21j)
   const c = _detectGridPullbackTrend(asset, {
     atrStop: 1.0, atrTp2: 5.0,
     type: 'grid-week-C', label: 'Pullback dans tendance MT (Ichimoku)',
     timeframe: 'Swing · 1-3 semaines',
   });
-  if (c) return c;
   const a = _detectGridContrarian(asset, {
     rsiMax: 25, atrStop: 1.0, atrTp2: 5.0, requireMaBull: true,
     type: 'grid-week-A', label: 'Survente + tendance MT confirmée',
     timeframe: 'Swing · 1-3 semaines', expectedPF: '3.17',
   });
-  if (a) return a;
   const b = _detectGridTrendFollow(asset, {
     rsiMin: 35, adxMin: 30, atrStop: 1.0, atrTp2: 5.0,
     type: 'grid-week-B', label: 'Trend-follow correction swing',
     timeframe: 'Swing · 1-3 semaines', expectedPF: '3.17',
   });
-  return b || _detectNova(asset);
+  return _stackPatterns([c, a, b], _detectNova(asset));
 }
 function _detectKairoGrid(asset) {
+  // DAY (3-7j)
   const c = _detectGridPullbackTrend(asset, {
     atrStop: 1.0, atrTp2: 4.0,
     type: 'grid-day-C', label: 'Pullback dans tendance courte (Ichimoku)',
     timeframe: 'Court terme · 3-7 jours',
   });
-  if (c) return c;
   const a = _detectGridContrarian(asset, {
     rsiMax: 25, atrStop: 1.0, atrTp2: 4.0, requireMaBull: true,
     type: 'grid-day-A', label: 'Rebond rapide sur survente + correction',
     timeframe: 'Court terme · 3-7 jours', expectedPF: '2.80',
   });
-  if (a) return a;
   const b = _detectGridTrendFollow(asset, {
     rsiMin: 35, adxMin: 30, atrStop: 1.0, atrTp2: 4.0,
     type: 'grid-day-B', label: 'Trend-follow correction CT',
     timeframe: 'Court terme · 3-7 jours', expectedPF: '2.80',
   });
-  return b || _detectKairo(asset);
+  return _stackPatterns([c, a, b], _detectKairo(asset));
 }
 
 /**
@@ -1887,6 +1916,10 @@ async function main() {
         trailing_after_tp1: s.trailing_after_tp1 === true,
         // v4.2 — raison macro éventuelle (downgrade VIX/DXY, dev-only utile)
         macro_reason: s.macro_reason || null,
+        // v4.3 — stacking : si plusieurs patterns convergents
+        stacked: s.stacked === true,
+        stacked_count: s.stacked_count || null,
+        stacked_patterns: Array.isArray(s.stacked_patterns) ? s.stacked_patterns : null,
         // v2.86 — news context attaché si l'actif a des news <48h
         news_context: buildNewsContext(s, newsMatches),
       })),
