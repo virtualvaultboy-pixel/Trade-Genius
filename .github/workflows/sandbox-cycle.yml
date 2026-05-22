@@ -1,0 +1,44 @@
+name: Sandbox cycle (v4.5)
+# Sandbox de paper trading 100€ virtuel.
+# Lit data/ai-study.json (généré par ai-study.yml) puis :
+#   - update positions OPEN avec prix close du jour
+#   - open new positions selon les meilleurs setups
+#   - écrit data/sandbox/portfolio.json + stats.json + snapshots/YYYY-MM-DD.json
+#
+# Tourne 1× par jour à 23h UTC (1h après daily-report, après close US).
+on:
+  schedule:
+    - cron: '0 23 * * 1-5'  # lundi à vendredi, 23h UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sandbox:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run sandbox cycle
+        run: node scripts/sandbox-cycle.mjs
+
+      - name: Commit sandbox state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/sandbox/
+          if [ -n "$(git status --porcelain data/sandbox/)" ]; then
+            git commit -m "chore: sandbox cycle $(date -u +%Y-%m-%d) [skip ci]"
+            for i in 1 2 3; do
+              if git push; then break; fi
+              git pull --rebase origin main
+            done
+          else
+            echo "no change"
+          fi
