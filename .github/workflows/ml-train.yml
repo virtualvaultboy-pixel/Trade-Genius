@@ -3,6 +3,10 @@ name: ML Pipeline (v4.0)
 # extraites de 50 actifs × 20 ans. Tourne à la demande (workflow_dispatch).
 # Output : data/ml/rules.json consommé par build-ai-study.mjs.
 on:
+  schedule:
+    # v4.7 — re-train automatique le 1er de chaque mois à 4h UTC
+    # pour garder les modèles à jour sur les nouvelles données marché
+    - cron: '0 4 1 * *'
   workflow_dispatch:
     inputs:
       history_range:

@@ -1,0 +1,193 @@
+{
+  "version": "4.0",
+  "trained_at": "2026-05-22T15:29:19.685884+00:00",
+  "feature_keys": [
+    "rsi",
+    "macd_line",
+    "macd_signal",
+    "macd_hist",
+    "ma20_rel",
+    "ma50_rel",
+    "ma200_rel",
+    "ma50_slope",
+    "boll_pos",
+    "atr_pct",
+    "adx",
+    "stoch_k",
+    "stoch_d",
+    "ichi_pos",
+    "ichi_sig",
+    "vol20",
+    "chg5",
+    "chg20",
+    "regime",
+    "obv_slope_10",
+    "mfi",
+    "vol_rel_20",
+    "rsi_weekly",
+    "ma20_rel_weekly"
+  ],
+  "horizons": {
+    "day": {
+      "auc": 0.5548125360507594,
+      "accuracy": 0.8384418901660281,
+      "precision": 0.21428571428571427,
+      "win_rate_test": 0.15815240527884206,
+      "thr_high": 0.27091851830482483,
+      "thr_med": 0.20908187329769135,
+      "thr_low": 0.1552756130695343,
+      "mean_prob": 0.16751769185066223,
+      "std_prob": 0.07972485572099686
+    },
+    "week": {
+      "auc": 0.5286404013329732,
+      "accuracy": 0.7711792252022137,
+      "precision": 0.2179930795847751,
+      "win_rate_test": 0.22188165176670924,
+      "thr_high": 0.32836082577705383,
+      "thr_med": 0.28089866042137146,
+      "thr_low": 0.24037492275238037,
+      "mean_prob": 0.2437891960144043,
+      "std_prob": 0.07209017127752304
+    },
+    "month": {
+      "auc": 0.5052669975483004,
+      "accuracy": 0.7994891443167306,
+      "precision": 0.24761904761904763,
+      "win_rate_test": 0.19825457641549596,
+      "thr_high": 0.3022259473800659,
+      "thr_med": 0.25820887088775635,
+      "thr_low": 0.22423791885375977,
+      "mean_prob": 0.2291765660047531,
+      "std_prob": 0.0627131536602974
+    }
+  },
+  "feature_importance_top10": {
+    "day": [
+      {
+        "feature": "atr_pct",
+        "importance": 0.08286306262016296
+      },
+      {
+        "feature": "stoch_k",
+        "importance": 0.06506648659706116
+      },
+      {
+        "feature": "regime",
+        "importance": 0.05612220987677574
+      },
+      {
+        "feature": "stoch_d",
+        "importance": 0.05114462971687317
+      },
+      {
+        "feature": "vol20",
+        "importance": 0.04542906954884529
+      },
+      {
+        "feature": "chg5",
+        "importance": 0.04442133381962776
+      },
+      {
+        "feature": "macd_hist",
+        "importance": 0.04386328160762787
+      },
+      {
+        "feature": "ma200_rel",
+        "importance": 0.041966140270233154
+      },
+      {
+        "feature": "macd_line",
+        "importance": 0.04116173833608627
+      },
+      {
+        "feature": "rsi",
+        "importance": 0.040776532143354416
+      }
+    ],
+    "week": [
+      {
+        "feature": "atr_pct",
+        "importance": 0.06950493901968002
+      },
+      {
+        "feature": "regime",
+        "importance": 0.05340464040637016
+      },
+      {
+        "feature": "ma200_rel",
+        "importance": 0.047599297016859055
+      },
+      {
+        "feature": "macd_signal",
+        "importance": 0.04636174812912941
+      },
+      {
+        "feature": "vol20",
+        "importance": 0.04356208071112633
+      },
+      {
+        "feature": "rsi_weekly",
+        "importance": 0.0429961159825325
+      },
+      {
+        "feature": "ma20_rel_weekly",
+        "importance": 0.04285848140716553
+      },
+      {
+        "feature": "ma50_rel",
+        "importance": 0.0415489636361599
+      },
+      {
+        "feature": "stoch_k",
+        "importance": 0.04143340513110161
+      },
+      {
+        "feature": "chg20",
+        "importance": 0.04036273807287216
+      }
+    ],
+    "month": [
+      {
+        "feature": "regime",
+        "importance": 0.057700593024492264
+      },
+      {
+        "feature": "rsi_weekly",
+        "importance": 0.047587182372808456
+      },
+      {
+        "feature": "ma200_rel",
+        "importance": 0.04639725759625435
+      },
+      {
+        "feature": "macd_signal",
+        "importance": 0.046270161867141724
+      },
+      {
+        "feature": "atr_pct",
+        "importance": 0.04526280239224434
+      },
+      {
+        "feature": "ma20_rel_weekly",
+        "importance": 0.04467851668596268
+      },
+      {
+        "feature": "vol20",
+        "importance": 0.0445830412209034
+      },
+      {
+        "feature": "ma50_slope",
+        "importance": 0.043488550931215286
+      },
+      {
+        "feature": "chg20",
+        "importance": 0.042430974543094635
+      },
+      {
+        "feature": "macd_hist",
+        "importance": 0.04191839322447777
+      }
+    ]
+  }
+}
