@@ -1,0 +1,936 @@
+{
+  "generated": "2026-05-22T14:10:19.913Z",
+  "history_range": "20y",
+  "num_assets": 50,
+  "num_combos": 8,
+  "n_folds": 5,
+  "methodology": "Walk-forward 5-fold cross-validation. Expanding window anchored at 0 : fold i a IS [0, 50+10i%] et OOS [50+10i%, 60+10i%]. Pour chaque combo on calcule le PF dans chacun des 5 folds OOS, puis mean/min/max/std. ULTRA_ROBUSTE si min PF ≥ 1.3 ET std PF < 0.5 (rentable dans LES 5 phases historiques).",
+  "classifications": {
+    "ULTRA_ROBUSTE": "min_pf ≥ 1.3 ET std_pf < 0.5 — rentable dans LES 5 phases",
+    "STABLE": "min_pf ≥ 1.0 ET std_pf < 1.0 — rentable dans 4+ phases",
+    "VOLATILE": "mean_pf ≥ 1.5 mais variance élevée",
+    "WEAK": "PF moyen < 1.5 ou min_pf < 1.0",
+    "INVALID": "pas assez de folds valides (<4)"
+  },
+  "results": [
+    {
+      "name": "C-month-hull-confirm",
+      "rsi_dir": "above",
+      "rsi_thr": 35,
+      "ma_cross": "any",
+      "macd_hist": "any",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "ichi": "above-cloud",
+      "mfi": "any",
+      "hull": "above",
+      "folds": [
+        {
+          "fold": 0,
+          "is_pct_end": 0.5,
+          "oos_pct_end": 0.6,
+          "is": {
+            "num_trades": 28,
+            "win_rate": 25,
+            "profit_factor": 1.33,
+            "expectancy": 0.25,
+            "total_pnl": 7
+          },
+          "oos": {
+            "num_trades": 6,
+            "win_rate": 33.3,
+            "profit_factor": 0.88,
+            "expectancy": -0.083,
+            "total_pnl": -0.5
+          }
+        },
+        {
+          "fold": 1,
+          "is_pct_end": 0.6,
+          "oos_pct_end": 0.7,
+          "is": {
+            "num_trades": 34,
+            "win_rate": 26.5,
+            "profit_factor": 1.26,
+            "expectancy": 0.191,
+            "total_pnl": 6.5
+          },
+          "oos": {
+            "num_trades": 1,
+            "win_rate": 0,
+            "profit_factor": 0,
+            "expectancy": -1,
+            "total_pnl": -1
+          }
+        },
+        {
+          "fold": 2,
+          "is_pct_end": 0.7,
+          "oos_pct_end": 0.7999999999999999,
+          "is": {
+            "num_trades": 38,
+            "win_rate": 23.7,
+            "profit_factor": 1.09,
+            "expectancy": 0.066,
+            "total_pnl": 2.5
+          },
+          "oos": {
+            "num_trades": 4,
+            "win_rate": 50,
+            "profit_factor": 4.37,
+            "expectancy": 1.687,
+            "total_pnl": 6.7
+          }
+        },
+        {
+          "fold": 3,
+          "is_pct_end": 0.8,
+          "oos_pct_end": 0.9,
+          "is": {
+            "num_trades": 42,
+            "win_rate": 26.2,
+            "profit_factor": 1.3,
+            "expectancy": 0.22,
+            "total_pnl": 9.2
+          },
+          "oos": {
+            "num_trades": 3,
+            "win_rate": 66.7,
+            "profit_factor": 14,
+            "expectancy": 4.333,
+            "total_pnl": 13
+          }
+        },
+        {
+          "fold": 4,
+          "is_pct_end": 0.9,
+          "oos_pct_end": 1,
+          "is": {
+            "num_trades": 45,
+            "win_rate": 28.9,
+            "profit_factor": 1.7,
+            "expectancy": 0.494,
+            "total_pnl": 22.2
+          },
+          "oos": {
+            "num_trades": 6,
+            "win_rate": 50,
+            "profit_factor": 5.25,
+            "expectancy": 2.125,
+            "total_pnl": 12.8
+          }
+        }
+      ],
+      "n_valid_folds": 4,
+      "mean_pf": 6.13,
+      "min_pf": 0.88,
+      "max_pf": 14,
+      "std_pf": 4.83,
+      "stability": "VOLATILE"
+    },
+    {
+      "name": "C-month-pullback-ichimoku",
+      "rsi_dir": "above",
+      "rsi_thr": 35,
+      "ma_cross": "any",
+      "macd_hist": "any",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "ichi": "above-cloud",
+      "mfi": "any",
+      "hull": "any",
+      "folds": [
+        {
+          "fold": 0,
+          "is_pct_end": 0.5,
+          "oos_pct_end": 0.6,
+          "is": {
+            "num_trades": 123,
+            "win_rate": 41.5,
+            "profit_factor": 3.35,
+            "expectancy": 1.378,
+            "total_pnl": 169.5
+          },
+          "oos": {
+            "num_trades": 21,
+            "win_rate": 38.1,
+            "profit_factor": 3.1,
+            "expectancy": 1.298,
+            "total_pnl": 27.2
+          }
+        },
+        {
+          "fold": 1,
+          "is_pct_end": 0.6,
+          "oos_pct_end": 0.7,
+          "is": {
+            "num_trades": 146,
+            "win_rate": 40.4,
+            "profit_factor": 3.24,
+            "expectancy": 1.334,
+            "total_pnl": 194.8
+          },
+          "oos": {
+            "num_trades": 13,
+            "win_rate": 53.8,
+            "profit_factor": 6.42,
+            "expectancy": 2.5,
+            "total_pnl": 32.5
+          }
+        },
+        {
+          "fold": 2,
+          "is_pct_end": 0.7,
+          "oos_pct_end": 0.7999999999999999,
+          "is": {
+            "num_trades": 163,
+            "win_rate": 40.5,
+            "profit_factor": 3.3,
+            "expectancy": 1.37,
+            "total_pnl": 223.3
+          },
+          "oos": {
+            "num_trades": 16,
+            "win_rate": 43.8,
+            "profit_factor": 4.86,
+            "expectancy": 2.172,
+            "total_pnl": 34.7
+          }
+        },
+        {
+          "fold": 3,
+          "is_pct_end": 0.8,
+          "oos_pct_end": 0.9,
+          "is": {
+            "num_trades": 181,
+            "win_rate": 40.9,
+            "profit_factor": 3.47,
+            "expectancy": 1.459,
+            "total_pnl": 264
+          },
+          "oos": {
+            "num_trades": 19,
+            "win_rate": 47.4,
+            "profit_factor": 5.77,
+            "expectancy": 2.513,
+            "total_pnl": 47.7
+          }
+        },
+        {
+          "fold": 4,
+          "is_pct_end": 0.9,
+          "oos_pct_end": 1,
+          "is": {
+            "num_trades": 201,
+            "win_rate": 41.3,
+            "profit_factor": 3.63,
+            "expectancy": 1.546,
+            "total_pnl": 310.8
+          },
+          "oos": {
+            "num_trades": 22,
+            "win_rate": 54.5,
+            "profit_factor": 7.35,
+            "expectancy": 2.886,
+            "total_pnl": 63.5
+          }
+        }
+      ],
+      "n_valid_folds": 5,
+      "mean_pf": 5.5,
+      "min_pf": 3.1,
+      "max_pf": 7.35,
+      "std_pf": 1.45,
+      "stability": "VOLATILE"
+    },
+    {
+      "name": "C-week-pullback-ichimoku",
+      "rsi_dir": "above",
+      "rsi_thr": 35,
+      "ma_cross": "any",
+      "macd_hist": "any",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 15,
+      "ichi": "above-cloud",
+      "mfi": "any",
+      "hull": "any",
+      "folds": [
+        {
+          "fold": 0,
+          "is_pct_end": 0.5,
+          "oos_pct_end": 0.6,
+          "is": {
+            "num_trades": 125,
+            "win_rate": 47.2,
+            "profit_factor": 2.65,
+            "expectancy": 0.87,
+            "total_pnl": 108.8
+          },
+          "oos": {
+            "num_trades": 22,
+            "win_rate": 54.5,
+            "profit_factor": 3.75,
+            "expectancy": 1.25,
+            "total_pnl": 27.5
+          }
+        },
+        {
+          "fold": 1,
+          "is_pct_end": 0.6,
+          "oos_pct_end": 0.7,
+          "is": {
+            "num_trades": 147,
+            "win_rate": 48.3,
+            "profit_factor": 2.79,
+            "expectancy": 0.927,
+            "total_pnl": 136.3
+          },
+          "oos": {
+            "num_trades": 14,
+            "win_rate": 57.1,
+            "profit_factor": 5.42,
+            "expectancy": 1.893,
+            "total_pnl": 26.5
+          }
+        },
+        {
+          "fold": 2,
+          "is_pct_end": 0.7,
+          "oos_pct_end": 0.7999999999999999,
+          "is": {
+            "num_trades": 164,
+            "win_rate": 48.2,
+            "profit_factor": 2.88,
+            "expectancy": 0.974,
+            "total_pnl": 159.8
+          },
+          "oos": {
+            "num_trades": 17,
+            "win_rate": 47.1,
+            "profit_factor": 3.19,
+            "expectancy": 1.162,
+            "total_pnl": 19.7
+          }
+        },
+        {
+          "fold": 3,
+          "is_pct_end": 0.8,
+          "oos_pct_end": 0.9,
+          "is": {
+            "num_trades": 182,
+            "win_rate": 48.4,
+            "profit_factor": 2.96,
+            "expectancy": 1.014,
+            "total_pnl": 184.5
+          },
+          "oos": {
+            "num_trades": 19,
+            "win_rate": 52.6,
+            "profit_factor": 4.31,
+            "expectancy": 1.567,
+            "total_pnl": 29.8
+          }
+        },
+        {
+          "fold": 4,
+          "is_pct_end": 0.9,
+          "oos_pct_end": 1,
+          "is": {
+            "num_trades": 201,
+            "win_rate": 48.8,
+            "profit_factor": 3.08,
+            "expectancy": 1.066,
+            "total_pnl": 214.3
+          },
+          "oos": {
+            "num_trades": 22,
+            "win_rate": 54.5,
+            "profit_factor": 5.62,
+            "expectancy": 2.102,
+            "total_pnl": 46.2
+          }
+        }
+      ],
+      "n_valid_folds": 5,
+      "mean_pf": 4.46,
+      "min_pf": 3.19,
+      "max_pf": 5.62,
+      "std_pf": 0.94,
+      "stability": "STABLE"
+    },
+    {
+      "name": "C-day-pullback-ichimoku",
+      "rsi_dir": "above",
+      "rsi_thr": 35,
+      "ma_cross": "any",
+      "macd_hist": "any",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 4,
+      "hold_days": 5,
+      "ichi": "above-cloud",
+      "mfi": "any",
+      "hull": "any",
+      "folds": [
+        {
+          "fold": 0,
+          "is_pct_end": 0.5,
+          "oos_pct_end": 0.6,
+          "is": {
+            "num_trades": 125,
+            "win_rate": 52,
+            "profit_factor": 2.55,
+            "expectancy": 0.666,
+            "total_pnl": 84.2
+          },
+          "oos": {
+            "num_trades": 23,
+            "win_rate": 69.6,
+            "profit_factor": 4.01,
+            "expectancy": 0.916,
+            "total_pnl": 21.1
+          }
+        },
+        {
+          "fold": 1,
+          "is_pct_end": 0.6,
+          "oos_pct_end": 0.7,
+          "is": {
+            "num_trades": 148,
+            "win_rate": 54.7,
+            "profit_factor": 2.72,
+            "expectancy": 0.705,
+            "total_pnl": 105.2
+          },
+          "oos": {
+            "num_trades": 15,
+            "win_rate": 66.7,
+            "profit_factor": 3.82,
+            "expectancy": 0.94,
+            "total_pnl": 14.1
+          }
+        },
+        {
+          "fold": 2,
+          "is_pct_end": 0.7,
+          "oos_pct_end": 0.7999999999999999,
+          "is": {
+            "num_trades": 165,
+            "win_rate": 55.2,
+            "profit_factor": 2.72,
+            "expectancy": 0.705,
+            "total_pnl": 117.3
+          },
+          "oos": {
+            "num_trades": 17,
+            "win_rate": 47.1,
+            "profit_factor": 2.56,
+            "expectancy": 0.824,
+            "total_pnl": 14
+          }
+        },
+        {
+          "fold": 3,
+          "is_pct_end": 0.8,
+          "oos_pct_end": 0.9,
+          "is": {
+            "num_trades": 182,
+            "win_rate": 54.4,
+            "profit_factor": 2.7,
+            "expectancy": 0.716,
+            "total_pnl": 131.3
+          },
+          "oos": {
+            "num_trades": 20,
+            "win_rate": 55,
+            "profit_factor": 3.14,
+            "expectancy": 0.947,
+            "total_pnl": 18.9
+          }
+        },
+        {
+          "fold": 4,
+          "is_pct_end": 0.9,
+          "oos_pct_end": 1,
+          "is": {
+            "num_trades": 202,
+            "win_rate": 54.5,
+            "profit_factor": 2.75,
+            "expectancy": 0.739,
+            "total_pnl": 150.3
+          },
+          "oos": {
+            "num_trades": 23,
+            "win_rate": 56.5,
+            "profit_factor": 2.71,
+            "expectancy": 0.714,
+            "total_pnl": 16.4
+          }
+        }
+      ],
+      "n_valid_folds": 5,
+      "mean_pf": 3.25,
+      "min_pf": 2.56,
+      "max_pf": 4.01,
+      "std_pf": 0.58,
+      "stability": "STABLE"
+    },
+    {
+      "name": "A-month-contrarian",
+      "rsi_dir": "below",
+      "rsi_thr": 25,
+      "ma_cross": "any",
+      "macd_hist": "negative",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "ichi": "any",
+      "mfi": "any",
+      "hull": "any",
+      "folds": [
+        {
+          "fold": 0,
+          "is_pct_end": 0.5,
+          "oos_pct_end": 0.6,
+          "is": {
+            "num_trades": 5104,
+            "win_rate": 34.4,
+            "profit_factor": 2.72,
+            "expectancy": 1.129,
+            "total_pnl": 5763.2
+          },
+          "oos": {
+            "num_trades": 661,
+            "win_rate": 35.7,
+            "profit_factor": 3.11,
+            "expectancy": 1.355,
+            "total_pnl": 895.6
+          }
+        },
+        {
+          "fold": 1,
+          "is_pct_end": 0.6,
+          "oos_pct_end": 0.7,
+          "is": {
+            "num_trades": 5901,
+            "win_rate": 34.7,
+            "profit_factor": 2.77,
+            "expectancy": 1.156,
+            "total_pnl": 6821.6
+          },
+          "oos": {
+            "num_trades": 1079,
+            "win_rate": 32.5,
+            "profit_factor": 2.47,
+            "expectancy": 0.994,
+            "total_pnl": 1073
+          }
+        },
+        {
+          "fold": 2,
+          "is_pct_end": 0.7,
+          "oos_pct_end": 0.7999999999999999,
+          "is": {
+            "num_trades": 7103,
+            "win_rate": 34.6,
+            "profit_factor": 2.75,
+            "expectancy": 1.147,
+            "total_pnl": 8146.1
+          },
+          "oos": {
+            "num_trades": 795,
+            "win_rate": 42.4,
+            "profit_factor": 3.69,
+            "expectancy": 1.55,
+            "total_pnl": 1232.2
+          }
+        },
+        {
+          "fold": 3,
+          "is_pct_end": 0.8,
+          "oos_pct_end": 0.9,
+          "is": {
+            "num_trades": 7945,
+            "win_rate": 35.5,
+            "profit_factor": 2.85,
+            "expectancy": 1.196,
+            "total_pnl": 9499.5
+          },
+          "oos": {
+            "num_trades": 931,
+            "win_rate": 43.6,
+            "profit_factor": 3.69,
+            "expectancy": 1.514,
+            "total_pnl": 1409.8
+          }
+        },
+        {
+          "fold": 4,
+          "is_pct_end": 0.9,
+          "oos_pct_end": 1,
+          "is": {
+            "num_trades": 9140,
+            "win_rate": 36.3,
+            "profit_factor": 2.93,
+            "expectancy": 1.227,
+            "total_pnl": 11215.4
+          },
+          "oos": {
+            "num_trades": 822,
+            "win_rate": 36.4,
+            "profit_factor": 2.98,
+            "expectancy": 1.263,
+            "total_pnl": 1037.9
+          }
+        }
+      ],
+      "n_valid_folds": 5,
+      "mean_pf": 3.19,
+      "min_pf": 2.47,
+      "max_pf": 3.69,
+      "std_pf": 0.46,
+      "stability": "ULTRA_ROBUSTE"
+    },
+    {
+      "name": "A-week-contrarian",
+      "rsi_dir": "below",
+      "rsi_thr": 25,
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 5,
+      "hold_days": 15,
+      "ichi": "any",
+      "mfi": "any",
+      "hull": "any",
+      "folds": [
+        {
+          "fold": 0,
+          "is_pct_end": 0.5,
+          "oos_pct_end": 0.6,
+          "is": {
+            "num_trades": 1558,
+            "win_rate": 43.6,
+            "profit_factor": 2.76,
+            "expectancy": 0.987,
+            "total_pnl": 1537.2
+          },
+          "oos": {
+            "num_trades": 322,
+            "win_rate": 49.4,
+            "profit_factor": 3.43,
+            "expectancy": 1.221,
+            "total_pnl": 393.3
+          }
+        },
+        {
+          "fold": 1,
+          "is_pct_end": 0.6,
+          "oos_pct_end": 0.7,
+          "is": {
+            "num_trades": 1885,
+            "win_rate": 44.7,
+            "profit_factor": 2.88,
+            "expectancy": 1.034,
+            "total_pnl": 1949.5
+          },
+          "oos": {
+            "num_trades": 326,
+            "win_rate": 46.6,
+            "profit_factor": 2.59,
+            "expectancy": 0.847,
+            "total_pnl": 276.2
+          }
+        },
+        {
+          "fold": 2,
+          "is_pct_end": 0.7,
+          "oos_pct_end": 0.7999999999999999,
+          "is": {
+            "num_trades": 2213,
+            "win_rate": 45,
+            "profit_factor": 2.84,
+            "expectancy": 1.006,
+            "total_pnl": 2225.9
+          },
+          "oos": {
+            "num_trades": 343,
+            "win_rate": 51.6,
+            "profit_factor": 3.72,
+            "expectancy": 1.311,
+            "total_pnl": 449.8
+          }
+        },
+        {
+          "fold": 3,
+          "is_pct_end": 0.8,
+          "oos_pct_end": 0.9,
+          "is": {
+            "num_trades": 2560,
+            "win_rate": 46,
+            "profit_factor": 2.96,
+            "expectancy": 1.053,
+            "total_pnl": 2695.7
+          },
+          "oos": {
+            "num_trades": 439,
+            "win_rate": 47.4,
+            "profit_factor": 3.06,
+            "expectancy": 1.083,
+            "total_pnl": 475.4
+          }
+        },
+        {
+          "fold": 4,
+          "is_pct_end": 0.9,
+          "oos_pct_end": 1,
+          "is": {
+            "num_trades": 3005,
+            "win_rate": 46.2,
+            "profit_factor": 2.97,
+            "expectancy": 1.057,
+            "total_pnl": 3175.6
+          },
+          "oos": {
+            "num_trades": 301,
+            "win_rate": 45.5,
+            "profit_factor": 2.81,
+            "expectancy": 0.98,
+            "total_pnl": 294.9
+          }
+        }
+      ],
+      "n_valid_folds": 5,
+      "mean_pf": 3.12,
+      "min_pf": 2.59,
+      "max_pf": 3.72,
+      "std_pf": 0.41,
+      "stability": "ULTRA_ROBUSTE"
+    },
+    {
+      "name": "A-day-contrarian",
+      "rsi_dir": "below",
+      "rsi_thr": 25,
+      "ma_cross": "bull",
+      "macd_hist": "negative",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 4,
+      "hold_days": 5,
+      "ichi": "any",
+      "mfi": "any",
+      "hull": "any",
+      "folds": [
+        {
+          "fold": 0,
+          "is_pct_end": 0.5,
+          "oos_pct_end": 0.6,
+          "is": {
+            "num_trades": 1558,
+            "win_rate": 49.3,
+            "profit_factor": 2.28,
+            "expectancy": 0.614,
+            "total_pnl": 957.1
+          },
+          "oos": {
+            "num_trades": 323,
+            "win_rate": 54.5,
+            "profit_factor": 2.45,
+            "expectancy": 0.625,
+            "total_pnl": 202.9
+          }
+        },
+        {
+          "fold": 1,
+          "is_pct_end": 0.6,
+          "oos_pct_end": 0.7,
+          "is": {
+            "num_trades": 1886,
+            "win_rate": 50.3,
+            "profit_factor": 2.32,
+            "expectancy": 0.623,
+            "total_pnl": 1175
+          },
+          "oos": {
+            "num_trades": 330,
+            "win_rate": 54.2,
+            "profit_factor": 2.57,
+            "expectancy": 0.69,
+            "total_pnl": 227.8
+          }
+        },
+        {
+          "fold": 2,
+          "is_pct_end": 0.7,
+          "oos_pct_end": 0.7999999999999999,
+          "is": {
+            "num_trades": 2217,
+            "win_rate": 50.8,
+            "profit_factor": 2.35,
+            "expectancy": 0.632,
+            "total_pnl": 1401.9
+          },
+          "oos": {
+            "num_trades": 348,
+            "win_rate": 56.3,
+            "profit_factor": 3.04,
+            "expectancy": 0.853,
+            "total_pnl": 296.7
+          }
+        },
+        {
+          "fold": 3,
+          "is_pct_end": 0.8,
+          "oos_pct_end": 0.9,
+          "is": {
+            "num_trades": 2565,
+            "win_rate": 51.6,
+            "profit_factor": 2.44,
+            "expectancy": 0.662,
+            "total_pnl": 1698.6
+          },
+          "oos": {
+            "num_trades": 443,
+            "win_rate": 54.9,
+            "profit_factor": 2.76,
+            "expectancy": 0.733,
+            "total_pnl": 324.6
+          }
+        },
+        {
+          "fold": 4,
+          "is_pct_end": 0.9,
+          "oos_pct_end": 1,
+          "is": {
+            "num_trades": 3009,
+            "win_rate": 52.1,
+            "profit_factor": 2.48,
+            "expectancy": 0.672,
+            "total_pnl": 2024.3
+          },
+          "oos": {
+            "num_trades": 304,
+            "win_rate": 54.6,
+            "profit_factor": 2.58,
+            "expectancy": 0.678,
+            "total_pnl": 206.1
+          }
+        }
+      ],
+      "n_valid_folds": 5,
+      "mean_pf": 2.68,
+      "min_pf": 2.45,
+      "max_pf": 3.04,
+      "std_pf": 0.21,
+      "stability": "ULTRA_ROBUSTE"
+    },
+    {
+      "name": "C-month-mfi-confirm",
+      "rsi_dir": "above",
+      "rsi_thr": 35,
+      "ma_cross": "any",
+      "macd_hist": "any",
+      "min_adx": 0,
+      "boll_pos": "low",
+      "atr_stop": 1,
+      "atr_tp2": 7,
+      "hold_days": 60,
+      "ichi": "above-cloud",
+      "mfi": "low",
+      "hull": "any",
+      "folds": [
+        {
+          "fold": 0,
+          "is_pct_end": 0.5,
+          "oos_pct_end": 0.6,
+          "is": {
+            "num_trades": 5,
+            "win_rate": 20,
+            "profit_factor": 1.75,
+            "expectancy": 0.6,
+            "total_pnl": 3
+          },
+          "oos": null
+        },
+        {
+          "fold": 1,
+          "is_pct_end": 0.6,
+          "oos_pct_end": 0.7,
+          "is": {
+            "num_trades": 5,
+            "win_rate": 20,
+            "profit_factor": 1.75,
+            "expectancy": 0.6,
+            "total_pnl": 3
+          },
+          "oos": null
+        },
+        {
+          "fold": 2,
+          "is_pct_end": 0.7,
+          "oos_pct_end": 0.7999999999999999,
+          "is": {
+            "num_trades": 5,
+            "win_rate": 20,
+            "profit_factor": 1.75,
+            "expectancy": 0.6,
+            "total_pnl": 3
+          },
+          "oos": {
+            "num_trades": 1,
+            "win_rate": 0,
+            "profit_factor": 0,
+            "expectancy": -1,
+            "total_pnl": -1
+          }
+        },
+        {
+          "fold": 3,
+          "is_pct_end": 0.8,
+          "oos_pct_end": 0.9,
+          "is": {
+            "num_trades": 7,
+            "win_rate": 28.6,
+            "profit_factor": 2.8,
+            "expectancy": 1.286,
+            "total_pnl": 9
+          },
+          "oos": null
+        },
+        {
+          "fold": 4,
+          "is_pct_end": 0.9,
+          "oos_pct_end": 1,
+          "is": {
+            "num_trades": 7,
+            "win_rate": 28.6,
+            "profit_factor": 2.8,
+            "expectancy": 1.286,
+            "total_pnl": 9
+          },
+          "oos": null
+        }
+      ],
+      "mean_pf": null,
+      "min_pf": null,
+      "max_pf": null,
+      "std_pf": null,
+      "stability": "WEAK"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+name: Walk-forward 5-Fold cross-validation
+# v3.2 — Validation cross-temporelle à 5 plis pour confirmer la stabilité
+# des combos top du grid. Tourne à la demande (workflow_dispatch).
+on:
+  workflow_dispatch:
+    inputs:
+      history_range:
+        description: "Range Yahoo (10y, 15y, 20y, max)"
+        required: false
+        default: "20y"
+
+permissions:
+  contents: write
+
+jobs:
+  fivefold:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run 5-fold validation
+        env:
+          TG_WF_RANGE: ${{ github.event.inputs.history_range }}
+        run: node --max-old-space-size=4096 scripts/walk-forward-5fold.mjs
+
+      - name: Commit data/walk-forward-5fold.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain data/walk-forward-5fold.json)" ]; then
+            git add data/walk-forward-5fold.json
+            git commit -m "chore: 5-fold validation (${{ github.event.inputs.history_range }}) [skip ci]"
+            for i in 1 2 3; do
+              if git push; then break; fi
+              git pull --rebase origin main
+            done
+          else
+            echo "no change"
+          fi
