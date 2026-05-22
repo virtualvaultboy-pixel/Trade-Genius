@@ -44,13 +44,15 @@ const WINDOW_TO_HOLD = {
 };
 
 function selectBestCombo(grid, holdDays) {
-  // Tri par expectancy parmi les combos avec ce hold et profil valide
-  const candidates = grid.all_combos
-    ? grid.all_combos.filter(c => c.hold_days === holdDays && c.profile !== 'WEAK' && c.profile !== 'INVALID')
-    : [];
-  if (candidates.length === 0) return null;
-  candidates.sort((a, b) => b.expectancy - a.expectancy);
-  return candidates[0];
+  // v2.92 — Le JSON expose top_by_hold (top 20 par fenêtre) ET top_by_profile
+  // (top 50 par profil). On lit top_by_hold pour avoir les top combos déjà
+  // filtrés non-WEAK pour la fenêtre demandée.
+  const winKey = holdDays === 5 ? 'DAY' : holdDays === 15 ? 'WEEK' : holdDays === 60 ? 'MONTH' : null;
+  if (!winKey) return null;
+  const list = grid.top_by_hold?.[winKey] || [];
+  if (list.length === 0) return null;
+  // Déjà trié par expectancy → on prend le top
+  return list[0];
 }
 
 function selectByProfile(grid, profileName) {
