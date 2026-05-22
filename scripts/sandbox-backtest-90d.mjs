@@ -26,43 +26,69 @@ import {
 } from './indicators.mjs';
 
 const CAPITAL_INITIAL = 100;
-const MAX_POSITIONS = 5;
-const MIN_QUALITY = 60; // medium-high acceptable
-const BACKTEST_DAYS = 180;
-const HISTORY_RANGE = '2y';
+const MIN_QUALITY = 60;
+const HISTORY_RANGE = '5y';
+const BACKTEST_DAYS = 1000;     // ~4 ans (warmup 220 sur 1250 candles)
 
-// Univers ciblé : indices + actions majeures + métaux
+// 3 variantes de sizing testées en parallèle
+const VARIANTS = [
+  { name: 'conservative', maxPos: 5, sizing: { high: 3, midHigh: 2, mid: 1, low: 0.5 } },
+  { name: 'balanced',     maxPos: 5, sizing: { high: 5, midHigh: 3, mid: 2, low: 1 } },
+  { name: 'aggressive',   maxPos: 8, sizing: { high: 8, midHigh: 5, mid: 3, low: 1.5 } },
+];
+
+// Univers étendu : indices + actions US/EU + ETF sectoriels + métaux
 const ASSETS = [
-  { kind: 'index', symbol: '^GSPC', label: 'S&P 500' },
-  { kind: 'index', symbol: '^IXIC', label: 'Nasdaq' },
-  { kind: 'index', symbol: '^DJI', label: 'Dow Jones' },
-  { kind: 'index', symbol: '^RUT', label: 'Russell 2000' },
-  { kind: 'index', symbol: '^FCHI', label: 'CAC 40' },
-  { kind: 'index', symbol: '^GDAXI', label: 'DAX' },
-  { kind: 'index', symbol: '^FTSE', label: 'FTSE 100' },
-  { kind: 'index', symbol: '^N225', label: 'Nikkei 225' },
-  { kind: 'action', symbol: 'AAPL', label: 'Apple' },
-  { kind: 'action', symbol: 'MSFT', label: 'Microsoft' },
+  { kind: 'index', symbol: '^GSPC',     label: 'S&P 500' },
+  { kind: 'index', symbol: '^IXIC',     label: 'Nasdaq' },
+  { kind: 'index', symbol: '^DJI',      label: 'Dow Jones' },
+  { kind: 'index', symbol: '^RUT',      label: 'Russell 2000' },
+  { kind: 'index', symbol: '^FCHI',     label: 'CAC 40' },
+  { kind: 'index', symbol: '^GDAXI',    label: 'DAX' },
+  { kind: 'index', symbol: '^FTSE',     label: 'FTSE 100' },
+  { kind: 'index', symbol: '^STOXX50E', label: 'Euro Stoxx 50' },
+  { kind: 'index', symbol: '^N225',     label: 'Nikkei 225' },
+  { kind: 'index', symbol: '^HSI',      label: 'Hang Seng' },
+  { kind: 'action', symbol: 'AAPL',  label: 'Apple' },
+  { kind: 'action', symbol: 'MSFT',  label: 'Microsoft' },
   { kind: 'action', symbol: 'GOOGL', label: 'Alphabet' },
-  { kind: 'action', symbol: 'AMZN', label: 'Amazon' },
-  { kind: 'action', symbol: 'META', label: 'Meta' },
-  { kind: 'action', symbol: 'NVDA', label: 'Nvidia' },
-  { kind: 'action', symbol: 'TSLA', label: 'Tesla' },
-  { kind: 'action', symbol: 'JPM', label: 'JPMorgan' },
-  { kind: 'action', symbol: 'V', label: 'Visa' },
-  { kind: 'action', symbol: 'WMT', label: 'Walmart' },
-  { kind: 'action', symbol: 'JNJ', label: 'J&J' },
-  { kind: 'action', symbol: 'XOM', label: 'Exxon' },
-  { kind: 'action', symbol: 'KO', label: 'Coca-Cola' },
-  { kind: 'action', symbol: 'NFLX', label: 'Netflix' },
-  { kind: 'action', symbol: 'SPY', label: 'SPY ETF' },
-  { kind: 'action', symbol: 'QQQ', label: 'QQQ ETF' },
-  { kind: 'action', symbol: 'XLK', label: 'XLK Tech' },
-  { kind: 'action', symbol: 'XLF', label: 'XLF Fin' },
-  { kind: 'action', symbol: 'MC.PA', label: 'LVMH' },
+  { kind: 'action', symbol: 'AMZN',  label: 'Amazon' },
+  { kind: 'action', symbol: 'META',  label: 'Meta' },
+  { kind: 'action', symbol: 'NVDA',  label: 'Nvidia' },
+  { kind: 'action', symbol: 'TSLA',  label: 'Tesla' },
+  { kind: 'action', symbol: 'JPM',   label: 'JPMorgan' },
+  { kind: 'action', symbol: 'V',     label: 'Visa' },
+  { kind: 'action', symbol: 'BRK-B', label: 'Berkshire' },
+  { kind: 'action', symbol: 'WMT',   label: 'Walmart' },
+  { kind: 'action', symbol: 'JNJ',   label: 'J&J' },
+  { kind: 'action', symbol: 'XOM',   label: 'Exxon' },
+  { kind: 'action', symbol: 'PG',    label: 'P&G' },
+  { kind: 'action', symbol: 'KO',    label: 'Coca-Cola' },
+  { kind: 'action', symbol: 'NFLX',  label: 'Netflix' },
+  { kind: 'action', symbol: 'NKE',   label: 'Nike' },
+  { kind: 'action', symbol: 'DIS',   label: 'Disney' },
+  { kind: 'action', symbol: 'SPY',   label: 'SPY ETF' },
+  { kind: 'action', symbol: 'QQQ',   label: 'QQQ ETF' },
+  { kind: 'action', symbol: 'IWM',   label: 'IWM ETF' },
+  { kind: 'action', symbol: 'EEM',   label: 'EEM' },
+  { kind: 'action', symbol: 'GLD',   label: 'GLD' },
+  { kind: 'action', symbol: 'TLT',   label: 'TLT' },
+  { kind: 'action', symbol: 'XLK',   label: 'XLK Tech' },
+  { kind: 'action', symbol: 'XLF',   label: 'XLF Fin' },
+  { kind: 'action', symbol: 'XLE',   label: 'XLE Energy' },
+  { kind: 'action', symbol: 'MC.PA',   label: 'LVMH' },
   { kind: 'action', symbol: 'ASML.AS', label: 'ASML' },
+  { kind: 'action', symbol: 'NESN.SW', label: 'Nestlé' },
+  { kind: 'forex', symbol: 'EURUSD=X', label: 'EUR/USD' },
+  { kind: 'forex', symbol: 'GBPUSD=X', label: 'GBP/USD' },
+  { kind: 'forex', symbol: 'USDJPY=X', label: 'USD/JPY' },
+  { kind: 'forex', symbol: 'USDCHF=X', label: 'USD/CHF' },
+  { kind: 'forex', symbol: 'AUDUSD=X', label: 'AUD/USD' },
   { kind: 'metal', symbol: 'GC=F', label: 'Or' },
   { kind: 'metal', symbol: 'SI=F', label: 'Argent' },
+  { kind: 'metal', symbol: 'HG=F', label: 'Cuivre' },
+  { kind: 'metal', symbol: 'CL=F', label: 'Pétrole' },
+  { kind: 'metal', symbol: 'BZ=F', label: 'Brent' },
 ];
 
 // ── Régime LT (SMA200 slope) ──────────────────────────────────────
@@ -123,7 +149,7 @@ function computeQuality(ind, p, regime) {
   return Math.min(100, s);
 }
 
-function detectSetupForHorizon(ind, prices, atrAbs, regime, atrTp2) {
+function detectSetupForHorizon(ind, prices, atrAbs, regime, atrTp2, sizingMap) {
   if (!atrAbs || atrAbs <= 0) return null;
   // Détecte les 3 patterns indépendamment + stacking
   const c = patternPullback(ind, prices, atrAbs, regime);
@@ -140,46 +166,25 @@ function detectSetupForHorizon(ind, prices, atrAbs, regime, atrTp2) {
   }
   best.atrTp2 = atrTp2;
   const quality = computeQuality(ind, best, regime);
-  let sizing_pct = 0.5;
-  if (quality >= 85) sizing_pct = 3;
-  else if (quality >= 70) sizing_pct = 2;
-  else if (quality >= 55) sizing_pct = 1;
+  let sizing_pct = sizingMap.low;
+  if (quality >= 85) sizing_pct = sizingMap.high;
+  else if (quality >= 70) sizing_pct = sizingMap.midHigh;
+  else if (quality >= 55) sizing_pct = sizingMap.mid;
   return {
     pattern: best.type, conf: best.conf, quality, sizing_pct,
     stacked, atrTp2,
   };
 }
 
-// ── Backtest main loop ──────────────────────────────────────────
-async function main() {
-  console.log(`Fetching ${ASSETS.length} assets (1y history)...`);
-  const data = {};
-  for (const a of ASSETS) {
-    try {
-      const d = await fetchYahooHistorical(a.symbol, HISTORY_RANGE);
-      data[a.label] = { ...a, prices: d.prices, volumes: d.volumes || [] };
-      console.log(`  ${a.label}: ${d.prices.length} candles`);
-    } catch (e) {
-      console.warn(`  SKIP ${a.label}: ${e.message}`);
-    }
-    await new Promise(r => setTimeout(r, 150));
-  }
-
-  // Synchronise sur le plus court (les actifs ont des longueurs varient)
-  const lengths = Object.values(data).map(d => d.prices.length);
-  const minLen = Math.min(...lengths);
-  console.log(`Min length: ${minLen}, starting backtest from day ${minLen - BACKTEST_DAYS}`);
-
-  // Portfolio
+// ── Run UNE variante ────────────────────────────────────────────
+function runVariant(data, minLen, variant) {
+  const MAX_POSITIONS = variant.maxPos;
+  const sizingMap = variant.sizing;
   let cash = CAPITAL_INITIAL;
-  let positions = []; // {asset, entry, stop, tp1, tp2, size_eur, ...}
+  let positions = [];
   const equityHistory = [];
   const closedTrades = [];
-
-  // Horizon : on prend Atlas (MONTH) en horizon principal car PF le plus stable
   const ATR_TP2 = 7.0;
-
-  // Loop sur les BACKTEST_DAYS derniers jours
   const startIdx = minLen - BACKTEST_DAYS;
   for (let d = startIdx; d < minLen - 1; d++) {
     const today = d;
@@ -244,7 +249,7 @@ async function main() {
         const last = slice[slice.length - 1];
         const atrAbs = (atrP / 100) * last;
         const regime = detectRegime(slice);
-        const setup = detectSetupForHorizon(ind, slice, atrAbs, regime, ATR_TP2);
+        const setup = detectSetupForHorizon(ind, slice, atrAbs, regime, ATR_TP2, sizingMap);
         if (!setup) continue;
         if (setup.quality < MIN_QUALITY) continue;
         const entry = last;
@@ -299,10 +304,10 @@ async function main() {
     if (dd < maxDd) maxDd = dd;
   });
 
-  const result = {
-    version: '4.5',
-    backtest_period_days: BACKTEST_DAYS,
-    assets_count: Object.keys(data).length,
+  return {
+    variant: variant.name,
+    maxPos: variant.maxPos,
+    sizing: variant.sizing,
     capital_initial: CAPITAL_INITIAL,
     equity_final: finalEquity,
     total_return_pct: Number(totalReturn.toFixed(2)),
@@ -317,27 +322,62 @@ async function main() {
     trades_by_pattern: { A: closedTrades.filter(t => t.pattern === 'A').length, B: closedTrades.filter(t => t.pattern === 'B').length, C: closedTrades.filter(t => t.pattern === 'C').length },
     trades_by_outcome: { win: wins.length, loss: closedTrades.filter(t => t.status === 'loss').length, breakeven: closedTrades.filter(t => t.status === 'breakeven').length, partial_stop: closedTrades.filter(t => t.status === 'partial_stop').length, timeout: closedTrades.filter(t => t.status === 'timeout').length },
     stacked_trades: closedTrades.filter(t => t.stacked).length,
-    equity_history: equityHistory,
-    closed_trades_sample: closedTrades.slice(-15),
+    equity_history: equityHistory.filter((_, i) => i % 5 === 0), // downsample 1/5 pour rester léger
+  };
+}
+
+// ── Main : fetch 1×, run 3 variantes ────────────────────────────
+async function main() {
+  console.log(`Fetching ${ASSETS.length} assets (${HISTORY_RANGE} history)...`);
+  const data = {};
+  for (const a of ASSETS) {
+    try {
+      const d = await fetchYahooHistorical(a.symbol, HISTORY_RANGE);
+      data[a.label] = { ...a, prices: d.prices, volumes: d.volumes || [] };
+      console.log(`  ${a.label}: ${d.prices.length} candles`);
+    } catch (e) {
+      console.warn(`  SKIP ${a.label}: ${e.message}`);
+    }
+    await new Promise(r => setTimeout(r, 150));
+  }
+  const lengths = Object.values(data).map(d => d.prices.length);
+  const minLen = Math.min(...lengths);
+  console.log(`Min length: ${minLen}, backtest period: ${BACKTEST_DAYS}j (≈${(BACKTEST_DAYS / 252).toFixed(1)} ans)\n`);
+
+  const results = [];
+  for (const v of VARIANTS) {
+    console.log(`\n--- Running variant "${v.name}" (max ${v.maxPos} pos, sizing ${v.sizing.high}%/${v.sizing.midHigh}%/${v.sizing.mid}%/${v.sizing.low}%) ---`);
+    const r = runVariant(data, minLen, v);
+    results.push(r);
+    console.log(`  → ${r.equity_final.toFixed(2)}€ (${r.total_return_pct >= 0 ? '+' : ''}${r.total_return_pct}%) · PF ${r.profit_factor} · DD ${r.max_drawdown_pct}% · ${r.trades_closed} trades · WR ${r.win_rate}%`);
+  }
+
+  const summary = {
+    version: '4.5',
+    history_range: HISTORY_RANGE,
+    backtest_period_days: BACKTEST_DAYS,
+    backtest_years: Number((BACKTEST_DAYS / 252).toFixed(2)),
+    assets_count: Object.keys(data).length,
     generated: new Date().toISOString(),
+    variants: results,
   };
 
   await fs.mkdir(path.join(process.cwd(), 'data', 'sandbox'), { recursive: true });
-  const out = path.join(process.cwd(), 'data', 'sandbox', 'backtest_90d.json');
-  await fs.writeFile(out, JSON.stringify(result, null, 2) + '\n', 'utf8');
+  const out = path.join(process.cwd(), 'data', 'sandbox', 'backtest_multi.json');
+  await fs.writeFile(out, JSON.stringify(summary, null, 2) + '\n', 'utf8');
 
-  console.log('\n=== RÉSULTAT BACKTEST 90j ===');
-  console.log(`Capital initial : ${CAPITAL_INITIAL.toFixed(2)} €`);
-  console.log(`Equity finale   : ${result.equity_final.toFixed(2)} €`);
-  console.log(`Performance     : ${result.total_return_pct >= 0 ? '+' : ''}${result.total_return_pct}%`);
-  console.log(`Trades clos     : ${result.trades_closed} (${result.trades_open_at_end} encore open)`);
-  console.log(`Win rate        : ${result.win_rate}%`);
-  console.log(`Profit Factor   : ${result.profit_factor}`);
-  console.log(`Max drawdown    : ${result.max_drawdown_pct}%`);
-  console.log(`Equity high     : ${result.equity_high} €`);
-  console.log(`Patterns        :`, result.trades_by_pattern);
-  console.log(`Outcomes        :`, result.trades_by_outcome);
-  console.log(`Stacked trades  : ${result.stacked_trades}`);
+  console.log('\n\n╔══════════════════════════════════════════════════════════════╗');
+  console.log(`║ BACKTEST ${BACKTEST_DAYS}j (≈${(BACKTEST_DAYS / 252).toFixed(1)} ans) · ${Object.keys(data).length} actifs · 100€ initial`);
+  console.log('╠══════════════════════════════════════════════════════════════╣');
+  console.log('║ Variante       │ Final  │ Perf    │ PF   │ DD     │ Trades │ WR ║');
+  console.log('╟────────────────┼────────┼─────────┼──────┼────────┼────────┼────╢');
+  for (const r of results) {
+    const ret = (r.total_return_pct >= 0 ? '+' : '') + r.total_return_pct + '%';
+    const annual = Math.pow(1 + r.total_return_pct / 100, 252 / BACKTEST_DAYS) - 1;
+    console.log(`║ ${r.variant.padEnd(14)} │ ${r.equity_final.toFixed(2).padStart(6)}€│ ${ret.padStart(7)} │ ${r.profit_factor.toFixed(2).padStart(4)} │ ${r.max_drawdown_pct.toFixed(2).padStart(6)}%│ ${r.trades_closed.toString().padStart(6)} │ ${r.win_rate.toFixed(0).padStart(2)}%║`);
+    console.log(`║   ${('(annualisé ≈ ' + (annual * 100 >= 0 ? '+' : '') + (annual * 100).toFixed(2) + '%)').padEnd(60)}║`);
+  }
+  console.log('╚══════════════════════════════════════════════════════════════╝');
   console.log(`\nWrote ${out}`);
 }
 
