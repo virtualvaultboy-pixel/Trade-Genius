@@ -4438,6 +4438,29 @@
   /* v2.88 — Mode dev (créateurs uniquement) : masque les outils internes et stats */
   body:not(.tg-dev-mode) .agent-meta-dev { display: none !important; }
   body:not(.tg-dev-mode) .apc-dev-only   { display: none !important; }
+
+  /* v2.94 — Walk-Forward robustness card (dev only) */
+  .wf-verdict-row {
+    display: grid; grid-template-columns: 60px 1fr auto; gap: 10px;
+    padding: 8px 10px; border-radius: 8px;
+    background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 6px; font-size: 12px;
+  }
+  .wf-verdict-row.robuste { border-left: 3px solid #22c55e; }
+  .wf-verdict-row.robuste_bonus { border-left: 3px solid #84cc16; }
+  .wf-verdict-row.passable { border-left: 3px solid #f59e0b; }
+  .wf-verdict-row.overfit  { border-left: 3px solid #ef4444; }
+  .wf-verdict-row.invalid  { border-left: 3px solid #94a3b8; opacity: 0.6; }
+  .wf-vr-name { font-weight: 700; font-size: 13px; }
+  .wf-vr-stats { display: flex; flex-direction: column; gap: 2px; opacity: 0.85; font-size: 11.5px; }
+  .wf-vr-label { font-weight: 700; padding: 3px 8px; border-radius: 6px; font-size: 10.5px; letter-spacing: 0.04em; }
+  .wf-vr-label.robuste { background: rgba(34,197,94,0.18); color: #22c55e; }
+  .wf-vr-label.robuste_bonus { background: rgba(132,204,22,0.18); color: #84cc16; }
+  .wf-vr-label.passable { background: rgba(245,158,11,0.18); color: #f59e0b; }
+  .wf-vr-label.overfit  { background: rgba(239,68,68,0.18); color: #ef4444; }
+  .wf-vr-label.invalid  { background: rgba(148,163,184,0.18); color: #94a3b8; }
+  .wf-section-title { font-size: 11.5px; font-weight: 700; margin: 10px 0 6px; opacity: 0.8; }
+  .wf-decay { font-size: 10.5px; opacity: 0.7; margin-top: 2px; }
   body.tg-dev-mode #tg-dev-badge {
     position: fixed; bottom: 12px; left: 12px; z-index: 9990;
     padding: 4px 10px; border-radius: 10px;
@@ -4745,7 +4768,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v2.94</div>
+        <div class="bd-brand-ver" id="bd-version">v2.95</div>
       </div>
     </div>
 
@@ -5031,7 +5054,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=294')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=295')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -5050,7 +5073,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=294')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=295')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -5069,7 +5092,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=294')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=295')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -5088,7 +5111,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=294')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=295')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -5107,7 +5130,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=294')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=295')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -5126,7 +5149,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=294')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=295')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -5146,7 +5169,7 @@
       </div>
 
       <!-- v2.46 — Module 6 : Krachs historiques (Premium, deplace depuis le burger) -->
-      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=294')">
+      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=295')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💥</div>
@@ -5166,7 +5189,7 @@
       </div>
 
       <!-- v2.71 — Module 7 : Patterns Lab (Premium, déplacé depuis le burger) -->
-      <div class="module-card" data-module="7" data-storage="tradegenius_m7_patterns" data-requires="3" style="--module-color: var(--gold);" onclick="openModule(7, 'scene-08.html?v=294')">
+      <div class="module-card" data-module="7" data-storage="tradegenius_m7_patterns" data-requires="3" style="--module-color: var(--gold);" onclick="openModule(7, 'scene-08.html?v=295')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🔬</div>
@@ -5203,7 +5226,7 @@
         <span class="hbb-dot"></span>
         <span class="hbb-name">TRADE GENIUS</span>
       </div>
-      <span class="hbb-tag" id="hbb-tag">v2.94</span>
+      <span class="hbb-tag" id="hbb-tag">v2.95</span>
     </div>
 
     <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
@@ -5244,13 +5267,13 @@
 
     <!-- Stats compactes avec icônes + sparklines v1.98 -->
     <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=294'">
+      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=295'">
         <div class="stat-icon">📚</div>
         <div class="stat-num" id="stat-fiches">0</div>
         <div class="stat-lbl">Fiches<br>lues</div>
         <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
       </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=294'">
+      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=295'">
         <div class="stat-icon">🎮</div>
         <div class="stat-num" id="stat-sessions">0</div>
         <div class="stat-lbl">Sessions<br>simu</div>
@@ -5302,7 +5325,7 @@
         <div class="tool-icon" id="tool-simu-icon">🎮</div>
         <div class="tool-name" id="tool-simu-name">Entraîner</div>
       </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=294'">
+      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=295'">
         <div class="tool-icon">📖</div>
         <div class="tool-name">Bibliothèque</div>
       </div>
@@ -5314,25 +5337,25 @@
       <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
     </div>
     <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=294" style="--mode-color: var(--blue);">
+      <div class="tool-chip advanced" data-href="scene-07.html?v=295" style="--mode-color: var(--blue);">
         <div class="tool-icon">🎓</div>
         <div class="tool-name">Cours avancé</div>
         <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=294" style="--mode-color: var(--green);">
+      <div class="tool-chip advanced" data-href="scene-10.html?v=295" style="--mode-color: var(--green);">
         <div class="tool-icon">📡</div>
         <div class="tool-name">Marché live</div>
         <div class="tool-sub-info">Crypto · Actions · ETF · 10 indicateurs</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=294" style="--mode-color: var(--gold);">
+      <div class="tool-chip advanced" data-href="scene-08.html?v=295" style="--mode-color: var(--gold);">
         <div class="tool-icon">🔬</div>
         <div class="tool-name">Patterns Lab</div>
         <div class="tool-sub-info">H&S, Triangles, Flags...</div>
         <span class="lock-badge">🔒</span>
       </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=294" style="--mode-color: var(--red);">
+      <div class="tool-chip advanced" data-href="scene-09.html?v=295" style="--mode-color: var(--red);">
         <div class="tool-icon">📜</div>
         <div class="tool-name">Historiques</div>
         <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
@@ -5445,7 +5468,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=294'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=295'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -5485,7 +5508,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=294'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=295'">OUVRIR →</button>
         </div>
       </article>
 
@@ -5609,6 +5632,19 @@
         <div class="apc-foot" id="apc-foot"></div>
       </div>
 
+      <!-- v2.94 — Carte Robustesse IA (walk-forward validation) — DEV ONLY -->
+      <div class="agents-perf-card apc-dev-only" id="wf-card" style="display:none">
+        <div class="apc-head">
+          <span class="apc-ico">🔬</span>
+          <div class="apc-head-txt">
+            <div class="apc-title">Robustesse mathématique · Walk-Forward</div>
+            <div class="apc-sub" id="wf-sub">Split 70% training / 30% out-of-sample. Mesure le decay du PF.</div>
+          </div>
+        </div>
+        <div id="wf-verdicts"></div>
+        <div class="apc-foot" id="wf-foot"></div>
+      </div>
+
       <p class="v-sub">Analyses techniques générées par IA, rafraîchies <strong style="color:var(--gold);">toutes les 15 minutes</strong>.</p>
       <!-- v2.52 — Zone pattern analysis ciblée (déclenchée depuis "🔍 Analyse" sur Mon marché) -->
       <div id="ia-pattern-analysis" style="display:none;"></div>
@@ -5653,22 +5689,22 @@
         <p class="pp-tag">Les modules expert sont débloqués. Bonne exploration.</p>
       </div>
       <div class="pp-unlocked">
-        <a class="pp-unlock-card" href="scene-10.html?v=294">
+        <a class="pp-unlock-card" href="scene-10.html?v=295">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=294">
+        <a class="pp-unlock-card" href="scene-08.html?v=295">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=294">
+        <a class="pp-unlock-card" href="scene-09.html?v=295">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=294">
+        <a class="pp-unlock-card" href="scene-07.html?v=295">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -6808,7 +6844,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=294';
+        location.href = 'scene-10.html?v=295';
       });
       widget._linked = true;
     }
@@ -6861,7 +6897,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=294';
+      location.href = 'scene-05.html?v=295';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -7391,7 +7427,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=294'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=295'; };
         block.style.display = 'block';
         return;
       }
@@ -7433,7 +7469,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=294';
+        card.onclick = () => location.href = 'scene-05.html?v=295';
         block.style.display = 'block';
         return;
       }
@@ -7453,7 +7489,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=294';
+          card.onclick = () => location.href = 'scene-06.html?v=295';
           block.style.display = 'block';
           return;
         }
@@ -7467,7 +7503,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=294';
+        card.onclick = () => location.href = 'scene-06.html?v=295';
         block.style.display = 'block';
         return;
       }
@@ -7482,7 +7518,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=294';
+    card.onclick = () => location.href = 'scene-05.html?v=295';
     block.style.display = 'block';
   }
 
@@ -8090,13 +8126,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=294&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=295&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=294';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=295';
     else showView('premium');
   }
 
@@ -9406,7 +9442,7 @@
         + '<span class="v-placeholder-ico">📓</span>'
         + '<div class="v-placeholder-txt"><strong>Aucune session simu enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=294\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=295\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -9451,7 +9487,7 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=294\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=295\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
   }
@@ -10492,7 +10528,113 @@
   window.addEventListener('DOMContentLoaded', () => {
     setTimeout(_updateBubbleCard, 800);
     setTimeout(loadAgentPerformance, 1200);
+    setTimeout(loadWalkForward, 1400);
   });
+
+  /* ──────────────────────────────────────────────────────────────────
+   * v2.94 — Carte Walk-Forward Robustness (dev mode uniquement)
+   * Lit data/walk-forward-results.json (généré par walk-forward.yml).
+   * Affiche le verdict de robustesse pour nos 3 combos v2.93 + le top
+   * 5 des combos vraiment robustes (decay < 30% out-of-sample).
+   * ────────────────────────────────────────────────────────────────── */
+  async function loadWalkForward() {
+    const card = document.getElementById('wf-card');
+    if (!card) return;
+    if (!tgIsDevMode()) { card.style.display = 'none'; return; }
+    try {
+      const bust = Math.floor(Date.now() / (60 * 60 * 1000));
+      const r = await fetch('./data/walk-forward-results.json?t=' + bust, { cache: 'no-cache' });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const data = await r.json();
+      renderWalkForwardCard(data);
+      card.style.display = '';
+    } catch (e) {
+      console.info('[walk-forward] data indisponible:', e.message);
+      card.style.display = 'none';
+    }
+  }
+
+  function _wfBadge(robustness) {
+    const labels = {
+      ROBUSTE: 'ROBUSTE',
+      ROBUSTE_BONUS: 'ROBUSTE+',
+      PASSABLE: 'PASSABLE',
+      OVERFIT: 'OVERFIT',
+      INVALID: 'INVALID',
+      WEAK_IS: 'WEAK',
+    };
+    const cls = (robustness || 'invalid').toLowerCase();
+    return '<span class="wf-vr-label ' + cls + '">' + (labels[robustness] || robustness || '—') + '</span>';
+  }
+
+  function renderWalkForwardCard(data) {
+    const container = document.getElementById('wf-verdicts');
+    const foot = document.getElementById('wf-foot');
+    const sub = document.getElementById('wf-sub');
+    if (!container) return;
+    let html = '';
+
+    // Section 1 : verdict pour nos 3 combos v2.93 actuels
+    const refs = data.reference_v293_combos || [];
+    if (refs.length > 0) {
+      html += '<div class="wf-section-title">Verdict sur nos 3 IA actuelles</div>';
+      for (const r of refs) {
+        const cls = (r.robustness || 'invalid').toLowerCase();
+        const isStat = r.is_stats || {};
+        const oosStat = r.oos_stats || {};
+        const decay = (r.decay_pct != null) ? r.decay_pct + '%' : '—';
+        html += '<div class="wf-verdict-row ' + cls + '">'
+          + '<div class="wf-vr-name">' + (r.name || '—') + '</div>'
+          + '<div class="wf-vr-stats">'
+          +   '<span>IS · PF ' + (isStat.profit_factor != null ? isStat.profit_factor : '—') + ' · ' + (isStat.num_trades || 0) + 't</span>'
+          +   '<span>OOS · PF ' + (oosStat.profit_factor != null ? oosStat.profit_factor : '—') + ' · ' + (oosStat.num_trades || 0) + 't</span>'
+          +   '<span class="wf-decay">Decay ' + decay + '</span>'
+          + '</div>'
+          + _wfBadge(r.robustness)
+          + '</div>';
+      }
+    }
+
+    // Section 2 : top 3 ROBUSTES découverts
+    const top = (data.top_robustes || []).slice(0, 3);
+    if (top.length > 0) {
+      html += '<div class="wf-section-title">Top 3 combos robustes découverts (decay &lt; 30%)</div>';
+      for (const r of top) {
+        const isStat = r.is_stats || {};
+        const oosStat = r.oos_stats || {};
+        const desc = 'rsi' + r.rsi_dir + r.rsi_thr + ' · ma=' + r.ma_cross + ' · boll=' + r.boll_pos
+          + ' · ATR ' + r.atr_stop + '/' + r.atr_tp2 + ' · h=' + r.hold_days + 'j';
+        html += '<div class="wf-verdict-row robuste">'
+          + '<div class="wf-vr-name" style="font-size:11px;font-family:var(--font-m, monospace)">' + desc + '</div>'
+          + '<div class="wf-vr-stats">'
+          +   '<span>IS · PF ' + isStat.profit_factor + ' · ' + isStat.num_trades + 't</span>'
+          +   '<span>OOS · PF ' + oosStat.profit_factor + ' · ' + oosStat.num_trades + 't</span>'
+          +   '<span class="wf-decay">Decay ' + r.decay_pct + '%</span>'
+          + '</div>'
+          + _wfBadge('ROBUSTE')
+          + '</div>';
+      }
+    }
+
+    container.innerHTML = html || '<p class="apc-empty">Pas de données walk-forward.</p>';
+
+    // Summary
+    const s = data.summary || {};
+    if (sub) {
+      sub.textContent = 'Sur ' + (data.num_combos_tested || 0).toLocaleString('fr-FR')
+        + ' combos × ' + (data.num_assets || 0) + ' actifs · split '
+        + Math.round((data.is_ratio || 0.7) * 100) + '%/'
+        + Math.round((1 - (data.is_ratio || 0.7)) * 100) + '%';
+    }
+    if (foot && data.generated) {
+      const dt = new Date(data.generated);
+      foot.innerHTML = 'Calculé : ' + dt.toLocaleDateString('fr-FR') + ' · '
+        + '<span style="color:#22c55e">' + (s.ROBUSTE || 0) + ' robustes</span> · '
+        + '<span style="color:#f59e0b">' + (s.PASSABLE || 0) + ' passables</span> · '
+        + '<span style="color:#ef4444">' + (s.OVERFIT || 0) + ' overfit</span>';
+    }
+  }
+  window.loadWalkForward = loadWalkForward;
 
   /* ──────────────────────────────────────────────────────────────────
    * v2.80 — Carte Performance long terme des agents (backtest hebdo)
@@ -10895,7 +11037,7 @@
         cls: 'fc-news', label: '📅 Samedi', time: now,
         title: 'Marchés fermés · bon moment pour réviser',
         body: 'Indices et actions ne tournent pas. La crypto, elle, ne dort jamais. Le simulateur attend.',
-        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=294'",
+        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=295'",
       });
     }
 
@@ -11465,11 +11607,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=294';
+      location.href = 'scene-05.html?v=295';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=294';
+      location.href = 'scene-06.html?v=295';
       return;
     }
 
@@ -11492,13 +11634,13 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=294"></script>
-  <script src="tg-analyst.js?v=294"></script>
-  <script src="tg-bubble.js?v=294"></script>
+  <script type="module" src="tg-common.js?v=295"></script>
+  <script src="tg-analyst.js?v=295"></script>
+  <script src="tg-bubble.js?v=295"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=294').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=295').catch(() => {});
       });
     }
   </script>
