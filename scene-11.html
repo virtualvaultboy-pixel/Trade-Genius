@@ -25,9 +25,9 @@
   <meta name="description" content="Module 5 — Fiscalité française : PEA, CTO, flat tax 30%, abattements, crypto, dividendes, ETF, plan fiscal optimal.">
   <link rel="manifest" href="manifest.json">
   <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
-  <script type="module" src="tg-common.js?v=297"></script>
-  <script src="tg-analyst.js?v=297"></script>
-  <script src="tg-bubble.js?v=297"></script>
+  <script type="module" src="tg-common.js?v=298"></script>
+  <script src="tg-analyst.js?v=298"></script>
+  <script src="tg-bubble.js?v=298"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -77,16 +77,18 @@
       max-width: 480px; margin: 0 auto;
     }
     .hub-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+    /* v2.98 — Harmonisé avec scene-01/04 (style outlined module color) */
     .back-btn {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-family: var(--font-m); font-size: 11px; font-weight: 700;
+      background: transparent;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: var(--green);
+      font-family: var(--font-m); font-size: 10px; font-weight: 600;
       letter-spacing: 0.14em; text-transform: uppercase;
-      padding: 8px 12px; border-radius: 10px;
+      padding: 5px 9px; border-radius: 6px;
       cursor: pointer;
+      transition: all 0.2s ease;
     }
-    .back-btn:active { transform: scale(0.96); }
+    .back-btn:active { transform: scale(0.95); background: rgba(34, 197, 94, 0.1); }
     .hub-brand {
       font-family: var(--font-m); font-size: 11px;
       letter-spacing: 0.22em; color: var(--green); font-weight: 700;
@@ -354,8 +356,8 @@
   <!-- HUB -->
   <div id="hub" class="view active">
     <div class="hub-top">
-      <button class="back-btn" onclick="goBack()">← MENU</button>
       <div class="hub-brand">TRADE GENIUS</div>
+      <button class="back-btn" onclick="goBack()" aria-label="Retour aux modules">← MODULES</button>
     </div>
 
     <div class="eyebrow" style="font-family: var(--font-m); font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--green); text-transform: uppercase; margin-bottom: 8px;">MODULE 05 · FISCALITÉ FR</div>
