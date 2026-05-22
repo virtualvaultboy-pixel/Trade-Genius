@@ -520,6 +520,30 @@ export async function fetchYahooHistorical(symbol, range = '6mo') {
   };
 }
 
+/**
+ * v4.6 — Récupère la prochaine date d'earnings (résultats trimestriels)
+ * pour un symbole Yahoo. Utilisé pour éviter les setups <7j avant earnings
+ * (gros risque de gap surprise). Renvoie null si introuvable ou inconnu.
+ * Endpoint quoteSummary parfois bloqué par Yahoo (cookie/crumb), donc
+ * fallback safe : si ça échoue, on désactive le filtre pour cet asset.
+ */
+export async function fetchEarningsDate(symbol) {
+  try {
+    const url = `https://query2.finance.yahoo.com/v10/finance/quoteSummary/${encodeURIComponent(symbol)}?modules=calendarEvents`;
+    const r = await fetch(url, {
+      headers: { 'user-agent': 'Mozilla/5.0 (trade-genius-bot)' },
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!r.ok) return null;
+    const j = await r.json();
+    const ev = j?.quoteSummary?.result?.[0]?.calendarEvents?.earnings?.earningsDate;
+    if (!Array.isArray(ev) || ev.length === 0) return null;
+    const ts = ev[0]?.raw;
+    if (!ts) return null;
+    return new Date(ts * 1000);
+  } catch { return null; }
+}
+
 export async function fetchCoinGeckoHistorical(id, days = 200) {
   // v2.72 — 200j pour permettre SMA200
   const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=${days}&interval=daily`;

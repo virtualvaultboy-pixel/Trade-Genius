@@ -15,7 +15,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {
-  fetchYahooHistorical, fetchCoinGeckoHistorical,
+  fetchYahooHistorical, fetchCoinGeckoHistorical, fetchEarningsDate,
   computeAllIndicators, globalVerdict, atrPct, sma,
   ma7, ichimokuDirection,
 } from './indicators.mjs';
@@ -44,6 +44,129 @@ async function loadNewsWindow() {
 //   VIX > 30 = marché stressé, downgrade les setups (sauf contrarian profond)
 //   DXY bull = dollar fort, pénalise les commodities (or, argent, cuivre)
 //   DXY bear = dollar faible, booste les commodities
+// v4.6 — EARNINGS AVOIDANCE
+// Pour chaque action, on récupère la date prévue des prochains résultats
+// trimestriels. Le filtre : skip si <7j (gros risque de gap) et downgrade
+// si <14j. Cache mémoire pour éviter les requêtes répétées.
+const _earningsCache = new Map();
+async function getEarningsDays(symbol) {
+  if (_earningsCache.has(symbol)) return _earningsCache.get(symbol);
+  const date = await fetchEarningsDate(symbol);
+  if (!date) { _earningsCache.set(symbol, null); return null; }
+  const days = Math.floor((date.getTime() - Date.now()) / (24 * 3600 * 1000));
+  _earningsCache.set(symbol, days);
+  return days;
+}
+
+/**
+ * Applique le filtre earnings : refuse si <7j, downgrade si <14j.
+ * Renvoie {keep, qualityMult, reason}. Ne filtre que les actions
+ * (les indices et forex ne sont pas concernés).
+ */
+async function applyEarningsFilter(setup, asset) {
+  if (!setup || asset.kind !== 'action') return { keep: true, qualityMult: 1, reason: null };
+  if (!asset.symbol) return { keep: true, qualityMult: 1, reason: null };
+  const days = await getEarningsDays(asset.symbol);
+  if (days == null) return { keep: true, qualityMult: 1, reason: null }; // donnée indisponible
+  if (days < 0) return { keep: true, qualityMult: 1, reason: null }; // earnings passés
+  if (days <= 7) {
+    return { keep: false, qualityMult: 0, reason: `Earnings dans ${days}j (risque gap > opportunité)` };
+  }
+  if (days <= 14) {
+    return { keep: true, qualityMult: 0.85, reason: `Earnings dans ${days}j → quality -15%` };
+  }
+  return { keep: true, qualityMult: 1, reason: null };
+}
+
+// v4.9 — CROSS-ASSET CORRELATIONS
+// Si le S&P 500 a fait -2% sur le jour, on cap toutes les positions sur
+// actions US (risque-off généralisé). Si Nasdaq -2.5%, idem mais plus
+// strict sur les tech. Si VIX spike >+15% en 1 jour, signal de stress.
+function computeCrossAssetSignal(assets) {
+  const find = (lbl) => assets.find(a => a.label === lbl);
+  const sp500 = find('S&P 500');
+  const nasdaq = find('Nasdaq');
+  const signal = {
+    sp500_change: null,
+    nasdaq_change: null,
+    risk_off: false,
+    tech_risk_off: false,
+    reason: null,
+  };
+  if (sp500?.prices?.length >= 2) {
+    const last = sp500.prices[sp500.prices.length - 1];
+    const prev = sp500.prices[sp500.prices.length - 2];
+    signal.sp500_change = ((last - prev) / prev) * 100;
+    if (signal.sp500_change < -2) signal.risk_off = true;
+  }
+  if (nasdaq?.prices?.length >= 2) {
+    const last = nasdaq.prices[nasdaq.prices.length - 1];
+    const prev = nasdaq.prices[nasdaq.prices.length - 2];
+    signal.nasdaq_change = ((last - prev) / prev) * 100;
+    if (signal.nasdaq_change < -2.5) signal.tech_risk_off = true;
+  }
+  if (signal.risk_off) signal.reason = `S&P -${(-signal.sp500_change).toFixed(2)}% → risk-off`;
+  else if (signal.tech_risk_off) signal.reason = `Nasdaq -${(-signal.nasdaq_change).toFixed(2)}% → tech risk-off`;
+  return signal;
+}
+
+// Tech actions US qui suivent généralement le Nasdaq (high beta)
+const TECH_US_ACTIONS = new Set(['Apple', 'Microsoft', 'Alphabet', 'Amazon', 'Meta', 'Nvidia', 'Tesla', 'Netflix', 'QQQ ETF', 'XLK Tech']);
+// Actions US généralistes
+const US_ACTIONS = new Set(['JPMorgan', 'Visa', 'Berkshire', 'Walmart', 'J&J', 'Exxon', 'P&G', 'Coca-Cola', 'Nike', 'Disney', 'SPY ETF', 'IWM ETF', 'XLF Fin', 'XLE Energy']);
+
+function applyCrossAssetFilter(setup, asset, crossSignal) {
+  if (!setup || !crossSignal) return { keep: true, qualityMult: 1, reason: null };
+  if (crossSignal.tech_risk_off && TECH_US_ACTIONS.has(asset.label || setup.asset)) {
+    return { keep: false, qualityMult: 0, reason: crossSignal.reason + ' → skip tech long' };
+  }
+  if (crossSignal.risk_off && (TECH_US_ACTIONS.has(asset.label || setup.asset) || US_ACTIONS.has(asset.label || setup.asset))) {
+    return { keep: true, qualityMult: 0.75, reason: crossSignal.reason + ' → quality -25%' };
+  }
+  return { keep: true, qualityMult: 1, reason: null };
+}
+
+// v4.8 — MACRO CALENDAR (FOMC, CPI, NFP) — dates hardcodées 2025-2026
+// Ces dates sont publiques et connues longtemps à l'avance via Federal Reserve / BLS.
+// Si setup à ouvrir <24h avant un release, downgrade fort (volatilité imprévisible).
+const MACRO_EVENTS_2025_2026 = [
+  // FOMC meetings 2025-2026 (publiquement annoncés)
+  '2025-01-29', '2025-03-19', '2025-05-07', '2025-06-18', '2025-07-30',
+  '2025-09-17', '2025-10-29', '2025-12-10',
+  '2026-01-28', '2026-03-18', '2026-04-29', '2026-06-17', '2026-07-29',
+  '2026-09-16', '2026-10-28', '2026-12-09',
+  // CPI releases approximatifs (mi-mois US)
+  '2025-01-15', '2025-02-12', '2025-03-12', '2025-04-10', '2025-05-13',
+  '2025-06-11', '2025-07-15', '2025-08-12', '2025-09-11', '2025-10-15',
+  '2025-11-13', '2025-12-10',
+  '2026-01-14', '2026-02-11', '2026-03-11', '2026-04-15', '2026-05-13',
+  // NFP (premier vendredi du mois US)
+  '2025-01-03', '2025-02-07', '2025-03-07', '2025-04-04', '2025-05-02',
+  '2025-06-06', '2025-07-03', '2025-08-01', '2025-09-05', '2025-10-03',
+  '2025-11-07', '2025-12-05',
+];
+
+function getMacroEventInDays(maxDays = 2) {
+  const now = Date.now();
+  for (const dateStr of MACRO_EVENTS_2025_2026) {
+    const d = new Date(dateStr + 'T13:30:00Z').getTime(); // 13:30 UTC = 8:30 ET (heure type release)
+    const days = (d - now) / (24 * 3600 * 1000);
+    if (days >= -0.5 && days <= maxDays) {
+      return { date: dateStr, days_until: Number(days.toFixed(1)) };
+    }
+  }
+  return null;
+}
+
+function applyMacroEventFilter(setup) {
+  const ev = getMacroEventInDays(2);
+  if (!ev) return { keep: true, qualityMult: 1, reason: null };
+  if (ev.days_until <= 1) {
+    return { keep: true, qualityMult: 0.70, reason: `Macro release dans ${ev.days_until}j (${ev.date}) → quality -30%` };
+  }
+  return { keep: true, qualityMult: 0.90, reason: `Macro release dans ${ev.days_until}j (${ev.date}) → quality -10%` };
+}
+
 async function fetchMacroContext() {
   const ctx = { vix: null, vixRegime: 'unknown', dxy: null, dxyTrend: 'unknown' };
   try {
@@ -1868,6 +1991,39 @@ async function main() {
   const mlRules = await loadMlRules();
   // v4.2 — Récupère VIX + DXY pour conditionner les setups
   const macroCtx = await fetchMacroContext();
+  // v4.9 — Signal cross-asset (S&P et Nasdaq daily change)
+  const crossSignal = computeCrossAssetSignal(valid);
+  if (crossSignal.reason) console.log(`v4.9 Cross-asset: ${crossSignal.reason}`);
+  // v4.8 — Macro event imminent (FOMC, CPI, NFP)
+  const macroEvent = getMacroEventInDays(2);
+  if (macroEvent) console.log(`v4.8 Macro event imminent: ${macroEvent.date} (dans ${macroEvent.days_until}j)`);
+  // v4.6 — Préchargement earnings dates pour toutes les actions (parallèle)
+  const actionAssets = valid.filter(a => a.kind === 'action');
+  console.log(`v4.6 Preloading earnings for ${actionAssets.length} actions...`);
+  await Promise.all(actionAssets.map(async a => {
+    const sym = ASSETS.find(x => x.label === a.label)?.symbol;
+    if (sym) await getEarningsDays(sym);
+  }));
+  const earningsLog = [];
+  for (const a of actionAssets) {
+    const sym = ASSETS.find(x => x.label === a.label)?.symbol;
+    if (sym && _earningsCache.get(sym) != null && _earningsCache.get(sym) >= 0 && _earningsCache.get(sym) <= 21) {
+      earningsLog.push(`${a.label}=${_earningsCache.get(sym)}j`);
+    }
+  }
+  if (earningsLog.length) console.log(`v4.6 Earnings <21j: ${earningsLog.join(', ')}`);
+
+  // Helper synchrone pour le filtre (lecture du cache préchargé)
+  const applyEarningsFilterSync = (setup, assetLabel) => {
+    if (!setup) return { keep: true, qualityMult: 1, reason: null };
+    const sym = ASSETS.find(x => x.label === assetLabel)?.symbol;
+    if (!sym) return { keep: true, qualityMult: 1, reason: null };
+    const days = _earningsCache.get(sym);
+    if (days == null || days < 0) return { keep: true, qualityMult: 1, reason: null };
+    if (days <= 7) return { keep: false, qualityMult: 0, reason: `Earnings dans ${days}j` };
+    if (days <= 14) return { keep: true, qualityMult: 0.85, reason: `Earnings dans ${days}j → -15%` };
+    return { keep: true, qualityMult: 1, reason: null };
+  };
 
   const agentsOutput = AGENT_PROFILES.map(agent => {
     let setups = runAgentOnAssets(agent.id);
@@ -1885,6 +2041,38 @@ async function main() {
       }
       return true;
     });
+    // v4.6 — Filtre earnings (actions uniquement, skip si <7j)
+    setups = setups.filter(s => {
+      const e = applyEarningsFilterSync(s, s.asset);
+      if (!e.keep) { console.log(`v4.6 earnings reject ${s.asset}: ${e.reason}`); return false; }
+      if (e.qualityMult !== 1 && s.quality_score != null) {
+        s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * e.qualityMult)));
+        s.earnings_reason = e.reason;
+      }
+      return true;
+    });
+    // v4.9 — Filtre cross-asset (S&P/Nasdaq dump → cap actions US)
+    if (crossSignal.risk_off || crossSignal.tech_risk_off) {
+      setups = setups.filter(s => {
+        const ca = applyCrossAssetFilter(s, { label: s.asset }, crossSignal);
+        if (!ca.keep) { console.log(`v4.9 cross-asset reject ${s.asset}: ${ca.reason}`); return false; }
+        if (ca.qualityMult !== 1 && s.quality_score != null) {
+          s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * ca.qualityMult)));
+          s.cross_asset_reason = ca.reason;
+        }
+        return true;
+      });
+    }
+    // v4.8 — Filtre macro event (FOMC/CPI/NFP imminent)
+    if (macroEvent) {
+      setups.forEach(s => {
+        const me = applyMacroEventFilter(s);
+        if (me.qualityMult !== 1 && s.quality_score != null) {
+          s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * me.qualityMult)));
+          s.macro_event_reason = me.reason;
+        }
+      });
+    }
     // v4.0 — Booste quality_score par AUC ML de l'horizon de l'agent
     if (mlRules) {
       setups.forEach(s => {
@@ -1916,6 +2104,12 @@ async function main() {
         trailing_after_tp1: s.trailing_after_tp1 === true,
         // v4.2 — raison macro éventuelle (downgrade VIX/DXY, dev-only utile)
         macro_reason: s.macro_reason || null,
+        // v4.6 — earnings proches (raison du downgrade éventuel)
+        earnings_reason: s.earnings_reason || null,
+        // v4.8 — release macro imminent (FOMC/CPI/NFP)
+        macro_event_reason: s.macro_event_reason || null,
+        // v4.9 — risk-off cross-asset (S&P/Nasdaq dump)
+        cross_asset_reason: s.cross_asset_reason || null,
         // v4.3 — stacking : si plusieurs patterns convergents
         stacked: s.stacked === true,
         stacked_count: s.stacked_count || null,
@@ -2001,8 +2195,12 @@ async function main() {
       window_news: recentNews.length,
       matched_assets: newsMatchCount,
     },
-    // v4.2 — Contexte macro (VIX, DXY) qui conditionne les setups du jour
-    macro: macroCtx,
+    // v4.2-4.9 — Contexte macro complet : VIX, DXY, cross-asset, macro event
+    macro: {
+      ...macroCtx,
+      cross_asset: crossSignal,
+      next_event: macroEvent,
+    },
     // Retro-compat : setup principal (meilleure confidence + R/R)
     setup: bestSetup ? {
       asset: bestSetup.asset, kind: bestSetup.kind, type: bestSetup.type,

@@ -138,6 +138,29 @@ function computeQuality(ind, p, regime, atrTp2) {
   return Math.min(100, s);
 }
 
+// v4.9 — Tech US actions qui suivent le Nasdaq high-beta
+const TECH_US = new Set(['Apple', 'Microsoft', 'Alphabet', 'Amazon', 'Meta', 'Nvidia', 'Tesla', 'Netflix', 'QQQ ETF', 'XLK Tech']);
+const US_BROAD = new Set(['JPMorgan', 'Visa', 'Berkshire', 'Walmart', 'J&J', 'Exxon', 'P&G', 'Coca-Cola', 'Nike', 'Disney', 'SPY ETF', 'IWM ETF', 'XLF Fin', 'XLE Energy']);
+
+/**
+ * Calcule le signal cross-asset du jour D : S&P change J vs J-1 + Nasdaq.
+ * Renvoie {risk_off, tech_risk_off, sp500_change, nasdaq_change} à la date D.
+ */
+function getCrossAssetSignalAt(data, idx) {
+  const sp = data['S&P 500']?.prices;
+  const nq = data['Nasdaq']?.prices;
+  const signal = { risk_off: false, tech_risk_off: false, sp500_change: 0, nasdaq_change: 0 };
+  if (sp && idx >= 1 && sp[idx] && sp[idx - 1]) {
+    signal.sp500_change = ((sp[idx] - sp[idx - 1]) / sp[idx - 1]) * 100;
+    if (signal.sp500_change < -2) signal.risk_off = true;
+  }
+  if (nq && idx >= 1 && nq[idx] && nq[idx - 1]) {
+    signal.nasdaq_change = ((nq[idx] - nq[idx - 1]) / nq[idx - 1]) * 100;
+    if (signal.nasdaq_change < -2.5) signal.tech_risk_off = true;
+  }
+  return signal;
+}
+
 function detectSetup(ind, regime, atrTp2) {
   const c = patternPullback(ind, regime);
   const a = patternContrarian(ind, regime);
@@ -207,10 +230,14 @@ function runHorizon(data, minLen, horizon) {
 
     // Open new positions
     if (positions.length < MAX_POSITIONS && cash > 1) {
+      // v4.9 — Cross-asset signal du jour
+      const crossSig = getCrossAssetSignalAt(data, today);
       const opened = new Set(positions.map(p => p.asset));
       const candidates = [];
       for (const [label, asset] of Object.entries(data)) {
         if (opened.has(label)) continue;
+        // v4.9 — Filtre cross-asset
+        if (crossSig.tech_risk_off && TECH_US.has(label)) continue;
         const slice = asset.prices.slice(0, today + 1);
         if (slice.length < 220) continue;
         const sliceVol = asset.volumes.slice(0, today + 1);
@@ -222,7 +249,12 @@ function runHorizon(data, minLen, horizon) {
         const atrAbs = (atrP / 100) * last;
         const regime = detectRegime(slice);
         const setup = detectSetup(ind, regime, atrTp2);
-        if (!setup || setup.quality < MIN_QUALITY) continue;
+        if (!setup) continue;
+        // v4.9 — Downgrade -25% si risk-off sur US broad
+        if (crossSig.risk_off && (TECH_US.has(label) || US_BROAD.has(label))) {
+          setup.quality = Math.round(setup.quality * 0.75);
+        }
+        if (setup.quality < MIN_QUALITY) continue;
         const entry = last;
         const stop = entry - 1.0 * atrAbs;
         const tp1 = entry + (atrTp2 * 0.5) * atrAbs;
