@@ -1,0 +1,1462 @@
+{
+  "version": "4.5",
+  "backtest_period_days": 180,
+  "assets_count": 30,
+  "capital_initial": 100,
+  "equity_final": 102.84,
+  "total_return_pct": 2.84,
+  "trades_closed": 81,
+  "trades_open_at_end": 4,
+  "win_rate": 30.9,
+  "profit_factor": 2.41,
+  "max_drawdown_pct": -0.79,
+  "equity_high": 102.92,
+  "cash_final": 91.21,
+  "avg_pnl_per_trade": 0.03,
+  "trades_by_pattern": {
+    "A": 56,
+    "B": 25,
+    "C": 0
+  },
+  "trades_by_outcome": {
+    "win": 25,
+    "loss": 56,
+    "breakeven": 9,
+    "partial_stop": 0,
+    "timeout": 0
+  },
+  "stacked_trades": 0,
+  "equity_history": [
+    {
+      "day": 308,
+      "equity": 100,
+      "cash": 100,
+      "positions": 0
+    },
+    {
+      "day": 309,
+      "equity": 100,
+      "cash": 97,
+      "positions": 1
+    },
+    {
+      "day": 310,
+      "equity": 99.97,
+      "cash": 97,
+      "positions": 1
+    },
+    {
+      "day": 311,
+      "equity": 99.98,
+      "cash": 94.09,
+      "positions": 2
+    },
+    {
+      "day": 312,
+      "equity": 99.97,
+      "cash": 94.06,
+      "positions": 2
+    },
+    {
+      "day": 313,
+      "equity": 100.04,
+      "cash": 91.3,
+      "positions": 3
+    },
+    {
+      "day": 314,
+      "equity": 100.04,
+      "cash": 91.36,
+      "positions": 3
+    },
+    {
+      "day": 315,
+      "equity": 100.05,
+      "cash": 85.96,
+      "positions": 5
+    },
+    {
+      "day": 316,
+      "equity": 100.06,
+      "cash": 85.95,
+      "positions": 5
+    },
+    {
+      "day": 317,
+      "equity": 100.16,
+      "cash": 89.03,
+      "positions": 4
+    },
+    {
+      "day": 318,
+      "equity": 100.14,
+      "cash": 91.82,
+      "positions": 3
+    },
+    {
+      "day": 319,
+      "equity": 100.15,
+      "cash": 89.07,
+      "positions": 4
+    },
+    {
+      "day": 320,
+      "equity": 100.31,
+      "cash": 89.07,
+      "positions": 4
+    },
+    {
+      "day": 321,
+      "equity": 100.42,
+      "cash": 89.07,
+      "positions": 4
+    },
+    {
+      "day": 322,
+      "equity": 100.42,
+      "cash": 89.07,
+      "positions": 4
+    },
+    {
+      "day": 323,
+      "equity": 100.44,
+      "cash": 89.07,
+      "positions": 4
+    },
+    {
+      "day": 324,
+      "equity": 100.4,
+      "cash": 94.61,
+      "positions": 2
+    },
+    {
+      "day": 325,
+      "equity": 100.29,
+      "cash": 91.77,
+      "positions": 3
+    },
+    {
+      "day": 326,
+      "equity": 100.35,
+      "cash": 94.61,
+      "positions": 2
+    },
+    {
+      "day": 327,
+      "equity": 100.35,
+      "cash": 94.59,
+      "positions": 2
+    },
+    {
+      "day": 328,
+      "equity": 100.36,
+      "cash": 94.57,
+      "positions": 2
+    },
+    {
+      "day": 329,
+      "equity": 100.42,
+      "cash": 94.57,
+      "positions": 2
+    },
+    {
+      "day": 330,
+      "equity": 100.44,
+      "cash": 94.57,
+      "positions": 2
+    },
+    {
+      "day": 331,
+      "equity": 100.43,
+      "cash": 94.57,
+      "positions": 2
+    },
+    {
+      "day": 332,
+      "equity": 100.43,
+      "cash": 94.57,
+      "positions": 2
+    },
+    {
+      "day": 333,
+      "equity": 100.37,
+      "cash": 91.74,
+      "positions": 3
+    },
+    {
+      "day": 334,
+      "equity": 100.33,
+      "cash": 91.74,
+      "positions": 3
+    },
+    {
+      "day": 335,
+      "equity": 100.36,
+      "cash": 88.98,
+      "positions": 4
+    },
+    {
+      "day": 336,
+      "equity": 100.4,
+      "cash": 90.17,
+      "positions": 4
+    },
+    {
+      "day": 337,
+      "equity": 100.39,
+      "cash": 90.11,
+      "positions": 4
+    },
+    {
+      "day": 338,
+      "equity": 100.4,
+      "cash": 95.67,
+      "positions": 2
+    },
+    {
+      "day": 339,
+      "equity": 100.41,
+      "cash": 93.76,
+      "positions": 3
+    },
+    {
+      "day": 340,
+      "equity": 100.42,
+      "cash": 95.66,
+      "positions": 2
+    },
+    {
+      "day": 341,
+      "equity": 100.42,
+      "cash": 95.66,
+      "positions": 2
+    },
+    {
+      "day": 342,
+      "equity": 100.42,
+      "cash": 95.66,
+      "positions": 2
+    },
+    {
+      "day": 343,
+      "equity": 100.44,
+      "cash": 92.79,
+      "positions": 3
+    },
+    {
+      "day": 344,
+      "equity": 100.41,
+      "cash": 90.01,
+      "positions": 4
+    },
+    {
+      "day": 345,
+      "equity": 100.48,
+      "cash": 90.01,
+      "positions": 4
+    },
+    {
+      "day": 346,
+      "equity": 100.32,
+      "cash": 100.32,
+      "positions": 0
+    },
+    {
+      "day": 347,
+      "equity": 100.32,
+      "cash": 100.32,
+      "positions": 0
+    },
+    {
+      "day": 348,
+      "equity": 100.32,
+      "cash": 100.32,
+      "positions": 0
+    },
+    {
+      "day": 349,
+      "equity": 100.32,
+      "cash": 100.32,
+      "positions": 0
+    },
+    {
+      "day": 350,
+      "equity": 100.32,
+      "cash": 100.32,
+      "positions": 0
+    },
+    {
+      "day": 351,
+      "equity": 100.32,
+      "cash": 100.32,
+      "positions": 0
+    },
+    {
+      "day": 352,
+      "equity": 100.32,
+      "cash": 100.32,
+      "positions": 0
+    },
+    {
+      "day": 353,
+      "equity": 100.32,
+      "cash": 100.32,
+      "positions": 0
+    },
+    {
+      "day": 354,
+      "equity": 100.32,
+      "cash": 100.32,
+      "positions": 0
+    },
+    {
+      "day": 355,
+      "equity": 100.32,
+      "cash": 94.39,
+      "positions": 2
+    },
+    {
+      "day": 356,
+      "equity": 100.18,
+      "cash": 94.46,
+      "positions": 2
+    },
+    {
+      "day": 357,
+      "equity": 100.27,
+      "cash": 97.37,
+      "positions": 1
+    },
+    {
+      "day": 358,
+      "equity": 100.28,
+      "cash": 97.37,
+      "positions": 1
+    },
+    {
+      "day": 359,
+      "equity": 100.37,
+      "cash": 97.37,
+      "positions": 1
+    },
+    {
+      "day": 360,
+      "equity": 100.39,
+      "cash": 97.37,
+      "positions": 1
+    },
+    {
+      "day": 361,
+      "equity": 100.38,
+      "cash": 97.37,
+      "positions": 1
+    },
+    {
+      "day": 362,
+      "equity": 100.46,
+      "cash": 97.37,
+      "positions": 1
+    },
+    {
+      "day": 363,
+      "equity": 100.43,
+      "cash": 97.37,
+      "positions": 1
+    },
+    {
+      "day": 364,
+      "equity": 100.36,
+      "cash": 94.45,
+      "positions": 2
+    },
+    {
+      "day": 365,
+      "equity": 100.46,
+      "cash": 88.87,
+      "positions": 4
+    },
+    {
+      "day": 366,
+      "equity": 100.37,
+      "cash": 91.59,
+      "positions": 3
+    },
+    {
+      "day": 367,
+      "equity": 100.46,
+      "cash": 91.59,
+      "positions": 3
+    },
+    {
+      "day": 368,
+      "equity": 100.5,
+      "cash": 91.59,
+      "positions": 3
+    },
+    {
+      "day": 369,
+      "equity": 100.55,
+      "cash": 94.74,
+      "positions": 2
+    },
+    {
+      "day": 370,
+      "equity": 100.49,
+      "cash": 91.84,
+      "positions": 3
+    },
+    {
+      "day": 371,
+      "equity": 100.48,
+      "cash": 91.84,
+      "positions": 3
+    },
+    {
+      "day": 372,
+      "equity": 100.5,
+      "cash": 91.84,
+      "positions": 3
+    },
+    {
+      "day": 373,
+      "equity": 100.45,
+      "cash": 91.84,
+      "positions": 3
+    },
+    {
+      "day": 374,
+      "equity": 100.31,
+      "cash": 91.55,
+      "positions": 3
+    },
+    {
+      "day": 375,
+      "equity": 100.19,
+      "cash": 94.48,
+      "positions": 2
+    },
+    {
+      "day": 376,
+      "equity": 100.19,
+      "cash": 88.89,
+      "positions": 4
+    },
+    {
+      "day": 377,
+      "equity": 100.3,
+      "cash": 86.23,
+      "positions": 5
+    },
+    {
+      "day": 378,
+      "equity": 100.57,
+      "cash": 89.05,
+      "positions": 4
+    },
+    {
+      "day": 379,
+      "equity": 100.78,
+      "cash": 89.05,
+      "positions": 4
+    },
+    {
+      "day": 380,
+      "equity": 100.79,
+      "cash": 89.05,
+      "positions": 4
+    },
+    {
+      "day": 381,
+      "equity": 100.94,
+      "cash": 89.05,
+      "positions": 4
+    },
+    {
+      "day": 382,
+      "equity": 100.87,
+      "cash": 89.05,
+      "positions": 4
+    },
+    {
+      "day": 383,
+      "equity": 100.93,
+      "cash": 89.05,
+      "positions": 4
+    },
+    {
+      "day": 384,
+      "equity": 100.88,
+      "cash": 89.05,
+      "positions": 4
+    },
+    {
+      "day": 385,
+      "equity": 100.93,
+      "cash": 86.38,
+      "positions": 5
+    },
+    {
+      "day": 386,
+      "equity": 101.05,
+      "cash": 86.38,
+      "positions": 5
+    },
+    {
+      "day": 387,
+      "equity": 100.96,
+      "cash": 86.36,
+      "positions": 5
+    },
+    {
+      "day": 388,
+      "equity": 100.96,
+      "cash": 86.36,
+      "positions": 5
+    },
+    {
+      "day": 389,
+      "equity": 101.18,
+      "cash": 86.79,
+      "positions": 5
+    },
+    {
+      "day": 390,
+      "equity": 101.13,
+      "cash": 86.79,
+      "positions": 5
+    },
+    {
+      "day": 391,
+      "equity": 100.95,
+      "cash": 86.73,
+      "positions": 5
+    },
+    {
+      "day": 392,
+      "equity": 100.91,
+      "cash": 86.73,
+      "positions": 5
+    },
+    {
+      "day": 393,
+      "equity": 100.99,
+      "cash": 86.73,
+      "positions": 5
+    },
+    {
+      "day": 394,
+      "equity": 100.88,
+      "cash": 86.73,
+      "positions": 5
+    },
+    {
+      "day": 395,
+      "equity": 101.04,
+      "cash": 86.73,
+      "positions": 5
+    },
+    {
+      "day": 396,
+      "equity": 101.13,
+      "cash": 86.73,
+      "positions": 5
+    },
+    {
+      "day": 397,
+      "equity": 101.12,
+      "cash": 86.73,
+      "positions": 5
+    },
+    {
+      "day": 398,
+      "equity": 101.23,
+      "cash": 86.84,
+      "positions": 5
+    },
+    {
+      "day": 399,
+      "equity": 101.27,
+      "cash": 86.84,
+      "positions": 5
+    },
+    {
+      "day": 400,
+      "equity": 101.27,
+      "cash": 86.84,
+      "positions": 5
+    },
+    {
+      "day": 401,
+      "equity": 101.23,
+      "cash": 86.84,
+      "positions": 5
+    },
+    {
+      "day": 402,
+      "equity": 101.24,
+      "cash": 86.84,
+      "positions": 5
+    },
+    {
+      "day": 403,
+      "equity": 101.15,
+      "cash": 86.84,
+      "positions": 5
+    },
+    {
+      "day": 404,
+      "equity": 100.97,
+      "cash": 89.51,
+      "positions": 4
+    },
+    {
+      "day": 405,
+      "equity": 101.11,
+      "cash": 89.51,
+      "positions": 4
+    },
+    {
+      "day": 406,
+      "equity": 101.23,
+      "cash": 86.82,
+      "positions": 5
+    },
+    {
+      "day": 407,
+      "equity": 101.16,
+      "cash": 86.81,
+      "positions": 5
+    },
+    {
+      "day": 408,
+      "equity": 101.14,
+      "cash": 89.42,
+      "positions": 4
+    },
+    {
+      "day": 409,
+      "equity": 101.23,
+      "cash": 89.42,
+      "positions": 4
+    },
+    {
+      "day": 410,
+      "equity": 101.18,
+      "cash": 89.42,
+      "positions": 4
+    },
+    {
+      "day": 411,
+      "equity": 101.09,
+      "cash": 89.42,
+      "positions": 4
+    },
+    {
+      "day": 412,
+      "equity": 100.88,
+      "cash": 86.65,
+      "positions": 5
+    },
+    {
+      "day": 413,
+      "equity": 100.91,
+      "cash": 86.71,
+      "positions": 5
+    },
+    {
+      "day": 414,
+      "equity": 100.9,
+      "cash": 86.6,
+      "positions": 5
+    },
+    {
+      "day": 415,
+      "equity": 100.61,
+      "cash": 86.66,
+      "positions": 5
+    },
+    {
+      "day": 416,
+      "equity": 100.7,
+      "cash": 86.66,
+      "positions": 5
+    },
+    {
+      "day": 417,
+      "equity": 100.94,
+      "cash": 86.66,
+      "positions": 5
+    },
+    {
+      "day": 418,
+      "equity": 101.05,
+      "cash": 86.66,
+      "positions": 5
+    },
+    {
+      "day": 419,
+      "equity": 101.23,
+      "cash": 86.66,
+      "positions": 5
+    },
+    {
+      "day": 420,
+      "equity": 101.35,
+      "cash": 86.66,
+      "positions": 5
+    },
+    {
+      "day": 421,
+      "equity": 101.46,
+      "cash": 87.26,
+      "positions": 5
+    },
+    {
+      "day": 422,
+      "equity": 101.45,
+      "cash": 87.21,
+      "positions": 5
+    },
+    {
+      "day": 423,
+      "equity": 101.43,
+      "cash": 87.36,
+      "positions": 5
+    },
+    {
+      "day": 424,
+      "equity": 101.75,
+      "cash": 90.22,
+      "positions": 4
+    },
+    {
+      "day": 425,
+      "equity": 101.65,
+      "cash": 87.52,
+      "positions": 5
+    },
+    {
+      "day": 426,
+      "equity": 101.57,
+      "cash": 90.42,
+      "positions": 4
+    },
+    {
+      "day": 427,
+      "equity": 101.46,
+      "cash": 93.17,
+      "positions": 3
+    },
+    {
+      "day": 428,
+      "equity": 101.63,
+      "cash": 93.17,
+      "positions": 3
+    },
+    {
+      "day": 429,
+      "equity": 101.56,
+      "cash": 93.17,
+      "positions": 3
+    },
+    {
+      "day": 430,
+      "equity": 101.57,
+      "cash": 93.17,
+      "positions": 3
+    },
+    {
+      "day": 431,
+      "equity": 101.39,
+      "cash": 90.18,
+      "positions": 4
+    },
+    {
+      "day": 432,
+      "equity": 101.17,
+      "cash": 87.31,
+      "positions": 5
+    },
+    {
+      "day": 433,
+      "equity": 101.23,
+      "cash": 87.31,
+      "positions": 5
+    },
+    {
+      "day": 434,
+      "equity": 101.24,
+      "cash": 87.33,
+      "positions": 5
+    },
+    {
+      "day": 435,
+      "equity": 101.36,
+      "cash": 87.33,
+      "positions": 5
+    },
+    {
+      "day": 436,
+      "equity": 101.34,
+      "cash": 87.33,
+      "positions": 5
+    },
+    {
+      "day": 437,
+      "equity": 101.57,
+      "cash": 90.09,
+      "positions": 4
+    },
+    {
+      "day": 438,
+      "equity": 101.38,
+      "cash": 87.39,
+      "positions": 5
+    },
+    {
+      "day": 439,
+      "equity": 101.52,
+      "cash": 87.39,
+      "positions": 5
+    },
+    {
+      "day": 440,
+      "equity": 101.86,
+      "cash": 87.67,
+      "positions": 5
+    },
+    {
+      "day": 441,
+      "equity": 101.77,
+      "cash": 87.83,
+      "positions": 5
+    },
+    {
+      "day": 442,
+      "equity": 101.81,
+      "cash": 87.79,
+      "positions": 5
+    },
+    {
+      "day": 443,
+      "equity": 101.71,
+      "cash": 87.79,
+      "positions": 5
+    },
+    {
+      "day": 444,
+      "equity": 101.7,
+      "cash": 87.79,
+      "positions": 5
+    },
+    {
+      "day": 445,
+      "equity": 101.88,
+      "cash": 90.48,
+      "positions": 4
+    },
+    {
+      "day": 446,
+      "equity": 101.89,
+      "cash": 90.48,
+      "positions": 4
+    },
+    {
+      "day": 447,
+      "equity": 101.71,
+      "cash": 90.48,
+      "positions": 4
+    },
+    {
+      "day": 448,
+      "equity": 101.91,
+      "cash": 90.48,
+      "positions": 4
+    },
+    {
+      "day": 449,
+      "equity": 101.97,
+      "cash": 90.48,
+      "positions": 4
+    },
+    {
+      "day": 450,
+      "equity": 101.99,
+      "cash": 90.48,
+      "positions": 4
+    },
+    {
+      "day": 451,
+      "equity": 101.74,
+      "cash": 87.64,
+      "positions": 5
+    },
+    {
+      "day": 452,
+      "equity": 101.69,
+      "cash": 87.64,
+      "positions": 5
+    },
+    {
+      "day": 453,
+      "equity": 101.75,
+      "cash": 87.71,
+      "positions": 5
+    },
+    {
+      "day": 454,
+      "equity": 101.79,
+      "cash": 87.66,
+      "positions": 5
+    },
+    {
+      "day": 455,
+      "equity": 101.64,
+      "cash": 87.62,
+      "positions": 5
+    },
+    {
+      "day": 456,
+      "equity": 101.59,
+      "cash": 87.59,
+      "positions": 5
+    },
+    {
+      "day": 457,
+      "equity": 101.44,
+      "cash": 87.59,
+      "positions": 5
+    },
+    {
+      "day": 458,
+      "equity": 101.59,
+      "cash": 87.55,
+      "positions": 5
+    },
+    {
+      "day": 459,
+      "equity": 101.52,
+      "cash": 87.5,
+      "positions": 5
+    },
+    {
+      "day": 460,
+      "equity": 101.59,
+      "cash": 87.45,
+      "positions": 5
+    },
+    {
+      "day": 461,
+      "equity": 101.44,
+      "cash": 87.62,
+      "positions": 5
+    },
+    {
+      "day": 462,
+      "equity": 101.25,
+      "cash": 87.64,
+      "positions": 5
+    },
+    {
+      "day": 463,
+      "equity": 101.18,
+      "cash": 87.64,
+      "positions": 5
+    },
+    {
+      "day": 464,
+      "equity": 101.75,
+      "cash": 87.64,
+      "positions": 5
+    },
+    {
+      "day": 465,
+      "equity": 101.94,
+      "cash": 87.64,
+      "positions": 5
+    },
+    {
+      "day": 466,
+      "equity": 101.97,
+      "cash": 87.64,
+      "positions": 5
+    },
+    {
+      "day": 467,
+      "equity": 102.14,
+      "cash": 88,
+      "positions": 5
+    },
+    {
+      "day": 468,
+      "equity": 102.11,
+      "cash": 88.16,
+      "positions": 5
+    },
+    {
+      "day": 469,
+      "equity": 102.48,
+      "cash": 91.12,
+      "positions": 4
+    },
+    {
+      "day": 470,
+      "equity": 102.53,
+      "cash": 91.12,
+      "positions": 4
+    },
+    {
+      "day": 471,
+      "equity": 102.65,
+      "cash": 94.25,
+      "positions": 3
+    },
+    {
+      "day": 472,
+      "equity": 102.61,
+      "cash": 96.93,
+      "positions": 2
+    },
+    {
+      "day": 473,
+      "equity": 102.57,
+      "cash": 96.93,
+      "positions": 2
+    },
+    {
+      "day": 474,
+      "equity": 102.61,
+      "cash": 96.93,
+      "positions": 2
+    },
+    {
+      "day": 475,
+      "equity": 102.65,
+      "cash": 96.93,
+      "positions": 2
+    },
+    {
+      "day": 476,
+      "equity": 102.69,
+      "cash": 94.03,
+      "positions": 3
+    },
+    {
+      "day": 477,
+      "equity": 102.7,
+      "cash": 94.03,
+      "positions": 3
+    },
+    {
+      "day": 478,
+      "equity": 102.74,
+      "cash": 91.21,
+      "positions": 4
+    },
+    {
+      "day": 479,
+      "equity": 102.92,
+      "cash": 91.21,
+      "positions": 4
+    },
+    {
+      "day": 480,
+      "equity": 102.84,
+      "cash": 91.21,
+      "positions": 4
+    },
+    {
+      "day": 481,
+      "equity": 102.78,
+      "cash": 91.21,
+      "positions": 4
+    },
+    {
+      "day": 482,
+      "equity": 102.72,
+      "cash": 91.21,
+      "positions": 4
+    },
+    {
+      "day": 483,
+      "equity": 102.8,
+      "cash": 91.21,
+      "positions": 4
+    },
+    {
+      "day": 484,
+      "equity": 102.85,
+      "cash": 91.21,
+      "positions": 4
+    },
+    {
+      "day": 485,
+      "equity": 102.84,
+      "cash": 91.21,
+      "positions": 4
+    },
+    {
+      "day": 486,
+      "equity": 102.84,
+      "cash": 91.21,
+      "positions": 4
+    }
+  ],
+  "closed_trades_sample": [
+    {
+      "asset": "Apple",
+      "kind": "action",
+      "pattern": "A",
+      "quality": 100,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 254.22999572753906,
+      "stop": 251.65570831298828,
+      "tp1": 263.2400016784668,
+      "tp2": 272.25000762939453,
+      "rr1": 3.5,
+      "rr2": 7,
+      "size_eur": 2.794936671339983,
+      "risk_pct": 0.010125820940931266,
+      "touched_tp1": false,
+      "trailing_active": false,
+      "opened_at": 454,
+      "exit_price": 251.65570831298828,
+      "pnl_eur": -0.02830102827523113,
+      "status": "loss",
+      "closed_at": 455
+    },
+    {
+      "asset": "Dow Jones",
+      "kind": "index",
+      "pattern": "A",
+      "quality": 95,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 46993.26171875,
+      "stop": 46682.736328125,
+      "tp1": 48080.1005859375,
+      "tp2": 49166.939453125,
+      "rr1": 3.5,
+      "rr2": 7,
+      "size_eur": 2.7110885711997836,
+      "risk_pct": 0.006607870559899919,
+      "touched_tp1": false,
+      "trailing_active": false,
+      "opened_at": 454,
+      "exit_price": 46682.736328125,
+      "pnl_eur": -0.017914522354912185,
+      "status": "loss",
+      "closed_at": 455
+    },
+    {
+      "asset": "Dow Jones",
+      "kind": "index",
+      "pattern": "A",
+      "quality": 95,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 46225.1484375,
+      "stop": 45860.97572544643,
+      "tp1": 47499.7529296875,
+      "tp2": 48774.357421875,
+      "rr1": 3.4999999999999902,
+      "rr2": 6.9999999999999805,
+      "size_eur": 2.709743698676446,
+      "risk_pct": 0.007878237806979946,
+      "touched_tp1": false,
+      "trailing_active": false,
+      "opened_at": 455,
+      "exit_price": 45860.97572544643,
+      "pnl_eur": -0.021348005254138453,
+      "status": "loss",
+      "closed_at": 456
+    },
+    {
+      "asset": "Alphabet",
+      "kind": "action",
+      "pattern": "A",
+      "quality": 100,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 302.0199890136719,
+      "stop": 298.14641244070873,
+      "tp1": 315.57750701904297,
+      "tp2": 329.13502502441406,
+      "rr1": 3.500000000000022,
+      "rr2": 7.000000000000044,
+      "size_eur": 2.700950600773823,
+      "risk_pct": 0.012825563584759272,
+      "touched_tp1": false,
+      "trailing_active": false,
+      "opened_at": 434,
+      "current_price": 302.05999755859375,
+      "exit_price": 298.14641244070873,
+      "pnl_eur": -0.034641213669518424,
+      "status": "loss",
+      "closed_at": 458
+    },
+    {
+      "asset": "Or",
+      "kind": "metal",
+      "pattern": "A",
+      "quality": 100,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 4600.7001953125,
+      "stop": 4512.471540178572,
+      "tp1": 4909.50048828125,
+      "tp2": 5218.30078125,
+      "rr1": 3.5000000000000053,
+      "rr2": 7.000000000000011,
+      "size_eur": 2.7078194423763864,
+      "risk_pct": 0.019177223333053016,
+      "touched_tp1": false,
+      "trailing_active": false,
+      "opened_at": 458,
+      "exit_price": 4512.471540178572,
+      "pnl_eur": -0.051928458192035044,
+      "status": "loss",
+      "closed_at": 459
+    },
+    {
+      "asset": "Or",
+      "kind": "metal",
+      "pattern": "A",
+      "quality": 100,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 4570.39990234375,
+      "stop": 4484.571219308035,
+      "tp1": 4870.80029296875,
+      "tp2": 5171.20068359375,
+      "rr1": 3.499999999999984,
+      "rr2": 6.999999999999968,
+      "size_eur": 2.706261588630625,
+      "risk_pct": 0.018779250146513615,
+      "touched_tp1": false,
+      "trailing_active": false,
+      "opened_at": 459,
+      "exit_price": 4484.571219308035,
+      "pnl_eur": -0.05082156333479584,
+      "status": "loss",
+      "closed_at": 460
+    },
+    {
+      "asset": "Amazon",
+      "kind": "action",
+      "pattern": "A",
+      "quality": 100,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 199.60000610351562,
+      "stop": 199.60000610351562,
+      "tp1": 214.45000457763672,
+      "tp2": 229.3000030517578,
+      "rr1": 3.50000000000001,
+      "rr2": 7.00000000000002,
+      "size_eur": 2.8698921335788152,
+      "risk_pct": 0.021256796478710118,
+      "touched_tp1": true,
+      "trailing_active": true,
+      "opened_at": 432,
+      "current_price": 207.5399932861328,
+      "exit_price": 199.60000610351562,
+      "pnl_eur": 0.10675824774883837,
+      "status": "breakeven",
+      "closed_at": 461
+    },
+    {
+      "asset": "Dow Jones",
+      "kind": "index",
+      "pattern": "A",
+      "quality": 95,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 46021.4296875,
+      "stop": 45679.939732142855,
+      "tp1": 47216.64453125,
+      "tp2": 48411.859375,
+      "rr1": 3.4999999999999787,
+      "rr2": 6.999999999999957,
+      "size_eur": 2.709103258518822,
+      "risk_pct": 0.007420237869096403,
+      "touched_tp1": false,
+      "trailing_active": false,
+      "opened_at": 456,
+      "current_price": 45960.109375,
+      "exit_price": 45679.939732142855,
+      "pnl_eur": -0.020102190590153828,
+      "status": "loss",
+      "closed_at": 461
+    },
+    {
+      "asset": "Apple",
+      "kind": "action",
+      "pattern": "A",
+      "quality": 100,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 249.94000244140625,
+      "stop": 247.15071541922433,
+      "tp1": 259.70250701904297,
+      "tp2": 269.4650115966797,
+      "rr1": 3.499999999999995,
+      "rr2": 6.99999999999999,
+      "size_eur": 2.7935502048210785,
+      "risk_pct": 0.011159826338066151,
+      "touched_tp1": false,
+      "trailing_active": false,
+      "opened_at": 455,
+      "current_price": 248.8000030517578,
+      "exit_price": 247.15071541922433,
+      "pnl_eur": -0.031175535152472362,
+      "status": "loss",
+      "closed_at": 462
+    },
+    {
+      "asset": "Microsoft",
+      "kind": "action",
+      "pattern": "A",
+      "quality": 95,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 365.9700012207031,
+      "stop": 362.0449959891183,
+      "tp1": 379.70751953125,
+      "tp2": 393.4450378417969,
+      "rr1": 3.5000000000000147,
+      "rr2": 7.000000000000029,
+      "size_eur": 2.7935643769563536,
+      "risk_pct": 0.010724937067226388,
+      "touched_tp1": false,
+      "trailing_active": false,
+      "opened_at": 461,
+      "exit_price": 362.0449959891183,
+      "pnl_eur": -0.029960802136102388,
+      "status": "loss",
+      "closed_at": 462
+    },
+    {
+      "asset": "Alphabet",
+      "kind": "action",
+      "pattern": "A",
+      "quality": 100,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 274.3399963378906,
+      "stop": 274.3399963378906,
+      "tp1": 288.6100082397461,
+      "tp2": 302.88002014160156,
+      "rr1": 3.4999999999999862,
+      "rr2": 6.9999999999999725,
+      "size_eur": 2.794244069612899,
+      "risk_pct": 0.014861654560392257,
+      "touched_tp1": true,
+      "trailing_active": true,
+      "opened_at": 462,
+      "current_price": 299.989990234375,
+      "exit_price": 302.88002014160156,
+      "pnl_eur": 0.29068963084007976,
+      "status": "win",
+      "closed_at": 467
+    },
+    {
+      "asset": "S&P 500",
+      "kind": "index",
+      "pattern": "A",
+      "quality": 95,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 6368.85009765625,
+      "stop": 6368.85009765625,
+      "tp1": 6572.6099853515625,
+      "tp2": 6776.369873046875,
+      "rr1": 3.4999999999999765,
+      "rr2": 6.999999999999953,
+      "size_eur": 2.7104167475245116,
+      "risk_pct": 0.009140913960514425,
+      "touched_tp1": true,
+      "trailing_active": true,
+      "opened_at": 462,
+      "current_price": 6616.85009765625,
+      "exit_price": 6776.369873046875,
+      "pnl_eur": 0.1734298040038112,
+      "status": "win",
+      "closed_at": 468
+    },
+    {
+      "asset": "JPMorgan",
+      "kind": "action",
+      "pattern": "A",
+      "quality": 95,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 282.8900146484375,
+      "stop": 282.8900146484375,
+      "tp1": 295.8500289916992,
+      "tp2": 308.81004333496094,
+      "rr1": 3.500000000000023,
+      "rr2": 7.000000000000046,
+      "size_eur": 2.710516662588388,
+      "risk_pct": 0.013089402415046846,
+      "touched_tp1": true,
+      "trailing_active": true,
+      "opened_at": 451,
+      "current_price": 307.9700012207031,
+      "exit_price": 308.81004333496094,
+      "pnl_eur": 0.24835330344516576,
+      "status": "win",
+      "closed_at": 469
+    },
+    {
+      "asset": "Meta",
+      "kind": "action",
+      "pattern": "A",
+      "quality": 95,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 547.5399780273438,
+      "stop": 547.5399780273438,
+      "tp1": 589.9250030517578,
+      "tp2": 632.3100280761719,
+      "rr1": 3.500000000000014,
+      "rr2": 7.000000000000028,
+      "size_eur": 2.7097574456476634,
+      "risk_pct": 0.02211711954524675,
+      "touched_tp1": true,
+      "trailing_active": true,
+      "opened_at": 461,
+      "current_price": 629.8599853515625,
+      "exit_price": 632.3100280761719,
+      "pnl_eur": 0.41952420554808467,
+      "status": "win",
+      "closed_at": 471
+    },
+    {
+      "asset": "CAC 40",
+      "kind": "index",
+      "pattern": "A",
+      "quality": 95,
+      "sizing_pct": 3,
+      "stacked": false,
+      "entry": 7807.8701171875,
+      "stop": 7714.257184709822,
+      "tp1": 8135.515380859375,
+      "tp2": 8463.16064453125,
+      "rr1": 3.500000000000005,
+      "rr2": 7.00000000000001,
+      "size_eur": 2.721652256112366,
+      "risk_pct": 0.011989560670535216,
+      "touched_tp1": false,
+      "trailing_active": false,
+      "opened_at": 467,
+      "current_price": 7769.31005859375,
+      "exit_price": 7714.257184709822,
+      "pnl_eur": -0.03263141484875826,
+      "status": "loss",
+      "closed_at": 472
+    }
+  ],
+  "generated": "2026-05-22T14:59:37.752Z"
+}
