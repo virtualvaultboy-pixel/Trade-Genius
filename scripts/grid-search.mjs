@@ -96,23 +96,34 @@ const ASSETS = [
   { kind: 'metal', symbol: 'BZ=F', label: 'Brent' },
 ];
 
-// ─── PARAM SPACE ─────────────────────────────────────────────────────
+// ─── PARAM SPACE v2.87 — Espace étendu (~33K combos) ────────────────
+// 9 dimensions, choisies pour capturer tous les régimes (mean-reversion,
+// trend-follow, breakout, contrarian) sur 3 fenêtres temporelles
+// (DAY 5j / WEEK 15j-30j / MONTH 60j).
 const PARAM_SPACE = {
-  // RSI seuil + direction
+  // RSI seuil + direction (8 niveaux × 2 = 16)
   rsi_thr: [25, 30, 35, 40],
-  rsi_dir: ['below', 'above'], // below=oversold (long contrarian), above=trend (long momentum)
-  // MA cross condition
-  ma_cross: ['bull', 'any'],   // bull = MA20>MA50, any = pas de filtre
-  // MACD histogram
-  macd_hist: ['positive', 'any'], // positive = >0, any = pas de filtre
-  // ADX seuil minimum
-  min_adx: [0, 20, 25],
-  // Niveaux ATR multipliers
-  atr_stop: [1.5, 2.0],
-  atr_tp2: [3.0, 4.0, 5.0],
-  // Fenêtre de hold (DAY / WEEK / MONTH)
-  hold_days: [5, 15, 60],
+  rsi_dir: ['below', 'above'],
+  // MA cross : tendance MT haussière préservée ou pas de filtre
+  ma_cross: ['bull', 'any'],
+  // MACD histogram (positif, négatif, indifférent)
+  macd_hist: ['positive', 'negative', 'any'],
+  // ADX minimum (force de tendance)
+  min_adx: [0, 20, 25, 30],
+  // Bollinger position (NEW v2.87)
+  // low = bande basse (mean reversion contrarian)
+  // mid = milieu de bande (pullback sain)
+  // high = bande haute (breakout)
+  // any = pas de filtre
+  boll_pos: ['low', 'mid', 'high', 'any'],
+  // Niveaux ATR — stops (4)
+  atr_stop: [1.0, 1.5, 2.0, 2.5],
+  // TP2 multiplier (4)
+  atr_tp2: [3.0, 4.0, 5.0, 7.0],
+  // Fenêtre de hold : 4 valeurs (CT, swing court, swing long, LT)
+  hold_days: [5, 15, 30, 60],
 };
+// Total : 4 × 2 × 2 × 3 × 4 × 4 × 4 × 4 × 4 = 32 768 combos
 
 function* iterCombos(space) {
   const keys = Object.keys(space);
@@ -157,6 +168,7 @@ function precomputeFlags(asset) {
     const ma50 = ind.maCross?.ma50;
     const macdH = ind.macd?.value;
     const adx = ind.adx?.value || 0;
+    const bollPos = ind.boll?.value;
     flags[t] = {
       price: last,
       atrAbs,
@@ -165,10 +177,16 @@ function precomputeFlags(asset) {
       rsi_above_25: rsi > 25, rsi_above_30: rsi > 30, rsi_above_35: rsi > 35, rsi_above_40: rsi > 40,
       // MA cross
       ma_bull: ma20 != null && ma50 != null && ma20 > ma50,
-      // MACD
+      // MACD (positif et négatif)
       macd_pos: macdH != null && macdH > 0,
+      macd_neg: macdH != null && macdH < 0,
       // ADX
       adx_val: adx,
+      // v2.87 — Bollinger position (low <0.25, mid 0.25-0.75, high >0.75)
+      boll_low:  bollPos != null && bollPos < 0.25,
+      boll_mid:  bollPos != null && bollPos >= 0.25 && bollPos <= 0.75,
+      boll_high: bollPos != null && bollPos > 0.75,
+      boll_any:  bollPos != null,
     };
   }
   return flags;
@@ -181,16 +199,21 @@ function evalCombo(combo, flags) {
   if (!flags[rsiKey]) return null;
   if (combo.ma_cross === 'bull' && !flags.ma_bull) return null;
   if (combo.macd_hist === 'positive' && !flags.macd_pos) return null;
+  if (combo.macd_hist === 'negative' && !flags.macd_neg) return null;
   if (combo.min_adx > 0 && flags.adx_val < combo.min_adx) return null;
+  // v2.87 — Bollinger position filter
+  if (combo.boll_pos === 'low'  && !flags.boll_low)  return null;
+  if (combo.boll_pos === 'mid'  && !flags.boll_mid)  return null;
+  if (combo.boll_pos === 'high' && !flags.boll_high) return null;
   // Signal trouvé. Calcule les niveaux.
   const entry = flags.price;
   const stop = entry - combo.atr_stop * flags.atrAbs;
   const tp2 = entry + combo.atr_tp2 * flags.atrAbs;
-  const tp1 = entry + (combo.atr_tp2 * 0.5) * flags.atrAbs; // tp1 mi-chemin
+  const tp1 = entry + (combo.atr_tp2 * 0.5) * flags.atrAbs;
   if (stop >= entry || tp2 <= entry || tp1 <= entry || tp1 >= tp2) return null;
   const risk = entry - stop;
   const rr2 = (tp2 - entry) / risk;
-  if (rr2 < 1.5) return null; // R/R min global
+  if (rr2 < 1.5) return null;
   return { entry, stop, tp1, tp2, rr2 };
 }
 
