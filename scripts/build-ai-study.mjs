@@ -358,6 +358,66 @@ function buildNewsContext(setup, newsMatches) {
   };
 }
 
+// v4.7 — NEWS SENTIMENT NLP (via Pollinations, gratuit)
+// Pour chaque setup avec news_context, classifie les news <48h en
+// positive/negative/neutral. Si majorité négative → downgrade ou refuse.
+// Timeout 8s par appel, fallback silencieux si KO (préserve le pipeline).
+const _sentimentCache = new Map();
+async function classifyNewsSentiment(titles) {
+  if (!Array.isArray(titles) || titles.length === 0) return null;
+  const key = titles.join('|').slice(0, 500);
+  if (_sentimentCache.has(key)) return _sentimentCache.get(key);
+  try {
+    const joined = titles.slice(0, 5).map((t, i) => `${i + 1}. ${t}`).join('\n');
+    const prompt = `Tu es un analyste financier. Pour chaque titre d'actu ci-dessous, classe l'impact attendu sur le cours de l'actif mentionné : POSITIF / NÉGATIF / NEUTRE.
+Réponds UNIQUEMENT avec une ligne par titre au format "N: LABEL" (ex: "1: POSITIF").
+
+Titres :
+${joined}`;
+    const url = 'https://text.pollinations.ai/' + encodeURIComponent(prompt);
+    const r = await fetch(url, { signal: AbortSignal.timeout(8000), headers: { 'user-agent': 'trade-genius-bot' } });
+    if (!r.ok) { _sentimentCache.set(key, null); return null; }
+    const txt = await r.text();
+    const labels = [];
+    for (const line of txt.split('\n')) {
+      const m = line.match(/^\s*\d+\s*[:.\-]\s*(POSITIF|NEGATIF|NÉGATIF|NEUTRE)/i);
+      if (m) {
+        const lbl = m[1].toUpperCase().replace('É', 'E');
+        labels.push(lbl === 'POSITIF' ? 'positive' : (lbl === 'NEGATIF' ? 'negative' : 'neutral'));
+      }
+    }
+    if (labels.length === 0) { _sentimentCache.set(key, null); return null; }
+    const pos = labels.filter(l => l === 'positive').length;
+    const neg = labels.filter(l => l === 'negative').length;
+    const out = {
+      positive: pos, negative: neg, neutral: labels.length - pos - neg,
+      net: pos - neg, total: labels.length,
+      verdict: pos - neg >= 2 ? 'positive' : (neg - pos >= 2 ? 'negative' : 'neutral'),
+    };
+    _sentimentCache.set(key, out);
+    return out;
+  } catch { _sentimentCache.set(key, null); return null; }
+}
+
+/**
+ * Applique le filtre sentiment :
+ *   - verdict 'negative' net >= 2 → quality -25%, et refuse si quality < 50 après
+ *   - verdict 'positive' net >= 2 → quality +10% (cap 100)
+ *   - neutre → pas de changement
+ */
+function applyNewsSentimentFilter(setup, sentiment) {
+  if (!sentiment || !setup) return { keep: true, qualityMult: 1, reason: null };
+  if (sentiment.verdict === 'negative') {
+    const newQuality = Math.round((setup.quality_score || 0) * 0.75);
+    if (newQuality < 50) return { keep: false, qualityMult: 0, reason: `News négatives (${sentiment.negative}/${sentiment.total}) → quality < seuil` };
+    return { keep: true, qualityMult: 0.75, reason: `News négatives (${sentiment.negative}/${sentiment.total}) → -25%` };
+  }
+  if (sentiment.verdict === 'positive') {
+    return { keep: true, qualityMult: 1.10, reason: `News positives (${sentiment.positive}/${sentiment.total}) → +10%` };
+  }
+  return { keep: true, qualityMult: 1, reason: null };
+}
+
 // v2.60 — Catalogue étendu (52 actifs) : indices monde + actions US/EU
 //        + crypto top 20 + forex majors + métaux précieux
 const ASSETS = [
@@ -2004,6 +2064,25 @@ async function main() {
     const sym = ASSETS.find(x => x.label === a.label)?.symbol;
     if (sym) await getEarningsDays(sym);
   }));
+
+  // v4.7 — Préchargement sentiment NLP des actifs qui ont des news matched
+  const sentimentMap = new Map();
+  const assetsWithNews = Object.keys(newsMatches).filter(k => Array.isArray(newsMatches[k]) && newsMatches[k].length > 0);
+  if (assetsWithNews.length > 0) {
+    console.log(`v4.7 Classifying sentiment for ${assetsWithNews.length} assets with news (Pollinations)...`);
+    // Chunks de 8 en parallèle pour ne pas saturer Pollinations
+    for (let i = 0; i < assetsWithNews.length; i += 8) {
+      const chunk = assetsWithNews.slice(i, i + 8);
+      await Promise.all(chunk.map(async assetLabel => {
+        const titles = newsMatches[assetLabel].map(n => n.title);
+        const s = await classifyNewsSentiment(titles);
+        if (s) sentimentMap.set(assetLabel, s);
+      }));
+    }
+    const negCount = [...sentimentMap.values()].filter(s => s.verdict === 'negative').length;
+    const posCount = [...sentimentMap.values()].filter(s => s.verdict === 'positive').length;
+    console.log(`v4.7 Sentiment results: ${posCount} positifs, ${negCount} négatifs, ${sentimentMap.size - posCount - negCount} neutres`);
+  }
   const earningsLog = [];
   for (const a of actionAssets) {
     const sym = ASSETS.find(x => x.label === a.label)?.symbol;
@@ -2073,6 +2152,21 @@ async function main() {
         }
       });
     }
+    // v4.7 — Filtre news sentiment (NLP via Pollinations, cache mémoire)
+    if (sentimentMap.size > 0) {
+      setups = setups.filter(s => {
+        const sent = sentimentMap.get(s.asset);
+        if (!sent) return true;
+        const ns = applyNewsSentimentFilter(s, sent);
+        if (!ns.keep) { console.log(`v4.7 sentiment reject ${s.asset}: ${ns.reason}`); return false; }
+        if (ns.qualityMult !== 1 && s.quality_score != null) {
+          s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * ns.qualityMult)));
+          s.news_sentiment_reason = ns.reason;
+        }
+        s.news_sentiment = sent.verdict;
+        return true;
+      });
+    }
     // v4.0 — Booste quality_score par AUC ML de l'horizon de l'agent
     if (mlRules) {
       setups.forEach(s => {
@@ -2106,6 +2200,9 @@ async function main() {
         macro_reason: s.macro_reason || null,
         // v4.6 — earnings proches (raison du downgrade éventuel)
         earnings_reason: s.earnings_reason || null,
+        // v4.7 — sentiment NLP des news <48h matchées
+        news_sentiment: s.news_sentiment || null,
+        news_sentiment_reason: s.news_sentiment_reason || null,
         // v4.8 — release macro imminent (FOMC/CPI/NFP)
         macro_event_reason: s.macro_event_reason || null,
         // v4.9 — risk-off cross-asset (S&P/Nasdaq dump)
