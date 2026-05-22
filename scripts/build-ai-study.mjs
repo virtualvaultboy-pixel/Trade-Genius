@@ -1914,43 +1914,48 @@ async function main() {
   // v2.67 — 4 AGENTS IA avec profils de risque distincts
   // Chaque agent filtre les setups et recalibre les niveaux ATR.
   // ─────────────────────────────────────────────────────────────────
+  // v5.0 — Renommage personnalité × performance backtest 4 ans :
+  //   BASTION (ex-ATLAS)  : long terme · 1-3 mois · +8.9%/an · DD <1.5% · WR 41%
+  //   PHÉNIX  (ex-NOVA)   : moyen · 1-3 semaines · +7.7%/an · WR 58%
+  //   RAFALE  (ex-KAIRO)  : court · 3-7 jours · +6-7%/an · WR 52%
+  //   ZEN reste legacy (pas exposé dans le picker UI)
   const AGENT_PROFILES = [
     {
-      id: 'atlas', name: 'ATLAS', role: 'Le Gardien',
-      tagline: 'Préserve avant tout',
-      desc: 'Long terme structurel. Attend SMA200 + Ichimoku + ADX + volumes alignés. Frappe rarement, R/R élevé. Backtest PF 3.5 · 52% win.',
-      icon: '🛡️', color: '#60a5fa',
+      id: 'atlas', name: 'BASTION', role: 'Le Stoïque',
+      tagline: 'Forteresse stable, patience récompensée',
+      desc: 'Long terme · 1-3 mois · Patience haute · +8.9%/an · drawdown <1.5%. Attend SMA200 + Ichimoku + ADX + volumes alignés. 3-4 trades/semaine, hold moyen 4 jours. Win rate 41% mais chaque gagnant rapporte gros (R/R 3.5).',
+      icon: '🗿', color: '#60a5fa',
       filters: { minConfRank: 3, minADX: 28, minRR: 2.5 },
       atr: { stop: 1.2, tp1: 2.0, tp2: 3.5 },
       acceptedTypes: ['pullback-haussier', 'breakout-haussier', 'continuation-haussiere'],
     },
     {
       id: 'zen', name: 'ZEN', role: 'L\'Équilibriste',
-      tagline: 'Patience et précision',
-      desc: 'Swing tactique. Entrée précise sur Doji, retest VWAP ou pullback Bollinger en tendance confirmée. Backtest PF 2.85 · 56% win.',
+      tagline: 'Patience et précision (legacy, non exposé)',
+      desc: 'Swing tactique legacy. Entrée précise sur Doji, retest VWAP ou pullback Bollinger en tendance confirmée. Non exposé dans le picker temporel UI.',
       icon: '🌿', color: '#84cc16',
       filters: { minConfRank: 2, minADX: 22, minRR: 2.0 },
       atr: { stop: 1.5, tp1: 2.0, tp2: 4.0 },
       acceptedTypes: ['pullback-haussier', 'breakout-haussier', 'continuation-haussiere', 'rebond-ma50', 'doji-haussier'],
     },
     {
-      id: 'nova', name: 'NOVA', role: 'Le Tacticien',
-      tagline: 'Polyvalence multi-setup',
-      desc: '5 setups différents (rebond, pullback, breakout, continuation, MA50). Le plus actif → idéal pour apprendre. Backtest PF 1.9 · 53% win.',
-      icon: '⚡', color: '#f59e0b',
+      id: 'nova', name: 'PHÉNIX', role: 'L\'Équilibré',
+      tagline: 'Résilience et constance, le pivot du système',
+      desc: 'Moyen terme · 1-3 semaines · Patience moyenne · +7.7%/an · win rate 58%. Le meilleur compromis fréquence/rendement. 5-7 trades/semaine, hold moyen 1.5j à 1 semaine. Renait des pertes via discipline statistique.',
+      icon: '🔥', color: '#f59e0b',
       filters: { minConfRank: 1, minADX: 16, minRR: 1.8 },
       atr: { stop: 1.5, tp1: 1.5, tp2: 3.0 },
-      acceptedTypes: null, // tous types
+      acceptedTypes: null,
     },
     {
-      id: 'kairo', name: 'KAIRO', role: 'Le Chasseur',
-      tagline: 'Anticipe les retournements',
-      desc: 'Contrarian sélectif. Divergences RSI, capitulation volume, Hull MA reversal. Demande du sang-froid. Backtest PF 3.1 · 65% win.',
-      icon: '🔥', color: '#ef4444',
+      id: 'kairo', name: 'RAFALE', role: 'Le Rapide',
+      tagline: 'Cadence courte, gains fréquents',
+      desc: 'Court terme · 3-7 jours · Patience faible · +6-7%/an · win rate 52%. 5-9 trades/semaine, hold moyen 2-3 jours. Idéal si tu veux voir l\'app travailler chaque jour. Contrarian sélectif sur divergences RSI + Hull MA reversal.',
+      icon: '⚡', color: '#ef4444',
       filters: { minConfRank: 1, minADX: 10, minRR: 2.0 },
       atr: { stop: 2.0, tp1: 2.5, tp2: 5.0 },
-      acceptedTypes: null, // tous y compris rebond-survente
-      bonusTypes: ['rebond-survente'], // boost priorité
+      acceptedTypes: null,
+      bonusTypes: ['rebond-survente'],
     },
   ];
 
