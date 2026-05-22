@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v2.87';
+export const TG_VERSION = 'v2.88';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
