@@ -1,0 +1,45 @@
+name: Grid-search paramétrique (massif)
+# v2.85 — Balaie systématiquement l'espace des paramètres pour identifier
+# les meilleurs combos par profil (conservateur/équilibré/agressif) et par
+# fenêtre temporelle (DAY/WEEK/MONTH).
+#
+# Tourne à la demande uniquement (workflow_dispatch). Peut s'exécuter
+# 30 min à 3 h selon la taille du PARAM_SPACE.
+on:
+  workflow_dispatch:
+    inputs:
+      history_range:
+        description: "Range Yahoo (10y, 15y, 20y, max)"
+        required: false
+        default: "20y"
+
+permissions:
+  contents: write
+
+jobs:
+  grid:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run grid search
+        env:
+          TG_GRID_RANGE: ${{ github.event.inputs.history_range }}
+        run: node --max-old-space-size=6144 scripts/grid-search.mjs
+
+      - name: Commit data/grid-search-results.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain data/grid-search-results.json)" ]; then
+            git add data/grid-search-results.json
+            git commit -m "chore: grid-search results (${{ github.event.inputs.history_range }}) [skip ci]"
+            git push
+          else
+            echo "no change"
+          fi
