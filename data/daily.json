@@ -1,24 +1,24 @@
 {
-  "generated": "2026-05-22T13:43:59.260Z",
+  "generated": "2026-05-22T15:19:48.823Z",
   "date": "2026-05-22",
   "title": "Rapport du 22 mai 2026",
   "summary": "Séance largement positive sur les principaux indices et la crypto.",
   "highlights": [
-    "S&P 500 +0.65% · ↗ légère hausse",
-    "Nasdaq +0.64% · ↗ légère hausse",
-    "CAC 40 +0.77% · ↗ légère hausse",
-    "Dow +0.67% · ↗ légère hausse",
-    "BTC -0.51% · ↘ légère baisse",
-    "ETH -0.25% · → stable"
+    "S&P 500 +0.61% · ↗ légère hausse",
+    "Nasdaq +0.68% · ↗ légère hausse",
+    "CAC 40 +0.55% · ↗ légère hausse",
+    "Dow +0.74% · ↗ légère hausse",
+    "BTC -1.03% · ↘ légère baisse",
+    "ETH -0.65% · ↘ légère baisse"
   ],
   "items": [
     {
       "kind": "index",
       "symbol": "S&P 500",
       "name": "S&P 500",
-      "price": 7494.01,
-      "change": 0.6485576111224264,
-      "rsi": 71.9,
+      "price": 7491.33,
+      "change": 0.6125637794624956,
+      "rsi": 71.8,
       "verdict": "bull-soft",
       "verdictLabel": "↗ légère hausse",
       "currency": "USD"
@@ -27,9 +27,9 @@
       "kind": "index",
       "symbol": "Nasdaq",
       "name": "Nasdaq Composite",
-      "price": 26460.115,
-      "change": 0.6352061685623822,
-      "rsi": 70.7,
+      "price": 26470.822,
+      "change": 0.675927879425946,
+      "rsi": 70.8,
       "verdict": "bull-soft",
       "verdictLabel": "↗ légère hausse",
       "currency": "USD"
@@ -38,9 +38,9 @@
       "kind": "index",
       "symbol": "CAC 40",
       "name": "CAC 40",
-      "price": 8148,
-      "change": 0.7667573583972298,
-      "rsi": 57.5,
+      "price": 8130.11,
+      "change": 0.5455107593371218,
+      "rsi": 56.8,
       "verdict": "bull-soft",
       "verdictLabel": "↗ légère hausse",
       "currency": "EUR"
@@ -49,9 +49,9 @@
       "kind": "index",
       "symbol": "Dow",
       "name": "Dow Jones",
-      "price": 50620.47,
-      "change": 0.6658157468941723,
-      "rsi": 70.2,
+      "price": 50657.8,
+      "change": 0.7400516222590541,
+      "rsi": 70.4,
       "verdict": "bull-soft",
       "verdictLabel": "↗ légère hausse",
       "currency": "USD"
@@ -60,9 +60,9 @@
       "kind": "crypto",
       "symbol": "BTC",
       "name": "Bitcoin",
-      "price": 77153.72757421288,
-      "change": -0.5062909360314154,
-      "rsi": 37.3,
+      "price": 76746.34801324892,
+      "change": -1.0316278807457078,
+      "rsi": 36.1,
       "verdict": "bear-soft",
       "verdictLabel": "↘ légère baisse",
       "currency": "USD"
@@ -71,11 +71,11 @@
       "kind": "crypto",
       "symbol": "ETH",
       "name": "Ethereum",
-      "price": 2126.4080376699076,
-      "change": -0.24798279689876393,
-      "rsi": 27,
-      "verdict": "flat",
-      "verdictLabel": "→ stable",
+      "price": 2117.8944956509345,
+      "change": -0.6473619258765313,
+      "rsi": 26.5,
+      "verdict": "bear-soft",
+      "verdictLabel": "↘ légère baisse",
       "currency": "USD"
     }
   ]
