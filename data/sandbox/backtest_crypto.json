@@ -1,0 +1,30 @@
+{
+  "generated": "2026-05-23T17:16:37.267Z",
+  "backtest_days": 600,
+  "assets": 15,
+  "fng_available": true,
+  "variants": [
+    {
+      "variant": "BASELINE",
+      "equity_final": 120.29,
+      "return_pct": 20.29,
+      "annualized_pct": 8.07,
+      "profit_factor": 2.17,
+      "max_dd_pct": -3.12,
+      "win_rate_pct": 41.9,
+      "trades_closed": 222,
+      "avg_pnl_per_trade": 0.092
+    },
+    {
+      "variant": "CRYPTO",
+      "equity_final": 114.43,
+      "return_pct": 14.43,
+      "annualized_pct": 5.82,
+      "profit_factor": 1.56,
+      "max_dd_pct": -5.98,
+      "win_rate_pct": 37.2,
+      "trades_closed": 183,
+      "avg_pnl_per_trade": 0.071
+    }
+  ]
+}
