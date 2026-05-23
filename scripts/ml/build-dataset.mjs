@@ -29,9 +29,12 @@ import {
   computeAllIndicators, atrPct, sma, macd, rsi, obv, mfi,
 } from '../indicators.mjs';
 
+// v6.0 — Yahoo `range=max` retourne moins que `20y` pour les forex/futures
+// (contracts roulés). 20y reste optimal : 117k rows × 24 features × 50 actifs.
+// Couvre déjà 2008 Lehman, 2011 euro, 2015 China, 2020 COVID, 2022 bear.
 const HISTORY_RANGE = process.env.TG_ML_RANGE || '20y';
 const OUTPUT_DIR = path.join(process.cwd(), 'data', 'ml');
-const WARMUP = 220;          // besoin de SMA200 + 20 jours de slope
+const WARMUP = 260;          // ~1 an de warmup pour SMA200 + features 60j
 const HOLD_DAY = 7;          // horizon DAY (3-7j)
 const HOLD_WEEK = 21;        // horizon WEEK (1-3 semaines)
 const HOLD_MONTH = 60;       // horizon MONTH (4-12 semaines)
@@ -147,6 +150,72 @@ function stochasticK(prices, period = 14) {
   return ((prices[prices.length - 1] - lo) / (hi - lo)) * 100;
 }
 
+// v6.0 — FEATURES STATISTIQUES enrichies
+// Calcul des returns log sur N derniers jours, puis stats de forme
+function logReturns(prices, n) {
+  const out = [];
+  for (let i = prices.length - n; i < prices.length; i++) {
+    if (i > 0 && prices[i - 1] > 0 && prices[i] > 0) {
+      out.push(Math.log(prices[i] / prices[i - 1]));
+    }
+  }
+  return out;
+}
+function skewness(arr) {
+  if (arr.length < 3) return 0;
+  const n = arr.length;
+  const mean = arr.reduce((s, x) => s + x, 0) / n;
+  const variance = arr.reduce((s, x) => s + (x - mean) ** 2, 0) / n;
+  const std = Math.sqrt(variance);
+  if (std === 0) return 0;
+  const skew = arr.reduce((s, x) => s + ((x - mean) / std) ** 3, 0) / n;
+  return skew;
+}
+function kurtosis(arr) {
+  if (arr.length < 4) return 0;
+  const n = arr.length;
+  const mean = arr.reduce((s, x) => s + x, 0) / n;
+  const variance = arr.reduce((s, x) => s + (x - mean) ** 2, 0) / n;
+  if (variance === 0) return 0;
+  const kurt = arr.reduce((s, x) => s + (x - mean) ** 4, 0) / n / (variance ** 2);
+  return kurt - 3; // excess kurtosis
+}
+function drawdownFromHigh(prices, lookback) {
+  if (prices.length < lookback) return 0;
+  const slice = prices.slice(-lookback);
+  const high = Math.max(...slice);
+  const last = prices[prices.length - 1];
+  if (high === 0) return 0;
+  return (last - high) / high; // négatif si en drawdown
+}
+function volatilityRegime(prices, lookback = 60) {
+  if (prices.length < lookback + 1) return 0;
+  const recentRets = logReturns(prices, 20);
+  const longRets = logReturns(prices, lookback);
+  if (recentRets.length === 0 || longRets.length === 0) return 0;
+  const recentStd = Math.sqrt(recentRets.reduce((s, r) => s + r * r, 0) / recentRets.length);
+  const longStd = Math.sqrt(longRets.reduce((s, r) => s + r * r, 0) / longRets.length);
+  if (longStd === 0) return 0;
+  return recentStd / longStd; // >1.5 = spike vol, <0.7 = calm
+}
+function maSpread(prices) {
+  if (prices.length < 50) return 0;
+  const ma20 = sma(prices.slice(-20), 20);
+  const ma50 = sma(prices.slice(-50), 50);
+  if (!ma20 || !ma50 || ma50 === 0) return 0;
+  return (ma20 - ma50) / ma50; // positif si MA20 > MA50 (bull)
+}
+function psychRoundDistance(price) {
+  if (!price || price <= 0) return 0;
+  // Distance au niveau psychologique rond le plus proche en %
+  const magnitude = Math.pow(10, Math.floor(Math.log10(price)));
+  const lowerRound = Math.floor(price / magnitude) * magnitude;
+  const upperRound = lowerRound + magnitude;
+  const distLow = (price - lowerRound) / price;
+  const distHigh = (upperRound - price) / price;
+  return Math.min(distLow, distHigh); // ∈ [0, 0.5], plus proche de 0 = près d'un niveau rond
+}
+
 // v4.1 — Resample daily prices/volumes en weekly (5-day non-overlapping buckets)
 // pour vraies features multi-TF. Retourne {prices: [...], volumes: [...]} avec
 // 1 entrée par "semaine" (close = dernier close du bucket, volume = somme).
@@ -246,6 +315,18 @@ function extractFeatures(prices, idx, volumes) {
     if (ma20W) ma20RelWeekly = (wk.prices[wk.prices.length - 1] - ma20W) / ma20W;
   }
 
+  // v6.0 — Features statistiques enrichies
+  const ret60 = logReturns(sub, 60);
+  const skew60 = skewness(ret60);
+  const kurt60 = kurtosis(ret60);
+  const dd60 = drawdownFromHigh(sub, 60);
+  const volRegime = volatilityRegime(sub, 60);
+  const maSpread2050 = maSpread(sub);
+  const psychDist = psychRoundDistance(last);
+  // Saisonnalité : jour de la semaine et mois (proxy via len % 7 et % 252)
+  const dow = (sub.length % 5);   // 0..4 ≈ lundi-vendredi (jours bourse)
+  const moy = (Math.floor(sub.length / 21) % 12); // 0..11 ≈ mois calendaire
+
   return {
     rsi: Number(ind.rsi.value) || 50,
     macd_line: Number(mFull?.macd) || 0,
@@ -273,6 +354,13 @@ function extractFeatures(prices, idx, volumes) {
     // v4.1 — Multi-TF (weekly)
     rsi_weekly: rsiWeekly,
     ma20_rel_weekly: ma20RelWeekly,
+    // v6.0 — Stats avancées (forme distribution + drawdown + saisonnalité)
+    skew60, kurt60,
+    dd_from_high60: dd60,
+    vol_regime: volRegime,
+    ma_spread_20_50: maSpread2050,
+    psych_round_dist: psychDist,
+    dow, moy,
   };
 }
 
@@ -281,8 +369,11 @@ const FEATURE_KEYS = [
   'ma20_rel', 'ma50_rel', 'ma200_rel', 'ma50_slope',
   'boll_pos', 'atr_pct', 'adx', 'stoch_k', 'stoch_d',
   'ichi_pos', 'ichi_sig', 'vol20', 'chg5', 'chg20', 'regime',
-  // v4.1 — 5 nouvelles features
+  // v4.1 — 5 features Volume + Multi-TF
   'obv_slope_10', 'mfi', 'vol_rel_20', 'rsi_weekly', 'ma20_rel_weekly',
+  // v6.0 — 8 features statistiques avancées
+  'skew60', 'kurt60', 'dd_from_high60', 'vol_regime', 'ma_spread_20_50',
+  'psych_round_dist', 'dow', 'moy',
 ];
 
 async function processAsset(asset, csvRows) {

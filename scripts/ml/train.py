@@ -48,6 +48,9 @@ FEATURE_KEYS = [
     "ichi_pos", "ichi_sig", "vol20", "chg5", "chg20", "regime",
     # v4.1 — Volume + Multi-TF
     "obv_slope_10", "mfi", "vol_rel_20", "rsi_weekly", "ma20_rel_weekly",
+    # v6.0 — Stats avancées + saisonnalité
+    "skew60", "kurt60", "dd_from_high60", "vol_regime",
+    "ma_spread_20_50", "psych_round_dist", "dow", "moy",
 ]
 
 HORIZONS = [

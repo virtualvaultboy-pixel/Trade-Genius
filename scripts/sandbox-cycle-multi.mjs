@@ -1,0 +1,390 @@
+#!/usr/bin/env node
+/**
+ * Trade Genius — v6.0 SANDBOX MULTI · 4 portefeuilles 1000€ par IA
+ *
+ * Chaque IA reçoit son propre portefeuille virtuel de 1000€ et n'ouvre
+ * QUE les setups de son propre backend (atlas/nova/kairo/multi-crypto).
+ * Permet de comparer en direct la performance réelle isolée de chaque IA.
+ *
+ * Outputs :
+ *   data/sandbox/portfolio_bastion.json + stats_bastion.json
+ *   data/sandbox/portfolio_phenix.json  + stats_phenix.json
+ *   data/sandbox/portfolio_rafale.json  + stats_rafale.json
+ *   data/sandbox/portfolio_nexus.json   + stats_nexus.json
+ *
+ * Workflow : sandbox-cycle.yml (cron quotidien 23h UTC ouvré)
+ */
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fetchYahooHistorical, fetchCoinGeckoHistorical } from './indicators.mjs';
+
+const SANDBOX_DIR = path.join(process.cwd(), 'data', 'sandbox');
+const SNAPSHOTS_DIR = path.join(SANDBOX_DIR, 'snapshots');
+const AI_STUDY_FILE = path.join(process.cwd(), 'data', 'ai-study.json');
+
+const CAPITAL_INITIAL = 1000; // 1000€ virtuels par sandbox
+const MAX_POSITIONS = 5;
+const MIN_QUALITY_TO_OPEN = 65;
+const MAX_HOLD_DAYS = 60;
+
+// v6.0 — 4 sandboxes : 1 par IA (mapped sur les ids backend)
+const SANDBOXES = [
+  { id: 'bastion', backendId: 'atlas',  name: 'BASTION', icon: '🗿' },
+  { id: 'phenix',  backendId: 'nova',   name: 'PHÉNIX',  icon: '🔥' },
+  { id: 'rafale',  backendId: 'kairo',  name: 'RAFALE',  icon: '⚡' },
+  { id: 'nexus',   backendId: 'multi',  name: 'NEXUS',   icon: '₿' },
+];
+
+const ASSET_MAP = {
+  'S&P 500': { kind: 'index', symbol: '^GSPC' }, 'Nasdaq': { kind: 'index', symbol: '^IXIC' },
+  'Dow Jones': { kind: 'index', symbol: '^DJI' }, 'Russell 2000': { kind: 'index', symbol: '^RUT' },
+  'CAC 40': { kind: 'index', symbol: '^FCHI' }, 'DAX': { kind: 'index', symbol: '^GDAXI' },
+  'FTSE 100': { kind: 'index', symbol: '^FTSE' }, 'Euro Stoxx 50': { kind: 'index', symbol: '^STOXX50E' },
+  'Nikkei 225': { kind: 'index', symbol: '^N225' }, 'Hang Seng': { kind: 'index', symbol: '^HSI' },
+  'BTC': { kind: 'crypto', id: 'bitcoin' }, 'ETH': { kind: 'crypto', id: 'ethereum' },
+  'SOL': { kind: 'crypto', id: 'solana' }, 'BNB': { kind: 'crypto', id: 'binancecoin' },
+  'XRP': { kind: 'crypto', id: 'ripple' }, 'ADA': { kind: 'crypto', id: 'cardano' },
+  'DOGE': { kind: 'crypto', id: 'dogecoin' }, 'AVAX': { kind: 'crypto', id: 'avalanche-2' },
+  'DOT': { kind: 'crypto', id: 'polkadot' }, 'LINK': { kind: 'crypto', id: 'chainlink' },
+  'Apple': { kind: 'action', symbol: 'AAPL' }, 'Microsoft': { kind: 'action', symbol: 'MSFT' },
+  'Alphabet': { kind: 'action', symbol: 'GOOGL' }, 'Amazon': { kind: 'action', symbol: 'AMZN' },
+  'Meta': { kind: 'action', symbol: 'META' }, 'Nvidia': { kind: 'action', symbol: 'NVDA' },
+  'Tesla': { kind: 'action', symbol: 'TSLA' }, 'JPMorgan': { kind: 'action', symbol: 'JPM' },
+  'Visa': { kind: 'action', symbol: 'V' }, 'Berkshire': { kind: 'action', symbol: 'BRK-B' },
+  'Walmart': { kind: 'action', symbol: 'WMT' }, 'Johnson & J.': { kind: 'action', symbol: 'JNJ' },
+  'Exxon': { kind: 'action', symbol: 'XOM' }, 'P&G': { kind: 'action', symbol: 'PG' },
+  'Coca-Cola': { kind: 'action', symbol: 'KO' }, 'Netflix': { kind: 'action', symbol: 'NFLX' },
+  'LVMH': { kind: 'action', symbol: 'MC.PA' }, 'ASML': { kind: 'action', symbol: 'ASML.AS' },
+  'Nestlé': { kind: 'action', symbol: 'NESN.SW' },
+  'EUR/USD': { kind: 'forex', symbol: 'EURUSD=X' }, 'GBP/USD': { kind: 'forex', symbol: 'GBPUSD=X' },
+  'USD/JPY': { kind: 'forex', symbol: 'USDJPY=X' },
+  'Or': { kind: 'metal', symbol: 'GC=F' }, 'Argent': { kind: 'metal', symbol: 'SI=F' },
+  'Cuivre': { kind: 'metal', symbol: 'HG=F' }, 'Pétrole': { kind: 'metal', symbol: 'CL=F' },
+};
+
+const _priceCache = new Map();
+async function fetchCurrentPrice(assetLabel) {
+  if (_priceCache.has(assetLabel)) return _priceCache.get(assetLabel);
+  const m = ASSET_MAP[assetLabel];
+  if (!m) { _priceCache.set(assetLabel, null); return null; }
+  try {
+    let p;
+    if (m.kind === 'crypto') {
+      const d = await fetchCoinGeckoHistorical(m.id, 5);
+      p = d.price;
+    } else {
+      const d = await fetchYahooHistorical(m.symbol, '5d');
+      p = d.price;
+    }
+    _priceCache.set(assetLabel, p);
+    return p;
+  } catch (e) {
+    console.warn(`Price fetch failed ${assetLabel}: ${e.message}`);
+    _priceCache.set(assetLabel, null);
+    return null;
+  }
+}
+
+async function loadOrInitPortfolio(filePath, sbConfig) {
+  try {
+    const txt = await fs.readFile(filePath, 'utf8');
+    return JSON.parse(txt);
+  } catch {
+    return {
+      version: '6.0',
+      sandbox_id: sbConfig.id,
+      backend_id: sbConfig.backendId,
+      ia_name: sbConfig.name,
+      icon: sbConfig.icon,
+      created_at: new Date().toISOString(),
+      capital_initial: CAPITAL_INITIAL,
+      cash: CAPITAL_INITIAL,
+      positions: [],
+      closed_trades: [],
+      equity_history: [],
+      last_cycle: null,
+    };
+  }
+}
+
+function updatePosition(pos, currentPrice, dayOfCycle) {
+  const ageDays = dayOfCycle - (pos.opened_at_cycle || dayOfCycle);
+  pos.current_price = currentPrice;
+  pos.age_days = ageDays;
+  // Trailing chandelier (v5.0)
+  if (pos.high_since_entry == null || currentPrice > pos.high_since_entry) {
+    pos.high_since_entry = currentPrice;
+  }
+  if (pos.touched_tp1 && pos.trailing_after_tp1) {
+    const initialRisk = pos.entry - (pos.initial_stop || pos.entry * (1 - (pos.risk_pct || 0)));
+    const chandStop = pos.high_since_entry - initialRisk;
+    if (chandStop > pos.stop) pos.stop = chandStop;
+  }
+  if (currentPrice <= pos.stop) {
+    let pnl;
+    if (pos.trailing_active && pos.stop > pos.entry) {
+      const gainSecondHalf = ((pos.stop - pos.entry) / pos.entry) * pos.size_eur * 0.5;
+      pnl = pos.size_eur * pos.rr1 * 0.5 * pos.risk_pct + gainSecondHalf;
+      pos.status = 'trail_profit';
+    } else if (pos.touched_tp1) {
+      pnl = pos.trailing_active
+        ? pos.size_eur * pos.rr1 * 0.5 * pos.risk_pct
+        : pos.size_eur * (pos.rr1 * 0.5 - 0.5) * pos.risk_pct;
+      pos.status = pos.trailing_active ? 'partial_then_breakeven' : 'partial_then_stop';
+    } else {
+      pnl = -pos.size_eur * pos.risk_pct;
+      pos.status = 'loss';
+    }
+    pos.closed_at = new Date().toISOString();
+    pos.closed_at_cycle = dayOfCycle;
+    pos.exit_price = pos.stop;
+    pos.pnl_eur = pnl;
+    return { action: pos.status, pnl_eur: pnl };
+  }
+  if (currentPrice >= pos.tp2) {
+    pos.status = 'win';
+    pos.closed_at = new Date().toISOString();
+    pos.closed_at_cycle = dayOfCycle;
+    pos.exit_price = pos.tp2;
+    pos.pnl_eur = pos.size_eur * pos.rr2 * pos.risk_pct;
+    return { action: 'tp2_hit', pnl_eur: pos.pnl_eur };
+  }
+  if (!pos.touched_tp1 && currentPrice >= pos.tp1) {
+    pos.touched_tp1 = true;
+    if (pos.trailing_after_tp1) {
+      pos.stop = pos.entry;
+      pos.trailing_active = true;
+      return { action: 'tp1_partial_breakeven', pnl_eur: 0 };
+    }
+    return { action: 'tp1_partial', pnl_eur: 0 };
+  }
+  if (ageDays >= MAX_HOLD_DAYS) {
+    pos.status = 'timeout';
+    pos.closed_at = new Date().toISOString();
+    pos.closed_at_cycle = dayOfCycle;
+    pos.exit_price = currentPrice;
+    const pnl_pct = (currentPrice - pos.entry) / pos.entry;
+    pos.pnl_eur = pos.size_eur * pnl_pct;
+    return { action: 'timeout', pnl_eur: pos.pnl_eur };
+  }
+  return { action: 'hold', pnl_eur: 0 };
+}
+
+function selectSetupsFor(aiStudy, portfolio, backendId) {
+  const setups = [];
+  if (Array.isArray(aiStudy.agents)) {
+    aiStudy.agents.forEach(agent => {
+      // Pour NEXUS (backendId='multi'), on prend les setups de tous les agents
+      // mais SEULEMENT sur les actifs crypto
+      if (backendId === 'multi') {
+        if (Array.isArray(agent.setups)) {
+          agent.setups
+            .filter(s => s.kind === 'crypto')
+            .forEach(s => setups.push({ ...s, agent_id: agent.id }));
+        }
+        return;
+      }
+      // Pour BASTION/PHÉNIX/RAFALE : que les setups de l'agent backend correspondant
+      if (agent.id !== backendId) return;
+      if (Array.isArray(agent.setups)) {
+        agent.setups.forEach(s => setups.push({ ...s, agent_id: agent.id }));
+      }
+    });
+  }
+  // Dédoublonne par actif (garde best quality)
+  const byAsset = {};
+  setups.forEach(s => {
+    if (!byAsset[s.asset] || (s.quality_score || 0) > (byAsset[s.asset].quality_score || 0)) {
+      byAsset[s.asset] = s;
+    }
+  });
+  const openedAssets = new Set(portfolio.positions.filter(p => p.status === 'open').map(p => p.asset));
+  return Object.values(byAsset)
+    .filter(s => (s.quality_score || 0) >= MIN_QUALITY_TO_OPEN)
+    .filter(s => !openedAssets.has(s.asset))
+    .filter(s => ASSET_MAP[s.asset])
+    .sort((a, b) => (b.quality_score || 0) - (a.quality_score || 0));
+}
+
+function computeStats(portfolio) {
+  const closed = portfolio.closed_trades || [];
+  const wins = closed.filter(t => (t.pnl_eur || 0) > 0);
+  const losses = closed.filter(t => (t.pnl_eur || 0) <= 0);
+  const totalProfit = wins.reduce((s, t) => s + t.pnl_eur, 0);
+  const totalLoss = Math.abs(losses.reduce((s, t) => s + t.pnl_eur, 0));
+  const pf = totalLoss > 0 ? totalProfit / totalLoss : (totalProfit > 0 ? 999 : 0);
+  const winRate = closed.length > 0 ? wins.length / closed.length : 0;
+  const eq = portfolio.equity_history || [];
+  let maxEq = CAPITAL_INITIAL, maxDd = 0;
+  eq.forEach(p => {
+    if (p.equity > maxEq) maxEq = p.equity;
+    const dd = (p.equity - maxEq) / maxEq;
+    if (dd < maxDd) maxDd = dd;
+  });
+  const currentEquity = eq.length ? eq[eq.length - 1].equity : CAPITAL_INITIAL;
+  return {
+    sandbox_id: portfolio.sandbox_id,
+    ia_name: portfolio.ia_name,
+    trades_closed: closed.length,
+    trades_open: portfolio.positions.filter(p => p.status === 'open').length,
+    win_rate: Number(winRate.toFixed(3)),
+    profit_factor: Number(pf.toFixed(2)),
+    total_return_pct: Number(((currentEquity - CAPITAL_INITIAL) / CAPITAL_INITIAL * 100).toFixed(2)),
+    max_drawdown_pct: Number((maxDd * 100).toFixed(2)),
+    equity_current: Number(currentEquity.toFixed(2)),
+    equity_high: Number(maxEq.toFixed(2)),
+    cash: Number(portfolio.cash.toFixed(2)),
+  };
+}
+
+async function runOneSandbox(sbConfig, aiStudy, today, dayOfCycle) {
+  const portFile = path.join(SANDBOX_DIR, `portfolio_${sbConfig.id}.json`);
+  const statsFile = path.join(SANDBOX_DIR, `stats_${sbConfig.id}.json`);
+  const portfolio = await loadOrInitPortfolio(portFile, sbConfig);
+
+  console.log(`\n=== ${sbConfig.icon} ${sbConfig.name} (cycle ${dayOfCycle}) ===`);
+
+  // 1) UPDATE positions OPEN
+  const openPositions = portfolio.positions.filter(p => p.status === 'open');
+  for (const pos of openPositions) {
+    const cur = await fetchCurrentPrice(pos.asset);
+    if (cur == null) { console.log(`  ${pos.asset}: price unavailable`); continue; }
+    const r = updatePosition(pos, cur, dayOfCycle);
+    console.log(`  ${pos.asset}: ${r.action} (cur=${cur.toFixed(2)} entry=${pos.entry.toFixed(2)} pnl=${(r.pnl_eur || 0).toFixed(2)}€)`);
+    if (pos.status !== 'open') {
+      portfolio.cash += pos.size_eur + (r.pnl_eur || 0);
+      portfolio.closed_trades.push(pos);
+    }
+  }
+  portfolio.positions = portfolio.positions.filter(p => p.status === 'open');
+
+  // 2) Kelly-light streak (v5.0)
+  const recent5 = (portfolio.closed_trades || []).slice(-5);
+  let streakMult = 1;
+  if (recent5.length >= 3) {
+    const last3 = recent5.slice(-3);
+    if (last3.every(t => (t.pnl_eur || 0) > 0)) streakMult = 1.2;
+    else if (last3.every(t => (t.pnl_eur || 0) <= 0)) streakMult = 0.7;
+  }
+
+  // 3) OPEN nouvelles positions
+  const slotsAvailable = MAX_POSITIONS - portfolio.positions.length;
+  if (slotsAvailable > 0 && portfolio.cash > 1) {
+    const candidates = selectSetupsFor(aiStudy, portfolio, sbConfig.backendId);
+    console.log(`  ${candidates.length} candidates, ${slotsAvailable} slots, cash=${portfolio.cash.toFixed(2)}€ · Kelly=${streakMult}`);
+    for (const s of candidates.slice(0, slotsAvailable)) {
+      const sizing_pct = ((s.sizing_pct || 1) * streakMult) / 100;
+      const size_eur = portfolio.cash * sizing_pct;
+      if (size_eur < 1) continue;
+      const risk_pct = Math.abs(s.entry - s.stop) / s.entry;
+      portfolio.cash -= size_eur;
+      portfolio.positions.push({
+        id: 'pos-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
+        asset: s.asset, kind: s.kind, agent: s.agent_id, type: s.type,
+        entry: s.entry, stop: s.stop, tp1: s.tp1, tp2: s.tp2,
+        initial_stop: s.stop, high_since_entry: s.entry,
+        rr1: Number(s.rr1) || 0, rr2: Number(s.rr2) || 0,
+        risk_pct, size_eur,
+        quality_score: s.quality_score || null,
+        sizing_pct: s.sizing_pct,
+        trailing_after_tp1: s.trailing_after_tp1 === true,
+        trailing_active: false,
+        stacked: s.stacked === true,
+        opened_at: new Date().toISOString(),
+        opened_at_cycle: dayOfCycle,
+        opened_at_date: today,
+        status: 'open',
+        touched_tp1: false,
+        closed_at: null, pnl_eur: null,
+      });
+      console.log(`  OPEN ${s.asset} ${s.type} size=${size_eur.toFixed(2)}€ Q=${s.quality_score}`);
+    }
+  }
+
+  // 4) Compute equity
+  let equity = portfolio.cash;
+  for (const p of portfolio.positions) {
+    const cur = p.current_price || p.entry;
+    equity += p.size_eur * (cur / p.entry);
+  }
+  portfolio.equity_history.push({
+    date: today, cycle: dayOfCycle,
+    equity: Number(equity.toFixed(2)),
+    cash: Number(portfolio.cash.toFixed(2)),
+    positions_count: portfolio.positions.length,
+  });
+  portfolio.last_cycle = today;
+
+  // 5) Save
+  await fs.writeFile(portFile, JSON.stringify(portfolio, null, 2) + '\n');
+  const stats = computeStats(portfolio);
+  await fs.writeFile(statsFile, JSON.stringify({
+    generated: new Date().toISOString(),
+    date: today,
+    ...stats,
+  }, null, 2) + '\n');
+
+  console.log(`  → Equity ${stats.equity_current}€ (${stats.total_return_pct >= 0 ? '+' : ''}${stats.total_return_pct}%) · ${stats.trades_closed} clos · ${stats.trades_open} open · DD ${stats.max_drawdown_pct}%`);
+  return stats;
+}
+
+async function main() {
+  console.log('=== Sandbox MULTI v6.0 · 4×1000€ ===');
+  await fs.mkdir(SANDBOX_DIR, { recursive: true });
+  await fs.mkdir(SNAPSHOTS_DIR, { recursive: true });
+
+  const aiStudy = JSON.parse(await fs.readFile(AI_STUDY_FILE, 'utf8'));
+  const today = new Date().toISOString().slice(0, 10);
+  // dayOfCycle = max equity_history length parmi les 4 portfolios + 1
+  let maxCycle = 0;
+  for (const sb of SANDBOXES) {
+    try {
+      const p = JSON.parse(await fs.readFile(path.join(SANDBOX_DIR, `portfolio_${sb.id}.json`), 'utf8'));
+      maxCycle = Math.max(maxCycle, p.equity_history?.length || 0);
+    } catch {}
+  }
+  const dayOfCycle = maxCycle + 1;
+
+  // Snapshot du jour
+  const snapshotFile = path.join(SNAPSHOTS_DIR, today + '.json');
+  await fs.writeFile(snapshotFile, JSON.stringify({
+    date: today, cycle: dayOfCycle,
+    ai_study_generated: aiStudy.generated,
+    macro: aiStudy.macro || null,
+    setups_count: (aiStudy.agents || []).reduce((s, a) => s + (a.count || 0), 0),
+  }, null, 2));
+
+  const allStats = [];
+  for (const sb of SANDBOXES) {
+    const s = await runOneSandbox(sb, aiStudy, today, dayOfCycle);
+    allStats.push(s);
+  }
+
+  // Récap final
+  console.log('\n╔═══════════════════════════════════════════════════════════════╗');
+  console.log('║ RÉCAP MULTI-SANDBOX · 4 IA × 1000€');
+  console.log('╠═══════════════════════════════════════════════════════════════╣');
+  console.log('║ IA       │ Equity    │ Return  │ PF   │ DD     │ Open │ Clos ║');
+  console.log('╟──────────┼───────────┼─────────┼──────┼────────┼──────┼──────╢');
+  for (const s of allStats) {
+    const ret = (s.total_return_pct >= 0 ? '+' : '') + s.total_return_pct + '%';
+    console.log(`║ ${s.ia_name.padEnd(8)} │ ${s.equity_current.toFixed(2).padStart(8)}€ │ ${ret.padStart(7)} │ ${s.profit_factor.toFixed(2).padStart(4)} │ ${s.max_drawdown_pct.toFixed(2).padStart(6)}%│ ${s.trades_open.toString().padStart(4)} │ ${s.trades_closed.toString().padStart(4)} ║`);
+  }
+  console.log('╚═══════════════════════════════════════════════════════════════╝');
+
+  // Aggregate global stats
+  const total = allStats.reduce((acc, s) => ({
+    equity_total: (acc.equity_total || 0) + s.equity_current,
+    trades_total: (acc.trades_total || 0) + s.trades_closed,
+    trades_open: (acc.trades_open || 0) + s.trades_open,
+  }), {});
+  await fs.writeFile(path.join(SANDBOX_DIR, 'multi_summary.json'), JSON.stringify({
+    generated: new Date().toISOString(),
+    date: today,
+    capital_initial_per_sandbox: CAPITAL_INITIAL,
+    sandboxes: allStats,
+    aggregate: total,
+  }, null, 2));
+}
+
+main().catch(e => { console.error(e); process.exit(1); });
