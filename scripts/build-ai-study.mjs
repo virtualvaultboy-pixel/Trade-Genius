@@ -2213,59 +2213,62 @@ function _stackPatterns(hits, fallbackLegacy) {
   return best;
 }
 
-// Wrappers v3.0 : 3 patterns grid → v4.3 stacking ensemble
+// Wrappers v3.0 → v7.16 : configs optimisées par grid-search 6 folds × 150j + slippage
+// BASTION : TIGHT-STOP (atrStop 1.0→0.7) → +6.73%/an (gain +1.31% vs baseline)
+// PHÉNIX  : TIGHT-STOP (atrStop 1.0→0.7) → +5.55%/an (gain +0.79%)
+// RAFALE  : SCALP-ULTRA (atrStop 0.5, TP 3.5) → +5.78%/an (gain +1.84%)
 function _detectAtlasGrid(asset) {
-  // MONTH (60j)
+  // MONTH (60j) — v7.16 atrStop 1.0→0.7 (DD divisé par 2, perf +1.31%)
   const c = _detectGridPullbackTrend(asset, {
-    atrStop: 1.0, atrTp2: 7.0,
+    atrStop: 0.7, atrTp2: 7.0,
     type: 'grid-month-C', label: 'Pullback dans tendance LT (Ichimoku)',
     timeframe: 'Long terme · 4-12 semaines',
   });
   const a = _detectGridContrarian(asset, {
-    rsiMax: 25, atrStop: 1.0, atrTp2: 7.0, requireMaBull: false,
+    rsiMax: 25, atrStop: 0.7, atrTp2: 7.0, requireMaBull: false,
     type: 'grid-month-A', label: 'Survente extrême + correction MACD',
     timeframe: 'Long terme · 4-12 semaines', expectedPF: '3.42',
   });
   const b = _detectGridTrendFollow(asset, {
-    rsiMin: 35, adxMin: 30, atrStop: 1.0, atrTp2: 7.0,
+    rsiMin: 35, adxMin: 30, atrStop: 0.7, atrTp2: 7.0,
     type: 'grid-month-B', label: 'Trend-follow correction sur tendance forte',
     timeframe: 'Long terme · 4-12 semaines', expectedPF: '3.42',
   });
   return _stackPatterns([c, a, b], _detectAtlas(asset));
 }
 function _detectNovaGrid(asset) {
-  // WEEK (15-21j)
+  // WEEK (15-21j) — v7.16 atrStop 1.0→0.7 → +5.55%/an (gain +0.79%)
   const c = _detectGridPullbackTrend(asset, {
-    atrStop: 1.0, atrTp2: 5.0,
+    atrStop: 0.7, atrTp2: 5.0,
     type: 'grid-week-C', label: 'Pullback dans tendance MT (Ichimoku)',
     timeframe: 'Swing · 1-3 semaines',
   });
   const a = _detectGridContrarian(asset, {
-    rsiMax: 25, atrStop: 1.0, atrTp2: 5.0, requireMaBull: true,
+    rsiMax: 25, atrStop: 0.7, atrTp2: 5.0, requireMaBull: true,
     type: 'grid-week-A', label: 'Survente + tendance MT confirmée',
     timeframe: 'Swing · 1-3 semaines', expectedPF: '3.17',
   });
   const b = _detectGridTrendFollow(asset, {
-    rsiMin: 35, adxMin: 30, atrStop: 1.0, atrTp2: 5.0,
+    rsiMin: 35, adxMin: 30, atrStop: 0.7, atrTp2: 5.0,
     type: 'grid-week-B', label: 'Trend-follow correction swing',
     timeframe: 'Swing · 1-3 semaines', expectedPF: '3.17',
   });
   return _stackPatterns([c, a, b], _detectNova(asset));
 }
 function _detectKairoGrid(asset) {
-  // DAY (3-7j)
+  // DAY (3-7j) — v7.16 SCALP-ULTRA (stop 0.5, TP 3.5) → +5.78%/an (gain +1.84%, DD -1.06%)
   const c = _detectGridPullbackTrend(asset, {
-    atrStop: 1.0, atrTp2: 4.0,
+    atrStop: 0.5, atrTp2: 3.5,
     type: 'grid-day-C', label: 'Pullback dans tendance courte (Ichimoku)',
     timeframe: 'Court terme · 3-7 jours',
   });
   const a = _detectGridContrarian(asset, {
-    rsiMax: 25, atrStop: 1.0, atrTp2: 4.0, requireMaBull: true,
+    rsiMax: 25, atrStop: 0.5, atrTp2: 3.5, requireMaBull: true,
     type: 'grid-day-A', label: 'Rebond rapide sur survente + correction',
     timeframe: 'Court terme · 3-7 jours', expectedPF: '2.80',
   });
   const b = _detectGridTrendFollow(asset, {
-    rsiMin: 35, adxMin: 30, atrStop: 1.0, atrTp2: 4.0,
+    rsiMin: 35, adxMin: 30, atrStop: 0.5, atrTp2: 3.5,
     type: 'grid-day-B', label: 'Trend-follow correction CT',
     timeframe: 'Court terme · 3-7 jours', expectedPF: '2.80',
   });

@@ -1,42 +1,38 @@
 #!/usr/bin/env node
 /**
- * Trade Genius — v7.15 STRESS TEST COMPLET 5 IA
+ * Trade Genius — v7.16 OPTIMIZE IAs (grid-search 4 IA conservatrices)
  *
- * Audit exhaustif : applique le même protocole stress walk-forward que VOLT
- * sur les 4 autres IA (BASTION/PHÉNIX/RAFALE/NEXUS) pour vérifier que leurs
- * promesses (+8.9%/an, +7.7%/an, +6-7%/an, +8%/an) tiennent face à la même
- * exigence : 6 folds × 150j + slippage 0.4%/trade.
+ * Hypothèse : les IA conservatrices utilisent stop 1.0 ATR partout (héritage v2.x,
+ * jamais optimisé). VOLT (+10.7%/an) a montré que stop 0.6 + TP adapté + timeout
+ * court bat largement la config standard. On applique le même grid-search aux 4
+ * autres IA.
  *
- * Output : data/sandbox/stress_all_ias.json
+ * Protocole : 6 folds × 150j + slippage 0.4%/trade + cap sizing 5% (identique stress).
+ * Critère gagnant : médian amélioré ET DD stable ET 6/6 folds positifs maintenus.
  *
- * Univers par IA :
- *   - BASTION (atlas) : indices + actions blue-chip (long terme)
- *   - PHÉNIX (nova)   : indices + actions (moyen terme)
- *   - RAFALE (kairo)  : indices + actions (court terme)
- *   - NEXUS (multi)   : crypto only (15 majeurs)
- *   - VOLT            : VOLT_UNIVERSE (cryptos mid-cap + actions high-beta)
+ * Output : data/sandbox/optimize_ias.json
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { fetchYahooHistorical, computeAllIndicators, atrPct, sma } from './indicators.mjs';
+import { fetchYahooHistorical, computeAllIndicators, sma } from './indicators.mjs';
 
 const CAPITAL_INITIAL = 1000;
+const MAX_POSITIONS = 3;
 const WARMUP = 220;
 const HISTORY_RANGE = '5y';
 const N_FOLDS = 6;
 const FOLD_DAYS = 150;
 const SLIPPAGE_PCT = 0.002;
+const SIZING_CAP_PCT = 5;
 
-// ── Univers : actions + indices (BASTION/PHÉNIX/RAFALE) ──
+// Univers (identique stress-all-ias.mjs)
 const STOCK_INDEX_UNIVERSE = [
-  // Indices
   { symbol: '^GSPC',  label: 'S&P 500',     kind: 'index' },
   { symbol: '^IXIC',  label: 'Nasdaq',      kind: 'index' },
   { symbol: '^DJI',   label: 'Dow Jones',   kind: 'index' },
   { symbol: '^FCHI',  label: 'CAC 40',      kind: 'index' },
   { symbol: '^GDAXI', label: 'DAX',         kind: 'index' },
   { symbol: '^FTSE',  label: 'FTSE 100',    kind: 'index' },
-  // Actions US blue-chip
   { symbol: 'AAPL',  label: 'Apple',       kind: 'action' },
   { symbol: 'MSFT',  label: 'Microsoft',   kind: 'action' },
   { symbol: 'GOOGL', label: 'Alphabet',    kind: 'action' },
@@ -59,7 +55,6 @@ const STOCK_INDEX_UNIVERSE = [
   { symbol: 'NKE',   label: 'Nike',        kind: 'action' },
 ];
 
-// ── Univers crypto (NEXUS) ──
 const CRYPTO_UNIVERSE = [
   { symbol: 'BTC-USD',  label: 'BTC',     kind: 'crypto' },
   { symbol: 'ETH-USD',  label: 'ETH',     kind: 'crypto' },
@@ -76,77 +71,55 @@ const CRYPTO_UNIVERSE = [
   { symbol: 'BCH-USD',  label: 'BCH',     kind: 'crypto' },
 ];
 
-// ── Univers VOLT (subset stable >1500j d'historique) ──
-const VOLT_UNIVERSE = [
-  { symbol: 'SOL-USD',  label: 'Solana',     kind: 'crypto' },
-  { symbol: 'AVAX-USD', label: 'Avalanche',  kind: 'crypto' },
-  { symbol: 'NEAR-USD', label: 'Near',       kind: 'crypto' },
-  { symbol: 'INJ-USD',  label: 'Injective',  kind: 'crypto' },
-  { symbol: 'LDO-USD',  label: 'Lido DAO',   kind: 'crypto' },
-  { symbol: 'FET-USD',  label: 'Fetch.ai',   kind: 'crypto' },
-  { symbol: 'MATIC-USD', label: 'Polygon',   kind: 'crypto' },
-  { symbol: 'ATOM-USD', label: 'Cosmos',     kind: 'crypto' },
-  { symbol: 'FIL-USD',  label: 'Filecoin',   kind: 'crypto' },
-  { symbol: 'ICP-USD',  label: 'Internet Computer', kind: 'crypto' },
-  { symbol: 'TSLA', label: 'Tesla',          kind: 'action' },
-  { symbol: 'PLTR', label: 'Palantir',       kind: 'action' },
-  { symbol: 'COIN', label: 'Coinbase',       kind: 'action' },
-  { symbol: 'MSTR', label: 'MicroStrategy',  kind: 'action' },
-  { symbol: 'AFRM', label: 'Affirm',         kind: 'action' },
-  { symbol: 'SOFI', label: 'SoFi',           kind: 'action' },
-  { symbol: 'CVNA', label: 'Carvana',        kind: 'action' },
-  { symbol: 'SMCI', label: 'Super Micro',    kind: 'action' },
-  { symbol: 'RBLX', label: 'Roblox',         kind: 'action' },
-  { symbol: 'SNAP', label: 'Snap',           kind: 'action' },
-  { symbol: 'DKNG', label: 'DraftKings',     kind: 'action' },
-  { symbol: 'ROKU', label: 'Roku',           kind: 'action' },
-];
-
-// ── Configs des 5 IA (v7.16 : configs optimisées par grid-search) ──
-const IA_CONFIGS = {
+// Grid-search par IA : 6-7 variantes autour de la baseline (config v7.15)
+// Stratégie : varier atrStop (0.6-1.0), atrTp2 (TP), timeoutDays
+// Garder R/R cohérent avec la philo de l'IA (BASTION long > PHÉNIX > RAFALE court)
+const IA_VARIANTS = {
   BASTION: {
     universe: STOCK_INDEX_UNIVERSE,
-    atrStop: 0.7, atrTp2: 7.0,   // v7.16 TIGHT-STOP (gain +1.31%)
-    minQ: 65, timeoutDays: 60,
-    trailingAfterTp1: true,
-    sizingCapPct: 5,
-    promise: 'v7.15 baseline +5.4%/an',
+    variants: [
+      { name: 'BASELINE',     atrStop: 1.0, atrTp2: 7.0, timeoutDays: 60 },
+      { name: 'TIGHT-STOP',   atrStop: 0.7, atrTp2: 7.0, timeoutDays: 60 },
+      { name: 'TIGHT-FAST',   atrStop: 0.7, atrTp2: 5.0, timeoutDays: 40 },
+      { name: 'SCALP-LIKE',   atrStop: 0.6, atrTp2: 4.5, timeoutDays: 30 },
+      { name: 'SCALP-WIDE',   atrStop: 0.6, atrTp2: 6.0, timeoutDays: 45 },
+      { name: 'BALANCED',     atrStop: 0.8, atrTp2: 6.0, timeoutDays: 45 },
+    ],
   },
   PHENIX: {
     universe: STOCK_INDEX_UNIVERSE,
-    atrStop: 0.7, atrTp2: 5.0,   // v7.16 TIGHT-STOP (gain +0.79%)
-    minQ: 65, timeoutDays: 30,
-    trailingAfterTp1: true,
-    sizingCapPct: 5,
-    promise: 'v7.15 baseline +4.8%/an',
+    variants: [
+      { name: 'BASELINE',     atrStop: 1.0, atrTp2: 5.0, timeoutDays: 30 },
+      { name: 'TIGHT-STOP',   atrStop: 0.7, atrTp2: 5.0, timeoutDays: 30 },
+      { name: 'TIGHT-FAST',   atrStop: 0.7, atrTp2: 4.0, timeoutDays: 21 },
+      { name: 'SCALP-LIKE',   atrStop: 0.6, atrTp2: 4.5, timeoutDays: 20 },
+      { name: 'VOLT-CLONE',   atrStop: 0.6, atrTp2: 4.5, timeoutDays: 15 },
+      { name: 'BALANCED',     atrStop: 0.8, atrTp2: 5.0, timeoutDays: 25 },
+    ],
   },
   RAFALE: {
     universe: STOCK_INDEX_UNIVERSE,
-    atrStop: 0.5, atrTp2: 3.5,   // v7.16 SCALP-ULTRA (gain +1.84%)
-    minQ: 65, timeoutDays: 12,
-    trailingAfterTp1: true,
-    sizingCapPct: 5,
-    promise: 'v7.15 baseline +3.9%/an',
+    variants: [
+      { name: 'BASELINE',     atrStop: 1.0, atrTp2: 4.0, timeoutDays: 14 },
+      { name: 'TIGHT-STOP',   atrStop: 0.7, atrTp2: 4.0, timeoutDays: 14 },
+      { name: 'SCALP-LIKE',   atrStop: 0.6, atrTp2: 4.5, timeoutDays: 15 },
+      { name: 'SCALP-ULTRA',  atrStop: 0.5, atrTp2: 3.5, timeoutDays: 12 },
+      { name: 'WIDE-TP',      atrStop: 0.6, atrTp2: 5.0, timeoutDays: 18 },
+      { name: 'BALANCED',     atrStop: 0.8, atrTp2: 4.0, timeoutDays: 14 },
+    ],
   },
   NEXUS: {
     universe: CRYPTO_UNIVERSE,
-    atrStop: 0.6, atrTp2: 4.0,   // v7.16 CRYPTO-FAST (gain +2.51%)
-    minQ: 65, timeoutDays: 15,
-    trailingAfterTp1: true,
-    sizingCapPct: 5,
-    promise: 'v7.15 baseline +3.6%/an',
-  },
-  VOLT: {
-    universe: VOLT_UNIVERSE,
-    atrStop: 0.6, atrTp2: 4.5,
-    minQ: 65, timeoutDays: 15,
-    trailingAfterTp1: true,
-    sizingCapPct: 5,
-    promise: 'v7.15 référence +10.7%/an',
+    variants: [
+      { name: 'BASELINE',     atrStop: 1.0, atrTp2: 5.0, timeoutDays: 30 },
+      { name: 'TIGHT-STOP',   atrStop: 0.7, atrTp2: 5.0, timeoutDays: 30 },
+      { name: 'SCALP-LIKE',   atrStop: 0.6, atrTp2: 4.5, timeoutDays: 20 },
+      { name: 'CRYPTO-FAST',  atrStop: 0.6, atrTp2: 4.0, timeoutDays: 15 },
+      { name: 'CRYPTO-WIDE',  atrStop: 0.7, atrTp2: 6.0, timeoutDays: 25 },
+      { name: 'BALANCED',     atrStop: 0.8, atrTp2: 5.0, timeoutDays: 25 },
+    ],
   },
 };
-
-const MAX_POSITIONS = 3;
 
 function detectRegime(prices) {
   if (!prices || prices.length < 200) return 'unknown';
@@ -159,7 +132,7 @@ function detectRegime(prices) {
   return 'sideways';
 }
 
-// ── 3 patterns A/B/C (synchro avec grid v3.0 build-ai-study.mjs) ──
+// ABC-TRIPLE patterns (identique stress-all-ias)
 function _patternA(ind, prices) {
   const rsi = ind.rsi?.value, boll = ind.boll?.value, macdH = ind.macd?.value;
   if (rsi == null || rsi >= 25) return null;
@@ -192,11 +165,10 @@ function _patternB(ind, prices) {
   return { regime, kind: 'B' };
 }
 
-function detectSetup(prices, volumes, config) {
+function detectSetup(prices, volumes, variant) {
   if (!prices || prices.length < 60) return null;
   const ind = computeAllIndicators(prices, volumes);
   if (!ind) return null;
-  // ABC-TRIPLE (toutes IA utilisent les 3 patterns combinés)
   const pat = _patternA(ind, prices) || _patternC(ind, prices) || _patternB(ind, prices);
   if (!pat) return null;
   const atrPctV = ind.atr?.value;
@@ -204,14 +176,13 @@ function detectSetup(prices, volumes, config) {
   const close = prices[prices.length - 1];
   const atrAbs = (atrPctV / 100) * close;
   const entry = close;
-  const stop = entry - config.atrStop * atrAbs;
-  const tp1 = entry + (config.atrTp2 * 0.5) * atrAbs;
-  const tp2 = entry + config.atrTp2 * atrAbs;
+  const stop = entry - variant.atrStop * atrAbs;
+  const tp1 = entry + (variant.atrTp2 * 0.5) * atrAbs;
+  const tp2 = entry + variant.atrTp2 * atrAbs;
   if (stop >= entry || tp1 <= entry || tp2 <= tp1) return null;
   const risk = entry - stop;
   const rr2 = (tp2 - entry) / risk;
   if (rr2 < 1.5) return null;
-  // Quality score
   let q = (pat.kind === 'C' && pat.regime === 'bull') ? 75 : pat.kind === 'A' ? 70 : 60;
   if (pat.regime === 'bull') q += 10;
   else if (pat.regime === 'sideways') q += 5;
@@ -220,37 +191,30 @@ function detectSetup(prices, volumes, config) {
   if (rr2 >= 4) q += 10; else if (rr2 >= 3) q += 5;
   if (ind.obv?.trend === 'up') q += 5;
   q = Math.min(100, q);
-  let sizing_pct = q >= 85 ? config.sizingCapPct : q >= 75 ? Math.min(config.sizingCapPct, 4) : Math.min(config.sizingCapPct, 2);
+  let sizing_pct = q >= 85 ? SIZING_CAP_PCT : q >= 75 ? Math.min(SIZING_CAP_PCT, 4) : Math.min(SIZING_CAP_PCT, 2);
   return { quality: q, sizing_pct, entry, stop, tp1, tp2, rr1: (tp1 - entry) / risk, rr2, regime: pat.regime, pattern: pat.kind };
 }
 
-// ── Backtest sur un fold ──
-function runFold(data, btcPrices, startIdx, endIdx, foldName, config) {
+function runFold(data, startIdx, endIdx, variant) {
   let cash = CAPITAL_INITIAL;
   let positions = [];
   const equityHist = [];
   const closed = [];
-
   for (let d = startIdx; d < endIdx; d++) {
-    const today = d;
-    const tomorrow = d + 1;
-
+    const today = d, tomorrow = d + 1;
     positions = positions.filter(pos => {
       const asset = data[pos.asset];
       if (!asset) return false;
       const cur = asset.prices[tomorrow];
       if (cur == null) return true;
       const ageDays = d - pos.opened_at;
-
       if (pos.high_since_entry == null || cur > pos.high_since_entry) pos.high_since_entry = cur;
-      if (pos.touched_tp1 && config.trailingAfterTp1) {
+      if (pos.touched_tp1) {
         const initialRisk = pos.entry - pos.initial_stop;
         const chandStop = pos.high_since_entry - initialRisk;
         if (chandStop > pos.stop) pos.stop = chandStop;
       }
-
       const exitWithSlip = (px) => px * (1 - SLIPPAGE_PCT);
-
       if (cur <= pos.stop) {
         let pnl;
         if (pos.trailing_active && pos.stop > pos.entry) {
@@ -281,7 +245,7 @@ function runFold(data, btcPrices, startIdx, endIdx, foldName, config) {
         pos.stop = pos.entry;
         pos.trailing_active = true;
       }
-      if (ageDays >= config.timeoutDays) {
+      if (ageDays >= variant.timeoutDays) {
         const exitPx = exitWithSlip(cur);
         const pnlPct = (exitPx - pos.entry) / pos.entry;
         const pnl = pos.size_eur * pnlPct;
@@ -292,19 +256,17 @@ function runFold(data, btcPrices, startIdx, endIdx, foldName, config) {
       pos.current_price = cur;
       return true;
     });
-
     if (positions.length < MAX_POSITIONS && cash > 1) {
       const opened = new Set(positions.map(p => p.asset));
       const candidates = [];
-
       for (const [label, asset] of Object.entries(data)) {
         if (opened.has(label)) continue;
         const slice = asset.prices.slice(0, today + 1);
         if (slice.length < WARMUP) continue;
         const sliceVol = asset.volumes.slice(0, today + 1);
-        const setup = detectSetup(slice, sliceVol, config);
+        const setup = detectSetup(slice, sliceVol, variant);
         if (!setup) continue;
-        if (setup.quality < config.minQ) continue;
+        if (setup.quality < 65) continue;
         candidates.push({ label, setup });
       }
       candidates.sort((a, b) => b.setup.quality - a.setup.quality);
@@ -334,7 +296,6 @@ function runFold(data, btcPrices, startIdx, endIdx, foldName, config) {
         });
       }
     }
-
     let eq = cash;
     for (const p of positions) {
       const cur = data[p.asset].prices[today] || p.entry;
@@ -342,7 +303,6 @@ function runFold(data, btcPrices, startIdx, endIdx, foldName, config) {
     }
     equityHist.push({ day: d, equity: eq });
   }
-
   const finalEq = equityHist[equityHist.length - 1]?.equity || CAPITAL_INITIAL;
   const foldDays = endIdx - startIdx;
   const ret = ((finalEq - CAPITAL_INITIAL) / CAPITAL_INITIAL) * 100;
@@ -359,25 +319,42 @@ function runFold(data, btcPrices, startIdx, endIdx, foldName, config) {
     const dd = (p.equity - maxEq) / maxEq;
     if (dd < maxDd) maxDd = dd;
   });
-  let btcPerf = null;
-  if (btcPrices && btcPrices[endIdx - 1] != null && btcPrices[startIdx] != null) {
-    btcPerf = ((btcPrices[endIdx - 1] - btcPrices[startIdx]) / btcPrices[startIdx]) * 100;
-  }
   return {
-    fold: foldName, days: foldDays,
-    equity_final: Number(finalEq.toFixed(2)),
-    return_pct: Number(ret.toFixed(2)),
     annualized_pct: Number(annualized.toFixed(2)),
     profit_factor: Number(pf.toFixed(2)),
     max_dd_pct: Number((maxDd * 100).toFixed(2)),
     win_rate_pct: Number((wr * 100).toFixed(1)),
     trades_closed: closed.length,
-    btc_perf_pct: btcPerf != null ? Number(btcPerf.toFixed(1)) : null,
   };
 }
 
-async function runIA(iaName, config, btcPrices) {
-  console.log(`\n━━━ ${iaName} (${config.universe.length} actifs · stop ${config.atrStop} ATR · TP ${config.atrTp2} ATR · timeout ${config.timeoutDays}j) ━━━`);
+function runVariant(data, minLen, variant) {
+  const effectiveTotal = Math.min(N_FOLDS * FOLD_DAYS, minLen - WARMUP - 10);
+  const effectiveFolds = Math.floor(effectiveTotal / FOLD_DAYS);
+  const startGlobal = minLen - effectiveFolds * FOLD_DAYS;
+  const folds = [];
+  for (let i = 0; i < effectiveFolds; i++) {
+    const r = runFold(data, startGlobal + i * FOLD_DAYS, startGlobal + (i + 1) * FOLD_DAYS, variant);
+    folds.push(r);
+  }
+  const anns = folds.map(f => f.annualized_pct);
+  const dds = folds.map(f => f.max_dd_pct);
+  const sorted = [...anns].sort((a, b) => a - b);
+  return {
+    variant: variant.name,
+    params: { atrStop: variant.atrStop, atrTp2: variant.atrTp2, timeoutDays: variant.timeoutDays },
+    median: Number(sorted[Math.floor(sorted.length / 2)].toFixed(2)),
+    mean: Number((anns.reduce((s, x) => s + x, 0) / anns.length).toFixed(2)),
+    worst_dd: Number(Math.min(...dds).toFixed(2)),
+    positive_folds: anns.filter(a => a > 0).length,
+    n_folds: effectiveFolds,
+    total_trades: folds.reduce((s, f) => s + f.trades_closed, 0),
+    folds_annualized: anns,
+  };
+}
+
+async function runIA(iaName, config) {
+  console.log(`\n━━━ ${iaName} — Grid-search ${config.variants.length} variantes (${config.universe.length} actifs) ━━━`);
   const data = {};
   for (const a of config.universe) {
     try {
@@ -387,114 +364,71 @@ async function runIA(iaName, config, btcPrices) {
     } catch {}
     await new Promise(r => setTimeout(r, 80));
   }
-  const assetsLoaded = Object.keys(data).length;
-  console.log(`  ${assetsLoaded}/${config.universe.length} actifs chargés`);
-
+  console.log(`  ${Object.keys(data).length}/${config.universe.length} actifs chargés`);
   const lengths = Object.values(data).map(d => d.prices.length);
   const minLen = Math.min(...lengths);
-  const effectiveTotal = Math.min(N_FOLDS * FOLD_DAYS, minLen - WARMUP - 10);
-  const effectiveFolds = Math.floor(effectiveTotal / FOLD_DAYS);
-  const startGlobal = minLen - effectiveFolds * FOLD_DAYS;
-  console.log(`  Backtest : ${effectiveFolds} folds × ${FOLD_DAYS}j (minLen=${minLen}j)`);
-
-  const folds = [];
-  for (let i = 0; i < effectiveFolds; i++) {
-    const foldStart = startGlobal + i * FOLD_DAYS;
-    const foldEnd = foldStart + FOLD_DAYS;
-    const r = runFold(data, btcPrices, foldStart, foldEnd, `F${(i+1).toString().padStart(2, '0')}`, config);
-    const btc = r.btc_perf_pct != null ? ((r.btc_perf_pct >= 0 ? '+' : '') + r.btc_perf_pct + '%') : 'n/a';
-    console.log(`    ${r.fold} (BTC ${btc.padStart(7)}) → ${(r.annualized_pct >= 0 ? '+' : '') + r.annualized_pct}%/an · DD ${r.max_dd_pct.toFixed(1)}% · PF ${r.profit_factor.toFixed(2)} · ${r.trades_closed} trades`);
-    folds.push(r);
-  }
-
-  const anns = folds.map(f => f.annualized_pct);
-  const dds = folds.map(f => f.max_dd_pct);
-  const sorted = [...anns].sort((a, b) => a - b);
-  const median = sorted[Math.floor(sorted.length / 2)];
-  const mean = anns.reduce((s, x) => s + x, 0) / anns.length;
-  const std = Math.sqrt(anns.reduce((s, x) => s + (x - mean) ** 2, 0) / anns.length);
-  const worstDd = Math.min(...dds);
-  const positiveCount = anns.filter(a => a > 0).length;
-
-  return {
-    ia_name: iaName,
-    config,
-    assets_loaded: assetsLoaded,
-    n_folds: effectiveFolds,
-    folds,
-    stats: {
-      median_annualized: Number(median.toFixed(2)),
-      mean_annualized: Number(mean.toFixed(2)),
-      std_annualized: Number(std.toFixed(2)),
-      worst_dd: Number(worstDd.toFixed(2)),
-      positive_folds: positiveCount,
-      total_trades: folds.reduce((s, f) => s + f.trades_closed, 0),
-    },
-  };
-}
-
-async function main() {
-  console.log(`=== STRESS TEST COMPLET 5 IA v7.15 · 6 folds × 150j · slippage 0.4%/trade ===\n`);
-
-  // Charge BTC en premier (sert pour stats fold + filter)
-  console.log('Fetching BTC pour context...');
-  let btcPrices = null;
-  try {
-    const d = await fetchYahooHistorical('BTC-USD', HISTORY_RANGE);
-    btcPrices = d.prices;
-    console.log(`  BTC: ${btcPrices.length} candles`);
-  } catch (e) {
-    console.warn(`  BTC fetch failed: ${e.message}`);
-  }
 
   const results = [];
-  for (const [iaName, config] of Object.entries(IA_CONFIGS)) {
-    const r = await runIA(iaName, config, btcPrices);
+  for (const v of config.variants) {
+    process.stdout.write(`  → ${v.name.padEnd(14)} (stop ${v.atrStop} · TP ${v.atrTp2} · timeout ${v.timeoutDays}j) : `);
+    const r = runVariant(data, minLen, v);
+    const tag = r.positive_folds === r.n_folds && r.worst_dd >= -5 ? '✓' : r.positive_folds === r.n_folds ? '~' : '✗';
+    console.log(`${tag} médian ${(r.median >= 0 ? '+' : '') + r.median}%/an · DD ${r.worst_dd}% · ${r.positive_folds}/${r.n_folds} folds`);
     results.push(r);
   }
 
-  // Synthèse tableau
-  console.log(`\n\n╔════════════════════════════════════════════════════════════════════════════════╗`);
-  console.log(`║ SYNTHÈSE STRESS TEST 5 IA · 6 folds × 150j · slippage 0.4%/trade · cap 5% size ║`);
-  console.log(`╠══════════╦═════════╦═════════╦═════════╦═════════╦═══════╦═══════╦═════════════╣`);
-  console.log(`║ IA       ║ Médian  ║ Moyen   ║ Std     ║ Worst DD║ +Folds║Trades ║ Promesse UI ║`);
-  console.log(`╟──────────╫─────────╫─────────╫─────────╫─────────╫───────╫───────╫─────────────╢`);
-  for (const r of results) {
-    const s = r.stats;
-    const med = (s.median_annualized >= 0 ? '+' : '') + s.median_annualized.toFixed(1) + '%';
-    const moy = (s.mean_annualized >= 0 ? '+' : '') + s.mean_annualized.toFixed(1) + '%';
-    console.log(`║ ${r.ia_name.padEnd(8)} ║ ${med.padStart(7)} ║ ${moy.padStart(7)} ║ ${s.std_annualized.toFixed(1).padStart(6)}% ║ ${(s.worst_dd.toFixed(1) + '%').padStart(7)} ║ ${(s.positive_folds + '/' + r.n_folds).padStart(5)} ║ ${s.total_trades.toString().padStart(5)} ║ ${r.config.promise.padEnd(11)} ║`);
-  }
-  console.log(`╚══════════╩═════════╩═════════╩═════════╩═════════╩═══════╩═══════╩═════════════╝`);
+  // Trouve la meilleure : critère = médian * (1 + DD/100) seulement si tous folds positifs
+  const eligible = results.filter(r => r.positive_folds === r.n_folds);
+  const best = eligible.length > 0
+    ? eligible.reduce((b, r) => (r.median * (1 + r.worst_dd / 100) > b.median * (1 + b.worst_dd / 100) ? r : b), eligible[0])
+    : results[0];
+  const baseline = results.find(r => r.variant === 'BASELINE');
+  const gain = best.median - baseline.median;
+  console.log(`\n  🏆 Meilleure : ${best.variant} → ${(best.median >= 0 ? '+' : '') + best.median}%/an (gain vs baseline : ${gain >= 0 ? '+' : ''}${gain.toFixed(2)}%)`);
+  return { ia_name: iaName, baseline, best, all_variants: results };
+}
 
-  // Verdicts
-  console.log(`\n=== VERDICTS PAR IA ===\n`);
-  for (const r of results) {
-    const s = r.stats;
-    let verdict;
-    if (s.positive_folds === r.n_folds && s.worst_dd >= -10 && s.median_annualized >= 5) {
-      verdict = `✅ ROBUSTE · ${s.positive_folds}/${r.n_folds} folds positifs · médian ${s.median_annualized}%/an · DD ${s.worst_dd}%`;
-    } else if (s.positive_folds >= r.n_folds - 1 && s.worst_dd >= -10) {
-      verdict = `⚠️ ACCEPTABLE · ${s.positive_folds}/${r.n_folds} folds positifs · médian ${s.median_annualized}%/an · DD ${s.worst_dd}%`;
-    } else if (s.worst_dd < -15) {
-      verdict = `🚨 RISQUE ÉLEVÉ · DD ${s.worst_dd}% (cap suggéré -10%)`;
-    } else {
-      verdict = `❌ FRAGILE · ${s.positive_folds}/${r.n_folds} folds positifs · médian ${s.median_annualized}%/an`;
-    }
-    console.log(`  ${r.ia_name.padEnd(8)} : ${verdict}`);
+async function main() {
+  console.log(`=== OPTIMIZE 4 IA v7.16 · grid-search ${N_FOLDS} folds × ${FOLD_DAYS}j · slippage 0.4%/trade ===\n`);
+  const allResults = [];
+  for (const [iaName, config] of Object.entries(IA_VARIANTS)) {
+    const r = await runIA(iaName, config);
+    allResults.push(r);
+  }
+
+  // Synthèse
+  console.log(`\n╔══════════════════════════════════════════════════════════════════════════════════╗`);
+  console.log(`║ SYNTHÈSE OPTIMIZATION 4 IA · gains potentiels vs baseline                       ║`);
+  console.log(`╠══════════╦═════════╦═════════════════╦═════════╦══════════════════╦═══════════╣`);
+  console.log(`║ IA       ║Baseline ║ Meilleure config║ Médian  ║ Gain vs baseline ║ DD max    ║`);
+  console.log(`╟──────────╫─────────╫─────────────────╫─────────╫──────────────────╫───────────╢`);
+  for (const r of allResults) {
+    const base = (r.baseline.median >= 0 ? '+' : '') + r.baseline.median + '%';
+    const med = (r.best.median >= 0 ? '+' : '') + r.best.median + '%';
+    const gain = r.best.median - r.baseline.median;
+    const gainStr = (gain >= 0 ? '+' : '') + gain.toFixed(2) + '%';
+    const arrow = gain > 0.5 ? '🚀' : gain > 0 ? '↗' : gain >= -0.2 ? '→' : '↘';
+    console.log(`║ ${r.ia_name.padEnd(8)} ║ ${base.padStart(7)} ║ ${r.best.variant.padEnd(15)} ║ ${med.padStart(7)} ║ ${(arrow + ' ' + gainStr).padStart(16)} ║ ${(r.best.worst_dd.toFixed(1) + '%').padStart(9)} ║`);
+  }
+  console.log(`╚══════════╩═════════╩═════════════════╩═════════╩══════════════════╩═══════════╝`);
+
+  console.log(`\n=== CONFIGS RECOMMANDÉES ===\n`);
+  for (const r of allResults) {
+    const p = r.best.params;
+    console.log(`  ${r.ia_name.padEnd(8)} : atrStop=${p.atrStop} · atrTp2=${p.atrTp2} · timeoutDays=${p.timeoutDays} → ${(r.best.median >= 0 ? '+' : '') + r.best.median}%/an médian, DD ${r.best.worst_dd}%`);
   }
 
   await fs.mkdir(path.join(process.cwd(), 'data', 'sandbox'), { recursive: true });
   await fs.writeFile(
-    path.join(process.cwd(), 'data', 'sandbox', 'stress_all_ias.json'),
+    path.join(process.cwd(), 'data', 'sandbox', 'optimize_ias.json'),
     JSON.stringify({
       generated: new Date().toISOString(),
-      version: 'v7.15',
-      protocol: { n_folds: N_FOLDS, fold_days: FOLD_DAYS, slippage_pct: SLIPPAGE_PCT, max_positions: MAX_POSITIONS },
-      results,
+      version: 'v7.16',
+      protocol: { n_folds: N_FOLDS, fold_days: FOLD_DAYS, slippage_pct: SLIPPAGE_PCT, sizing_cap_pct: SIZING_CAP_PCT },
+      results: allResults,
     }, null, 2) + '\n'
   );
-  console.log(`\n✓ Résultats sauvegardés dans data/sandbox/stress_all_ias.json\n`);
+  console.log(`\n✓ Résultats sauvegardés dans data/sandbox/optimize_ias.json\n`);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

@@ -28,14 +28,14 @@ const MAX_POSITIONS = 5;
 const MIN_QUALITY_TO_OPEN = 65;
 const MAX_HOLD_DAYS = 60;
 
-// v6.0/v7.14 — 5 sandboxes : 1 par IA (4 conservatrices + VOLT haute conviction protégée)
+// v7.16 — 5 sandboxes avec timeouts adaptés par IA (cohérents avec configs grid-search optimisées)
 const SANDBOXES = [
-  { id: 'bastion', backendId: 'atlas',  name: 'BASTION', icon: '🗿' },
-  { id: 'phenix',  backendId: 'nova',   name: 'PHÉNIX',  icon: '🔥' },
-  { id: 'rafale',  backendId: 'kairo',  name: 'RAFALE',  icon: '⚡' },
-  { id: 'nexus',   backendId: 'multi',  name: 'NEXUS',   icon: '₿' },
+  { id: 'bastion', backendId: 'atlas',  name: 'BASTION', icon: '🗿', holdMax: 60 },
+  { id: 'phenix',  backendId: 'nova',   name: 'PHÉNIX',  icon: '🔥', holdMax: 30 },
+  { id: 'rafale',  backendId: 'kairo',  name: 'RAFALE',  icon: '⚡', holdMax: 12 },
+  { id: 'nexus',   backendId: 'multi',  name: 'NEXUS',   icon: '₿', holdMax: 15 },
   // v7.14 — VOLT : max 3 positions + minQuality 75 + kill switch DD-5% (pause 7j)
-  { id: 'volt',    backendId: 'volt',   name: 'VOLT',    icon: '⚡', maxPositions: 3, minQuality: 75, killSwitchDd: -0.05, killSwitchPauseDays: 7 },
+  { id: 'volt',    backendId: 'volt',   name: 'VOLT',    icon: '⚡', maxPositions: 3, minQuality: 75, killSwitchDd: -0.05, killSwitchPauseDays: 7, holdMax: 15 },
 ];
 
 const ASSET_MAP = {
@@ -163,8 +163,10 @@ async function loadOrInitPortfolio(filePath, sbConfig) {
   }
 }
 
-function updatePosition(pos, currentPrice, dayOfCycle) {
+function updatePosition(pos, currentPrice, dayOfCycle, holdMaxOverride) {
   const ageDays = dayOfCycle - (pos.opened_at_cycle || dayOfCycle);
+  // v7.16 — timeout override par IA si défini (sinon MAX_HOLD_DAYS=60)
+  const maxHold = holdMaxOverride != null ? holdMaxOverride : MAX_HOLD_DAYS;
   pos.current_price = currentPrice;
   pos.age_days = ageDays;
   // Trailing chandelier (v5.0)
@@ -214,7 +216,7 @@ function updatePosition(pos, currentPrice, dayOfCycle) {
     }
     return { action: 'tp1_partial', pnl_eur: 0 };
   }
-  if (ageDays >= MAX_HOLD_DAYS) {
+  if (ageDays >= maxHold) {
     pos.status = 'timeout';
     pos.closed_at = new Date().toISOString();
     pos.closed_at_cycle = dayOfCycle;
@@ -306,7 +308,7 @@ async function runOneSandbox(sbConfig, aiStudy, today, dayOfCycle) {
   for (const pos of openPositions) {
     const cur = await fetchCurrentPrice(pos.asset);
     if (cur == null) { console.log(`  ${pos.asset}: price unavailable`); continue; }
-    const r = updatePosition(pos, cur, dayOfCycle);
+    const r = updatePosition(pos, cur, dayOfCycle, sbConfig.holdMax);
     console.log(`  ${pos.asset}: ${r.action} (cur=${cur.toFixed(2)} entry=${pos.entry.toFixed(2)} pnl=${(r.pnl_eur || 0).toFixed(2)}€)`);
     if (pos.status !== 'open') {
       portfolio.cash += pos.size_eur + (r.pnl_eur || 0);

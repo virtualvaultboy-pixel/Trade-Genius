@@ -1,0 +1,736 @@
+{
+  "generated": "2026-05-25T22:34:57.677Z",
+  "version": "v7.16",
+  "protocol": {
+    "n_folds": 6,
+    "fold_days": 150,
+    "slippage_pct": 0.002,
+    "sizing_cap_pct": 5
+  },
+  "results": [
+    {
+      "ia_name": "BASTION",
+      "baseline": {
+        "variant": "BASELINE",
+        "params": {
+          "atrStop": 1,
+          "atrTp2": 7,
+          "timeoutDays": 60
+        },
+        "median": 5.42,
+        "mean": 4.99,
+        "worst_dd": -2.05,
+        "positive_folds": 6,
+        "n_folds": 6,
+        "total_trades": 391,
+        "folds_annualized": [
+          4.54,
+          5.42,
+          3.84,
+          2.38,
+          7.68,
+          6.07
+        ]
+      },
+      "best": {
+        "variant": "TIGHT-STOP",
+        "params": {
+          "atrStop": 0.7,
+          "atrTp2": 7,
+          "timeoutDays": 60
+        },
+        "median": 6.73,
+        "mean": 5.91,
+        "worst_dd": -1.77,
+        "positive_folds": 6,
+        "n_folds": 6,
+        "total_trades": 450,
+        "folds_annualized": [
+          5.17,
+          6.73,
+          5.45,
+          3.21,
+          7.8,
+          7.12
+        ]
+      },
+      "all_variants": [
+        {
+          "variant": "BASELINE",
+          "params": {
+            "atrStop": 1,
+            "atrTp2": 7,
+            "timeoutDays": 60
+          },
+          "median": 5.42,
+          "mean": 4.99,
+          "worst_dd": -2.05,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 391,
+          "folds_annualized": [
+            4.54,
+            5.42,
+            3.84,
+            2.38,
+            7.68,
+            6.07
+          ]
+        },
+        {
+          "variant": "TIGHT-STOP",
+          "params": {
+            "atrStop": 0.7,
+            "atrTp2": 7,
+            "timeoutDays": 60
+          },
+          "median": 6.73,
+          "mean": 5.91,
+          "worst_dd": -1.77,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 450,
+          "folds_annualized": [
+            5.17,
+            6.73,
+            5.45,
+            3.21,
+            7.8,
+            7.12
+          ]
+        },
+        {
+          "variant": "TIGHT-FAST",
+          "params": {
+            "atrStop": 0.7,
+            "atrTp2": 5,
+            "timeoutDays": 40
+          },
+          "median": 5.52,
+          "mean": 5.22,
+          "worst_dd": -1.31,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 532,
+          "folds_annualized": [
+            3.63,
+            5.52,
+            3.76,
+            3.79,
+            8.71,
+            5.91
+          ]
+        },
+        {
+          "variant": "SCALP-LIKE",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 4.5,
+            "timeoutDays": 30
+          },
+          "median": 5.2,
+          "mean": 5.16,
+          "worst_dd": -1.22,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 582,
+          "folds_annualized": [
+            3.05,
+            5.52,
+            5.2,
+            4.22,
+            7.8,
+            5.19
+          ]
+        },
+        {
+          "variant": "SCALP-WIDE",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 6,
+            "timeoutDays": 45
+          },
+          "median": 5.52,
+          "mean": 6.05,
+          "worst_dd": -1.16,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 517,
+          "folds_annualized": [
+            5.52,
+            6.49,
+            4.59,
+            5.29,
+            9.71,
+            4.73
+          ]
+        },
+        {
+          "variant": "BALANCED",
+          "params": {
+            "atrStop": 0.8,
+            "atrTp2": 6,
+            "timeoutDays": 45
+          },
+          "median": 5.48,
+          "mean": 5.48,
+          "worst_dd": -1.38,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 463,
+          "folds_annualized": [
+            5.9,
+            5.23,
+            3.85,
+            3.57,
+            8.85,
+            5.48
+          ]
+        }
+      ]
+    },
+    {
+      "ia_name": "PHENIX",
+      "baseline": {
+        "variant": "BASELINE",
+        "params": {
+          "atrStop": 1,
+          "atrTp2": 5,
+          "timeoutDays": 30
+        },
+        "median": 4.76,
+        "mean": 4.48,
+        "worst_dd": -1.59,
+        "positive_folds": 6,
+        "n_folds": 6,
+        "total_trades": 468,
+        "folds_annualized": [
+          2.67,
+          4.76,
+          2.77,
+          2.46,
+          9.37,
+          4.82
+        ]
+      },
+      "best": {
+        "variant": "TIGHT-STOP",
+        "params": {
+          "atrStop": 0.7,
+          "atrTp2": 5,
+          "timeoutDays": 30
+        },
+        "median": 5.55,
+        "mean": 5.24,
+        "worst_dd": -1.31,
+        "positive_folds": 6,
+        "n_folds": 6,
+        "total_trades": 534,
+        "folds_annualized": [
+          3.63,
+          5.55,
+          3.76,
+          3.79,
+          8.81,
+          5.91
+        ]
+      },
+      "all_variants": [
+        {
+          "variant": "BASELINE",
+          "params": {
+            "atrStop": 1,
+            "atrTp2": 5,
+            "timeoutDays": 30
+          },
+          "median": 4.76,
+          "mean": 4.48,
+          "worst_dd": -1.59,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 468,
+          "folds_annualized": [
+            2.67,
+            4.76,
+            2.77,
+            2.46,
+            9.37,
+            4.82
+          ]
+        },
+        {
+          "variant": "TIGHT-STOP",
+          "params": {
+            "atrStop": 0.7,
+            "atrTp2": 5,
+            "timeoutDays": 30
+          },
+          "median": 5.55,
+          "mean": 5.24,
+          "worst_dd": -1.31,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 534,
+          "folds_annualized": [
+            3.63,
+            5.55,
+            3.76,
+            3.79,
+            8.81,
+            5.91
+          ]
+        },
+        {
+          "variant": "TIGHT-FAST",
+          "params": {
+            "atrStop": 0.7,
+            "atrTp2": 4,
+            "timeoutDays": 21
+          },
+          "median": 4.04,
+          "mean": 4.45,
+          "worst_dd": -1.33,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 576,
+          "folds_annualized": [
+            1.97,
+            4.02,
+            4.89,
+            3.55,
+            8.26,
+            4.04
+          ]
+        },
+        {
+          "variant": "SCALP-LIKE",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 4.5,
+            "timeoutDays": 20
+          },
+          "median": 5.42,
+          "mean": 5.4,
+          "worst_dd": -1.22,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 585,
+          "folds_annualized": [
+            3.05,
+            5.42,
+            5.9,
+            4.22,
+            8.6,
+            5.19
+          ]
+        },
+        {
+          "variant": "VOLT-CLONE",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 4.5,
+            "timeoutDays": 15
+          },
+          "median": 5.42,
+          "mean": 5.24,
+          "worst_dd": -1.22,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 593,
+          "folds_annualized": [
+            3.01,
+            5.42,
+            5.6,
+            4.22,
+            7.99,
+            5.19
+          ]
+        },
+        {
+          "variant": "BALANCED",
+          "params": {
+            "atrStop": 0.8,
+            "atrTp2": 5,
+            "timeoutDays": 25
+          },
+          "median": 5.04,
+          "mean": 4.88,
+          "worst_dd": -1.42,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 511,
+          "folds_annualized": [
+            3.35,
+            5.04,
+            3.92,
+            3.23,
+            8.51,
+            5.25
+          ]
+        }
+      ]
+    },
+    {
+      "ia_name": "RAFALE",
+      "baseline": {
+        "variant": "BASELINE",
+        "params": {
+          "atrStop": 1,
+          "atrTp2": 4,
+          "timeoutDays": 14
+        },
+        "median": 3.94,
+        "mean": 3.85,
+        "worst_dd": -1.56,
+        "positive_folds": 6,
+        "n_folds": 6,
+        "total_trades": 529,
+        "folds_annualized": [
+          1.62,
+          3.7,
+          3.94,
+          1.93,
+          7.08,
+          4.8
+        ]
+      },
+      "best": {
+        "variant": "SCALP-ULTRA",
+        "params": {
+          "atrStop": 0.5,
+          "atrTp2": 3.5,
+          "timeoutDays": 12
+        },
+        "median": 5.78,
+        "mean": 5.45,
+        "worst_dd": -1.06,
+        "positive_folds": 6,
+        "n_folds": 6,
+        "total_trades": 677,
+        "folds_annualized": [
+          2.78,
+          5.5,
+          6.19,
+          3.36,
+          9.1,
+          5.78
+        ]
+      },
+      "all_variants": [
+        {
+          "variant": "BASELINE",
+          "params": {
+            "atrStop": 1,
+            "atrTp2": 4,
+            "timeoutDays": 14
+          },
+          "median": 3.94,
+          "mean": 3.85,
+          "worst_dd": -1.56,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 529,
+          "folds_annualized": [
+            1.62,
+            3.7,
+            3.94,
+            1.93,
+            7.08,
+            4.8
+          ]
+        },
+        {
+          "variant": "TIGHT-STOP",
+          "params": {
+            "atrStop": 0.7,
+            "atrTp2": 4,
+            "timeoutDays": 14
+          },
+          "median": 4.04,
+          "mean": 4.29,
+          "worst_dd": -1.33,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 581,
+          "folds_annualized": [
+            1.64,
+            3.78,
+            4.89,
+            3.55,
+            7.85,
+            4.04
+          ]
+        },
+        {
+          "variant": "SCALP-LIKE",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 4.5,
+            "timeoutDays": 15
+          },
+          "median": 5.42,
+          "mean": 5.24,
+          "worst_dd": -1.22,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 593,
+          "folds_annualized": [
+            3.01,
+            5.42,
+            5.6,
+            4.22,
+            7.99,
+            5.19
+          ]
+        },
+        {
+          "variant": "SCALP-ULTRA",
+          "params": {
+            "atrStop": 0.5,
+            "atrTp2": 3.5,
+            "timeoutDays": 12
+          },
+          "median": 5.78,
+          "mean": 5.45,
+          "worst_dd": -1.06,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 677,
+          "folds_annualized": [
+            2.78,
+            5.5,
+            6.19,
+            3.36,
+            9.1,
+            5.78
+          ]
+        },
+        {
+          "variant": "WIDE-TP",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 5,
+            "timeoutDays": 18
+          },
+          "median": 5.77,
+          "mean": 5.73,
+          "worst_dd": -1.2,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 573,
+          "folds_annualized": [
+            3.95,
+            6.04,
+            4.95,
+            4.01,
+            9.69,
+            5.77
+          ]
+        },
+        {
+          "variant": "BALANCED",
+          "params": {
+            "atrStop": 0.8,
+            "atrTp2": 4,
+            "timeoutDays": 14
+          },
+          "median": 3.36,
+          "mean": 3.94,
+          "worst_dd": -1.45,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 558,
+          "folds_annualized": [
+            1.38,
+            3.31,
+            5,
+            3,
+            7.58,
+            3.36
+          ]
+        }
+      ]
+    },
+    {
+      "ia_name": "NEXUS",
+      "baseline": {
+        "variant": "BASELINE",
+        "params": {
+          "atrStop": 1,
+          "atrTp2": 5,
+          "timeoutDays": 30
+        },
+        "median": 3.61,
+        "mean": 3.54,
+        "worst_dd": -3.28,
+        "positive_folds": 6,
+        "n_folds": 6,
+        "total_trades": 249,
+        "folds_annualized": [
+          2.92,
+          0.92,
+          3.96,
+          7.52,
+          3.61,
+          2.3
+        ]
+      },
+      "best": {
+        "variant": "CRYPTO-FAST",
+        "params": {
+          "atrStop": 0.6,
+          "atrTp2": 4,
+          "timeoutDays": 15
+        },
+        "median": 6.12,
+        "mean": 5.69,
+        "worst_dd": -2.11,
+        "positive_folds": 6,
+        "n_folds": 6,
+        "total_trades": 291,
+        "folds_annualized": [
+          3.59,
+          2.39,
+          5.27,
+          8.88,
+          6.12,
+          7.91
+        ]
+      },
+      "all_variants": [
+        {
+          "variant": "BASELINE",
+          "params": {
+            "atrStop": 1,
+            "atrTp2": 5,
+            "timeoutDays": 30
+          },
+          "median": 3.61,
+          "mean": 3.54,
+          "worst_dd": -3.28,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 249,
+          "folds_annualized": [
+            2.92,
+            0.92,
+            3.96,
+            7.52,
+            3.61,
+            2.3
+          ]
+        },
+        {
+          "variant": "TIGHT-STOP",
+          "params": {
+            "atrStop": 0.7,
+            "atrTp2": 5,
+            "timeoutDays": 30
+          },
+          "median": 5.22,
+          "mean": 5.13,
+          "worst_dd": -2.45,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 267,
+          "folds_annualized": [
+            2.87,
+            2.36,
+            5.22,
+            9.11,
+            6.23,
+            4.97
+          ]
+        },
+        {
+          "variant": "SCALP-LIKE",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 4.5,
+            "timeoutDays": 20
+          },
+          "median": 5.9,
+          "mean": 5.26,
+          "worst_dd": -2.63,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 282,
+          "folds_annualized": [
+            3.71,
+            1.52,
+            5.78,
+            8.57,
+            5.9,
+            6.05
+          ]
+        },
+        {
+          "variant": "CRYPTO-FAST",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 4,
+            "timeoutDays": 15
+          },
+          "median": 6.12,
+          "mean": 5.69,
+          "worst_dd": -2.11,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 291,
+          "folds_annualized": [
+            3.59,
+            2.39,
+            5.27,
+            8.88,
+            6.12,
+            7.91
+          ]
+        },
+        {
+          "variant": "CRYPTO-WIDE",
+          "params": {
+            "atrStop": 0.7,
+            "atrTp2": 6,
+            "timeoutDays": 25
+          },
+          "median": 5.66,
+          "mean": 5.17,
+          "worst_dd": -2.88,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 262,
+          "folds_annualized": [
+            1.9,
+            3,
+            5.78,
+            10.9,
+            3.76,
+            5.66
+          ]
+        },
+        {
+          "variant": "BALANCED",
+          "params": {
+            "atrStop": 0.8,
+            "atrTp2": 5,
+            "timeoutDays": 25
+          },
+          "median": 4.67,
+          "mean": 4.41,
+          "worst_dd": -2.98,
+          "positive_folds": 6,
+          "n_folds": 6,
+          "total_trades": 262,
+          "folds_annualized": [
+            2.16,
+            1.61,
+            4.67,
+            8.82,
+            5.03,
+            4.16
+          ]
+        }
+      ]
+    }
+  ]
+}
