@@ -27,21 +27,21 @@ const BACKTEST_DAYS = 600;          // ~2.4 ans
 const WARMUP = 220;
 const HISTORY_RANGE = '5y';
 
-// v7.12 R&D round 6 — Ultra fine-tuning autour de A-SCALP (+13.61%/an, PF 2.23, DD -4.8%)
-// Cible : ≥+15%/an sans casser le DD
+// v7.13 — Améliorations cumulées pour passer tous les folds en positif
+// Walk-forward a montré FOLD-3 négatif (-1.6%) → besoin pattern bull complémentaire
 const VARIANTS = [
-  // CHAMPION ACTUEL (référence)
-  { name: 'A-SCALP',         mode: 'patternA', minQ: 65, timeoutDays: 15, trailingAfterTp1: true,  atrStop: 0.6, atrTp2: 3.5 },
-  // 1) Stop encore + serré (0.5)
-  { name: 'A-SCALP-ULTRA',   mode: 'patternA', minQ: 65, timeoutDays: 15, trailingAfterTp1: true,  atrStop: 0.5, atrTp2: 3.5 },
-  // 2) TP plus court (3.0) — encaisse plus vite
-  { name: 'A-SCALP-FAST',    mode: 'patternA', minQ: 65, timeoutDays: 12, trailingAfterTp1: true,  atrStop: 0.6, atrTp2: 3.0 },
-  // 3) MinQ 70 (plus sélectif sur scalp)
-  { name: 'A-SCALP-Q70',     mode: 'patternA', minQ: 70, timeoutDays: 15, trailingAfterTp1: true,  atrStop: 0.6, atrTp2: 3.5 },
-  // 4) TP plus long (4.5) pour scalp (essayer asymétrie)
-  { name: 'A-SCALP-WIDE',    mode: 'patternA', minQ: 65, timeoutDays: 15, trailingAfterTp1: true,  atrStop: 0.6, atrTp2: 4.5 },
-  // 5) Sans trailing après TP1 (sortie au TP2 strict)
-  { name: 'A-SCALP-NOTRAIL', mode: 'patternA', minQ: 65, timeoutDays: 15, trailingAfterTp1: false, atrStop: 0.6, atrTp2: 3.5 },
+  // CHAMPION v7.12 (référence)
+  { name: 'A-SCALP-WIDE',    mode: 'patternA',   minQ: 65, timeoutDays: 15, trailingAfterTp1: true, atrStop: 0.6, atrTp2: 4.5 },
+  // 1) AC-DUAL : Pattern A OU Pattern C (déclenche en bull aussi, pas que en correction)
+  { name: 'AC-DUAL',         mode: 'patternAC',  minQ: 65, timeoutDays: 15, trailingAfterTp1: true, atrStop: 0.6, atrTp2: 4.5 },
+  // 2) ABC-TRIPLE : Pattern A + B + C (3 patterns complémentaires)
+  { name: 'ABC-TRIPLE',      mode: 'patternABC', minQ: 65, timeoutDays: 15, trailingAfterTp1: true, atrStop: 0.6, atrTp2: 4.5 },
+  // 3) A-SCALP avec stacking bonus si plusieurs patterns simultanés
+  { name: 'A-STACKED',       mode: 'patternA-stacked', minQ: 65, timeoutDays: 15, trailingAfterTp1: true, atrStop: 0.6, atrTp2: 4.5 },
+  // 4) AC-DUAL avec TP étendu (capture les gros mouvements bull)
+  { name: 'AC-WIDE',         mode: 'patternAC',  minQ: 65, timeoutDays: 20, trailingAfterTp1: true, atrStop: 0.7, atrTp2: 5.5 },
+  // 5) Pattern C pur sur VOLT (pullback Ichimoku — déclenche en bull market)
+  { name: 'C-SCALP',         mode: 'patternC',   minQ: 65, timeoutDays: 15, trailingAfterTp1: true, atrStop: 0.6, atrTp2: 4.5 },
 ];
 
 // 42 actifs VOLT_UNIVERSE — synchro avec build-ai-study.mjs
@@ -426,6 +426,64 @@ function _detectPatternA(prices, volumes, variant) {
   return _finalize({ ind, close, atrAbs, rr2, regime, entry, stop, tp1, tp2, obvTrend });
 }
 
+// ── STACKING-B : Pattern B trend-follow correction sur univers VOLT ─
+function _detectPatternB(prices, volumes, variant) {
+  if (!prices || prices.length < 60) return null;
+  const ind = computeAllIndicators(prices, volumes);
+  if (!ind) return null;
+  const rsi = ind.rsi?.value;
+  const adx = ind.adx?.value || 0;
+  const boll = ind.boll?.value;
+  const macdH = ind.macd?.value;
+  if (rsi == null || rsi <= 35) return null;
+  if (adx < 25) return null;  // crypto/volatil : seuil 25 (vs 30 actions)
+  if (boll == null || boll < 0.25 || boll > 0.75) return null;
+  if (macdH == null || macdH >= 0) return null;
+  const regime = detectRegime(prices);
+  if (regime === 'bear') return null;
+  if (ind.obv?.trend === 'down') return null;
+  const atrPctV = ind.atr?.value;
+  if (atrPctV == null) return null;
+  const close = prices[prices.length - 1];
+  const atrAbs = (atrPctV / 100) * close;
+  const entry = close;
+  const stop = entry - variant.atrStop * atrAbs;
+  const tp1 = entry + (variant.atrTp2 * 0.5) * atrAbs;
+  const tp2 = entry + variant.atrTp2 * atrAbs;
+  if (stop >= entry || tp1 <= entry || tp2 <= tp1) return null;
+  const risk = entry - stop;
+  const rr2 = (tp2 - entry) / risk;
+  if (rr2 < 2.0) return null;
+  const obvTrend = ind.obv?.trend;
+  return _finalize({ ind, close, atrAbs, rr2, regime, entry, stop, tp1, tp2, obvTrend });
+}
+
+// ── COMBO : A OU C (le premier qui matche) ──
+function _detectAC(prices, volumes, variant) {
+  return _detectPatternA(prices, volumes, variant) || _detectPatternC(prices, volumes, variant);
+}
+
+// ── COMBO : A OU B OU C (le premier qui matche) ──
+function _detectABC(prices, volumes, variant) {
+  return _detectPatternA(prices, volumes, variant)
+      || _detectPatternC(prices, volumes, variant)
+      || _detectPatternB(prices, volumes, variant);
+}
+
+// ── A avec bonus stacking si C ou B aussi détectent simultanément ──
+function _detectA_stacked(prices, volumes, variant) {
+  const a = _detectPatternA(prices, volumes, variant);
+  if (!a) return null;
+  const c = _detectPatternC(prices, volumes, variant);
+  const b = _detectPatternB(prices, volumes, variant);
+  const stackCount = 1 + (c ? 1 : 0) + (b ? 1 : 0);
+  if (stackCount >= 2) {
+    a.quality = Math.min(100, a.quality + 10);
+    a.sizing_pct = Math.min(8, a.sizing_pct + 1);  // sizing un peu + agressif si stack
+  }
+  return a;
+}
+
 // ── Router : dispatch selon mode ──
 function detectVoltSetup(prices, volumes, variant, benchmarkPrices) {
   switch (variant.mode) {
@@ -436,6 +494,10 @@ function detectVoltSetup(prices, volumes, variant, benchmarkPrices) {
     case 'rs':       return _detectRsMomentum(prices, volumes, variant, benchmarkPrices);
     case 'patternC': return _detectPatternC(prices, volumes, variant);
     case 'patternA': return _detectPatternA(prices, volumes, variant);
+    case 'patternB': return _detectPatternB(prices, volumes, variant);
+    case 'patternAC': return _detectAC(prices, volumes, variant);
+    case 'patternABC': return _detectABC(prices, volumes, variant);
+    case 'patternA-stacked': return _detectA_stacked(prices, volumes, variant);
     default: return null;
   }
 }

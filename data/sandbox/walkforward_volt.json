@@ -1,0 +1,83 @@
+{
+  "generated": "2026-05-25T21:52:26.933Z",
+  "version": "v7.13",
+  "config": {
+    "name": "ABC-TRIPLE",
+    "mode": "patternABC",
+    "minQ": 65,
+    "timeoutDays": 15,
+    "trailingAfterTp1": true,
+    "atrStop": 0.6,
+    "atrTp2": 4.5
+  },
+  "n_folds": 5,
+  "fold_days": 120,
+  "assets_loaded": 41,
+  "folds": [
+    {
+      "fold": "FOLD-1",
+      "days": 120,
+      "equity_final": 1000,
+      "return_pct": 0,
+      "annualized_pct": 0,
+      "profit_factor": 0,
+      "max_dd_pct": 0,
+      "win_rate_pct": 0,
+      "trades_closed": 0
+    },
+    {
+      "fold": "FOLD-2",
+      "days": 120,
+      "equity_final": 1199.16,
+      "return_pct": 19.92,
+      "annualized_pct": 46.43,
+      "profit_factor": 4.43,
+      "max_dd_pct": -2.83,
+      "win_rate_pct": 42.6,
+      "trades_closed": 47
+    },
+    {
+      "fold": "FOLD-3",
+      "days": 120,
+      "equity_final": 998.77,
+      "return_pct": -0.12,
+      "annualized_pct": -0.26,
+      "profit_factor": 0.99,
+      "max_dd_pct": -3.75,
+      "win_rate_pct": 20.6,
+      "trades_closed": 68
+    },
+    {
+      "fold": "FOLD-4",
+      "days": 120,
+      "equity_final": 1127.19,
+      "return_pct": 12.72,
+      "annualized_pct": 28.59,
+      "profit_factor": 2.85,
+      "max_dd_pct": -1.47,
+      "win_rate_pct": 35.9,
+      "trades_closed": 64
+    },
+    {
+      "fold": "FOLD-5",
+      "days": 120,
+      "equity_final": 1199.28,
+      "return_pct": 19.93,
+      "annualized_pct": 46.47,
+      "profit_factor": 3.15,
+      "max_dd_pct": -1.82,
+      "win_rate_pct": 30.7,
+      "trades_closed": 88
+    }
+  ],
+  "stats": {
+    "median_annualized": 28.59,
+    "mean_annualized": 24.25,
+    "std_annualized": 20.94,
+    "min_annualized": -0.26,
+    "max_annualized": 46.47,
+    "worst_dd": -3.75,
+    "positive_folds": 3
+  },
+  "verdict": "❌ NON ROBUSTE : 3/5 folds positifs. La config v7.12 est un fluke de période."
+}

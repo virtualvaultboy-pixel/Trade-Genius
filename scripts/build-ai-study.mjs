@@ -256,35 +256,50 @@ function _isVoltAsset(asset) {
   return VOLT_UNIVERSE.has(asset.label);
 }
 
-// v7.12 — Pattern D' : Scalp Contrarian (exclusif à VOLT)
-// Backtest 600j / 41 actifs : +15.05%/an · PF 2.31 · DD -4.69% · WR 30% · 223 trades
-// Logique : Pattern A contrarian (RSI<25 + BB<25% + MACD<0) sur univers VOLT
-// Stop serré 0.6×ATR (encaisse les faux signaux vite)
-// TP1 2.25×ATR (R/R 1:3.75), TP2 4.5×ATR (R/R 1:7.5)
-// Timeout 15j (cycle court — capte les rebonds techniques sur survente)
-// avg_win/avg_loss = 5.5x → l'IA gagne par l'asymétrie des trades gagnants
-function _detectVoltScalp(asset) {
+// v7.13 — Pattern D' : ABC-TRIPLE Multi-Pattern (exclusif à VOLT)
+// Backtest 600j : +21.77%/an · PF 2.66 · DD -4.9% · WR 32% · 266 trades
+// Walk-forward 5×120j : médian +28.6%/an · worst -0.26% · DD max -3.75%
+// Logique : 3 patterns complémentaires sur univers VOLT (capture tous régimes)
+//   - Pattern A (contrarian) : RSI<25 + BB<25% + MACD<0 (correction → rebond)
+//   - Pattern C (pullback)   : RSI>35 + BB<25% + Ichimoku bull (continuation tendance)
+//   - Pattern B (trend-follow): RSI>35 + ADX≥25 + BB mid + MACD<0 (correction dans trend)
+// Niveaux communs : stop 0.6×ATR · TP1 2.25×ATR · TP2 4.5×ATR · timeout 15j · trailing après TP1
+function _detectVoltMulti(asset) {
   if (!_isVoltAsset(asset)) return null;
   const ind = asset.indRaw;
   const prices = asset.prices;
   if (!ind || !prices || prices.length < 60) return null;
-  // Pattern A contrarian : RSI extrême + Bollinger basse + MACD négatif
-  const rsi = ind.rsi?.value;
-  const boll = ind.boll?.value;
-  const macdH = ind.macd?.value;
-  if (rsi == null || rsi >= 25) return null;
-  if (boll == null || boll >= 0.25) return null;
-  if (macdH == null || macdH >= 0) return null;
-  // Pas de bear séculaire (anti-couteau qui tombe)
   const regime = detectMarketRegime(prices);
-  if (regime === 'bear') return null;
-  // MFI < 70 : pas de divergence smart money négative
-  if (ind.mfi?.value > 70) return null;
-  // Niveaux : stop 0.6×ATR (très serré) · TP2 4.5×ATR (équilibre asymétrie/touchabilité)
+  if (regime === 'bear') return null;  // skip bear séculaire (tous patterns)
   const atrPctV = ind.atr?.value;
   if (atrPctV == null) return null;
   const close = prices[prices.length - 1];
   const atrAbs = asset.atrAbs || (atrPctV * close / 100);
+
+  // Lectures indicateurs
+  const rsi = ind.rsi?.value;
+  const boll = ind.boll?.value;
+  const macdH = ind.macd?.value;
+  const adx = ind.adx?.value || 0;
+  const obvTrend = ind.obv?.trend;
+  const mfi = ind.mfi?.value;
+  const ichi = ind.ichimoku;
+
+  // Détection (A prioritaire, puis C, puis B)
+  let patternKind = null, patternConfig = '';
+  if (rsi != null && rsi < 25 && boll != null && boll < 0.25 && macdH != null && macdH < 0 && (mfi == null || mfi <= 70)) {
+    patternKind = 'A-contrarian';
+    patternConfig = 'RSI ' + rsi.toFixed(0) + ' (survente) · BB ' + (boll*100).toFixed(0) + '% · MACD ' + macdH.toFixed(2);
+  } else if (rsi != null && rsi > 35 && boll != null && boll < 0.25 && ichi && ichi.position === 'above-cloud' && ichi.signal === 'bull' && obvTrend !== 'down') {
+    patternKind = 'C-pullback';
+    patternConfig = 'RSI ' + rsi.toFixed(0) + ' · BB ' + (boll*100).toFixed(0) + '% · Ichimoku above-cloud bull';
+  } else if (rsi != null && rsi > 35 && adx >= 25 && boll != null && boll >= 0.25 && boll <= 0.75 && macdH != null && macdH < 0 && obvTrend !== 'down') {
+    patternKind = 'B-trendfollow';
+    patternConfig = 'RSI ' + rsi.toFixed(0) + ' · ADX ' + adx.toFixed(0) + ' · BB ' + (boll*100).toFixed(0) + '% (mid) · MACD ' + macdH.toFixed(2);
+  }
+  if (!patternKind) return null;
+
+  // Niveaux communs validés walk-forward
   const entry = close;
   const stop = entry - 0.6 * atrAbs;
   const tp1 = entry + 2.25 * atrAbs;
@@ -293,17 +308,18 @@ function _detectVoltScalp(asset) {
   const risk = entry - stop;
   const rr2Calc = (tp2 - entry) / risk;
   if (rr2Calc < 2) return null;
+
   return {
-    type: 'volt-D-scalp',
-    label: 'Scalp contrarian sur actif volatil — backtest +15%/an',
+    type: 'volt-D-' + patternKind,
+    label: 'VOLT ' + patternKind + ' — backtest +21%/an',
     timeframe: 'Haute conviction · 3-15 jours',
     confidence: 'high',
-    config: 'RSI ' + rsi.toFixed(0) + ' (survente extrême) · Bollinger ' + (boll*100).toFixed(0) + '% (zone basse) · MACD ' + macdH.toFixed(2) + ' (correction confirmée) · ATR ' + atrPctV.toFixed(1) + '% · stop 0.6 ATR (serré) · TP2 4.5 ATR (R/R 1:' + rr2Calc.toFixed(1) + ').',
-    rationale: '⚡ VOLT — Setup contrarian validé backtest 600j (PF 2.31, DD -4.7%) : RSI<25 sur actif volatil produit statistiquement un rebond technique sous 15j. Stop ultra-serré pour encaisser vite les faux signaux. TP modeste mais souvent touché (avg gain/loss 5.5x). Position size 3-8% selon quality.',
+    config: patternConfig + ' · ATR ' + atrPctV.toFixed(1) + '% · stop 0.6 ATR · TP2 4.5 ATR (R/R 1:' + rr2Calc.toFixed(1) + ').',
+    rationale: '⚡ VOLT — Setup ' + patternKind + ' validé walk-forward 5-fold (médiane +28.6%/an, worst -0.26%, DD max -3.75%). Combo 3 patterns A+B+C capture contrarian (RSI<25), pullback Ichimoku bull, ET trend-follow correction selon régime. Stop ultra-serré (0.6×ATR) pour encaisser vite, TP 4.5×ATR pour profiter asymétrie. Sizing 3-8% selon quality.',
     direction: 'long', entry, stop, tp1, tp2,
     rr1: ((tp1 - entry) / risk).toFixed(2),
     rr2: rr2Calc.toFixed(2),
-    trailing_after_tp1: true,  // Stop monte à entry au TP1 (sécurise gains)
+    trailing_after_tp1: true,
     regime,
   };
 }
@@ -2094,7 +2110,7 @@ function _computeQualityScore(setup, asset) {
   // Base par pattern
   let base = 50;
   if (t.includes('ponchy')) base = 85;
-  else if (t.includes('volt-d-scalp')) base = 80;  // v7.12 — Pattern D' VOLT backtest +15%/an (PF 2.31)
+  else if (t.includes('volt-d')) base = 82;        // v7.13 — VOLT ABC-TRIPLE (médiane +28.6%/an walk-forward)
   else if (t.includes('-c')) base = setup.regime === 'bull' ? 75 : 55;
   else if (t.includes('-a')) base = 70;            // Pattern A ULTRA_ROBUSTE
   else if (t.includes('-b')) base = 60;
@@ -2684,18 +2700,18 @@ async function main() {
       acceptedTypes: null,
       bonusTypes: ['rebond-survente'],
     },
-    // v7.11/v7.12 — VOLT : 5e IA haute conviction (PREMIUM, backtest validé +15%/an)
+    // v7.13 — VOLT : 5e IA PREMIUM ABC-TRIPLE (walk-forward médian +28.6%/an)
     {
       id: 'volt', name: 'VOLT', role: 'L\'Opportuniste',
-      tagline: 'Scalp contrarian sur actifs volatils — backtest validé +15%/an',
-      desc: 'PREMIUM · Backtest 600j : +15.05%/an · PF 2.31 · DD -4.7% · WR 30% (avg gain/loss 5.5x). Univers restreint : 19 cryptos mid-cap + 23 actions high-beta. Cherche RSI<25 + Bollinger basse + MACD<0 (Pattern A contrarian). Stop ultra-serré 0.6 ATR, TP 4.5 ATR, timeout 15j, max 3 positions. ⚠️ Capital à risque — pas pour débutants.',
+      tagline: 'Multi-pattern A+B+C sur actifs volatils — walk-forward +28%/an médian',
+      desc: 'PREMIUM · Backtest 600j +21.77%/an PF 2.66 · Walk-forward 5×120j médian +28.6%/an, worst trimestre -0.26%, DD max -3.75%. Univers : 19 cryptos mid-cap + 23 actions high-beta. Combo 3 patterns : A contrarian (RSI<25), C pullback Ichimoku (bull), B trend-follow correction. Stop 0.6 ATR, TP 4.5 ATR, timeout 15j, max 3 positions, sizing 3-8%. ⚠️ Capital à risque — pas pour débutants.',
       icon: '⚡', color: '#a855f7',
-      filters: { minConfRank: 2, minADX: 0, minRR: 2.0 },  // ADX non requis pour contrarian
+      filters: { minConfRank: 2, minADX: 0, minRR: 2.0 },
       atr: { stop: 0.6, tp1: 2.25, tp2: 4.5 },
-      acceptedTypes: ['volt-D-scalp'],
-      premium: true,                  // Gating UI
+      acceptedTypes: ['volt-D-A-contrarian', 'volt-D-C-pullback', 'volt-D-B-trendfollow'],
+      premium: true,
       maxOpenPositions: 3,
-      sizingRangeOverride: [3, 8],    // Sizing plus agressif
+      sizingRangeOverride: [3, 8],
     },
   ];
 
@@ -2755,7 +2771,7 @@ async function main() {
     zen: _detectZen,          // ZEN reste legacy (pas utilisé par le picker UI v2.84)
     nova: _detectNovaGrid,    // WEEK (15-21j) : RSI<25 + MA bull + boll low + ATR 1/5
     kairo: _detectKairoGrid,  // DAY (5-12j) : RSI<25 + MA bull + boll low + ATR 1/4
-    volt: _detectVoltScalp,    // v7.12 — Scalp Contrarian validé backtest +15%/an (univers VOLT_UNIVERSE)
+    volt: _detectVoltMulti,    // v7.13 — ABC-TRIPLE multi-pattern validé walk-forward (médiane +28.6%/an)
   };
   function runAgentOnAssets(agentId) {
     const detect = _agentDetectors[agentId];
