@@ -28,14 +28,14 @@ const MAX_POSITIONS = 5;
 const MIN_QUALITY_TO_OPEN = 65;
 const MAX_HOLD_DAYS = 60;
 
-// v6.0/v7.11 — 5 sandboxes : 1 par IA (4 conservatrices + VOLT haute conviction)
+// v6.0/v7.14 — 5 sandboxes : 1 par IA (4 conservatrices + VOLT haute conviction protégée)
 const SANDBOXES = [
   { id: 'bastion', backendId: 'atlas',  name: 'BASTION', icon: '🗿' },
   { id: 'phenix',  backendId: 'nova',   name: 'PHÉNIX',  icon: '🔥' },
   { id: 'rafale',  backendId: 'kairo',  name: 'RAFALE',  icon: '⚡' },
   { id: 'nexus',   backendId: 'multi',  name: 'NEXUS',   icon: '₿' },
-  // v7.11 — VOLT : max 3 positions (sélectivité forcée) + minQuality 75 (haute conviction)
-  { id: 'volt',    backendId: 'volt',   name: 'VOLT',    icon: '⚡', maxPositions: 3, minQuality: 75 },
+  // v7.14 — VOLT : max 3 positions + minQuality 75 + kill switch DD-5% (pause 7j)
+  { id: 'volt',    backendId: 'volt',   name: 'VOLT',    icon: '⚡', maxPositions: 3, minQuality: 75, killSwitchDd: -0.05, killSwitchPauseDays: 7 },
 ];
 
 const ASSET_MAP = {
@@ -328,7 +328,29 @@ async function runOneSandbox(sbConfig, aiStudy, today, dayOfCycle) {
   // v7.11 — override maxPositions/minQuality si la sandbox le définit (VOLT : 3 max, Q≥75)
   const maxPosForSb = sbConfig.maxPositions != null ? sbConfig.maxPositions : MAX_POSITIONS;
   const slotsAvailable = maxPosForSb - portfolio.positions.length;
-  if (slotsAvailable > 0 && portfolio.cash > 1) {
+
+  // v7.14 — KILL SWITCH VOLT : si DD intra-fold récent ≤ -5%, pause 7j (skip nouveaux trades)
+  let killSwitchActive = false;
+  if (sbConfig.killSwitchDd != null && Array.isArray(portfolio.equity_history) && portfolio.equity_history.length >= 2) {
+    const recentHist = portfolio.equity_history.slice(-30);  // 30 derniers cycles
+    const maxRecent = Math.max(...recentHist.map(p => p.equity));
+    const lastEq = recentHist[recentHist.length - 1].equity;
+    const ddCurrent = (lastEq - maxRecent) / maxRecent;
+    if (ddCurrent <= sbConfig.killSwitchDd) {
+      // Vérifie si la pause est encore active
+      const pauseDays = sbConfig.killSwitchPauseDays || 7;
+      const triggerCycle = recentHist.findIndex(p => (p.equity - maxRecent) / maxRecent <= sbConfig.killSwitchDd);
+      if (triggerCycle >= 0) {
+        const cyclesSinceTrigger = recentHist.length - 1 - triggerCycle;
+        if (cyclesSinceTrigger < pauseDays) {
+          killSwitchActive = true;
+          console.log(`  ⛔ KILL SWITCH actif (DD ${(ddCurrent*100).toFixed(1)}% ≤ -5%) — pause ${pauseDays - cyclesSinceTrigger}j restants, skip nouveaux trades`);
+        }
+      }
+    }
+  }
+
+  if (!killSwitchActive && slotsAvailable > 0 && portfolio.cash > 1) {
     const candidates = selectSetupsFor(aiStudy, portfolio, sbConfig.backendId, sbConfig.minQuality);
     console.log(`  ${candidates.length} candidates, ${slotsAvailable} slots, cash=${portfolio.cash.toFixed(2)}€ · Kelly=${streakMult}`);
     for (const s of candidates.slice(0, slotsAvailable)) {

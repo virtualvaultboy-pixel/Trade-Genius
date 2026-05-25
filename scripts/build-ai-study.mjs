@@ -86,11 +86,14 @@ function computeCrossAssetSignal(assets) {
   const find = (lbl) => assets.find(a => a.label === lbl);
   const sp500 = find('S&P 500');
   const nasdaq = find('Nasdaq');
+  const btc = find('BTC');
   const signal = {
     sp500_change: null,
     nasdaq_change: null,
+    btc_change: null,      // v7.14
     risk_off: false,
     tech_risk_off: false,
+    crypto_dump: false,    // v7.14 — BTC dump → contagion alts
     reason: null,
   };
   if (sp500?.prices?.length >= 2) {
@@ -105,8 +108,16 @@ function computeCrossAssetSignal(assets) {
     signal.nasdaq_change = ((last - prev) / prev) * 100;
     if (signal.nasdaq_change < -2.5) signal.tech_risk_off = true;
   }
+  // v7.14 — BTC dump filter pour VOLT (et NEXUS) : si BTC -5%/j → contagion crypto
+  if (btc?.prices?.length >= 2) {
+    const last = btc.prices[btc.prices.length - 1];
+    const prev = btc.prices[btc.prices.length - 2];
+    signal.btc_change = ((last - prev) / prev) * 100;
+    if (signal.btc_change <= -5) signal.crypto_dump = true;
+  }
   if (signal.risk_off) signal.reason = `S&P -${(-signal.sp500_change).toFixed(2)}% → risk-off`;
   else if (signal.tech_risk_off) signal.reason = `Nasdaq -${(-signal.nasdaq_change).toFixed(2)}% → tech risk-off`;
+  if (signal.crypto_dump) signal.reason = (signal.reason ? signal.reason + ' · ' : '') + `BTC ${signal.btc_change.toFixed(2)}% → crypto dump`;
   return signal;
 }
 
@@ -117,6 +128,11 @@ const US_ACTIONS = new Set(['JPMorgan', 'Visa', 'Berkshire', 'Walmart', 'J&J', '
 
 function applyCrossAssetFilter(setup, asset, crossSignal) {
   if (!setup || !crossSignal) return { keep: true, qualityMult: 1, reason: null };
+  // v7.14 — VOLT crypto dump filter : skip nouvelles cryptos VOLT si BTC -5%/j (contagion)
+  const isVoltSetup = (setup.type || '').toLowerCase().includes('volt-');
+  if (isVoltSetup && crossSignal.crypto_dump && setup.kind === 'crypto') {
+    return { keep: false, qualityMult: 0, reason: `BTC ${crossSignal.btc_change.toFixed(2)}% → VOLT crypto skip (contagion)` };
+  }
   if (crossSignal.tech_risk_off && TECH_US_ACTIONS.has(asset.label || setup.asset)) {
     return { keep: false, qualityMult: 0, reason: crossSignal.reason + ' → skip tech long' };
   }
@@ -2148,13 +2164,14 @@ function _computeQualityScore(setup, asset) {
 
   const score = Math.min(100, base + regimeBonus + adxBonus + rrBonus + obvBonus + stackingBonus);
 
-  // v7.11/v7.12 — VOLT a un sizing override plus agressif (assume le risque, backtest validé)
+  // v7.14 — VOLT sizing CAP 5% max (vs 8% v7.13) après stress walk-forward 6 folds
+  // Garde-fou : réduit convexité gains/pertes → DD max validé -2.8% incl bear crypto BTC -46%
   const isVolt = t.includes('volt-');
   let sizing_pct = 0.5, sizing_label = 'low';
   if (isVolt) {
-    // VOLT : 3% (low conviction) → 5% (medium) → 8% (high conviction)
-    if (score >= 85) { sizing_pct = 8; sizing_label = 'volt-high'; }
-    else if (score >= 75) { sizing_pct = 5; sizing_label = 'volt-medium'; }
+    // VOLT : 3% (base) → 4% (medium) → 5% (high) — cap 5% imposé par stress test
+    if (score >= 85) { sizing_pct = 5; sizing_label = 'volt-high'; }
+    else if (score >= 75) { sizing_pct = 4; sizing_label = 'volt-medium'; }
     else { sizing_pct = 3; sizing_label = 'volt-base'; }
   } else {
     // Sizing standard (autres IA conservatrices)
@@ -2700,18 +2717,19 @@ async function main() {
       acceptedTypes: null,
       bonusTypes: ['rebond-survente'],
     },
-    // v7.13 — VOLT : 5e IA PREMIUM ABC-TRIPLE (walk-forward médian +28.6%/an)
+    // v7.14 — VOLT : 5e IA PREMIUM ABC-TRIPLE-PROTECTED (stress walk-forward 6 folds × 150j + slippage + garde-fous)
+    // Validation : 6/6 folds positifs incluant bear crypto BTC -46.6% (+6.5%/an), worst DD -2.8%
     {
       id: 'volt', name: 'VOLT', role: 'L\'Opportuniste',
-      tagline: 'Multi-pattern A+B+C sur actifs volatils — walk-forward +28%/an médian',
-      desc: 'PREMIUM · Backtest 600j +21.77%/an PF 2.66 · Walk-forward 5×120j médian +28.6%/an, worst trimestre -0.26%, DD max -3.75%. Univers : 19 cryptos mid-cap + 23 actions high-beta. Combo 3 patterns : A contrarian (RSI<25), C pullback Ichimoku (bull), B trend-follow correction. Stop 0.6 ATR, TP 4.5 ATR, timeout 15j, max 3 positions, sizing 3-8%. ⚠️ Capital à risque — pas pour débutants.',
+      tagline: 'Multi-pattern A+B+C avec garde-fous — survit aux bear crypto',
+      desc: 'PREMIUM · Stress walk-forward 6 folds × 150j (1500j incl bear crypto 2022) avec slippage broker 0.4%/trade + garde-fous (cap sizing 5%, BTC dump filter, kill switch DD-5%) : médian +9.1%/an, moyen +11.7%/an, worst DD -2.8%, 6/6 folds positifs (BTC -46.6% donne +6.5%/an). Univers : 19 cryptos mid-cap + 23 actions high-beta. Combo 3 patterns : A contrarian (RSI<25), C pullback Ichimoku, B trend-follow. Max 3 positions, sizing 3-5%. ⚠️ Capital à risque — pas pour débutants.',
       icon: '⚡', color: '#a855f7',
       filters: { minConfRank: 2, minADX: 0, minRR: 2.0 },
       atr: { stop: 0.6, tp1: 2.25, tp2: 4.5 },
       acceptedTypes: ['volt-D-A-contrarian', 'volt-D-C-pullback', 'volt-D-B-trendfollow'],
       premium: true,
       maxOpenPositions: 3,
-      sizingRangeOverride: [3, 8],
+      sizingRangeOverride: [3, 5],  // v7.14 — cap réduit 8→5 (DD contenu, validation stress)
     },
   ];
 
@@ -2899,11 +2917,11 @@ async function main() {
       }
       return true;
     });
-    // v4.9 — Filtre cross-asset (S&P/Nasdaq dump → cap actions US)
-    if (crossSignal.risk_off || crossSignal.tech_risk_off) {
+    // v4.9/v7.14 — Filtre cross-asset (S&P/Nasdaq dump → cap actions US · BTC dump → skip VOLT cryptos)
+    if (crossSignal.risk_off || crossSignal.tech_risk_off || crossSignal.crypto_dump) {
       setups = setups.filter(s => {
         const ca = applyCrossAssetFilter(s, { label: s.asset }, crossSignal);
-        if (!ca.keep) { console.log(`v4.9 cross-asset reject ${s.asset}: ${ca.reason}`); return false; }
+        if (!ca.keep) { console.log(`v4.9/v7.14 cross-asset reject ${s.asset}: ${ca.reason}`); return false; }
         if (ca.qualityMult !== 1 && s.quality_score != null) {
           s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * ca.qualityMult)));
           s.cross_asset_reason = ca.reason;

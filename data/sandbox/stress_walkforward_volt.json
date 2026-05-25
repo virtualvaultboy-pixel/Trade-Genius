@@ -1,0 +1,104 @@
+{
+  "generated": "2026-05-25T22:03:04.747Z",
+  "version": "v7.14",
+  "config": {
+    "name": "ABC-TRIPLE-PROTECTED",
+    "minQ": 65,
+    "timeoutDays": 15,
+    "trailingAfterTp1": true,
+    "atrStop": 0.6,
+    "atrTp2": 4.5,
+    "slippagePct": 0.002,
+    "killSwitchDd": -0.05,
+    "killSwitchPauseDays": 7,
+    "btcDumpThreshold": -0.05,
+    "sizingCapPct": 5
+  },
+  "n_folds": 6,
+  "fold_days": 150,
+  "assets_loaded": 32,
+  "folds": [
+    {
+      "fold": "FOLD-01",
+      "days": 150,
+      "equity_final": 1038.33,
+      "return_pct": 3.83,
+      "annualized_pct": 6.52,
+      "profit_factor": 1.67,
+      "max_dd_pct": -2.82,
+      "win_rate_pct": 26.9,
+      "trades_closed": 52,
+      "btc_perf_pct": -46.6
+    },
+    {
+      "fold": "FOLD-02",
+      "days": 150,
+      "equity_final": 1044.8,
+      "return_pct": 4.48,
+      "annualized_pct": 7.64,
+      "profit_factor": 2.21,
+      "max_dd_pct": -1.48,
+      "win_rate_pct": 27.5,
+      "trades_closed": 51,
+      "btc_perf_pct": -17.6
+    },
+    {
+      "fold": "FOLD-03",
+      "days": 150,
+      "equity_final": 1052.98,
+      "return_pct": 5.3,
+      "annualized_pct": 9.06,
+      "profit_factor": 1.79,
+      "max_dd_pct": -1.82,
+      "win_rate_pct": 23.8,
+      "trades_closed": 101,
+      "btc_perf_pct": 84.9
+    },
+    {
+      "fold": "FOLD-04",
+      "days": 150,
+      "equity_final": 1066.39,
+      "return_pct": 6.64,
+      "annualized_pct": 11.4,
+      "profit_factor": 2.19,
+      "max_dd_pct": -1.61,
+      "win_rate_pct": 28.4,
+      "trades_closed": 81,
+      "btc_perf_pct": -14
+    },
+    {
+      "fold": "FOLD-05",
+      "days": 150,
+      "equity_final": 1151.82,
+      "return_pct": 15.18,
+      "annualized_pct": 26.8,
+      "profit_factor": 2.81,
+      "max_dd_pct": -1.08,
+      "win_rate_pct": 38.6,
+      "trades_closed": 101,
+      "btc_perf_pct": 64.7
+    },
+    {
+      "fold": "FOLD-06",
+      "days": 150,
+      "equity_final": 1051.02,
+      "return_pct": 5.1,
+      "annualized_pct": 8.72,
+      "profit_factor": 1.53,
+      "max_dd_pct": -2.32,
+      "win_rate_pct": 26.5,
+      "trades_closed": 117,
+      "btc_perf_pct": 32.2
+    }
+  ],
+  "stats": {
+    "median_annualized": 9.06,
+    "mean_annualized": 11.69,
+    "std_annualized": 6.92,
+    "min_annualized": 6.52,
+    "max_annualized": 26.8,
+    "worst_dd": -2.82,
+    "positive_folds": 6
+  },
+  "verdict": "⚠️ ACCEPTABLE : 6/6 folds positifs, médian 9.1%/an, worst DD -2.8%. À déployer avec disclaimer renforcé."
+}
