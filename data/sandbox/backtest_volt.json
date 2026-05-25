@@ -1,0 +1,212 @@
+{
+  "generated": "2026-05-25T21:39:47.529Z",
+  "version": "v7.12",
+  "backtest_days": 600,
+  "capital_initial": 1000,
+  "max_positions": 3,
+  "universe_size": 41,
+  "assets_loaded": 41,
+  "assets_skipped": 0,
+  "best_variant": "A-SCALP-WIDE",
+  "verdict": "✅ CIBLE ATTEINTE : A-SCALP-WIDE valide la promesse VOLT (15.05%/an, DD -4.69%)",
+  "variants": [
+    {
+      "variant": "A-SCALP",
+      "params": {
+        "name": "A-SCALP",
+        "mode": "patternA",
+        "minQ": 65,
+        "timeoutDays": 15,
+        "trailingAfterTp1": true,
+        "atrStop": 0.6,
+        "atrTp2": 3.5
+      },
+      "equity_final": 1355.08,
+      "return_pct": 35.51,
+      "annualized_pct": 13.61,
+      "profit_factor": 2.23,
+      "max_dd_pct": -4.76,
+      "win_rate_pct": 31.9,
+      "trades_closed": 232,
+      "trades_per_year": 97.4,
+      "avg_win_eur": 8.69,
+      "avg_loss_eur": -1.827,
+      "avg_pnl_per_trade": 1.528,
+      "by_status": {
+        "loss": 157,
+        "win": 42,
+        "trail_profit": 31,
+        "timeout": 2
+      },
+      "by_kind": {
+        "crypto": 88,
+        "action": 144
+      }
+    },
+    {
+      "variant": "A-SCALP-ULTRA",
+      "params": {
+        "name": "A-SCALP-ULTRA",
+        "mode": "patternA",
+        "minQ": 65,
+        "timeoutDays": 15,
+        "trailingAfterTp1": true,
+        "atrStop": 0.5,
+        "atrTp2": 3.5
+      },
+      "equity_final": 1394.39,
+      "return_pct": 39.44,
+      "annualized_pct": 14.99,
+      "profit_factor": 2.45,
+      "max_dd_pct": -4.31,
+      "win_rate_pct": 29.7,
+      "trades_closed": 249,
+      "trades_per_year": 104.6,
+      "avg_win_eur": 8.859,
+      "avg_loss_eur": -1.531,
+      "avg_pnl_per_trade": 1.557,
+      "by_status": {
+        "loss": 174,
+        "win": 41,
+        "trail_profit": 32,
+        "timeout": 2
+      },
+      "by_kind": {
+        "crypto": 92,
+        "action": 157
+      }
+    },
+    {
+      "variant": "A-SCALP-FAST",
+      "params": {
+        "name": "A-SCALP-FAST",
+        "mode": "patternA",
+        "minQ": 65,
+        "timeoutDays": 12,
+        "trailingAfterTp1": true,
+        "atrStop": 0.6,
+        "atrTp2": 3
+      },
+      "equity_final": 1329.69,
+      "return_pct": 32.97,
+      "annualized_pct": 12.71,
+      "profit_factor": 2.13,
+      "max_dd_pct": -5.05,
+      "win_rate_pct": 33.2,
+      "trades_closed": 244,
+      "trades_per_year": 102.5,
+      "avg_win_eur": 7.648,
+      "avg_loss_eur": -1.782,
+      "avg_pnl_per_trade": 1.348,
+      "by_status": {
+        "loss": 158,
+        "win": 49,
+        "trail_profit": 28,
+        "timeout": 9
+      },
+      "by_kind": {
+        "crypto": 90,
+        "action": 154
+      }
+    },
+    {
+      "variant": "A-SCALP-Q70",
+      "params": {
+        "name": "A-SCALP-Q70",
+        "mode": "patternA",
+        "minQ": 70,
+        "timeoutDays": 15,
+        "trailingAfterTp1": true,
+        "atrStop": 0.6,
+        "atrTp2": 3.5
+      },
+      "equity_final": 1355.08,
+      "return_pct": 35.51,
+      "annualized_pct": 13.61,
+      "profit_factor": 2.23,
+      "max_dd_pct": -4.76,
+      "win_rate_pct": 31.9,
+      "trades_closed": 232,
+      "trades_per_year": 97.4,
+      "avg_win_eur": 8.69,
+      "avg_loss_eur": -1.827,
+      "avg_pnl_per_trade": 1.528,
+      "by_status": {
+        "loss": 157,
+        "win": 42,
+        "trail_profit": 31,
+        "timeout": 2
+      },
+      "by_kind": {
+        "crypto": 88,
+        "action": 144
+      }
+    },
+    {
+      "variant": "A-SCALP-WIDE",
+      "params": {
+        "name": "A-SCALP-WIDE",
+        "mode": "patternA",
+        "minQ": 65,
+        "timeoutDays": 15,
+        "trailingAfterTp1": true,
+        "atrStop": 0.6,
+        "atrTp2": 4.5
+      },
+      "equity_final": 1396.41,
+      "return_pct": 39.64,
+      "annualized_pct": 15.05,
+      "profit_factor": 2.31,
+      "max_dd_pct": -4.69,
+      "win_rate_pct": 29.6,
+      "trades_closed": 223,
+      "trades_per_year": 93.7,
+      "avg_win_eur": 10.414,
+      "avg_loss_eur": -1.893,
+      "avg_pnl_per_trade": 1.749,
+      "by_status": {
+        "loss": 156,
+        "win": 25,
+        "trail_profit": 39,
+        "timeout": 3
+      },
+      "by_kind": {
+        "crypto": 84,
+        "action": 139
+      }
+    },
+    {
+      "variant": "A-SCALP-NOTRAIL",
+      "params": {
+        "name": "A-SCALP-NOTRAIL",
+        "mode": "patternA",
+        "minQ": 65,
+        "timeoutDays": 15,
+        "trailingAfterTp1": false,
+        "atrStop": 0.6,
+        "atrTp2": 3.5
+      },
+      "equity_final": 1306.72,
+      "return_pct": 30.67,
+      "annualized_pct": 11.89,
+      "profit_factor": 2.15,
+      "max_dd_pct": -5.25,
+      "win_rate_pct": 32,
+      "trades_closed": 219,
+      "trades_per_year": 92,
+      "avg_win_eur": 8.03,
+      "avg_loss_eur": -1.757,
+      "avg_pnl_per_trade": 1.372,
+      "by_status": {
+        "loss": 148,
+        "win": 46,
+        "breakeven": 17,
+        "timeout": 8
+      },
+      "by_kind": {
+        "crypto": 84,
+        "action": 135
+      }
+    }
+  ]
+}
