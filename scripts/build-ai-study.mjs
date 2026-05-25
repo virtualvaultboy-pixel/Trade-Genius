@@ -421,7 +421,8 @@ function applyNewsSentimentFilter(setup, sentiment) {
 // v2.60 — Catalogue étendu (52 actifs) : indices monde + actions US/EU
 //        + crypto top 20 + forex majors + métaux précieux
 const ASSETS = [
-  // ── Indices monde ──────────────────────────────────────────
+  // v6.9 — UNIVERS ÉTENDU : 130+ actifs scannés par les IAs à chaque cycle
+  // ── Indices monde (24) ──────────────────────────────────────
   { kind: 'index',  symbol: '^GSPC',     label: 'S&P 500' },
   { kind: 'index',  symbol: '^IXIC',     label: 'Nasdaq' },
   { kind: 'index',  symbol: '^DJI',      label: 'Dow Jones' },
@@ -432,7 +433,22 @@ const ASSETS = [
   { kind: 'index',  symbol: '^STOXX50E', label: 'Euro Stoxx 50' },
   { kind: 'index',  symbol: '^N225',     label: 'Nikkei 225' },
   { kind: 'index',  symbol: '^HSI',      label: 'Hang Seng' },
-  // ── Crypto top 20 (CoinGecko) ──────────────────────────────
+  { kind: 'index',  symbol: '^IBEX',     label: 'IBEX 35' },
+  { kind: 'index',  symbol: '^AEX',      label: 'AEX Amsterdam' },
+  { kind: 'index',  symbol: '^SSMI',     label: 'SMI Swiss' },
+  { kind: 'index',  symbol: '^OMX',      label: 'OMX Stockholm' },
+  { kind: 'index',  symbol: '^BSESN',    label: 'Sensex India' },
+  { kind: 'index',  symbol: '^KS11',     label: 'KOSPI Corée' },
+  { kind: 'index',  symbol: '^AXJO',     label: 'ASX 200 Australie' },
+  { kind: 'index',  symbol: '^BVSP',     label: 'Bovespa Brésil' },
+  { kind: 'index',  symbol: '^TWII',     label: 'Taiwan' },
+  { kind: 'index',  symbol: '^MXX',      label: 'Mexico IPC' },
+  { kind: 'index',  symbol: '000001.SS', label: 'Shanghai' },
+  { kind: 'index',  symbol: '^STI',      label: 'Singapore STI' },
+  { kind: 'index',  symbol: '^NSEI',     label: 'Nifty 50 India' },
+  { kind: 'index',  symbol: '^JN0U.JO',  label: 'JSE Top 40 Afrique du Sud' },
+
+  // ── Crypto majeurs (28, CoinGecko) ──────────────────────────
   { kind: 'crypto', id: 'bitcoin',         label: 'BTC' },
   { kind: 'crypto', id: 'ethereum',        label: 'ETH' },
   { kind: 'crypto', id: 'solana',          label: 'SOL' },
@@ -449,7 +465,20 @@ const ASSETS = [
   { kind: 'crypto', id: 'cosmos',          label: 'ATOM' },
   { kind: 'crypto', id: 'stellar',         label: 'XLM' },
   { kind: 'crypto', id: 'near',            label: 'NEAR' },
-  // ── Actions US blue-chips ──────────────────────────────────
+  { kind: 'crypto', id: 'bitcoin-cash',    label: 'BCH' },
+  { kind: 'crypto', id: 'shiba-inu',       label: 'SHIB' },
+  { kind: 'crypto', id: 'matic-network',   label: 'MATIC' },
+  { kind: 'crypto', id: 'arbitrum',        label: 'ARB' },
+  { kind: 'crypto', id: 'optimism',        label: 'OP' },
+  { kind: 'crypto', id: 'aptos',           label: 'APT' },
+  { kind: 'crypto', id: 'internet-computer', label: 'ICP' },
+  { kind: 'crypto', id: 'injective-protocol', label: 'INJ' },
+  { kind: 'crypto', id: 'render-token',    label: 'RNDR' },
+  { kind: 'crypto', id: 'sui',             label: 'SUI' },
+  { kind: 'crypto', id: 'pepe',            label: 'PEPE' },
+  { kind: 'crypto', id: 'kaspa',           label: 'KAS' },
+
+  // ── Actions US tech & growth (20) ───────────────────────────
   { kind: 'action', symbol: 'AAPL',  label: 'Apple' },
   { kind: 'action', symbol: 'MSFT',  label: 'Microsoft' },
   { kind: 'action', symbol: 'GOOGL', label: 'Alphabet' },
@@ -459,31 +488,91 @@ const ASSETS = [
   { kind: 'action', symbol: 'TSLA',  label: 'Tesla' },
   { kind: 'action', symbol: 'AMD',   label: 'AMD' },
   { kind: 'action', symbol: 'NFLX',  label: 'Netflix' },
+  { kind: 'action', symbol: 'INTC',  label: 'Intel' },
+  { kind: 'action', symbol: 'CRM',   label: 'Salesforce' },
+  { kind: 'action', symbol: 'ORCL',  label: 'Oracle' },
+  { kind: 'action', symbol: 'IBM',   label: 'IBM' },
+  { kind: 'action', symbol: 'AVGO',  label: 'Broadcom' },
+  { kind: 'action', symbol: 'QCOM',  label: 'Qualcomm' },
+  { kind: 'action', symbol: 'ADBE',  label: 'Adobe' },
+  { kind: 'action', symbol: 'PYPL',  label: 'PayPal' },
+  { kind: 'action', symbol: 'UBER',  label: 'Uber' },
+  { kind: 'action', symbol: 'SHOP',  label: 'Shopify' },
+  { kind: 'action', symbol: 'PLTR',  label: 'Palantir' },
+
+  // ── Actions US blue-chips & financières (12) ───────────────
   { kind: 'action', symbol: 'JPM',   label: 'JPMorgan' },
+  { kind: 'action', symbol: 'BAC',   label: 'Bank of America' },
+  { kind: 'action', symbol: 'WFC',   label: 'Wells Fargo' },
+  { kind: 'action', symbol: 'GS',    label: 'Goldman Sachs' },
+  { kind: 'action', symbol: 'MS',    label: 'Morgan Stanley' },
+  { kind: 'action', symbol: 'BLK',   label: 'BlackRock' },
   { kind: 'action', symbol: 'V',     label: 'Visa' },
+  { kind: 'action', symbol: 'MA',    label: 'Mastercard' },
+  { kind: 'action', symbol: 'BRK-B', label: 'Berkshire' },
   { kind: 'action', symbol: 'WMT',   label: 'Walmart' },
   { kind: 'action', symbol: 'KO',    label: 'Coca-Cola' },
-  // ── Actions EU ────────────────────────────────────────────
-  { kind: 'action', symbol: 'MC.PA',  label: 'LVMH' },
-  { kind: 'action', symbol: 'TTE.PA', label: 'TotalEnergies' },
-  { kind: 'action', symbol: 'AIR.PA', label: 'Airbus' },
-  { kind: 'action', symbol: 'SAN.PA', label: 'Sanofi' },
-  { kind: 'action', symbol: 'ASML.AS',label: 'ASML' },
-  // ── Forex majors ──────────────────────────────────────────
+  { kind: 'action', symbol: 'PG',    label: 'P&G' },
+
+  // ── Actions US consommation/santé/énergie (10) ─────────────
+  { kind: 'action', symbol: 'MCD',   label: 'McDonald\'s' },
+  { kind: 'action', symbol: 'SBUX',  label: 'Starbucks' },
+  { kind: 'action', symbol: 'COST',  label: 'Costco' },
+  { kind: 'action', symbol: 'HD',    label: 'Home Depot' },
+  { kind: 'action', symbol: 'NKE',   label: 'Nike' },
+  { kind: 'action', symbol: 'DIS',   label: 'Disney' },
+  { kind: 'action', symbol: 'JNJ',   label: 'Johnson & J.' },
+  { kind: 'action', symbol: 'PFE',   label: 'Pfizer' },
+  { kind: 'action', symbol: 'XOM',   label: 'Exxon' },
+  { kind: 'action', symbol: 'CVX',   label: 'Chevron' },
+
+  // ── Actions EU (10) ────────────────────────────────────────
+  { kind: 'action', symbol: 'MC.PA',   label: 'LVMH' },
+  { kind: 'action', symbol: 'TTE.PA',  label: 'TotalEnergies' },
+  { kind: 'action', symbol: 'AIR.PA',  label: 'Airbus' },
+  { kind: 'action', symbol: 'SAN.PA',  label: 'Sanofi' },
+  { kind: 'action', symbol: 'BNP.PA',  label: 'BNP Paribas' },
+  { kind: 'action', symbol: 'OR.PA',   label: 'L\'Oréal' },
+  { kind: 'action', symbol: 'ASML.AS', label: 'ASML' },
+  { kind: 'action', symbol: 'SAP',     label: 'SAP' },
+  { kind: 'action', symbol: 'NESN.SW', label: 'Nestlé' },
+  { kind: 'action', symbol: 'NOVO-B.CO', label: 'Novo Nordisk' },
+
+  // ── ETF référence (10) ─────────────────────────────────────
+  { kind: 'action', symbol: 'SPY',   label: 'SPY (S&P 500 ETF)' },
+  { kind: 'action', symbol: 'QQQ',   label: 'QQQ (Nasdaq 100)' },
+  { kind: 'action', symbol: 'IWM',   label: 'IWM (Russell 2000)' },
+  { kind: 'action', symbol: 'VTI',   label: 'VTI (Total US Market)' },
+  { kind: 'action', symbol: 'VEA',   label: 'VEA (Developed ex-US)' },
+  { kind: 'action', symbol: 'VWO',   label: 'VWO (Emerging Markets)' },
+  { kind: 'action', symbol: 'XLK',   label: 'XLK Tech' },
+  { kind: 'action', symbol: 'XLF',   label: 'XLF Finance' },
+  { kind: 'action', symbol: 'XLE',   label: 'XLE Energy' },
+  { kind: 'action', symbol: 'GLD',   label: 'GLD (Gold ETF)' },
+
+  // ── Forex (10) ─────────────────────────────────────────────
   { kind: 'forex',  symbol: 'EURUSD=X', label: 'EUR/USD' },
   { kind: 'forex',  symbol: 'GBPUSD=X', label: 'GBP/USD' },
   { kind: 'forex',  symbol: 'USDJPY=X', label: 'USD/JPY' },
   { kind: 'forex',  symbol: 'USDCHF=X', label: 'USD/CHF' },
   { kind: 'forex',  symbol: 'AUDUSD=X', label: 'AUD/USD' },
   { kind: 'forex',  symbol: 'USDCAD=X', label: 'USD/CAD' },
+  { kind: 'forex',  symbol: 'NZDUSD=X', label: 'NZD/USD' },
   { kind: 'forex',  symbol: 'EURGBP=X', label: 'EUR/GBP' },
   { kind: 'forex',  symbol: 'EURJPY=X', label: 'EUR/JPY' },
-  // ── Métaux précieux & matières premières ─────────────────
+  { kind: 'forex',  symbol: 'USDMXN=X', label: 'USD/MXN' },
+
+  // ── Métaux & matières premières (10) ───────────────────────
   { kind: 'metal',  symbol: 'GC=F', label: 'Or (Gold)' },
   { kind: 'metal',  symbol: 'SI=F', label: 'Argent (Silver)' },
   { kind: 'metal',  symbol: 'PL=F', label: 'Platine' },
   { kind: 'metal',  symbol: 'PA=F', label: 'Palladium' },
   { kind: 'metal',  symbol: 'HG=F', label: 'Cuivre' },
+  { kind: 'metal',  symbol: 'CL=F', label: 'Pétrole WTI' },
+  { kind: 'metal',  symbol: 'BZ=F', label: 'Brent' },
+  { kind: 'metal',  symbol: 'NG=F', label: 'Gaz naturel' },
+  { kind: 'metal',  symbol: 'ZW=F', label: 'Blé' },
+  { kind: 'metal',  symbol: 'KC=F', label: 'Café' },
 ];
 
 async function fetchOne(a) {
