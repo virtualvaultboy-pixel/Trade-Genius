@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * Trade Genius — v6.0 SANDBOX MULTI · 4 portefeuilles 1000€ par IA
+ * Trade Genius — v6.0/v7.11 SANDBOX MULTI · 5 portefeuilles 1000€ par IA
  *
  * Chaque IA reçoit son propre portefeuille virtuel de 1000€ et n'ouvre
- * QUE les setups de son propre backend (atlas/nova/kairo/multi-crypto).
+ * QUE les setups de son propre backend (atlas/nova/kairo/multi-crypto/volt).
  * Permet de comparer en direct la performance réelle isolée de chaque IA.
  *
  * Outputs :
@@ -11,6 +11,7 @@
  *   data/sandbox/portfolio_phenix.json  + stats_phenix.json
  *   data/sandbox/portfolio_rafale.json  + stats_rafale.json
  *   data/sandbox/portfolio_nexus.json   + stats_nexus.json
+ *   data/sandbox/portfolio_volt.json    + stats_volt.json   (v7.11 — haute conviction)
  *
  * Workflow : sandbox-cycle.yml (cron quotidien 23h UTC ouvré)
  */
@@ -27,12 +28,14 @@ const MAX_POSITIONS = 5;
 const MIN_QUALITY_TO_OPEN = 65;
 const MAX_HOLD_DAYS = 60;
 
-// v6.0 — 4 sandboxes : 1 par IA (mapped sur les ids backend)
+// v6.0/v7.11 — 5 sandboxes : 1 par IA (4 conservatrices + VOLT haute conviction)
 const SANDBOXES = [
   { id: 'bastion', backendId: 'atlas',  name: 'BASTION', icon: '🗿' },
   { id: 'phenix',  backendId: 'nova',   name: 'PHÉNIX',  icon: '🔥' },
   { id: 'rafale',  backendId: 'kairo',  name: 'RAFALE',  icon: '⚡' },
   { id: 'nexus',   backendId: 'multi',  name: 'NEXUS',   icon: '₿' },
+  // v7.11 — VOLT : max 3 positions (sélectivité forcée) + minQuality 75 (haute conviction)
+  { id: 'volt',    backendId: 'volt',   name: 'VOLT',    icon: '⚡', maxPositions: 3, minQuality: 75 },
 ];
 
 const ASSET_MAP = {
@@ -223,7 +226,7 @@ function updatePosition(pos, currentPrice, dayOfCycle) {
   return { action: 'hold', pnl_eur: 0 };
 }
 
-function selectSetupsFor(aiStudy, portfolio, backendId) {
+function selectSetupsFor(aiStudy, portfolio, backendId, minQualityOverride) {
   const setups = [];
   if (Array.isArray(aiStudy.agents)) {
     aiStudy.agents.forEach(agent => {
@@ -237,7 +240,7 @@ function selectSetupsFor(aiStudy, portfolio, backendId) {
         }
         return;
       }
-      // Pour BASTION/PHÉNIX/RAFALE : que les setups de l'agent backend correspondant
+      // Pour BASTION/PHÉNIX/RAFALE/VOLT : que les setups de l'agent backend correspondant
       if (agent.id !== backendId) return;
       if (Array.isArray(agent.setups)) {
         agent.setups.forEach(s => setups.push({ ...s, agent_id: agent.id }));
@@ -251,9 +254,10 @@ function selectSetupsFor(aiStudy, portfolio, backendId) {
       byAsset[s.asset] = s;
     }
   });
+  const minQ = minQualityOverride != null ? minQualityOverride : MIN_QUALITY_TO_OPEN;
   const openedAssets = new Set(portfolio.positions.filter(p => p.status === 'open').map(p => p.asset));
   return Object.values(byAsset)
-    .filter(s => (s.quality_score || 0) >= MIN_QUALITY_TO_OPEN)
+    .filter(s => (s.quality_score || 0) >= minQ)
     .filter(s => !openedAssets.has(s.asset))
     .filter(s => ASSET_MAP[s.asset])
     .sort((a, b) => (b.quality_score || 0) - (a.quality_score || 0));
@@ -321,9 +325,11 @@ async function runOneSandbox(sbConfig, aiStudy, today, dayOfCycle) {
   }
 
   // 3) OPEN nouvelles positions
-  const slotsAvailable = MAX_POSITIONS - portfolio.positions.length;
+  // v7.11 — override maxPositions/minQuality si la sandbox le définit (VOLT : 3 max, Q≥75)
+  const maxPosForSb = sbConfig.maxPositions != null ? sbConfig.maxPositions : MAX_POSITIONS;
+  const slotsAvailable = maxPosForSb - portfolio.positions.length;
   if (slotsAvailable > 0 && portfolio.cash > 1) {
-    const candidates = selectSetupsFor(aiStudy, portfolio, sbConfig.backendId);
+    const candidates = selectSetupsFor(aiStudy, portfolio, sbConfig.backendId, sbConfig.minQuality);
     console.log(`  ${candidates.length} candidates, ${slotsAvailable} slots, cash=${portfolio.cash.toFixed(2)}€ · Kelly=${streakMult}`);
     for (const s of candidates.slice(0, slotsAvailable)) {
       const sizing_pct = ((s.sizing_pct || 1) * streakMult) / 100;
@@ -382,7 +388,7 @@ async function runOneSandbox(sbConfig, aiStudy, today, dayOfCycle) {
 }
 
 async function main() {
-  console.log('=== Sandbox MULTI v6.0 · 4×1000€ ===');
+  console.log('=== Sandbox MULTI v7.11 · 5×1000€ (+ VOLT haute conviction) ===');
   await fs.mkdir(SANDBOX_DIR, { recursive: true });
   await fs.mkdir(SNAPSHOTS_DIR, { recursive: true });
 
