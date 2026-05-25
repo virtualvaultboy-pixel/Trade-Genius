@@ -1,0 +1,772 @@
+{
+  "generated": "2026-05-25T22:47:12.594Z",
+  "version": "v7.17",
+  "protocol": {
+    "n_is_folds": 4,
+    "n_oos_folds": 2,
+    "fold_days": 150,
+    "slippage_pct": 0.002
+  },
+  "results": [
+    {
+      "ia_name": "BASTION",
+      "deployedV716": {
+        "variant": "TIGHT-STOP",
+        "params": {
+          "atrStop": 0.7,
+          "atrTp2": 7,
+          "timeoutDays": 60
+        },
+        "is": {
+          "median": 5.45,
+          "mean": 5.14,
+          "worst_dd": -1.77,
+          "positive_folds": 4,
+          "n_folds": 4
+        },
+        "oos": {
+          "median": 7.8,
+          "mean": 7.46,
+          "worst_dd": -0.75,
+          "positive_folds": 2,
+          "n_folds": 2
+        },
+        "degradation": 0.431
+      },
+      "bestOos": {
+        "variant": "SCALP-WIDE",
+        "params": {
+          "atrStop": 0.6,
+          "atrTp2": 6,
+          "timeoutDays": 45
+        },
+        "is": {
+          "median": 5.52,
+          "mean": 5.47,
+          "worst_dd": -1.16,
+          "positive_folds": 4,
+          "n_folds": 4
+        },
+        "oos": {
+          "median": 9.71,
+          "mean": 7.22,
+          "worst_dd": -0.74,
+          "positive_folds": 2,
+          "n_folds": 2
+        },
+        "degradation": 0.759
+      },
+      "overfit": false,
+      "all_variants": [
+        {
+          "variant": "BASELINE-v7.15",
+          "params": {
+            "atrStop": 1,
+            "atrTp2": 7,
+            "timeoutDays": 60
+          },
+          "is": {
+            "median": 4.54,
+            "mean": 4.04,
+            "worst_dd": -2.05,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 7.68,
+            "mean": 6.88,
+            "worst_dd": -0.92,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.692
+        },
+        {
+          "variant": "TIGHT-STOP",
+          "params": {
+            "atrStop": 0.7,
+            "atrTp2": 7,
+            "timeoutDays": 60
+          },
+          "is": {
+            "median": 5.45,
+            "mean": 5.14,
+            "worst_dd": -1.77,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 7.8,
+            "mean": 7.46,
+            "worst_dd": -0.75,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.431
+        },
+        {
+          "variant": "TIGHT-FAST",
+          "params": {
+            "atrStop": 0.7,
+            "atrTp2": 5,
+            "timeoutDays": 40
+          },
+          "is": {
+            "median": 3.79,
+            "mean": 4.17,
+            "worst_dd": -1.31,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 8.71,
+            "mean": 7.31,
+            "worst_dd": -0.59,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 1.298
+        },
+        {
+          "variant": "SCALP-LIKE",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 4.5,
+            "timeoutDays": 30
+          },
+          "is": {
+            "median": 5.2,
+            "mean": 4.5,
+            "worst_dd": -1.22,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 7.8,
+            "mean": 6.5,
+            "worst_dd": -0.58,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.5
+        },
+        {
+          "variant": "SCALP-WIDE",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 6,
+            "timeoutDays": 45
+          },
+          "is": {
+            "median": 5.52,
+            "mean": 5.47,
+            "worst_dd": -1.16,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 9.71,
+            "mean": 7.22,
+            "worst_dd": -0.74,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.759
+        },
+        {
+          "variant": "BALANCED",
+          "params": {
+            "atrStop": 0.8,
+            "atrTp2": 6,
+            "timeoutDays": 45
+          },
+          "is": {
+            "median": 5.23,
+            "mean": 4.64,
+            "worst_dd": -1.38,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 8.85,
+            "mean": 7.17,
+            "worst_dd": -0.74,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.692
+        }
+      ]
+    },
+    {
+      "ia_name": "PHENIX",
+      "deployedV716": {
+        "variant": "TIGHT-STOP",
+        "params": {
+          "atrStop": 0.7,
+          "atrTp2": 5,
+          "timeoutDays": 30
+        },
+        "is": {
+          "median": 3.79,
+          "mean": 4.18,
+          "worst_dd": -1.31,
+          "positive_folds": 4,
+          "n_folds": 4
+        },
+        "oos": {
+          "median": 8.81,
+          "mean": 7.36,
+          "worst_dd": -0.59,
+          "positive_folds": 2,
+          "n_folds": 2
+        },
+        "degradation": 1.325
+      },
+      "bestOos": {
+        "variant": "BASELINE-v7.15",
+        "params": {
+          "atrStop": 1,
+          "atrTp2": 5,
+          "timeoutDays": 30
+        },
+        "is": {
+          "median": 2.77,
+          "mean": 3.17,
+          "worst_dd": -1.59,
+          "positive_folds": 4,
+          "n_folds": 4
+        },
+        "oos": {
+          "median": 9.37,
+          "mean": 7.09,
+          "worst_dd": -0.76,
+          "positive_folds": 2,
+          "n_folds": 2
+        },
+        "degradation": 2.383
+      },
+      "overfit": false,
+      "all_variants": [
+        {
+          "variant": "BASELINE-v7.15",
+          "params": {
+            "atrStop": 1,
+            "atrTp2": 5,
+            "timeoutDays": 30
+          },
+          "is": {
+            "median": 2.77,
+            "mean": 3.17,
+            "worst_dd": -1.59,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 9.37,
+            "mean": 7.09,
+            "worst_dd": -0.76,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 2.383
+        },
+        {
+          "variant": "TIGHT-STOP",
+          "params": {
+            "atrStop": 0.7,
+            "atrTp2": 5,
+            "timeoutDays": 30
+          },
+          "is": {
+            "median": 3.79,
+            "mean": 4.18,
+            "worst_dd": -1.31,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 8.81,
+            "mean": 7.36,
+            "worst_dd": -0.59,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 1.325
+        },
+        {
+          "variant": "TIGHT-FAST",
+          "params": {
+            "atrStop": 0.7,
+            "atrTp2": 4,
+            "timeoutDays": 21
+          },
+          "is": {
+            "median": 4.02,
+            "mean": 3.61,
+            "worst_dd": -1.33,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 8.26,
+            "mean": 6.15,
+            "worst_dd": -0.78,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 1.055
+        },
+        {
+          "variant": "SCALP-LIKE",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 4.5,
+            "timeoutDays": 20
+          },
+          "is": {
+            "median": 5.42,
+            "mean": 4.65,
+            "worst_dd": -1.22,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 8.6,
+            "mean": 6.89,
+            "worst_dd": -0.58,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.587
+        },
+        {
+          "variant": "VOLT-CLONE",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 4.5,
+            "timeoutDays": 15
+          },
+          "is": {
+            "median": 5.42,
+            "mean": 4.56,
+            "worst_dd": -1.22,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 7.99,
+            "mean": 6.59,
+            "worst_dd": -0.58,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.474
+        },
+        {
+          "variant": "BALANCED",
+          "params": {
+            "atrStop": 0.8,
+            "atrTp2": 5,
+            "timeoutDays": 25
+          },
+          "is": {
+            "median": 3.92,
+            "mean": 3.89,
+            "worst_dd": -1.42,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 8.51,
+            "mean": 6.88,
+            "worst_dd": -0.71,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 1.171
+        }
+      ]
+    },
+    {
+      "ia_name": "RAFALE",
+      "deployedV716": {
+        "variant": "SCALP-ULTRA",
+        "params": {
+          "atrStop": 0.5,
+          "atrTp2": 3.5,
+          "timeoutDays": 12
+        },
+        "is": {
+          "median": 5.5,
+          "mean": 4.46,
+          "worst_dd": -1.06,
+          "positive_folds": 4,
+          "n_folds": 4
+        },
+        "oos": {
+          "median": 9.1,
+          "mean": 7.44,
+          "worst_dd": -0.46,
+          "positive_folds": 2,
+          "n_folds": 2
+        },
+        "degradation": 0.655
+      },
+      "bestOos": {
+        "variant": "WIDE-TP",
+        "params": {
+          "atrStop": 0.6,
+          "atrTp2": 5,
+          "timeoutDays": 18
+        },
+        "is": {
+          "median": 4.95,
+          "mean": 4.74,
+          "worst_dd": -1.2,
+          "positive_folds": 4,
+          "n_folds": 4
+        },
+        "oos": {
+          "median": 9.69,
+          "mean": 7.73,
+          "worst_dd": -0.58,
+          "positive_folds": 2,
+          "n_folds": 2
+        },
+        "degradation": 0.958
+      },
+      "overfit": false,
+      "all_variants": [
+        {
+          "variant": "BASELINE-v7.15",
+          "params": {
+            "atrStop": 1,
+            "atrTp2": 4,
+            "timeoutDays": 14
+          },
+          "is": {
+            "median": 3.7,
+            "mean": 2.8,
+            "worst_dd": -1.56,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 7.08,
+            "mean": 5.94,
+            "worst_dd": -0.79,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.914
+        },
+        {
+          "variant": "TIGHT-STOP",
+          "params": {
+            "atrStop": 0.7,
+            "atrTp2": 4,
+            "timeoutDays": 14
+          },
+          "is": {
+            "median": 3.78,
+            "mean": 3.46,
+            "worst_dd": -1.33,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 7.85,
+            "mean": 5.95,
+            "worst_dd": -0.78,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 1.077
+        },
+        {
+          "variant": "SCALP-LIKE",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 4.5,
+            "timeoutDays": 15
+          },
+          "is": {
+            "median": 5.42,
+            "mean": 4.56,
+            "worst_dd": -1.22,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 7.99,
+            "mean": 6.59,
+            "worst_dd": -0.58,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.474
+        },
+        {
+          "variant": "SCALP-ULTRA",
+          "params": {
+            "atrStop": 0.5,
+            "atrTp2": 3.5,
+            "timeoutDays": 12
+          },
+          "is": {
+            "median": 5.5,
+            "mean": 4.46,
+            "worst_dd": -1.06,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 9.1,
+            "mean": 7.44,
+            "worst_dd": -0.46,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.655
+        },
+        {
+          "variant": "WIDE-TP",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 5,
+            "timeoutDays": 18
+          },
+          "is": {
+            "median": 4.95,
+            "mean": 4.74,
+            "worst_dd": -1.2,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 9.69,
+            "mean": 7.73,
+            "worst_dd": -0.58,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.958
+        },
+        {
+          "variant": "BALANCED",
+          "params": {
+            "atrStop": 0.8,
+            "atrTp2": 4,
+            "timeoutDays": 14
+          },
+          "is": {
+            "median": 3.31,
+            "mean": 3.17,
+            "worst_dd": -1.45,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 7.58,
+            "mean": 5.47,
+            "worst_dd": -0.79,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 1.29
+        }
+      ]
+    },
+    {
+      "ia_name": "NEXUS",
+      "deployedV716": {
+        "variant": "CRYPTO-FAST",
+        "params": {
+          "atrStop": 0.6,
+          "atrTp2": 4,
+          "timeoutDays": 15
+        },
+        "is": {
+          "median": 5.27,
+          "mean": 5.03,
+          "worst_dd": -1.68,
+          "positive_folds": 4,
+          "n_folds": 4
+        },
+        "oos": {
+          "median": 7.91,
+          "mean": 7.02,
+          "worst_dd": -2.11,
+          "positive_folds": 2,
+          "n_folds": 2
+        },
+        "degradation": 0.501
+      },
+      "bestOos": {
+        "variant": "CRYPTO-FAST",
+        "params": {
+          "atrStop": 0.6,
+          "atrTp2": 4,
+          "timeoutDays": 15
+        },
+        "is": {
+          "median": 5.27,
+          "mean": 5.03,
+          "worst_dd": -1.68,
+          "positive_folds": 4,
+          "n_folds": 4
+        },
+        "oos": {
+          "median": 7.91,
+          "mean": 7.02,
+          "worst_dd": -2.11,
+          "positive_folds": 2,
+          "n_folds": 2
+        },
+        "degradation": 0.501
+      },
+      "overfit": false,
+      "all_variants": [
+        {
+          "variant": "BASELINE-v7.15",
+          "params": {
+            "atrStop": 1,
+            "atrTp2": 5,
+            "timeoutDays": 30
+          },
+          "is": {
+            "median": 3.96,
+            "mean": 3.83,
+            "worst_dd": -1.93,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 3.61,
+            "mean": 2.96,
+            "worst_dd": -3.28,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": -0.088
+        },
+        {
+          "variant": "TIGHT-STOP",
+          "params": {
+            "atrStop": 0.7,
+            "atrTp2": 5,
+            "timeoutDays": 30
+          },
+          "is": {
+            "median": 5.22,
+            "mean": 4.89,
+            "worst_dd": -1.41,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 6.23,
+            "mean": 5.6,
+            "worst_dd": -2.45,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.193
+        },
+        {
+          "variant": "SCALP-LIKE",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 4.5,
+            "timeoutDays": 20
+          },
+          "is": {
+            "median": 5.78,
+            "mean": 4.9,
+            "worst_dd": -1.66,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 6.05,
+            "mean": 5.97,
+            "worst_dd": -2.63,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.047
+        },
+        {
+          "variant": "CRYPTO-FAST",
+          "params": {
+            "atrStop": 0.6,
+            "atrTp2": 4,
+            "timeoutDays": 15
+          },
+          "is": {
+            "median": 5.27,
+            "mean": 5.03,
+            "worst_dd": -1.68,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 7.91,
+            "mean": 7.02,
+            "worst_dd": -2.11,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.501
+        },
+        {
+          "variant": "CRYPTO-WIDE",
+          "params": {
+            "atrStop": 0.7,
+            "atrTp2": 6,
+            "timeoutDays": 25
+          },
+          "is": {
+            "median": 5.78,
+            "mean": 5.39,
+            "worst_dd": -1.81,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 5.66,
+            "mean": 4.71,
+            "worst_dd": -2.88,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": -0.021
+        },
+        {
+          "variant": "BALANCED",
+          "params": {
+            "atrStop": 0.8,
+            "atrTp2": 5,
+            "timeoutDays": 25
+          },
+          "is": {
+            "median": 4.67,
+            "mean": 4.32,
+            "worst_dd": -1.61,
+            "positive_folds": 4,
+            "n_folds": 4
+          },
+          "oos": {
+            "median": 5.03,
+            "mean": 4.6,
+            "worst_dd": -2.98,
+            "positive_folds": 2,
+            "n_folds": 2
+          },
+          "degradation": 0.077
+        }
+      ]
+    }
+  ]
+}
