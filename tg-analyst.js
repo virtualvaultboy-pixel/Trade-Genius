@@ -82,6 +82,54 @@
     { id: 'PL=F', label: 'Platine',           sym: 'XPT', kind: 'metal', emoji: '⚪', currency: 'USD' },
     { id: 'PA=F', label: 'Palladium',         sym: 'XPD', kind: 'metal', emoji: '⚫', currency: 'USD' },
     { id: 'HG=F', label: 'Cuivre',            sym: 'HG',  kind: 'metal', emoji: '🟠', currency: 'USD' },
+    // ── v7.18 — Extension catalog : actions blue-chip + VOLT (univers panier) ──
+    { id: 'BAC',  label: 'BoA',          sym: 'BAC',  kind: 'action', emoji: '🏦', currency: 'USD' },
+    { id: 'BAC',  label: 'Bank of America', sym: 'BAC', kind: 'action', emoji: '🏦', currency: 'USD' },
+    { id: 'MA',   label: 'Mastercard',   sym: 'MA',   kind: 'action', emoji: '💳', currency: 'USD' },
+    { id: 'XOM',  label: 'Exxon',        sym: 'XOM',  kind: 'action', emoji: '⛽', currency: 'USD' },
+    { id: 'CVX',  label: 'Chevron',      sym: 'CVX',  kind: 'action', emoji: '⛽', currency: 'USD' },
+    { id: 'NKE',  label: 'Nike',         sym: 'NKE',  kind: 'action', emoji: '👟', currency: 'USD' },
+    { id: 'JNJ',  label: 'J&J',          sym: 'JNJ',  kind: 'action', emoji: '💊', currency: 'USD' },
+    { id: 'PG',   label: 'P&G',          sym: 'PG',   kind: 'action', emoji: '🧼', currency: 'USD' },
+    { id: 'DIS',  label: 'Disney',       sym: 'DIS',  kind: 'action', emoji: '🏰', currency: 'USD' },
+    // ── VOLT actions high-beta US ──
+    { id: 'PLTR', label: 'Palantir',      sym: 'PLTR', kind: 'action', emoji: '⚡', currency: 'USD' },
+    { id: 'COIN', label: 'Coinbase',      sym: 'COIN', kind: 'action', emoji: '🪙', currency: 'USD' },
+    { id: 'MSTR', label: 'MicroStrategy', sym: 'MSTR', kind: 'action', emoji: '📊', currency: 'USD' },
+    { id: 'AFRM', label: 'Affirm',        sym: 'AFRM', kind: 'action', emoji: '💸', currency: 'USD' },
+    { id: 'SOFI', label: 'SoFi',          sym: 'SOFI', kind: 'action', emoji: '🏦', currency: 'USD' },
+    { id: 'RIVN', label: 'Rivian',        sym: 'RIVN', kind: 'action', emoji: '🚐', currency: 'USD' },
+    { id: 'CVNA', label: 'Carvana',       sym: 'CVNA', kind: 'action', emoji: '🚗', currency: 'USD' },
+    { id: 'ARM',  label: 'Arm',           sym: 'ARM',  kind: 'action', emoji: '💻', currency: 'USD' },
+    { id: 'SMCI', label: 'Super Micro',   sym: 'SMCI', kind: 'action', emoji: '🖥', currency: 'USD' },
+    { id: 'ASTS', label: 'AST SpaceMobile', sym: 'ASTS', kind: 'action', emoji: '🛰', currency: 'USD' },
+    { id: 'IONQ', label: 'IonQ',          sym: 'IONQ', kind: 'action', emoji: '⚛', currency: 'USD' },
+    { id: 'RKLB', label: 'Rocket Lab',    sym: 'RKLB', kind: 'action', emoji: '🚀', currency: 'USD' },
+    { id: 'ACHR', label: 'Archer Aviation', sym: 'ACHR', kind: 'action', emoji: '🛩', currency: 'USD' },
+    { id: 'LCID', label: 'Lucid',         sym: 'LCID', kind: 'action', emoji: '🚙', currency: 'USD' },
+    { id: 'PLUG', label: 'Plug Power',    sym: 'PLUG', kind: 'action', emoji: '⚡', currency: 'USD' },
+    { id: 'JOBY', label: 'Joby Aviation', sym: 'JOBY', kind: 'action', emoji: '🚁', currency: 'USD' },
+    { id: 'RBLX', label: 'Roblox',        sym: 'RBLX', kind: 'action', emoji: '🎮', currency: 'USD' },
+    { id: 'SNAP', label: 'Snap',          sym: 'SNAP', kind: 'action', emoji: '👻', currency: 'USD' },
+    { id: 'U',    label: 'Unity',         sym: 'U',    kind: 'action', emoji: '🎮', currency: 'USD' },
+    { id: 'DKNG', label: 'DraftKings',    sym: 'DKNG', kind: 'action', emoji: '🎲', currency: 'USD' },
+    { id: 'ROKU', label: 'Roku',          sym: 'ROKU', kind: 'action', emoji: '📺', currency: 'USD' },
+    { id: 'BYND', label: 'Beyond Meat',   sym: 'BYND', kind: 'action', emoji: '🥩', currency: 'USD' },
+    // ── VOLT cryptos mid-cap ──
+    { id: 'render-token',     label: 'Render',           sym: 'RNDR', kind: 'crypto', emoji: '🎨', currency: 'USD' },
+    { id: 'injective-protocol', label: 'Injective',       sym: 'INJ',  kind: 'crypto', emoji: '💉', currency: 'USD' },
+    { id: 'sui',              label: 'Sui',              sym: 'SUI',  kind: 'crypto', emoji: '💧', currency: 'USD' },
+    { id: 'aptos',            label: 'Aptos',            sym: 'APT',  kind: 'crypto', emoji: '🔷', currency: 'USD' },
+    { id: 'celestia',         label: 'Celestia',         sym: 'TIA',  kind: 'crypto', emoji: '🌌', currency: 'USD' },
+    { id: 'sei-network',      label: 'Sei',              sym: 'SEI',  kind: 'crypto', emoji: '🌊', currency: 'USD' },
+    { id: 'lido-dao',         label: 'Lido DAO',         sym: 'LDO',  kind: 'crypto', emoji: '🏛', currency: 'USD' },
+    { id: 'arbitrum',         label: 'Arbitrum',         sym: 'ARB',  kind: 'crypto', emoji: '🔵', currency: 'USD' },
+    { id: 'optimism',         label: 'Optimism',         sym: 'OP',   kind: 'crypto', emoji: '🔴', currency: 'USD' },
+    { id: 'fetch-ai',         label: 'Fetch.ai',         sym: 'FET',  kind: 'crypto', emoji: '🤖', currency: 'USD' },
+    { id: 'singularitynet',   label: 'SingularityNET',   sym: 'AGIX', kind: 'crypto', emoji: '🧠', currency: 'USD' },
+    { id: 'matic-network',    label: 'Polygon',          sym: 'MATIC', kind: 'crypto', emoji: '🟣', currency: 'USD' },
+    { id: 'filecoin',         label: 'Filecoin',         sym: 'FIL',  kind: 'crypto', emoji: '📁', currency: 'USD' },
+    { id: 'internet-computer', label: 'Internet Computer', sym: 'ICP', kind: 'crypto', emoji: '🌐', currency: 'USD' },
   ];
 
   // ───────────────────────────────────────────────────────────────────
@@ -926,6 +974,30 @@
     openOverlay(renderAnalysis(asset, ind, patterns, verdict, reco, prices.slice(-60), volumes.slice(-60), hourlyVerdict));
   }
   window.tgaAnalyze = tgaAnalyze;
+
+  // v7.18 — Recherche fuzzy par label (utilisé par le clic panier dans index.html)
+  // Retourne true si l'actif a été trouvé et l'analyse lancée, false sinon (pour fallback caller)
+  function tgaAnalyzeByLabel(label) {
+    if (!label) return false;
+    const needle = String(label).trim().toLowerCase();
+    // 1) Match exact sur label
+    let asset = CATALOG.find(a => a.label.toLowerCase() === needle);
+    // 2) Match exact sur symbol
+    if (!asset) asset = CATALOG.find(a => a.sym && a.sym.toLowerCase() === needle);
+    // 3) Match partiel (le label panier contient le label catalog ou inverse)
+    if (!asset) asset = CATALOG.find(a => {
+      const cat = a.label.toLowerCase();
+      return cat.includes(needle) || needle.includes(cat);
+    });
+    if (!asset) {
+      // Pas trouvé → loggue pour diag mais ne plante pas
+      console.warn('[tga] analyzeByLabel : actif non trouvé dans CATALOG —', label);
+      return false;
+    }
+    tgaAnalyze(asset.id);
+    return true;
+  }
+  window.tgaAnalyzeByLabel = tgaAnalyzeByLabel;
 
   /* ═════════════════════════════════════════════════════════════════
      v2.67 — Comparaison historique
