@@ -1676,8 +1676,90 @@ async function generateStudy(prompt, valid) {
    alors que le combo testé en grid l'incluait. Désormais aligné.
    ═══════════════════════════════════════════════════════════════════ */
 
+// ─────────────────────────────────────────────────────────────────────
+// v7.9 — FILTRES DE PRÉCISION (Tier 1)
+// ─────────────────────────────────────────────────────────────────────
+// 3 filtres ajoutés à TOUS les patterns pour réduire le bruit :
+//   1. Cohérence multi-TF : tendance court terme ne doit pas contredire LT
+//   2. Liquidité minimum : skip si dollar volume moyen 20j < seuil
+//   3. ATR minimum : skip si volatilité insuffisante pour atteindre TP
+// ─────────────────────────────────────────────────────────────────────
+
+// Détecte la tendance COURT TERME (SMA20 slope sur 10 derniers jours)
+// Retourne 'bull' / 'sideways' / 'bear' / 'unknown'
+function _detectShortTermTrend(prices) {
+  if (!Array.isArray(prices) || prices.length < 30) return 'unknown';
+  const ma20Now = sma(prices.slice(-20), 20);
+  const ma20Ago = sma(prices.slice(-30, -10), 20);
+  if (ma20Now == null || ma20Ago == null || ma20Ago === 0) return 'unknown';
+  const slope = (ma20Now - ma20Ago) / ma20Ago;
+  if (slope > 0.015) return 'bull';      // SMA20 +1.5% sur 10j
+  if (slope < -0.015) return 'bear';     // SMA20 -1.5% sur 10j
+  return 'sideways';
+}
+
+// FILTRE COHÉRENCE MULTI-TF
+// Pour un signal LONG :
+//   - Si régime LT bull + tendance CT bear : DIVERGENCE → soit signal early reversal soit faux signal
+//     → on accepte si Pattern A (contrarian) mais on rejette si B/C (trend-follow)
+//   - Si régime LT sideways + tendance CT bear : faux signal → rejette tout
+//   - Sinon : OK
+function _checkMultiTfCoherence(prices, regime, patternType) {
+  const stTrend = _detectShortTermTrend(prices);
+  if (regime === 'sideways' && stTrend === 'bear') {
+    return { ok: false, reason: 'Régime sideways + CT bear = pas de momentum acheteur' };
+  }
+  if (regime === 'bull' && stTrend === 'bear' && patternType !== 'A') {
+    // Pattern A contrarian peut accepter cette config (achat dip dans bull MT)
+    // Mais Pattern B/C trend-follow refusent : on attend que CT confirme le LT
+    return { ok: false, reason: 'Divergence régime LT bull / CT bear (trend-follow rejette)' };
+  }
+  return { ok: true, st_trend: stTrend };
+}
+
+// FILTRE LIQUIDITÉ : dollar volume moyen 20 derniers jours
+// Seuils par classe (en USD) :
+//   - action : $10M/jour (large caps US, blue chips EU OK ; micro-caps OUT)
+//   - crypto : $5M/jour (top 50 crypto OK ; memecoins/illiquides OUT)
+//   - forex/metal/index : pas de filtre (toujours liquides)
+const LIQUIDITY_MIN_USD = { action: 10_000_000, crypto: 5_000_000 };
+function _checkLiquidity(asset) {
+  const kind = asset.kind;
+  const minUsd = LIQUIDITY_MIN_USD[kind];
+  if (!minUsd) return { ok: true };  // pas de filtre pour forex/metal/index
+  if (!Array.isArray(asset.volumes) || asset.volumes.length < 20) {
+    return { ok: true };  // donnée volume indispo → on accepte (fallback safe)
+  }
+  const prices = asset.prices.slice(-20);
+  const volumes = asset.volumes.slice(-20);
+  let sumDV = 0, validCount = 0;
+  for (let i = 0; i < prices.length; i++) {
+    if (prices[i] != null && volumes[i] != null && volumes[i] > 0) {
+      sumDV += prices[i] * volumes[i];
+      validCount++;
+    }
+  }
+  if (validCount < 10) return { ok: true };  // pas assez de data → safe pass
+  const avgDV = sumDV / validCount;
+  if (avgDV < minUsd) {
+    return { ok: false, reason: 'Liquidité insuffisante ($' + (avgDV / 1e6).toFixed(1) + 'M/j vs $' + (minUsd / 1e6) + 'M requis)' };
+  }
+  return { ok: true, avg_dollar_volume: avgDV };
+}
+
+// FILTRE ATR MINIMUM : volatilité suffisante pour que le TP soit significatif
+// Si ATR % du prix < 0.5%, alors TP 5×ATR = 2.5% de gain → frais broker mangent
+// Seuil : ATR ≥ 0.5% (généreux, exclut juste les ultra-calmes)
+function _checkAtrMin(atrPctValue) {
+  if (atrPctValue == null || atrPctValue < 0.5) {
+    return { ok: false, reason: 'ATR ' + (atrPctValue || 0).toFixed(2) + '% trop bas (frais broker > gain potentiel)' };
+  }
+  return { ok: true };
+}
+
 // PATTERN A — Contrarian fond (RSI bas + Boll low + MACD négatif)
 // v3.1 — Ajout filtre régime de marché
+// v7.9 — Filtres précision : multi-TF + liquidité + ATR min
 function _detectGridContrarian(asset, params) {
   const ind = asset.indRaw;
   const prices = asset.prices;
@@ -1703,6 +1785,13 @@ function _detectGridContrarian(asset, params) {
   // déguisée en accumulation). Statistiquement les pires entrées contrarian.
   const mfiVal = ind.mfi?.value;
   if (mfiVal != null && mfiVal > 70) return null;
+  // v7.9 — FILTRES PRÉCISION
+  const mtfCheck = _checkMultiTfCoherence(prices, regime, 'A');
+  if (!mtfCheck.ok) return null;
+  const liqCheck = _checkLiquidity(asset);
+  if (!liqCheck.ok) return null;
+  const atrCheck = _checkAtrMin(ind.atr?.value);
+  if (!atrCheck.ok) return null;
   const last = prices[prices.length - 1];
   const atr = asset.atrAbs;
   if (!atr) return null;
@@ -1750,6 +1839,13 @@ function _detectGridPullbackTrend(asset, params) {
   if (obvTrend === 'down') return null;
   const forceSig = ind.forceIndex?.signal;
   if (forceSig === 'bear') return null;
+  // v7.9 — FILTRES PRÉCISION (Pattern C : trend-follow strict, cohérence multi-TF cruciale)
+  const mtfCheckC = _checkMultiTfCoherence(prices, regime, 'C');
+  if (!mtfCheckC.ok) return null;
+  const liqCheckC = _checkLiquidity(asset);
+  if (!liqCheckC.ok) return null;
+  const atrCheckC = _checkAtrMin(ind.atr?.value);
+  if (!atrCheckC.ok) return null;
   const last = prices[prices.length - 1];
   const atr = asset.atrAbs;
   if (!atr) return null;
@@ -1798,6 +1894,13 @@ function _detectGridTrendFollow(asset, params) {
   // OBV en down = le trend s'essouffle, on n'achète pas la correction.
   const obvTrend = ind.obv?.trend;
   if (obvTrend === 'down') return null;
+  // v7.9 — FILTRES PRÉCISION (Pattern B : trend-follow strict)
+  const mtfCheckB = _checkMultiTfCoherence(prices, regime, 'B');
+  if (!mtfCheckB.ok) return null;
+  const liqCheckB = _checkLiquidity(asset);
+  if (!liqCheckB.ok) return null;
+  const atrCheckB = _checkAtrMin(ind.atr?.value);
+  if (!atrCheckB.ok) return null;
   const last = prices[prices.length - 1];
   const atr = asset.atrAbs;
   if (!atr) return null;
