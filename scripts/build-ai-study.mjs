@@ -2392,6 +2392,18 @@ async function main() {
       cross_asset: crossSignal,
       next_event: macroEvent,
     },
+    // v7.2 — MARKET SNAPSHOT : état des 134 actifs analysés pour heatmap UI
+    // Léger : juste label/kind/rsi/change/verdict (pas les prices)
+    market_snapshot: valid.map(a => ({
+      label: a.label,
+      kind: a.kind,
+      rsi: Number(a.rsi) || null,
+      change: Number(a.change) || 0,
+      adx: Number(a.adx) || null,
+      verdict: a.verdict,
+      cls: a.cls,
+      score: a.score,
+    })),
     // Retro-compat : setup principal (meilleure confidence + R/R)
     setup: bestSetup ? {
       asset: bestSetup.asset, kind: bestSetup.kind, type: bestSetup.type,
