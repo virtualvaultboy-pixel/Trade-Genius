@@ -167,6 +167,75 @@ function applyMacroEventFilter(setup) {
   return { keep: true, qualityMult: 0.90, reason: `Macro release dans ${ev.days_until}j (${ev.date}) → quality -10%` };
 }
 
+// v7.10 — SECTOR MOMENTUM : booste/cap les actions selon la perf 60j de leur ETF
+// Si XLK Tech +12% sur 60j → boost les setups Apple/MSFT/NVDA/etc. +5% quality
+// Si XLE Energy -10% sur 60j → cap les setups Exxon/Chevron/etc. -10% quality
+// Mapping ticker action → ETF sectoriel correspondant
+const ACTION_TO_SECTOR_ETF = {
+  // Tech (XLK ou SOXX pour les semis)
+  'Apple': 'XLK Tech', 'Microsoft': 'XLK Tech', 'Alphabet': 'XLK Tech', 'Amazon': 'XLK Tech',
+  'Meta': 'XLK Tech', 'Netflix': 'XLK Tech', 'Adobe': 'XLK Tech', 'Salesforce': 'XLK Tech',
+  'Oracle': 'XLK Tech', 'IBM': 'XLK Tech', 'ServiceNow': 'XLK Tech', 'Intuit': 'XLK Tech',
+  'CrowdStrike': 'XLK Tech', 'Palo Alto Networks': 'XLK Tech', 'Snowflake': 'XLK Tech',
+  'Datadog': 'XLK Tech', 'Cloudflare': 'XLK Tech', 'Atlassian': 'XLK Tech', 'Palantir': 'XLK Tech',
+  'Shopify': 'XLK Tech', 'PayPal': 'XLK Tech', 'Block (Square)': 'XLK Tech',
+  // Semis (préférence SOXX si dispo)
+  'Nvidia': 'SOXX Semiconductors', 'AMD': 'SOXX Semiconductors', 'Intel': 'SOXX Semiconductors',
+  'Broadcom': 'SOXX Semiconductors', 'Qualcomm': 'SOXX Semiconductors',
+  'Texas Instruments': 'SOXX Semiconductors', 'Applied Materials': 'SOXX Semiconductors',
+  'Lam Research': 'SOXX Semiconductors', 'KLA Corp': 'SOXX Semiconductors',
+  'Micron': 'SOXX Semiconductors', 'TSMC': 'SOXX Semiconductors', 'ASML (US ADR)': 'SOXX Semiconductors',
+  'NXP Semiconductors': 'SOXX Semiconductors', 'Marvell Tech': 'SOXX Semiconductors',
+  'Super Micro': 'SOXX Semiconductors', 'ARM Holdings': 'SOXX Semiconductors',
+  // Finance (XLF)
+  'JPMorgan': 'XLF Finance', 'Bank of America': 'XLF Finance', 'Wells Fargo': 'XLF Finance',
+  'Goldman Sachs': 'XLF Finance', 'Morgan Stanley': 'XLF Finance', 'Citigroup': 'XLF Finance',
+  'BlackRock': 'XLF Finance', 'Charles Schwab': 'XLF Finance', 'Visa': 'XLF Finance',
+  'Mastercard': 'XLF Finance', 'American Express': 'XLF Finance', 'Capital One': 'XLF Finance',
+  'PNC Bank': 'XLF Finance', 'US Bancorp': 'XLF Finance', 'Truist': 'XLF Finance',
+  'Berkshire': 'XLF Finance', 'Chubb': 'XLF Finance', 'Progressive': 'XLF Finance',
+  'AIG': 'XLF Finance', 'MetLife': 'XLF Finance', 'Allstate': 'XLF Finance',
+  // Énergie (XLE)
+  'Exxon': 'XLE Energy', 'Chevron': 'XLE Energy', 'ConocoPhillips': 'XLE Energy',
+  'EOG Resources': 'XLE Energy', 'Occidental': 'XLE Energy', 'Schlumberger': 'XLE Energy',
+  'Phillips 66': 'XLE Energy', 'Valero': 'XLE Energy', 'Marathon Petroleum': 'XLE Energy',
+  'Kinder Morgan': 'XLE Energy', 'Enbridge': 'XLE Energy', 'BP': 'XLE Energy', 'Shell': 'XLE Energy',
+};
+
+function _computeSectorMomentum(valid) {
+  // Calcule la perf 60j (en %) de chaque ETF sectoriel présent dans valid
+  const sectors = {};
+  ['XLK Tech', 'XLF Finance', 'XLE Energy', 'XLV Healthcare', 'XLY Consumer Disc.',
+   'XLP Consumer Staples', 'XLI Industrials', 'XLB Materials', 'XLRE Real Estate',
+   'XLU Utilities', 'XLC Communication', 'SOXX Semiconductors', 'SMH Semi ETF',
+   'KRE Regional Banks', 'KBE Banks', 'ITA Aerospace', 'IBB Biotech'].forEach(label => {
+    const etf = valid.find(a => a.label === label);
+    if (!etf || !Array.isArray(etf.prices) || etf.prices.length < 61) return;
+    const now = etf.prices[etf.prices.length - 1];
+    const ago = etf.prices[etf.prices.length - 61];
+    if (!now || !ago) return;
+    const chg60 = ((now - ago) / ago) * 100;
+    sectors[label] = chg60;
+  });
+  return sectors;
+}
+
+function _applySectorMomentumFilter(setup, sectors) {
+  if (!setup || !sectors || setup.kind !== 'action') return { qualityMult: 1, reason: null };
+  const etfLabel = ACTION_TO_SECTOR_ETF[setup.asset];
+  if (!etfLabel) return { qualityMult: 1, reason: null };
+  // Fallback : si l'ETF spécifique manque, essayer XLK pour SOXX
+  let chg = sectors[etfLabel];
+  if (chg == null && etfLabel === 'SOXX Semiconductors') chg = sectors['XLK Tech'];
+  if (chg == null) return { qualityMult: 1, reason: null };
+  // Règles de pondération
+  if (chg >= 10) return { qualityMult: 1.10, reason: 'Secteur ' + etfLabel + ' fort (' + chg.toFixed(1) + '% / 60j) → boost +10%' };
+  if (chg >= 5)  return { qualityMult: 1.05, reason: 'Secteur ' + etfLabel + ' positif (' + chg.toFixed(1) + '%) → boost +5%' };
+  if (chg <= -10) return { qualityMult: 0.85, reason: 'Secteur ' + etfLabel + ' faible (' + chg.toFixed(1) + '%) → cap -15%' };
+  if (chg <= -5)  return { qualityMult: 0.93, reason: 'Secteur ' + etfLabel + ' baissier (' + chg.toFixed(1) + '%) → cap -7%' };
+  return { qualityMult: 1, reason: null };
+}
+
 async function fetchMacroContext() {
   const ctx = { vix: null, vixRegime: 'unknown', dxy: null, dxyTrend: 'unknown' };
   try {
@@ -2634,6 +2703,13 @@ async function main() {
   // v4.9 — Signal cross-asset (S&P et Nasdaq daily change)
   const crossSignal = computeCrossAssetSignal(valid);
   if (crossSignal.reason) console.log(`v4.9 Cross-asset: ${crossSignal.reason}`);
+  // v7.10 — Sector momentum : perf 60j de chaque ETF sectoriel
+  const sectorMomentum = _computeSectorMomentum(valid);
+  const sectorLog = Object.entries(sectorMomentum)
+    .sort((a, b) => b[1] - a[1])
+    .map(([k, v]) => `${k.split(' ')[0]}=${v >= 0 ? '+' : ''}${v.toFixed(1)}%`)
+    .join(' · ');
+  if (sectorLog) console.log(`v7.10 Sector momentum 60j: ${sectorLog}`);
   // v4.8 — Macro event imminent (FOMC, CPI, NFP)
   const macroEvent = getMacroEventInDays(2);
   if (macroEvent) console.log(`v4.8 Macro event imminent: ${macroEvent.date} (dans ${macroEvent.days_until}j)`);
@@ -2722,6 +2798,14 @@ async function main() {
         return true;
       });
     }
+    // v7.10 — Filtre sector momentum (ETF sectoriels 60j → boost/cap quality)
+    setups.forEach(s => {
+      const sec = _applySectorMomentumFilter(s, sectorMomentum);
+      if (sec.qualityMult !== 1 && s.quality_score != null) {
+        s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * sec.qualityMult)));
+        s.sector_reason = sec.reason;
+      }
+    });
     // v4.8 — Filtre macro event (FOMC/CPI/NFP imminent)
     if (macroEvent) {
       setups.forEach(s => {
@@ -2787,6 +2871,8 @@ async function main() {
         macro_event_reason: s.macro_event_reason || null,
         // v4.9 — risk-off cross-asset (S&P/Nasdaq dump)
         cross_asset_reason: s.cross_asset_reason || null,
+        // v7.10 — sector momentum (ETF 60j boost/cap)
+        sector_reason: s.sector_reason || null,
         // v4.3 — stacking : si plusieurs patterns convergents
         stacked: s.stacked === true,
         stacked_count: s.stacked_count || null,
