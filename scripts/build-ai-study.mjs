@@ -2702,7 +2702,7 @@ async function main() {
     {
       id: 'atlas', name: 'BASTION', role: 'Le Stoïque',
       tagline: 'Forteresse stable, patience récompensée',
-      desc: 'Long terme · 1-3 mois · Patience haute · +6.7%/an · DD max -1.8%. 3-4 trades/semaine. Win rate ~30% mais chaque gagnant rapporte gros (R/R 3.5).',
+      desc: 'Long terme · 1-3 mois · Patience haute · 3-4 trades/semaine. Win rate plus bas mais chaque gagnant rapporte gros (R/R 3.5). Risque très maîtrisé.',
       icon: '🗿', color: '#60a5fa',
       filters: { minConfRank: 3, minADX: 28, minRR: 2.5 },
       atr: { stop: 1.2, tp1: 2.0, tp2: 3.5 },
@@ -2720,7 +2720,7 @@ async function main() {
     {
       id: 'nova', name: 'PHÉNIX', role: 'L\'Équilibré',
       tagline: 'Résilience et constance, le pivot du système',
-      desc: 'Moyen terme · 1-3 semaines · Patience moyenne · +5.6%/an · DD max -1.3%. Le meilleur compromis fréquence/rendement. 5-7 trades/semaine.',
+      desc: 'Moyen terme · 1-3 semaines · Patience moyenne · 5-7 trades/semaine. Le meilleur compromis fréquence/qualité. Risque très maîtrisé.',
       icon: '🔥', color: '#f59e0b',
       filters: { minConfRank: 1, minADX: 16, minRR: 1.8 },
       atr: { stop: 1.5, tp1: 1.5, tp2: 3.0 },
@@ -2729,7 +2729,7 @@ async function main() {
     {
       id: 'kairo', name: 'RAFALE', role: 'Le Rapide',
       tagline: 'Cadence courte, gains fréquents',
-      desc: 'Court terme · 3-7 jours · Patience faible · +5.8%/an · DD max -1.1%. 5-9 trades/semaine. Idéal si tu veux voir l\'app travailler chaque jour.',
+      desc: 'Court terme · 3-7 jours · Patience faible · 5-9 trades/semaine. Idéal si tu veux voir l\'app travailler chaque jour. Risque très maîtrisé.',
       icon: '⚡', color: '#ef4444',
       filters: { minConfRank: 1, minADX: 10, minRR: 2.0 },
       atr: { stop: 2.0, tp1: 2.5, tp2: 5.0 },
@@ -2741,7 +2741,7 @@ async function main() {
     {
       id: 'volt', name: 'VOLT', role: 'L\'Opportuniste',
       tagline: 'Haute conviction sur actifs volatils',
-      desc: 'PREMIUM · +10.7%/an · DD max -2.2% · 🏆 meilleure perf des 5 IA. Univers : 19 cryptos mid-cap + 23 actions high-beta. Méthode haute conviction avec garde-fous anti-risque automatiques. Max 3 positions, sizing renforcé. ⚠️ Capital à risque — pas pour débutants.',
+      desc: 'PREMIUM · Haute conviction sur actifs volatils. Univers : 19 cryptos mid-cap + 23 actions high-beta. Méthode haute conviction avec garde-fous anti-risque automatiques. Max 3 positions, sizing renforcé. ⚠️ Capital à risque — pas pour débutants.',
       icon: '⚡', color: '#a855f7',
       filters: { minConfRank: 2, minADX: 0, minRR: 2.0 },
       atr: { stop: 0.6, tp1: 2.25, tp2: 4.5 },
