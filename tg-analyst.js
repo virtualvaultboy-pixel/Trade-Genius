@@ -847,9 +847,10 @@
   }
 
   function injectFAB() {
+    // v7.24 — FAB désactivé : redondant avec "Chercher un actif" dans le hub Études IA
+    // + clic panier ouvre déjà l'analyste universel via _jumpToSetup
+    return;
     if (document.getElementById('tga-fab')) return;
-    // v2.53 — Le FAB n'est visible QUE dans la vue IA (#view-resultats).
-    // Sur les autres pages (welcome, scene-XX, glossary, etc.) on ne l'injecte pas.
     const viewIA = document.getElementById('view-resultats');
     if (!viewIA) return;
     const fab = document.createElement('button');
