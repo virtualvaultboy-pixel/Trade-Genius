@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<!--
+═══════════════════════════════════════════════════════════════════
+                    TRADE GENIUS · scene-12.html
+        MODULE PASSERELLE — Découvre nos outils Premium (v8.4)
+═══════════════════════════════════════════════════════════════════
+  Affiché uniquement aux users FREE après la formation pédago FREE
+  (M0-M5). Présente les 5 IA, panier multi-IA, stacking, Patterns Lab,
+  Krachs, Marché Live. CTA conversion en sticky bas.
+  Caché automatiquement si Premium (via card-css body.premium-mode).
+-->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0a0c">
+  <title>Trade Genius — Découvre nos outils Premium</title>
+  <meta name="description" content="Présentation détaillée des 5 IA Trade Genius (BASTION, PHÉNIX, RAFALE, NEXUS, VOLT), du panier multi-IA quotidien, du badge stacking et des modules Premium.">
+  <link rel="manifest" href="manifest.json">
+  <script type="module" src="tg-common.js?v=84"></script>
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131c;
+      --border: rgba(255,255,255,0.08);
+      --text: #f8f5ee;
+      --text-soft: #c8c8d0;
+      --text-dim: #a8a8b3;
+      --text-faint: #6a6a75;
+      --gold: #d4a574;
+      --purple: #a855f7;
+      --acid: #bef264;
+      --red: #ef4444;
+      --green: #46d3a4;
+      --blue: #78b4ff;
+      --font-d: 'Manrope', sans-serif;
+      --font-m: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--bg); color: var(--text); font-family: var(--font-d); -webkit-font-smoothing: antialiased; }
+    body { padding: 18px 16px 100px; max-width: 720px; margin: 0 auto; min-height: 100vh; }
+
+    /* Header */
+    .hdr-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .hdr-back {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-family: var(--font-m);
+      font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+      padding: 7px 13px; border-radius: 8px;
+      cursor: pointer; text-decoration: none;
+    }
+    .hdr-version {
+      font-family: var(--font-m); font-size: 10px;
+      color: var(--text-faint); letter-spacing: 0.5px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 28px 14px 26px;
+      background: linear-gradient(160deg, rgba(212,165,116,0.10) 0%, rgba(168,85,247,0.06) 100%);
+      border: 1px solid rgba(212,165,116,0.30);
+      border-radius: 18px;
+      margin-bottom: 26px;
+    }
+    .hero-emoji {
+      font-size: 44px; margin-bottom: 6px;
+      filter: drop-shadow(0 0 12px rgba(212,165,116,0.5));
+    }
+    .hero-eyebrow {
+      font-family: var(--font-m); font-size: 11px; font-weight: 700;
+      color: var(--gold); letter-spacing: 1.2px; text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .hero-title {
+      font-size: 28px; font-weight: 800; letter-spacing: -0.02em;
+      line-height: 1.15; color: var(--text);
+      margin-bottom: 10px;
+    }
+    .hero-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--gold), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 14px; color: var(--text-soft); line-height: 1.55;
+      max-width: 520px; margin: 0 auto;
+    }
+
+    /* Sections */
+    .section { margin-bottom: 28px; }
+    .section-title {
+      font-size: 19px; font-weight: 800; letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .section-title .num {
+      display: inline-block;
+      width: 28px; height: 28px; line-height: 28px; text-align: center;
+      background: rgba(212,165,116,0.14);
+      color: var(--gold);
+      border-radius: 50%;
+      font-family: var(--font-m); font-size: 13px; font-weight: 800;
+      margin-right: 9px;
+      vertical-align: middle;
+    }
+    .section-intro {
+      font-size: 13.5px; color: var(--text-soft); line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    /* IA Cards */
+    .ia-list { display: flex; flex-direction: column; gap: 10px; }
+    .ia-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--ia-color, var(--gold));
+      border-radius: 11px;
+      padding: 13px 14px;
+    }
+    .ia-card.volt {
+      background: linear-gradient(160deg, rgba(217,70,239,0.08), var(--surface));
+      border-color: rgba(217,70,239,0.35);
+      border-left-color: var(--purple);
+    }
+    .ia-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .ia-card-icon { font-size: 22px; line-height: 1; }
+    .ia-card-name {
+      font-size: 15px; font-weight: 800; letter-spacing: -0.01em;
+      color: var(--ia-color, var(--text));
+    }
+    .ia-card.volt .ia-card-name { color: #e879f9; }
+    .ia-card-tag {
+      font-family: var(--font-m); font-size: 9.5px; font-weight: 700;
+      letter-spacing: 0.4px; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 5px;
+      margin-left: auto;
+      background: rgba(255,255,255,0.05); color: var(--text-faint);
+    }
+    .ia-card.volt .ia-card-tag {
+      background: linear-gradient(135deg, #d946ef, var(--purple));
+      color: #fff;
+    }
+    .ia-card-desc {
+      font-size: 12.5px; color: var(--text-soft); line-height: 1.55;
+    }
+
+    /* Mockup panier */
+    .panier-mock {
+      background: linear-gradient(135deg, rgba(212,165,116,0.10) 0%, rgba(13,13,20,0.94) 100%);
+      border: 1px solid rgba(212,165,116,0.30);
+      border-left: 3px solid var(--gold);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .panier-head { display: flex; justify-content: space-between; margin-bottom: 10px; }
+    .panier-tag {
+      font-family: var(--font-m); font-size: 10.5px; font-weight: 800;
+      color: var(--gold); letter-spacing: 0.5px;
+    }
+    .panier-cnt {
+      font-family: var(--font-m); font-size: 10px;
+      color: var(--text-faint); letter-spacing: 0.4px;
+    }
+    .panier-row {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(212,165,116,0.06);
+      border: 1px solid rgba(212,165,116,0.20);
+      border-radius: 9px;
+      padding: 9px 11px;
+      margin-bottom: 7px;
+    }
+    .panier-row:last-child { margin-bottom: 0; }
+    .panier-num {
+      width: 22px; height: 22px; line-height: 22px; text-align: center;
+      background: rgba(0,0,0,0.3); border-radius: 50%;
+      font-size: 11px; font-weight: 700;
+    }
+    .panier-name { flex: 1; font-size: 13px; font-weight: 700; }
+    .panier-name .stack-pill {
+      display: inline-block;
+      font-family: var(--font-m); font-size: 8.5px; font-weight: 800;
+      padding: 2px 6px; border-radius: 5px;
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      color: #fff;
+      margin-left: 6px;
+      letter-spacing: 0.3px;
+    }
+    .panier-q { font-size: 12px; font-weight: 700; color: var(--green); }
+
+    /* Pourquoi grid */
+    .pourquoi-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    }
+    .pourquoi-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .pourquoi-emoji { font-size: 22px; margin-bottom: 6px; }
+    .pourquoi-title {
+      font-size: 13px; font-weight: 700;
+      color: var(--text); margin-bottom: 4px;
+    }
+    .pourquoi-desc {
+      font-size: 11.5px; color: var(--text-dim); line-height: 1.5;
+    }
+
+    /* Modules grid */
+    .mod-list { display: flex; flex-direction: column; gap: 10px; }
+    .mod-item {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 12px 14px;
+    }
+    .mod-emoji { font-size: 24px; line-height: 1; flex-shrink: 0; }
+    .mod-body { flex: 1; min-width: 0; }
+    .mod-title {
+      font-size: 14px; font-weight: 700; color: var(--text);
+      margin-bottom: 2px;
+    }
+    .mod-sub {
+      font-size: 11.5px; color: var(--text-dim); line-height: 1.45;
+    }
+
+    /* CTA sticky */
+    .cta-sticky {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      padding: 12px 16px 22px;
+      background: linear-gradient(180deg, rgba(10,10,15,0) 0%, var(--bg) 35%);
+      z-index: 100;
+    }
+    .cta-btn {
+      display: block; width: 100%; max-width: 520px; margin: 0 auto;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--purple) 100%);
+      color: #fff; border: none;
+      padding: 16px 18px; border-radius: 12px;
+      font-family: var(--font-m); font-size: 13px; font-weight: 800;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      cursor: pointer; text-decoration: none; text-align: center;
+      box-shadow: 0 8px 24px rgba(168,85,247,0.30);
+    }
+    .cta-btn:active { transform: scale(0.98); }
+    .cta-note {
+      font-size: 10.5px; color: var(--text-faint); text-align: center;
+      margin-top: 7px; letter-spacing: 0.2px;
+    }
+
+    /* Disclaimer */
+    .disclaimer {
+      font-size: 11px; color: var(--text-faint);
+      text-align: center; line-height: 1.55;
+      margin: 14px auto 4px; max-width: 480px;
+      padding: 9px 12px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="hdr-bar">
+  <a class="hdr-back" href="index.html#modules">← Retour</a>
+  <span class="hdr-version">✦ DÉCOUVRE</span>
+</div>
+
+<div class="hero">
+  <div class="hero-emoji">✦</div>
+  <div class="hero-eyebrow">Tu as terminé la formation</div>
+  <h1 class="hero-title">Place aux <em>vrais outils</em></h1>
+  <p class="hero-sub">Tu maîtrises les bases. Nos 5 IA scannent maintenant les marchés en continu et te livrent les meilleurs setups quotidiennement, avec la discipline qu'un humain ne peut pas tenir seul.</p>
+</div>
+
+<div class="section">
+  <h2 class="section-title"><span class="num">1</span>Nos 5 IA · une méthode par horizon</h2>
+  <p class="section-intro">Chaque IA est calibrée pour une fenêtre de trading précise. Tu choisis ce qui colle à ton rythme. Ou tu utilises le panier multi-IA qui combine les meilleurs setups de chacune.</p>
+  <div class="ia-list">
+    <div class="ia-card" style="--ia-color:#ef4444;">
+      <div class="ia-card-head">
+        <span class="ia-card-icon">⚡</span>
+        <span class="ia-card-name">RAFALE</span>
+        <span class="ia-card-tag">Court terme</span>
+      </div>
+      <div class="ia-card-desc">3-7 jours · 5-9 trades/semaine. Tu vois l'app travailler chaque jour.</div>
+    </div>
+    <div class="ia-card" style="--ia-color:#f59e0b;">
+      <div class="ia-card-head">
+        <span class="ia-card-icon">🔥</span>
+        <span class="ia-card-name">PHÉNIX</span>
+        <span class="ia-card-tag">Équilibré · Reco débutant</span>
+      </div>
+      <div class="ia-card-desc">1-3 semaines · 5-7 trades/semaine. Le meilleur compromis fréquence/qualité.</div>
+    </div>
+    <div class="ia-card" style="--ia-color:#60a5fa;">
+      <div class="ia-card-head">
+        <span class="ia-card-icon">🗿</span>
+        <span class="ia-card-name">BASTION</span>
+        <span class="ia-card-tag">Long terme</span>
+      </div>
+      <div class="ia-card-desc">1-3 mois · 3-4 trades/semaine. Tu laisses tourner sans stress, gros gagnants peu fréquents.</div>
+    </div>
+    <div class="ia-card" style="--ia-color:#a855f7;">
+      <div class="ia-card-head">
+        <span class="ia-card-icon">₿</span>
+        <span class="ia-card-name">NEXUS</span>
+        <span class="ia-card-tag">Crypto</span>
+      </div>
+      <div class="ia-card-desc">5-30 jours · 15 cryptos majeurs (BTC, ETH, SOL, BNB...). Volatilité adaptée.</div>
+    </div>
+    <div class="ia-card volt">
+      <div class="ia-card-head">
+        <span class="ia-card-icon">⚡</span>
+        <span class="ia-card-name">VOLT</span>
+        <span class="ia-card-tag">Haute conviction</span>
+      </div>
+      <div class="ia-card-desc">3-15 jours · 42 actifs volatils (cryptos mid-cap + actions high-beta). Sizing renforcé, garde-fous automatiques. <strong style="color:#fca5a5;">⚠ Capital à risque · pas pour débutants.</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title"><span class="num">2</span>Le panier multi-IA quotidien</h2>
+  <p class="section-intro">Chaque jour, les meilleurs setups de toutes les IA sont agrégés dans un panier diversifié à suivre à la lettre. Niveaux précis (entrée, stop, TP1, TP2) — tu copies, tu n'inventes pas.</p>
+  <div class="panier-mock">
+    <div class="panier-head">
+      <span class="panier-tag">🎯 PANIER DU JOUR · 5 TRADES</span>
+      <span class="panier-cnt">Exemple</span>
+    </div>
+    <div class="panier-row">
+      <span class="panier-num">1</span>
+      <span class="panier-name">SOL <span class="stack-pill">🔥 STACK 3 IA</span></span>
+      <span class="panier-q">Q 96</span>
+    </div>
+    <div class="panier-row">
+      <span class="panier-num">2</span>
+      <span class="panier-name">Apple <span class="stack-pill">🔥 STACK 2 IA</span></span>
+      <span class="panier-q">Q 89</span>
+    </div>
+    <div class="panier-row">
+      <span class="panier-num">3</span>
+      <span class="panier-name">Nasdaq</span>
+      <span class="panier-q">Q 85</span>
+    </div>
+    <div class="panier-row">
+      <span class="panier-num">4</span>
+      <span class="panier-name">Palantir</span>
+      <span class="panier-q">Q 82</span>
+    </div>
+    <div class="panier-row">
+      <span class="panier-num">5</span>
+      <span class="panier-name">ETH</span>
+      <span class="panier-q">Q 78</span>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title"><span class="num">3</span>Le badge <span style="background:linear-gradient(135deg,#f59e0b,#ef4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">🔥 STACK N IA</span></h2>
+  <p class="section-intro">Quand 2 IA ou plus détectent le même actif simultanément, c'est statistiquement le signal le plus puissant qu'on a. Une confluence de méthodes indépendantes pointe vers la même opportunité — rare et précieuse.</p>
+  <div class="pourquoi-grid">
+    <div class="pourquoi-item">
+      <div class="pourquoi-emoji">🎯</div>
+      <div class="pourquoi-title">Confluence rare</div>
+      <div class="pourquoi-desc">2-3 IA indépendantes qui s'alignent = signal de méga conviction.</div>
+    </div>
+    <div class="pourquoi-item">
+      <div class="pourquoi-emoji">📊</div>
+      <div class="pourquoi-title">Priorité panier</div>
+      <div class="pourquoi-desc">Les actifs en STACK passent en tête de ton panier quotidien.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2 class="section-title"><span class="num">4</span>Et aussi : Patterns Lab, Krachs, Marché Live</h2>
+  <p class="section-intro">Les modules Premium qui complètent ta formation.</p>
+  <div class="mod-list">
+    <div class="mod-item">
+      <span class="mod-emoji">🕯️</span>
+      <div class="mod-body">
+        <div class="mod-title">Patterns Lab</div>
+        <div class="mod-sub">12 figures techniques décortiquées : double bottom/top, H&S, triangles, drapeaux, wedges.</div>
+      </div>
+    </div>
+    <div class="mod-item">
+      <span class="mod-emoji">💥</span>
+      <div class="mod-body">
+        <div class="mod-title">Krachs historiques</div>
+        <div class="mod-sub">1929 · 1987 · 2008 · COVID. Contexte, chronologie, causes, leçons pour se prémunir.</div>
+      </div>
+    </div>
+    <div class="mod-item">
+      <span class="mod-emoji">📊</span>
+      <div class="mod-body">
+        <div class="mod-title">Marché Live</div>
+        <div class="mod-sub">Crypto, Actions, ETF avec 10 indicateurs calculés en direct (RSI, MACD, Bollinger, ADX, ATR…).</div>
+      </div>
+    </div>
+    <div class="mod-item">
+      <span class="mod-emoji">📈</span>
+      <div class="mod-body">
+        <div class="mod-title">Module 4 ch. 4-7</div>
+        <div class="mod-sub">Dow, Volume Profile, Order book, Equity curve. L'analyse technique avancée.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="disclaimer">
+  ⚠ Capital à risque. Aucune garantie de gain. Nos IA sont des outils pédagogiques d'aide à la décision — les ordres et la responsabilité restent les tiens.
+</div>
+
+<div class="cta-sticky">
+  <a class="cta-btn" href="index.html#premium">✦ Activer Premium maintenant</a>
+  <div class="cta-note">Sans surcoût récurrent · annulable à tout moment</div>
+</div>
+
+</body>
+</html>
