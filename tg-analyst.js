@@ -1,8 +1,11 @@
 /**
- * tg-analyst.js — v2.51
+ * tg-analyst.js — v7.19
  *
  * FAB flottant universel qui analyse l'actif en cours et donne un verdict
  * tranché "quoi faire" (acheteur / vendeur / attendre) avec plan d'action.
+ * v7.18 : extension CATALOG (87 actifs) + tgaAnalyzeByLabel pour clic panier
+ * v7.19 : nettoyage doublon BAC + alignements
+ *
  *
  * Inclus sur toutes les pages via <script src="tg-analyst.js"></script>.
  * S'auto-injecte au DOMContentLoaded. Zéro dépendance.
@@ -82,8 +85,7 @@
     { id: 'PL=F', label: 'Platine',           sym: 'XPT', kind: 'metal', emoji: '⚪', currency: 'USD' },
     { id: 'PA=F', label: 'Palladium',         sym: 'XPD', kind: 'metal', emoji: '⚫', currency: 'USD' },
     { id: 'HG=F', label: 'Cuivre',            sym: 'HG',  kind: 'metal', emoji: '🟠', currency: 'USD' },
-    // ── v7.18 — Extension catalog : actions blue-chip + VOLT (univers panier) ──
-    { id: 'BAC',  label: 'BoA',          sym: 'BAC',  kind: 'action', emoji: '🏦', currency: 'USD' },
+    // ── v7.19 — Extension catalog : actions blue-chip + VOLT (univers panier) ──
     { id: 'BAC',  label: 'Bank of America', sym: 'BAC', kind: 'action', emoji: '🏦', currency: 'USD' },
     { id: 'MA',   label: 'Mastercard',   sym: 'MA',   kind: 'action', emoji: '💳', currency: 'USD' },
     { id: 'XOM',  label: 'Exxon',        sym: 'XOM',  kind: 'action', emoji: '⛽', currency: 'USD' },

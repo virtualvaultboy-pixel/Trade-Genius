@@ -156,7 +156,20 @@
     <li><strong>Préférence de devise</strong> (USD / EUR / Native pour l'affichage des prix) — clé <code>tg_pref_currency</code></li>
     <li><strong>Cache taux de change</strong> (15 min, EUR/USD via frankfurter.app pour la conversion) — clé <code>tg_fx_rates</code></li>
     <li><strong>Tuto vu</strong> (flag pour ne pas relancer la visite guidée) — clé <code>tg_feed_tuto</code></li>
-    <li>Activation Premium en démo — clé <code>tg_premium</code></li>
+    <li>Activation Premium en démo — clés <code>tg_premium</code> et <code>tradegenius_premium</code></li>
+    <li><strong>Préférence IA</strong> (BASTION / PHÉNIX / RAFALE / NEXUS / VOLT) — clé <code>tg_agent_pref</code></li>
+    <li><strong>Filtre classe d'actifs</strong> (vue IA) — clé <code>tg_asset_class_filter</code></li>
+    <li><strong>Dernier actif analysé</strong> (FAB Analyste IA) — clé <code>tg_last_analyzed_asset</code></li>
+    <li><strong>Cache walk-forward</strong> (résultats stress test 6×150j + IS/OOS exposés en lecture seule) — généré côté serveur, pas stocké en local</li>
+  </ul>
+  <h3>Données générées en arrière-plan (workflows GitHub Actions)</h3>
+  <p>Le backend ne traite <strong>aucune donnée utilisateur</strong>. Ces fichiers sont publics, identiques pour tous :</p>
+  <ul>
+    <li>Étude technique IA (5 IA × ~25 setups + market snapshot) — régénérée toutes les 15 min, servie via <code>data/ai-study.json</code></li>
+    <li>Sentiment NLP des actus &lt;48h (Pollinations.ai gratuit, classification positive/négative/neutre) — réinjectée dans setups</li>
+    <li>Sandbox dev-only (5 portfolios 1000€ virtuels par IA pour entraîner les paramètres) — non exposée en production</li>
+    <li>Slippage broker 0,4 % modélisé dans tous les backtests/stress (réalisme)</li>
+    <li>Garde-fous VOLT : cap sizing 5 %, BTC dump filter, kill switch DD-5 %</li>
   </ul>
   <p><em>Aucune donnée n'est envoyée à un serveur. Aucun compte, aucun email, aucun mot de passe.</em></p>
   <p>Si tu désinstalles l'app, ces données sont effacées. Pas de backup cloud.</p>
@@ -202,8 +215,8 @@
   <p>Cette politique peut évoluer. Toute modification sera signalée dans le footer de l'app. Continuer à utiliser l'app après une modification vaut acceptation.</p>
 
   <div class="updated">
-    Dernière mise à jour : <strong>2026-05-19</strong> · Version 1.0<br>
-    Trade Genius v1.73 · Deponchy Studio
+    Dernière mise à jour : <strong>2026-05-26</strong> · Version 1.1<br>
+    Trade Genius v7.19 · Deponchy Studio
   </div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # Trade Genius — Contexte projet
 
-> **Version courante : v2.58** · PWA pédago bourse · 6 modules + simu + biblio + 3 scenes Premium + IA + Pattern Detector · Infra 0€
+> **Version courante : v7.19** · PWA pédago bourse · 6 modules + simu + biblio + 3 scenes Premium + 5 IA (BASTION/PHÉNIX/RAFALE/NEXUS + VOLT Premium) validées walk-forward IS/OOS + Pattern Detector · Infra 0€
 
 ## 🎯 Avant tout
 

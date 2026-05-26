@@ -1,7 +1,7 @@
 {
   "name": "Trade Genius — App pédago bourse",
   "short_name": "Trade Genius",
-  "description": "Feed quotidien d'analyses marché + 6 modules pédago + simulateur de trading + bibliothèque. Apprends, observe, entraîne-toi. Pas de signal, pas de pub, juste de la pédagogie. 100 % gratuit côté apprentissage.",
+  "description": "Apprends la bourse sans risque : 6 modules pédago + simulateur + bibliothèque + 5 IA d'analyse technique (BASTION, PHÉNIX, RAFALE, NEXUS + VOLT Premium) avec backtest stress walk-forward validé. Feed quotidien d'analyses marché, pas de signal commercial, pas de pub.",
   "id": "/Trade-Genius/",
   "start_url": "./index.html?source=pwa",
   "scope": "./",
@@ -80,34 +80,5 @@
       "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
     }
   ],
-  "screenshots": [
-    {
-      "src": "screenshot-1.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Accueil — feed quotidien d'analyses marché"
-    },
-    {
-      "src": "screenshot-2.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Formation — 6 modules pour apprendre la bourse"
-    },
-    {
-      "src": "screenshot-3.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Simulateur — trader des cas historiques"
-    },
-    {
-      "src": "screenshot-4.png",
-      "sizes": "1080x1920",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Bibliothèque — 26 placements expliqués"
-    }
-  ]
+  "screenshots": []
 }

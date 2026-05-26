@@ -2,7 +2,7 @@
 // Version partagée, badge auto, billet 3D Three.js
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-export const TG_VERSION = 'v7.18';
+export const TG_VERSION = 'v7.19';
 
 // === Badge version auto ===
 export function injectVersionBadge() {
@@ -263,6 +263,37 @@ const GLOSSARY = {
   'support': "Niveau de prix où les acheteurs reviennent. Le prix rebondit souvent dessus.",
   'résistance': "Niveau de prix où les vendeurs reprennent la main. Le prix bute souvent dessus.",
   'volume': "Quantité d'actions échangées sur une période. Volume fort = mouvement crédible.",
+  // v7.19 — Indicateurs techniques (utilisés massivement par les 5 IA)
+  'rsi': "Relative Strength Index (0-100). Mesure la force/faiblesse récente. <30 = survendu (rebond probable), >70 = suracheté (correction probable).",
+  'macd': "Moving Average Convergence Divergence. Différence entre 2 moyennes mobiles exponentielles. Histogramme positif = momentum haussier.",
+  'adx': "Average Directional Index (0-100). Mesure la FORCE d'une tendance (peu importe le sens). >25 = tendance solide, <20 = sans direction claire.",
+  'atr': "Average True Range. Mesure la volatilité moyenne en valeur absolue. Sert à calibrer les stops et take-profit proportionnellement.",
+  'ichimoku': "Indicateur japonais multi-composants (nuage Kumo + lignes Tenkan/Kijun). Au-dessus du nuage bull + signal bull = tendance forte confirmée.",
+  'bollinger': "Bandes de Bollinger : moyenne mobile ± 2 écarts-types. Bande basse = zone d'achat potentielle, bande haute = zone de vente.",
+  'mfi': "Money Flow Index. Comme le RSI mais pondéré par le volume. Détecte les divergences smart money. <20 = entrée institutionnelle, >80 = distribution.",
+  'obv': "On Balance Volume. Cumul des volumes positifs et négatifs. Confirme (ou contredit) la tendance du prix.",
+  'r/r': "Ratio Risk/Reward. (Take-profit − Entrée) / (Entrée − Stop). 1:3 = je risque 1€ pour potentiellement gagner 3€.",
+  'walk-forward': "Méthode de validation : on optimise sur les N premiers folds (entraînement IS) puis on mesure la perf sur les folds suivants (OOS, jamais vus). Évite l'overfit.",
+  'slippage': "Différence entre le prix attendu et le prix réellement obtenu lors de l'exécution. Trade Genius modélise 0,4 % par trade (réaliste broker).",
+  'vwap': "Volume Weighted Average Price. Prix moyen pondéré par le volume sur la journée. Référence des institutions.",
+  'hull ma': "Hull Moving Average. Moyenne mobile rapide et lisse (moins de retard que SMA classique). Détecte les retournements.",
+  'heikin ashi': "Bougies modifiées (formule moyenne) qui filtrent le bruit. Permet de visualiser les tendances plus clairement.",
+  'sma200': "Simple Moving Average sur 200 périodes. Référence de la tendance long terme. Prix > SMA200 = bull séculaire.",
+  'ema': "Exponential Moving Average. Moyenne mobile qui donne plus de poids aux prix récents (plus réactive que SMA).",
+  'doji': "Bougie de doute (ouverture ≈ clôture). Signal de retournement potentiel si en bas d'un mouvement baissier.",
+  'pattern a': "Pattern contrarian. RSI<25 + Bollinger basse + MACD<0. On achète la peur extrême. PF mesuré 3.42 sur 20 ans backtest.",
+  'pattern b': "Pattern trend-follow correction. RSI>35 + ADX≥25 + Bollinger mid + MACD<0. On achète la correction d'une tendance forte.",
+  'pattern c': "Pattern pullback Ichimoku bull. RSI>35 + Bollinger basse + Ichimoku above-cloud. PF OOS 5.65.",
+  'pattern d': "Pattern VOLT scalp contrarian. Même logique que Pattern A mais sur univers volatil (cryptos mid-cap + actions high-beta).",
+  'quality score': "Score 0-100 calculé par l'IA pour chaque setup. Base par pattern + bonus régime + ADX + R/R + OBV. Détermine le sizing recommandé (3-5 % du capital).",
+  'drawdown': "Perte maximale entre un pic et un creux (DD). Mesure le risque max ressenti. Trade Genius vise DD < 5 % sur 6 folds.",
+  'profit factor': "PF = gains bruts / pertes brutes. >1.5 = stratégie rentable, >2 = très bonne, >3 = exceptionnelle. Toutes nos IA ont PF > 1.5 stress.",
+  'win rate': "WR = % de trades gagnants. Trade Genius : 30-40 % en moyenne, mais compensé par R/R favorable (un gagnant vaut 3+ perdants).",
+  'backtest': "Simulation rétroactive d'une stratégie sur historique passé. Mesure perf théorique. Trade Genius : backtests 600-1500j avec slippage modélisé.",
+  'stacking': "Quand plusieurs patterns (A+B+C) détectent simultanément sur le même actif. Bonus quality_score (rare et statistiquement puissant).",
+  'kill switch': "Garde-fou VOLT : si drawdown intra-période ≤ -5 %, l'IA pause 7 jours pour préserver le capital.",
+  'kelly': "Kelly-light streak : multiplicateur de sizing (×1.2 après 3 gains consécutifs, ×0.7 après 3 pertes) pour adapter dynamiquement le risque.",
+  'is/oos': "In-Sample / Out-of-Sample. Découpage temporel pour anti-overfit : on entraîne sur les premiers folds (IS), on valide sur les derniers (OOS) jamais vus pendant l'optimisation.",
 };
 
 function ensureGlossaryStyle() {

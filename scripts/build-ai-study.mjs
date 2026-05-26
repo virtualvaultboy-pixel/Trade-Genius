@@ -255,14 +255,16 @@ function _applySectorMomentumFilter(setup, sectors) {
 // v7.11 — VOLT : 5e IA "haute conviction / haute volatilité"
 // Univers restreint aux actifs naturellement volatils où une asymétrie 1:4 est crédible
 // Crypto mid-cap (volatilité 4-8% jour) + actions high-beta US (volatilité 3-6% jour)
+// v7.19 — Labels alignés EXACTEMENT sur build-ai-study.mjs ASSETS
+// (cryptos = labels courts SOL/AVAX/NEAR, actions = noms complets Tesla/Palantir)
+// Sinon _isVoltAsset() retourne false et VOLT n'a 0 setup (bug v7.11-v7.18)
 const VOLT_UNIVERSE = new Set([
-  // Crypto mid-cap (haute volatilité, momentum-driven)
-  'Solana', 'Avalanche', 'Near', 'Render', 'Injective', 'Sui', 'Aptos',
-  'Celestia', 'Sei', 'Bittensor', 'Lido DAO', 'Arbitrum', 'Optimism',
-  'Fetch.ai', 'SingularityNET', 'Polygon', 'Cosmos', 'Filecoin', 'Internet Computer',
+  // Crypto mid-cap (haute volatilité, momentum-driven) — labels ASSETS short
+  'SOL', 'AVAX', 'NEAR', 'INJ', 'LDO', 'ARB', 'OP', 'FET', 'ICP',
+  'ATOM', 'FIL', 'MATIC', 'APT', 'SUI', 'TIA', 'SEI', 'RNDR', 'AGIX',
   // Actions high-beta US (tech spéculative + EV + nouvelles tech)
   'Tesla', 'Palantir', 'Coinbase', 'MicroStrategy', 'Affirm', 'SoFi',
-  'Rivian', 'Carvana', 'Arm', 'Super Micro', 'AST SpaceMobile', 'IonQ',
+  'Rivian', 'Carvana', 'ARM Holdings', 'Super Micro', 'AST SpaceMobile', 'IonQ',
   'Rocket Lab', 'Archer Aviation', 'Lucid', 'Plug Power', 'Joby Aviation',
   'Roblox', 'Snap', 'Unity', 'DraftKings', 'Roku', 'Beyond Meat',
 ]);
@@ -852,7 +854,6 @@ const ASSETS = [
   { kind: 'action', symbol: 'SCHW', label: 'Charles Schwab' },
   { kind: 'action', symbol: 'AXP',  label: 'American Express' },
   { kind: 'action', symbol: 'COF',  label: 'Capital One' },
-  { kind: 'action', symbol: 'PYPL', label: 'PayPal' },
   { kind: 'action', symbol: 'PNC',  label: 'PNC Bank' },
   { kind: 'action', symbol: 'USB',  label: 'US Bancorp' },
   { kind: 'action', symbol: 'TFC',  label: 'Truist' },
@@ -957,8 +958,7 @@ const ASSETS = [
   { kind: 'action', symbol: 'ATVI', label: 'Activision' },
 
   // ── ACTIONS EU complémentaires (+50) ───────────────────────
-  // France
-  { kind: 'action', symbol: 'SAN.PA',  label: 'Sanofi (Paris)' },
+  // France (Sanofi déjà ligne ~706)
   { kind: 'action', symbol: 'CS.PA',   label: 'AXA' },
   { kind: 'action', symbol: 'GLE.PA',  label: 'Société Générale' },
   { kind: 'action', symbol: 'ACA.PA',  label: 'Crédit Agricole' },
@@ -1129,6 +1129,22 @@ const ASSETS = [
   { kind: 'crypto', id: 'worldcoin-wld',    label: 'WLD' },
   { kind: 'crypto', id: 'jasmycoin',        label: 'JASMY' },
   { kind: 'crypto', id: 'first-digital-usd',label: 'FDUSD' },
+  // v7.19 — ajouts pour compléter VOLT_UNIVERSE
+  { kind: 'crypto', id: 'filecoin',         label: 'FIL' },
+  { kind: 'crypto', id: 'singularitynet',   label: 'AGIX' },
+  // Actions VOLT manquantes
+  { kind: 'action', symbol: 'MSTR', label: 'MicroStrategy' },
+  { kind: 'action', symbol: 'AFRM', label: 'Affirm' },
+  { kind: 'action', symbol: 'SOFI', label: 'SoFi' },
+  { kind: 'action', symbol: 'CVNA', label: 'Carvana' },
+  { kind: 'action', symbol: 'ASTS', label: 'AST SpaceMobile' },
+  { kind: 'action', symbol: 'IONQ', label: 'IonQ' },
+  { kind: 'action', symbol: 'RKLB', label: 'Rocket Lab' },
+  { kind: 'action', symbol: 'ACHR', label: 'Archer Aviation' },
+  { kind: 'action', symbol: 'JOBY', label: 'Joby Aviation' },
+  { kind: 'action', symbol: 'U',    label: 'Unity' },
+  { kind: 'action', symbol: 'DKNG', label: 'DraftKings' },
+  { kind: 'action', symbol: 'BYND', label: 'Beyond Meat' },
 ];
 
 async function fetchOne(a) {
@@ -2686,7 +2702,7 @@ async function main() {
     {
       id: 'atlas', name: 'BASTION', role: 'Le Stoïque',
       tagline: 'Forteresse stable, patience récompensée',
-      desc: 'Long terme · 1-3 mois · Patience haute · +8.9%/an · drawdown <1.5%. Attend SMA200 + Ichimoku + ADX + volumes alignés. 3-4 trades/semaine, hold moyen 4 jours. Win rate 41% mais chaque gagnant rapporte gros (R/R 3.5).',
+      desc: 'Long terme · 1-3 mois · Patience haute · stress walk-forward 6×150j +6.7%/an · DD max -1.8% · 6/6 folds positifs. Attend SMA200 + Ichimoku + ADX + volumes alignés. 3-4 trades/semaine. Win rate ~30% mais chaque gagnant rapporte gros (R/R 3.5).',
       icon: '🗿', color: '#60a5fa',
       filters: { minConfRank: 3, minADX: 28, minRR: 2.5 },
       atr: { stop: 1.2, tp1: 2.0, tp2: 3.5 },
@@ -2704,7 +2720,7 @@ async function main() {
     {
       id: 'nova', name: 'PHÉNIX', role: 'L\'Équilibré',
       tagline: 'Résilience et constance, le pivot du système',
-      desc: 'Moyen terme · 1-3 semaines · Patience moyenne · +7.7%/an · win rate 58%. Le meilleur compromis fréquence/rendement. 5-7 trades/semaine, hold moyen 1.5j à 1 semaine. Renait des pertes via discipline statistique.',
+      desc: 'Moyen terme · 1-3 semaines · Patience moyenne · stress walk-forward 6×150j +5.6%/an · DD max -1.3% · 6/6 folds positifs. Le meilleur compromis fréquence/rendement. 5-7 trades/semaine. Renait des pertes via discipline statistique.',
       icon: '🔥', color: '#f59e0b',
       filters: { minConfRank: 1, minADX: 16, minRR: 1.8 },
       atr: { stop: 1.5, tp1: 1.5, tp2: 3.0 },
@@ -2713,7 +2729,7 @@ async function main() {
     {
       id: 'kairo', name: 'RAFALE', role: 'Le Rapide',
       tagline: 'Cadence courte, gains fréquents',
-      desc: 'Court terme · 3-7 jours · Patience faible · +6-7%/an · win rate 52%. 5-9 trades/semaine, hold moyen 2-3 jours. Idéal si tu veux voir l\'app travailler chaque jour. Contrarian sélectif sur divergences RSI + Hull MA reversal.',
+      desc: 'Court terme · 3-7 jours · Patience faible · stress walk-forward 6×150j +5.8%/an · DD max -1.1% · 6/6 folds positifs. 5-9 trades/semaine. Idéal si tu veux voir l\'app travailler chaque jour. Contrarian sélectif sur divergences RSI + Hull MA reversal.',
       icon: '⚡', color: '#ef4444',
       filters: { minConfRank: 1, minADX: 10, minRR: 2.0 },
       atr: { stop: 2.0, tp1: 2.5, tp2: 5.0 },
