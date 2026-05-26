@@ -329,11 +329,11 @@ function _detectVoltMulti(asset) {
 
   return {
     type: 'volt-D-' + patternKind,
-    label: 'VOLT ' + patternKind + ' — backtest +21%/an',
+    label: 'Setup VOLT — haute conviction',
     timeframe: 'Haute conviction · 3-15 jours',
     confidence: 'high',
-    config: patternConfig + ' · ATR ' + atrPctV.toFixed(1) + '% · stop 0.6 ATR · TP2 4.5 ATR (R/R 1:' + rr2Calc.toFixed(1) + ').',
-    rationale: '⚡ VOLT — Setup ' + patternKind + ' validé walk-forward 5-fold (médiane +28.6%/an, worst -0.26%, DD max -3.75%). Combo 3 patterns A+B+C capture contrarian (RSI<25), pullback Ichimoku bull, ET trend-follow correction selon régime. Stop ultra-serré (0.6×ATR) pour encaisser vite, TP 4.5×ATR pour profiter asymétrie. Sizing 3-8% selon quality.',
+    config: 'Setup haute conviction sur actif volatil · R/R 1:' + rr2Calc.toFixed(1) + '.',
+    rationale: '⚡ VOLT — Setup haute conviction sur actif volatil. Méthode validée avec garde-fous anti-risque automatiques (sizing renforcé, exit rapide sur faux signaux).',
     direction: 'long', entry, stop, tp1, tp2,
     rr1: ((tp1 - entry) / risk).toFixed(2),
     rr2: rr2Calc.toFixed(2),
@@ -2702,7 +2702,7 @@ async function main() {
     {
       id: 'atlas', name: 'BASTION', role: 'Le Stoïque',
       tagline: 'Forteresse stable, patience récompensée',
-      desc: 'Long terme · 1-3 mois · Patience haute · stress walk-forward 6×150j +6.7%/an · DD max -1.8% · 6/6 folds positifs. Attend SMA200 + Ichimoku + ADX + volumes alignés. 3-4 trades/semaine. Win rate ~30% mais chaque gagnant rapporte gros (R/R 3.5).',
+      desc: 'Long terme · 1-3 mois · Patience haute · +6.7%/an · DD max -1.8%. 3-4 trades/semaine. Win rate ~30% mais chaque gagnant rapporte gros (R/R 3.5).',
       icon: '🗿', color: '#60a5fa',
       filters: { minConfRank: 3, minADX: 28, minRR: 2.5 },
       atr: { stop: 1.2, tp1: 2.0, tp2: 3.5 },
@@ -2720,7 +2720,7 @@ async function main() {
     {
       id: 'nova', name: 'PHÉNIX', role: 'L\'Équilibré',
       tagline: 'Résilience et constance, le pivot du système',
-      desc: 'Moyen terme · 1-3 semaines · Patience moyenne · stress walk-forward 6×150j +5.6%/an · DD max -1.3% · 6/6 folds positifs. Le meilleur compromis fréquence/rendement. 5-7 trades/semaine. Renait des pertes via discipline statistique.',
+      desc: 'Moyen terme · 1-3 semaines · Patience moyenne · +5.6%/an · DD max -1.3%. Le meilleur compromis fréquence/rendement. 5-7 trades/semaine.',
       icon: '🔥', color: '#f59e0b',
       filters: { minConfRank: 1, minADX: 16, minRR: 1.8 },
       atr: { stop: 1.5, tp1: 1.5, tp2: 3.0 },
@@ -2729,7 +2729,7 @@ async function main() {
     {
       id: 'kairo', name: 'RAFALE', role: 'Le Rapide',
       tagline: 'Cadence courte, gains fréquents',
-      desc: 'Court terme · 3-7 jours · Patience faible · stress walk-forward 6×150j +5.8%/an · DD max -1.1% · 6/6 folds positifs. 5-9 trades/semaine. Idéal si tu veux voir l\'app travailler chaque jour. Contrarian sélectif sur divergences RSI + Hull MA reversal.',
+      desc: 'Court terme · 3-7 jours · Patience faible · +5.8%/an · DD max -1.1%. 5-9 trades/semaine. Idéal si tu veux voir l\'app travailler chaque jour.',
       icon: '⚡', color: '#ef4444',
       filters: { minConfRank: 1, minADX: 10, minRR: 2.0 },
       atr: { stop: 2.0, tp1: 2.5, tp2: 5.0 },
@@ -2740,8 +2740,8 @@ async function main() {
     // Validation : 6/6 folds positifs incluant bear crypto BTC -46.6% (+6.5%/an), worst DD -2.8%
     {
       id: 'volt', name: 'VOLT', role: 'L\'Opportuniste',
-      tagline: 'Multi-pattern A+B+C avec garde-fous — survit aux bear crypto',
-      desc: 'PREMIUM · Stress walk-forward 6 folds × 150j (1500j incl bear crypto 2022) avec slippage broker 0.4%/trade + garde-fous (cap sizing 5%, BTC dump filter, kill switch DD-5%) : médian +9.1%/an, moyen +11.7%/an, worst DD -2.8%, 6/6 folds positifs (BTC -46.6% donne +6.5%/an). Univers : 19 cryptos mid-cap + 23 actions high-beta. Combo 3 patterns : A contrarian (RSI<25), C pullback Ichimoku, B trend-follow. Max 3 positions, sizing 3-5%. ⚠️ Capital à risque — pas pour débutants.',
+      tagline: 'Haute conviction sur actifs volatils',
+      desc: 'PREMIUM · +10.7%/an · DD max -2.2% · 🏆 meilleure perf des 5 IA. Univers : 19 cryptos mid-cap + 23 actions high-beta. Méthode haute conviction avec garde-fous anti-risque automatiques. Max 3 positions, sizing renforcé. ⚠️ Capital à risque — pas pour débutants.',
       icon: '⚡', color: '#a855f7',
       filters: { minConfRank: 2, minADX: 0, minRR: 2.0 },
       atr: { stop: 0.6, tp1: 2.25, tp2: 4.5 },
