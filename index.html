@@ -486,47 +486,7 @@
     background: linear-gradient(90deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 100%);
   }
 
-  .unlock-banner {
-    display: none;
-    margin: 16px 0 20px;
-    padding: 16px;
-    background: linear-gradient(135deg, rgba(190, 242, 100, 0.15), rgba(190, 242, 100, 0.04));
-    border: 1px solid rgba(190, 242, 100, 0.5);
-    border-radius: 14px;
-    cursor: pointer;
-  }
-  .unlock-banner.show { display: block; }
-  .ub-tag {
-    font-family: var(--font-m);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: var(--acid);
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .ub-title {
-    font-family: var(--font-d);
-    font-size: 18px;
-    font-weight: 800;
-    color: var(--text);
-    margin-bottom: 8px;
-  }
-  .ub-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .ub-desc {
-    font-family: var(--font-d);
-    font-size: 13px;
-    color: var(--text-dim);
-  }
-  .ub-arrow {
-    font-family: var(--font-m);
-    font-size: 13px;
-    color: var(--acid);
-    font-weight: 700;
-  }
+  /* v8.5 — .unlock-banner + .ub-* retirés (view-accueil legacy) */
 
   .modules { display: flex; flex-direction: column; gap: 14px; }
   .module-card {
@@ -752,46 +712,7 @@
   }
   /* Masqué sur la welcome (l'illustration SVG hero gère le visuel) */
   body.welcoming .hub-bg-canvas { opacity: 0; }
-  /* Aurora layer 1 — acid blob qui dérive */
-  #view-accueil::before {
-    content: '';
-    position: fixed;
-    top: -120px; left: -30%;
-    width: 90vw; max-width: 600px; height: 60vh; min-height: 360px;
-    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(190,242,100,0.22) 0%, rgba(190,242,100,0) 65%);
-    pointer-events: none;
-    z-index: 0;
-    filter: blur(30px);
-    animation: aurora-drift-1 22s ease-in-out infinite;
-    will-change: transform, opacity;
-  }
-  /* Aurora layer 2 — purple blob opposé */
-  #view-accueil::after {
-    content: '';
-    position: fixed;
-    top: 30vh; right: -25%;
-    width: 80vw; max-width: 540px; height: 55vh; min-height: 340px;
-    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(167,139,250,0.20) 0%, rgba(96,165,250,0.10) 40%, rgba(167,139,250,0) 70%);
-    pointer-events: none;
-    z-index: 0;
-    filter: blur(34px);
-    animation: aurora-drift-2 28s ease-in-out infinite;
-    will-change: transform, opacity;
-  }
-  @keyframes aurora-drift-1 {
-    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.9; }
-    33%      { transform: translate(8vw, 3vh) scale(1.15); opacity: 1; }
-    66%      { transform: translate(-4vw, 8vh) scale(0.92); opacity: 0.7; }
-  }
-  @keyframes aurora-drift-2 {
-    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.85; }
-    40%      { transform: translate(-6vw, -4vh) scale(1.18); opacity: 1; }
-    75%      { transform: translate(3vw, 6vh) scale(0.9); opacity: 0.65; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    #view-accueil::before, #view-accueil::after { animation: none; }
-  }
-  #view-accueil > * { position: relative; z-index: 1; }
+  /* v8.5 — Aurora layers #view-accueil retirées (view-accueil legacy supprimée) */
 
   /* v2.16 — CSS .hello retiré (remplacé par .hub-header en v1.96) */
 
@@ -4784,7 +4705,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v8.4</div>
+        <div class="bd-brand-ver" id="bd-version">v8.5</div>
       </div>
     </div>
 
@@ -5038,7 +4959,6 @@
        ============================================ -->
   <div id="view-modules" class="view">
     <div class="header-bar">
-      <button class="back-home" id="back-home-btn" style="display:none;" onclick="showView('accueil')">← ACCUEIL</button>
       <div class="brand">
         <span class="brand-dot"></span>
         <span>DEPONCHY · STUDIO</span>
@@ -5048,21 +4968,11 @@
     <h1 class="page-title">Tes <em>modules</em>.</h1>
     <p class="page-subtitle">Choisis où apprendre.</p>
 
-    <!-- Unlock banner : shown when all modules complete -->
-    <div class="unlock-banner" id="unlock-banner" onclick="showView('accueil')">
-      <div class="ub-tag">✓ TOUS LES MODULES COMPLÉTÉS</div>
-      <div class="ub-title">Bienvenue dans l'app !</div>
-      <div class="ub-row">
-        <span class="ub-desc">Accède à l'entraînement et plus.</span>
-        <span class="ub-arrow">→</span>
-      </div>
-    </div>
-
     <div class="section-title">Ton parcours</div>
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=84')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=85')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -5081,7 +4991,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=84')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=85')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -5100,7 +5010,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=84')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=85')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -5119,7 +5029,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=84')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=85')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -5138,7 +5048,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=84')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=85')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -5157,7 +5067,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=84')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=85')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -5177,7 +5087,7 @@
       </div>
 
       <!-- v8.3 — Module passerelle "Découvre nos outils Premium" (visible FREE uniquement, caché si Premium) -->
-      <div class="module-card premium-discovery-card" id="premium-discovery-card" style="--module-color: var(--gold); cursor:pointer; background:linear-gradient(160deg, rgba(212,165,116,0.10) 0%, rgba(168,85,247,0.06) 100%); border-color:rgba(212,165,116,0.45);" onclick="window.location.href='scene-12.html?v=84'">
+      <div class="module-card premium-discovery-card" id="premium-discovery-card" style="--module-color: var(--gold); cursor:pointer; background:linear-gradient(160deg, rgba(212,165,116,0.10) 0%, rgba(168,85,247,0.06) 100%); border-color:rgba(212,165,116,0.45);" onclick="window.location.href='scene-12.html?v=85'">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar" style="background:linear-gradient(135deg,#d4a574,#a855f7);color:#fff;">✦</div>
@@ -5201,7 +5111,7 @@
       </div>
 
       <!-- v2.46 — Module 6 : Krachs historiques (Premium, deplace depuis le burger) -->
-      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=84')">
+      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=85')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💥</div>
@@ -5221,7 +5131,7 @@
       </div>
 
       <!-- v2.71 — Module 7 : Patterns Lab (Premium, déplacé depuis le burger) -->
-      <div class="module-card" data-module="7" data-storage="tradegenius_m7_patterns" data-requires="3" style="--module-color: var(--gold);" onclick="openModule(7, 'scene-08.html?v=84')">
+      <div class="module-card" data-module="7" data-storage="tradegenius_m7_patterns" data-requires="3" style="--module-color: var(--gold);" onclick="openModule(7, 'scene-08.html?v=85')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🔬</div>
@@ -5244,205 +5154,6 @@
 
     <div class="footer-brand">✦ DEPONCHY STUDIO · 2026</div>
 
-    <button class="dev-reset-btn" onclick="resetAll()">[DEV] ↺ RESET COMPLET (1ÈRE CONNEXION)</button>
-  </div>
-
-  <!-- ============================================
-       VIEW : ACCUEIL (hub - all done)
-       ============================================ -->
-  <div id="view-accueil" class="view">
-
-    <!-- v2.06 — Branding hub : titre app -->
-    <div class="hub-brand-bar">
-      <div class="hbb-left">
-        <span class="hbb-dot"></span>
-        <span class="hbb-name">TRADE GENIUS</span>
-      </div>
-      <span class="hbb-tag" id="hbb-tag">v8.4</span>
-    </div>
-
-    <!-- Hub header v1.98 : avatar + greeting + streak grand + SVG flame -->
-    <div class="hub-header" id="hub-header">
-      <div class="hub-avatar" id="hub-avatar" aria-hidden="true">☀️</div>
-      <div class="hub-greet-text">
-        <div class="hub-greet-line1" id="hub-greet-line1">Bonjour <span class="expert-badge" id="expert-badge" style="display:none;">✦ EXPERT</span></div>
-        <div class="hub-greet-line2" id="hub-greet-line2">Prêt pour ta session ?</div>
-      </div>
-      <div class="hub-streak" id="hub-streak" aria-label="Série quotidienne">
-        <svg class="hs-icon" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- Flame outer (orange) -->
-          <path class="flame-outer" d="M10 2 C10 6, 5 8, 5 13 C5 18, 8 22, 10 22 C12 22, 15 18, 15 13 C15 8, 10 6, 10 2 Z" fill="url(#flameGradOuter)"/>
-          <!-- Flame inner (yellow) -->
-          <path class="flame-inner" d="M10 8 C10 11, 7.5 12, 7.5 16 C7.5 19, 8.8 21, 10 21 C11.2 21, 12.5 19, 12.5 16 C12.5 12, 10 11, 10 8 Z" fill="url(#flameGradInner)"/>
-          <defs>
-            <linearGradient id="flameGradOuter" x1="10" y1="2" x2="10" y2="22" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stop-color="#ff6b1a"/>
-              <stop offset="0.5" stop-color="#ff9531"/>
-              <stop offset="1" stop-color="#ff4d00"/>
-            </linearGradient>
-            <linearGradient id="flameGradInner" x1="10" y1="8" x2="10" y2="21" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stop-color="#ffe082"/>
-              <stop offset="1" stop-color="#ffb74d"/>
-            </linearGradient>
-          </defs>
-        </svg>
-        <div class="hs-num" id="hub-streak-num">0</div>
-        <div class="hs-lbl">jour<span id="hub-streak-s"></span></div>
-      </div>
-    </div>
-
-    <!-- HERO REPRENDRE — bloc principal -->
-    <div class="resume-block" id="resume-block" style="display:none;">
-      <div class="resume-eyebrow">↻ REPRENDRE</div>
-      <div class="resume-card" id="resume-card"></div>
-    </div>
-
-    <!-- Stats compactes avec icônes + sparklines v1.98 -->
-    <div class="stats-row">
-      <div class="stat-cell" style="--stat-color: var(--acid);" onclick="location.href='scene-06.html?v=84'">
-        <div class="stat-icon">📚</div>
-        <div class="stat-num" id="stat-fiches">0</div>
-        <div class="stat-lbl">Fiches<br>lues</div>
-        <canvas class="stat-spark" id="spark-fiches" aria-hidden="true"></canvas>
-      </div>
-      <div class="stat-cell" style="--stat-color: var(--blue);" onclick="location.href='scene-05.html?v=84'">
-        <div class="stat-icon">🎮</div>
-        <div class="stat-num" id="stat-sessions">0</div>
-        <div class="stat-lbl">Sessions<br>simu</div>
-        <canvas class="stat-spark" id="spark-sessions" aria-hidden="true"></canvas>
-      </div>
-      <div class="stat-cell stat-readonly" style="--stat-color: #F59E0B;">
-        <div class="stat-icon">🎯</div>
-        <div class="stat-num" id="stat-winrate">—</div>
-        <div class="stat-lbl">Win<br>rate</div>
-        <canvas class="stat-spark" id="spark-winrate" aria-hidden="true"></canvas>
-      </div>
-    </div>
-
-    <!-- Défi du jour -->
-    <div class="daily-challenge" id="daily-challenge" onclick="openDailyChallenge()">
-      <div class="dc-left">
-        <div class="dc-icon" id="dc-icon">🎯</div>
-        <div class="dc-text">
-          <div class="dc-label" id="dc-label">DÉFI DU JOUR</div>
-          <div class="dc-title" id="dc-title">1 question pour rester affûté</div>
-        </div>
-      </div>
-      <div class="dc-arrow">→</div>
-    </div>
-
-    <!-- v2.11 : hero-daily retiré (allègement accueil — la pensée du jour était redondante avec le défi du jour) -->
-
-    <!-- ============ WIDGET MARCHÉ LIVE (Premium uniquement) ============ -->
-    <div class="market-live" id="market-live" style="display:none;">
-      <div class="ml-head">
-        <div class="ml-eyebrow"><span class="ml-pulse"></span>MARCHÉ EN TEMPS RÉEL</div>
-        <div class="ml-refresh" id="ml-refresh">··· LIVE</div>
-      </div>
-      <div class="ml-tickers" id="ml-tickers">
-        <!-- Tickers injectés par JS -->
-      </div>
-      <canvas class="ml-chart" id="ml-chart" aria-hidden="true"></canvas>
-      <div class="ml-foot">Source : mock — vraie API Binance/Yahoo à venir</div>
-    </div>
-
-    <!-- ============ OUTILS BASE (toujours visibles) ============ -->
-    <div class="section-title">Tes outils</div>
-    <div class="tools-grid tools-grid-3">
-      <div class="tool-chip" style="--mode-color: var(--acid);" onclick="showView('modules')">
-        <div class="tool-icon">📚</div>
-        <div class="tool-name">Modules</div>
-      </div>
-      <div class="tool-chip" id="tool-simu" style="--mode-color: var(--blue);" onclick="openSimulator()">
-        <div class="tool-icon" id="tool-simu-icon">🎮</div>
-        <div class="tool-name" id="tool-simu-name">Entraîner</div>
-      </div>
-      <div class="tool-chip" style="--mode-color: var(--purple);" onclick="location.href='scene-06.html?v=84'">
-        <div class="tool-icon">📖</div>
-        <div class="tool-name">Bibliothèque</div>
-      </div>
-    </div>
-
-    <!-- ============ OUTILS AVANCÉS (verrouillés en free, débloqués en premium) ============ -->
-    <div class="section-title expert-title-row" id="advanced-title">
-      <span class="adv-title-text">Mode Expert</span>
-      <span class="adv-title-status" id="adv-status">🔒 Verrouillé</span>
-    </div>
-    <div class="tools-grid tools-grid-2x2 tools-advanced" id="tools-advanced">
-      <div class="tool-chip advanced" data-href="scene-07.html?v=84" style="--mode-color: var(--blue);">
-        <div class="tool-icon">🎓</div>
-        <div class="tool-name">Cours avancé</div>
-        <div class="tool-sub-info">Fibonacci, Dow, Backtesting</div>
-        <span class="lock-badge">🔒</span>
-      </div>
-      <div class="tool-chip advanced" data-href="scene-10.html?v=84" style="--mode-color: var(--green);">
-        <div class="tool-icon">📡</div>
-        <div class="tool-name">Marché live</div>
-        <div class="tool-sub-info">Crypto · Actions · ETF · 10 indicateurs</div>
-        <span class="lock-badge">🔒</span>
-      </div>
-      <div class="tool-chip advanced" data-href="scene-08.html?v=84" style="--mode-color: var(--gold);">
-        <div class="tool-icon">🔬</div>
-        <div class="tool-name">Patterns Lab</div>
-        <div class="tool-sub-info">H&S, Triangles, Flags...</div>
-        <span class="lock-badge">🔒</span>
-      </div>
-      <div class="tool-chip advanced" data-href="scene-09.html?v=84" style="--mode-color: var(--red);">
-        <div class="tool-icon">📜</div>
-        <div class="tool-name">Historiques</div>
-        <div class="tool-sub-info">Krachs 2000, 2008, 2020, 2022</div>
-        <span class="lock-badge">🔒</span>
-      </div>
-    </div>
-
-    <!-- ============ VIDÉOS (Premium uniquement) ============ -->
-    <div class="videos-section" id="videos-section" style="display:none;">
-      <div class="section-title expert-title">📹 Vidéos trading</div>
-      <div class="videos-placeholder">
-        <div class="vp-thumb"><span>▶</span></div>
-        <div class="vp-info">
-          <div class="vp-lbl">PROCHAINEMENT</div>
-          <div class="vp-title">Tutos vidéo · Analyses hebdo · Replays sessions live</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============ BANDEAU PREMIUM (full-width, accrocheur — free seulement) ============ -->
-    <div class="premium-banner" id="premium-banner" onclick="openPremium()" style="display:none;">
-      <div class="pb-glow"></div>
-      <div class="pb-content">
-        <div class="pb-eyebrow">✦ TRADE GENIUS EXPERT</div>
-        <div class="pb-title">Débloque <em>tout</em></div>
-        <div class="pb-features">
-          <div class="pb-feat"><span class="pb-feat-ico">🎓</span><span>Cours avancé Fibonacci, Dow, Volume Profile</span></div>
-          <div class="pb-feat"><span class="pb-feat-ico">🔬</span><span>Patterns Lab — tous les modèles classiques</span></div>
-          <div class="pb-feat"><span class="pb-feat-ico">📜</span><span>Krachs historiques décortiqués</span></div>
-          <div class="pb-feat"><span class="pb-feat-ico">🤖</span><span>Coach IA — analyse de tes trades</span></div>
-          <div class="pb-feat"><span class="pb-feat-ico">📡</span><span>Marché en temps réel + watchlist</span></div>
-          <div class="pb-feat"><span class="pb-feat-ico">📹</span><span>Vidéos tutos + analyses hebdo</span></div>
-        </div>
-        <button class="pb-cta">Passer en Expert · 3€/mois →</button>
-      </div>
-    </div>
-
-    <!-- Rappels notif + Partager -->
-    <div class="hub-actions">
-      <button class="hub-action-btn notif" id="notif-btn" onclick="toggleNotif()">
-        <span class="ha-ico" id="notif-ico">🔔</span>
-        <span class="ha-label" id="notif-label">Activer rappels</span>
-      </button>
-      <button class="hub-action-btn share" onclick="shareProgress()">
-        <span class="ha-ico">📤</span>
-        <span class="ha-label">Partager</span>
-      </button>
-    </div>
-
-    <div class="footer-brand">✦ DEPONCHY STUDIO · 2026</div>
-    <a class="privacy-link" href="glossary.html">📖 Glossaire complet (26 termes)</a>
-    <a class="privacy-link" onclick="openPrivacy()">🔒 Confidentialité &amp; cookies</a>
-
-    <button class="dev-reset-btn" onclick="resetAll()">[DEV] ↺ RESET COMPLET (1ÈRE CONNEXION)</button>
-  </div>
 
   <!-- ============================================
        v2.18 — VIEW : FEED (Accueil pivot Passion-Trade-like)
@@ -5500,7 +5211,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=84'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=85'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -5540,7 +5251,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=84'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=85'">OUVRIR →</button>
         </div>
       </article>
 
@@ -5937,22 +5648,22 @@
           <div class="ppu-body"><div class="ppu-title" style="color:#e879f9;">VOLT — 5<sup>e</sup> IA Premium</div><div class="ppu-sub">Haute conviction · cryptos mid-cap + actions high-beta</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-10.html?v=84">
+        <a class="pp-unlock-card" href="scene-10.html?v=85">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=84">
+        <a class="pp-unlock-card" href="scene-08.html?v=85">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=84">
+        <a class="pp-unlock-card" href="scene-09.html?v=85">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=84">
+        <a class="pp-unlock-card" href="scene-07.html?v=85">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -6184,7 +5895,7 @@
       const hideOn = ['welcome'];
       bn.classList.toggle('show', !hideOn.includes(name));
       document.body.classList.toggle('has-bottom-nav', !hideOn.includes(name));
-      const tabMap = { feed: 'feed', bilans: 'bilans', premium: 'premium', resultats: 'resultats', modules: 'formation', accueil: 'feed' };
+      const tabMap = { feed: 'feed', bilans: 'bilans', premium: 'premium', resultats: 'resultats', modules: 'formation' };
       const activeTab = tabMap[name];
       bn.querySelectorAll('.bn-item').forEach(b => b.classList.toggle('active', b.dataset.tab === activeTab));
     }
@@ -6222,129 +5933,13 @@
     if (name === 'modules') refreshModules();
     if (name === 'bilans') renderJournal();         // v2.28
     if (name === 'resultats') renderAIStudy(); // v2.39 — vue IA
-    if (name === 'accueil') {
-      refreshAccueil();
-      animateAccueilEntrance();
-      // v1.98 — canvas bg + sparklines + scramble + magnetic
-      startHubBgCanvas();
-      setTimeout(refreshSparklines, 100);
-      setTimeout(() => {
-        const line2 = document.getElementById('hub-greet-line2');
-        if (line2 && line2._scrambled !== '1') {
-          const final = line2.innerHTML;
-          scrambleText(line2, final, 800);
-          line2._scrambled = '1';
-        }
-      }, 350);
-      setTimeout(initMagneticTools, 200);
-      // v2.19+ — tutos accueil/premium désactivés (legacy). Le tuto pivot vit dans showView('feed').
-    }
+    // v8.5 — view-accueil legacy retirée (l'ancien hub n'est plus le point d'entrée)
     if (name === 'modules') {
       setTimeout(animateModulesEntrance, 60);
     }
   }
 
-  function animateAccueilEntrance() {
-    if (typeof anime === 'undefined') return;
-    // v1.97 — entrée whoa : header slide-down + scale, hero punch, stats pop one by one
-
-    // 1) Hub header — slide down + scale + fade
-    anime({
-      targets: '#view-accueil .hub-header',
-      translateY: [-22, 0],
-      scale: [0.94, 1],
-      opacity: [0, 1],
-      duration: 720,
-      easing: 'easeOutBack',
-    });
-    // Avatar et streak en sub-stagger après le header
-    anime({
-      targets: '#view-accueil .hub-avatar',
-      scale: [{ value: 0, duration: 0 }, { value: 1.18, duration: 380 }, { value: 1, duration: 220 }],
-      rotate: [{ value: -25, duration: 0 }, { value: 8, duration: 380 }, { value: -1, duration: 220 }],
-      delay: 200,
-      easing: 'easeOutBack',
-    });
-    anime({
-      targets: '#view-accueil .hub-streak.active',
-      scale: [0.4, 1],
-      opacity: [0, 1],
-      delay: 320,
-      duration: 600,
-      easing: 'spring(1, 80, 9, 0)',
-    });
-
-    // 2) Hero Reprendre — punch in
-    anime({
-      targets: '#view-accueil .resume-block',
-      translateY: [28, 0],
-      scale: [0.92, 1],
-      opacity: [0, 1],
-      duration: 780,
-      delay: 280,
-      easing: 'easeOutBack',
-    });
-    anime({
-      targets: '#view-accueil .resume-icon',
-      scale: [{ value: 0, duration: 0 }, { value: 1.25, duration: 420 }, { value: 1, duration: 260 }],
-      rotate: [{ value: -180, duration: 0 }, { value: 12, duration: 420 }, { value: 0, duration: 260 }],
-      delay: 460,
-      easing: 'easeOutBack',
-    });
-
-    // 3) Stats pop one by one (v2.16 : parcours-progress retiré)
-    anime({
-      targets: '#view-accueil .stats-row .stat-cell',
-      translateY: [22, 0],
-      scale: [0.85, 1],
-      opacity: [0, 1],
-      delay: anime.stagger(90, { start: 540 }),
-      duration: 580,
-      easing: 'easeOutBack',
-    });
-
-    // 4) Défi du jour (v2.16 : hero-daily retiré)
-    anime({
-      targets: '#view-accueil .daily-challenge',
-      translateY: [18, 0],
-      opacity: [0, 1],
-      delay: 820,
-      duration: 540,
-      easing: 'easeOutCubic',
-    });
-
-    // 5) Section title slide-in
-    anime({
-      targets: '#view-accueil .section-title',
-      translateX: [-12, 0],
-      opacity: [0, 1],
-      duration: 480,
-      delay: 1060,
-      easing: 'easeOutCubic',
-    });
-
-    // 6) Tools cascade avec rotation 3D
-    anime({
-      targets: '#view-accueil .tool-chip',
-      translateY: [24, 0],
-      rotateX: [25, 0],
-      opacity: [0, 1],
-      scale: [0.88, 1],
-      delay: anime.stagger(75, { start: 1140 }),
-      duration: 620,
-      easing: 'easeOutBack',
-    });
-
-    // 7) Premium card + hub-actions
-    anime({
-      targets: '#view-accueil .premium-card, #view-accueil .hub-actions',
-      translateY: [18, 0],
-      opacity: [0, 1],
-      delay: anime.stagger(90, { start: 1400 }),
-      duration: 580,
-      easing: 'easeOutCubic',
-    });
-  }
+  /* v8.5 — animateAccueilEntrance() retirée (view-accueil legacy supprimée) */
 
   /* ============================================
      v1.98 — Canvas trading chart background (signature fintech)
@@ -6477,178 +6072,7 @@
     _hubBgRaf = requestAnimationFrame(loop);
   }
 
-  /* ============================================
-     v1.98 — Sparklines mini-charts dans stats
-     ============================================ */
-  function drawSparkline(canvasId, values, color) {
-    const c = document.getElementById(canvasId);
-    if (!c || !c.getContext) return;
-    const DPR = Math.min(window.devicePixelRatio || 1, 2);
-    c.width = c.offsetWidth * DPR;
-    c.height = c.offsetHeight * DPR;
-    const ctx = c.getContext('2d');
-    const w = c.width, h = c.height;
-    ctx.clearRect(0, 0, w, h);
-    if (!values || values.length < 2) {
-      // Ligne plate discrète
-      ctx.strokeStyle = color.replace(/[\d.]+\)$/, '0.25)');
-      ctx.lineWidth = 1.5 * DPR;
-      ctx.beginPath();
-      ctx.moveTo(2 * DPR, h / 2);
-      ctx.lineTo(w - 2 * DPR, h / 2);
-      ctx.stroke();
-      return;
-    }
-    let mn = Infinity, mx = -Infinity;
-    values.forEach(v => { if (v < mn) mn = v; if (v > mx) mx = v; });
-    const range = (mx - mn) || 1;
-    const stepX = (w - 4 * DPR) / (values.length - 1);
-    const padY = 3 * DPR;
-    const usableH = h - padY * 2;
-
-    // Animation reveal au load via clipping rect qui s'étend
-    let progress = 0;
-    function frame() {
-      progress = Math.min(progress + 0.05, 1);
-      ctx.clearRect(0, 0, w, h);
-      ctx.save();
-      ctx.beginPath();
-      ctx.rect(0, 0, w * progress, h);
-      ctx.clip();
-
-      // Glow ligne
-      ctx.strokeStyle = color;
-      ctx.lineWidth = 1.6 * DPR;
-      ctx.shadowColor = color;
-      ctx.shadowBlur = 6 * DPR;
-      ctx.beginPath();
-      values.forEach((v, i) => {
-        const x = 2 * DPR + i * stepX;
-        const y = padY + (1 - (v - mn) / range) * usableH;
-        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-      });
-      ctx.stroke();
-      ctx.shadowBlur = 0;
-
-      // Fill subtle sous la ligne
-      ctx.fillStyle = color.replace(/[\d.]+\)$/, '0.12)');
-      ctx.lineTo(2 * DPR + (values.length - 1) * stepX, h);
-      ctx.lineTo(2 * DPR, h);
-      ctx.closePath();
-      ctx.fill();
-
-      // Dernier point dot
-      const lastV = values[values.length - 1];
-      const lastX = 2 * DPR + (values.length - 1) * stepX;
-      const lastY = padY + (1 - (lastV - mn) / range) * usableH;
-      ctx.fillStyle = color;
-      ctx.beginPath();
-      ctx.arc(lastX, lastY, 2.2 * DPR, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-
-      if (progress < 1) requestAnimationFrame(frame);
-    }
-    frame();
-  }
-
-  function refreshSparklines() {
-    // Fiches lues : evolution sur 7 jours
-    let fichesVals = [0, 1, 1, 2, 2, 3, 5];
-    try {
-      const viewed = JSON.parse(localStorage.getItem('tradegenius_m5_viewed') || '[]');
-      if (Array.isArray(viewed) && viewed.length > 0) {
-        const n = viewed.length;
-        fichesVals = [Math.max(0, n - 5), Math.max(0, n - 4), Math.max(0, n - 3), Math.max(0, n - 2), Math.max(0, n - 1), Math.max(0, n - 1), n];
-      }
-    } catch {}
-    drawSparkline('spark-fiches', fichesVals, 'rgba(190,242,100,0.95)');
-
-    // Sessions simu : derniers 7 jours estimés
-    let sessVals = [0, 0, 1, 1, 2, 2, 3];
-    try {
-      const journal = JSON.parse(localStorage.getItem('tradegenius_m4_journal') || '[]');
-      if (Array.isArray(journal) && journal.length > 0) {
-        const total = journal.length;
-        sessVals = [Math.max(0, total - 5), Math.max(0, total - 4), Math.max(0, total - 3), Math.max(0, total - 2), Math.max(0, total - 1), Math.max(0, total - 1), total];
-      }
-    } catch {}
-    drawSparkline('spark-sessions', sessVals, 'rgba(125,211,252,0.95)');
-
-    // Winrate : courbe des 7 dernières perfs
-    let wrVals = [50, 52, 48, 55, 53, 58, 60];
-    try {
-      const journal = JSON.parse(localStorage.getItem('tradegenius_m4_journal') || '[]');
-      if (Array.isArray(journal) && journal.length > 0) {
-        const last7 = journal.slice(-7).map(s => typeof s.perf === 'number' ? (s.perf > 0 ? 65 : 35) : 50);
-        if (last7.length >= 2) wrVals = last7;
-      }
-    } catch {}
-    drawSparkline('spark-winrate', wrVals, 'rgba(245,158,11,0.95)');
-  }
-
-  /* ============================================
-     v1.98 — Text scramble effect (style hacker terminal)
-     ============================================ */
-  function scrambleText(el, finalText, duration) {
-    if (!el || !finalText) return;
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      el.innerHTML = finalText;
-      return;
-    }
-    const CHARS = '!<>-_\\/[]{}—=+*^?#________';
-    // Sépare le HTML : on garde les balises mais scramble le texte
-    const tmp = document.createElement('div');
-    tmp.innerHTML = finalText;
-    const targetPlain = tmp.textContent;
-    const totalLen = targetPlain.length;
-    const dur = duration || 700;
-    const start = performance.now();
-
-    function frame(now) {
-      const t = Math.min((now - start) / dur, 1);
-      // Nombre de chars "révélés"
-      const revealed = Math.floor(t * totalLen);
-      let out = '';
-      for (let i = 0; i < totalLen; i++) {
-        if (i < revealed) {
-          out += targetPlain[i];
-        } else if (Math.random() < 0.5) {
-          out += CHARS[Math.floor(Math.random() * CHARS.length)];
-        } else {
-          out += ' ';
-        }
-      }
-      el.textContent = out;
-      if (t < 1) {
-        requestAnimationFrame(frame);
-      } else {
-        el.innerHTML = finalText; // Restaure le HTML final (avec <em>)
-      }
-    }
-    requestAnimationFrame(frame);
-  }
-
-  /* ============================================
-     v1.98 — Magnetic touch glow sur tool-chips
-     ============================================ */
-  function initMagneticTools() {
-    document.querySelectorAll('#view-accueil .tool-chip').forEach(chip => {
-      const onMove = (e) => {
-        const rect = chip.getBoundingClientRect();
-        const x = ((e.touches ? e.touches[0].clientX : e.clientX) - rect.left) / rect.width * 100;
-        const y = ((e.touches ? e.touches[0].clientY : e.clientY) - rect.top) / rect.height * 100;
-        chip.style.setProperty('--mx', x + '%');
-        chip.style.setProperty('--my', y + '%');
-        chip.classList.add('magnetic-active');
-      };
-      const onLeave = () => chip.classList.remove('magnetic-active');
-      chip.addEventListener('pointermove', onMove, { passive: true });
-      chip.addEventListener('pointerleave', onLeave, { passive: true });
-      chip.addEventListener('touchstart', onMove, { passive: true });
-      chip.addEventListener('touchend', onLeave, { passive: true });
-    });
-  }
+  /* v8.5 — drawSparkline / refreshSparklines / scrambleText / initMagneticTools retirés (view-accueil legacy) */
 
   function animateModulesEntrance() {
     if (typeof anime === 'undefined') return;
@@ -6757,10 +6181,8 @@
     const nextUp = document.querySelector('.module-card:not(.locked) .card-status.in-progress')?.closest('.module-card');
     if (nextUp) nextUp.classList.add('next-up');
 
-    // Reveal unlock banner + accueil button if base modules (non-advanced) done
+    // v8.5 — unlock-banner + back-home-btn retirés (view-accueil legacy)
     const nonComingDone = MODULES.filter(m => !m.coming && !m.advanced).every(m => countDone(loadProg(m.storage)) >= m.total);
-    document.getElementById('unlock-banner').classList.toggle('show', nonComingDone);
-    document.getElementById('back-home-btn').style.display = nonComingDone ? 'inline-block' : 'none';
 
     // v8.4 — Auto-highlight de la carte DÉCOUVRE Premium quand M0-M5 sont tous COMPLET
     // (uniquement si pas Premium — la carte est cachée en Premium via CSS)
@@ -6823,60 +6245,7 @@
     { t: "Les frais composés t'enrichissent. Les frais financiers composés t'appauvrissent.", a: "Trade Genius" },
   ];
 
-  function refreshAccueil() {
-    // 1) Salutation dynamique (v1.96 : hub-header compact avatar + line1 + line2)
-    const now = new Date();
-    const h = now.getHours();
-    const day = now.getDay(); // 0 = dim, 6 = sam
-    const avatarEl = document.getElementById('hub-avatar');
-    const line1El = document.getElementById('hub-greet-line1');
-    const line2El = document.getElementById('hub-greet-line2');
-    let avatar, line1, line2;
-    if (day === 0 || day === 6) {
-      avatar = '🎯'; line1 = 'BON WEEK-END'; line2 = 'Apprends un truc <em>nouveau</em>';
-    } else if (h < 6) {
-      avatar = '🌙'; line1 = 'SALUT NOCTAMBULE'; line2 = 'Le marché <em>ne dort pas</em>';
-    } else if (h < 12) {
-      avatar = '☀️'; line1 = 'BON MATIN'; line2 = 'Une décision <em>éclairée</em>';
-    } else if (h < 18) {
-      avatar = '👋'; line1 = 'SALUT'; line2 = 'Prêt pour une <em>session</em> ?';
-    } else if (h < 22) {
-      avatar = '🌆'; line1 = 'BONSOIR'; line2 = 'Une fiche / soir = <em>365 / an</em>';
-    } else {
-      avatar = '🌙'; line1 = 'BONNE NUIT'; line2 = 'Une dernière <em>session</em> ?';
-    }
-    if (avatarEl) avatarEl.textContent = avatar;
-    if (line1El) line1El.textContent = line1;
-    if (line2El) { line2El.innerHTML = line2; line2El._scrambled = '0'; }
-
-    // v2.20 — citation du jour retirée définitivement (DOM absent depuis v2.11)
-
-    // 3) Reprendre où on en était
-    refreshResume();
-
-    // 4) Stats
-    refreshStats();
-
-    // 5) Streak quotidien
-    updateStreak();
-
-    // 6) Verrou simu selon progression modules
-    refreshSimuLock();
-
-    // 7) v2.16 — updateParcoursProgress retiré (élément retiré en v1.99)
-
-    // 8) État du bouton notifications
-    refreshNotifBtn();
-
-    // 9) État défi du jour
-    refreshDailyChallenge();
-
-    // 10) Card Premium (freemium)
-    refreshPremiumCard();
-
-    // 11) Mode Expert (v2.03 : transformation app quand premium)
-    refreshPremiumMode();
-  }
+  /* v8.5 — refreshAccueil() retirée (view-accueil legacy supprimée) */
 
   function refreshDailyChallenge() {
     const wrap = document.getElementById('daily-challenge');
@@ -7112,7 +6481,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=84';
+        location.href = 'scene-10.html?v=85';
       });
       widget._linked = true;
     }
@@ -7165,7 +6534,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=84';
+      location.href = 'scene-05.html?v=85';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -7433,7 +6802,7 @@
       return '✓ Streak reset à 0.';
     },
     resettuto: () => {
-      ['tradegenius_accueil_tuto','tradegenius_premium_tuto','tradegenius_m4_tuto','tg_feed_tuto'].forEach(k => localStorage.removeItem(k));
+      ['tradegenius_premium_tuto','tradegenius_m4_tuto','tg_feed_tuto'].forEach(k => localStorage.removeItem(k));
       setTimeout(() => location.reload(), 600);
       return '✓ Tutos reset.';
     },
@@ -7695,7 +7064,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=84'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=85'; };
         block.style.display = 'block';
         return;
       }
@@ -7737,7 +7106,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=84';
+        card.onclick = () => location.href = 'scene-05.html?v=85';
         block.style.display = 'block';
         return;
       }
@@ -7757,7 +7126,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=84';
+          card.onclick = () => location.href = 'scene-06.html?v=85';
           block.style.display = 'block';
           return;
         }
@@ -7771,7 +7140,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=84';
+        card.onclick = () => location.href = 'scene-06.html?v=85';
         block.style.display = 'block';
         return;
       }
@@ -7786,7 +7155,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=84';
+    card.onclick = () => location.href = 'scene-05.html?v=85';
     block.style.display = 'block';
   }
 
@@ -8393,13 +7762,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=84&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=85&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=84';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=85';
     else showView('premium');
   }
 
@@ -9709,7 +9078,7 @@
         + '<span class="v-placeholder-ico">📓</span>'
         + '<div class="v-placeholder-txt"><strong>Aucune session simu enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=84\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=85\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -9754,7 +9123,7 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=84\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=85\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
   }
@@ -12969,7 +12338,7 @@
         cls: 'fc-news', label: '📅 Samedi', time: now,
         title: 'Marchés fermés · bon moment pour réviser',
         body: 'Indices et actions ne tournent pas. La crypto, elle, ne dort jamais. Le simulateur attend.',
-        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=84'",
+        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=85'",
       });
     }
 
@@ -13573,11 +12942,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=84';
+      location.href = 'scene-05.html?v=85';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=84';
+      location.href = 'scene-06.html?v=85';
       return;
     }
 
@@ -13600,13 +12969,13 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=84"></script>
-  <script src="tg-analyst.js?v=84"></script>
-  <script src="tg-bubble.js?v=84"></script>
+  <script type="module" src="tg-common.js?v=85"></script>
+  <script src="tg-analyst.js?v=85"></script>
+  <script src="tg-bubble.js?v=85"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=84').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=85').catch(() => {});
       });
     }
   </script>
