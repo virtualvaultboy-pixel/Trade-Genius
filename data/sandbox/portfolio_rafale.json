@@ -6,7 +6,7 @@
   "icon": "⚡",
   "created_at": "2026-05-23T17:36:58.374Z",
   "capital_initial": 1000,
-  "cash": 941.094,
+  "cash": 867.2817954386757,
   "positions": [
     {
       "id": "pos-1779557818374-e9xt",
@@ -19,7 +19,7 @@
       "tp1": 26807.189719779464,
       "tp2": 27270.40873643393,
       "initial_stop": 26112.36119479777,
-      "high_since_entry": 26343.970703125,
+      "high_since_entry": 26674.734,
       "rr1": 2,
       "rr2": 4,
       "risk_pct": 0.008791746352031742,
@@ -35,7 +35,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 26674.734,
+      "age_days": 1
     },
     {
       "id": "pos-1779557818374-kbfq",
@@ -64,8 +66,99 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
+      "pnl_eur": null,
+      "current_price": 1383.4,
+      "age_days": 1
+    },
+    {
+      "id": "pos-1779970573639-azdz",
+      "asset": "BTC",
+      "kind": "crypto",
+      "agent": "kairo",
+      "type": "grid-day-A",
+      "entry": 74334.33737251165,
+      "stop": 73913.74968821155,
+      "tp1": 75806.39426756203,
+      "tp2": 77278.45116261241,
+      "initial_stop": 73913.74968821155,
+      "high_since_entry": 74334.33737251165,
+      "rr1": 3.5,
+      "rr2": 7,
+      "risk_pct": 0.005658053857296278,
+      "size_eur": 28.507969298051183,
+      "quality_score": 92,
+      "sizing_pct": 3,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "stacked": false,
+      "opened_at": "2026-05-28T12:16:13.639Z",
+      "opened_at_cycle": 2,
+      "opened_at_date": "2026-05-28",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
       "pnl_eur": null
     },
+    {
+      "id": "pos-1779970573639-t1g1",
+      "asset": "ADA",
+      "kind": "crypto",
+      "agent": "kairo",
+      "type": "grid-day-A",
+      "entry": 0.237340106944157,
+      "stop": 0.23545478608566026,
+      "tp1": 0.24393872994889557,
+      "tp2": 0.2505373529536341,
+      "initial_stop": 0.23545478608566026,
+      "high_since_entry": 0.237340106944157,
+      "rr1": 3.5,
+      "rr2": 7,
+      "risk_pct": 0.007943540949614272,
+      "size_eur": 27.65273021910965,
+      "quality_score": 92,
+      "sizing_pct": 3,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "stacked": false,
+      "opened_at": "2026-05-28T12:16:13.639Z",
+      "opened_at_cycle": 2,
+      "opened_at_date": "2026-05-28",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
+    },
+    {
+      "id": "pos-1779970573639-1me4",
+      "asset": "DOGE",
+      "kind": "crypto",
+      "agent": "kairo",
+      "type": "grid-day-A",
+      "entry": 0.10042933416955194,
+      "stop": 0.09957180913157064,
+      "tp1": 0.1034306718024865,
+      "tp2": 0.10643200943542105,
+      "initial_stop": 0.09957180913157064,
+      "high_since_entry": 0.10042933416955194,
+      "rr1": 3.5,
+      "rr2": 7,
+      "risk_pct": 0.008538591289807437,
+      "size_eur": 26.823148312536357,
+      "quality_score": 92,
+      "sizing_pct": 3,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "stacked": false,
+      "opened_at": "2026-05-28T12:16:13.639Z",
+      "opened_at_cycle": 2,
+      "opened_at_date": "2026-05-28",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
+    }
+  ],
+  "closed_trades": [
     {
       "id": "pos-1779557818374-mns7",
       "asset": "Walmart",
@@ -90,13 +183,16 @@
       "opened_at": "2026-05-23T17:36:58.374Z",
       "opened_at_cycle": 1,
       "opened_at_date": "2026-05-23",
-      "status": "open",
+      "status": "loss",
       "touched_tp1": false,
-      "closed_at": null,
-      "pnl_eur": null
+      "closed_at": "2026-05-28T12:16:13.638Z",
+      "pnl_eur": -0.33435673162723556,
+      "current_price": 118.54,
+      "age_days": 1,
+      "closed_at_cycle": 2,
+      "exit_price": 124.5002809887843
     }
   ],
-  "closed_trades": [],
   "equity_history": [
     {
       "date": "2026-05-23",
@@ -104,7 +200,14 @@
       "equity": 1000,
       "cash": 941.09,
       "positions_count": 3
+    },
+    {
+      "date": "2026-05-28",
+      "cycle": 2,
+      "equity": 999.69,
+      "cash": 867.28,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-05-23"
+  "last_cycle": "2026-05-28"
 }
