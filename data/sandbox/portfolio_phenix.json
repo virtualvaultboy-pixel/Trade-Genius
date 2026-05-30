@@ -15,11 +15,11 @@
       "agent": "nova",
       "type": "grid-week-B",
       "entry": 26343.970703125,
-      "stop": 26112.36119479777,
+      "stop": 26343.970703125,
       "tp1": 26922.99447394308,
       "tp2": 27502.01824476116,
       "initial_stop": 26112.36119479777,
-      "high_since_entry": 26917.47,
+      "high_since_entry": 26972.62,
       "rr1": 2.5,
       "rr2": 5,
       "risk_pct": 0.008791746352031742,
@@ -27,17 +27,17 @@
       "quality_score": 86,
       "sizing_pct": 3,
       "trailing_after_tp1": true,
-      "trailing_active": false,
+      "trailing_active": true,
       "stacked": false,
       "opened_at": "2026-05-23T17:36:58.373Z",
       "opened_at_cycle": 1,
       "opened_at_date": "2026-05-23",
       "status": "open",
-      "touched_tp1": false,
+      "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 26917.47,
-      "age_days": 2
+      "current_price": 26972.62,
+      "age_days": 3
     },
     {
       "id": "pos-1780055189849-nssb",
@@ -66,7 +66,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 25182.39,
+      "age_days": 1
     },
     {
       "id": "pos-1780055189849-mijj",
@@ -95,7 +97,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 73450.27875067158,
+      "age_days": 1
     },
     {
       "id": "pos-1780055189849-xu79",
@@ -108,7 +112,7 @@
       "tp1": 0.24193736896713722,
       "tp2": 0.2493586677564153,
       "initial_stop": 0.2324381065168613,
-      "high_since_entry": 0.23451607017785916,
+      "high_since_entry": 0.2351412288600831,
       "rr1": 3.57,
       "rr2": 7.14,
       "risk_pct": 0.008860645069746858,
@@ -124,7 +128,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 0.2351412288600831,
+      "age_days": 1
     },
     {
       "id": "pos-1780055189849-ydtw",
@@ -137,7 +143,7 @@
       "tp1": 0.10330108826242691,
       "tp2": 0.10704388375077922,
       "initial_stop": 0.09851031003733596,
-      "high_since_entry": 0.0995582927740746,
+      "high_since_entry": 0.10110892225261667,
       "rr1": 3.57,
       "rr2": 7.14,
       "risk_pct": 0.010526322896243398,
@@ -153,7 +159,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 0.10110892225261667,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -311,7 +319,14 @@
       "equity": 999.41,
       "cash": 889.91,
       "positions_count": 5
+    },
+    {
+      "date": "2026-05-30",
+      "cycle": 4,
+      "equity": 999.79,
+      "cash": 889.91,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-05-29"
+  "last_cycle": "2026-05-30"
 }

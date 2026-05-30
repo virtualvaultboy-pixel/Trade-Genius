@@ -19,7 +19,7 @@
       "tp1": 27154.60398227031,
       "tp2": 27965.237261415623,
       "initial_stop": 26112.36119479777,
-      "high_since_entry": 26917.47,
+      "high_since_entry": 26972.62,
       "rr1": 3.5,
       "rr2": 7,
       "risk_pct": 0.008791746352031742,
@@ -36,8 +36,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 26917.47,
-      "age_days": 2
+      "current_price": 26972.62,
+      "age_days": 3
     },
     {
       "id": "pos-1779970573236-5lya",
@@ -67,8 +67,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 2005.179715749937,
-      "age_days": 1
+      "current_price": 2012.5407281258074,
+      "age_days": 2
     },
     {
       "id": "pos-1780055189778-rvh8",
@@ -97,7 +97,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 25182.39,
+      "age_days": 1
     },
     {
       "id": "pos-1780055189778-robu",
@@ -126,7 +128,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 73450.27875067158,
+      "age_days": 1
     },
     {
       "id": "pos-1780055189778-txzt",
@@ -139,7 +143,7 @@
       "tp1": 1.3695242116986726,
       "tp2": 1.421724691232604,
       "initial_stop": 1.306883636257955,
-      "high_since_entry": 1.3173237321647413,
+      "high_since_entry": 1.3398613439147418,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.007925231780065344,
@@ -155,7 +159,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 1.3398613439147418,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -313,7 +319,14 @@
       "equity": 999.11,
       "cash": 883.28,
       "positions_count": 5
+    },
+    {
+      "date": "2026-05-30",
+      "cycle": 4,
+      "equity": 999.57,
+      "cash": 883.28,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-05-29"
+  "last_cycle": "2026-05-30"
 }

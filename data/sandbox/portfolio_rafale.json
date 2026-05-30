@@ -15,11 +15,11 @@
       "agent": "kairo",
       "type": "grid-day-B",
       "entry": 26343.970703125,
-      "stop": 26343.970703125,
+      "stop": 26741.01049167277,
       "tp1": 26807.189719779464,
       "tp2": 27270.40873643393,
       "initial_stop": 26112.36119479777,
-      "high_since_entry": 26917.47,
+      "high_since_entry": 26972.62,
       "rr1": 2,
       "rr2": 4,
       "risk_pct": 0.008791746352031742,
@@ -36,8 +36,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 26917.47,
-      "age_days": 2
+      "current_price": 26972.62,
+      "age_days": 3
     },
     {
       "id": "pos-1779557818374-kbfq",
@@ -67,8 +67,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 1407.2,
-      "age_days": 2
+      "current_price": 1384.8,
+      "age_days": 3
     },
     {
       "id": "pos-1780055189944-h3ry",
@@ -97,7 +97,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 25182.39,
+      "age_days": 1
     },
     {
       "id": "pos-1780055189944-bl64",
@@ -126,7 +128,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 73450.27875067158,
+      "age_days": 1
     },
     {
       "id": "pos-1780055189944-0it0",
@@ -139,7 +143,7 @@
       "tp1": 0.23971097933035382,
       "tp2": 0.24490588848284844,
       "initial_stop": 0.23303181042000357,
-      "high_since_entry": 0.23451607017785916,
+      "high_since_entry": 0.2351412288600831,
       "rr1": 3.5,
       "rr2": 7,
       "risk_pct": 0.006329032192676276,
@@ -155,7 +159,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 0.2351412288600831,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -313,7 +319,14 @@
       "equity": 999.68,
       "cash": 891.07,
       "positions_count": 5
+    },
+    {
+      "date": "2026-05-30",
+      "cycle": 4,
+      "equity": 999.46,
+      "cash": 891.07,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-05-29"
+  "last_cycle": "2026-05-30"
 }

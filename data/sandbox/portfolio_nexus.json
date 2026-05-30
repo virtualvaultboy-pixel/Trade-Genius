@@ -36,8 +36,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 2005.179715749937,
-      "age_days": 1
+      "current_price": 2012.5407281258074,
+      "age_days": 2
     },
     {
       "id": "pos-1780055189946-sota",
@@ -66,7 +66,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 73450.27875067158,
+      "age_days": 1
     },
     {
       "id": "pos-1780055189946-4jkp",
@@ -79,7 +81,7 @@
       "tp1": 0.23971097933035382,
       "tp2": 0.24490588848284844,
       "initial_stop": 0.23303181042000357,
-      "high_since_entry": 0.23451607017785916,
+      "high_since_entry": 0.2351412288600831,
       "rr1": 3.5,
       "rr2": 7,
       "risk_pct": 0.006329032192676276,
@@ -95,7 +97,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 0.2351412288600831,
+      "age_days": 1
     },
     {
       "id": "pos-1780055189946-4sjw",
@@ -108,7 +112,7 @@
       "tp1": 0.10217824961592122,
       "tp2": 0.10479820645776784,
       "initial_stop": 0.09880973367640414,
-      "high_since_entry": 0.0995582927740746,
+      "high_since_entry": 0.10110892225261667,
       "rr1": 3.5,
       "rr2": 7,
       "risk_pct": 0.007518802068745324,
@@ -124,7 +128,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 0.10110892225261667,
+      "age_days": 1
     },
     {
       "id": "pos-1780055189946-gh3u",
@@ -137,7 +143,7 @@
       "tp1": 1.3695242116986726,
       "tp2": 1.421724691232604,
       "initial_stop": 1.306883636257955,
-      "high_since_entry": 1.3173237321647413,
+      "high_since_entry": 1.3398613439147418,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.007925231780065344,
@@ -153,7 +159,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 1.3398613439147418,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -344,7 +352,14 @@
       "equity": 998.43,
       "cash": 892.96,
       "positions_count": 5
+    },
+    {
+      "date": "2026-05-30",
+      "cycle": 4,
+      "equity": 999.18,
+      "cash": 892.96,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-05-29"
+  "last_cycle": "2026-05-30"
 }
