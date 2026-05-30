@@ -274,6 +274,40 @@ function _isVoltAsset(asset) {
   return VOLT_UNIVERSE.has(asset.label);
 }
 
+// v8.7 — NEXUS : 15 cryptos majeurs (top market cap, liquidité élevée)
+// Backtest documenté : PF 2.17 · DD <3.2% sur stacking A/B/C crypto
+const NEXUS_UNIVERSE = new Set([
+  'BTC', 'ETH', 'SOL', 'BNB', 'XRP', 'ADA', 'DOGE', 'AVAX',
+  'DOT', 'LINK', 'TRX', 'LTC', 'UNI', 'ATOM', 'XLM',
+]);
+function _isNexusAsset(asset) {
+  if (!asset || !asset.label) return false;
+  return asset.kind === 'crypto' && NEXUS_UNIVERSE.has(asset.label);
+}
+
+// v8.7 — NEXUS : multi-pattern crypto-only (15 majeures)
+// Stacking A/B/C avec configs crypto (atrStop 0.8 · atrTp2 5.0 · horizon 5-30j)
+// Pas de garde-fous extrêmes type VOLT — c'est l'IA crypto standard du picker temporel
+function _detectMultiCrypto(asset) {
+  if (!_isNexusAsset(asset)) return null;
+  const c = _detectGridPullbackTrend(asset, {
+    atrStop: 0.8, atrTp2: 5.0,
+    type: 'nexus-C', label: 'Crypto pullback dans tendance majeure',
+    timeframe: 'Crypto · 5-30 jours',
+  });
+  const a = _detectGridContrarian(asset, {
+    rsiMax: 25, atrStop: 0.8, atrTp2: 5.0, requireMaBull: true,
+    type: 'nexus-A', label: 'Crypto survente + rebond confirmé',
+    timeframe: 'Crypto · 5-30 jours', expectedPF: '2.17',
+  });
+  const b = _detectGridTrendFollow(asset, {
+    rsiMin: 35, adxMin: 25, atrStop: 0.8, atrTp2: 5.0,
+    type: 'nexus-B', label: 'Crypto trend-follow correction',
+    timeframe: 'Crypto · 5-30 jours', expectedPF: '2.17',
+  });
+  return _stackPatterns([c, a, b], null);
+}
+
 // v7.13 — Pattern D' : ABC-TRIPLE Multi-Pattern (exclusif à VOLT)
 // Backtest 600j : +21.77%/an · PF 2.66 · DD -4.9% · WR 32% · 266 trades
 // Walk-forward 5×120j : médian +28.6%/an · worst -0.26% · DD max -3.75%
@@ -2736,6 +2770,17 @@ async function main() {
       acceptedTypes: null,
       bonusTypes: ['rebond-survente'],
     },
+    // v8.7 — NEXUS : 5e IA temporelle (crypto-only, 15 majeures)
+    {
+      id: 'multi', name: 'NEXUS', role: 'Le Convergent',
+      tagline: 'Agrège les cycles crypto majeurs',
+      desc: 'Crypto · 5-30 jours · 15 cryptos majeurs (BTC/ETH/SOL/BNB/XRP/ADA/DOGE/AVAX/DOT/LINK/TRX/LTC/UNI/ATOM/XLM). PF 2.17 backtesté. Drawdown maîtrisé.',
+      icon: '₿', color: '#a855f7',
+      filters: { minConfRank: 1, minADX: 10, minRR: 1.8 },
+      atr: { stop: 0.8, tp1: 2.0, tp2: 5.0 },
+      acceptedTypes: ['nexus-A', 'nexus-B', 'nexus-C'],
+      cryptoOnly: true,
+    },
     // v7.14 — VOLT : 5e IA PREMIUM ABC-TRIPLE-PROTECTED (stress walk-forward 6 folds × 150j + slippage + garde-fous)
     // Validation : 6/6 folds positifs incluant bear crypto BTC -46.6% (+6.5%/an), worst DD -2.8%
     {
@@ -2808,6 +2853,7 @@ async function main() {
     zen: _detectZen,          // ZEN reste legacy (pas utilisé par le picker UI v2.84)
     nova: _detectNovaGrid,    // WEEK (15-21j) : RSI<25 + MA bull + boll low + ATR 1/5
     kairo: _detectKairoGrid,  // DAY (5-12j) : RSI<25 + MA bull + boll low + ATR 1/4
+    multi: _detectMultiCrypto, // v8.7 — NEXUS crypto-only (15 majeures, ABC stacking)
     volt: _detectVoltMulti,    // v7.13 — ABC-TRIPLE multi-pattern validé walk-forward (médiane +28.6%/an)
   };
   function runAgentOnAssets(agentId) {
