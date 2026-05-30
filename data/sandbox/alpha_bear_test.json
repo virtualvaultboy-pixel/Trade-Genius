@@ -1,0 +1,75 @@
+{
+  "generated": "2026-05-30T18:40:40.390Z",
+  "config": {
+    "atrStop": 0.6,
+    "atrTp2": 5.5,
+    "holdMax": 25,
+    "baseSizing": 10,
+    "maxPos": 5,
+    "pyramiding": 50,
+    "minQuality": 55,
+    "leverageQualityThreshold": 85,
+    "leverageMultiplier": 2,
+    "trailingATRMult": 0.5
+  },
+  "results": [
+    {
+      "period": "Lehman 2008",
+      "days": 504,
+      "trades": 598,
+      "return_total_pct": 273.86,
+      "return_pct_yr": 136.93,
+      "dd_max": -8.69,
+      "win_rate": 33.8,
+      "leveraged_trades": 222,
+      "borrow_cost": 26.89,
+      "bh_sp500_return_yr": -11.47,
+      "bh_sp500_return_total": -22.95,
+      "alpha_vs_bh": 148.4
+    },
+    {
+      "period": "Q4 2018 sell-off",
+      "days": 206,
+      "trades": 248,
+      "return_total_pct": 15.85,
+      "return_pct_yr": 19.38,
+      "dd_max": -6.32,
+      "win_rate": 35.1,
+      "leveraged_trades": 83,
+      "borrow_cost": 5.67,
+      "bh_sp500_return_yr": 2.86,
+      "bh_sp500_return_total": 2.33,
+      "alpha_vs_bh": 16.52
+    },
+    {
+      "period": "COVID 2020",
+      "days": 252,
+      "trades": 332,
+      "return_total_pct": 37.99,
+      "return_pct_yr": 37.99,
+      "dd_max": -10.43,
+      "win_rate": 32.2,
+      "leveraged_trades": 107,
+      "borrow_cost": 8.44,
+      "bh_sp500_return_yr": 15.29,
+      "bh_sp500_return_total": 15.29,
+      "alpha_vs_bh": 22.7
+    },
+    {
+      "period": "Fed Bear 2022",
+      "days": 251,
+      "trades": 328,
+      "return_total_pct": 19.47,
+      "return_pct_yr": 19.55,
+      "dd_max": -5.51,
+      "win_rate": 29.6,
+      "leveraged_trades": 102,
+      "borrow_cost": 7.6,
+      "bh_sp500_return_yr": -20.35,
+      "bh_sp500_return_total": -20.27,
+      "alpha_vs_bh": 39.9
+    }
+  ],
+  "all_positive": true,
+  "all_beat_bh": true
+}

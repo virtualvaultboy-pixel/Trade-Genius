@@ -1,0 +1,85 @@
+{
+  "generated": "2026-05-30T18:37:20.655Z",
+  "config": {
+    "atrStop": 0.6,
+    "atrTp2": 5.5,
+    "holdMax": 25,
+    "baseSizing": 10,
+    "maxPos": 5,
+    "pyramiding": 50,
+    "minQuality": 55,
+    "leverageQualityThreshold": 85,
+    "leverageMultiplier": 2,
+    "trailingATRMult": 0.5
+  },
+  "borrow_cost_yr": 0.06,
+  "gap_volatility": 0.005,
+  "universe_count": 136,
+  "folds": [
+    {
+      "fold": "Fold-1",
+      "trades": 303,
+      "return_pct_yr": 47.51,
+      "dd_max": -9.79,
+      "win_rate": 30,
+      "final_equity": 1471.3,
+      "calmar": 4.85,
+      "leveraged_trades": 242,
+      "borrow_cost_eur": 19.51
+    },
+    {
+      "fold": "Fold-2",
+      "trades": 365,
+      "return_pct_yr": 26.74,
+      "dd_max": -14.05,
+      "win_rate": 28.8,
+      "final_equity": 1328.92,
+      "calmar": 1.9,
+      "leveraged_trades": 297,
+      "borrow_cost_eur": 24.65
+    },
+    {
+      "fold": "Fold-3",
+      "trades": 355,
+      "return_pct_yr": 34.33,
+      "dd_max": -9.84,
+      "win_rate": 33.8,
+      "final_equity": 1422.29,
+      "calmar": 3.49,
+      "leveraged_trades": 299,
+      "borrow_cost_eur": 26.23
+    },
+    {
+      "fold": "Fold-4",
+      "trades": 355,
+      "return_pct_yr": 46.38,
+      "dd_max": -11.58,
+      "win_rate": 34.1,
+      "final_equity": 1570.52,
+      "calmar": 4.01,
+      "leveraged_trades": 308,
+      "borrow_cost_eur": 29.71
+    },
+    {
+      "fold": "Fold-5",
+      "trades": 148,
+      "return_pct_yr": 40.81,
+      "dd_max": -4.35,
+      "win_rate": 33.8,
+      "final_equity": 1228.34,
+      "calmar": 9.37,
+      "leveraged_trades": 127,
+      "borrow_cost_eur": 11.66
+    }
+  ],
+  "monte_carlo": {
+    "p5": 202.3959999999996,
+    "p50": 202.39600000000016,
+    "p95": 202.39600000000058,
+    "median_dd": -8.370041862638816,
+    "worst_dd": -26.889529407332084
+  },
+  "bh_sp500_yr": 14.46,
+  "alpha_median_yr": 40.81,
+  "excess_return": 26.35
+}
