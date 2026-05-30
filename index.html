@@ -3732,6 +3732,120 @@
   .daily-report-card .fc-type { color: var(--gold); }
   .daily-report-card { border-left-color: var(--gold); }
 
+  /* v8.9 — Carte Lecture du marché (Wisdom Engine v8.8) */
+  .market-reading-card {
+    background: linear-gradient(135deg, rgba(168,85,247,0.10) 0%, rgba(96,165,250,0.06) 100%);
+    border: 1px solid rgba(168,85,247,0.35);
+    border-left: 3px solid #a855f7;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .market-reading-card .mr-tag {
+    font-family: var(--font-m);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: #c084fc;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .market-reading-card .mr-title {
+    font-family: var(--font-d);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .market-reading-card .mr-title em {
+    color: #c084fc;
+    font-style: normal;
+  }
+  .market-reading-card .mr-lesson {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.45;
+    padding: 10px 12px;
+    background: rgba(0,0,0,0.25);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    border-left: 2px solid rgba(168,85,247,0.4);
+  }
+  .market-reading-card .mr-state {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .market-reading-card .mr-state-cell {
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    padding: 8px 10px;
+    text-align: center;
+  }
+  .market-reading-card .mr-state-cell .mrs-lbl {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+    margin-bottom: 3px;
+  }
+  .market-reading-card .mr-state-cell .mrs-val {
+    font-family: var(--font-m);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .market-reading-card .mr-state-cell.bull .mrs-val { color: #4ade80; }
+  .market-reading-card .mr-state-cell.bear .mrs-val { color: #ef4444; }
+  .market-reading-card .mr-themes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .market-reading-card .mr-theme {
+    font-size: 11px;
+    padding: 4px 10px;
+    background: rgba(168,85,247,0.15);
+    border: 1px solid rgba(168,85,247,0.3);
+    border-radius: 999px;
+    color: #c084fc;
+    font-weight: 600;
+  }
+  .market-reading-card .mr-ia-pri {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .market-reading-card .mr-ia-badge {
+    font-size: 11px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: var(--font-m);
+  }
+  .market-reading-card .mr-ia-badge.boost {
+    border-color: rgba(74,222,128,0.4);
+    color: #4ade80;
+  }
+  .market-reading-card .mr-ia-badge.penalty {
+    border-color: rgba(239,68,68,0.4);
+    color: #ef4444;
+  }
+  .market-reading-card .mr-analogs {
+    font-size: 11px;
+    color: var(--text-faint);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .market-reading-card .mr-analogs strong { color: var(--text-dim); }
+
   /* v2.56 — Carte Recommandations du jour (issue analyseur ultra-fiable) */
   .aic-rec {
     background: rgba(13,13,20,0.94);
@@ -4705,7 +4819,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v8.8</div>
+        <div class="bd-brand-ver" id="bd-version">v8.9</div>
       </div>
     </div>
 
@@ -4972,7 +5086,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=88')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=89')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -4991,7 +5105,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=88')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=89')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -5010,7 +5124,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=88')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=89')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -5029,7 +5143,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=88')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=89')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -5048,7 +5162,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=88')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=89')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -5067,7 +5181,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=88')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=89')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -5087,7 +5201,7 @@
       </div>
 
       <!-- v8.3 — Module passerelle "Découvre nos outils Premium" (visible FREE uniquement, caché si Premium) -->
-      <div class="module-card premium-discovery-card" id="premium-discovery-card" style="--module-color: var(--gold); cursor:pointer; background:linear-gradient(160deg, rgba(212,165,116,0.10) 0%, rgba(168,85,247,0.06) 100%); border-color:rgba(212,165,116,0.45);" onclick="window.location.href='scene-12.html?v=88'">
+      <div class="module-card premium-discovery-card" id="premium-discovery-card" style="--module-color: var(--gold); cursor:pointer; background:linear-gradient(160deg, rgba(212,165,116,0.10) 0%, rgba(168,85,247,0.06) 100%); border-color:rgba(212,165,116,0.45);" onclick="window.location.href='scene-12.html?v=89'">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar" style="background:linear-gradient(135deg,#d4a574,#a855f7);color:#fff;">✦</div>
@@ -5111,7 +5225,7 @@
       </div>
 
       <!-- v2.46 — Module 6 : Krachs historiques (Premium, deplace depuis le burger) -->
-      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=88')">
+      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=89')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💥</div>
@@ -5131,7 +5245,7 @@
       </div>
 
       <!-- v2.71 — Module 7 : Patterns Lab (Premium, déplacé depuis le burger) -->
-      <div class="module-card" data-module="7" data-storage="tradegenius_m7_patterns" data-requires="3" style="--module-color: var(--gold);" onclick="openModule(7, 'scene-08.html?v=88')">
+      <div class="module-card" data-module="7" data-storage="tradegenius_m7_patterns" data-requires="3" style="--module-color: var(--gold);" onclick="openModule(7, 'scene-08.html?v=89')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🔬</div>
@@ -5213,7 +5327,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=88'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=89'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -5253,7 +5367,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=88'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=89'">OUVRIR →</button>
         </div>
       </article>
 
@@ -5650,22 +5764,22 @@
           <div class="ppu-body"><div class="ppu-title" style="color:#e879f9;">VOLT — 5<sup>e</sup> IA Premium</div><div class="ppu-sub">Haute conviction · cryptos mid-cap + actions high-beta</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-10.html?v=88">
+        <a class="pp-unlock-card" href="scene-10.html?v=89">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=88">
+        <a class="pp-unlock-card" href="scene-08.html?v=89">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=88">
+        <a class="pp-unlock-card" href="scene-09.html?v=89">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=88">
+        <a class="pp-unlock-card" href="scene-07.html?v=89">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -5907,6 +6021,7 @@
       refreshFeedProfile();
       renderDynamicFeedPosts();     // v2.34 — posts ancrage horaire + marqueur jour
       renderDailyReportCard();      // v2.38 — rapport du jour auto-genere
+      renderMarketReadingCard();    // v8.9 — Wisdom Engine : lecture marché + match historique
       renderExternalNews();         // v2.35 — actus live CryptoCompare + Yahoo RSS
       setupFeedLikes();
       setupPullRefresh();   // v2.21
@@ -6483,7 +6598,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=88';
+        location.href = 'scene-10.html?v=89';
       });
       widget._linked = true;
     }
@@ -6536,7 +6651,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=88';
+      location.href = 'scene-05.html?v=89';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -7066,7 +7181,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=88'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=89'; };
         block.style.display = 'block';
         return;
       }
@@ -7108,7 +7223,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=88';
+        card.onclick = () => location.href = 'scene-05.html?v=89';
         block.style.display = 'block';
         return;
       }
@@ -7128,7 +7243,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=88';
+          card.onclick = () => location.href = 'scene-06.html?v=89';
           block.style.display = 'block';
           return;
         }
@@ -7142,7 +7257,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=88';
+        card.onclick = () => location.href = 'scene-06.html?v=89';
         block.style.display = 'block';
         return;
       }
@@ -7157,7 +7272,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=88';
+    card.onclick = () => location.href = 'scene-05.html?v=89';
     block.style.display = 'block';
   }
 
@@ -7764,13 +7879,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=88&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=89&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=88';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=89';
     else showView('premium');
   }
 
@@ -9080,7 +9195,7 @@
         + '<span class="v-placeholder-ico">📓</span>'
         + '<div class="v-placeholder-txt"><strong>Aucune session simu enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=88\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=89\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -9125,7 +9240,7 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=88\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=89\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
   }
@@ -9297,6 +9412,77 @@
       try { localStorage.setItem(DAILY_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: j })); } catch {}
       return j;
     } catch { return null; }
+  }
+
+  /* ============================================
+     v8.9 — Carte LECTURE DU MARCHÉ (Wisdom Engine)
+     Affiche le top analog historique + lesson + state actuel + thèmes news + IA priorities
+     ============================================ */
+  async function renderMarketReadingCard() {
+    const data = await fetchAIStudy();
+    const container = document.getElementById('feed-posts');
+    if (!container) return;
+    container.querySelectorAll('.market-reading-card').forEach(el => el.remove());
+    const mr = data?.market_reading;
+    if (!mr || !mr.top_analog) return;
+
+    const st = mr.current_state || {};
+    const cs = (label, val, cls) => '<div class="mr-state-cell ' + (cls||'') + '"><div class="mrs-lbl">' + label + '</div><div class="mrs-val">' + val + '</div></div>';
+    const fmt = (n, suffix) => (n == null || isNaN(n)) ? '—' : (n >= 0 ? '+' : '') + Number(n).toFixed(1) + (suffix||'');
+    const vixCls = st.vix == null ? '' : (st.vix > 25 ? 'bear' : (st.vix < 18 ? 'bull' : ''));
+    const sp30Cls = st.sp500_30d_change == null ? '' : (st.sp500_30d_change > 2 ? 'bull' : (st.sp500_30d_change < -2 ? 'bear' : ''));
+    const btc30Cls = st.btc_30d_change == null ? '' : (st.btc_30d_change > 5 ? 'bull' : (st.btc_30d_change < -5 ? 'bear' : ''));
+
+    const stateHTML = '<div class="mr-state">'
+      + cs('VIX', st.vix != null ? Number(st.vix).toFixed(1) : '—', vixCls)
+      + cs('S&P 30j', fmt(st.sp500_30d_change, '%'), sp30Cls)
+      + cs('BTC 30j', fmt(st.btc_30d_change, '%'), btc30Cls)
+      + cs('DXY', st.dxy_trend || '—')
+      + '</div>';
+
+    const themesHTML = (mr.dominant_themes && mr.dominant_themes.length)
+      ? '<div class="mr-themes">' + mr.dominant_themes.map(t => '<span class="mr-theme">#' + escapeHTML(t) + '</span>').join('') + '</div>'
+      : '';
+
+    const sectorsHTML = (mr.top_sectors_60d && mr.top_sectors_60d.length)
+      ? '<div class="mr-themes" style="margin-bottom:10px"><span style="font-size:10px;color:var(--text-faint);align-self:center;letter-spacing:0.1em;text-transform:uppercase;margin-right:4px">Secteurs 60j :</span>'
+        + mr.top_sectors_60d.map(s => '<span class="mr-theme" style="background:rgba(96,165,250,0.12);border-color:rgba(96,165,250,0.3);color:#60a5fa">' + escapeHTML(s) + '</span>').join('')
+        + '</div>'
+      : '';
+
+    const iaHTML = (mr.ia_priorities)
+      ? '<div class="mr-ia-pri">' + Object.entries(mr.ia_priorities).map(([name, p]) => {
+          const adj = p.adjustment || 0;
+          const cls = adj > 0 ? 'boost' : (adj < 0 ? 'penalty' : '');
+          const sign = adj > 0 ? '+' : '';
+          return '<span class="mr-ia-badge ' + cls + '" title="' + escapeHTML(p.note || '') + '">' + escapeHTML(name) + ' ' + sign + adj + '</span>';
+        }).join('') + '</div>'
+      : '';
+
+    const analogsHTML = (mr.historical_analogs && mr.historical_analogs.length > 1)
+      ? '<div class="mr-analogs">Aussi proche de : '
+        + mr.historical_analogs.slice(1, 3).map(a => '<strong>' + escapeHTML(a.name) + '</strong> (' + a.date.slice(0,4) + ' · ' + a.similarity + '%)').join(' · ')
+        + '</div>'
+      : '';
+
+    const ts = data.generated ? new Date(data.generated) : new Date();
+    const id = 'mr-' + (mr.top_analog.year || 'na');
+    const html = '<article class="feed-card market-reading-card" data-post="' + id + '">'
+      + '<div class="mr-tag">🧭 LECTURE DU MARCHÉ · 30 ANS D\'HISTORIQUE</div>'
+      + '<div class="mr-title">Marché actuel ≈ <em>' + escapeHTML(mr.top_analog.name) + '</em> (' + mr.top_analog.year + ') — <em>' + mr.top_analog.similarity + '% similarité</em></div>'
+      + '<div class="mr-lesson">' + escapeHTML(mr.top_analog.lesson) + '</div>'
+      + stateHTML
+      + themesHTML
+      + sectorsHTML
+      + iaHTML
+      + analogsHTML
+      + '<span class="fc-time" data-iso="' + (ts.toISOString()) + '" style="position:absolute;top:14px;right:14px;font-size:10px;color:var(--text-faint)">' + _fmtHM(ts) + '</span>'
+      + '</article>';
+
+    // Insère TOUT EN HAUT du feed (avant les autres cartes)
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    container.insertBefore(tmp.firstChild, container.firstChild);
   }
 
   async function renderDailyReportCard() {
@@ -12340,7 +12526,7 @@
         cls: 'fc-news', label: '📅 Samedi', time: now,
         title: 'Marchés fermés · bon moment pour réviser',
         body: 'Indices et actions ne tournent pas. La crypto, elle, ne dort jamais. Le simulateur attend.',
-        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=88'",
+        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=89'",
       });
     }
 
@@ -12887,6 +13073,9 @@
           // v2.38 — force le refresh du rapport journalier
           try { localStorage.removeItem(DAILY_CACHE_KEY); } catch {}
           renderDailyReportCard();
+          // v8.9 — force le refresh de la carte Lecture du marché
+          try { localStorage.removeItem(AI_CACHE_KEY); } catch {}
+          renderMarketReadingCard();
           setupFeedLikes();
           // v2.26+33 — refresh forcé du marché (bypass tous les caches)
           try { localStorage.removeItem(WATCHLIST_CACHE_KEY); } catch {}
@@ -12944,11 +13133,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=88';
+      location.href = 'scene-05.html?v=89';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=88';
+      location.href = 'scene-06.html?v=89';
       return;
     }
 
@@ -12971,13 +13160,13 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=88"></script>
-  <script src="tg-analyst.js?v=88"></script>
-  <script src="tg-bubble.js?v=88"></script>
+  <script type="module" src="tg-common.js?v=89"></script>
+  <script src="tg-analyst.js?v=89"></script>
+  <script src="tg-bubble.js?v=89"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=88').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=89').catch(() => {});
       });
     }
   </script>
