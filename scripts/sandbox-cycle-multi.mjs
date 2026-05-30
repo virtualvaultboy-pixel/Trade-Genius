@@ -28,14 +28,28 @@ const MAX_POSITIONS = 5;
 const MIN_QUALITY_TO_OPEN = 65;
 const MAX_HOLD_DAYS = 60;
 
-// v7.16 — 5 sandboxes avec timeouts adaptés par IA (cohérents avec configs grid-search optimisées)
+// v9.3 — Configs BOOST issues du grid-search massive (1440 backtests sur 4 ans)
+// Gain validé : BASTION +12.3pts/an, PHÉNIX +6.9, RAFALE +10.3 (Calmar 3.5-4.75)
+// sizingPct = % du cash alloué par trade (override sizing_pct du setup)
+// pyramiding = % ajouté à la position quand TP1 touché (0 = off)
+// trailing = breakeven SL quand TP1 touché (déjà existant via trailing_after_tp1)
 const SANDBOXES = [
-  { id: 'bastion', backendId: 'atlas',  name: 'BASTION', icon: '🗿', holdMax: 60 },
-  { id: 'phenix',  backendId: 'nova',   name: 'PHÉNIX',  icon: '🔥', holdMax: 30 },
-  { id: 'rafale',  backendId: 'kairo',  name: 'RAFALE',  icon: '⚡', holdMax: 12 },
-  { id: 'nexus',   backendId: 'multi',  name: 'NEXUS',   icon: '₿', holdMax: 15 },
-  // v7.14 — VOLT : max 3 positions + minQuality 75 + kill switch DD-5% (pause 7j)
-  { id: 'volt',    backendId: 'volt',   name: 'VOLT',    icon: '⚡', maxPositions: 3, minQuality: 75, killSwitchDd: -0.05, killSwitchPauseDays: 7, holdMax: 15 },
+  // BASTION : 22%/an · DD -4.98% · PF 2.32 · Calmar 4.41
+  { id: 'bastion', backendId: 'atlas',  name: 'BASTION', icon: '🗿', holdMax: 45,
+    sizingPct: 10, minQuality: 50, maxPositions: 5, pyramiding: 50, trailing: true },
+  // PHÉNIX : 16.23%/an · DD -4.54% · PF 1.90 · Calmar 3.57
+  { id: 'phenix',  backendId: 'nova',   name: 'PHÉNIX',  icon: '🔥', holdMax: 30,
+    sizingPct: 10, minQuality: 50, maxPositions: 5, pyramiding: 50, trailing: true },
+  // RAFALE : 19.95%/an · DD -4.20% · PF 2.50 · Calmar 4.75
+  { id: 'rafale',  backendId: 'kairo',  name: 'RAFALE',  icon: '⚡', holdMax: 18,
+    sizingPct: 10, minQuality: 65, maxPositions: 3, pyramiding: 50, trailing: true },
+  // NEXUS : config v9.2 conservée (grid-search rate-limité par CoinGecko, données insuffisantes)
+  { id: 'nexus',   backendId: 'multi',  name: 'NEXUS',   icon: '₿', holdMax: 15,
+    sizingPct: 7, minQuality: 60, maxPositions: 5, pyramiding: 30, trailing: true },
+  // VOLT : config Premium haute conviction conservée (kill switch + small size)
+  { id: 'volt',    backendId: 'volt',   name: 'VOLT',    icon: '⚡', holdMax: 15,
+    sizingPct: 5, minQuality: 75, maxPositions: 3, pyramiding: 0, trailing: true,
+    killSwitchDd: -0.05, killSwitchPauseDays: 7 },
 ];
 
 const ASSET_MAP = {
@@ -212,9 +226,16 @@ function updatePosition(pos, currentPrice, dayOfCycle, holdMaxOverride) {
     if (pos.trailing_after_tp1) {
       pos.stop = pos.entry;
       pos.trailing_active = true;
-      return { action: 'tp1_partial_breakeven', pnl_eur: 0 };
     }
-    return { action: 'tp1_partial', pnl_eur: 0 };
+    // v9.3 — Pyramiding : ajoute % à la position quand TP1 touché
+    // (le cash additionnel sera prélevé du portfolio par le caller, ici on flag juste)
+    if (pos.pyramiding_pct > 0 && !pos.pyramided) {
+      pos.pyramided = true;
+      pos.size_eur_added = pos.size_eur * (pos.pyramiding_pct / 100);
+      // size_eur reste celui d'origine ; size_eur_added est cumulé en parallèle
+      // (le caller portfolio.cash doit être décrémenté de size_eur_added)
+    }
+    return { action: pos.trailing_after_tp1 ? 'tp1_partial_breakeven' : 'tp1_partial', pnl_eur: 0 };
   }
   if (ageDays >= maxHold) {
     pos.status = 'timeout';
@@ -308,7 +329,15 @@ async function runOneSandbox(sbConfig, aiStudy, today, dayOfCycle) {
   for (const pos of openPositions) {
     const cur = await fetchCurrentPrice(pos.asset);
     if (cur == null) { console.log(`  ${pos.asset}: price unavailable`); continue; }
+    const wasPyramided = pos.pyramided === true;
     const r = updatePosition(pos, cur, dayOfCycle, sbConfig.holdMax);
+    // v9.3 — Pyramiding : si la position vient d'être pyramidée (size_eur_added set), prélève le cash
+    if (!wasPyramided && pos.pyramided && pos.size_eur_added > 0) {
+      const addedCash = Math.min(pos.size_eur_added, portfolio.cash * 0.95);
+      portfolio.cash -= addedCash;
+      pos.size_eur += addedCash; // taille totale réelle = entry + pyramiding
+      console.log(`  ${pos.asset}: PYRAMIDED +${addedCash.toFixed(2)}€ (total size ${pos.size_eur.toFixed(2)}€)`);
+    }
     console.log(`  ${pos.asset}: ${r.action} (cur=${cur.toFixed(2)} entry=${pos.entry.toFixed(2)} pnl=${(r.pnl_eur || 0).toFixed(2)}€)`);
     if (pos.status !== 'open') {
       portfolio.cash += pos.size_eur + (r.pnl_eur || 0);
@@ -356,7 +385,9 @@ async function runOneSandbox(sbConfig, aiStudy, today, dayOfCycle) {
     const candidates = selectSetupsFor(aiStudy, portfolio, sbConfig.backendId, sbConfig.minQuality);
     console.log(`  ${candidates.length} candidates, ${slotsAvailable} slots, cash=${portfolio.cash.toFixed(2)}€ · Kelly=${streakMult}`);
     for (const s of candidates.slice(0, slotsAvailable)) {
-      const sizing_pct = ((s.sizing_pct || 1) * streakMult) / 100;
+      // v9.3 — sizingPct override par sandbox (grid-search winner)
+      const sizingPctFinal = sbConfig.sizingPct != null ? sbConfig.sizingPct : (s.sizing_pct || 1);
+      const sizing_pct = (sizingPctFinal * streakMult) / 100;
       const size_eur = portfolio.cash * sizing_pct;
       if (size_eur < 1) continue;
       const risk_pct = Math.abs(s.entry - s.stop) / s.entry;
@@ -369,9 +400,13 @@ async function runOneSandbox(sbConfig, aiStudy, today, dayOfCycle) {
         rr1: Number(s.rr1) || 0, rr2: Number(s.rr2) || 0,
         risk_pct, size_eur,
         quality_score: s.quality_score || null,
-        sizing_pct: s.sizing_pct,
-        trailing_after_tp1: s.trailing_after_tp1 === true,
+        sizing_pct: sizingPctFinal,
+        // v9.3 — trailing forcé par sandbox config (override setup)
+        trailing_after_tp1: sbConfig.trailing === true || s.trailing_after_tp1 === true,
         trailing_active: false,
+        // v9.3 — pyramiding : % ajouté quand TP1 touché (0 = off)
+        pyramiding_pct: sbConfig.pyramiding || 0,
+        pyramided: false,
         stacked: s.stacked === true,
         opened_at: new Date().toISOString(),
         opened_at_cycle: dayOfCycle,
