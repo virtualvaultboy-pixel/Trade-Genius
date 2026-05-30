@@ -1,0 +1,295 @@
+{
+  "generated": "2026-05-30T18:29:58.774Z",
+  "flags": {
+    "kelly": false,
+    "leverage": true,
+    "trailingATR": true,
+    "ensemble": true,
+    "regime": false,
+    "crossAsset": false,
+    "slidingWindow": false,
+    "adaptiveUniv": false,
+    "multiTimeframe": false,
+    "newsCatalyst": false
+  },
+  "config": {
+    "atrStop": 0.6,
+    "atrTp2": 5.5,
+    "holdMax": 25,
+    "baseSizing": 10,
+    "maxSizing": 25,
+    "kellyFactor": 0.5,
+    "leverageQualityThreshold": 85,
+    "leverageMultiplier": 2,
+    "trailingATRMult": 0.5,
+    "minQuality": 55,
+    "maxPos": 5,
+    "pyramiding": 50,
+    "bullVIXMax": 22,
+    "bearVIXMin": 30
+  },
+  "folds": [
+    {
+      "fold": "Fold-1",
+      "trades": 302,
+      "return_pct_yr": 56.31,
+      "dd_max": -6.41,
+      "pf": 2.31,
+      "win_rate": 35.8,
+      "final_equity": 1558.65,
+      "calmar": 8.78,
+      "by_pattern": {
+        "D-breakout20": {
+          "count": 45,
+          "wr": 40,
+          "pnl": 110
+        },
+        "G-rsi-div": {
+          "count": 70,
+          "wr": 23,
+          "pnl": 54
+        },
+        "A-contrarian": {
+          "count": 54,
+          "wr": 37,
+          "pnl": 137
+        },
+        "B-trendfollow": {
+          "count": 8,
+          "wr": 0,
+          "pnl": -12
+        },
+        "E-mean-rev": {
+          "count": 124,
+          "wr": 44,
+          "pnl": 269
+        },
+        "C-pullback": {
+          "count": 1,
+          "wr": 0,
+          "pnl": -1
+        }
+      },
+      "leveraged_trades": 122,
+      "pyramided_trades": 108
+    },
+    {
+      "fold": "Fold-2",
+      "trades": 341,
+      "return_pct_yr": 48.64,
+      "dd_max": -3.63,
+      "pf": 2.3,
+      "win_rate": 36.1,
+      "final_equity": 1598.37,
+      "calmar": 13.39,
+      "by_pattern": {
+        "D-breakout20": {
+          "count": 60,
+          "wr": 37,
+          "pnl": 170
+        },
+        "G-rsi-div": {
+          "count": 93,
+          "wr": 31,
+          "pnl": 88
+        },
+        "B-trendfollow": {
+          "count": 12,
+          "wr": 25,
+          "pnl": -1
+        },
+        "A-contrarian": {
+          "count": 58,
+          "wr": 55,
+          "pnl": 170
+        },
+        "E-mean-rev": {
+          "count": 117,
+          "wr": 31,
+          "pnl": 140
+        },
+        "C-pullback": {
+          "count": 1,
+          "wr": 100,
+          "pnl": 7
+        }
+      },
+      "leveraged_trades": 107,
+      "pyramided_trades": 122
+    },
+    {
+      "fold": "Fold-3",
+      "trades": 324,
+      "return_pct_yr": 55.63,
+      "dd_max": -3.09,
+      "pf": 3,
+      "win_rate": 42,
+      "final_equity": 1684.33,
+      "calmar": 17.98,
+      "by_pattern": {
+        "G-rsi-div": {
+          "count": 81,
+          "wr": 40,
+          "pnl": 50
+        },
+        "D-breakout20": {
+          "count": 66,
+          "wr": 41,
+          "pnl": 240
+        },
+        "E-mean-rev": {
+          "count": 99,
+          "wr": 44,
+          "pnl": 224
+        },
+        "A-contrarian": {
+          "count": 63,
+          "wr": 43,
+          "pnl": 140
+        },
+        "B-trendfollow": {
+          "count": 13,
+          "wr": 38,
+          "pnl": 4
+        },
+        "C-pullback": {
+          "count": 2,
+          "wr": 50,
+          "pnl": 4
+        }
+      },
+      "leveraged_trades": 99,
+      "pyramided_trades": 136
+    },
+    {
+      "fold": "Fold-4",
+      "trades": 324,
+      "return_pct_yr": 70.06,
+      "dd_max": -4.81,
+      "pf": 3.24,
+      "win_rate": 45.1,
+      "final_equity": 1861.86,
+      "calmar": 14.56,
+      "by_pattern": {
+        "A-contrarian": {
+          "count": 57,
+          "wr": 60,
+          "pnl": 361
+        },
+        "G-rsi-div": {
+          "count": 95,
+          "wr": 43,
+          "pnl": 173
+        },
+        "D-breakout20": {
+          "count": 54,
+          "wr": 41,
+          "pnl": 171
+        },
+        "E-mean-rev": {
+          "count": 106,
+          "wr": 42,
+          "pnl": 146
+        },
+        "C-pullback": {
+          "count": 2,
+          "wr": 0,
+          "pnl": -3
+        },
+        "B-trendfollow": {
+          "count": 10,
+          "wr": 50,
+          "pnl": 15
+        }
+      },
+      "leveraged_trades": 103,
+      "pyramided_trades": 146
+    },
+    {
+      "fold": "Fold-5",
+      "trades": 222,
+      "return_pct_yr": 34.72,
+      "dd_max": -2.76,
+      "pf": 2.33,
+      "win_rate": 37.8,
+      "final_equity": 1305.9,
+      "calmar": 12.6,
+      "by_pattern": {
+        "D-breakout20": {
+          "count": 37,
+          "wr": 24,
+          "pnl": 6
+        },
+        "G-rsi-div": {
+          "count": 65,
+          "wr": 43,
+          "pnl": 81
+        },
+        "B-trendfollow": {
+          "count": 9,
+          "wr": 56,
+          "pnl": 13
+        },
+        "E-mean-rev": {
+          "count": 78,
+          "wr": 41,
+          "pnl": 150
+        },
+        "A-contrarian": {
+          "count": 32,
+          "wr": 31,
+          "pnl": 50
+        },
+        "C-pullback": {
+          "count": 1,
+          "wr": 0,
+          "pnl": -1
+        }
+      },
+      "leveraged_trades": 67,
+      "pyramided_trades": 85
+    }
+  ],
+  "summary": {
+    "median_return_yr": 55.63,
+    "worst_return_yr": 34.72,
+    "best_return_yr": 70.06,
+    "avg_dd": -4.14,
+    "avg_calmar": 13.46,
+    "positive_folds": 5,
+    "total_folds": 5,
+    "total_trades": 1513
+  },
+  "by_pattern": {
+    "D-breakout20": {
+      "count": 262,
+      "wr_sum": 183,
+      "pnl": 697
+    },
+    "G-rsi-div": {
+      "count": 404,
+      "wr_sum": 180,
+      "pnl": 446
+    },
+    "A-contrarian": {
+      "count": 264,
+      "wr_sum": 226,
+      "pnl": 858
+    },
+    "B-trendfollow": {
+      "count": 52,
+      "wr_sum": 169,
+      "pnl": 19
+    },
+    "E-mean-rev": {
+      "count": 524,
+      "wr_sum": 202,
+      "pnl": 929
+    },
+    "C-pullback": {
+      "count": 7,
+      "wr_sum": 150,
+      "pnl": 6
+    }
+  }
+}
