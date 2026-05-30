@@ -1,0 +1,54 @@
+{
+  "generated": "2026-05-30T21:33:55.179Z",
+  "config": {
+    "basketSize": 8,
+    "rebalanceDays": 5,
+    "holdMaxDays": 10,
+    "capitalInitial": 1000,
+    "minQuality": 65,
+    "stopLossPct": 8,
+    "takeProfitPct": 20,
+    "WARMUP": 60
+  },
+  "median": -15.73,
+  "avgDD": -32.33800000000001,
+  "positive": 0,
+  "total_folds": 5,
+  "folds": [
+    {
+      "fold": "F1",
+      "ret_yr": -11.3,
+      "dd": -38.27,
+      "baskets": 49,
+      "final_equity": 887
+    },
+    {
+      "fold": "F2",
+      "ret_yr": -16.16,
+      "dd": -34.99,
+      "baskets": 60,
+      "final_equity": 799.96
+    },
+    {
+      "fold": "F3",
+      "ret_yr": -15.73,
+      "dd": -29.09,
+      "baskets": 62,
+      "final_equity": 805.26
+    },
+    {
+      "fold": "F4",
+      "ret_yr": -31.59,
+      "dd": -43.5,
+      "baskets": 62,
+      "final_equity": 608.85
+    },
+    {
+      "fold": "F5",
+      "ret_yr": -10.59,
+      "dd": -15.84,
+      "baskets": 26,
+      "final_equity": 944.12
+    }
+  ]
+}
