@@ -24,6 +24,20 @@ import {
   findHistoricalAnalogs, computeWisdomAdjustment,
   classifyNewsThemes, getDominantThemes,
 } from './wisdom-base.mjs';
+// v9.0 — News Intelligence : 11 signaux additionnels
+import {
+  detectMAEvents, applyMAFilter,
+  fetchEarningsResult, applyEarningsBeatFilter,
+  fetchFearGreed, applyFearGreedFilter,
+  fetchInsiderActivity, applyInsiderFilter,
+  fetchShortInterest, applyShortSqueezeFilter,
+  getSeasonalityBias, applySeasonalityFilter,
+  getTechEventsInDays, applyTechEventFilter,
+  fetchAnalystTrend, applyAnalystFilter,
+  detectEnrichedThemes, applyEnrichedThemeFilter,
+  computeEtfFlowSignal,
+  computeGeoRiskIndex, applyGeoRiskFilter,
+} from './news-intel.mjs';
 
 // ─────────────────────────────────────────────────────────────────────
 // v2.86 — Croisement IA × news en direct (phase D de la roadmap)
@@ -2978,8 +2992,88 @@ async function main() {
   }
   console.log(`v8.8 Wisdom adjustments by IA:`,
     Object.entries(wisdomAdjustments).map(([k, v]) => `${k}=${v.adjustment > 0 ? '+' : ''}${v.adjustment}`).join(' '));
-  // v4.6 — Préchargement earnings dates pour toutes les actions (parallèle)
+
+  // ─────────────────────────────────────────────────────────────────────
+  // v9.0 — NEWS INTELLIGENCE : 11 signaux additionnels
+  // ─────────────────────────────────────────────────────────────────────
+  // Pré-déclare actionAssets (utilisé aussi par v4.6 plus bas)
   const actionAssets = valid.filter(a => a.kind === 'action');
+
+  // 1. M&A events détectés dans les news (45 mots-clés FR/EN)
+  const maEvents = detectMAEvents(recentNews, valid);
+  if (maEvents.length > 0) console.log(`v9.0 M&A events: ${maEvents.length} (${maEvents.filter(e => e.kind === 'confirmed').length} confirmés)`);
+
+  // 2. Earnings beat/miss : précharge pour toutes les actions
+  console.log(`v9.0 Preloading earnings results for ${actionAssets.length} actions...`);
+  const earningsResultsMap = new Map();
+  await Promise.all(actionAssets.map(async a => {
+    const sym = ASSETS.find(x => x.label === a.label)?.symbol;
+    if (sym) {
+      const r = await fetchEarningsResult(sym);
+      if (r) earningsResultsMap.set(a.label, r);
+    }
+  }));
+
+  // 3. Crypto Fear & Greed (1 fetch global)
+  const fearGreed = await fetchFearGreed();
+  if (fearGreed) console.log(`v9.0 Fear & Greed: ${fearGreed.value} (${fearGreed.classification}) Δ${fearGreed.change_1d > 0 ? '+' : ''}${fearGreed.change_1d}`);
+
+  // 4. Insider activity : précharge actions (parallèle)
+  console.log(`v9.0 Preloading insider activity...`);
+  const insiderMap = new Map();
+  await Promise.all(actionAssets.slice(0, 100).map(async a => {
+    const sym = ASSETS.find(x => x.label === a.label)?.symbol;
+    if (sym) {
+      const r = await fetchInsiderActivity(sym);
+      if (r) insiderMap.set(a.label, r);
+    }
+  }));
+
+  // 5. Short interest : précharge actions (parallèle)
+  console.log(`v9.0 Preloading short interest...`);
+  const shortMap = new Map();
+  await Promise.all(actionAssets.slice(0, 100).map(async a => {
+    const sym = ASSETS.find(x => x.label === a.label)?.symbol;
+    if (sym) {
+      const r = await fetchShortInterest(sym);
+      if (r) shortMap.set(a.label, r);
+    }
+  }));
+
+  // 6. Seasonality (calcul instantané)
+  const seasonality = getSeasonalityBias();
+  console.log(`v9.0 Seasonality: bias ${seasonality.bias} (${seasonality.label})`);
+
+  // 7. Tech events imminents (<10j)
+  const techEvents = getTechEventsInDays(10);
+  if (techEvents.length > 0) console.log(`v9.0 Tech events <10j: ${techEvents.map(e => e.name).join(', ')}`);
+
+  // 8. Analyst momentum : précharge actions
+  console.log(`v9.0 Preloading analyst trends...`);
+  const analystMap = new Map();
+  await Promise.all(actionAssets.slice(0, 100).map(async a => {
+    const sym = ASSETS.find(x => x.label === a.label)?.symbol;
+    if (sym) {
+      const r = await fetchAnalystTrend(sym);
+      if (r) analystMap.set(a.label, r);
+    }
+  }));
+
+  // 9. Enriched themes (FDA, AI breakthrough, crypto hack, recession, rate pivot)
+  const enrichedThemes = detectEnrichedThemes(recentNews);
+  const enrichedTop = Object.entries(enrichedThemes).sort((a, b) => b[1] - a[1]).slice(0, 3);
+  if (enrichedTop.length > 0) console.log(`v9.0 Enriched themes:`, enrichedTop.map(([k, v]) => `${k}=${v}`).join(' · '));
+
+  // 10. ETF flow signals (volume anormal)
+  const etfFlows = computeEtfFlowSignal(valid);
+  const flowEntries = Object.entries(etfFlows);
+  if (flowEntries.length > 0) console.log(`v9.0 ETF flows:`, flowEntries.map(([k, v]) => `${k.split(' ')[0]}=${v.kind}×${v.ratio.toFixed(1)}`).join(' · '));
+
+  // 11. Geopolitical risk index (composite)
+  const geoRisk = computeGeoRiskIndex(newsThemesMap);
+  console.log(`v9.0 Geo risk: ${geoRisk.index}/100 (${geoRisk.level})`);
+  // v4.6 — Préchargement earnings dates pour toutes les actions (parallèle)
+  // (actionAssets déclaré plus haut dans le bloc v9.0)
   console.log(`v4.6 Preloading earnings for ${actionAssets.length} actions...`);
   await Promise.all(actionAssets.map(async a => {
     const sym = ASSETS.find(x => x.label === a.label)?.symbol;
@@ -3096,6 +3190,114 @@ async function main() {
         return true;
       });
     }
+    // ────────────────────────────────────────────────────────────────
+    // v9.0 — NEWS INTELLIGENCE FILTERS (11 signaux additionnels)
+    // ────────────────────────────────────────────────────────────────
+    // 1. M&A : skip si rachat confirmé, -20% si rumeur
+    if (maEvents.length > 0) {
+      setups = setups.filter(s => {
+        const f = applyMAFilter(s, maEvents);
+        if (!f.keep) { console.log(`v9.0 M&A reject ${s.asset}: ${f.reason}`); return false; }
+        if (f.qualityMult !== 1 && s.quality_score != null) {
+          s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * f.qualityMult)));
+          s.ma_reason = f.reason;
+        }
+        return true;
+      });
+    }
+    // 2. Earnings beat/miss : ±8-15%
+    setups.forEach(s => {
+      const er = earningsResultsMap.get(s.asset);
+      if (er) {
+        const f = applyEarningsBeatFilter(s, er);
+        if (f.qualityMult !== 1 && s.quality_score != null) {
+          s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * f.qualityMult)));
+          s.earnings_beat_reason = f.reason;
+        }
+      }
+    });
+    // 3. Crypto Fear & Greed : contrarian boost / top penalty
+    if (fearGreed) {
+      setups.forEach(s => {
+        const f = applyFearGreedFilter(s, fearGreed);
+        if (f.qualityMult !== 1 && s.quality_score != null) {
+          s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * f.qualityMult)));
+          s.fear_greed_reason = f.reason;
+        }
+      });
+    }
+    // 4. Insider activity : ±12-15%
+    setups.forEach(s => {
+      const ins = insiderMap.get(s.asset);
+      if (ins) {
+        const f = applyInsiderFilter(s, ins);
+        if (f.qualityMult !== 1 && s.quality_score != null) {
+          s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * f.qualityMult)));
+          s.insider_reason = f.reason;
+        }
+      }
+    });
+    // 5. Short squeeze : +8-18% sur longs avec short interest élevé
+    setups.forEach(s => {
+      const sh = shortMap.get(s.asset);
+      if (sh) {
+        const f = applyShortSqueezeFilter(s, sh);
+        if (f.qualityMult !== 1 && s.quality_score != null) {
+          s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * f.qualityMult)));
+          s.short_squeeze_reason = f.reason;
+        }
+      }
+    });
+    // 6. Seasonality : ±5% selon mois
+    setups.forEach(s => {
+      const f = applySeasonalityFilter(s, seasonality);
+      if (f.qualityMult !== 1 && s.quality_score != null) {
+        s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * f.qualityMult)));
+        s.seasonality_reason = f.reason;
+      }
+    });
+    // 7. Tech events : +3-10% si event imminent et actif impacté
+    if (techEvents.length > 0) {
+      setups.forEach(s => {
+        const f = applyTechEventFilter(s, techEvents);
+        if (f.qualityMult !== 1 && s.quality_score != null) {
+          s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * f.qualityMult)));
+          s.tech_event_reason = f.reason;
+        }
+      });
+    }
+    // 8. Analyst momentum : ±8% selon upgrades/downgrades
+    setups.forEach(s => {
+      const an = analystMap.get(s.asset);
+      if (an) {
+        const f = applyAnalystFilter(s, an);
+        if (f.qualityMult !== 1 && s.quality_score != null) {
+          s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * f.qualityMult)));
+          s.analyst_reason = f.reason;
+        }
+      }
+    });
+    // 9. Enriched themes : skip si hack crypto, boost si FDA/AI/pivot
+    if (Object.keys(enrichedThemes).length > 0) {
+      setups = setups.filter(s => {
+        const f = applyEnrichedThemeFilter(s, enrichedThemes);
+        if (!f.keep) { console.log(`v9.0 Enriched theme reject ${s.asset}: ${f.reason}`); return false; }
+        if (f.qualityMult !== 1 && s.quality_score != null) {
+          s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * f.qualityMult)));
+          s.enriched_theme_reason = f.reason;
+        }
+        return true;
+      });
+    }
+    // 11. Geopolitical risk : -5/-15% si tension élevée
+    setups.forEach(s => {
+      const f = applyGeoRiskFilter(s, geoRisk);
+      if (f.qualityMult !== 1 && s.quality_score != null) {
+        s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * f.qualityMult)));
+        s.geo_risk_reason = f.reason;
+      }
+    });
+
     // v8.8 — Wisdom adjustment : ajuste quality_score selon le top analog historique
     const wAdj = wisdomAdjustments[agent.id];
     if (wAdj && wAdj.adjustment !== 0) {
@@ -3277,6 +3479,34 @@ async function main() {
           { adjustment: v.adjustment, note: v.note },
         ])
       ),
+    },
+    // v9.0 — NEWS INTELLIGENCE : signaux additionnels exposés à l'UI
+    news_intel: {
+      ma_events: maEvents.slice(0, 10).map(e => ({
+        asset: e.asset, kind: e.kind, title: e.title, url: e.url, source: e.source,
+      })),
+      ma_count: maEvents.length,
+      fear_greed: fearGreed,
+      seasonality,
+      tech_events_upcoming: techEvents,
+      enriched_themes: enrichedThemes,
+      etf_flows: etfFlows,
+      geo_risk: geoRisk,
+      earnings_top_beats: [...earningsResultsMap.entries()]
+        .filter(([, r]) => r.surprisePct > 5)
+        .sort((a, b) => b[1].surprisePct - a[1].surprisePct)
+        .slice(0, 10)
+        .map(([asset, r]) => ({ asset, surprisePct: Number(r.surprisePct.toFixed(1)), consecutiveBeats: r.consecutiveBeats })),
+      insider_top_buys: [...insiderMap.entries()]
+        .filter(([, r]) => r.netRatio > 0.7 && r.buyValue > 100000)
+        .sort((a, b) => b[1].buyValue - a[1].buyValue)
+        .slice(0, 10)
+        .map(([asset, r]) => ({ asset, buyValue: r.buyValue, netRatio: Number(r.netRatio.toFixed(2)) })),
+      short_squeeze_candidates: [...shortMap.entries()]
+        .filter(([, r]) => r.shortPercentOfFloat > 0.15)
+        .sort((a, b) => b[1].shortPercentOfFloat - a[1].shortPercentOfFloat)
+        .slice(0, 10)
+        .map(([asset, r]) => ({ asset, shortPct: Number((r.shortPercentOfFloat * 100).toFixed(1)), daysToCover: r.shortRatio })),
     },
     // v7.2 — MARKET SNAPSHOT : état des 134 actifs analysés pour heatmap UI
     // Léger : juste label/kind/rsi/change/verdict (pas les prices)
