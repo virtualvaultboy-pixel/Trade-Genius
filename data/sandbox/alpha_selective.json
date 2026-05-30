@@ -1,0 +1,155 @@
+{
+  "generated": "2026-05-30T19:12:08.607Z",
+  "config": {
+    "atrStop": 0.7,
+    "atrTp2": 6,
+    "holdMax": 30,
+    "baseSizing": 12,
+    "maxPos": 3,
+    "pyramiding": 0,
+    "minQuality": 85,
+    "leverageThreshold": 999,
+    "trailingATRMult": 0.5,
+    "WARMUP": 60
+  },
+  "assets": 54,
+  "median": 6.32,
+  "dd_avg": -1.57,
+  "positive": 12,
+  "total_folds": 12,
+  "avg_trades": 70.25,
+  "folds": [
+    {
+      "name": "F1",
+      "s": 60,
+      "e": 312,
+      "ret_yr": 6.3,
+      "dd": -3.89,
+      "wr": 26.4,
+      "trades": 53,
+      "pct_cash": 1.2,
+      "pf": 1.47
+    },
+    {
+      "name": "F2",
+      "s": 252,
+      "e": 564,
+      "ret_yr": 7.22,
+      "dd": -1.38,
+      "wr": 38,
+      "trades": 79,
+      "pct_cash": 3.2,
+      "pf": 2.27
+    },
+    {
+      "name": "F3",
+      "s": 504,
+      "e": 816,
+      "ret_yr": 6.32,
+      "dd": -1.47,
+      "wr": 40.9,
+      "trades": 93,
+      "pct_cash": 0,
+      "pf": 2.32
+    },
+    {
+      "name": "F4",
+      "s": 756,
+      "e": 1068,
+      "ret_yr": 7.92,
+      "dd": -1.6,
+      "wr": 39.6,
+      "trades": 111,
+      "pct_cash": 3.8,
+      "pf": 2.24
+    },
+    {
+      "name": "F5",
+      "s": 1008,
+      "e": 1320,
+      "ret_yr": 6.01,
+      "dd": -1.46,
+      "wr": 43.6,
+      "trades": 55,
+      "pct_cash": 54.5,
+      "pf": 3.04
+    },
+    {
+      "name": "F6",
+      "s": 1260,
+      "e": 1572,
+      "ret_yr": 7.46,
+      "dd": -0.82,
+      "wr": 44.2,
+      "trades": 77,
+      "pct_cash": 0.3,
+      "pf": 3.22
+    },
+    {
+      "name": "F7",
+      "s": 1512,
+      "e": 1824,
+      "ret_yr": 8.48,
+      "dd": -0.94,
+      "wr": 43.7,
+      "trades": 71,
+      "pct_cash": 0.3,
+      "pf": 3.24
+    },
+    {
+      "name": "F8",
+      "s": 1764,
+      "e": 2076,
+      "ret_yr": 5.83,
+      "dd": -1.51,
+      "wr": 41.4,
+      "trades": 70,
+      "pct_cash": 35.3,
+      "pf": 2.18
+    },
+    {
+      "name": "F9",
+      "s": 2016,
+      "e": 2328,
+      "ret_yr": 3.38,
+      "dd": -1.9,
+      "wr": 29.6,
+      "trades": 71,
+      "pct_cash": 28.8,
+      "pf": 1.51
+    },
+    {
+      "name": "F10",
+      "s": 2268,
+      "e": 2580,
+      "ret_yr": 8.46,
+      "dd": -1.39,
+      "wr": 46.9,
+      "trades": 64,
+      "pct_cash": 8,
+      "pf": 3.1
+    },
+    {
+      "name": "F11",
+      "s": 2520,
+      "e": 2832,
+      "ret_yr": 4.45,
+      "dd": -1.5,
+      "wr": 38.7,
+      "trades": 62,
+      "pct_cash": 44.9,
+      "pf": 2.12
+    },
+    {
+      "name": "F12",
+      "s": 2772,
+      "e": 3084,
+      "ret_yr": 4.43,
+      "dd": -0.98,
+      "wr": 40.5,
+      "trades": 37,
+      "pct_cash": 55.8,
+      "pf": 2.82
+    }
+  ]
+}
