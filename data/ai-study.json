@@ -7,9 +7,9 @@
   "observations": [
     "S&P 500 : tendance haussière confirmée (RSI 68, bull MA50)",
     "Nasdaq : tendance haussière confirmée (RSI 64, bull MA50)",
-    "BTC : pression vendeuse persistante (RSI 29)",
-    "ETH : pression vendeuse persistante (RSI 28)",
-    "Apple : tendance haussière confirmée (RSI 83, bull MA50)"
+    "Apple : tendance haussière confirmée (RSI 83, bull MA50)",
+    "EUR/USD : pression vendeuse persistante (RSI 33)",
+    "Or (Gold) : pression vendeuse persistante (RSI 34)"
   ],
   "plan_pedago": [
     "Vérifier la position du prix par rapport à la MA50 pour identifier la tendance moyen terme",
@@ -23,17 +23,17 @@
     "label": "Indécis"
   },
   "recommended": {
-    "count": 19,
+    "count": 17,
     "byKind": {
       "index": 3,
-      "crypto": 2,
+      "crypto": 0,
       "action": 14,
       "forex": 0,
       "metal": 0
     },
     "byConfidence": {
       "very-high": 1,
-      "high": 18,
+      "high": 16,
       "medium": 0
     },
     "assets": [
@@ -164,15 +164,6 @@
         "rr2": "2.00"
       },
       {
-        "label": "BTC",
-        "kind": "crypto",
-        "type": "rebond-survente",
-        "label_setup": "Rebond technique sur survente",
-        "confidence": "high",
-        "direction": "long",
-        "rr2": "2.00"
-      },
-      {
         "label": "Uber",
         "kind": "action",
         "type": "rebond-survente",
@@ -211,7 +202,7 @@
     ],
     "opportunityVerdict": {
       "cls": "bull",
-      "label": "19 opportunités détectées",
+      "label": "17 opportunités détectées",
       "desc": "Plusieurs actifs alignés simultanément — contexte large favorable aux acheteurs trend-follow."
     }
   },
@@ -319,7 +310,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 12,
+          "wisdom_note": "Bull momentum tech/IA, trailing stops larges",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 100
         },
         {
           "asset": "Hang Seng",
@@ -400,7 +395,7 @@
             25006.1602,
             25182.3906
           ],
-          "quality_score": 91,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -414,7 +409,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 12,
+          "wisdom_note": "Bull momentum tech/IA, trailing stops larges",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "JKSE Indonésie",
@@ -489,7 +488,7 @@
             6130.1899,
             6127.3809
           ],
-          "quality_score": 91,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -503,7 +502,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 12,
+          "wisdom_note": "Bull momentum tech/IA, trailing stops larges",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "Regeneron",
@@ -584,7 +587,7 @@
             621.52,
             614.78
           ],
-          "quality_score": 91,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -598,7 +601,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 12,
+          "wisdom_note": "Bull momentum tech/IA, trailing stops larges",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "GameStop",
@@ -679,7 +686,7 @@
             21.68,
             21.18
           ],
-          "quality_score": 91,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -693,7 +700,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 12,
+          "wisdom_note": "Bull momentum tech/IA, trailing stops larges",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "Alibaba (HK)",
@@ -774,7 +785,7 @@
             121.8,
             120.9
           ],
-          "quality_score": 91,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -788,7 +799,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 12,
+          "wisdom_note": "Bull momentum tech/IA, trailing stops larges",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "Tencent",
@@ -869,7 +884,7 @@
             425,
             427.2
           ],
-          "quality_score": 91,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -883,7 +898,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 12,
+          "wisdom_note": "Bull momentum tech/IA, trailing stops larges",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "Xiaomi",
@@ -964,7 +983,7 @@
             28.56,
             28.04
           ],
-          "quality_score": 91,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -978,7 +997,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 12,
+          "wisdom_note": "Bull momentum tech/IA, trailing stops larges",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "Meituan",
@@ -1059,7 +1082,7 @@
             73.3,
             73.45
           ],
-          "quality_score": 91,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1073,7 +1096,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 12,
+          "wisdom_note": "Bull momentum tech/IA, trailing stops larges",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "Ping An Insurance",
@@ -1154,7 +1181,7 @@
             59.25,
             60.05
           ],
-          "quality_score": 91,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1168,7 +1195,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 12,
+          "wisdom_note": "Bull momentum tech/IA, trailing stops larges",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "Humana",
@@ -1249,7 +1280,7 @@
             308.7,
             305.42
           ],
-          "quality_score": 86,
+          "quality_score": 98,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1263,7 +1294,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 12,
+          "wisdom_note": "Bull momentum tech/IA, trailing stops larges",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 85
         }
       ]
     },
@@ -1286,7 +1321,7 @@
       "desc": "Moyen terme · 1-3 semaines · Patience moyenne · 5-7 trades/semaine. Le meilleur compromis fréquence/qualité. Risque très maîtrisé.",
       "icon": "🔥",
       "color": "#f59e0b",
-      "count": 22,
+      "count": 20,
       "setups": [
         {
           "asset": "Hang Seng",
@@ -1367,7 +1402,7 @@
             25006.1602,
             25182.3906
           ],
-          "quality_score": 91,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1381,7 +1416,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "Alibaba (HK)",
@@ -1462,7 +1501,7 @@
             121.8,
             120.9
           ],
-          "quality_score": 91,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1476,7 +1515,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "Ping An Insurance",
@@ -1557,7 +1600,7 @@
             59.25,
             60.05
           ],
-          "quality_score": 91,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1571,7 +1614,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "Humana",
@@ -1652,7 +1699,7 @@
             308.7,
             305.42
           ],
-          "quality_score": 86,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1666,7 +1713,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 85
         },
         {
           "asset": "Moderna",
@@ -1747,7 +1798,7 @@
             47.57,
             47.19
           ],
-          "quality_score": 81,
+          "quality_score": 95,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -1761,7 +1812,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 80
         },
         {
           "asset": "Volkswagen",
@@ -1842,7 +1897,7 @@
             92.56,
             91.82
           ],
-          "quality_score": 81,
+          "quality_score": 95,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -1856,7 +1911,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 80
         },
         {
           "asset": "L'Oréal",
@@ -1937,7 +1996,7 @@
             386.65,
             382.55
           ],
-          "quality_score": 81,
+          "quality_score": 95,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -1951,7 +2010,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 80
         },
         {
           "asset": "General Motors",
@@ -2032,7 +2095,7 @@
             84.35,
             83.24
           ],
-          "quality_score": 76,
+          "quality_score": 90,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -2046,7 +2109,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 75
         },
         {
           "asset": "Target",
@@ -2127,7 +2194,7 @@
             128.65,
             127.07
           ],
-          "quality_score": 71,
+          "quality_score": 85,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -2332,7 +2399,7 @@
             1634,
             1620
           ],
-          "quality_score": 71,
+          "quality_score": 85,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -2346,7 +2413,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "KLCI Malaisie",
@@ -2427,7 +2498,7 @@
             1684.9301,
             1683.0699
           ],
-          "quality_score": 66,
+          "quality_score": 80,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -2441,7 +2512,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "UniCredit",
@@ -2522,7 +2597,7 @@
             72.91,
             74.24
           ],
-          "quality_score": 66,
+          "quality_score": 80,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -2712,7 +2787,7 @@
             70.92,
             70.4
           ],
-          "quality_score": 66,
+          "quality_score": 80,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -2726,7 +2801,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Walmart",
@@ -2807,7 +2886,7 @@
             118.9,
             115.75
           ],
-          "quality_score": 66,
+          "quality_score": 80,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -2821,7 +2900,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Starbucks",
@@ -2902,7 +2985,7 @@
             100.75,
             99.16
           ],
-          "quality_score": 66,
+          "quality_score": 80,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -2916,7 +2999,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "JKSE Indonésie",
@@ -2991,7 +3078,7 @@
             6130.1899,
             6127.3809
           ],
-          "quality_score": 66,
+          "quality_score": 80,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -3005,7 +3092,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "BP",
@@ -3086,7 +3177,7 @@
             41.59,
             41.87
           ],
-          "quality_score": 61,
+          "quality_score": 75,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -3100,7 +3191,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "XLF Finance",
@@ -3181,7 +3276,7 @@
             51.27,
             51.58
           ],
-          "quality_score": 61,
+          "quality_score": 75,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -3195,7 +3290,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "BP (UK)",
@@ -3276,7 +3375,7 @@
             515,
             521.8
           ],
-          "quality_score": 61,
+          "quality_score": 75,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -3290,7 +3389,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Take-Two",
@@ -3371,7 +3474,7 @@
             217.87,
             224.16
           ],
-          "quality_score": 56,
+          "quality_score": 70,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -3385,7 +3488,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 14,
+          "wisdom_note": "Long semicon + IA infra",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         }
       ]
     },
@@ -3478,7 +3585,7 @@
             25006.1602,
             25182.3906
           ],
-          "quality_score": 92,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3492,7 +3599,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "Alibaba (HK)",
@@ -3573,7 +3684,7 @@
             121.8,
             120.9
           ],
-          "quality_score": 92,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3587,7 +3698,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "Ping An Insurance",
@@ -3668,7 +3783,7 @@
             59.25,
             60.05
           ],
-          "quality_score": 92,
+          "quality_score": 100,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3682,7 +3797,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 90
         },
         {
           "asset": "Humana",
@@ -3763,7 +3882,7 @@
             308.7,
             305.42
           ],
-          "quality_score": 87,
+          "quality_score": 95,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3777,7 +3896,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 85
         },
         {
           "asset": "Moderna",
@@ -3858,7 +3981,7 @@
             47.57,
             47.19
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -3872,7 +3995,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Volkswagen",
@@ -3953,7 +4080,7 @@
             92.56,
             91.82
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -3967,7 +4094,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "L'Oréal",
@@ -4048,7 +4179,7 @@
             386.65,
             382.55
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -4062,7 +4193,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "KLCI Malaisie",
@@ -4143,7 +4278,7 @@
             1684.9301,
             1683.0699
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -4157,7 +4292,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Regeneron",
@@ -4238,7 +4377,7 @@
             621.52,
             614.78
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -4252,7 +4391,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "GameStop",
@@ -4333,7 +4476,7 @@
             21.68,
             21.18
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -4347,7 +4490,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Li Auto",
@@ -4428,7 +4575,7 @@
             15.54,
             15.01
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -4442,7 +4589,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Reliance Industries",
@@ -4523,7 +4674,7 @@
             1350.5,
             1321.2
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -4537,7 +4688,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Oracle",
@@ -4618,7 +4773,7 @@
             203.7,
             225.78
           ],
-          "quality_score": 78,
+          "quality_score": 87,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -4632,7 +4787,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 77
         },
         {
           "asset": "Palantir",
@@ -4713,7 +4872,7 @@
             143.34,
             156.54
           ],
-          "quality_score": 78,
+          "quality_score": 87,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -4727,7 +4886,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 77
         },
         {
           "asset": "XLK Tech",
@@ -4808,7 +4971,7 @@
             186.85,
             191.02
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -4822,7 +4985,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Gaz naturel",
@@ -4903,7 +5070,7 @@
             3.285,
             3.29
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -4917,7 +5084,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Micron",
@@ -4998,7 +5169,7 @@
             923.52,
             971
           ],
-          "quality_score": 78,
+          "quality_score": 87,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -5022,7 +5193,11 @@
                 "source": "Yahoo Finance"
               }
             ]
-          }
+          },
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 77
         },
         {
           "asset": "Marvell Tech",
@@ -5103,7 +5278,7 @@
             204.83,
             205
           ],
-          "quality_score": 78,
+          "quality_score": 87,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -5117,7 +5292,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 77
         },
         {
           "asset": "Cloudflare",
@@ -5198,7 +5377,7 @@
             228.11,
             241.82
           ],
-          "quality_score": 78,
+          "quality_score": 87,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -5212,7 +5391,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 77
         },
         {
           "asset": "Super Micro",
@@ -5293,7 +5476,7 @@
             41.3,
             46.09
           ],
-          "quality_score": 78,
+          "quality_score": 87,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -5307,7 +5490,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 77
         },
         {
           "asset": "HP",
@@ -5388,7 +5575,7 @@
             25.01,
             27.04
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -5402,7 +5589,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Danaher",
@@ -5483,7 +5674,7 @@
             180.63,
             182.67
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -5497,7 +5688,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "FedEx",
@@ -5578,7 +5773,7 @@
             411.4,
             411.75
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -5592,7 +5787,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Delta Airlines",
@@ -5673,7 +5872,7 @@
             82.49,
             82.48
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -5687,7 +5886,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "United Airlines",
@@ -5768,7 +5971,7 @@
             115.06,
             114.8
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -5782,7 +5985,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Alcoa",
@@ -5863,7 +6070,7 @@
             75.58,
             77.64
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -5877,7 +6084,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Nucor",
@@ -5958,7 +6169,7 @@
             249.3,
             250
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -5972,7 +6183,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Rivian",
@@ -6053,7 +6268,7 @@
             15.2,
             16.3
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -6067,7 +6282,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Infineon",
@@ -6148,7 +6367,7 @@
             80.11,
             81.11
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -6162,7 +6381,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Richemont",
@@ -6243,7 +6466,7 @@
             165.5,
             168.9
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -6257,7 +6480,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "SK Hynix",
@@ -6338,7 +6565,7 @@
             2289000,
             2333000
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -6352,7 +6579,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "TAN Solar",
@@ -6433,7 +6664,7 @@
             71.93,
             73.93
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -6447,7 +6678,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Affirm",
@@ -6528,7 +6763,7 @@
             73,
             73.65
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -6542,7 +6777,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "SoFi",
@@ -6623,7 +6862,7 @@
             16.97,
             18.22
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -6637,7 +6876,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "AST SpaceMobile",
@@ -6718,7 +6961,7 @@
             133.09,
             113.41
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -6732,7 +6975,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "IonQ",
@@ -6813,7 +7060,7 @@
             70.14,
             72.07
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -6827,7 +7074,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Rocket Lab",
@@ -6908,7 +7159,7 @@
             148.03,
             143.48
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -6922,7 +7173,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "EssilorLuxottica",
@@ -7003,7 +7258,7 @@
             174.8,
             175.15
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -7017,7 +7272,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 70
         },
         {
           "asset": "Novartis",
@@ -7098,7 +7357,7 @@
             118.26,
             117.82
           ],
-          "quality_score": 71,
+          "quality_score": 80,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -7383,7 +7642,7 @@
             8185.29,
             8476.1504
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -7397,7 +7656,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Taiwan",
@@ -7478,7 +7741,7 @@
             43636.4414,
             44732.9414
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -7492,7 +7755,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "UNI",
@@ -7778,7 +8045,7 @@
             426.99,
             450.24
           ],
-          "quality_score": 73,
+          "quality_score": 82,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -7802,7 +8069,11 @@
                 "source": "Yahoo Finance"
               }
             ]
-          }
+          },
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 72
         },
         {
           "asset": "AMD",
@@ -7883,7 +8154,7 @@
             518.09,
             516.1
           ],
-          "quality_score": 73,
+          "quality_score": 82,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -7897,7 +8168,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 72
         },
         {
           "asset": "Merval Argentine",
@@ -7978,7 +8253,7 @@
             3089497,
             3166407
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -7992,7 +8267,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "VIX (volatilité)",
@@ -8073,7 +8352,7 @@
             15.74,
             15.32
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -8087,7 +8366,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Workday",
@@ -8168,7 +8451,7 @@
             130.01,
             146.19
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -8182,7 +8465,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Atlassian",
@@ -8263,7 +8550,7 @@
             93.29,
             107.61
           ],
-          "quality_score": 73,
+          "quality_score": 82,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -8277,7 +8564,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 72
         },
         {
           "asset": "DocuSign",
@@ -8358,7 +8649,7 @@
             49.58,
             52.52
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -8372,7 +8663,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Nutanix",
@@ -8453,7 +8748,7 @@
             48.81,
             52.07
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -8467,7 +8762,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Western Digital",
@@ -8548,7 +8847,7 @@
             531.18,
             531.21
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -8562,7 +8861,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Seagate",
@@ -8643,7 +8946,7 @@
             880.72,
             879.8
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -8657,7 +8960,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Thermo Fisher",
@@ -8738,7 +9045,7 @@
             487.22,
             492.51
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -8752,7 +9059,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "UPS",
@@ -8833,7 +9144,7 @@
             106.67,
             106.69
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -8847,7 +9158,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "American Airlines",
@@ -8928,7 +9243,7 @@
             14.65,
             14.64
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -8942,7 +9257,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "AMC",
@@ -9023,7 +9342,7 @@
             1.58,
             1.73
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9037,7 +9356,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Sunrun",
@@ -9118,7 +9441,7 @@
             15.89,
             16.72
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9132,7 +9455,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Kering",
@@ -9213,7 +9540,7 @@
             250.95,
             255.35
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9227,7 +9554,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Alibaba (US ADR)",
@@ -9308,7 +9639,7 @@
             126.16,
             124.22
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9322,7 +9653,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "PDD Holdings",
@@ -9403,7 +9738,7 @@
             83.03,
             84.44
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9417,7 +9752,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "NetEase",
@@ -9498,7 +9837,7 @@
             124.02,
             122.82
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9512,7 +9851,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Meituan",
@@ -9593,7 +9936,7 @@
             73.3,
             73.45
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9607,7 +9950,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Samsung",
@@ -9688,7 +10035,7 @@
             299500,
             317000
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9702,7 +10049,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "SOXX Semiconductors",
@@ -9783,7 +10134,7 @@
             569.47,
             569.08
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9797,7 +10148,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "ITA Aerospace",
@@ -9878,7 +10233,7 @@
             235.57,
             235.44
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9892,7 +10247,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "JETS Airlines",
@@ -9973,7 +10332,7 @@
             29.14,
             29.32
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9987,7 +10346,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Uber",
@@ -10068,7 +10431,7 @@
             70.92,
             70.4
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10082,7 +10445,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Exelon",
@@ -10163,7 +10530,7 @@
             45.58,
             45.64
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10177,7 +10544,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "BMW",
@@ -10258,7 +10629,7 @@
             75.94,
             74.76
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10272,7 +10643,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Novartis (US ADR)",
@@ -10353,7 +10728,7 @@
             151.4,
             150.17
           ],
-          "quality_score": 66,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10367,7 +10742,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 65
         },
         {
           "asset": "Target",
@@ -10448,7 +10827,7 @@
             128.65,
             127.07
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10477,7 +10856,11 @@
                 "source": "Yahoo Finance"
               }
             ]
-          }
+          },
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Qualcomm",
@@ -10558,7 +10941,7 @@
             243.29,
             251.02
           ],
-          "quality_score": 67,
+          "quality_score": 75,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10572,7 +10955,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 66
         },
         {
           "asset": "Adobe",
@@ -10653,7 +11040,7 @@
             241.44,
             259.21
           ],
-          "quality_score": 67,
+          "quality_score": 75,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10667,7 +11054,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 66
         },
         {
           "asset": "Airbus",
@@ -10748,7 +11139,7 @@
             177.7,
             179.7
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10762,7 +11153,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "NYSE AMEX",
@@ -10843,7 +11238,7 @@
             8632.5996,
             8484.5098
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10857,7 +11252,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Applied Materials",
@@ -10938,7 +11337,7 @@
             449.68,
             450.06
           ],
-          "quality_score": 67,
+          "quality_score": 75,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10952,7 +11351,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 66
         },
         {
           "asset": "Lam Research",
@@ -11033,7 +11436,7 @@
             318,
             318.18
           ],
-          "quality_score": 67,
+          "quality_score": 75,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11047,7 +11450,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 66
         },
         {
           "asset": "NXP Semiconductors",
@@ -11128,7 +11535,7 @@
             330.28,
             321.35
           ],
-          "quality_score": 67,
+          "quality_score": 75,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11142,7 +11549,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 66
         },
         {
           "asset": "Intuit",
@@ -11223,7 +11634,7 @@
             313,
             331.53
           ],
-          "quality_score": 67,
+          "quality_score": 75,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11237,7 +11648,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 66
         },
         {
           "asset": "Zscaler",
@@ -11318,7 +11733,7 @@
             130.04,
             139.73
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11332,7 +11747,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "MongoDB",
@@ -11413,7 +11832,7 @@
             325.68,
             335.55
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11437,7 +11856,11 @@
                 "source": "Yahoo Finance"
               }
             ]
-          }
+          },
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "UiPath",
@@ -11518,7 +11941,7 @@
             11.58,
             11.72
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11532,7 +11955,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "C3.ai",
@@ -11613,7 +12040,7 @@
             10.22,
             10.77
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11627,7 +12054,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Cognizant",
@@ -11708,7 +12139,7 @@
             53.85,
             55.76
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11722,7 +12153,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "eBay",
@@ -11803,7 +12238,7 @@
             112.13,
             109.27
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11817,7 +12252,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Etsy",
@@ -11898,7 +12337,7 @@
             66.78,
             67.92
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11912,7 +12351,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "General Motors",
@@ -11993,7 +12436,7 @@
             84.35,
             83.24
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -12007,7 +12450,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Boeing",
@@ -12088,7 +12535,7 @@
             228.78,
             231.15
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -12102,7 +12549,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Carnival",
@@ -12183,7 +12634,7 @@
             27.94,
             28.06
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -12197,7 +12648,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Royal Caribbean",
@@ -12278,7 +12733,7 @@
             281.29,
             284.63
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -12292,7 +12747,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Enbridge",
@@ -12373,7 +12832,7 @@
             55.56,
             54.74
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -12387,7 +12846,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Freeport-McMoRan",
@@ -12468,7 +12931,7 @@
             65.87,
             65.71
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -12482,7 +12945,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Renault",
@@ -12563,7 +13030,7 @@
             29.67,
             29.59
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -12577,7 +13044,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Stellantis (MI)",
@@ -12658,7 +13129,7 @@
             6.998,
             6.865
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -12672,7 +13143,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "SoftBank",
@@ -12753,7 +13228,7 @@
             7125,
             7491
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -12767,7 +13242,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Naver",
@@ -12848,7 +13327,7 @@
             205000,
             234000
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -12862,7 +13341,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "SMH Semi ETF",
@@ -12943,7 +13426,7 @@
             599.83,
             598.93
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -12957,7 +13440,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "EWY Korea ETF",
@@ -13038,7 +13525,7 @@
             206.41,
             205.83
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -13052,7 +13539,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Archer Aviation",
@@ -13133,7 +13624,7 @@
             6.81,
             6.81
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -13147,7 +13638,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Unity",
@@ -13228,7 +13723,7 @@
             29.94,
             30.47
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -13242,7 +13737,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "AEX Amsterdam",
@@ -13323,7 +13822,7 @@
             1037.1899,
             1034.9301
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -13337,7 +13836,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "ASX 200 Australie",
@@ -13418,7 +13921,7 @@
             8592.9004,
             8731.7002
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -13608,13 +14111,13 @@
             274,
             270.64
           ],
-          "quality_score": 67,
+          "quality_score": 75,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
           "macro_reason": null,
           "earnings_reason": null,
-          "news_sentiment": null,
+          "news_sentiment": "neutral",
           "news_sentiment_reason": null,
           "macro_event_reason": null,
           "cross_asset_reason": null,
@@ -13713,7 +14216,7 @@
             50.77,
             51.6
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -13818,7 +14321,7 @@
             324.95,
             326.36
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -13832,7 +14335,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Mastercard",
@@ -13913,7 +14420,7 @@
             493.75,
             493.98
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -13927,7 +14434,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Home Depot",
@@ -14008,7 +14519,7 @@
             321.21,
             317.14
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -14022,7 +14533,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Novo Nordisk",
@@ -14101,7 +14616,7 @@
             293.6,
             292.95
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -14115,7 +14630,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "VWO (Emerging Markets)",
@@ -14196,7 +14715,7 @@
             59.9,
             59.88
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -14210,7 +14729,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "EUR/USD",
@@ -14291,7 +14814,7 @@
             1.1653,
             1.1659
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -14305,7 +14828,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Or (Gold)",
@@ -14386,7 +14913,7 @@
             4499.2998,
             4560.5
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -14400,7 +14927,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Elevance Health",
@@ -14481,7 +15012,7 @@
             392.75,
             393.19
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -14495,7 +15026,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "TJX",
@@ -14576,7 +15111,7 @@
             154.89,
             154.75
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -14590,7 +15125,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Crown Castle",
@@ -14671,7 +15210,7 @@
             91.09,
             91.5
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -14685,7 +15224,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Public Storage",
@@ -14766,7 +15309,7 @@
             309.25,
             303.69
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -14780,7 +15323,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "AXA",
@@ -14861,7 +15408,7 @@
             39.72,
             39.73
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -14875,7 +15422,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Michelin",
@@ -14956,7 +15507,7 @@
             31,
             31.51
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -14970,7 +15521,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Allianz",
@@ -15051,7 +15606,7 @@
             380.9,
             381.6
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15065,7 +15620,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Deutsche Telekom",
@@ -15146,7 +15705,7 @@
             28.95,
             28.86
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15160,7 +15719,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Philips",
@@ -15241,7 +15804,7 @@
             22.79,
             22.87
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15255,7 +15818,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "MUFG",
@@ -15336,7 +15903,7 @@
             2982,
             2999
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15350,7 +15917,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "Infosys (NSE)",
@@ -15431,7 +16002,7 @@
             1159.9,
             1160.9
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15445,7 +16016,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "XLRE Real Estate",
@@ -15526,7 +16101,7 @@
             44.41,
             43.99
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15540,7 +16115,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "EWA Australia ETF",
@@ -15621,7 +16200,7 @@
             28.97,
             29.25
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15635,7 +16214,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "INDA India ETF",
@@ -15716,7 +16299,7 @@
             48.69,
             48.56
           ],
-          "quality_score": 61,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15730,7 +16313,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60
         },
         {
           "asset": "BP",
@@ -15811,7 +16398,7 @@
             41.59,
             41.87
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15825,7 +16412,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "BP (UK)",
@@ -15906,7 +16497,7 @@
             515,
             521.8
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15920,7 +16511,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Salesforce",
@@ -16001,7 +16596,7 @@
             176.17,
             191.1
           ],
-          "quality_score": 62,
+          "quality_score": 70,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16015,7 +16610,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 61
         },
         {
           "asset": "Broadcom",
@@ -16096,7 +16695,7 @@
             426.58,
             446.77
           ],
-          "quality_score": 62,
+          "quality_score": 70,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16110,7 +16709,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 61
         },
         {
           "asset": "Shopify",
@@ -16191,7 +16794,7 @@
             115.03,
             118.71
           ],
-          "quality_score": 62,
+          "quality_score": 70,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16205,7 +16808,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 61
         },
         {
           "asset": "Costco",
@@ -16286,7 +16893,7 @@
             995.2,
             956.32
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16300,7 +16907,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Exxon",
@@ -16381,7 +16992,7 @@
             146.96,
             145.26
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16395,7 +17006,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Pétrole WTI",
@@ -16476,7 +17091,7 @@
             88.9,
             87.36
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16490,7 +17105,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Brent",
@@ -16571,7 +17190,7 @@
             93.71,
             92.05
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16585,7 +17204,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Blé",
@@ -16666,7 +17289,7 @@
             624,
             610.5
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16680,7 +17303,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Sucre",
@@ -16761,7 +17388,7 @@
             13.93,
             14.06
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16775,7 +17402,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Pinterest",
@@ -16856,7 +17487,7 @@
             20.65,
             20.05
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16870,7 +17501,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Zoom",
@@ -16951,7 +17586,7 @@
             100.46,
             101.59
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16965,7 +17600,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Medtronic",
@@ -17046,7 +17685,7 @@
             75.57,
             73.81
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -17060,7 +17699,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Chubb",
@@ -17141,7 +17784,7 @@
             316.22,
             311.73
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -17155,7 +17798,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "AIG",
@@ -17236,7 +17883,7 @@
             74.4,
             74.23
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -17250,7 +17897,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "CME Group",
@@ -17331,7 +17982,7 @@
             277.42,
             273.54
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -17345,7 +17996,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "ConocoPhillips",
@@ -17426,7 +18081,7 @@
             114.99,
             113.98
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -17440,7 +18095,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Kinder Morgan",
@@ -17521,7 +18180,7 @@
             31.91,
             31.08
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -17535,7 +18194,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "XPeng",
@@ -17616,7 +18279,7 @@
             16.44,
             16.45
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -17630,7 +18293,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Lucid",
@@ -17711,7 +18378,7 @@
             6.46,
             6.55
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -17725,7 +18392,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Take-Two",
@@ -17806,7 +18477,7 @@
             217.87,
             224.16
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -17820,7 +18491,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Bayer",
@@ -17901,7 +18576,7 @@
             37.84,
             36.53
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -17915,7 +18590,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "JD.com",
@@ -17996,7 +18675,7 @@
             29.14,
             28.83
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18010,7 +18689,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "TotalEnergies (US ADR)",
@@ -18091,7 +18774,7 @@
             87.17,
             87.32
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18105,7 +18788,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "ARKK Innovation",
@@ -18186,7 +18873,7 @@
             81.01,
             81.95
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18200,7 +18887,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Carvana",
@@ -18281,7 +18972,7 @@
             73.49,
             73
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18295,7 +18986,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Joby Aviation",
@@ -18376,7 +19071,7 @@
             12.3,
             11.9
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18390,7 +19085,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "FTSE 100",
@@ -18471,7 +19170,7 @@
             10426,
             10409.2998
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18485,7 +19184,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Mexico IPC",
@@ -18566,7 +19269,7 @@
             68866.2813,
             68587.7422
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18580,7 +19283,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "JSE Top 40 Afrique du Sud",
@@ -18661,7 +19368,7 @@
             7081.6401,
             7090.2798
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18675,7 +19382,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "PayPal",
@@ -18756,7 +19467,7 @@
             44.46,
             44.75
           ],
-          "quality_score": 62,
+          "quality_score": 70,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18770,7 +19481,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 61
         },
         {
           "asset": "Berkshire",
@@ -18851,7 +19566,7 @@
             477.42,
             474.48
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18865,7 +19580,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "P&G",
@@ -18946,7 +19665,7 @@
             145.91,
             143.56
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18960,7 +19679,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "McDonald's",
@@ -19041,7 +19764,7 @@
             277.97,
             279.2
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -19055,7 +19778,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Johnson & J.",
@@ -19136,7 +19863,7 @@
             230.8,
             225.33
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -19150,7 +19877,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Sanofi",
@@ -19231,7 +19962,7 @@
             76.36,
             75.29
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -19245,7 +19976,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "XLF Finance",
@@ -19326,7 +20061,7 @@
             51.27,
             51.58
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -19421,7 +20156,7 @@
             0.7164,
             0.7186
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -19435,7 +20170,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "EUR/GBP",
@@ -19516,7 +20255,7 @@
             0.8664,
             0.8668
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -19530,7 +20269,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Tel Aviv 125",
@@ -19607,7 +20350,7 @@
             4399.0601,
             4430.46
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -19621,7 +20364,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Citigroup",
@@ -19702,7 +20449,7 @@
             124.68,
             125.9
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -19716,7 +20463,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "US Bancorp",
@@ -19797,7 +20548,7 @@
             54.45,
             54.85
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -19811,7 +20562,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Truist",
@@ -19892,7 +20647,7 @@
             47.8,
             48.21
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -19906,7 +20661,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "General Dynamics",
@@ -19987,7 +20746,7 @@
             348.96,
             346.82
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20001,7 +20760,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Simon Property",
@@ -20082,7 +20845,7 @@
             206.77,
             204.91
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20096,7 +20859,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Comcast",
@@ -20177,7 +20944,7 @@
             25.16,
             24.87
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20191,7 +20958,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "AT&T",
@@ -20272,7 +21043,7 @@
             24.88,
             24.8
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20286,7 +21057,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Verizon",
@@ -20367,7 +21142,7 @@
             48.01,
             47.81
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20381,7 +21156,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Vinci",
@@ -20462,7 +21241,7 @@
             124.35,
             125.05
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20476,7 +21255,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Hermès",
@@ -20557,7 +21340,7 @@
             1634,
             1620
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20571,7 +21354,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Deutsche Bank",
@@ -20652,7 +21439,7 @@
             28.4,
             27.86
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20676,7 +21463,11 @@
                 "source": "Yahoo Finance"
               }
             ]
-          }
+          },
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Diageo",
@@ -20757,7 +21548,7 @@
             1582,
             1535.5
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20771,7 +21562,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Telefónica",
@@ -20852,7 +21647,7 @@
             3.961,
             3.938
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20866,7 +21661,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Iberdrola",
@@ -20947,7 +21746,7 @@
             19.545,
             19.5
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20961,7 +21760,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "Toyota (US ADR)",
@@ -21042,7 +21845,7 @@
             191.84,
             189.95
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -21056,7 +21859,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "XLI Industrials",
@@ -21137,7 +21944,7 @@
             173.8,
             173.13
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -21151,7 +21958,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "KRE Regional Banks",
@@ -21232,7 +22043,7 @@
             69.55,
             69.61
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -21246,7 +22057,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "KBE Banks",
@@ -21327,7 +22142,7 @@
             63.48,
             63.49
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -21341,7 +22156,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "EWU UK ETF",
@@ -21422,7 +22241,7 @@
             47,
             46.93
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -21436,7 +22255,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         },
         {
           "asset": "CAD/JPY",
@@ -21517,7 +22340,7 @@
             115.545,
             115.423
           ],
-          "quality_score": 56,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -21531,7 +22354,11 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55
         }
       ]
     },
@@ -28195,7 +29022,9 @@
         1684.9301,
         1683.0699
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     },
     {
       "asset": "Moderna",
@@ -28276,7 +29105,9 @@
         47.57,
         47.19
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     },
     {
       "asset": "BP",
@@ -28357,7 +29188,9 @@
         41.59,
         41.87
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     },
     {
       "asset": "General Motors",
@@ -28438,7 +29271,9 @@
         84.35,
         83.24
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     },
     {
       "asset": "Target",
@@ -28615,7 +29450,9 @@
         51.27,
         51.58
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     },
     {
       "asset": "ETH",
@@ -28777,7 +29614,9 @@
         1634,
         1620
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     },
     {
       "asset": "Volkswagen",
@@ -28858,7 +29697,9 @@
         92.56,
         91.82
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     },
     {
       "asset": "BP (UK)",
@@ -28939,7 +29780,9 @@
         515,
         521.8
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     },
     {
       "asset": "L'Oréal",
@@ -29020,7 +29863,9 @@
         386.65,
         382.55
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     },
     {
       "asset": "UniCredit",
@@ -29101,7 +29946,9 @@
         72.91,
         74.24
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     },
     {
       "asset": "Take-Two",
@@ -29182,7 +30029,9 @@
         217.87,
         224.16
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     },
     {
       "asset": "Hang Seng",
@@ -29425,7 +30274,9 @@
         70.92,
         70.4
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     },
     {
       "asset": "Walmart",
@@ -29506,7 +30357,9 @@
         118.9,
         115.75
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     },
     {
       "asset": "Starbucks",
@@ -29587,7 +30440,9 @@
         100.75,
         99.16
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     },
     {
       "asset": "JKSE Indonésie",
@@ -29662,7 +30517,9 @@
         6130.1899,
         6127.3809
       ],
-      "news_context": null
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
     }
   ],
   "news_summary": {
@@ -29684,6 +30541,146 @@
       "reason": null
     },
     "next_event": null
+  },
+  "market_reading": {
+    "current_state": {
+      "vix": 15.32,
+      "yield_curve": null,
+      "btc_30d_change": null,
+      "sp500_30d_change": 6.370981948889046,
+      "dominant_sectors": [
+        "SOXX",
+        "SMH",
+        "XLK"
+      ],
+      "dominant_news_themes": [
+        "war",
+        "earnings",
+        "tech"
+      ],
+      "special_flags": []
+    },
+    "dominant_themes": [
+      "war",
+      "earnings",
+      "tech"
+    ],
+    "theme_counts": {
+      "tech": 12,
+      "earnings": 14,
+      "credit": 3,
+      "war": 16,
+      "fed": 10,
+      "crypto": 3,
+      "oil": 2,
+      "geopolitical": 2
+    },
+    "top_sectors_60d": [
+      "SOXX",
+      "SMH",
+      "XLK"
+    ],
+    "historical_analogs": [
+      {
+        "id": "2024-ai-rally",
+        "name": "Rally IA + Halving BTC",
+        "date": "2024-03-08",
+        "category": "bull-run",
+        "similarity": 90,
+        "lesson": "Narrative IA + halving BTC + Fed pause = bull 6-12 mois, momentum porte mais reversion brutale possible.",
+        "market_response": {
+          "duration_days": 240,
+          "sp500_pct": 18,
+          "btc_pct": 55,
+          "winners": [
+            "SOXX",
+            "NVDA",
+            "BTC",
+            "SMH",
+            "XLK"
+          ],
+          "losers": [
+            "XLU",
+            "XLP",
+            "KRE"
+          ]
+        }
+      },
+      {
+        "id": "2021-meme-bull",
+        "name": "Bull post-COVID (meme stocks + retail)",
+        "date": "2021-01-27",
+        "category": "bull-run",
+        "similarity": 73,
+        "lesson": "Easy money + retail euphoria = parabolic 12 mois mais top brutal, garder trailing stops 5-8 ATR.",
+        "market_response": {
+          "duration_days": 365,
+          "sp500_pct": 28,
+          "btc_pct": 350,
+          "winners": [
+            "XLK",
+            "ARKK",
+            "BTC",
+            "ETH",
+            "meme stocks"
+          ],
+          "losers": [
+            "XLE défensives early"
+          ]
+        }
+      },
+      {
+        "id": "2000-dotcom-peak",
+        "name": "Pic bulle dot-com (Nasdaq ATH)",
+        "date": "2000-03-10",
+        "category": "bubble-pop",
+        "similarity": 48,
+        "lesson": "Courbe taux inversée + tech bullée + PE >35 = bear market 18-24 mois, rotation défensive obligatoire.",
+        "market_response": {
+          "duration_days": 730,
+          "sp500_pct": -49,
+          "btc_pct": null,
+          "winners": [
+            "XLP",
+            "XLU",
+            "XLE"
+          ],
+          "losers": [
+            "XLK",
+            "SOXX",
+            "IBB"
+          ]
+        }
+      }
+    ],
+    "top_analog": {
+      "name": "Rally IA + Halving BTC",
+      "year": "2024",
+      "similarity": 90,
+      "lesson": "Narrative IA + halving BTC + Fed pause = bull 6-12 mois, momentum porte mais reversion brutale possible."
+    },
+    "ia_priorities": {
+      "BASTION": {
+        "adjustment": 12,
+        "note": "Bull momentum tech/IA, trailing stops larges"
+      },
+      "PHÉNIX": {
+        "adjustment": 14,
+        "note": "Long semicon + IA infra"
+      },
+      "RAFALE": {
+        "adjustment": 8,
+        "note": "Scalper rotations sectorielles"
+      },
+      "NEXUS": {
+        "adjustment": 18,
+        "note": "BTC halving cycle = bull confirmé, accumuler"
+      },
+      "VOLT": {
+        "adjustment": 12,
+        "note": "Mid-cap crypto + AI speculatif OK"
+      }
+    }
   },
   "market_snapshot": [
     {

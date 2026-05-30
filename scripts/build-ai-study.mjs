@@ -19,6 +19,11 @@ import {
   computeAllIndicators, globalVerdict, atrPct, sma,
   ma7, ichimokuDirection,
 } from './indicators.mjs';
+// v8.8 — Wisdom Engine : 15 events historiques + matcher + news themes
+import {
+  findHistoricalAnalogs, computeWisdomAdjustment,
+  classifyNewsThemes, getDominantThemes,
+} from './wisdom-base.mjs';
 
 // ─────────────────────────────────────────────────────────────────────
 // v2.86 — Croisement IA × news en direct (phase D de la roadmap)
@@ -2909,6 +2914,70 @@ async function main() {
   // v4.8 — Macro event imminent (FOMC, CPI, NFP)
   const macroEvent = getMacroEventInDays(2);
   if (macroEvent) console.log(`v4.8 Macro event imminent: ${macroEvent.date} (dans ${macroEvent.days_until}j)`);
+
+  // ─────────────────────────────────────────────────────────────────────
+  // v8.8 — WISDOM ENGINE : lecture marché + match historique 30 ans
+  // ─────────────────────────────────────────────────────────────────────
+  // Construit le snapshot actuel de marché (VIX, DXY, BTC 30d, S&P 30d,
+  // secteurs dominants, thèmes news), puis match contre 15 events historiques.
+  const sp500Asset = valid.find(a => a.label === 'S&P 500');
+  const btcAsset = valid.find(a => a.label === 'BTC');
+  const compute30dChange = (prices) => {
+    if (!prices || prices.length < 30) return null;
+    const now = prices[prices.length - 1];
+    const past = prices[prices.length - 30];
+    return ((now - past) / past) * 100;
+  };
+  const sp500_30d_change = sp500Asset ? compute30dChange(sp500Asset.prices) : null;
+  const btc_30d_change = btcAsset ? compute30dChange(btcAsset.prices) : null;
+
+  // Top 3 secteurs dominants (par momentum 60j)
+  const topSectors = Object.entries(sectorMomentum)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+    .map(([k]) => k.split(' ')[0]); // ex 'XLK Tech' → 'XLK'
+
+  // Thèmes news dominants (mots-clés sur 48h de news)
+  const newsThemesMap = classifyNewsThemes(recentNews);
+  const dominantThemes = getDominantThemes(newsThemesMap, 3);
+
+  // Yield curve estimée via DXY trend (proxy faute de données réelles 2y/10y)
+  // TODO v8.9 — fetch ^IRX / ^TNX pour vraie yield curve
+  const yieldCurveProxy = macroCtx.dxy_trend === 'up' ? 'flat' : (macroCtx.dxy_trend === 'down' ? 'steep' : null);
+
+  // Special flags (réutilise crossSignal + macroEvent)
+  const specialFlags = [];
+  if (crossSignal.risk_off) specialFlags.push('risk_off');
+  if (crossSignal.tech_risk_off) specialFlags.push('tech_dump');
+  if (crossSignal.crypto_dump) specialFlags.push('btc_dump');
+  if (macroEvent) specialFlags.push('macro_event_imminent');
+
+  const currentMarketState = {
+    vix: macroCtx.vix,
+    dxy_trend: macroCtx.dxy_trend,
+    yield_curve: yieldCurveProxy,
+    btc_30d_change,
+    sp500_30d_change,
+    dominant_sectors: topSectors,
+    dominant_news_themes: dominantThemes,
+    special_flags: specialFlags,
+  };
+
+  // Top 3 analogues historiques
+  const historicalAnalogs = findHistoricalAnalogs(currentMarketState, 3);
+  const topAnalog = historicalAnalogs[0];
+  if (topAnalog) {
+    console.log(`v8.8 Wisdom: top analog = ${topAnalog.name} (${topAnalog.date.slice(0,4)}) similarity ${topAnalog.similarity}%`);
+    console.log(`v8.8 Wisdom lesson: ${topAnalog.lesson}`);
+  }
+
+  // Pré-calcule l'ajustement wisdom par IA (factorisé)
+  const wisdomAdjustments = {};
+  for (const iaId of ['atlas', 'nova', 'kairo', 'multi', 'volt']) {
+    wisdomAdjustments[iaId] = computeWisdomAdjustment(iaId, topAnalog);
+  }
+  console.log(`v8.8 Wisdom adjustments by IA:`,
+    Object.entries(wisdomAdjustments).map(([k, v]) => `${k}=${v.adjustment > 0 ? '+' : ''}${v.adjustment}`).join(' '));
   // v4.6 — Préchargement earnings dates pour toutes les actions (parallèle)
   const actionAssets = valid.filter(a => a.kind === 'action');
   console.log(`v4.6 Preloading earnings for ${actionAssets.length} actions...`);
@@ -3027,6 +3096,19 @@ async function main() {
         return true;
       });
     }
+    // v8.8 — Wisdom adjustment : ajuste quality_score selon le top analog historique
+    const wAdj = wisdomAdjustments[agent.id];
+    if (wAdj && wAdj.adjustment !== 0) {
+      setups.forEach(s => {
+        if (s.quality_score != null) {
+          s.quality_score_pre_wisdom = s.quality_score;
+          s.quality_score = Math.max(0, Math.min(100, s.quality_score + wAdj.adjustment));
+          s.wisdom_adjustment = wAdj.adjustment;
+          s.wisdom_note = wAdj.note;
+          s.historical_analog = wAdj.historical_analog;
+        }
+      });
+    }
     // v4.0 — Booste quality_score par AUC ML de l'horizon de l'agent
     if (mlRules) {
       setups.forEach(s => {
@@ -3075,6 +3157,11 @@ async function main() {
         stacked_patterns: Array.isArray(s.stacked_patterns) ? s.stacked_patterns : null,
         // v2.86 — news context attaché si l'actif a des news <48h
         news_context: buildNewsContext(s, newsMatches),
+        // v8.8 — Wisdom : ajustement quality_score selon top analog historique
+        wisdom_adjustment: s.wisdom_adjustment || 0,
+        wisdom_note: s.wisdom_note || null,
+        historical_analog: s.historical_analog || null,
+        quality_score_pre_wisdom: s.quality_score_pre_wisdom || null,
       })),
     };
   });
@@ -3148,6 +3235,9 @@ async function main() {
       prices60: Array.isArray(s.prices60) ? s.prices60.map(p => Number(p.toFixed(4))) : null,
       // v2.86 — news context attaché si l'actif a des news <48h
       news_context: buildNewsContext(s, newsMatches),
+      // v8.8 — Wisdom (historical analog) si déjà calculé sur le setup
+      wisdom_adjustment: s.wisdom_adjustment || 0,
+      historical_analog: s.historical_analog || null,
     })),
     // v2.86 — Compteur global de news croisées
     news_summary: {
@@ -3159,6 +3249,34 @@ async function main() {
       ...macroCtx,
       cross_asset: crossSignal,
       next_event: macroEvent,
+    },
+    // v8.8 — WISDOM ENGINE : lecture marché + match historique 30 ans
+    market_reading: {
+      current_state: currentMarketState,
+      dominant_themes: dominantThemes,
+      theme_counts: newsThemesMap,
+      top_sectors_60d: topSectors,
+      historical_analogs: historicalAnalogs.map(a => ({
+        id: a.id,
+        name: a.name,
+        date: a.date,
+        category: a.category,
+        similarity: a.similarity,
+        lesson: a.lesson,
+        market_response: a.market_response,
+      })),
+      top_analog: topAnalog ? {
+        name: topAnalog.name,
+        year: topAnalog.date.slice(0, 4),
+        similarity: topAnalog.similarity,
+        lesson: topAnalog.lesson,
+      } : null,
+      ia_priorities: Object.fromEntries(
+        Object.entries(wisdomAdjustments).map(([k, v]) => [
+          ({ atlas: 'BASTION', nova: 'PHÉNIX', kairo: 'RAFALE', multi: 'NEXUS', volt: 'VOLT' })[k] || k,
+          { adjustment: v.adjustment, note: v.note },
+        ])
+      ),
     },
     // v7.2 — MARKET SNAPSHOT : état des 134 actifs analysés pour heatmap UI
     // Léger : juste label/kind/rsi/change/verdict (pas les prices)
