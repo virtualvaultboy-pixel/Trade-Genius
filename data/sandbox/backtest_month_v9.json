@@ -1,0 +1,166 @@
+{
+  "generated": "2026-05-30T17:17:11.872Z",
+  "config": {
+    "backtest_days": 30,
+    "capital_initial": 1000,
+    "sizing_pct": 5,
+    "slippage_pct": 0.4,
+    "min_quality": 60,
+    "assets_count": 20,
+    "pattern_tested": "Pattern A (contrarian survente)",
+    "filters_applied": [
+      "seasonality"
+    ],
+    "filters_excluded": [
+      "news",
+      "macro_event",
+      "cross_asset",
+      "insider",
+      "M&A",
+      "fear_greed",
+      "earnings_beat",
+      "tech_events"
+    ],
+    "note": "Filtres v9.0 news/insider/M&A indisponibles historiquement. Backtest = pure technique + seasonality."
+  },
+  "seasonality_applied": {
+    "bias": -0.5,
+    "label": "Sell in May (saisonnalité négative)"
+  },
+  "results": {
+    "BASTION": {
+      "trades_count": 4,
+      "wins": 1,
+      "losses": 3,
+      "win_rate_pct": 25,
+      "avg_win_pct": 7.08,
+      "avg_loss_pct": -1.53,
+      "profit_factor": 1.54,
+      "total_pnl_per_trade_pct": 2.49,
+      "total_return_pct_with_sizing": 0.12,
+      "final_capital_eur": 1001.24,
+      "best_trade": {
+        "entry": 411.0677126464844,
+        "exit": 440.15728784179686,
+        "pnl": 0.07076589647002834,
+        "daysHeld": 10,
+        "outcome": "tp",
+        "quality": 78,
+        "asset": "Microsoft"
+      },
+      "worst_trade": {
+        "entry": 619.2772375488281,
+        "exit": 606.8996636718749,
+        "pnl": -0.0199871287469649,
+        "daysHeld": 2,
+        "outcome": "sl",
+        "quality": 65,
+        "asset": "Meta"
+      }
+    },
+    "PHÉNIX": {
+      "trades_count": 5,
+      "wins": 2,
+      "losses": 3,
+      "win_rate_pct": 40,
+      "avg_win_pct": 3.2,
+      "avg_loss_pct": -1.53,
+      "profit_factor": 1.39,
+      "total_pnl_per_trade_pct": 1.81,
+      "total_return_pct_with_sizing": 0.09,
+      "final_capital_eur": 1000.9,
+      "best_trade": {
+        "entry": 411.0677126464844,
+        "exit": 430.91014065987724,
+        "pnl": 0.04827046105286606,
+        "daysHeld": 10,
+        "outcome": "tp",
+        "quality": 78,
+        "asset": "Microsoft"
+      },
+      "worst_trade": {
+        "entry": 619.2772375488281,
+        "exit": 606.8996636718749,
+        "pnl": -0.0199871287469649,
+        "daysHeld": 2,
+        "outcome": "sl",
+        "quality": 65,
+        "asset": "Meta"
+      }
+    },
+    "RAFALE": {
+      "trades_count": 7,
+      "wins": 3,
+      "losses": 4,
+      "win_rate_pct": 42.9,
+      "avg_win_pct": 3.08,
+      "avg_loss_pct": -1.39,
+      "profit_factor": 1.66,
+      "total_pnl_per_trade_pct": 3.67,
+      "total_return_pct_with_sizing": 0.18,
+      "final_capital_eur": 1001.84,
+      "best_trade": {
+        "entry": 601.2554252929688,
+        "exit": 632.7488181152344,
+        "pnl": 0.05237939068395114,
+        "daysHeld": 12,
+        "outcome": "timeout",
+        "quality": 67,
+        "asset": "Meta"
+      },
+      "worst_trade": {
+        "entry": 619.2772375488281,
+        "exit": 609.0262619280134,
+        "pnl": -0.016553128387843414,
+        "daysHeld": 1,
+        "outcome": "sl",
+        "quality": 65,
+        "asset": "Meta"
+      }
+    },
+    "NEXUS": {
+      "trades_count": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate_pct": 0,
+      "avg_win_pct": 0,
+      "avg_loss_pct": 0,
+      "profit_factor": 0,
+      "total_pnl_per_trade_pct": 0,
+      "total_return_pct_with_sizing": 0,
+      "final_capital_eur": 1000,
+      "best_trade": null,
+      "worst_trade": null
+    },
+    "VOLT": {
+      "trades_count": 2,
+      "wins": 1,
+      "losses": 1,
+      "win_rate_pct": 50,
+      "avg_win_pct": 4.26,
+      "avg_loss_pct": -1.79,
+      "profit_factor": 2.38,
+      "total_pnl_per_trade_pct": 2.47,
+      "total_return_pct_with_sizing": 0.12,
+      "final_capital_eur": 1001.24,
+      "best_trade": {
+        "entry": 411.0677126464844,
+        "exit": 428.5983538643973,
+        "pnl": 0.04264660219857545,
+        "daysHeld": 10,
+        "outcome": "tp",
+        "quality": 78,
+        "asset": "Microsoft"
+      },
+      "worst_trade": {
+        "entry": 619.0965249023437,
+        "exit": 608.0158926688058,
+        "pnl": -0.017898068859756214,
+        "daysHeld": 4,
+        "outcome": "sl",
+        "quality": 77,
+        "asset": "Meta"
+      }
+    }
+  }
+}
