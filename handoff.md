@@ -16,6 +16,35 @@
 
 ---
 
+## 🎯 ALPHA WINNER (v10.9, déployé dans build-ai-study.mjs)
+
+Déploiement de **WINNER-1** (commit v10.8 ff44201) comme 6e IA Premium ultra.
+
+Validation walk-forward 14 ans × 14 folds × 54 actifs (alpha-top3-deep-validation.mjs) :
+- **40.02%/an médian**, worst +14.9%, best +77.63%
+- **DD -4.13%** moyen, **Calmar 9.68**
+- **14/14 années positives** (1298 trades total)
+
+### Modifs apportées à `build-ai-study.mjs`
+
+1. `_detectAlphaWinner(asset)` : réutilise patterns A/B/C avec config WINNER-1
+   - atrStop 0.5 (très serré) · atrTp2 7.0 (R/R 14:1)
+   - rsiMax 22 (A), rsiMin 38 + adxMin 30 (B)
+2. Entry `alpha: _detectAlphaWinner` dans `_agentDetectors`
+3. Profil `ALPHA` dans `AGENT_PROFILES` : premium, sizing 15-20%, minQuality 85
+4. Filtre `agent.filters.minQuality` post-detection dans `agentsOutput.map`
+5. Mapping `alpha: 'ALPHA'` dans wisdom output
+
+### Pièges connus ALPHA
+
+1. **Très peu de signaux** : ~1-2 par actif par an (vs 5-10 pour BASTION). Si user voit "0 setup ALPHA", c'est NORMAL — patience.
+2. **`premium` et `filters` undefined dans JSON output** : pré-existant (même comportement VOLT). UI gère le Premium via le nom de l'agent.
+3. **R/R 14:1 extrême** : la cible tp2 est très éloignée. Le user peut prendre profit à tp1 (3.5×ATR) si patience faible.
+4. **Patterns réutilisent les détecteurs grid existants** : si on modifie `_detectGridContrarian`/etc, ALPHA est impacté.
+5. **Pas encore exposé UI** : l'agent existe dans `ai-study.json` mais aucune carte ALPHA dans `index.html`. À ajouter (cf. cartes BASTION/PHENIX/RAFALE/NEXUS/VOLT existantes).
+
+---
+
 ## 🎯 TG Winner (post v8.4, pas encore intégré index.html)
 
 Stratégie META validée scientifiquement par lab Python (`scripts/lab/lab_winner_final.py`) :

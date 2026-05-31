@@ -394,6 +394,31 @@ function _detectVoltMulti(asset) {
   };
 }
 
+// v10.9 — ALPHA WINNER : config WINNER-1 validée 14 ans walk-forward
+// Source : scripts/alpha-top3-deep-validation.mjs (commit ff44201 v10.8)
+// Résultats : 40.02%/an médian / DD -4.13% / Calmar 9.68 / 14/14 ans positifs
+// Stratégie : réutilise A/B/C avec params ultra-serrés (atrStop 0.5 / atrTp2 7 = R/R 14:1)
+// + filtre minQuality 85 appliqué post-detection dans le pipeline agentsOutput
+// → ultra-sélectif (estimé 1-2 setups/an/actif vs 5-10 pour BASTION)
+function _detectAlphaWinner(asset) {
+  const c = _detectGridPullbackTrend(asset, {
+    atrStop: 0.5, atrTp2: 7.0,
+    type: 'alpha-C', label: 'ALPHA pullback ultra-sélectif',
+    timeframe: 'ALPHA · 5-30 jours',
+  });
+  const a = _detectGridContrarian(asset, {
+    rsiMax: 22, atrStop: 0.5, atrTp2: 7.0, requireMaBull: true,
+    type: 'alpha-A', label: 'ALPHA survente extrême + tendance',
+    timeframe: 'ALPHA · 5-30 jours',
+  });
+  const b = _detectGridTrendFollow(asset, {
+    rsiMin: 38, adxMin: 30, atrStop: 0.5, atrTp2: 7.0,
+    type: 'alpha-B', label: 'ALPHA trend-follow correction forte',
+    timeframe: 'ALPHA · 5-30 jours',
+  });
+  return _stackPatterns([c, a, b], null);
+}
+
 async function fetchMacroContext() {
   const ctx = { vix: null, vixRegime: 'unknown', dxy: null, dxyTrend: 'unknown' };
   try {
@@ -2814,6 +2839,24 @@ async function main() {
       maxOpenPositions: 3,
       sizingRangeOverride: [3, 5],  // v7.14 — cap réduit 8→5 (DD contenu, validation stress)
     },
+    // v10.9 — ALPHA WINNER : 6e IA PREMIUM ULTRA (config WINNER-1 v10.8)
+    // Validation walk-forward 14 ans × 14 folds × 54 actifs :
+    //   40.02%/an médian · DD -4.13% · Calmar 9.68 · 14/14 positifs · 1298 trades
+    // Source : alpha-top3-deep-validation.mjs (commit ff44201)
+    // Ultra-sélectif : minQuality 85 (~1-2 setups/an/actif), atrStop 0.5 (serré),
+    // atrTp2 7.0 (R/R 14:1). À utiliser en complément de BASTION/PHENIX, pas seul.
+    {
+      id: 'alpha', name: 'ALPHA', role: 'Le Sniper',
+      tagline: 'Validation 14 ans · 40%/an médian · ultra-sélectif',
+      desc: 'PREMIUM ULTRA · Système le plus sélectif. Validation walk-forward 14 ans (54 actifs, 1298 trades) : 40.02%/an médian, DD -4.13%, Calmar 9.68, 14/14 années positives. Quality 85+ requis (très peu de signaux par an). R/R 14:1 sur cible étendue. ⚠️ Patience requise : 0 signal pendant des semaines est normal.',
+      icon: '🎯', color: '#facc15',
+      filters: { minConfRank: 2, minADX: 25, minRR: 5.0, minQuality: 85 },
+      atr: { stop: 0.5, tp1: 3.5, tp2: 7.0 },
+      acceptedTypes: ['alpha-A', 'alpha-B', 'alpha-C'],
+      premium: true,
+      maxOpenPositions: 5,
+      sizingRangeOverride: [15, 20],  // sizing WINNER-1 = 18%
+    },
   ];
 
   function applyAgentProfile(allSetups, agent) {
@@ -2874,6 +2917,7 @@ async function main() {
     kairo: _detectKairoGrid,  // DAY (5-12j) : RSI<25 + MA bull + boll low + ATR 1/4
     multi: _detectMultiCrypto, // v8.7 — NEXUS crypto-only (15 majeures, ABC stacking)
     volt: _detectVoltMulti,    // v7.13 — ABC-TRIPLE multi-pattern validé walk-forward (médiane +28.6%/an)
+    alpha: _detectAlphaWinner, // v10.9 — ALPHA WINNER-1 validé 14 ans (40.02%/an médian, DD -4.13%)
   };
   function runAgentOnAssets(agentId) {
     const detect = _agentDetectors[agentId];
@@ -3121,6 +3165,14 @@ async function main() {
 
   const agentsOutput = AGENT_PROFILES.map(agent => {
     let setups = runAgentOnAssets(agent.id);
+    // v10.9 — Filtre quality minimum (ex: ALPHA exige >= 85)
+    if (agent.filters?.minQuality != null) {
+      const before = setups.length;
+      setups = setups.filter(s => (s.quality_score || 0) >= agent.filters.minQuality);
+      if (before !== setups.length) {
+        console.log(`v10.9 ${agent.name} : quality >= ${agent.filters.minQuality} → ${setups.length}/${before}`);
+      }
+    }
     // v4.2 — Filtres macro (VIX panic, DXY trend)
     setups = setups.filter(s => {
       const m = applyMacroFilter(s, macroCtx);
@@ -3475,7 +3527,7 @@ async function main() {
       } : null,
       ia_priorities: Object.fromEntries(
         Object.entries(wisdomAdjustments).map(([k, v]) => [
-          ({ atlas: 'BASTION', nova: 'PHÉNIX', kairo: 'RAFALE', multi: 'NEXUS', volt: 'VOLT' })[k] || k,
+          ({ atlas: 'BASTION', nova: 'PHÉNIX', kairo: 'RAFALE', multi: 'NEXUS', volt: 'VOLT', alpha: 'ALPHA' })[k] || k,
           { adjustment: v.adjustment, note: v.note },
         ])
       ),
