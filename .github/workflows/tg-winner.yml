@@ -1,0 +1,38 @@
+name: TG Winner monthly basket
+on:
+  schedule:
+    # Le 1er du mois a 06:00 UTC (08:00 Paris hiver / 07:00 Paris ete).
+    # On rebalance le 1er du mois en debut de matinee.
+    - cron: '0 6 1 * *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build-tg-winner.mjs'
+      - 'scripts/indicators.mjs'
+      - '.github/workflows/tg-winner.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build TG Winner basket
+        run: node scripts/build-tg-winner.mjs
+      - name: Commit TG Winner data if changed
+        run: |
+          git config user.name 'trade-genius-bot'
+          git config user.email 'bot@deponchy.studio'
+          if [[ -n "$(git status --porcelain data/tg-winner.json data/tg-winner-history/)" ]]; then
+            git add data/tg-winner.json data/tg-winner-history/
+            git commit -m "chore: refresh TG Winner basket [skip ci]"
+            git push
+          else
+            echo "TG Winner basket unchanged."
+          fi

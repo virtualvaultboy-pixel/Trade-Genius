@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>TG Winner — Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+  :root {
+    --bg: #0b0f17;
+    --card: rgba(20, 26, 40, 0.85);
+    --card-border: rgba(120, 200, 255, 0.18);
+    --accent: #7adfff;
+    --accent-2: #b88dff;
+    --green: #4ade80;
+    --red: #f87171;
+    --orange: #fbbf24;
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, system-ui, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  body {
+    padding: 16px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 22px; margin: 8px 0 4px; }
+  h2 { font-size: 16px; margin: 24px 0 8px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+  p.lede { color: var(--text-dim); font-size: 14px; margin: 0 0 16px; }
+  /* ── TG Winner styles ── */
+  .tgw-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .tgw-card--empty { color: var(--text-dim); font-style: italic; }
+  .tgw-card-head {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 12px;
+  }
+  .tgw-title { font-weight: 700; font-size: 18px; color: var(--accent); }
+  .tgw-badge {
+    margin-left: auto;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    background: rgba(122, 223, 255, 0.12);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .tgw-badge--soon { background: rgba(251, 191, 36, 0.16); color: var(--orange); }
+  .tgw-badge--due { background: rgba(248, 113, 113, 0.18); color: var(--red); }
+  .tgw-card-perf {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin-bottom: 10px;
+  }
+  .tgw-card-perf > div {
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    padding: 10px 8px;
+    text-align: center;
+  }
+  .tgw-card-perf b { display: block; font-size: 20px; color: var(--green); }
+  .tgw-card-perf span { display: block; font-size: 10px; color: var(--text-dim); margin-top: 2px; text-transform: uppercase; }
+  .tgw-card-foot { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
+  /* ── Basket ── */
+  .tgw-basket {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .tgw-basket-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 12px; font-size: 14px; color: var(--text-dim);
+  }
+  .tgw-basket-head b { color: var(--text); font-size: 16px; }
+  .tgw-edit-capital {
+    background: rgba(122, 223, 255, 0.1);
+    border: 1px solid var(--card-border);
+    color: var(--accent);
+    border-radius: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .tgw-rows { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .tgw-row {
+    background: rgba(0, 0, 0, 0.22);
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid transparent;
+    transition: border-color .2s;
+  }
+  .tgw-row:hover { border-color: var(--card-border); }
+  .tgw-row-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 4px;
+  }
+  .tgw-tick { font-weight: 700; font-size: 16px; color: var(--accent); }
+  .tgw-weight {
+    background: rgba(184, 141, 255, 0.16);
+    color: var(--accent-2);
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .tgw-row-name { font-size: 12px; color: var(--text-dim); margin-bottom: 6px; }
+  .tgw-row-meta {
+    display: flex; gap: 12px; font-size: 12px; color: var(--text);
+    flex-wrap: wrap;
+  }
+  .tgw-row-role { font-size: 11px; color: var(--text-dim); margin-top: 6px; font-style: italic; }
+  /* ── Copy ── */
+  .tgw-copy-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #0b0f17;
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+  /* ── Disclaimer ── */
+  .tgw-disclaimer {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-align: center;
+    padding: 16px 0;
+    line-height: 1.6;
+  }
+  /* ── Loading state ── */
+  .tgw-loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-dim);
+  }
+</style>
+</head>
+<body>
+  <h1>🎯 TG Winner</h1>
+  <p class="lede">Strategie validee scientifiquement sur 9 ans de donnees marche.<br>
+     Rebalance mensuel automatique (1er du mois).</p>
+
+  <div id="tgw-root">
+    <div class="tgw-loading">Chargement du panier...</div>
+  </div>
+
+  <p class="tgw-disclaimer">
+    ⚠️ Demo standalone. Pas de conseil d'investissement. Performance passee
+    ne prejuge pas du futur. Les ETF leveraged (TQQQ) sont risques sur le
+    long terme (vol decay structurel).
+  </p>
+
+<script src="tg-winner.js"></script>
+<script>
+(async function() {
+  const root = document.getElementById('tgw-root');
+  const winner = await TGWinner.load();
+  if (!winner) {
+    root.innerHTML = '<div class="tgw-card tgw-card--empty">Erreur de chargement.<br>Verifier que data/tg-winner.json existe.</div>';
+    return;
+  }
+  const cap = TGWinner.getUserCapital();
+  root.innerHTML =
+    TGWinner.renderSummaryCard(winner) +
+    TGWinner.renderBasket(winner, cap) +
+    '<button class="tgw-copy-btn" id="tgw-copy">📋 Copier le panier (broker)</button>';
+
+  // Edit capital
+  root.querySelector('.tgw-edit-capital')?.addEventListener('click', () => {
+    const v = prompt('Capital a investir (EUR)', cap);
+    const num = parseFloat(v);
+    if (Number.isFinite(num) && num > 0) {
+      TGWinner.setUserCapital(num);
+      location.reload();
+    }
+  });
+
+  // Copy
+  document.getElementById('tgw-copy')?.addEventListener('click', async (e) => {
+    const txt = TGWinner.formatBasketForCopy(winner, cap);
+    try {
+      await navigator.clipboard.writeText(txt);
+      e.target.textContent = '✓ Copie';
+      setTimeout(() => e.target.textContent = '📋 Copier le panier (broker)', 1500);
+    } catch {
+      alert(txt);
+    }
+  });
+})();
+</script>
+</body>
+</html>

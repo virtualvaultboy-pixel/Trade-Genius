@@ -21,6 +21,7 @@ const CORE = [
   './tg-common.js?v=93',
   './tg-analyst.js?v=93',
   './tg-bubble.js?v=93',
+  './tg-winner.js?v=93',
   './icon.svg',
   './icon-192.png',
   './icon-512.png',

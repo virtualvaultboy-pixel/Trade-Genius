@@ -16,6 +16,49 @@
 
 ---
 
+## 🎯 TG Winner (post v8.4, pas encore intégré index.html)
+
+Stratégie META validée scientifiquement par lab Python (`scripts/lab/lab_winner_final.py`) :
+**Mix 50% B&H safe (SPY 60 / TLT 30 / GLD 10) + 50% META 3 IAs leveraged**.
+
+Backtest 2016-09 → 2026-01 :
+- **23.1%/an**, Max DD -33.2%, Calmar 0.69
+- MC 500 iters : P(profit) 100%, P(annual ≥ 15%) 83%
+- Survives stress 5× frais/slippage : 23.0%
+
+### Fichiers livrés
+
+| Fichier | Rôle |
+|---|---|
+| `scripts/build-tg-winner.mjs` | Pull prices Yahoo + FX frankfurter → génère JSON |
+| `scripts/test-tg-winner.mjs` | Smoke tests (somme poids, allocations, FX) — `node scripts/test-tg-winner.mjs` |
+| `.github/workflows/tg-winner.yml` | Cron mensuel `0 6 1 * *` + dispatch + push trigger |
+| `data/tg-winner.json` | Snapshot live (prices + alloc 1k/10k EUR) |
+| `data/tg-winner-history/YYYY-MM.json` | Historique mensuel des snapshots |
+| `tg-winner.js` | Module PWA : `window.TGWinner.{load, renderBasket, computeUserPnL, ...}` |
+| `tg-winner-demo.html` | Page demo standalone (servir via http, pas file://) |
+
+### Intégration dans l'app — STATUS
+
+**NON ENCORE INTÉGRÉ** dans `index.html`. La demo standalone valide visuellement
+avant d'attaquer les 4500 lignes du hub. 3 options possibles :
+- (A) Nouvelle scene dédiée → liée depuis Premium
+- (B) Carte dans le feed Accueil + bouton voir tout → scene dédiée
+- (C) Remplace les 5 IAs actuelles (BASTION/PHENIX/RAFALE/NEXUS/VOLT) — breaking
+
+### Pièges connus TG Winner
+
+1. **FX** : `tg-winner.js` lit `window.TG.fxRates.EUR_USD` (warm-up async tg-common.js v2.57). Fallback chain : TG.fxRates → snapshot JSON → static 1.087.
+2. **Rebalance** : `nextRebalanceDate()` cible TOUJOURS le 1er du mois suivant (que le run soit le 1er ou le 28).
+3. **History** : 1 fichier par mois calendaire, overwrite sur runs multiples du même mois.
+4. **Tests** : `node scripts/test-tg-winner.mjs` (34 tests, exit 1 si fail).
+5. **Demo** : ouvrir via `python -m http.server` (file:// = CORS fetch bloqué).
+6. **Strategy.version vs app version** : indépendant volontaire. `tg-winner.json:strategy.version` = "1.0.0" pour la stratégie, sw.js version = app.
+7. **Risque AMF** : "23%/an attendu" peut être interprété comme promesse rendement. Formuler "performance backtest historique" avant publi.
+8. **ETF leveraged TQQQ x3** : produit PRIIPs, vérifier dispo Trade Republic FR / BoursoBank avant publi.
+
+---
+
 ## ⚡ Reprise rapide nouvelle session
 
 1. Lire ce fichier
