@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>TG · Setup Card v11.5 demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: #0a0a0e;
+    color: #e8eaed;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    padding: 16px 16px 80px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 16px 0 28px;
+  }
+  .header-title { font-size: 13px; color: #888; letter-spacing: 0.5px; text-transform: uppercase; }
+  .header-balance { font-size: 32px; font-weight: 700; margin-top: 6px; letter-spacing: -0.5px; }
+  .header-sub { font-size: 12px; color: #888; margin-top: 4px; }
+
+  /* Section title */
+  .section-title {
+    font-size: 12px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 8px 4px 12px;
+    font-weight: 600;
+  }
+
+  /* Setup card */
+  .setup-card {
+    background: linear-gradient(160deg, #1a1d24, #14171c);
+    border: 1px solid #22262e;
+    border-radius: 16px;
+    padding: 0;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .setup-head {
+    padding: 18px 20px 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .setup-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2a6fff, #1d4ed8);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .setup-icon.crypto { background: linear-gradient(135deg, #f7931a, #b25e00); }
+  .setup-icon.indice { background: linear-gradient(135deg, #2a6fff, #1d4ed8); }
+  .setup-icon.action { background: linear-gradient(135deg, #10b981, #047857); }
+  .setup-name { font-size: 18px; font-weight: 700; line-height: 1.2; }
+  .setup-kind { font-size: 12px; color: #888; margin-top: 2px; }
+  .setup-confidence {
+    margin-left: auto;
+    background: rgba(250,204,21,0.12);
+    color: #facc15;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .setup-confidence.medium { background: rgba(96,165,250,0.12); color: #60a5fa; }
+  .setup-confidence.high { background: rgba(74,222,128,0.12); color: #4ade80; }
+
+  /* Verdict */
+  .setup-verdict {
+    margin: 0 20px;
+    padding: 16px;
+    background: rgba(74,222,128,0.06);
+    border: 1px solid rgba(74,222,128,0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .verdict-pill {
+    background: #4ade80;
+    color: #0a0a0e;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 1px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+  .verdict-label { font-size: 13px; color: #aaa; }
+  .verdict-strong { color: #e8eaed; font-weight: 600; }
+
+  /* Stats grid */
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #22262e;
+    margin: 16px 20px 0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .stat {
+    background: #14171c;
+    padding: 14px 14px;
+  }
+  .stat-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat-value { font-size: 18px; font-weight: 700; margin-top: 4px; line-height: 1.1; }
+  .stat-value.positive { color: #4ade80; }
+  .stat-value.negative { color: #f87171; }
+  .stat-sub { font-size: 11px; color: #aaa; margin-top: 2px; }
+
+  /* Investment sim */
+  .invest-sim {
+    margin: 16px 20px 0;
+    padding: 16px;
+    background: rgba(96,165,250,0.04);
+    border: 1px solid rgba(96,165,250,0.15);
+    border-radius: 12px;
+  }
+  .invest-sim-title {
+    font-size: 12px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .invest-sim-amount {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 8px;
+  }
+  .invest-sim-amount b { color: #e8eaed; font-weight: 700; }
+  .invest-sim-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 0;
+    font-size: 14px;
+  }
+  .invest-sim-row .label { color: #aaa; display: flex; align-items: center; gap: 6px; }
+  .invest-sim-row .value { font-weight: 700; }
+  .invest-sim-row.win .value { color: #4ade80; }
+  .invest-sim-row.lose .value { color: #f87171; }
+
+  /* Why bar */
+  .why-bar {
+    margin: 16px 20px 0;
+    padding: 14px 16px;
+    background: rgba(168,85,247,0.05);
+    border-left: 3px solid #a855f7;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.5;
+  }
+
+  /* Footer / CTA */
+  .setup-cta {
+    margin: 18px 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .btn-primary {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 2px 12px rgba(239,68,68,0.25);
+  }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-secondary {
+    background: transparent;
+    color: #aaa;
+    border: 1px solid #2a2f37;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  /* Toggle simple/avancé */
+  .mode-toggle {
+    text-align: center;
+    margin: 12px 0 24px;
+    font-size: 12px;
+    color: #666;
+  }
+  .mode-toggle button {
+    background: none;
+    border: none;
+    color: #60a5fa;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 12px;
+  }
+
+  /* Mode avancé */
+  .advanced-block {
+    display: none;
+    margin: 0 20px 16px;
+    padding: 14px 16px;
+    background: rgba(0,0,0,0.25);
+    border: 1px dashed #2a2f37;
+    border-radius: 10px;
+    font-size: 12px;
+    color: #888;
+    line-height: 1.6;
+  }
+  .advanced-block.shown { display: block; }
+  .advanced-block strong { color: #ccc; }
+
+  /* Disclaimer */
+  .disclaimer {
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+    line-height: 1.5;
+    padding: 16px 8px;
+  }
+
+  /* Panier card */
+  .basket-card {
+    background: linear-gradient(160deg, #1a1d24, #14171c);
+    border: 1px solid #22262e;
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+  .basket-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 16px;
+  }
+  .basket-emoji { font-size: 22px; }
+  .basket-title { font-size: 16px; font-weight: 700; }
+  .basket-sub { font-size: 12px; color: #888; margin-top: 2px; }
+  .basket-line {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid #1f2229;
+  }
+  .basket-line:first-of-type { border-top: none; padding-top: 0; }
+  .basket-line-num {
+    width: 24px; height: 24px;
+    background: #22262e;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    color: #aaa;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .basket-line-name { flex: 1; font-size: 14px; font-weight: 600; }
+  .basket-line-amount { font-size: 14px; font-weight: 700; color: #4ade80; }
+  .basket-line-conf { font-size: 11px; color: #888; }
+  .basket-totals {
+    margin-top: 16px; padding-top: 14px;
+    border-top: 1px solid #1f2229;
+  }
+  .basket-total-row {
+    display: flex; justify-content: space-between;
+    font-size: 13px;
+    padding: 4px 0;
+    color: #aaa;
+  }
+  .basket-total-row b { color: #e8eaed; font-weight: 700; }
+  .basket-total-row.gain b { color: #4ade80; }
+  .basket-total-row.risk b { color: #f87171; }
+</style>
+</head>
+<body>
+
+  <!-- Header style XTB -->
+  <div class="header">
+    <div class="header-title">Mon panier IA · Aujourd'hui</div>
+    <div class="header-balance">1 000 €</div>
+    <div class="header-sub">à investir selon les suggestions PHÉNIX</div>
+  </div>
+
+  <!-- Setup card — un actif suggéré -->
+  <div class="section-title">Suggestion du jour</div>
+
+  <div class="setup-card">
+    <div class="setup-head">
+      <div class="setup-icon indice">📊</div>
+      <div>
+        <div class="setup-name">Hang Seng</div>
+        <div class="setup-kind">Indice asiatique</div>
+      </div>
+      <div class="setup-confidence high">Forte conviction</div>
+    </div>
+
+    <div class="setup-verdict">
+      <div class="verdict-pill">ACHÈTE</div>
+      <div>
+        <div class="verdict-label">L'IA suggère :</div>
+        <div class="verdict-strong">Position acheteuse sur 1-3 semaines</div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-label">📈 Objectif</div>
+        <div class="stat-value positive">+20%</div>
+        <div class="stat-sub">en 3 semaines en moyenne</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">🛡️ Sécurité auto</div>
+        <div class="stat-value negative">-2%</div>
+        <div class="stat-sub">l'app te dit STOP avant</div>
+      </div>
+    </div>
+
+    <div class="invest-sim">
+      <div class="invest-sim-title">Simulation sur 200 €</div>
+      <div class="invest-sim-amount">Si tu mets <b>200 €</b> sur Hang Seng :</div>
+      <div class="invest-sim-row win">
+        <span class="label">🟢 Gain potentiel</span>
+        <span class="value">+ 40 €</span>
+      </div>
+      <div class="invest-sim-row lose">
+        <span class="label">🔴 Perte maximum</span>
+        <span class="value">- 4 €</span>
+      </div>
+    </div>
+
+    <div class="why-bar">
+      💡 <b>Pourquoi ?</b> Le marché a baissé fort cette semaine, l'IA détecte un rebond probable. Stratégie testée sur 20 ans avec succès.
+    </div>
+
+    <div class="setup-cta">
+      <button class="btn-primary">📲  Acheter chez mon broker</button>
+      <button class="btn-secondary" onclick="document.querySelector('.advanced-block').classList.toggle('shown')">
+        ⚙️ Voir les détails techniques (mode avancé)
+      </button>
+    </div>
+
+    <div class="advanced-block">
+      <strong>Conditions détectées :</strong> RSI 24 (survente extrême) · Bollinger 11% (bande basse) · MACD -119.85 (correction confirmée) · MA20&gt;MA50 (tendance MT préservée) · MFI 45 (flux validé) · stop 1 ATR · cible 5 ATR · R/R 1:5.<br><br>
+      <strong>Backtest :</strong> Configuration contrarian validée walk-forward OOS sur 20 ans × 50 actifs (PF 3.17). Pattern A du système ALPHA · Quality 95.
+    </div>
+  </div>
+
+  <!-- Panier du jour -->
+  <div class="section-title">Ton panier pour 1 000 €</div>
+
+  <div class="basket-card">
+    <div class="basket-head">
+      <span class="basket-emoji">🛒</span>
+      <div>
+        <div class="basket-title">5 actifs diversifiés</div>
+        <div class="basket-sub">Sélection PHÉNIX · suivi 1-3 semaines</div>
+      </div>
+    </div>
+
+    <div class="basket-line">
+      <div class="basket-line-num">1</div>
+      <div>
+        <div class="basket-line-name">Starbucks</div>
+        <div class="basket-line-conf">🔥 Forte conviction</div>
+      </div>
+      <div style="flex:1"></div>
+      <div class="basket-line-amount">220 €</div>
+    </div>
+
+    <div class="basket-line">
+      <div class="basket-line-num">2</div>
+      <div>
+        <div class="basket-line-name">Hang Seng</div>
+        <div class="basket-line-conf">🔥 Forte conviction</div>
+      </div>
+      <div style="flex:1"></div>
+      <div class="basket-line-amount">200 €</div>
+    </div>
+
+    <div class="basket-line">
+      <div class="basket-line-num">3</div>
+      <div>
+        <div class="basket-line-name">NextEra Energy</div>
+        <div class="basket-line-conf">👍 Bonne opportunité</div>
+      </div>
+      <div style="flex:1"></div>
+      <div class="basket-line-amount">200 €</div>
+    </div>
+
+    <div class="basket-line">
+      <div class="basket-line-num">4</div>
+      <div>
+        <div class="basket-line-name">Regeneron</div>
+        <div class="basket-line-conf">👍 Bonne opportunité</div>
+      </div>
+      <div style="flex:1"></div>
+      <div class="basket-line-amount">200 €</div>
+    </div>
+
+    <div class="basket-line">
+      <div class="basket-line-num">5</div>
+      <div>
+        <div class="basket-line-name">Li Auto</div>
+        <div class="basket-line-conf">⚡ Plus spéculatif</div>
+      </div>
+      <div style="flex:1"></div>
+      <div class="basket-line-amount">180 €</div>
+    </div>
+
+    <div class="basket-totals">
+      <div class="basket-total-row">
+        <span>Total investi</span>
+        <b>1 000 €</b>
+      </div>
+      <div class="basket-total-row gain">
+        <span>Gain potentiel estimé</span>
+        <b>+ 150 €</b>
+      </div>
+      <div class="basket-total-row risk">
+        <span>Risque maximum (stop auto)</span>
+        <b>− 40 €</b>
+      </div>
+    </div>
+
+    <button class="btn-primary" style="margin-top:18px;width:100%;">
+      📲  Suivre le panier chez mon broker
+    </button>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer">
+    Performance passée ne préjuge pas du futur.<br>
+    Trade Genius est un outil pédagogique, pas un conseil en investissement.
+  </div>
+
+</body>
+</html>
