@@ -4821,6 +4821,111 @@
     line-height: 1.4;
   }
 
+  /* v11.6 — Panier du jour XTB-style */
+  .tgb-card {
+    background: linear-gradient(160deg, #1a1d24, #14171c);
+    border: 1px solid #22262e;
+    border-radius: 16px;
+    padding: 18px 18px 14px;
+    margin-bottom: 14px;
+    color: #e8eaed;
+  }
+  .tgb-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .tgb-emoji { font-size: 22px; line-height: 1; }
+  .tgb-title { font-size: 16px; font-weight: 700; line-height: 1.2; }
+  .tgb-sub { font-size: 12px; color: #888; margin-top: 2px; }
+  .tgb-empty {
+    font-size: 13px; color: #aaa;
+    background: rgba(255,255,255,0.02);
+    border-left: 3px solid #2a2f37;
+    padding: 12px 14px;
+    border-radius: 8px;
+    line-height: 1.5;
+  }
+  .tgb-lines { display: flex; flex-direction: column; }
+  .tgb-line {
+    appearance: none;
+    background: none;
+    border: none;
+    border-top: 1px solid #1f2229;
+    padding: 12px 0;
+    display: flex; align-items: center; gap: 12px;
+    width: 100%;
+    color: #e8eaed;
+    cursor: pointer;
+    text-align: left;
+  }
+  .tgb-line:first-of-type { border-top: none; padding-top: 0; }
+  .tgb-line:active { background: rgba(255,255,255,0.02); }
+  .tgb-line-num {
+    width: 24px; height: 24px;
+    background: #22262e;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    color: #aaa;
+    flex-shrink: 0;
+  }
+  .tgb-line-body { flex: 1; min-width: 0; }
+  .tgb-line-name {
+    font-size: 14px; font-weight: 600;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .tgb-line-conv { font-size: 11px; color: #888; margin-top: 2px; }
+  .tgb-line-right { text-align: right; flex-shrink: 0; }
+  .tgb-line-amount { font-size: 14px; font-weight: 700; color: #e8eaed; }
+  .tgb-line-gain { font-size: 11px; color: #4ade80; margin-top: 2px; font-weight: 600; }
+  .tgb-totals {
+    margin-top: 14px; padding-top: 14px;
+    border-top: 1px solid #1f2229;
+  }
+  .tgb-total-row {
+    display: flex; justify-content: space-between;
+    padding: 4px 0;
+    font-size: 13px; color: #aaa;
+  }
+  .tgb-total-row b { color: #e8eaed; font-weight: 700; }
+  .tgb-total-row.gain b { color: #4ade80; }
+  .tgb-total-row.risk b { color: #f87171; }
+  .tgb-disclaimer {
+    text-align: center;
+    font-size: 10.5px; color: #666;
+    margin-top: 14px;
+    line-height: 1.4;
+  }
+
+  /* v11.6 — Lien discret vers analyse complète du marché (en bas de la vue) */
+  .tgs-study-link {
+    margin: 10px 0 18px;
+    padding: 11px 14px;
+    background: rgba(255,255,255,0.02);
+    border: 1px dashed #2a2f37;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 13px; color: #aaa;
+    cursor: pointer;
+  }
+  .tgs-study-link span { color: var(--gold); font-weight: 600; }
+  .tgs-study-link:active { background: rgba(255,255,255,0.05); }
+
+  /* v11.6 — Agent-active-bar dégonflé */
+  .agent-active-bar {
+    padding: 10px 14px !important;
+    border-radius: 12px !important;
+    background: linear-gradient(160deg, #1a1d24, #14171c) !important;
+    border: 1px solid #22262e !important;
+  }
+  .aab-icon { font-size: 18px !important; }
+  .aab-name { font-size: 13px !important; }
+  .aab-role { font-size: 11px !important; color: #888 !important; }
+  .aab-switch {
+    font-size: 11px !important;
+    padding: 6px 10px !important;
+  }
+
   /* v2.88 — Mode dev (créateurs uniquement) : masque les outils internes et stats */
   body:not(.tg-dev-mode) .agent-meta-dev { display: none !important; }
   body:not(.tg-dev-mode) .apc-dev-only   { display: none !important; }
@@ -5154,7 +5259,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v11.5</div>
+        <div class="bd-brand-ver" id="bd-version">v11.6</div>
       </div>
     </div>
 
@@ -5421,7 +5526,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=115')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=116')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -5440,7 +5545,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=115')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=116')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -5459,7 +5564,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=115')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=116')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -5478,7 +5583,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=115')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=116')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -5497,7 +5602,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=115')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=116')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -5516,7 +5621,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=115')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=116')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -5536,7 +5641,7 @@
       </div>
 
       <!-- v8.3 — Module passerelle "Découvre nos outils Premium" (visible FREE uniquement, caché si Premium) -->
-      <div class="module-card premium-discovery-card" id="premium-discovery-card" style="--module-color: var(--gold); cursor:pointer; background:linear-gradient(160deg, rgba(212,165,116,0.10) 0%, rgba(168,85,247,0.06) 100%); border-color:rgba(212,165,116,0.45);" onclick="window.location.href='scene-12.html?v=115'">
+      <div class="module-card premium-discovery-card" id="premium-discovery-card" style="--module-color: var(--gold); cursor:pointer; background:linear-gradient(160deg, rgba(212,165,116,0.10) 0%, rgba(168,85,247,0.06) 100%); border-color:rgba(212,165,116,0.45);" onclick="window.location.href='scene-12.html?v=116'">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar" style="background:linear-gradient(135deg,#d4a574,#a855f7);color:#fff;">✦</div>
@@ -5560,7 +5665,7 @@
       </div>
 
       <!-- v2.46 — Module 6 : Krachs historiques (Premium, deplace depuis le burger) -->
-      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=115')">
+      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=116')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💥</div>
@@ -5580,7 +5685,7 @@
       </div>
 
       <!-- v2.71 — Module 7 : Patterns Lab (Premium, déplacé depuis le burger) -->
-      <div class="module-card" data-module="7" data-storage="tradegenius_m7_patterns" data-requires="3" style="--module-color: var(--gold);" onclick="openModule(7, 'scene-08.html?v=115')">
+      <div class="module-card" data-module="7" data-storage="tradegenius_m7_patterns" data-requires="3" style="--module-color: var(--gold);" onclick="openModule(7, 'scene-08.html?v=116')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🔬</div>
@@ -5662,7 +5767,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=115'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=116'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -5702,7 +5807,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=115'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=116'">OUVRIR →</button>
         </div>
       </article>
 
@@ -5999,8 +6104,9 @@
     <div id="ia-agent-active" style="display:none">
       <div class="agent-active-bar" id="agent-active-bar"></div>
 
-      <!-- v2.77 — Carte d'activation bulle système (visible uniquement sur app native) -->
-      <div class="bubble-card" id="bubble-card" style="display:none">
+      <!-- v11.6 — Bulle Analyste système masquée (cache par défaut + dev-only).
+           Trop bruyant pour le quotidien. Réservé app native, pas visible PWA débutant. -->
+      <div class="bubble-card apc-dev-only" id="bubble-card" style="display:none">
         <div class="bbc-row">
           <span class="bbc-icon">🤖</span>
           <div class="bbc-body">
@@ -6066,17 +6172,12 @@
         <div class="apc-foot" id="wf-foot"></div>
       </div>
 
-      <p class="v-sub">Analyses techniques générées par IA, rafraîchies <strong style="color:var(--gold);">toutes les 15 minutes</strong>.</p>
+      <!-- v11.6 — Texte d'intro supprimé (trop bruyant), info dispo dans le ? du header. -->
       <!-- v2.52 — Zone pattern analysis ciblée (déclenchée depuis "🔍 Analyse" sur Mon marché) -->
       <div id="ia-pattern-analysis" style="display:none;"></div>
       <div id="ai-study-container"></div>
-      <div class="v-placeholder" style="margin-top:14px;">
-        <span class="v-placeholder-ico">🤖</span>
-        <div class="v-placeholder-txt">
-          <strong>Setups générés selon ton agent.</strong><br>
-          L'analyse est régénérée automatiquement plusieurs fois par jour. <em>Pédagogique uniquement.</em>
-        </div>
-      </div>
+      <!-- v11.6 — Placeholder bas supprimé (redondant avec le disclaimer dans chaque card). -->
+
     </div>
   </div>
 
@@ -6119,22 +6220,22 @@
           <div class="ppu-body"><div class="ppu-title" style="color:#e879f9;">VOLT — 5<sup>e</sup> IA Premium</div><div class="ppu-sub">Haute conviction · cryptos mid-cap + actions high-beta</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-10.html?v=115">
+        <a class="pp-unlock-card" href="scene-10.html?v=116">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=115">
+        <a class="pp-unlock-card" href="scene-08.html?v=116">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=115">
+        <a class="pp-unlock-card" href="scene-09.html?v=116">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=115">
+        <a class="pp-unlock-card" href="scene-07.html?v=116">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -6954,7 +7055,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=115';
+        location.href = 'scene-10.html?v=116';
       });
       widget._linked = true;
     }
@@ -7007,7 +7108,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=115';
+      location.href = 'scene-05.html?v=116';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -7537,7 +7638,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=115'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=116'; };
         block.style.display = 'block';
         return;
       }
@@ -7579,7 +7680,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=115';
+        card.onclick = () => location.href = 'scene-05.html?v=116';
         block.style.display = 'block';
         return;
       }
@@ -7599,7 +7700,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=115';
+          card.onclick = () => location.href = 'scene-06.html?v=116';
           block.style.display = 'block';
           return;
         }
@@ -7613,7 +7714,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=115';
+        card.onclick = () => location.href = 'scene-06.html?v=116';
         block.style.display = 'block';
         return;
       }
@@ -7628,7 +7729,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=115';
+    card.onclick = () => location.href = 'scene-05.html?v=116';
     block.style.display = 'block';
   }
 
@@ -8235,13 +8336,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=115&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=116&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=115';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=116';
     else showView('premium');
   }
 
@@ -9551,7 +9652,7 @@
         + '<span class="v-placeholder-ico">📓</span>'
         + '<div class="v-placeholder-txt"><strong>Aucune session simu enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=115\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=116\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -9596,7 +9697,7 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=115\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=116\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
   }
@@ -11233,71 +11334,73 @@
     return basket;
   }
 
+  // v11.6 — Panier du jour refondu style XTB épuré.
+  // Capital fictif 1000€, montants en EUR, conviction emoji, totaux clairs.
+  // Plus de PREMIUM/STANDARD/STACK/Q100/R/R/Stop/TP1/TP2 visibles en première lecture.
+  const _BASKET_DEMO_CAPITAL = 1000;
   function _renderDailyBasket(data) {
     const basket = _selectDailyBasket(data);
     if (basket.length === 0) {
-      return '<article class="ai-setup" style="border-left-color:var(--text-faint);background:rgba(13,13,20,0.94);margin-bottom:14px;">'
-        + '<div class="ai-setup-head"><span class="ai-setup-tag" style="color:var(--text-faint);">🎯 Panier du jour · vide</span></div>'
-        + '<p class="ai-setup-config" style="margin:6px 0;">Aucun setup Q≥' + BASKET_STANDARD_THRESHOLD + ' aujourd\'hui. Les IAs préfèrent rester en cash plutôt que forcer des trades médiocres. Reviens dans quelques heures.</p>'
-        + '</article>';
+      return '<div class="tgb-card">'
+        + '<div class="tgb-head"><span class="tgb-emoji">🛒</span><div><div class="tgb-title">Panier du jour</div><div class="tgb-sub">Aucune suggestion aujourd\'hui</div></div></div>'
+        + '<div class="tgb-empty">L\'IA préfère rester en cash plutôt que forcer des trades médiocres. Reviens dans quelques heures.</div>'
+        + '</div>';
     }
-    const premium = basket.filter(s => (s.quality_score || 0) >= BASKET_PREMIUM_THRESHOLD);
-    const standard = basket.filter(s => (s.quality_score || 0) < BASKET_PREMIUM_THRESHOLD);
-    const rows = basket.map((s, idx) => {
-      const isPremium = (s.quality_score || 0) >= BASKET_PREMIUM_THRESHOLD;
-      const cur = s.currency || 'USD';
-      const sizing = s.sizing_pct ? s.sizing_pct + '%' : '?%';
-      const stacked = s.stacked ? ' 🔗' : '';
-      // v7.20 — Badge stacking inter-IA (méga conviction si ≥2 IAs détectent simultanément)
+    const cap = _BASKET_DEMO_CAPITAL;
+    const lines = basket.map((s, idx) => {
+      const q = s.quality_score || 0;
+      const conv = q >= 90 ? '🔥' : q >= 80 ? '👍' : '⚡';
+      const convLabel = q >= 90 ? 'Forte conviction' : q >= 80 ? 'Bonne opportunité' : 'Plus spéculatif';
+      const sizingPct = Number(s.sizing_pct) || 3;
+      const amountEur = Math.round(cap * sizingPct / 100);
+      const gainPct = (s.tp2 && s.entry) ? ((s.tp2 - s.entry) / s.entry) : 0;
+      const lossPct = (s.stop && s.entry) ? ((s.stop - s.entry) / s.entry) : 0;
+      const gainEur = Math.round(amountEur * gainPct);
+      const lossEur = Math.round(amountEur * lossPct);
       const stackCount = s._stack_count || 1;
-      const stackBadge = stackCount >= 2
-        ? '<span title="' + escapeHTML(s._stack_ias.join(' + ')) + ' détectent cet actif" style="background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;padding:2px 7px;border-radius:6px;font-size:9.5px;font-weight:800;letter-spacing:0.4px;box-shadow:0 1px 4px rgba(245,158,11,0.4);">🔥 STACK ' + stackCount + ' IA</span>'
-        : '';
-      const tierBadge = isPremium
-        ? '<span style="background:rgba(212,165,116,0.18);color:var(--gold);padding:2px 6px;border-radius:6px;font-size:9.5px;font-weight:700;letter-spacing:0.4px;">PREMIUM</span>'
-        : '<span style="background:rgba(70,211,164,0.10);color:#46d3a4;padding:2px 6px;border-radius:6px;font-size:9.5px;font-weight:700;letter-spacing:0.4px;">STANDARD</span>';
-      // v7.7 — Sparkline retiré du panier (causait superpositions en mobile).
-      // Layout vertical propre : header (num + icône + asset + Q/RR) puis grid 4 prix.
-      return '<button class="basket-row" onclick="_jumpToSetup(\'' + encodeURIComponent(s.asset) + '\')" style="display:block;width:100%;text-align:left;background:' + (isPremium ? 'rgba(212,165,116,0.06)' : 'rgba(70,211,164,0.04)') + ';border:1px solid ' + (isPremium ? 'rgba(212,165,116,0.3)' : 'rgba(70,211,164,0.2)') + ';border-radius:10px;padding:11px 13px;margin-bottom:8px;cursor:pointer;color:var(--text-strong);">'
-        + '<div style="display:flex;align-items:flex-start;gap:10px;">'
-        +   '<div style="background:rgba(0,0,0,0.3);border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;">' + (idx + 1) + '</div>'
-        +   '<span style="font-size:22px;line-height:1;flex-shrink:0;">' + s._agent_icon + '</span>'
-        +   '<div style="flex:1;min-width:0;">'
-        +     '<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:3px;">'
-        +       '<span style="font-size:14px;font-weight:700;">' + escapeHTML(s.asset) + stacked + '</span>'
-        +       tierBadge
-        +       stackBadge
-        +     '</div>'
-        +     '<div style="font-size:11px;color:var(--text-faint);line-height:1.4;">' + (stackCount >= 2 ? '<strong style="color:#f59e0b;">Détecté par ' + s._stack_ias.join(' + ') + '</strong>' : s._agent_name) + ' · ' + escapeHTML(s.timeframe || '?') + ' · sizing ' + sizing + '</div>'
+      const stackHint = stackCount >= 2 ? ' · ' + stackCount + ' IA confirment' : '';
+      return '<button class="tgb-line" onclick="_jumpToSetup(\'' + encodeURIComponent(s.asset) + '\')">'
+        +   '<div class="tgb-line-num">' + (idx + 1) + '</div>'
+        +   '<div class="tgb-line-body">'
+        +     '<div class="tgb-line-name">' + escapeHTML(s.asset) + '</div>'
+        +     '<div class="tgb-line-conv">' + conv + ' ' + convLabel + stackHint + '</div>'
         +   '</div>'
-        +   '<div style="text-align:right;flex-shrink:0;">'
-        +     '<div style="font-size:14px;font-weight:700;color:#46d3a4;">Q ' + s.quality_score + '</div>'
-        +     '<div style="font-size:10px;color:var(--text-faint);">R/R 1:' + (s.rr2 || '?') + '</div>'
+        +   '<div class="tgb-line-right">'
+        +     '<div class="tgb-line-amount">' + amountEur + ' €</div>'
+        +     '<div class="tgb-line-gain">+' + gainEur + ' €</div>'
         +   '</div>'
-        + '</div>'
-        + '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.06);font-size:10.5px;color:var(--text-soft);">'
-        +   '<div><span style="opacity:0.55;display:block;font-size:9.5px;text-transform:uppercase;letter-spacing:0.3px;">Entrée</span><strong style="font-size:12px;">' + _fmtSetupPrice(s.entry, cur) + '</strong></div>'
-        +   '<div><span style="opacity:0.55;display:block;font-size:9.5px;text-transform:uppercase;letter-spacing:0.3px;">Stop</span><strong style="color:#ff6b8d;font-size:12px;">' + _fmtSetupPrice(s.stop, cur) + '</strong></div>'
-        +   '<div><span style="opacity:0.55;display:block;font-size:9.5px;text-transform:uppercase;letter-spacing:0.3px;">TP1</span><strong style="color:#46d3a4;font-size:12px;">' + _fmtSetupPrice(s.tp1, cur) + '</strong></div>'
-        +   '<div><span style="opacity:0.55;display:block;font-size:9.5px;text-transform:uppercase;letter-spacing:0.3px;">TP2</span><strong style="color:#46d3a4;font-size:12px;">' + _fmtSetupPrice(s.tp2, cur) + '</strong></div>'
-        + '</div>'
         + '</button>';
     }).join('');
-    const totalSizing = basket.reduce((s, x) => s + (Number(x.sizing_pct) || 0), 0);
-    return '<article class="ai-setup" style="border-left-color:var(--gold);background:linear-gradient(135deg,rgba(212,165,116,0.10) 0%,rgba(13,13,20,0.94) 100%);margin-bottom:14px;">'
-      + '<div class="ai-setup-head">'
-      +   '<span class="ai-setup-tag" style="color:var(--gold);font-weight:700;letter-spacing:0.5px;">🎯 PANIER DU JOUR · ' + basket.length + ' trade' + (basket.length > 1 ? 's' : '') + '</span>'
-      +   '<span style="font-size:10.5px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.5px;">À suivre à la lettre</span>'
+
+    // Totaux
+    const totalInvest = basket.reduce((acc, s) => acc + Math.round(cap * (Number(s.sizing_pct) || 3) / 100), 0);
+    const totalGain = basket.reduce((acc, s) => {
+      const amt = Math.round(cap * (Number(s.sizing_pct) || 3) / 100);
+      const g = (s.tp2 && s.entry) ? ((s.tp2 - s.entry) / s.entry) : 0;
+      return acc + Math.round(amt * g);
+    }, 0);
+    const totalLoss = basket.reduce((acc, s) => {
+      const amt = Math.round(cap * (Number(s.sizing_pct) || 3) / 100);
+      const l = (s.stop && s.entry) ? ((s.stop - s.entry) / s.entry) : 0;
+      return acc + Math.round(amt * l);
+    }, 0);
+
+    return '<div class="tgb-card">'
+      + '<div class="tgb-head">'
+      +   '<span class="tgb-emoji">🛒</span>'
+      +   '<div>'
+      +     '<div class="tgb-title">Ton panier du jour</div>'
+      +     '<div class="tgb-sub">' + basket.length + ' suggestion' + (basket.length > 1 ? 's' : '') + ' · capital simulé ' + cap + ' €</div>'
+      +   '</div>'
       + '</div>'
-      + '<p style="font-size:12.5px;color:var(--text-soft);margin:8px 0 12px;line-height:1.5;">'
-      +   'Sélection optimale du jour : <strong style="color:var(--gold);">' + premium.length + ' premium</strong> + <strong style="color:#46d3a4;">' + standard.length + ' standard</strong>, '
-      +   'multi-IAs, diversifiés (max 2 actifs/classe, 3/IA). Capital total à engager : <strong>' + totalSizing.toFixed(1) + '%</strong>.'
-      + '</p>'
-      + rows
-      + '<div style="font-size:11px;color:var(--text-faint);margin-top:10px;line-height:1.5;background:rgba(0,0,0,0.2);padding:8px 10px;border-radius:8px;">'
-      +   '⚠ <strong>Discipline absolue</strong> : suis les niveaux à la lettre, jamais d\'override émotionnel. C\'est la différence entre un trader profitable et un trader qui perd.'
+      + '<div class="tgb-lines">' + lines + '</div>'
+      + '<div class="tgb-totals">'
+      +   '<div class="tgb-total-row"><span>Total investi</span><b>' + totalInvest + ' €</b></div>'
+      +   '<div class="tgb-total-row gain"><span>Gain potentiel estimé</span><b>+ ' + totalGain + ' €</b></div>'
+      +   '<div class="tgb-total-row risk"><span>Risque maximum (stop auto)</span><b>' + totalLoss + ' €</b></div>'
       + '</div>'
-      + '</article>';
+      + '<div class="tgb-disclaimer">📚 Simulation pédagogique. Performance passée ne préjuge pas du futur.</div>'
+      + '</div>';
   }
 
   // Legacy : _renderTopOpportunities gardé pour compat mais non utilisé en v7.5
@@ -12986,8 +13089,16 @@
       ? '<article class="ai-setup" style="border-left-color: var(--text-faint); background: rgba(13,13,20,0.94);"><p class="ai-setup-config" style="margin:8px 0;">' + emptyMsg + '</p></article>'
       : (agentEmpty || renderAllSetups(filteredSetups));
 
-    // v7.5 — ORDRE : Compact étude → PANIER (priorité absolue) → heatmap → filtres → setups détaillés
-    container.innerHTML = compactHTML + topOpsHTML + heatmapHTML + filterHTML + setupsHTML;
+    // v11.6 — Ordre simplifié XTB-style :
+    //   PANIER (priorité absolue) → setups détaillés
+    //   - compactHTML (carte "ÉTUDE · hier") : retirée, info reste accessible via openAIStudyDetail()
+    //   - heatmapHTML : retirée (pas essentielle débutant)
+    //   - filterHTML  : retirée (filtres simplifiés directement dans le panier)
+    //   - compactHTML mini en bas : lien discret vers analyse complète si l'user veut creuser
+    const studyLink = (data && data.title)
+      ? '<div class="tgs-study-link" onclick="openAIStudyDetail()">📖 <span>Lire l\'analyse du marché</span> →</div>'
+      : '';
+    container.innerHTML = topOpsHTML + setupsHTML + studyLink;
   }
 
   function openAIStudyDetail() {
@@ -13124,7 +13235,7 @@
         cls: 'fc-news', label: '📅 Samedi', time: now,
         title: 'Marchés fermés · bon moment pour réviser',
         body: 'Indices et actions ne tournent pas. La crypto, elle, ne dort jamais. Le simulateur attend.',
-        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=115'",
+        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=116'",
       });
     }
 
@@ -13732,11 +13843,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=115';
+      location.href = 'scene-05.html?v=116';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=115';
+      location.href = 'scene-06.html?v=116';
       return;
     }
 
@@ -13759,13 +13870,13 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=115"></script>
-  <script src="tg-analyst.js?v=115"></script>
-  <script src="tg-bubble.js?v=115"></script>
+  <script type="module" src="tg-common.js?v=116"></script>
+  <script src="tg-analyst.js?v=116"></script>
+  <script src="tg-bubble.js?v=116"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=115').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=116').catch(() => {});
       });
     }
   </script>
