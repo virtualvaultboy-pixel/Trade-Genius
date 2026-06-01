@@ -4878,6 +4878,21 @@
   .tgb-line-right { text-align: right; flex-shrink: 0; }
   .tgb-line-amount { font-size: 14px; font-weight: 700; color: #e8eaed; }
   .tgb-line-gain { font-size: 11px; color: #4ade80; margin-top: 2px; font-weight: 600; }
+  .tgb-line-gain.negative { color: #f87171; }
+  /* v11.8 — Sous-titre panier : bouton inline pour éditer le capital */
+  .tgb-sub-edit {
+    background: rgba(74,222,128,0.10);
+    border: 1px solid rgba(74,222,128,0.25);
+    color: #4ade80;
+    border-radius: 7px;
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 2px;
+    vertical-align: baseline;
+  }
+  .tgb-sub-edit:active { background: rgba(74,222,128,0.18); }
   .tgb-totals {
     margin-top: 14px; padding-top: 14px;
     border-top: 1px solid #1f2229;
@@ -5301,7 +5316,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v11.7</div>
+        <div class="bd-brand-ver" id="bd-version">v11.8</div>
       </div>
     </div>
 
@@ -5568,7 +5583,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=117')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=118')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -5587,7 +5602,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=117')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=118')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -5606,7 +5621,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=117')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=118')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -5625,7 +5640,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=117')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=118')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -5644,7 +5659,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=117')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=118')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -5663,7 +5678,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=117')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=118')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -5683,7 +5698,7 @@
       </div>
 
       <!-- v8.3 — Module passerelle "Découvre nos outils Premium" (visible FREE uniquement, caché si Premium) -->
-      <div class="module-card premium-discovery-card" id="premium-discovery-card" style="--module-color: var(--gold); cursor:pointer; background:linear-gradient(160deg, rgba(212,165,116,0.10) 0%, rgba(168,85,247,0.06) 100%); border-color:rgba(212,165,116,0.45);" onclick="window.location.href='scene-12.html?v=117'">
+      <div class="module-card premium-discovery-card" id="premium-discovery-card" style="--module-color: var(--gold); cursor:pointer; background:linear-gradient(160deg, rgba(212,165,116,0.10) 0%, rgba(168,85,247,0.06) 100%); border-color:rgba(212,165,116,0.45);" onclick="window.location.href='scene-12.html?v=118'">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar" style="background:linear-gradient(135deg,#d4a574,#a855f7);color:#fff;">✦</div>
@@ -5707,7 +5722,7 @@
       </div>
 
       <!-- v2.46 — Module 6 : Krachs historiques (Premium, deplace depuis le burger) -->
-      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=117')">
+      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=118')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💥</div>
@@ -5727,7 +5742,7 @@
       </div>
 
       <!-- v2.71 — Module 7 : Patterns Lab (Premium, déplacé depuis le burger) -->
-      <div class="module-card" data-module="7" data-storage="tradegenius_m7_patterns" data-requires="3" style="--module-color: var(--gold);" onclick="openModule(7, 'scene-08.html?v=117')">
+      <div class="module-card" data-module="7" data-storage="tradegenius_m7_patterns" data-requires="3" style="--module-color: var(--gold);" onclick="openModule(7, 'scene-08.html?v=118')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🔬</div>
@@ -5809,7 +5824,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=117'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=118'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -5849,7 +5864,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=117'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=118'">OUVRIR →</button>
         </div>
       </article>
 
@@ -6262,22 +6277,22 @@
           <div class="ppu-body"><div class="ppu-title" style="color:#e879f9;">VOLT — 5<sup>e</sup> IA Premium</div><div class="ppu-sub">Haute conviction · cryptos mid-cap + actions high-beta</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-10.html?v=117">
+        <a class="pp-unlock-card" href="scene-10.html?v=118">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=117">
+        <a class="pp-unlock-card" href="scene-08.html?v=118">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=117">
+        <a class="pp-unlock-card" href="scene-09.html?v=118">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=117">
+        <a class="pp-unlock-card" href="scene-07.html?v=118">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -7097,7 +7112,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=117';
+        location.href = 'scene-10.html?v=118';
       });
       widget._linked = true;
     }
@@ -7150,7 +7165,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=117';
+      location.href = 'scene-05.html?v=118';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -7680,7 +7695,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=117'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=118'; };
         block.style.display = 'block';
         return;
       }
@@ -7722,7 +7737,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=117';
+        card.onclick = () => location.href = 'scene-05.html?v=118';
         block.style.display = 'block';
         return;
       }
@@ -7742,7 +7757,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=117';
+          card.onclick = () => location.href = 'scene-06.html?v=118';
           block.style.display = 'block';
           return;
         }
@@ -7756,7 +7771,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=117';
+        card.onclick = () => location.href = 'scene-06.html?v=118';
         block.style.display = 'block';
         return;
       }
@@ -7771,7 +7786,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=117';
+    card.onclick = () => location.href = 'scene-05.html?v=118';
     block.style.display = 'block';
   }
 
@@ -8378,13 +8393,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=117&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=118&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=117';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=118';
     else showView('premium');
   }
 
@@ -9694,7 +9709,7 @@
         + '<span class="v-placeholder-ico">📓</span>'
         + '<div class="v-placeholder-txt"><strong>Aucune session simu enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=117\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=118\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -9739,7 +9754,7 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=117\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=118\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
   }
@@ -10839,7 +10854,7 @@
     const tid = 'tgs-' + Math.random().toString(36).slice(2, 9);
 
     return ''
-      + '<div class="tgs-card' + (isFav ? ' tgs-fav-card' : '') + '">'
+      + '<div class="tgs-card' + (isFav ? ' tgs-fav-card' : '') + '" data-asset="' + escapeHTML(s.asset) + '">'
       // Header : icon + nom + favori + badge conviction
       + '<div class="tgs-head">'
       +   '<div class="tgs-icon tgs-icon-' + (s.kind || 'default') + '">' + kindIcon + '</div>'
@@ -11447,6 +11462,8 @@
       const gainAmt = Math.round(amount * gainPct);
       const stackCount = s._stack_count || 1;
       const stackHint = stackCount >= 2 ? ' · ' + stackCount + ' IA confirment' : '';
+      // v11.8 — Fix affichage gain : préfixe selon signe, jamais "+-X"
+      const gainStr = (gainAmt >= 0 ? '+' : '') + _fmtSimMoney(gainAmt);
       return '<button class="tgb-line" onclick="_jumpToSetup(\'' + encodeURIComponent(s.asset) + '\')">'
         +   '<div class="tgb-line-num">' + (idx + 1) + '</div>'
         +   '<div class="tgb-line-body">'
@@ -11455,7 +11472,7 @@
         +   '</div>'
         +   '<div class="tgb-line-right">'
         +     '<div class="tgb-line-amount">' + _fmtSimMoney(amount) + '</div>'
-        +     '<div class="tgb-line-gain">+' + _fmtSimMoney(gainAmt).replace('- ', '-') + '</div>'
+        +     '<div class="tgb-line-gain' + (gainAmt < 0 ? ' negative' : '') + '">' + gainStr + '</div>'
         +   '</div>'
         + '</button>';
     }).join('');
@@ -11476,9 +11493,9 @@
     return '<div class="tgb-card">'
       + '<div class="tgb-head">'
       +   '<span class="tgb-emoji">🛒</span>'
-      +   '<div>'
+      +   '<div style="flex:1;min-width:0;">'
       +     '<div class="tgb-title">Ton panier du jour</div>'
-      +     '<div class="tgb-sub">' + basket.length + ' suggestion' + (basket.length > 1 ? 's' : '') + ' · capital simulé ' + _fmtSimMoney(cap) + '</div>'
+      +     '<div class="tgb-sub">' + basket.length + ' suggestion' + (basket.length > 1 ? 's' : '') + ' · capital simulé <button class="tgb-sub-edit" onclick="event.stopPropagation();openSimCapitalEdit();" title="Modifier mon capital">' + _fmtSimMoney(cap) + ' ✏️</button></div>'
       +   '</div>'
       + '</div>'
       + '<div class="tgb-lines">' + lines + '</div>'
@@ -11631,9 +11648,15 @@
 
   // v7.8 — Jump to setup card avec highlight visuel + reset filtre si masqué
   function _findSetupCardForAsset(asset) {
+    // v11.8 — Cherche dans la nouvelle structure .tgs-card[data-asset] (refonte XTB v11.5)
+    // Fallback ancien : .ai-setup .ai-setup-asset (compat legacy)
+    try {
+      const escaped = (window.CSS && CSS.escape) ? CSS.escape(asset) : asset.replace(/"/g, '\"');
+      const tgsCard = document.querySelector('.tgs-card[data-asset="' + escaped + '"]');
+      if (tgsCard) return tgsCard;
+    } catch (e) {}
     const cards = document.querySelectorAll('.ai-setup .ai-setup-asset');
     for (const c of cards) {
-      // textContent peut contenir l'asset + bouton ⭐/☆. On extrait juste le début.
       const txt = (c.textContent || '').trim();
       if (txt === asset || txt.startsWith(asset + ' ') || txt.startsWith(asset + ' ')) {
         return c.closest('.ai-setup');
@@ -13321,7 +13344,7 @@
         cls: 'fc-news', label: '📅 Samedi', time: now,
         title: 'Marchés fermés · bon moment pour réviser',
         body: 'Indices et actions ne tournent pas. La crypto, elle, ne dort jamais. Le simulateur attend.',
-        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=117'",
+        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=118'",
       });
     }
 
@@ -13929,11 +13952,11 @@
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=117';
+      location.href = 'scene-05.html?v=118';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=117';
+      location.href = 'scene-06.html?v=118';
       return;
     }
 
@@ -13956,13 +13979,13 @@
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=117"></script>
-  <script src="tg-analyst.js?v=117"></script>
-  <script src="tg-bubble.js?v=117"></script>
+  <script type="module" src="tg-common.js?v=118"></script>
+  <script src="tg-analyst.js?v=118"></script>
+  <script src="tg-bubble.js?v=118"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=117').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=118').catch(() => {});
       });
     }
   </script>
