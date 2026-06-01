@@ -394,29 +394,177 @@ function _detectVoltMulti(asset) {
   };
 }
 
-// v10.9 — ALPHA WINNER : config WINNER-1 validée 14 ans walk-forward
-// Source : scripts/alpha-top3-deep-validation.mjs (commit ff44201 v10.8)
-// Résultats : 40.02%/an médian / DD -4.13% / Calmar 9.68 / 14/14 ans positifs
-// Stratégie : réutilise A/B/C avec params ultra-serrés (atrStop 0.5 / atrTp2 7 = R/R 14:1)
-// + filtre minQuality 85 appliqué post-detection dans le pipeline agentsOutput
-// → ultra-sélectif (estimé 1-2 setups/an/actif vs 5-10 pour BASTION)
+// v11.3 — ALPHA WINNER : matche EXACTEMENT alpha-top3-deep-validation.mjs (commit ff44201)
+// Validation walk-forward 14 ans × 14 folds × 54 actifs (1298 trades) :
+//   40.02%/an médian · DD -4.13% · Calmar 9.68 · 14/14 années positives
+// Source de vérité : scripts/alpha-top3-deep-validation.mjs lignes 52-84
+//
+// Patterns DÉTECTÉS (formules quality identiques au backtest validé) :
+//   A (contrarian)   : rsi < 22 && boll < 0.20 && adx > 20
+//                      q = 75 + (22 - rsi) * 1.5 + (0.20 - boll) * 50
+//   B (trend-follow) : rsi 38-55 && adx >= 30 && macd < -0.3 && boll 0.30-0.70
+//                      q = 78 + min(15, adx - 30) + min(8, 50 - rsi)
+//   C (pullback)     : ichimoku above-cloud bull && rsi 40-50 && boll < 0.25 && adx > 22
+//                      q = 80 + min(12, 50 - rsi) + (0.25 - boll) * 50
+//
+// Niveaux : stop = entry - 0.5×ATR · tp1 = entry + 3.5×ATR · tp2 = entry + 7×ATR
+// Filtre R/R minimum 1.8 (cf. _alphaBuildLevels)
+// Quality 85+ filtré post-detection dans agentsOutput.map (cf. v10.9)
+//
+// Règles de gestion (à appliquer manuellement par l'user, cf. setup.rules) :
+//   - Pyramiding 50% à TP1 (size_add = size × 0.5)
+//   - Leverage 1.75x si quality >= 90 (sinon 1x)
+//   - HoldMax 30 jours
+//   - Trailing stop 0.5×ATR après TP1
+//   - Max 4 positions simultanées
+//   - SKIP si SP500 régime bear (SMA50 < SMA200 AND close < SMA200)
+function _alphaBuildLevels(entry, atrAbs, q, patternKind) {
+  const stop = entry - 0.5 * atrAbs;
+  const tp1 = entry + 3.5 * atrAbs;
+  const tp2 = entry + 7.0 * atrAbs;
+  if (stop >= entry || tp2 <= entry) return null;
+  const rr2 = (tp2 - entry) / (entry - stop);
+  if (rr2 < 1.8) return null;
+  return { entry, stop, tp1, tp2, atrAbs, quality: Math.round(q), pattern: patternKind, rr2 };
+}
+
+// SP500 régime check (skip ALPHA si bear séculaire, cf. isTradingOK du backtest 14 ans)
+// Variable module-level setée par _alphaSetContext(valid) avant chaque run d'ALPHA.
+// Si non setée → fallback "ok" (no skip), donc safe even sans setup.
+let _alphaSpRegimeCached = null; // 'bear-skip' | 'ok' | null (= pas encore calculé)
+function _alphaSetContext(validAssets) {
+  _alphaSpRegimeCached = null;
+  if (!Array.isArray(validAssets) || !validAssets.length) {
+    _alphaSpRegimeCached = 'ok';
+    return;
+  }
+  const sp = validAssets.find(a => a && (a.label === 'S&P 500' || a.label === '^GSPC' || a.label === 'SPY'));
+  if (!sp || !sp.prices || sp.prices.length < 200) {
+    _alphaSpRegimeCached = 'ok';
+    return;
+  }
+  const p = sp.prices;
+  const last200 = p.slice(-200);
+  const last50 = p.slice(-50);
+  const sma200 = last200.reduce((s, v) => s + v, 0) / 200;
+  const sma50 = last50.reduce((s, v) => s + v, 0) / 50;
+  const close = p[p.length - 1];
+  _alphaSpRegimeCached = (sma50 < sma200 && close < sma200) ? 'bear-skip' : 'ok';
+}
+
 function _detectAlphaWinner(asset) {
-  const c = _detectGridPullbackTrend(asset, {
-    atrStop: 0.5, atrTp2: 7.0,
-    type: 'alpha-C', label: 'ALPHA pullback ultra-sélectif',
-    timeframe: 'ALPHA · 5-30 jours',
-  });
-  const a = _detectGridContrarian(asset, {
-    rsiMax: 22, atrStop: 0.5, atrTp2: 7.0, requireMaBull: true,
-    type: 'alpha-A', label: 'ALPHA survente extrême + tendance',
-    timeframe: 'ALPHA · 5-30 jours',
-  });
-  const b = _detectGridTrendFollow(asset, {
-    rsiMin: 38, adxMin: 30, atrStop: 0.5, atrTp2: 7.0,
-    type: 'alpha-B', label: 'ALPHA trend-follow correction forte',
-    timeframe: 'ALPHA · 5-30 jours',
-  });
-  return _stackPatterns([c, a, b], null);
+  const ind = asset.indRaw;
+  const prices = asset.prices;
+  if (!ind || !prices || prices.length < 60) return null;
+
+  // SP500 régime check : si bear séculaire, ALPHA ne génère rien
+  // (cf. isTradingOK du backtest 14 ans)
+  if (_alphaSpRegimeCached === 'bear-skip') return null;
+
+  if (!ind.rsi || !ind.boll || !ind.atr) return null;
+  const rsi = ind.rsi.value;
+  const boll = ind.boll.value;
+  const close = prices[prices.length - 1];
+  const atrPct = ind.atr.value;
+  if (atrPct == null) return null;
+  const atrAbs = atrPct * close / 100;
+  const adx = ind.adx?.value;
+  const macdH = ind.macd?.value;
+  const ichi = ind.ichimoku;
+
+  const candidates = [];
+
+  // Pattern A — Contrarian (rsi extrême + Bollinger basse + ADX confirme tendance)
+  if (rsi != null && rsi < 22 && boll != null && boll < 0.20 && adx != null && adx > 20) {
+    const q = 75 + (22 - rsi) * 1.5 + (0.20 - boll) * 50;
+    const lvl = _alphaBuildLevels(close, atrAbs, q, 'A');
+    if (lvl) {
+      candidates.push({
+        ...lvl,
+        type: 'alpha-A',
+        label: 'ALPHA-A · contrarian extrême',
+        timeframe: 'ALPHA · 5-30 jours · hold max 30j',
+        confidence: q >= 90 ? 'very-high' : 'high',
+        config: `RSI ${rsi.toFixed(0)} (<22 survente extrême) · Bollinger ${(boll*100).toFixed(0)}% · ADX ${adx.toFixed(0)} · stop 0.5 ATR · cible 7 ATR (R/R 14:1)`,
+        rationale: `Quality ${Math.round(q)} : pattern contrarian validé 14 ans walk-forward. ALPHA détecte une survente extrême (RSI<22) avec contraction Bollinger et ADX en hausse. Position taken at quality ≥ 85 only.`,
+      });
+    }
+  }
+
+  // Pattern B — Trend-follow (rsi mid + ADX fort + MACD négatif = correction dans trend)
+  if (rsi != null && rsi >= 38 && rsi <= 55 && adx != null && adx >= 30 &&
+      macdH != null && macdH < -0.3 && boll != null && boll >= 0.30 && boll <= 0.70) {
+    const q = 78 + Math.min(15, adx - 30) + Math.min(8, 50 - rsi);
+    const lvl = _alphaBuildLevels(close, atrAbs, q, 'B');
+    if (lvl) {
+      candidates.push({
+        ...lvl,
+        type: 'alpha-B',
+        label: 'ALPHA-B · trend-follow correction',
+        timeframe: 'ALPHA · 5-30 jours · hold max 30j',
+        confidence: q >= 90 ? 'very-high' : 'high',
+        config: `RSI ${rsi.toFixed(0)} (mid) · ADX ${adx.toFixed(0)} (≥30 trend fort) · MACD ${macdH.toFixed(2)} · Bollinger ${(boll*100).toFixed(0)}% · stop 0.5 ATR · cible 7 ATR (R/R 14:1)`,
+        rationale: `Quality ${Math.round(q)} : pattern trend-follow correction validé 14 ans. ALPHA détecte une correction MACD dans une tendance forte (ADX≥30). Entry sur reprise.`,
+      });
+    }
+  }
+
+  // Pattern C — Pullback dans tendance LT confirmée (Ichimoku above-cloud bull)
+  if (ichi && ichi.position === 'above-cloud' && ichi.signal === 'bull' &&
+      rsi != null && rsi >= 40 && rsi <= 50 && boll != null && boll < 0.25 &&
+      adx != null && adx > 22) {
+    const q = 80 + Math.min(12, 50 - rsi) + (0.25 - boll) * 50;
+    const lvl = _alphaBuildLevels(close, atrAbs, q, 'C');
+    if (lvl) {
+      candidates.push({
+        ...lvl,
+        type: 'alpha-C',
+        label: 'ALPHA-C · pullback Ichimoku bull',
+        timeframe: 'ALPHA · 5-30 jours · hold max 30j',
+        confidence: q >= 90 ? 'very-high' : 'high',
+        config: `Ichimoku above-cloud bull · RSI ${rsi.toFixed(0)} (mid) · Bollinger ${(boll*100).toFixed(0)}% · ADX ${adx.toFixed(0)} · stop 0.5 ATR · cible 7 ATR (R/R 14:1)`,
+        rationale: `Quality ${Math.round(q)} : pattern pullback dans tendance LT (Ichimoku) validé 14 ans. ALPHA détecte une consolidation Bollinger dans une tendance confirmée.`,
+      });
+    }
+  }
+
+  if (!candidates.length) return null;
+
+  // Garder le pattern avec la quality la plus haute (sélectivité maximale)
+  candidates.sort((a, b) => b.quality - a.quality);
+  const best = candidates[0];
+
+  // Niveau de leverage suggéré (cf. WINNER-1 config) — info pédagogique pour user
+  const suggestedLeverage = best.quality >= 90 ? 1.75 : 1.0;
+
+  return {
+    direction: 'long',
+    entry: best.entry,
+    stop: best.stop,
+    tp1: best.tp1,
+    tp2: best.tp2,
+    rr1: ((best.tp1 - best.entry) / (best.entry - best.stop)).toFixed(2),
+    rr2: best.rr2.toFixed(2),
+    type: best.type,
+    label: best.label,
+    timeframe: best.timeframe,
+    confidence: best.confidence,
+    config: best.config,
+    rationale: best.rationale,
+    trailing_after_tp1: true,
+    // Champs pédagogiques ALPHA (règles de gestion validées 14 ans)
+    alpha_quality: best.quality,
+    alpha_pattern: best.pattern,
+    alpha_rules: {
+      pyramiding_pct_at_tp1: 50,
+      leverage_mult: suggestedLeverage,
+      leverage_threshold_quality: 90,
+      hold_max_days: 30,
+      trailing_atr_mult: 0.5,
+      max_positions: 4,
+      sizing_pct: 18,
+    },
+  };
 }
 
 async function fetchMacroContext() {
@@ -3164,13 +3312,22 @@ async function main() {
   };
 
   const agentsOutput = AGENT_PROFILES.map(agent => {
+    // v11.3 — ALPHA : set context SP500 régime avant run (skip si bear séculaire)
+    if (agent.id === 'alpha') {
+      _alphaSetContext(valid);
+      if (_alphaSpRegimeCached === 'bear-skip') {
+        console.log('v11.3 ALPHA : SP500 régime bear (SMA50<SMA200 + close<SMA200) → 0 setup');
+      }
+    }
     let setups = runAgentOnAssets(agent.id);
-    // v10.9 — Filtre quality minimum (ex: ALPHA exige >= 85)
+    // v10.9 — Filtre quality minimum (ALPHA: backtest utilise alpha_quality (custom) au lieu de quality_score)
     if (agent.filters?.minQuality != null) {
       const before = setups.length;
-      setups = setups.filter(s => (s.quality_score || 0) >= agent.filters.minQuality);
+      // v11.3 — ALPHA utilise alpha_quality (calcul exact du backtest), pas quality_score
+      const qField = agent.id === 'alpha' ? 'alpha_quality' : 'quality_score';
+      setups = setups.filter(s => (s[qField] || 0) >= agent.filters.minQuality);
       if (before !== setups.length) {
-        console.log(`v10.9 ${agent.name} : quality >= ${agent.filters.minQuality} → ${setups.length}/${before}`);
+        console.log(`v10.9 ${agent.name} : ${qField} >= ${agent.filters.minQuality} → ${setups.length}/${before}`);
       }
     }
     // v4.2 — Filtres macro (VIX panic, DXY trend)
@@ -3416,6 +3573,10 @@ async function main() {
         wisdom_note: s.wisdom_note || null,
         historical_analog: s.historical_analog || null,
         quality_score_pre_wisdom: s.quality_score_pre_wisdom || null,
+        // v11.3 — ALPHA : champs spécifiques au pattern validé 14 ans (quality custom + règles gestion)
+        alpha_quality: s.alpha_quality ?? null,
+        alpha_pattern: s.alpha_pattern || null,
+        alpha_rules: s.alpha_rules || null,
       })),
     };
   });
