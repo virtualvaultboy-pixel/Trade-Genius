@@ -84,9 +84,65 @@ async function fetchYahooRSS() {
   }
 }
 
+// v11.12 — Élargissement sources : Bloomberg / MarketWatch / CNBC / Investing.com / Reuters
+// Toutes RSS publiques gratuites. Headlines uniquement (pas de contenu paywall).
+// Approche unifiée : 1 helper fetchRSS(name, url, kind, limit) pour tous.
+async function fetchRSS(name, url, kind, limit = 5) {
+  try {
+    const r = await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0 (trade-genius-bot)' } });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const xml = await r.text();
+    const items = [...xml.matchAll(/<item[\s>]([\s\S]*?)<\/item>/g)].slice(0, limit);
+    return items
+      .map(([, block]) => {
+        const pick = (tag) => {
+          const re = new RegExp(`<${tag}[^>]*>(?:<!\\[CDATA\\[)?([\\s\\S]*?)(?:\\]\\]>)?<\\/${tag}>`);
+          const m = block.match(re);
+          return m ? m[1].trim() : '';
+        };
+        const desc = pick('description').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+        const pubDate = pick('pubDate');
+        return {
+          kind,
+          title: trim(pick('title'), 140),
+          body: trim(desc, MAX_BODY),
+          source: name,
+          url: pick('link'),
+          time: pubDate ? new Date(pubDate).toISOString() : new Date().toISOString(),
+        };
+      })
+      .filter((n) => n.title && n.title.length > 5);
+  } catch (e) {
+    console.warn(`${name} fetch failed:`, e.message);
+    return [];
+  }
+}
+
+// v11.12 — Sources premium RSS publiques (titres + descriptions courtes uniquement)
+// Aucun contenu paywall scrapé. Headlines = info publique, légale à republier.
+const PREMIUM_RSS_SOURCES = [
+  { name: 'MarketWatch',  url: 'https://feeds.content.dowjones.io/public/rss/mw_topstories',                    kind: 'marche' },
+  { name: 'CNBC',         url: 'https://www.cnbc.com/id/100003114/device/rss/rss.html',                         kind: 'marche' },
+  { name: 'Investing.com', url: 'https://www.investing.com/rss/news.rss',                                       kind: 'marche' },
+  { name: 'Yahoo Finance Crypto', url: 'https://finance.yahoo.com/news/rssindex',                               kind: 'marche' },
+  { name: 'CoinDesk',     url: 'https://www.coindesk.com/arc/outboundfeeds/rss/?outputType=xml',                kind: 'crypto' },
+];
+
+async function fetchPremiumSources() {
+  const results = await Promise.all(
+    PREMIUM_RSS_SOURCES.map(s => fetchRSS(s.name, s.url, s.kind, LIMIT_PER_SOURCE))
+  );
+  return results.flat();
+}
+
 async function main() {
-  const [market, crypto] = await Promise.all([fetchYahooRSS(), fetchCryptoNews()]);
-  const fresh = [...market, ...crypto].filter((n) => n.title && n.title.length > 5);
+  const [market, crypto, premium] = await Promise.all([
+    fetchYahooRSS(),
+    fetchCryptoNews(),
+    fetchPremiumSources(),
+  ]);
+  const fresh = [...market, ...crypto, ...premium].filter((n) => n.title && n.title.length > 5);
+  console.log(`Sources : Yahoo=${market.length}, CryptoCompare=${crypto.length}, Premium=${premium.length} (total fresh=${fresh.length})`);
 
   const target = path.join(process.cwd(), 'data', 'news.json');
   await fs.mkdir(path.dirname(target), { recursive: true });
@@ -117,7 +173,7 @@ async function main() {
 
   const out = {
     generated: new Date().toISOString(),
-    sources: ['CryptoCompare News', 'Yahoo Finance RSS'],
+    sources: ['Yahoo Finance RSS', 'CryptoCompare News', ...PREMIUM_RSS_SOURCES.map(s => s.name)],
     window_hours: KEEP_HOURS,
     count: all.length,
     news: all,
