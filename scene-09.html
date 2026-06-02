@@ -15,9 +15,9 @@
   <meta name="theme-color" content="#0a0a0c">
   <title>Trade Genius — Historiques</title>
   <link rel="manifest" href="manifest.json">
-  <script type="module" src="tg-common.js?v=1118"></script>
-  <script src="tg-analyst.js?v=1118"></script>
-  <script src="tg-bubble.js?v=1118"></script>
+  <script type="module" src="tg-common.js?v=1119"></script>
+  <script src="tg-analyst.js?v=1119"></script>
+  <script src="tg-bubble.js?v=1119"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -337,7 +337,7 @@
 
 <div class="wrap">
   <div class="top-bar">
-    <button class="back-btn" id="back-btn" onclick="goBack()">← ACCUEIL</button>
+    <button class="back-btn" id="back-btn" onclick="goBack()">← MODULES</button>
     <span class="premium-pill">✦ EXPERT</span>
   </div>
 
@@ -680,11 +680,29 @@
     document.querySelectorAll('.kc-canvas').forEach(c => observer.observe(c));
   }
 
+  // v11.19 — Tracking progression Module 6 (carte "Krachs historiques" sur Modules)
+  // Format attendu par index.html : { completed: { '0': true, '1': true, ... } }
+  // Clé localStorage : 'tradegenius_m6_krachs' (cf MODULES[6] dans index.html)
+  const M6_STORAGE_KEY = 'tradegenius_m6_krachs';
+  function markKrachComplete(key) {
+    try {
+      const idx = Object.keys(KRACHS).indexOf(key);
+      if (idx < 0) return;
+      const raw = localStorage.getItem(M6_STORAGE_KEY);
+      const p = raw ? JSON.parse(raw) : { completed: {} };
+      if (!p.completed) p.completed = {};
+      if (p.completed[idx]) return; // déjà fait, no-op
+      p.completed[idx] = true;
+      localStorage.setItem(M6_STORAGE_KEY, JSON.stringify(p));
+    } catch { /* localStorage indispo, silent */ }
+  }
+
   function openDetail(key) {
     if (navigator.vibrate) navigator.vibrate(8);
     _currentKrach = key;
     const k = KRACHS[key];
     if (!k) return;
+    markKrachComplete(key); // v11.19 — fait avancer la barre du Module 6
 
     const detail = document.getElementById('view-detail');
     detail.innerHTML = `
@@ -781,14 +799,16 @@
     if (navigator.vibrate) navigator.vibrate(6);
     document.getElementById('view-detail').classList.remove('active');
     document.getElementById('view-list').classList.add('active');
-    document.getElementById('back-btn').textContent = '← ACCUEIL';
+    document.getElementById('back-btn').textContent = '← MODULES';
     _currentKrach = null;
     window.scrollTo(0, 0);
   }
 
   function goBack() {
+    // v11.19 — Retour vers Modules (pas Accueil) pour cohérence avec scene-07.
+    // Si on est dans le détail d'un krach, on revient à la liste d'abord.
     if (_currentKrach) closeDetail();
-    else window.location.href = 'index.html#feed';
+    else window.location.href = 'index.html#modules';
   }
 
   renderList();
