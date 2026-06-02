@@ -15,9 +15,9 @@
   <meta name="theme-color" content="#0a0a0c">
   <title>Trade Genius — Historiques</title>
   <link rel="manifest" href="manifest.json">
-  <script type="module" src="tg-common.js?v=1119"></script>
-  <script src="tg-analyst.js?v=1119"></script>
-  <script src="tg-bubble.js?v=1119"></script>
+  <script type="module" src="tg-common.js?v=1120"></script>
+  <script src="tg-analyst.js?v=1120"></script>
+  <script src="tg-bubble.js?v=1120"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
@@ -137,6 +137,15 @@
       position: relative; overflow: hidden;
     }
     .krach-card:active { transform: scale(0.985); }
+    /* v11.20 — Flash highlight au retour automatique sur la dernière card visitée */
+    .krach-card.flash-highlight {
+      animation: krachFlash 1.8s ease-out;
+    }
+    @keyframes krachFlash {
+      0%   { box-shadow: 0 0 0 3px rgba(239,68,68,0), 0 12px 32px rgba(0,0,0,0.35); }
+      30%  { box-shadow: 0 0 0 3px rgba(239,68,68,0.8), 0 12px 32px rgba(239,68,68,0.4); }
+      100% { box-shadow: 0 0 0 3px rgba(239,68,68,0), 0 12px 32px rgba(0,0,0,0.35); }
+    }
     @media (hover: hover) {
       .krach-card:hover {
         border-color: rgba(239,68,68,0.4);
@@ -680,21 +689,44 @@
     document.querySelectorAll('.kc-canvas').forEach(c => observer.observe(c));
   }
 
-  // v11.19 — Tracking progression Module 6 (carte "Krachs historiques" sur Modules)
-  // Format attendu par index.html : { completed: { '0': true, '1': true, ... } }
+  // v11.20 — Tracking progression Module 6 (carte "Krachs historiques" sur Modules)
+  // Format index.html : { completed: { '1': true, '2': true, ... } } — 1-INDEXED
+  // (les barres .chap-bar lisent prog.completed[i + 1] dans refreshModules)
+  // v11.19 avait save en 0-indexed → décalage 3/4 visible, bug fixé.
   // Clé localStorage : 'tradegenius_m6_krachs' (cf MODULES[6] dans index.html)
   const M6_STORAGE_KEY = 'tradegenius_m6_krachs';
   function markKrachComplete(key) {
     try {
       const idx = Object.keys(KRACHS).indexOf(key);
       if (idx < 0) return;
+      const chapterNum = idx + 1; // 1-indexed (cf scene-07 markChapterComplete)
       const raw = localStorage.getItem(M6_STORAGE_KEY);
       const p = raw ? JSON.parse(raw) : { completed: {} };
       if (!p.completed) p.completed = {};
-      if (p.completed[idx]) return; // déjà fait, no-op
-      p.completed[idx] = true;
+      if (p.completed[chapterNum]) return; // déjà fait, no-op
+      p.completed[chapterNum] = true;
       localStorage.setItem(M6_STORAGE_KEY, JSON.stringify(p));
     } catch { /* localStorage indispo, silent */ }
+  }
+
+  // v11.20 — Mémorise dernier krach visité (pour scroll auto au retour dans le module)
+  const LAST_KRACH_KEY = 'tg_last_krach';
+  function rememberLastKrach(key) {
+    try { localStorage.setItem(LAST_KRACH_KEY, key); } catch {}
+  }
+  function scrollToLastKrach() {
+    try {
+      const last = localStorage.getItem(LAST_KRACH_KEY);
+      if (!last) return;
+      requestAnimationFrame(() => {
+        const card = document.querySelector('.krach-card[data-key="' + last + '"]');
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          card.classList.add('flash-highlight');
+          setTimeout(() => card.classList.remove('flash-highlight'), 1800);
+        }
+      });
+    } catch {}
   }
 
   function openDetail(key) {
@@ -702,7 +734,8 @@
     _currentKrach = key;
     const k = KRACHS[key];
     if (!k) return;
-    markKrachComplete(key); // v11.19 — fait avancer la barre du Module 6
+    markKrachComplete(key);   // v11.20 — fait avancer la barre du Module 6 (1-indexed)
+    rememberLastKrach(key);   // v11.20 — mémorise pour scroll auto retour
 
     const detail = document.getElementById('view-detail');
     detail.innerHTML = `
@@ -812,6 +845,8 @@
   }
 
   renderList();
+  // v11.20 — Scroll auto vers le dernier krach visité (si on revient sur la liste)
+  scrollToLastKrach();
 </script>
 
 </body>
