@@ -1,0 +1,79 @@
+{
+  "generated": "2026-06-02T21:47:21.024Z",
+  "current_month": 6,
+  "locale": "FR",
+  "disclaimer": "Informations fiscales pédagogiques 2026. Pas un conseil personnalisé. Consulte un expert-comptable pour ta situation.",
+  "n_tips_active": 3,
+  "n_tips_total": 8,
+  "tips": [
+    {
+      "id": "pea-5y",
+      "category": "pea",
+      "priority": "medium",
+      "title": "⏳ PEA : la règle des 5 ans",
+      "body": "Tant que ton PEA a moins de 5 ans, tout retrait clôture le plan et tu paies les impôts. Après 5 ans : retraits libres, exonération d'impôt (seuls 17.2% de prélèvements sociaux restent).",
+      "actionable": "Ne touche pas à ton PEA avant ses 5 ans, sauf urgence.",
+      "period": "Toute l'année",
+      "months_active": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "id": "crypto-pvmd",
+      "category": "crypto",
+      "priority": "medium",
+      "title": "🪙 Crypto : seuil 305€ de plus-value",
+      "body": "En FR, les plus-values crypto < 305€/an sont exonérées d'impôt. Au-delà : PFU 30% (12.8% IR + 17.2% PS). À déclarer via formulaire 2086.",
+      "actionable": "Track ton P&L crypto réalisé · stay below 305€ si profil faible expo.",
+      "period": "Toute l'année",
+      "months_active": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    },
+    {
+      "id": "crypto-flat",
+      "category": "crypto",
+      "priority": "low",
+      "title": "💸 Crypto-to-crypto = pas d'imposition",
+      "body": "En FR, échanger une crypto contre une autre (BTC → ETH) ne déclenche PAS d'imposition. Seule la conversion crypto → fiat (€/$) ou achat de biens en crypto crée un événement fiscal.",
+      "actionable": "Profite des arbitrages BTC↔ETH↔stables sans impact fiscal.",
+      "period": "Toute l'année",
+      "months_active": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    }
+  ]
+}

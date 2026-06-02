@@ -1,0 +1,37 @@
+name: Tax tips (FR PEA/CTO/crypto)
+on:
+  schedule:
+    # Cron quotidien 05h UTC : génère tax-tips.json avec les conseils du mois.
+    # Léger (8 tips hardcodés, filter par mois), prend < 1s.
+    - cron: '0 5 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build-tax-tips.mjs'
+      - '.github/workflows/tax-tips.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build tax tips
+        run: node scripts/build-tax-tips.mjs
+      - name: Commit data/tax-tips.json if changed
+        run: |
+          git config user.name 'trade-genius-bot'
+          git config user.email 'bot@deponchy.studio'
+          if [[ -n "$(git status --porcelain data/tax-tips.json)" ]]; then
+            git add data/tax-tips.json
+            git commit -m "chore: refresh tax tips [skip ci]"
+            git push
+          else
+            echo "Tax tips unchanged."
+          fi
