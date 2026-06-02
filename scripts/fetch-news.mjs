@@ -135,14 +135,104 @@ async function fetchPremiumSources() {
   return results.flat();
 }
 
+// v11.13 — Reddit RSS public (le JSON est blocked HTTP 403 maintenant).
+// Endpoint .rss/?sort=top encore accessible avec user-agent navigateur.
+// Détecte le buzz retail/communauté sur les subs finance.
+const REDDIT_SUBS = [
+  { sub: 'wallstreetbets', kind: 'marche', limit: 6 },
+  { sub: 'stocks',         kind: 'marche', limit: 5 },
+  { sub: 'investing',      kind: 'marche', limit: 4 },
+  { sub: 'cryptocurrency', kind: 'crypto', limit: 5 },
+];
+async function fetchRedditOne(cfg) {
+  try {
+    // Atom feed (pas RSS classique pour Reddit, mais le parser handle les <entry>)
+    const url = `https://www.reddit.com/r/${cfg.sub}/top/.rss?t=day`;
+    const r = await fetch(url, {
+      headers: { 'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) trade-genius-bot/1.0' },
+    });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const xml = await r.text();
+    // Atom feed parsing : <entry>...</entry>
+    const entries = [...xml.matchAll(/<entry[\s>]([\s\S]*?)<\/entry>/g)].slice(0, cfg.limit);
+    return entries
+      .map(([, block]) => {
+        const pick = (tag) => {
+          const re = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`);
+          const m = block.match(re);
+          return m ? m[1].trim() : '';
+        };
+        const link = (block.match(/<link[^>]*href="([^"]+)"/) || [])[1] || '';
+        const updated = pick('updated');
+        return {
+          kind: cfg.kind,
+          title: trim(pick('title').replace(/^\[.+?\]\s*/, ''), 140),
+          body: '',
+          source: `Reddit r/${cfg.sub}`,
+          url: link,
+          time: updated ? new Date(updated).toISOString() : new Date().toISOString(),
+        };
+      })
+      .filter(n => n.title && n.title.length > 5);
+  } catch (e) {
+    console.warn(`Reddit r/${cfg.sub} fetch failed:`, e.message);
+    return [];
+  }
+}
+async function fetchReddit() {
+  const all = await Promise.all(REDDIT_SUBS.map(fetchRedditOne));
+  return all.flat();
+}
+
+// v11.13 — HackerNews (Firebase API publique, sans clé).
+// Filtre les stories pertinentes finance/trading/crypto via keywords.
+const HN_KEYWORDS = /\b(stock|trading|crypto|bitcoin|ethereum|federal reserve|fed |inflation|recession|market|nasdaq|s&p 500|wall street|tesla|nvidia|apple|microsoft|google|amazon|meta|earnings|ipo|sec |fintech)\b/i;
+async function fetchHackerNews() {
+  try {
+    const r = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const ids = await r.json();
+    if (!Array.isArray(ids)) return [];
+    // Vérifie les 30 premiers, garde max 5 finance-related
+    const topIds = ids.slice(0, 30);
+    const items = await Promise.all(
+      topIds.map(async (id) => {
+        try {
+          const rr = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+          if (!rr.ok) return null;
+          return await rr.json();
+        } catch { return null; }
+      })
+    );
+    const filtered = items
+      .filter(it => it && it.title && it.type === 'story' && HN_KEYWORDS.test(it.title))
+      .slice(0, 5)
+      .map(it => ({
+        kind: 'marche',
+        title: trim(it.title, 140),
+        body: '',
+        source: 'Hacker News',
+        url: it.url || `https://news.ycombinator.com/item?id=${it.id}`,
+        time: it.time ? new Date(it.time * 1000).toISOString() : new Date().toISOString(),
+      }));
+    return filtered;
+  } catch (e) {
+    console.warn('Hacker News fetch failed:', e.message);
+    return [];
+  }
+}
+
 async function main() {
-  const [market, crypto, premium] = await Promise.all([
+  const [market, crypto, premium, reddit, hn] = await Promise.all([
     fetchYahooRSS(),
     fetchCryptoNews(),
     fetchPremiumSources(),
+    fetchReddit(),
+    fetchHackerNews(),
   ]);
-  const fresh = [...market, ...crypto, ...premium].filter((n) => n.title && n.title.length > 5);
-  console.log(`Sources : Yahoo=${market.length}, CryptoCompare=${crypto.length}, Premium=${premium.length} (total fresh=${fresh.length})`);
+  const fresh = [...market, ...crypto, ...premium, ...reddit, ...hn]
+    .filter((n) => n.title && n.title.length > 5);
+  console.log(`Sources : Yahoo=${market.length}, CryptoCompare=${crypto.length}, Premium=${premium.length}, Reddit=${reddit.length}, HN=${hn.length} (total fresh=${fresh.length})`);
 
   const target = path.join(process.cwd(), 'data', 'news.json');
   await fs.mkdir(path.dirname(target), { recursive: true });
@@ -173,7 +263,12 @@ async function main() {
 
   const out = {
     generated: new Date().toISOString(),
-    sources: ['Yahoo Finance RSS', 'CryptoCompare News', ...PREMIUM_RSS_SOURCES.map(s => s.name)],
+    sources: [
+      'Yahoo Finance RSS', 'CryptoCompare News',
+      ...PREMIUM_RSS_SOURCES.map(s => s.name),
+      ...REDDIT_SUBS.map(s => 'Reddit r/' + s.sub),
+      'Hacker News',
+    ],
     window_hours: KEEP_HOURS,
     count: all.length,
     news: all,
