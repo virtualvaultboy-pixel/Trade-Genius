@@ -717,6 +717,100 @@ function buildAssetPatterns(assets) {
   return out;
 }
 
+// v11.15 — Spike emerging themes : détecte les mots-clés qui explosent
+// en 24h vs moyenne 6 jours précédents. Ratio >= 3 et min 3 occurrences
+// sur 24h = thème "en spike" (buzz fulgurant).
+// Ex : "AI vetting" mentionné 50× en 24h vs 5/jour avant → spike fort.
+const SPIKE_STOPWORDS = new Set([
+  'the','a','an','of','to','in','for','and','on','with','at','by','is','are','was','were',
+  'this','that','it','as','from','says','said','will','can','has','have','had','be','been',
+  'being','its','his','her','their','what','how','when','where','why','who','which','via',
+  'about','after','before','more','than','also','only','very','most','many','some','all','no',
+  'not','but','if','then','because','so','one','two','three','first','second','third','last',
+  'next','today','yesterday','tomorrow','week','month','year','years','time','top','best',
+  'worst','new','now','over','under','into','out','up','down','off','through','de','la','le',
+  'les','un','une','des','en','et','pour','dans','sur','au','aux','par','est','ce','cette',
+  'ces','que','qui','dont','plus','moins','here','there','these','those','they','them','our',
+  'your','my','me','we','us','he','she','i','you','do','does','did','get','got','make','made',
+  'just','like','still','even','much','well','way','than','then','say','call','look','want',
+  'know','take','see','come','think','give','use','find','tell','ask','work','seem','feel',
+  'try','leave','people','company','market','stock','stocks','price','prices', 'report','news',
+  'good','bad','high','low','big','small','long','short','old','same','great','little','own',
+]);
+
+function detectSpikeThemes(news) {
+  if (!Array.isArray(news) || news.length < 20) return {};
+  const now = Date.now();
+  const day1 = now - 24 * 3600 * 1000;
+  const day7 = now - 7 * 86400 * 1000;
+
+  const tokenize = (txt) => {
+    if (!txt) return [];
+    return txt.toLowerCase()
+      .replace(/[^a-z0-9$]+/gi, ' ')
+      .split(/\s+/)
+      .filter(w => w.length >= 4 && w.length <= 25 && !SPIKE_STOPWORDS.has(w) && !/^\d+$/.test(w));
+  };
+
+  const count24h = {};
+  const count6d = {};
+  for (const n of news) {
+    const t = new Date(n.time).getTime();
+    if (!Number.isFinite(t) || t < day7) continue;
+    const tokens = new Set(tokenize(n.title));  // dédup intra-titre
+    const map = (t >= day1) ? count24h : count6d;
+    for (const w of tokens) map[w] = (map[w] || 0) + 1;
+  }
+
+  const spikes = {};
+  for (const [w, c24] of Object.entries(count24h)) {
+    if (c24 < 3) continue;  // bruit < 3 occurrences sur 24h
+    const c6 = count6d[w] || 0;
+    const avg6 = (c6 || 1) / 6;  // évite div0
+    const ratio = c24 / avg6;
+    if (ratio >= 3) {
+      spikes[w] = {
+        count_24h: c24,
+        count_6d: c6,
+        avg_per_day: Number(avg6.toFixed(2)),
+        ratio: Number(ratio.toFixed(1)),
+      };
+    }
+  }
+  return spikes;
+}
+
+// v11.15 — Pour un setup donné, vérifie si ses news matchées contiennent
+// un mot du spike themes. Si oui, boost quality_score.
+function applySpikeThemeBoost(setup, spikeThemes, newsMatches) {
+  if (!setup || !spikeThemes || !newsMatches) return { qualityMult: 1, reason: null };
+  const matches = newsMatches[setup.asset];
+  if (!Array.isArray(matches) || matches.length === 0) return { qualityMult: 1, reason: null };
+  const spikeWords = new Set(Object.keys(spikeThemes));
+  if (spikeWords.size === 0) return { qualityMult: 1, reason: null };
+
+  // Tokenize les titres des news matchées
+  const matched = [];
+  for (const n of matches) {
+    const tokens = (n.title || '').toLowerCase().replace(/[^a-z0-9$]+/gi, ' ').split(/\s+/);
+    for (const t of tokens) {
+      if (spikeWords.has(t)) matched.push(t);
+    }
+  }
+  if (matched.length === 0) return { qualityMult: 1, reason: null };
+
+  // Boost selon force du spike (ratio max parmi matched)
+  const maxRatio = Math.max(...matched.map(w => spikeThemes[w].ratio));
+  let mult = 1.03;  // default low
+  if (maxRatio >= 10) mult = 1.10;
+  else if (maxRatio >= 5) mult = 1.06;
+  const topWord = matched.reduce((a, b) => spikeThemes[a].ratio > spikeThemes[b].ratio ? a : b);
+  return {
+    qualityMult: mult,
+    reason: `Spike theme "${topWord}" ×${spikeThemes[topWord].ratio} (${spikeThemes[topWord].count_24h} mentions/24h)`,
+  };
+}
+
 function matchNewsToAssets(news, assets) {
   if (!news || news.length === 0) return {};
   const patterns = buildAssetPatterns(assets);
@@ -3270,6 +3364,14 @@ async function main() {
     }
   } catch { /* fichier pas encore généré, premier run = pas de boost */ }
 
+  // v11.15 — Spike emerging themes (24h vs moyenne 6j) → boost setups concernés
+  // ex : "AI vetting" mentionné 30× en 24h vs 3/jour avant → spike ×10 → boost +10%
+  const spikeThemes = detectSpikeThemes(recentNews);
+  const spikeTop = Object.entries(spikeThemes).sort((a, b) => b[1].ratio - a[1].ratio).slice(0, 5);
+  if (spikeTop.length > 0) {
+    console.log(`v11.15 Spike themes (24h vs avg 6j): ${spikeTop.map(([w, s]) => `${w}×${s.ratio}(${s.count_24h})`).join(' · ')}`);
+  }
+
   // 10. ETF flow signals (volume anormal)
   const etfFlows = computeEtfFlowSignal(valid);
   const flowEntries = Object.entries(etfFlows);
@@ -3539,6 +3641,21 @@ async function main() {
       });
     }
 
+    // v11.15 — Spike theme boost : si les news matchant l'actif contiennent un mot
+    // qui explose en 24h vs moyenne 6j (ratio >= 3), boost quality :
+    //   ratio >= 10 → ×1.10
+    //   ratio >= 5  → ×1.06
+    //   ratio >= 3  → ×1.03
+    if (Object.keys(spikeThemes).length > 0) {
+      setups.forEach(s => {
+        const f = applySpikeThemeBoost(s, spikeThemes, newsMatches);
+        if (f.qualityMult !== 1 && s.quality_score != null) {
+          s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * f.qualityMult)));
+          s.spike_theme_reason = f.reason;
+        }
+      });
+    }
+
     // v8.8 — Wisdom adjustment : ajuste quality_score selon le top analog historique
     const wAdj = wisdomAdjustments[agent.id];
     if (wAdj && wAdj.adjustment !== 0) {
@@ -3612,6 +3729,8 @@ async function main() {
         // v11.14 — SEC Form 4 insider signal (boost quality si insiders actifs)
         insider_signal: s.insider_signal || null,
         insider_reason: s.insider_reason || null,
+        // v11.15 — Spike theme boost (mot-clé explosé 24h vs moy 7j)
+        spike_theme_reason: s.spike_theme_reason || null,
       })),
     };
   });

@@ -1,9 +1,9 @@
 {
-  "generated": "2026-06-02T21:35:37.522Z",
+  "generated": "2026-06-02T21:40:31.827Z",
   "source": "Pollinations · openai",
   "date": "2026-06-02",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (38 indices · 10 crypto · 355 actions) : S&P 500 +0.13% (RSI 71, indécis) · Nasdaq +0.03% (RSI 70, plutôt haussier) · BTC -5.01% (RSI 20, baissier fort) · ETH -4.84% (RSI 24, baissier fort) · Apple +2.90% (RSI 76, plutôt haussier). Globalement, 235 actifs en biais haussier contre 163 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (38 indices · 9 crypto · 355 actions) : S&P 500 +0.13% (RSI 71, indécis) · Nasdaq +0.03% (RSI 70, plutôt haussier) · BTC -5.03% (RSI 20, baissier fort) · ETH -4.90% (RSI 24, baissier fort) · Apple +2.90% (RSI 76, plutôt haussier). Globalement, 235 actifs en biais haussier contre 161 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : sans direction nette (RSI 71)",
     "Nasdaq : tendance haussière confirmée (RSI 70, bull MA50)",
@@ -125,7 +125,7 @@
       "desc": "Long terme · 1-3 mois · Patience haute · 3-4 trades/semaine. Win rate plus bas mais chaque gagnant rapporte gros (R/R 3.5). Risque très maîtrisé.",
       "icon": "🗿",
       "color": "#60a5fa",
-      "count": 17,
+      "count": 16,
       "setups": [
         {
           "asset": "Plug Power",
@@ -229,7 +229,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "BTC",
@@ -239,12 +240,12 @@
           "timeframe": "Long terme · 4-12 semaines",
           "confidence": "high",
           "direction": "long",
-          "config": "RSI 20 (survente extrême) · Bollinger -19% (bande basse) · MACD -860.21 (correction confirmée) · MFI 34 (flux validé) · stop 0.6 ATR · cible 6 ATR.",
+          "config": "RSI 20 (survente extrême) · Bollinger -19% (bande basse) · MACD -861.25 (correction confirmée) · MFI 34 (flux validé) · stop 0.6 ATR · cible 6 ATR.",
           "rationale": "Configuration contrarian validée sur 20 ans × 50 actifs (PF 3.42 walk-forward OOS). Le marché est en survente technique extrême + correction MACD confirmée. Stop technique serré, cible étendue pour capter le retournement complet.",
-          "entry": 67785.15096318361,
-          "stop": 67150.0437480711,
-          "tp1": 70960.68703874617,
-          "tp2": 74136.22311430873,
+          "entry": 67768.8462898213,
+          "stop": 67133.04030299326,
+          "tp1": 70947.8762239615,
+          "tp2": 74126.90615810169,
           "rr1": "5.00",
           "rr2": "10.00",
           "currency": "USD",
@@ -308,7 +309,7 @@
             73751.0679,
             73593.3712,
             71360.3252,
-            67785.151
+            67768.8463
           ],
           "quality_score": 100,
           "sizing_pct": 3,
@@ -348,7 +349,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": "Spike theme \"bitcoin\" ×36 (6 mentions/24h)"
         },
         {
           "asset": "ETH",
@@ -358,12 +360,12 @@
           "timeframe": "Long terme · 4-12 semaines",
           "confidence": "high",
           "direction": "long",
-          "config": "RSI 24 (survente extrême) · Bollinger -4% (bande basse) · MACD -11.78 (correction confirmée) · MFI 39 (flux validé) · stop 0.6 ATR · cible 6 ATR.",
+          "config": "RSI 24 (survente extrême) · Bollinger -4% (bande basse) · MACD -11.85 (correction confirmée) · MFI 39 (flux validé) · stop 0.6 ATR · cible 6 ATR.",
           "rationale": "Configuration contrarian validée sur 20 ans × 50 actifs (PF 3.42 walk-forward OOS). Le marché est en survente technique extrême + correction MACD confirmée. Stop technique serré, cible étendue pour capter le retournement complet.",
-          "entry": 1906.3390639001607,
-          "stop": 1889.3106904910321,
-          "tp1": 1991.4809309458037,
-          "tp2": 2076.6227979914465,
+          "entry": 1905.15219776971,
+          "stop": 1888.0729586692764,
+          "tp1": 1990.548393271878,
+          "tp2": 2075.944588774046,
           "rr1": "5.00",
           "rr2": "10.00",
           "currency": "USD",
@@ -427,7 +429,7 @@
             2019.1756,
             2003.9719,
             2003.3652,
-            1906.3391
+            1905.1522
           ],
           "quality_score": 100,
           "sizing_pct": 3,
@@ -452,7 +454,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "ADA",
@@ -464,10 +467,10 @@
           "direction": "long",
           "config": "RSI 19 (survente extrême) · Bollinger -7% (bande basse) · MACD -0.00 (correction confirmée) · MFI 34 (flux validé) · stop 0.6 ATR · cible 6 ATR.",
           "rationale": "Configuration contrarian validée sur 20 ans × 50 actifs (PF 3.42 walk-forward OOS). Le marché est en survente technique extrême + correction MACD confirmée. Stop technique serré, cible étendue pour capter le retournement complet.",
-          "entry": 0.2174599908553105,
-          "stop": 0.21531947611278537,
-          "tp1": 0.2281625645679362,
-          "tp2": 0.2388651382805619,
+          "entry": 0.2176530477044565,
+          "stop": 0.21552080682689476,
+          "tp1": 0.22831425209226522,
+          "tp2": 0.2389754564800739,
           "rr1": "5.00",
           "rr2": "10.00",
           "currency": "USD",
@@ -531,7 +534,7 @@
             0.2354,
             0.2351,
             0.2307,
-            0.2175
+            0.2177
           ],
           "quality_score": 100,
           "sizing_pct": 3,
@@ -556,7 +559,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "LTC",
@@ -568,10 +572,10 @@
           "direction": "long",
           "config": "RSI 19 (survente extrême) · Bollinger -6% (bande basse) · MACD -0.39 (correction confirmée) · MFI 35 (flux validé) · stop 0.6 ATR · cible 6 ATR.",
           "rationale": "Configuration contrarian validée sur 20 ans × 50 actifs (PF 3.42 walk-forward OOS). Le marché est en survente technique extrême + correction MACD confirmée. Stop technique serré, cible étendue pour capter le retournement complet.",
-          "entry": 48.242412883434014,
-          "stop": 47.81012463980336,
-          "tp1": 50.40385410158728,
-          "tp2": 52.56529531974054,
+          "entry": 48.23974464637581,
+          "stop": 47.807342049728376,
+          "tp1": 50.40175762961297,
+          "tp2": 52.56377061285014,
           "rr1": "5.00",
           "rr2": "10.00",
           "currency": "USD",
@@ -635,7 +639,7 @@
             52.3356,
             51.9549,
             50.7125,
-            48.2424
+            48.2397
           ],
           "quality_score": 100,
           "sizing_pct": 3,
@@ -660,111 +664,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
-        },
-        {
-          "asset": "UNI",
-          "kind": "crypto",
-          "type": "grid-month-A",
-          "label": "Survente extrême + correction MACD",
-          "timeframe": "Long terme · 4-12 semaines",
-          "confidence": "high",
-          "direction": "long",
-          "config": "RSI 23 (survente extrême) · Bollinger 3% (bande basse) · MACD -0.06 (correction confirmée) · MFI 23 (flux validé) · stop 0.6 ATR · cible 6 ATR.",
-          "rationale": "Configuration contrarian validée sur 20 ans × 50 actifs (PF 3.42 walk-forward OOS). Le marché est en survente technique extrême + correction MACD confirmée. Stop technique serré, cible étendue pour capter le retournement complet.",
-          "entry": 2.8435938531479485,
-          "stop": 2.7955043407690576,
-          "tp1": 3.084041415042403,
-          "tp2": 3.3244889769368573,
-          "rr1": "5.00",
-          "rr2": "10.00",
-          "currency": "USD",
-          "prices60": [
-            3.1238,
-            3.1405,
-            3.0986,
-            3.3031,
-            3.1165,
-            3.1064,
-            3.1645,
-            3.1513,
-            3.0211,
-            3.2416,
-            3.1315,
-            3.2232,
-            3.4262,
-            3.4653,
-            3.3567,
-            3.2315,
-            3.2317,
-            3.2719,
-            3.3213,
-            3.2958,
-            3.2529,
-            3.259,
-            3.2892,
-            3.2448,
-            3.2415,
-            3.1917,
-            3.1899,
-            3.203,
-            3.2532,
-            3.2359,
-            3.2703,
-            3.3576,
-            3.4663,
-            3.438,
-            3.6989,
-            3.7949,
-            3.9988,
-            3.894,
-            3.7624,
-            3.6224,
-            3.7262,
-            3.6005,
-            3.4869,
-            3.4456,
-            3.5349,
-            3.4508,
-            3.6142,
-            3.6031,
-            3.3933,
-            3.4586,
-            3.3869,
-            3.3244,
-            3.2462,
-            3.0925,
-            3.0482,
-            3.018,
-            3.0468,
-            3.0126,
-            2.9782,
-            2.8436
-          ],
-          "quality_score": 100,
-          "sizing_pct": 3,
-          "sizing_label": "high",
-          "trailing_after_tp1": true,
-          "macro_reason": null,
-          "earnings_reason": null,
-          "news_sentiment": null,
-          "news_sentiment_reason": null,
-          "macro_event_reason": null,
-          "cross_asset_reason": null,
-          "sector_reason": null,
-          "stacked": false,
-          "stacked_count": null,
-          "stacked_patterns": null,
-          "news_context": null,
-          "wisdom_adjustment": 12,
-          "wisdom_note": "Bull momentum tech/IA, trailing stops larges",
-          "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 100,
-          "alpha_quality": null,
-          "alpha_pattern": null,
-          "alpha_rules": null,
-          "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Walmart",
@@ -868,7 +769,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Starbucks",
@@ -972,7 +874,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Café",
@@ -1076,7 +979,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "JKSE Indonésie",
@@ -1174,7 +1078,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Moderna",
@@ -1278,7 +1183,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Regeneron",
@@ -1382,7 +1288,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Intercontinental Exchange",
@@ -1486,7 +1393,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "BMW",
@@ -1590,7 +1498,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "BT Group",
@@ -1694,7 +1603,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Ping An Insurance",
@@ -1798,7 +1708,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "MicroStrategy",
@@ -1907,12 +1818,13 @@
           "wisdom_adjustment": 12,
           "wisdom_note": "Bull momentum tech/IA, trailing stops larges",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 90,
+          "quality_score_pre_wisdom": 99,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": "Spike theme \"bitcoin\" ×36 (6 mentions/24h)"
         }
       ]
     },
@@ -2039,7 +1951,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "BT Group",
@@ -2143,7 +2056,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Ping An Insurance",
@@ -2247,7 +2161,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "MicroStrategy",
@@ -2356,12 +2271,13 @@
           "wisdom_adjustment": 14,
           "wisdom_note": "Long semicon + IA infra",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 90,
+          "quality_score_pre_wisdom": 99,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": "Spike theme \"bitcoin\" ×36 (6 mentions/24h)"
         },
         {
           "asset": "Keyence",
@@ -2465,7 +2381,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "S&P SmallCap 600",
@@ -2569,7 +2486,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Palladium",
@@ -2673,7 +2591,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "KLCI Malaisie",
@@ -2777,7 +2696,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Plug Power",
@@ -2881,7 +2801,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "JKSE Indonésie",
@@ -2979,7 +2900,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         }
       ]
     },
@@ -2991,7 +2913,7 @@
       "desc": "Court terme · 3-7 jours · Patience faible · 5-9 trades/semaine. Idéal si tu veux voir l'app travailler chaque jour. Risque très maîtrisé.",
       "icon": "⚡",
       "color": "#ef4444",
-      "count": 176,
+      "count": 178,
       "setups": [
         {
           "asset": "Starbucks",
@@ -3095,7 +3017,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "BT Group",
@@ -3199,7 +3122,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Ping An Insurance",
@@ -3303,7 +3227,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "MicroStrategy",
@@ -3412,12 +3337,13 @@
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 90,
+          "quality_score_pre_wisdom": 99,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": "Spike theme \"bitcoin\" ×36 (6 mentions/24h)"
         },
         {
           "asset": "KLCI Malaisie",
@@ -3521,7 +3447,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Moderna",
@@ -3625,7 +3552,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Regeneron",
@@ -3729,7 +3657,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Intercontinental Exchange",
@@ -3833,7 +3762,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Li Auto",
@@ -3937,7 +3867,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "BlackRock",
@@ -4041,7 +3972,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "SAP",
@@ -4145,7 +4077,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Micron",
@@ -4249,7 +4182,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Applied Materials",
@@ -4353,7 +4287,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "TSMC",
@@ -4457,7 +4392,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "ServiceNow",
@@ -4561,7 +4497,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Workday",
@@ -4665,7 +4602,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Atlassian",
@@ -4769,7 +4707,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "MongoDB",
@@ -4873,7 +4812,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Spotify",
@@ -4977,7 +4917,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Twilio",
@@ -5081,7 +5022,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Nutanix",
@@ -5185,7 +5127,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "UiPath",
@@ -5289,7 +5232,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "C3.ai",
@@ -5393,7 +5337,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "HP",
@@ -5497,7 +5442,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Western Digital",
@@ -5601,7 +5547,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Seagate",
@@ -5705,7 +5652,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Cognizant",
@@ -5809,7 +5757,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Ford",
@@ -5913,7 +5862,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "UPS",
@@ -6017,7 +5967,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Royal Caribbean",
@@ -6121,7 +6072,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Alcoa",
@@ -6225,7 +6177,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Rivian",
@@ -6329,7 +6282,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Richemont",
@@ -6433,7 +6387,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "SoftBank",
@@ -6537,7 +6492,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Samsung",
@@ -6641,7 +6597,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "SK Hynix",
@@ -6745,7 +6702,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "SOXX Semiconductors",
@@ -6849,7 +6807,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "EWY Korea ETF",
@@ -6953,7 +6912,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "IonQ",
@@ -7057,7 +7017,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Platine",
@@ -7161,7 +7122,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "UnitedHealth",
@@ -7265,7 +7227,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Unilever",
@@ -7369,7 +7332,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Reliance Industries",
@@ -7473,7 +7437,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "KOSPI Corée",
@@ -7577,7 +7542,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "ETH",
@@ -7587,12 +7553,12 @@
           "timeframe": "Court terme · 1-3 jours",
           "confidence": "medium",
           "direction": "short",
-          "config": "Plongeon -5.0% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.",
+          "config": "Plongeon -5.1% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.",
           "rationale": "Stratégie momentum baissier : on suit le mouvement déjà engagé. Pour les traders qui savent shorter (ou crypto via futures). Sinon : éviter d'acheter ici et attendre stabilisation.",
-          "entry": 1906.3390639001607,
-          "stop": 1968.7764330669656,
-          "tp1": 1849.5778192030655,
-          "tp2": 1778.6262633316962,
+          "entry": 1905.15219776971,
+          "stop": 1967.7760744713,
+          "tp1": 1848.2214007682646,
+          "tp2": 1777.057904516458,
           "rr1": "0.91",
           "rr2": "2.05",
           "currency": "USD",
@@ -7656,7 +7622,7 @@
             2019.1756,
             2003.9719,
             2003.3652,
-            1906.3391
+            1905.1522
           ],
           "quality_score": 74,
           "sizing_pct": 1,
@@ -7681,7 +7647,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "SOL",
@@ -7693,10 +7660,10 @@
           "direction": "short",
           "config": "Plongeon -7.4% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.",
           "rationale": "Stratégie momentum baissier : on suit le mouvement déjà engagé. Pour les traders qui savent shorter (ou crypto via futures). Sinon : éviter d'acheter ici et attendre stabilisation.",
-          "entry": 75.82541656353047,
-          "stop": 78.66115501272238,
-          "tp1": 73.24747251881055,
-          "tp2": 70.02504246291066,
+          "entry": 75.8620369766088,
+          "stop": 78.69202078945983,
+          "tp1": 73.28932441947151,
+          "tp2": 70.0734337230499,
           "rr1": "0.91",
           "rr2": "2.05",
           "currency": "USD",
@@ -7760,7 +7727,7 @@
             82.537,
             82.2339,
             81.1321,
-            75.8254
+            75.862
           ],
           "quality_score": 74,
           "sizing_pct": 1,
@@ -7785,7 +7752,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "XRP",
@@ -7797,10 +7765,10 @@
           "direction": "short",
           "config": "Plongeon -6.4% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.",
           "rationale": "Stratégie momentum baissier : on suit le mouvement déjà engagé. Pour les traders qui savent shorter (ou crypto via futures). Sinon : éviter d'acheter ici et attendre stabilisation.",
-          "entry": 1.2292610210071262,
-          "stop": 1.270930305033421,
-          "tp1": 1.1913798537104945,
-          "tp2": 1.1440283945897047,
+          "entry": 1.2292176625918516,
+          "stop": 1.270893760083404,
+          "tp1": 1.191330301235895,
+          "tp2": 1.143971099540949,
           "rr1": "0.91",
           "rr2": "2.05",
           "currency": "USD",
@@ -7864,7 +7832,7 @@
             1.338,
             1.3308,
             1.2947,
-            1.2293
+            1.2292
           ],
           "quality_score": 74,
           "sizing_pct": 1,
@@ -7889,111 +7857,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
-        },
-        {
-          "asset": "UNI",
-          "kind": "crypto",
-          "type": "kairo-shortMomentum",
-          "label": "Crash vif — short tactique",
-          "timeframe": "Court terme · 1-3 jours",
-          "confidence": "medium",
-          "direction": "short",
-          "config": "Plongeon -6.7% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.",
-          "rationale": "Stratégie momentum baissier : on suit le mouvement déjà engagé. Pour les traders qui savent shorter (ou crypto via futures). Sinon : éviter d'acheter ici et attendre stabilisation.",
-          "entry": 2.8435938531479485,
-          "stop": 3.0199220652038816,
-          "tp1": 2.6832954785516456,
-          "tp2": 2.482922510306267,
-          "rr1": "0.91",
-          "rr2": "2.05",
-          "currency": "USD",
-          "prices60": [
-            3.1238,
-            3.1405,
-            3.0986,
-            3.3031,
-            3.1165,
-            3.1064,
-            3.1645,
-            3.1513,
-            3.0211,
-            3.2416,
-            3.1315,
-            3.2232,
-            3.4262,
-            3.4653,
-            3.3567,
-            3.2315,
-            3.2317,
-            3.2719,
-            3.3213,
-            3.2958,
-            3.2529,
-            3.259,
-            3.2892,
-            3.2448,
-            3.2415,
-            3.1917,
-            3.1899,
-            3.203,
-            3.2532,
-            3.2359,
-            3.2703,
-            3.3576,
-            3.4663,
-            3.438,
-            3.6989,
-            3.7949,
-            3.9988,
-            3.894,
-            3.7624,
-            3.6224,
-            3.7262,
-            3.6005,
-            3.4869,
-            3.4456,
-            3.5349,
-            3.4508,
-            3.6142,
-            3.6031,
-            3.3933,
-            3.4586,
-            3.3869,
-            3.3244,
-            3.2462,
-            3.0925,
-            3.0482,
-            3.018,
-            3.0468,
-            3.0126,
-            2.9782,
-            2.8436
-          ],
-          "quality_score": 74,
-          "sizing_pct": 1,
-          "sizing_label": "medium",
-          "trailing_after_tp1": false,
-          "macro_reason": null,
-          "earnings_reason": null,
-          "news_sentiment": null,
-          "news_sentiment_reason": null,
-          "macro_event_reason": null,
-          "cross_asset_reason": null,
-          "sector_reason": null,
-          "stacked": false,
-          "stacked_count": null,
-          "stacked_patterns": null,
-          "news_context": null,
-          "wisdom_adjustment": 8,
-          "wisdom_note": "Scalper rotations sectorielles",
-          "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 65,
-          "alpha_quality": null,
-          "alpha_pattern": null,
-          "alpha_rules": null,
-          "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Microsoft",
@@ -8107,7 +7972,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Salesforce",
@@ -8211,7 +8077,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Broadcom",
@@ -8325,7 +8192,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Shopify",
@@ -8429,7 +8297,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Palantir",
@@ -8533,7 +8402,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Gaz naturel",
@@ -8637,7 +8507,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Blé",
@@ -8741,7 +8612,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Jus d'orange",
@@ -8845,7 +8717,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Merval Argentine",
@@ -8949,7 +8822,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "ADP",
@@ -9053,7 +8927,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Infosys",
@@ -9157,7 +9032,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Humana",
@@ -9261,7 +9137,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "CME Group",
@@ -9365,7 +9242,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Chipotle",
@@ -9469,7 +9347,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "American Airlines",
@@ -9573,7 +9452,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "XPeng",
@@ -9668,7 +9548,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "China EV Makers Report Monthly Sales. BYD Barely Grows, XPeng Slumps.",
+                "time": "2026-06-01T12:38:05.000Z",
+                "source": "Yahoo Finance Crypto"
+              }
+            ]
+          },
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
@@ -9677,7 +9567,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Schneider Electric",
@@ -9781,7 +9672,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Bayer",
@@ -9885,7 +9777,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "AstraZeneca",
@@ -9989,7 +9882,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "BHP",
@@ -10093,7 +9987,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "SoFi",
@@ -10197,7 +10092,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Unity",
@@ -10301,7 +10197,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Coton",
@@ -10405,7 +10302,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Danaher",
@@ -10509,7 +10407,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "CVS Health",
@@ -10613,7 +10512,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Christian Dior",
@@ -10717,7 +10617,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "BASF",
@@ -10821,7 +10722,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Keyence",
@@ -10925,86 +10827,87 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
-          "asset": "ATOM",
+          "asset": "AVAX",
           "kind": "crypto",
           "type": "kairo-shortMomentum",
           "label": "Crash vif — short tactique",
           "timeframe": "Court terme · 1-3 jours",
           "confidence": "medium",
           "direction": "short",
-          "config": "Plongeon -11.2% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.",
+          "config": "Plongeon -6.0% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.",
           "rationale": "Stratégie momentum baissier : on suit le mouvement déjà engagé. Pour les traders qui savent shorter (ou crypto via futures). Sinon : éviter d'acheter ici et attendre stabilisation.",
-          "entry": 1.8297957401429235,
-          "stop": 1.9490449461629376,
-          "tp1": 1.72138737103382,
-          "tp2": 1.5858769096474403,
+          "entry": 8.368437203891391,
+          "stop": 8.7377623792729,
+          "tp1": 8.032687044453656,
+          "tp2": 7.612999345156489,
           "rr1": "0.91",
           "rr2": "2.05",
           "currency": "USD",
           "prices60": [
-            1.7128,
-            1.6944,
-            1.7031,
-            1.8041,
-            1.7793,
-            1.8003,
-            1.807,
-            1.7772,
-            1.7259,
-            1.7794,
-            1.7455,
-            1.7661,
-            1.8097,
-            1.8365,
-            1.787,
-            1.7576,
-            1.7987,
-            1.8434,
-            1.8689,
-            1.9096,
-            1.9888,
-            2.0325,
-            2.0028,
-            1.9877,
-            1.9527,
-            1.9263,
-            1.8881,
-            1.8962,
-            1.883,
-            1.8759,
-            1.8891,
-            1.8846,
-            1.8992,
-            1.8856,
-            1.9499,
-            1.9356,
-            2.0189,
-            2.0409,
-            2.1042,
-            2.0421,
-            2.0461,
-            1.9284,
-            2.0494,
-            2.0227,
-            2.0698,
-            2.0411,
-            1.9888,
-            2.051,
-            2.0687,
-            2.1038,
-            2.0503,
-            2.1354,
-            2.2091,
-            2.1265,
-            2.0602,
-            2.0127,
-            2.0117,
-            1.9523,
-            1.903,
-            1.8298
+            8.98,
+            9.0506,
+            8.8941,
+            9.5192,
+            9.0593,
+            9.3522,
+            9.4061,
+            9.3715,
+            9.035,
+            9.6607,
+            9.313,
+            9.4285,
+            9.7269,
+            9.7373,
+            9.3426,
+            9.0103,
+            9.2796,
+            9.3883,
+            9.3536,
+            9.3942,
+            9.3955,
+            9.3661,
+            9.4736,
+            9.2542,
+            9.1678,
+            9.1181,
+            9.0874,
+            9.0823,
+            9.1839,
+            9.0859,
+            9.1677,
+            9.4011,
+            9.6044,
+            9.5035,
+            9.8912,
+            9.9479,
+            10.2529,
+            10.1389,
+            9.8395,
+            9.7473,
+            9.8923,
+            9.5352,
+            9.2913,
+            9.1312,
+            9.2308,
+            9.1037,
+            9.2793,
+            9.4471,
+            9.135,
+            9.3823,
+            9.2104,
+            9.2995,
+            9.1329,
+            9.0354,
+            8.9068,
+            8.8163,
+            8.9178,
+            8.944,
+            8.9165,
+            8.3684
           ],
           "quality_score": 69,
           "sizing_pct": 1,
@@ -11029,7 +10932,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Alphabet",
@@ -11110,7 +11014,7 @@
             376.37,
             361.85
           ],
-          "quality_score": 75,
+          "quality_score": 82,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11143,12 +11047,13 @@
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 66,
+          "quality_score_pre_wisdom": 73,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": "Spike theme \"earnings\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Intel",
@@ -11252,7 +11157,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Adobe",
@@ -11356,7 +11262,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "ASML",
@@ -11460,7 +11367,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Tel Aviv 125",
@@ -11561,7 +11469,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "VIX (volatilité)",
@@ -11665,7 +11574,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Texas Instruments",
@@ -11769,7 +11679,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Intuit",
@@ -11873,7 +11784,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Zscaler",
@@ -11977,7 +11889,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Thermo Fisher",
@@ -12081,7 +11994,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Intuitive Surgical",
@@ -12185,7 +12099,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "eBay",
@@ -12289,7 +12204,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "John Deere",
@@ -12393,7 +12309,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Freeport-McMoRan",
@@ -12497,7 +12414,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Barrick Gold",
@@ -12601,7 +12519,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "NIO",
@@ -12705,7 +12624,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Plug Power",
@@ -12809,7 +12729,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Kering",
@@ -12913,7 +12834,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Munich Re",
@@ -13017,7 +12939,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "GSK",
@@ -13121,7 +13044,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Glencore",
@@ -13225,7 +13149,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Baidu",
@@ -13329,7 +13254,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Carvana",
@@ -13433,7 +13359,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Rocket Lab",
@@ -13537,7 +13464,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "SMI Swiss",
@@ -13641,7 +13569,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "ASX 200 Australie",
@@ -13745,7 +13674,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "LVMH",
@@ -13849,7 +13779,113 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
+        },
+        {
+          "asset": "EUR/USD",
+          "kind": "forex",
+          "type": "kairo-squeeze",
+          "label": "Volatilité comprimée — cassure proche",
+          "timeframe": "Court terme · 3-7 jours",
+          "confidence": "medium",
+          "direction": "long",
+          "config": "ATR 0.19% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
+          "rationale": "Théorie : la volatilité finit toujours par revenir. Quand l'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).",
+          "entry": 1.163602590560913,
+          "stop": 1.1580472158748554,
+          "tp1": 1.1680468903097592,
+          "tp2": 1.1747133399330285,
+          "rr1": "0.80",
+          "rr2": "2.00",
+          "currency": "EUR",
+          "prices60": [
+            1.1543,
+            1.1522,
+            1.1435,
+            1.15,
+            1.1539,
+            1.1464,
+            1.1578,
+            1.156,
+            1.1607,
+            1.1615,
+            1.1561,
+            1.1535,
+            1.1492,
+            1.146,
+            1.1574,
+            1.1591,
+            1.1542,
+            1.151,
+            1.1541,
+            1.1687,
+            1.1659,
+            1.1691,
+            1.1675,
+            1.1769,
+            1.1799,
+            1.1809,
+            1.1783,
+            1.1741,
+            1.1784,
+            1.1744,
+            1.1706,
+            1.1684,
+            1.1706,
+            1.1723,
+            1.1718,
+            1.1685,
+            1.1729,
+            1.1727,
+            1.1692,
+            1.1716,
+            1.1747,
+            1.1732,
+            1.1769,
+            1.178,
+            1.1735,
+            1.1716,
+            1.1662,
+            1.1614,
+            1.1655,
+            1.1607,
+            1.1625,
+            1.1621,
+            1.1642,
+            1.1637,
+            1.1637,
+            1.1618,
+            1.1653,
+            1.1649,
+            1.1635,
+            1.1636
+          ],
+          "quality_score": 69,
+          "sizing_pct": 1,
+          "sizing_label": "medium",
+          "trailing_after_tp1": false,
+          "macro_reason": null,
+          "earnings_reason": null,
+          "news_sentiment": null,
+          "news_sentiment_reason": null,
+          "macro_event_reason": null,
+          "cross_asset_reason": null,
+          "sector_reason": null,
+          "stacked": false,
+          "stacked_count": null,
+          "stacked_patterns": null,
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 60,
+          "alpha_quality": null,
+          "alpha_pattern": null,
+          "alpha_rules": null,
+          "insider_signal": null,
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Elevance Health",
@@ -13953,7 +13989,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Moody's",
@@ -14057,7 +14094,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Enbridge",
@@ -14161,7 +14199,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Exelon",
@@ -14265,7 +14304,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Crown Castle",
@@ -14369,7 +14409,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Verizon",
@@ -14473,7 +14514,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Veolia",
@@ -14577,7 +14619,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "EssilorLuxottica",
@@ -14681,7 +14724,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Allianz",
@@ -14785,7 +14829,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Vodafone",
@@ -14889,7 +14934,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "ICBC",
@@ -14993,7 +15039,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "MCHI China ETF",
@@ -15097,7 +15144,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "INDA India ETF",
@@ -15201,7 +15249,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "EWW Mexico ETF",
@@ -15305,7 +15354,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "USD/NOK",
@@ -15317,10 +15367,10 @@
           "direction": "long",
           "config": "ATR 0.30% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
           "rationale": "Théorie : la volatilité finit toujours par revenir. Quand l'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).",
-          "entry": 9.267600059509277,
-          "stop": 9.197159120467052,
-          "tp1": 9.323952810743057,
-          "tp2": 9.408481937593727,
+          "entry": 9.270859718322754,
+          "stop": 9.20021138829829,
+          "tp1": 9.327378382342324,
+          "tp2": 9.41215637837168,
           "rr1": "0.80",
           "rr2": "2.00",
           "currency": "EUR",
@@ -15384,7 +15434,7 @@
             9.2445,
             9.2389,
             9.2687,
-            9.2676
+            9.2709
           ],
           "quality_score": 69,
           "sizing_pct": 1,
@@ -15409,7 +15459,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Pinterest",
@@ -15513,7 +15564,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Zoom",
@@ -15617,7 +15669,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Bristol-Myers",
@@ -15721,7 +15774,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Valero",
@@ -15825,7 +15879,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Marathon Petroleum",
@@ -15929,7 +15984,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Diageo",
@@ -16033,7 +16089,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Adyen",
@@ -16137,7 +16194,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Philips",
@@ -16241,7 +16299,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "PDD Holdings",
@@ -16345,7 +16404,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Tencent",
@@ -16449,7 +16509,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Meituan",
@@ -16553,7 +16614,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Toyota",
@@ -16657,7 +16719,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Nintendo",
@@ -16761,7 +16824,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "HDFC Bank",
@@ -16865,7 +16929,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Toyota (US ADR)",
@@ -16969,7 +17034,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "URA Uranium",
@@ -17073,7 +17139,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "DraftKings",
@@ -17177,7 +17244,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Mexico IPC",
@@ -17281,7 +17349,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "PayPal",
@@ -17385,7 +17454,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "JPMorgan",
@@ -17489,7 +17559,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Nestlé",
@@ -17593,7 +17664,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "XLF Finance",
@@ -17697,7 +17769,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "XLE Energy",
@@ -17801,7 +17874,218 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
+        },
+        {
+          "asset": "GBP/USD",
+          "kind": "forex",
+          "type": "kairo-squeeze",
+          "label": "Volatilité comprimée — cassure proche",
+          "timeframe": "Court terme · 3-7 jours",
+          "confidence": "medium",
+          "direction": "long",
+          "config": "ATR 0.32% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
+          "rationale": "Théorie : la volatilité finit toujours par revenir. Quand l'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).",
+          "entry": 1.3465837240219116,
+          "stop": 1.3356955055210695,
+          "tp1": 1.3552942988225853,
+          "tp2": 1.368360161023596,
+          "rr1": "0.80",
+          "rr2": "2.00",
+          "currency": "EUR",
+          "prices60": [
+            1.3382,
+            1.3353,
+            1.3248,
+            1.3314,
+            1.336,
+            1.3265,
+            1.3426,
+            1.3332,
+            1.3424,
+            1.3416,
+            1.3364,
+            1.3336,
+            1.3238,
+            1.3173,
+            1.3243,
+            1.3303,
+            1.323,
+            1.3186,
+            1.3234,
+            1.3402,
+            1.3394,
+            1.343,
+            1.3394,
+            1.3515,
+            1.3575,
+            1.3574,
+            1.3526,
+            1.3484,
+            1.3531,
+            1.351,
+            1.35,
+            1.3466,
+            1.3515,
+            1.3538,
+            1.3524,
+            1.3489,
+            1.3603,
+            1.3581,
+            1.3531,
+            1.3569,
+            1.3592,
+            1.3556,
+            1.3595,
+            1.3605,
+            1.3537,
+            1.3526,
+            1.3391,
+            1.3308,
+            1.3432,
+            1.3396,
+            1.3434,
+            1.3433,
+            1.3482,
+            1.3496,
+            1.3455,
+            1.3417,
+            1.3444,
+            1.3452,
+            1.346,
+            1.3466
+          ],
+          "quality_score": 64,
+          "sizing_pct": 1,
+          "sizing_label": "medium",
+          "trailing_after_tp1": false,
+          "macro_reason": null,
+          "earnings_reason": null,
+          "news_sentiment": null,
+          "news_sentiment_reason": null,
+          "macro_event_reason": null,
+          "cross_asset_reason": null,
+          "sector_reason": null,
+          "stacked": false,
+          "stacked_count": null,
+          "stacked_patterns": null,
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55,
+          "alpha_quality": null,
+          "alpha_pattern": null,
+          "alpha_rules": null,
+          "insider_signal": null,
+          "insider_reason": null,
+          "spike_theme_reason": null
+        },
+        {
+          "asset": "NZD/USD",
+          "kind": "forex",
+          "type": "kairo-squeeze",
+          "label": "Volatilité comprimée — cassure proche",
+          "timeframe": "Court terme · 3-7 jours",
+          "confidence": "medium",
+          "direction": "long",
+          "config": "ATR 0.54% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
+          "rationale": "Théorie : la volatilité finit toujours par revenir. Quand l'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).",
+          "entry": 0.593225359916687,
+          "stop": 0.5851635058112058,
+          "tp1": 0.599674843201072,
+          "tp2": 0.6093490681276494,
+          "rr1": "0.80",
+          "rr2": "2.00",
+          "currency": "EUR",
+          "prices60": [
+            0.5896,
+            0.5853,
+            0.5797,
+            0.5854,
+            0.5859,
+            0.5796,
+            0.5868,
+            0.5831,
+            0.5854,
+            0.5838,
+            0.5806,
+            0.5762,
+            0.5728,
+            0.5717,
+            0.5756,
+            0.575,
+            0.5718,
+            0.5687,
+            0.5715,
+            0.5809,
+            0.5825,
+            0.585,
+            0.5804,
+            0.5872,
+            0.5904,
+            0.5912,
+            0.5886,
+            0.5865,
+            0.5906,
+            0.5898,
+            0.5906,
+            0.5854,
+            0.5871,
+            0.5913,
+            0.5888,
+            0.5841,
+            0.5907,
+            0.5907,
+            0.5872,
+            0.5903,
+            0.5954,
+            0.5938,
+            0.595,
+            0.5965,
+            0.5952,
+            0.5932,
+            0.5904,
+            0.5833,
+            0.5874,
+            0.5833,
+            0.5868,
+            0.5879,
+            0.5873,
+            0.5862,
+            0.5842,
+            0.5892,
+            0.5946,
+            0.5982,
+            0.5936,
+            0.5932
+          ],
+          "quality_score": 64,
+          "sizing_pct": 1,
+          "sizing_label": "medium",
+          "trailing_after_tp1": false,
+          "macro_reason": null,
+          "earnings_reason": null,
+          "news_sentiment": null,
+          "news_sentiment_reason": null,
+          "macro_event_reason": null,
+          "cross_asset_reason": null,
+          "sector_reason": null,
+          "stacked": false,
+          "stacked_count": null,
+          "stacked_patterns": null,
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 55,
+          "alpha_quality": null,
+          "alpha_pattern": null,
+          "alpha_rules": null,
+          "insider_signal": null,
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "USD/MXN",
@@ -17905,7 +18189,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Roku",
@@ -18009,7 +18294,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "American Express",
@@ -18113,7 +18399,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "US Bancorp",
@@ -18217,7 +18504,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Truist",
@@ -18321,7 +18609,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Progressive",
@@ -18425,7 +18714,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Schlumberger",
@@ -18529,7 +18819,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "BP",
@@ -18633,7 +18924,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Simon Property",
@@ -18737,7 +19029,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Equinix",
@@ -18841,7 +19134,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Comcast",
@@ -18945,7 +19239,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "T-Mobile",
@@ -19049,7 +19344,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Warner Bros Discovery",
@@ -19153,7 +19449,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "AXA",
@@ -19257,7 +19554,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Hermès",
@@ -19361,7 +19659,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Deutsche Bank",
@@ -19465,7 +19764,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Deutsche Telekom",
@@ -19569,7 +19869,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Shell (UK)",
@@ -19673,7 +19974,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "ENI",
@@ -19777,7 +20079,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Intesa Sanpaolo",
@@ -19881,7 +20184,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Telefónica",
@@ -19985,7 +20289,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Iberdrola",
@@ -20089,7 +20394,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "TCS",
@@ -20193,7 +20499,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "TotalEnergies (US ADR)",
@@ -20297,7 +20604,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "XLV Healthcare",
@@ -20401,7 +20709,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "XLI Industrials",
@@ -20505,7 +20814,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "XLB Materials",
@@ -20609,7 +20919,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "KRE Regional Banks",
@@ -20713,7 +21024,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "KBE Banks",
@@ -20817,7 +21129,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "ITA Aerospace",
@@ -20921,7 +21234,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "EWU UK ETF",
@@ -21025,7 +21339,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "USD/SEK",
@@ -21037,10 +21352,10 @@
           "direction": "long",
           "config": "ATR 0.38% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
           "rationale": "Théorie : la volatilité finit toujours par revenir. Quand l'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).",
-          "entry": 9.295900344848633,
-          "stop": 9.206960851698947,
-          "tp1": 9.367051939368382,
-          "tp2": 9.473779331148005,
+          "entry": 9.304129600524902,
+          "stop": 9.216659892298496,
+          "tp1": 9.374105367106027,
+          "tp2": 9.479069016977714,
           "rr1": "0.80",
           "rr2": "2.00",
           "currency": "EUR",
@@ -21104,7 +21419,7 @@
             9.2491,
             9.2391,
             9.3068,
-            9.2959
+            9.3041
           ],
           "quality_score": 64,
           "sizing_pct": 1,
@@ -21129,7 +21444,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "USD/BRL",
@@ -21233,7 +21549,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "USD/INR",
@@ -21337,7 +21654,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         }
       ]
     },
@@ -21474,7 +21792,8 @@
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": "Spike theme \"bitcoin\" ×36 (6 mentions/24h)"
         }
       ]
     },
@@ -21498,10 +21817,10 @@
           "direction": "long",
           "config": "RSI 20 (<22 survente extrême) · Bollinger -19% · ADX 61 · stop 0.5 ATR · cible 7 ATR (R/R 14:1)",
           "rationale": "Quality 98 : pattern contrarian validé 14 ans walk-forward. ALPHA détecte une survente extrême (RSI<22) avec contraction Bollinger et ADX en hausse. Position taken at quality ≥ 85 only.",
-          "entry": 67785.15096318361,
-          "stop": 67255.89495058985,
-          "tp1": 71489.94305133993,
-          "tp2": 75194.73513949625,
+          "entry": 67768.8462898213,
+          "stop": 67239.00796746461,
+          "tp1": 71477.7145463182,
+          "tp2": 75186.58280281509,
           "rr1": "7.00",
           "rr2": "14.00",
           "currency": "USD",
@@ -21565,7 +21884,7 @@
             73751.0679,
             73593.3712,
             71360.3252,
-            67785.151
+            67768.8463
           ],
           "quality_score": 100,
           "sizing_pct": 3,
@@ -21613,7 +21932,8 @@
             "sizing_pct": 18
           },
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": "Spike theme \"bitcoin\" ×36 (6 mentions/24h)"
         },
         {
           "asset": "ADA",
@@ -21625,10 +21945,10 @@
           "direction": "long",
           "config": "RSI 19 (<22 survente extrême) · Bollinger -7% · ADX 62 · stop 0.5 ATR · cible 7 ATR (R/R 14:1)",
           "rationale": "Quality 93 : pattern contrarian validé 14 ans walk-forward. ALPHA détecte une survente extrême (RSI<22) avec contraction Bollinger et ADX en hausse. Position taken at quality ≥ 85 only.",
-          "entry": 0.2174599908553105,
-          "stop": 0.2156762285698729,
-          "tp1": 0.22994632685337382,
-          "tp2": 0.24243266285143716,
+          "entry": 0.2176530477044565,
+          "stop": 0.2158761803064884,
+          "tp1": 0.23009111949023334,
+          "tp2": 0.24252919127601014,
           "rr1": "7.00",
           "rr2": "14.00",
           "currency": "USD",
@@ -21692,7 +22012,7 @@
             0.2354,
             0.2351,
             0.2307,
-            0.2175
+            0.2177
           ],
           "quality_score": 100,
           "sizing_pct": 3,
@@ -21725,7 +22045,8 @@
             "sizing_pct": 18
           },
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "LTC",
@@ -21737,10 +22058,10 @@
           "direction": "long",
           "config": "RSI 19 (<22 survente extrême) · Bollinger -6% · ADX 61 · stop 0.5 ATR · cible 7 ATR (R/R 14:1)",
           "rationale": "Quality 92 : pattern contrarian validé 14 ans walk-forward. ALPHA détecte une survente extrême (RSI<22) avec contraction Bollinger et ADX en hausse. Position taken at quality ≥ 85 only.",
-          "entry": 48.242412883434014,
-          "stop": 47.88217268040847,
-          "tp1": 50.764094304612826,
-          "tp2": 53.28577572579163,
+          "entry": 48.23974464637581,
+          "stop": 47.87940914916962,
+          "tp1": 50.76209312681917,
+          "tp2": 53.28444160726253,
           "rr1": "7.00",
           "rr2": "14.00",
           "currency": "USD",
@@ -21804,7 +22125,7 @@
             52.3356,
             51.9549,
             50.7125,
-            48.2424
+            48.2397
           ],
           "quality_score": 100,
           "sizing_pct": 3,
@@ -21837,7 +22158,8 @@
             "sizing_pct": 18
           },
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Starbucks",
@@ -21949,7 +22271,8 @@
             "sizing_pct": 18
           },
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "KLCI Malaisie",
@@ -22061,7 +22384,8 @@
             "sizing_pct": 18
           },
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Regeneron",
@@ -22173,7 +22497,8 @@
             "sizing_pct": 18
           },
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Intercontinental Exchange",
@@ -22285,7 +22610,8 @@
             "sizing_pct": 18
           },
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Ping An Insurance",
@@ -22397,7 +22723,8 @@
             "sizing_pct": 18
           },
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "Walmart",
@@ -22509,7 +22836,8 @@
             "sizing_pct": 18
           },
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": null
         },
         {
           "asset": "MicroStrategy",
@@ -22590,7 +22918,7 @@
             149.78,
             136.08
           ],
-          "quality_score": 90,
+          "quality_score": 99,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -22631,7 +22959,8 @@
             "sizing_pct": 18
           },
           "insider_signal": null,
-          "insider_reason": null
+          "insider_reason": null,
+          "spike_theme_reason": "Spike theme \"bitcoin\" ×36 (6 mentions/24h)"
         }
       ]
     }
@@ -23000,11 +23329,11 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 67785.15096318361,
-      "change": "-5.01",
+      "price": 67768.8462898213,
+      "change": "-5.03",
       "rsi": "20",
       "maCross": "bear",
-      "macdHist": "-860.21",
+      "macdHist": "-861.25",
       "boll": "-19%",
       "adx": "61",
       "atr": "1.6%",
@@ -23015,11 +23344,11 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 1906.3390639001607,
-      "change": "-4.84",
+      "price": 1905.15219776971,
+      "change": "-4.90",
       "rsi": "24",
       "maCross": "bear",
-      "macdHist": "-11.78",
+      "macdHist": "-11.85",
       "boll": "-4%",
       "adx": "52",
       "atr": "1.5%",
@@ -23030,11 +23359,11 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 75.82541656353047,
-      "change": "-6.54",
+      "price": 75.8620369766088,
+      "change": "-6.50",
       "rsi": "27",
       "maCross": "bear",
-      "macdHist": "-0.81",
+      "macdHist": "-0.80",
       "boll": "-16%",
       "adx": "47",
       "atr": "1.7%",
@@ -23045,13 +23374,13 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "price": 660.3369753693036,
-      "change": "-4.64",
+      "price": 661.0373430232021,
+      "change": "-4.54",
       "rsi": "55",
       "maCross": "bull",
-      "macdHist": "1.91",
+      "macdHist": "1.96",
       "boll": "49%",
-      "adx": "10",
+      "adx": "11",
       "atr": "2.2%",
       "verdict": "Haussier fort",
       "score": 76,
@@ -23060,7 +23389,7 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "price": 1.2292610210071262,
+      "price": 1.2292176625918516,
       "change": "-5.06",
       "rsi": "25",
       "maCross": "bear",
@@ -23075,8 +23404,8 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "price": 0.2174599908553105,
-      "change": "-5.72",
+      "price": 0.2176530477044565,
+      "change": "-5.64",
       "rsi": "19",
       "maCross": "bear",
       "macdHist": "-0.00",
@@ -23088,25 +23417,40 @@
       "cls": "bear"
     },
     {
-      "label": "TRX",
+      "label": "DOGE",
       "kind": "crypto",
-      "price": 0.33538997023214323,
-      "change": "-2.29",
-      "rsi": "37",
+      "price": 0.09467639943659859,
+      "change": "-6.08",
+      "rsi": "27",
       "maCross": "bull",
       "macdHist": "-0.00",
-      "boll": "-4%",
-      "adx": "26",
-      "atr": "1.7%",
-      "verdict": "Plutôt baissier",
-      "score": 33,
+      "boll": "4%",
+      "adx": "45",
+      "atr": "1.4%",
+      "verdict": "Indécis",
+      "score": 50,
+      "cls": "neutral"
+    },
+    {
+      "label": "AVAX",
+      "kind": "crypto",
+      "price": 8.368437203891391,
+      "change": "-6.15",
+      "rsi": "34",
+      "maCross": "bear",
+      "macdHist": "-0.07",
+      "boll": "-14%",
+      "adx": "31",
+      "atr": "2.0%",
+      "verdict": "Baissier fort",
+      "score": 13,
       "cls": "bear"
     },
     {
       "label": "LTC",
       "kind": "crypto",
-      "price": 48.242412883434014,
-      "change": "-4.87",
+      "price": 48.23974464637581,
+      "change": "-4.88",
       "rsi": "19",
       "maCross": "bear",
       "macdHist": "-0.39",
@@ -23115,36 +23459,6 @@
       "atr": "1.5%",
       "verdict": "Baissier fort",
       "score": 30,
-      "cls": "bear"
-    },
-    {
-      "label": "UNI",
-      "kind": "crypto",
-      "price": 2.8435938531479485,
-      "change": "-4.52",
-      "rsi": "23",
-      "maCross": "bear",
-      "macdHist": "-0.06",
-      "boll": "3%",
-      "adx": "54",
-      "atr": "2.8%",
-      "verdict": "Baissier fort",
-      "score": 30,
-      "cls": "bear"
-    },
-    {
-      "label": "ATOM",
-      "kind": "crypto",
-      "price": 1.8297957401429235,
-      "change": "-3.85",
-      "rsi": "36",
-      "maCross": "bull",
-      "macdHist": "-0.03",
-      "boll": "-11%",
-      "adx": "28",
-      "atr": "3.0%",
-      "verdict": "Plutôt baissier",
-      "score": 33,
       "cls": "bear"
     },
     {
@@ -24080,12 +24394,12 @@
     {
       "label": "EUR/USD",
       "kind": "forex",
-      "price": 1.1635,
-      "change": "-0.00",
+      "price": 1.1636,
+      "change": "0.00",
       "rsi": "37",
       "maCross": "bull",
       "macdHist": "-0.00",
-      "boll": "34%",
+      "boll": "35%",
       "adx": "26",
       "atr": "0.2%",
       "verdict": "Plutôt baissier",
@@ -24095,7 +24409,7 @@
     {
       "label": "GBP/USD",
       "kind": "forex",
-      "price": 1.3465,
+      "price": 1.3466,
       "change": "0.04",
       "rsi": "45",
       "maCross": "bull",
@@ -24103,19 +24417,19 @@
       "boll": "47%",
       "adx": "10",
       "atr": "0.3%",
-      "verdict": "Plutôt baissier",
-      "score": 43,
+      "verdict": "Indécis",
+      "score": 51,
       "cls": "neutral"
     },
     {
       "label": "USD/JPY",
       "kind": "forex",
-      "price": 159.87,
+      "price": 159.881,
       "change": "0.15",
       "rsi": "83",
       "maCross": "bear",
       "macdHist": "0.15",
-      "boll": "83%",
+      "boll": "84%",
       "adx": "66",
       "atr": "0.1%",
       "verdict": "Plutôt haussier",
@@ -24130,7 +24444,7 @@
       "rsi": "57",
       "maCross": "bear",
       "macdHist": "0.00",
-      "boll": "72%",
+      "boll": "73%",
       "adx": "14",
       "atr": "0.3%",
       "verdict": "Plutôt haussier",
@@ -24155,8 +24469,8 @@
     {
       "label": "USD/CAD",
       "kind": "forex",
-      "price": 1.3837,
-      "change": "-0.02",
+      "price": 1.3838,
+      "change": "-0.01",
       "rsi": "72",
       "maCross": "bear",
       "macdHist": "0.00",
@@ -24175,7 +24489,7 @@
       "rsi": "50",
       "maCross": "bull",
       "macdHist": "0.00",
-      "boll": "63%",
+      "boll": "64%",
       "adx": "0",
       "atr": "0.5%",
       "verdict": "Haussier fort",
@@ -24185,28 +24499,28 @@
     {
       "label": "EUR/GBP",
       "kind": "forex",
-      "price": 0.8637,
-      "change": "-0.08",
+      "price": 0.8638,
+      "change": "-0.07",
       "rsi": "45",
       "maCross": "bear",
       "macdHist": "-0.00",
-      "boll": "26%",
+      "boll": "27%",
       "adx": "10",
       "atr": "0.2%",
       "verdict": "Baissier fort",
-      "score": 6,
+      "score": 14,
       "cls": "bear"
     },
     {
       "label": "EUR/JPY",
       "kind": "forex",
-      "price": 185.959,
-      "change": "0.12",
-      "rsi": "66",
+      "price": 185.895,
+      "change": "0.08",
+      "rsi": "65",
       "maCross": "bear",
-      "macdHist": "0.14",
-      "boll": "96%",
-      "adx": "32",
+      "macdHist": "0.13",
+      "boll": "94%",
+      "adx": "30",
       "atr": "0.1%",
       "verdict": "Plutôt haussier",
       "score": 67,
@@ -28910,27 +29224,27 @@
     {
       "label": "USD/SEK",
       "kind": "forex",
-      "price": 9.2959,
-      "change": "-0.12",
-      "rsi": "47",
+      "price": 9.3041,
+      "change": "-0.03",
+      "rsi": "48",
       "maCross": "bull",
       "macdHist": "-0.01",
-      "boll": "45%",
-      "adx": "5",
+      "boll": "48%",
+      "adx": "3",
       "atr": "0.4%",
       "verdict": "Plutôt baissier",
-      "score": 31,
+      "score": 37,
       "cls": "bear"
     },
     {
       "label": "USD/NOK",
       "kind": "forex",
-      "price": 9.2676,
-      "change": "-0.01",
-      "rsi": "63",
+      "price": 9.2709,
+      "change": "0.02",
+      "rsi": "64",
       "maCross": "bear",
       "macdHist": "0.01",
-      "boll": "62%",
+      "boll": "64%",
       "adx": "27",
       "atr": "0.3%",
       "verdict": "Haussier fort",
@@ -28940,8 +29254,8 @@
     {
       "label": "USD/ZAR",
       "kind": "forex",
-      "price": 16.2277,
-      "change": "-0.40",
+      "price": 16.2295,
+      "change": "-0.39",
       "rsi": "44",
       "maCross": "bear",
       "macdHist": "-0.02",
@@ -28985,22 +29299,22 @@
     {
       "label": "USD/TRY",
       "kind": "forex",
-      "price": 45.9238,
-      "change": "-0.00",
+      "price": 45.9324,
+      "change": "0.02",
       "rsi": "91",
       "maCross": "bull",
-      "macdHist": "-0.00",
-      "boll": "81%",
-      "adx": "81",
+      "macdHist": "0.00",
+      "boll": "82%",
+      "adx": "82",
       "atr": "0.1%",
-      "verdict": "Plutôt haussier",
-      "score": 63,
+      "verdict": "Haussier fort",
+      "score": 83,
       "cls": "bull"
     },
     {
       "label": "AUD/JPY",
       "kind": "forex",
-      "price": 114.786,
+      "price": 114.78,
       "change": "0.36",
       "rsi": "53",
       "maCross": "bull",
@@ -29015,9 +29329,9 @@
     {
       "label": "GBP/JPY",
       "kind": "forex",
-      "price": 215.245,
+      "price": 215.236,
       "change": "0.17",
-      "rsi": "62",
+      "rsi": "61",
       "maCross": "bear",
       "macdHist": "0.18",
       "boll": "95%",
@@ -29030,12 +29344,12 @@
     {
       "label": "CHF/JPY",
       "kind": "forex",
-      "price": 203.1,
-      "change": "0.06",
-      "rsi": "59",
+      "price": 203.138,
+      "change": "0.07",
+      "rsi": "60",
       "maCross": "bull",
-      "macdHist": "0.12",
-      "boll": "77%",
+      "macdHist": "0.13",
+      "boll": "78%",
       "adx": "19",
       "atr": "0.2%",
       "verdict": "Haussier fort",
@@ -29045,13 +29359,13 @@
     {
       "label": "CAD/JPY",
       "kind": "forex",
-      "price": 115.493,
-      "change": "0.14",
+      "price": 115.501,
+      "change": "0.15",
       "rsi": "59",
       "maCross": "bear",
       "macdHist": "0.03",
-      "boll": "70%",
-      "adx": "17",
+      "boll": "71%",
+      "adx": "18",
       "atr": "0.1%",
       "verdict": "Plutôt haussier",
       "score": 63,
@@ -29899,22 +30213,22 @@
     }
   ],
   "news_summary": {
-    "window_news": 57,
-    "matched_assets": 16
+    "window_news": 65,
+    "matched_assets": 19
   },
   "macro": {
     "vix": 15.77,
     "vixRegime": "normal",
-    "dxy": 99.2,
+    "dxy": 99.21,
     "dxyTrend": "neutral",
     "cross_asset": {
       "sp500_change": 0.1292088941155246,
       "nasdaq_change": 0.026174524083338244,
-      "btc_change": -5.0100307690442225,
+      "btc_change": -5.0328791421613275,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": true,
-      "reason": "BTC -5.01% → crypto dump"
+      "reason": "BTC -5.03% → crypto dump"
     },
     "next_event": null
   },
@@ -29922,7 +30236,7 @@
     "current_state": {
       "vix": 15.77,
       "yield_curve": null,
-      "btc_30d_change": -15.081619382446856,
+      "btc_30d_change": -15.102045190145908,
       "sp500_30d_change": 7.726065473282398,
       "dominant_sectors": [
         "SOXX",
@@ -29944,13 +30258,13 @@
       "fed"
     ],
     "theme_counts": {
+      "fed": 12,
+      "war": 4,
+      "crypto": 21,
       "tech": 13,
       "earnings": 9,
-      "geopolitical": 4,
-      "war": 2,
+      "geopolitical": 5,
       "oil": 3,
-      "fed": 11,
-      "crypto": 20,
       "credit": 1
     },
     "top_sectors_60d": [
@@ -30084,18 +30398,18 @@
       }
     ],
     "enriched_themes": {
-      "ev_battery": 9,
+      "ev_battery": 10,
       "ai_breakthrough": 1,
       "crypto_hack": 2,
       "defi_growth": 2
     },
     "etf_flows": {},
     "geo_risk": {
-      "index": 16,
+      "index": 24,
       "level": "low",
-      "war": 2,
+      "war": 4,
       "credit": 1,
-      "geopol": 4
+      "geopol": 5
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -30346,7 +30660,7 @@
       "label": "BTC",
       "kind": "crypto",
       "rsi": 20,
-      "change": -5.01,
+      "change": -5.03,
       "adx": 61,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -30356,7 +30670,7 @@
       "label": "ETH",
       "kind": "crypto",
       "rsi": 24,
-      "change": -4.84,
+      "change": -4.9,
       "adx": 52,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -30366,7 +30680,7 @@
       "label": "SOL",
       "kind": "crypto",
       "rsi": 27,
-      "change": -6.54,
+      "change": -6.5,
       "adx": 47,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -30376,8 +30690,8 @@
       "label": "BNB",
       "kind": "crypto",
       "rsi": 55,
-      "change": -4.64,
-      "adx": 10,
+      "change": -4.54,
+      "adx": 11,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 76
@@ -30396,51 +30710,41 @@
       "label": "ADA",
       "kind": "crypto",
       "rsi": 19,
-      "change": -5.72,
+      "change": -5.64,
       "adx": 62,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 30
     },
     {
-      "label": "TRX",
+      "label": "DOGE",
       "kind": "crypto",
-      "rsi": 37,
-      "change": -2.29,
-      "adx": 26,
-      "verdict": "Plutôt baissier",
+      "rsi": 27,
+      "change": -6.08,
+      "adx": 45,
+      "verdict": "Indécis",
+      "cls": "neutral",
+      "score": 50
+    },
+    {
+      "label": "AVAX",
+      "kind": "crypto",
+      "rsi": 34,
+      "change": -6.15,
+      "adx": 31,
+      "verdict": "Baissier fort",
       "cls": "bear",
-      "score": 33
+      "score": 13
     },
     {
       "label": "LTC",
       "kind": "crypto",
       "rsi": 19,
-      "change": -4.87,
+      "change": -4.88,
       "adx": 61,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 30
-    },
-    {
-      "label": "UNI",
-      "kind": "crypto",
-      "rsi": 23,
-      "change": -4.52,
-      "adx": 54,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 30
-    },
-    {
-      "label": "ATOM",
-      "kind": "crypto",
-      "rsi": 36,
-      "change": -3.85,
-      "adx": 28,
-      "verdict": "Plutôt baissier",
-      "cls": "bear",
-      "score": 33
     },
     {
       "label": "Apple",
@@ -31078,9 +31382,9 @@
       "rsi": 45,
       "change": 0.04,
       "adx": 10,
-      "verdict": "Plutôt baissier",
+      "verdict": "Indécis",
       "cls": "neutral",
-      "score": 43
+      "score": 51
     },
     {
       "label": "USD/JPY",
@@ -31116,7 +31420,7 @@
       "label": "USD/CAD",
       "kind": "forex",
       "rsi": 72,
-      "change": -0.02,
+      "change": -0.01,
       "adx": 44,
       "verdict": "Plutôt haussier",
       "cls": "bull",
@@ -31136,18 +31440,18 @@
       "label": "EUR/GBP",
       "kind": "forex",
       "rsi": 45,
-      "change": -0.08,
+      "change": -0.07,
       "adx": 10,
       "verdict": "Baissier fort",
       "cls": "bear",
-      "score": 6
+      "score": 14
     },
     {
       "label": "EUR/JPY",
       "kind": "forex",
-      "rsi": 66,
-      "change": 0.12,
-      "adx": 32,
+      "rsi": 65,
+      "change": 0.08,
+      "adx": 30,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 67
@@ -34285,18 +34589,18 @@
     {
       "label": "USD/SEK",
       "kind": "forex",
-      "rsi": 47,
-      "change": -0.12,
-      "adx": 5,
+      "rsi": 48,
+      "change": -0.03,
+      "adx": 3,
       "verdict": "Plutôt baissier",
       "cls": "bear",
-      "score": 31
+      "score": 37
     },
     {
       "label": "USD/NOK",
       "kind": "forex",
-      "rsi": 63,
-      "change": -0.01,
+      "rsi": 64,
+      "change": 0.02,
       "adx": 27,
       "verdict": "Haussier fort",
       "cls": "bull",
@@ -34306,7 +34610,7 @@
       "label": "USD/ZAR",
       "kind": "forex",
       "rsi": 44,
-      "change": -0.4,
+      "change": -0.39,
       "adx": 12,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -34336,11 +34640,11 @@
       "label": "USD/TRY",
       "kind": "forex",
       "rsi": 91,
-      "change": 0,
-      "adx": 81,
-      "verdict": "Plutôt haussier",
+      "change": 0.02,
+      "adx": 82,
+      "verdict": "Haussier fort",
       "cls": "bull",
-      "score": 63
+      "score": 83
     },
     {
       "label": "AUD/JPY",
@@ -34355,7 +34659,7 @@
     {
       "label": "GBP/JPY",
       "kind": "forex",
-      "rsi": 62,
+      "rsi": 61,
       "change": 0.17,
       "adx": 23,
       "verdict": "Plutôt haussier",
@@ -34365,8 +34669,8 @@
     {
       "label": "CHF/JPY",
       "kind": "forex",
-      "rsi": 59,
-      "change": 0.06,
+      "rsi": 60,
+      "change": 0.07,
       "adx": 19,
       "verdict": "Haussier fort",
       "cls": "bull",
@@ -34376,8 +34680,8 @@
       "label": "CAD/JPY",
       "kind": "forex",
       "rsi": 59,
-      "change": 0.14,
-      "adx": 17,
+      "change": 0.15,
+      "adx": 18,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 63
