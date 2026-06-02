@@ -9258,7 +9258,7 @@
       if (navigator.vibrate) navigator.vibrate([12, 60, 28, 60, 48]);
       playValidationAnim(ch, () => {
         const goNext = () => {
-          if (ch >= 7) setTimeout(() => { window.location.href = 'index.html#feed'; }, 200);
+          if (ch >= 7) setTimeout(() => { window.location.href = 'index.html#modules'; }, 200);
           else showHub();
         };
         const recap = CHAPTER_TAKEAWAYS[ch];
@@ -9410,13 +9410,13 @@
       }
     })();
   </script>
-  <script type="module" src="tg-common.js?v=1120"></script>
-  <script src="tg-analyst.js?v=1120"></script>
-  <script src="tg-bubble.js?v=1120"></script>
+  <script type="module" src="tg-common.js?v=1121"></script>
+  <script src="tg-analyst.js?v=1121"></script>
+  <script src="tg-bubble.js?v=1121"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=1120').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=1121').catch(() => {});
       });
     }
   </script>
