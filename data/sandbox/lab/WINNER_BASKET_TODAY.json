@@ -1,0 +1,62 @@
+{
+  "date": "2026-05-31",
+  "config_name": "Mix BH 50/50",
+  "capital_example": 10000,
+  "allocation_consolidated": {
+    "TQQQ": {
+      "weight_pct": 18.336999999999996,
+      "eur_for_10k": 1833.6999999999998,
+      "price": 52.63298034667969,
+      "shares": 34.839372346424184
+    },
+    "TLT": {
+      "weight_pct": 25.002000000000002,
+      "eur_for_10k": 2500.2000000000003,
+      "price": 85.87860107421875,
+      "shares": 29.11318965057728
+    },
+    "GLD": {
+      "weight_pct": 10.001,
+      "eur_for_10k": 1000.1,
+      "price": 396.30999755859375,
+      "shares": 2.523529575738591
+    },
+    "BTC-USD": {
+      "weight_pct": 6.667999999999999,
+      "eur_for_10k": 666.7999999999998,
+      "price": 88731.984375,
+      "shares": 0.007514764880969674
+    },
+    "ETH-USD": {
+      "weight_pct": 5.0009999999999994,
+      "eur_for_10k": 500.09999999999997,
+      "price": 3000.394287109375,
+      "shares": 0.16667809365875172
+    },
+    "SOL-USD": {
+      "weight_pct": 3.334,
+      "eur_for_10k": 333.40000000000003,
+      "price": 126.76112365722656,
+      "shares": 2.6301439304178427
+    },
+    "XLK": {
+      "weight_pct": 1.667,
+      "eur_for_10k": 166.70000000000002,
+      "price": 143.7912139892578,
+      "shares": 1.1593197899591672
+    },
+    "SPY": {
+      "weight_pct": 30.0,
+      "eur_for_10k": 3000.0,
+      "price": 680.062744140625,
+      "shares": 4.4113576664032825
+    }
+  },
+  "rules": {
+    "rebal_days": 21,
+    "rebal_dates": "Tous les 1er du mois",
+    "note_crypto_rotation": "IA CRYPTO recompute le top 2 momentum 30j chaque mois (BTC/ETH/SOL)",
+    "note_meta_split": "META = 33% IA INDICES + 33% IA CRYPTO + 33% IA MIXTE",
+    "note_mix": "50% B&H safe + 50% META leveraged"
+  }
+}

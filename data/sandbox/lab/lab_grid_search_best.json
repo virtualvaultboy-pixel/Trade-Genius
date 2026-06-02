@@ -1,0 +1,1288 @@
+{
+  "top15_score": [
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 5,
+        "rebal_days": 21,
+        "sma_len": 60,
+        "stop_pct": 25,
+        "min_mom_pct": 5
+      },
+      "compound": 6273,
+      "median": 22,
+      "worst_dd": 21,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 1838
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 5,
+        "rebal_days": 7,
+        "sma_len": 60,
+        "stop_pct": 10,
+        "min_mom_pct": 10
+      },
+      "compound": 5612,
+      "median": 12,
+      "worst_dd": 20,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 1680
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 14,
+        "sma_len": 100,
+        "stop_pct": 15,
+        "min_mom_pct": 10
+      },
+      "compound": 3996,
+      "median": 14,
+      "worst_dd": 23,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1414
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 150,
+        "stop_pct": 10,
+        "min_mom_pct": 5
+      },
+      "compound": 2299,
+      "median": 29,
+      "worst_dd": 3,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1306
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 14,
+        "sma_len": 60,
+        "stop_pct": 25,
+        "min_mom_pct": 5
+      },
+      "compound": 3391,
+      "median": 36,
+      "worst_dd": 23,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1204
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 3,
+        "rebal_days": 14,
+        "sma_len": 100,
+        "stop_pct": 10,
+        "min_mom_pct": 0
+      },
+      "compound": 2745,
+      "median": 49,
+      "worst_dd": 15,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1156
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 5,
+        "rebal_days": 7,
+        "sma_len": 60,
+        "stop_pct": 25,
+        "min_mom_pct": 10
+      },
+      "compound": 2956,
+      "median": 22,
+      "worst_dd": 18,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1153
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 14,
+        "sma_len": 60,
+        "stop_pct": 15,
+        "min_mom_pct": 0
+      },
+      "compound": 2979,
+      "median": 33,
+      "worst_dd": 24,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1027
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 3,
+        "rebal_days": 7,
+        "sma_len": 100,
+        "stop_pct": 10,
+        "min_mom_pct": 10
+      },
+      "compound": 2521,
+      "median": 46,
+      "worst_dd": 17,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1008
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 7,
+        "sma_len": 60,
+        "stop_pct": 15,
+        "min_mom_pct": 5
+      },
+      "compound": 3565,
+      "median": 18,
+      "worst_dd": 24,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 986
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 100,
+        "stop_pct": 25,
+        "min_mom_pct": 5
+      },
+      "compound": 2760,
+      "median": 12,
+      "worst_dd": 24,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 955
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 2,
+        "rebal_days": 14,
+        "sma_len": 100,
+        "stop_pct": 15,
+        "min_mom_pct": 5
+      },
+      "compound": 2781,
+      "median": 20,
+      "worst_dd": 25,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 943
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 3,
+        "rebal_days": 21,
+        "sma_len": 60,
+        "stop_pct": 15,
+        "min_mom_pct": 0
+      },
+      "compound": 1836,
+      "median": 38,
+      "worst_dd": 18,
+      "n_positive": 6,
+      "n_total": 8,
+      "score": 867
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 150,
+        "stop_pct": 15,
+        "min_mom_pct": 10
+      },
+      "compound": 2254,
+      "median": 3,
+      "worst_dd": 10,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 845
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 150,
+        "stop_pct": 10,
+        "min_mom_pct": 0
+      },
+      "compound": 2166,
+      "median": 9,
+      "worst_dd": 9,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 832
+    }
+  ],
+  "top10_compound": [
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 5,
+        "rebal_days": 21,
+        "sma_len": 60,
+        "stop_pct": 25,
+        "min_mom_pct": 5
+      },
+      "compound": 6273,
+      "median": 22,
+      "worst_dd": 21,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 1838
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 5,
+        "rebal_days": 7,
+        "sma_len": 60,
+        "stop_pct": 10,
+        "min_mom_pct": 10
+      },
+      "compound": 5612,
+      "median": 12,
+      "worst_dd": 20,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 1680
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 14,
+        "sma_len": 100,
+        "stop_pct": 15,
+        "min_mom_pct": 10
+      },
+      "compound": 3996,
+      "median": 14,
+      "worst_dd": 23,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1414
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 7,
+        "sma_len": 60,
+        "stop_pct": 15,
+        "min_mom_pct": 5
+      },
+      "compound": 3565,
+      "median": 18,
+      "worst_dd": 24,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 986
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 150,
+        "stop_pct": 25,
+        "min_mom_pct": 10
+      },
+      "compound": 3413,
+      "median": 19,
+      "worst_dd": NaN,
+      "n_positive": 6,
+      "n_total": 8,
+      "score": NaN
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 14,
+        "sma_len": 60,
+        "stop_pct": 25,
+        "min_mom_pct": 5
+      },
+      "compound": 3391,
+      "median": 36,
+      "worst_dd": 23,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1204
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 14,
+        "sma_len": 60,
+        "stop_pct": 15,
+        "min_mom_pct": 0
+      },
+      "compound": 2979,
+      "median": 33,
+      "worst_dd": 24,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1027
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 5,
+        "rebal_days": 7,
+        "sma_len": 60,
+        "stop_pct": 25,
+        "min_mom_pct": 10
+      },
+      "compound": 2956,
+      "median": 22,
+      "worst_dd": 18,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1153
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 2,
+        "rebal_days": 14,
+        "sma_len": 100,
+        "stop_pct": 15,
+        "min_mom_pct": 5
+      },
+      "compound": 2781,
+      "median": 20,
+      "worst_dd": 25,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 943
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 100,
+        "stop_pct": 25,
+        "min_mom_pct": 5
+      },
+      "compound": 2760,
+      "median": 12,
+      "worst_dd": 24,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 955
+    }
+  ],
+  "all": [
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 5,
+        "rebal_days": 21,
+        "sma_len": 60,
+        "stop_pct": 25,
+        "min_mom_pct": 5
+      },
+      "compound": 6273,
+      "median": 22,
+      "worst_dd": 21,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 1838
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 5,
+        "rebal_days": 7,
+        "sma_len": 60,
+        "stop_pct": 10,
+        "min_mom_pct": 10
+      },
+      "compound": 5612,
+      "median": 12,
+      "worst_dd": 20,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 1680
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 14,
+        "sma_len": 100,
+        "stop_pct": 15,
+        "min_mom_pct": 10
+      },
+      "compound": 3996,
+      "median": 14,
+      "worst_dd": 23,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1414
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 150,
+        "stop_pct": 10,
+        "min_mom_pct": 5
+      },
+      "compound": 2299,
+      "median": 29,
+      "worst_dd": 3,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1306
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 14,
+        "sma_len": 60,
+        "stop_pct": 25,
+        "min_mom_pct": 5
+      },
+      "compound": 3391,
+      "median": 36,
+      "worst_dd": 23,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1204
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 3,
+        "rebal_days": 14,
+        "sma_len": 100,
+        "stop_pct": 10,
+        "min_mom_pct": 0
+      },
+      "compound": 2745,
+      "median": 49,
+      "worst_dd": 15,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1156
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 5,
+        "rebal_days": 7,
+        "sma_len": 60,
+        "stop_pct": 25,
+        "min_mom_pct": 10
+      },
+      "compound": 2956,
+      "median": 22,
+      "worst_dd": 18,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1153
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 14,
+        "sma_len": 60,
+        "stop_pct": 15,
+        "min_mom_pct": 0
+      },
+      "compound": 2979,
+      "median": 33,
+      "worst_dd": 24,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1027
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 3,
+        "rebal_days": 7,
+        "sma_len": 100,
+        "stop_pct": 10,
+        "min_mom_pct": 10
+      },
+      "compound": 2521,
+      "median": 46,
+      "worst_dd": 17,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 1008
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 7,
+        "sma_len": 60,
+        "stop_pct": 15,
+        "min_mom_pct": 5
+      },
+      "compound": 3565,
+      "median": 18,
+      "worst_dd": 24,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 986
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 100,
+        "stop_pct": 25,
+        "min_mom_pct": 5
+      },
+      "compound": 2760,
+      "median": 12,
+      "worst_dd": 24,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 955
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 2,
+        "rebal_days": 14,
+        "sma_len": 100,
+        "stop_pct": 15,
+        "min_mom_pct": 5
+      },
+      "compound": 2781,
+      "median": 20,
+      "worst_dd": 25,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 943
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 3,
+        "rebal_days": 21,
+        "sma_len": 60,
+        "stop_pct": 15,
+        "min_mom_pct": 0
+      },
+      "compound": 1836,
+      "median": 38,
+      "worst_dd": 18,
+      "n_positive": 6,
+      "n_total": 8,
+      "score": 867
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 150,
+        "stop_pct": 15,
+        "min_mom_pct": 10
+      },
+      "compound": 2254,
+      "median": 3,
+      "worst_dd": 10,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 845
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 150,
+        "stop_pct": 10,
+        "min_mom_pct": 0
+      },
+      "compound": 2166,
+      "median": 9,
+      "worst_dd": 9,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 832
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 5,
+        "rebal_days": 7,
+        "sma_len": 60,
+        "stop_pct": 25,
+        "min_mom_pct": 10
+      },
+      "compound": 2693,
+      "median": 22,
+      "worst_dd": 25,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 734
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 60,
+        "stop_pct": 25,
+        "min_mom_pct": 0
+      },
+      "compound": 1958,
+      "median": 17,
+      "worst_dd": 22,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 705
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 3,
+        "rebal_days": 21,
+        "sma_len": 60,
+        "stop_pct": 15,
+        "min_mom_pct": 0
+      },
+      "compound": 1775,
+      "median": 31,
+      "worst_dd": 20,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 671
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 5,
+        "rebal_days": 21,
+        "sma_len": 60,
+        "stop_pct": 25,
+        "min_mom_pct": 0
+      },
+      "compound": 1543,
+      "median": 27,
+      "worst_dd": 21,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 566
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 150,
+        "stop_pct": 25,
+        "min_mom_pct": 0
+      },
+      "compound": 1542,
+      "median": 13,
+      "worst_dd": 13,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 542
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 3,
+        "rebal_days": 14,
+        "sma_len": 100,
+        "stop_pct": 25,
+        "min_mom_pct": 5
+      },
+      "compound": 1533,
+      "median": -1,
+      "worst_dd": 20,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 456
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 3,
+        "rebal_days": 14,
+        "sma_len": 100,
+        "stop_pct": 25,
+        "min_mom_pct": 10
+      },
+      "compound": 1481,
+      "median": -2,
+      "worst_dd": 19,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 456
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 5,
+        "rebal_days": 21,
+        "sma_len": 60,
+        "stop_pct": 10,
+        "min_mom_pct": 10
+      },
+      "compound": 1223,
+      "median": 14,
+      "worst_dd": 13,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 431
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 3,
+        "rebal_days": 7,
+        "sma_len": 150,
+        "stop_pct": 10,
+        "min_mom_pct": 5
+      },
+      "compound": 761,
+      "median": 33,
+      "worst_dd": 5,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 408
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 2,
+        "rebal_days": 7,
+        "sma_len": 100,
+        "stop_pct": 25,
+        "min_mom_pct": 10
+      },
+      "compound": 1078,
+      "median": 40,
+      "worst_dd": 21,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 393
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 3,
+        "rebal_days": 21,
+        "sma_len": 100,
+        "stop_pct": 15,
+        "min_mom_pct": 5
+      },
+      "compound": 1033,
+      "median": 36,
+      "worst_dd": 20,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 391
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 2,
+        "rebal_days": 21,
+        "sma_len": 150,
+        "stop_pct": 15,
+        "min_mom_pct": 5
+      },
+      "compound": 767,
+      "median": 28,
+      "worst_dd": 8,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 379
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 5,
+        "rebal_days": 21,
+        "sma_len": 60,
+        "stop_pct": 25,
+        "min_mom_pct": 10
+      },
+      "compound": 1263,
+      "median": -7,
+      "worst_dd": 22,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 362
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 150,
+        "stop_pct": 10,
+        "min_mom_pct": 5
+      },
+      "compound": 851,
+      "median": 11,
+      "worst_dd": 6,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 352
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 7,
+        "sma_len": 100,
+        "stop_pct": 15,
+        "min_mom_pct": 10
+      },
+      "compound": 981,
+      "median": 4,
+      "worst_dd": 23,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 348
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 60,
+        "stop_pct": 10,
+        "min_mom_pct": 0
+      },
+      "compound": 1108,
+      "median": 14,
+      "worst_dd": 20,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 331
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 3,
+        "rebal_days": 21,
+        "sma_len": 100,
+        "stop_pct": 10,
+        "min_mom_pct": 10
+      },
+      "compound": 765,
+      "median": 32,
+      "worst_dd": 14,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 329
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 2,
+        "rebal_days": 21,
+        "sma_len": 60,
+        "stop_pct": 15,
+        "min_mom_pct": 5
+      },
+      "compound": 980,
+      "median": 10,
+      "worst_dd": 16,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 321
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 3,
+        "rebal_days": 21,
+        "sma_len": 150,
+        "stop_pct": 15,
+        "min_mom_pct": 10
+      },
+      "compound": 659,
+      "median": 17,
+      "worst_dd": 12,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 294
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 5,
+        "rebal_days": 21,
+        "sma_len": 150,
+        "stop_pct": 10,
+        "min_mom_pct": 0
+      },
+      "compound": 548,
+      "median": 9,
+      "worst_dd": 6,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 284
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 2,
+        "rebal_days": 21,
+        "sma_len": 100,
+        "stop_pct": 10,
+        "min_mom_pct": 0
+      },
+      "compound": 666,
+      "median": 49,
+      "worst_dd": 17,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 268
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 3,
+        "rebal_days": 14,
+        "sma_len": 100,
+        "stop_pct": 15,
+        "min_mom_pct": 5
+      },
+      "compound": 741,
+      "median": -2,
+      "worst_dd": 20,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 221
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 2,
+        "rebal_days": 21,
+        "sma_len": 100,
+        "stop_pct": 10,
+        "min_mom_pct": 10
+      },
+      "compound": 388,
+      "median": 20,
+      "worst_dd": 9,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 187
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 60,
+        "stop_pct": 15,
+        "min_mom_pct": 5
+      },
+      "compound": 623,
+      "median": -1,
+      "worst_dd": 23,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 176
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 2,
+        "rebal_days": 21,
+        "sma_len": 100,
+        "stop_pct": 25,
+        "min_mom_pct": 0
+      },
+      "compound": 517,
+      "median": 28,
+      "worst_dd": 27,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 171
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 2,
+        "rebal_days": 7,
+        "sma_len": 60,
+        "stop_pct": 10,
+        "min_mom_pct": 5
+      },
+      "compound": 588,
+      "median": 16,
+      "worst_dd": 42,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 123
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 21,
+        "sma_len": 150,
+        "stop_pct": 15,
+        "min_mom_pct": 0
+      },
+      "compound": 375,
+      "median": 0,
+      "worst_dd": 12,
+      "n_positive": 3,
+      "n_total": 8,
+      "score": 100
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 2,
+        "rebal_days": 21,
+        "sma_len": 150,
+        "stop_pct": 10,
+        "min_mom_pct": 0
+      },
+      "compound": 185,
+      "median": 25,
+      "worst_dd": 7,
+      "n_positive": 5,
+      "n_total": 8,
+      "score": 92
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 5,
+        "rebal_days": 7,
+        "sma_len": 150,
+        "stop_pct": 15,
+        "min_mom_pct": 0
+      },
+      "compound": 262,
+      "median": -11,
+      "worst_dd": 8,
+      "n_positive": 3,
+      "n_total": 8,
+      "score": 77
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 2,
+        "rebal_days": 7,
+        "sma_len": 150,
+        "stop_pct": 25,
+        "min_mom_pct": 10
+      },
+      "compound": 177,
+      "median": -14,
+      "worst_dd": 15,
+      "n_positive": 3,
+      "n_total": 8,
+      "score": 45
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 3,
+        "rebal_days": 7,
+        "sma_len": 100,
+        "stop_pct": 10,
+        "min_mom_pct": 5
+      },
+      "compound": 149,
+      "median": -7,
+      "worst_dd": 23,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 43
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 3,
+        "rebal_days": 7,
+        "sma_len": 100,
+        "stop_pct": 10,
+        "min_mom_pct": 0
+      },
+      "compound": 198,
+      "median": -3,
+      "worst_dd": 23,
+      "n_positive": 3,
+      "n_total": 8,
+      "score": 42
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 2,
+        "rebal_days": 7,
+        "sma_len": 150,
+        "stop_pct": 25,
+        "min_mom_pct": 0
+      },
+      "compound": 142,
+      "median": -13,
+      "worst_dd": 15,
+      "n_positive": 3,
+      "n_total": 8,
+      "score": 36
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 2,
+        "rebal_days": 7,
+        "sma_len": 100,
+        "stop_pct": 10,
+        "min_mom_pct": 5
+      },
+      "compound": 140,
+      "median": -4,
+      "worst_dd": 22,
+      "n_positive": 3,
+      "n_total": 8,
+      "score": 31
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 2,
+        "rebal_days": 21,
+        "sma_len": 100,
+        "stop_pct": 25,
+        "min_mom_pct": 10
+      },
+      "compound": 116,
+      "median": -17,
+      "worst_dd": 17,
+      "n_positive": 3,
+      "n_total": 8,
+      "score": 28
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 3,
+        "rebal_days": 7,
+        "sma_len": 150,
+        "stop_pct": 25,
+        "min_mom_pct": 5
+      },
+      "compound": 98,
+      "median": -17,
+      "worst_dd": 13,
+      "n_positive": 3,
+      "n_total": 8,
+      "score": 26
+    },
+    {
+      "config": {
+        "mom_lookback": 14,
+        "top_n": 2,
+        "rebal_days": 7,
+        "sma_len": 150,
+        "stop_pct": 10,
+        "min_mom_pct": 0
+      },
+      "compound": 51,
+      "median": -10,
+      "worst_dd": 9,
+      "n_positive": 2,
+      "n_total": 8,
+      "score": 10
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 3,
+        "rebal_days": 7,
+        "sma_len": 150,
+        "stop_pct": 15,
+        "min_mom_pct": 10
+      },
+      "compound": 7,
+      "median": -15,
+      "worst_dd": 12,
+      "n_positive": 3,
+      "n_total": 8,
+      "score": 2
+    },
+    {
+      "config": {
+        "mom_lookback": 60,
+        "top_n": 2,
+        "rebal_days": 7,
+        "sma_len": 150,
+        "stop_pct": 15,
+        "min_mom_pct": 0
+      },
+      "compound": 3,
+      "median": -1,
+      "worst_dd": 8,
+      "n_positive": 4,
+      "n_total": 8,
+      "score": 1
+    },
+    {
+      "config": {
+        "mom_lookback": 30,
+        "top_n": 2,
+        "rebal_days": 21,
+        "sma_len": 150,
+        "stop_pct": 10,
+        "min_mom_pct": 10
+      },
+      "compound": -33,
+      "median": -4,
+      "worst_dd": 8,
+      "n_positive": 3,
+      "n_total": 8,
+      "score": -10
+    }
+  ]
+}

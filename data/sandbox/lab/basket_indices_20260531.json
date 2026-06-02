@@ -1,0 +1,81 @@
+{
+  "config": {
+    "mom_lookback": 90,
+    "top_n": 2,
+    "rebal_days": 29,
+    "sma_filter_len": 73,
+    "stop_pct": 7,
+    "min_mom_pct": 17,
+    "use_rsi_filter": 0,
+    "rsi_max": 79,
+    "use_macd_filter": 0,
+    "use_bb_filter": 0,
+    "bb_pos_max": 0.51,
+    "regime_filter_asset": "SPY",
+    "universe": [
+      "SPY",
+      "QQQ",
+      "IWM",
+      "DIA",
+      "EFA",
+      "VWO",
+      "EWJ",
+      "FXI",
+      "IEF",
+      "TLT",
+      "LQD",
+      "HYG",
+      "GLD",
+      "SLV",
+      "DBC",
+      "USO",
+      "XLK",
+      "XLE",
+      "XLF",
+      "XLV",
+      "AAPL",
+      "MSFT",
+      "GOOGL",
+      "AMZN",
+      "META",
+      "NVDA",
+      "TSLA",
+      "JPM",
+      "V",
+      "WMT",
+      "UNH",
+      "JNJ",
+      "PG",
+      "KO",
+      "XOM"
+    ]
+  },
+  "basket": {
+    "date": "2026-05-29",
+    "regime": "bull",
+    "regime_asset": "SPY",
+    "regime_price": 756.47998046875,
+    "regime_sma": 695.4503265798909,
+    "positions": [
+      {
+        "ticker": "USO",
+        "momentum_pct": 79.64096192798387,
+        "weight_pct": 50.0,
+        "price": 129.08999633789062,
+        "stop_loss_price": 120.05369659423827,
+        "stop_loss_pct": 7.0
+      },
+      {
+        "ticker": "XLK",
+        "momentum_pct": 34.84031756286539,
+        "weight_pct": 50.0,
+        "price": 191.02000427246094,
+        "stop_loss_price": 177.64860397338867,
+        "stop_loss_pct": 7.0
+      }
+    ],
+    "cash_pct": 0.0,
+    "rebalance_days": 29,
+    "stop_loss_pct": 7
+  }
+}

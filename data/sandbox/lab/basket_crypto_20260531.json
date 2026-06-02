@@ -1,0 +1,46 @@
+{
+  "config": {
+    "mom_lookback": 60,
+    "top_n": 5,
+    "rebal_days": 14,
+    "sma_filter_len": 150,
+    "stop_pct": 10,
+    "min_mom_pct": 5,
+    "use_rsi_filter": 0,
+    "rsi_max": 70,
+    "use_macd_filter": 0,
+    "use_bb_filter": 0,
+    "bb_pos_max": 0.8,
+    "regime_filter_asset": "BTC-USD",
+    "is_ensemble": true,
+    "universe": [
+      "BTC-USD",
+      "ETH-USD",
+      "SOL-USD",
+      "AVAX-USD",
+      "NEAR-USD",
+      "ATOM-USD",
+      "DOT-USD",
+      "ADA-USD",
+      "LINK-USD",
+      "UNI-USD",
+      "AAVE-USD",
+      "MATIC-USD",
+      "FET-USD",
+      "RNDR-USD",
+      "INJ-USD",
+      "LTC-USD",
+      "BCH-USD",
+      "XRP-USD",
+      "XLM-USD",
+      "DOGE-USD"
+    ]
+  },
+  "basket": {
+    "date": "2026-05-30",
+    "regime": "no_unanimous",
+    "positions": [],
+    "cash_pct": 100,
+    "mode": "ensemble_3of3"
+  }
+}

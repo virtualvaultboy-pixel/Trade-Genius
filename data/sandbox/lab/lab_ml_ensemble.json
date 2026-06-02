@@ -1,0 +1,117 @@
+{
+  "results": {
+    "ML_INDICES_top5_weekly": {
+      "config": {
+        "top_n": 5,
+        "rebal_days": 7,
+        "target_days": 21,
+        "btc_filter": true,
+        "sma_regime_len": 100,
+        "regime_asset": "SPY"
+      },
+      "name": "ML_INDICES_top5_weekly",
+      "rets": [
+        0.0,
+        0.0,
+        29.94449024091919,
+        10.49628534640719,
+        -23.980160852890325,
+        23.7856494691702,
+        33.844956642494694,
+        13.888414514146497
+      ],
+      "mean": 10.99745442003093,
+      "median": 12.192349930276844,
+      "compound": 105.96069672234268,
+      "worst_dd": NaN,
+      "n_pos": 5,
+      "n_total": 8,
+      "mean_sharpe": 0.9803614783429738,
+      "bench_mean": 15.655273881657557,
+      "excess_mean": -4.657819461626627
+    },
+    "ML_INDICES_top3_monthly": {
+      "config": {
+        "top_n": 3,
+        "rebal_days": 21,
+        "target_days": 21,
+        "sma_regime_len": 200,
+        "regime_asset": "SPY"
+      },
+      "name": "ML_INDICES_top3_monthly",
+      "rets": [
+        0.0,
+        0.0,
+        17.079485807608176,
+        15.511846903862672,
+        -22.3040921340293,
+        14.39867231834229,
+        30.063462398220654,
+        5.195315186224586
+      ],
+      "mean": 7.493086310028635,
+      "median": 9.796993752283438,
+      "compound": 64.4667742070383,
+      "worst_dd": NaN,
+      "n_pos": 5,
+      "n_total": 8,
+      "mean_sharpe": 0.5939542575283817,
+      "bench_mean": 15.655273881657557,
+      "excess_mean": -8.162187571628923
+    },
+    "ML_CRYPTO_top5_weekly": {
+      "config": {
+        "top_n": 5,
+        "rebal_days": 7,
+        "target_days": 14,
+        "sma_regime_len": 100,
+        "regime_asset": "BTC-USD"
+      },
+      "name": "ML_CRYPTO_top5_weekly",
+      "rets": [
+        122.8529998761505,
+        572.9760056312593,
+        -22.99691026079219,
+        164.64261249883472,
+        14.547602249503939,
+        -25.82797614977883
+      ],
+      "mean": 137.69905564086292,
+      "median": 68.70030106282722,
+      "compound": 2496.642275614119,
+      "worst_dd": 30.483745795162204,
+      "n_pos": 4,
+      "n_total": 6,
+      "mean_sharpe": 0.8186118900107381,
+      "bench_mean": 96.43176830829701,
+      "excess_mean": 41.267287332565914
+    },
+    "ML_CRYPTO_top3_biweekly": {
+      "config": {
+        "top_n": 3,
+        "rebal_days": 14,
+        "target_days": 14,
+        "sma_regime_len": 150,
+        "regime_asset": "BTC-USD"
+      },
+      "name": "ML_CRYPTO_top3_biweekly",
+      "rets": [
+        200.5898092094098,
+        3229.613297984018,
+        -3.146525445516357,
+        74.24816371253239,
+        49.53250695902422,
+        -37.90729875828273
+      ],
+      "mean": 585.4883256101976,
+      "median": 61.8903353357783,
+      "compound": 15582.945511027645,
+      "worst_dd": 3.1465254455163634,
+      "n_pos": 4,
+      "n_total": 6,
+      "mean_sharpe": 0.8783329819750488,
+      "bench_mean": 96.43176830829701,
+      "excess_mean": 489.0565573019006
+    }
+  }
+}

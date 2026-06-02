@@ -1,0 +1,74 @@
+{
+  "indices": {
+    "baseline": {
+      "total_return_pct": 447.1486673964991,
+      "annual_return_pct": 0.0,
+      "sharpe": 1.369115731961573,
+      "max_dd_pct": 21.699080549696106,
+      "n_trades": 79
+    },
+    "frais_3x": {
+      "total_return_pct": 90.65873651663347,
+      "annual_return_pct": 0.0,
+      "sharpe": 0.6199006485764463,
+      "max_dd_pct": 50.98988252142619,
+      "n_trades": 79
+    },
+    "bear_2018": {
+      "total_return_pct": -37.30859080802324,
+      "annual_return_pct": 0.0,
+      "sharpe": -2.3589542510102155,
+      "max_dd_pct": 37.93467693543066,
+      "n_trades": 12
+    },
+    "universe_subset": {
+      "mean": 142.04143829581358,
+      "std": 104.09298629311947
+    },
+    "mc_blocks": {
+      "median": -79.85814807966706,
+      "p5": -99.0415702425648,
+      "p95": 68.75588002509346,
+      "p_profit": 0.12
+    },
+    "verdict": "OK - usage prudent",
+    "score": 3,
+    "max_score": 5
+  },
+  "crypto": {
+    "baseline": {
+      "total_return_pct": -34.949804825976216,
+      "annual_return_pct": 0.0,
+      "sharpe": 0.20689944702061522,
+      "max_dd_pct": 90.56797085169485,
+      "n_trades": 117
+    },
+    "frais_3x": {
+      "total_return_pct": -80.66729408886468,
+      "annual_return_pct": 0.0,
+      "sharpe": -0.11047920196403586,
+      "max_dd_pct": 93.88111959919256,
+      "n_trades": 117
+    },
+    "bear_2018": {
+      "total_return_pct": -14.969385875382171,
+      "annual_return_pct": 0.0,
+      "sharpe": -1.9446854836313003,
+      "max_dd_pct": 14.969385875382171,
+      "n_trades": 1
+    },
+    "universe_subset": {
+      "mean": 874.8892434348245,
+      "std": 661.3138398571043
+    },
+    "mc_blocks": {
+      "median": -83.6702190739911,
+      "p5": -99.72031033257299,
+      "p95": 83.00727647683688,
+      "p_profit": 0.1
+    },
+    "verdict": "FRAGILE - ne pas deploiir",
+    "score": 2,
+    "max_score": 5
+  }
+}

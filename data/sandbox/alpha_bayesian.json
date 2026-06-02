@@ -1,0 +1,226 @@
+{
+  "round": 5,
+  "total_tested": 151,
+  "top_10": [
+    {
+      "name": "R4-0",
+      "config": {
+        "sizing": 23,
+        "minQuality": 84,
+        "pyramiding": 60,
+        "leverageMult": 2,
+        "leverageThreshold": 90,
+        "holdMax": 30,
+        "atrStop": 0.4,
+        "atrTp2": 6.5
+      },
+      "median": 200.36,
+      "worst": 65.05,
+      "best": 345.45,
+      "avgDD": -9.79,
+      "positive": 5,
+      "total_folds": 5,
+      "totalTrades": 714,
+      "calmar": 20.47,
+      "score": 273.7407778486201
+    },
+    {
+      "name": "R5-17",
+      "config": {
+        "sizing": 20,
+        "minQuality": 86,
+        "pyramiding": 60,
+        "leverageMult": 2,
+        "leverageThreshold": 88,
+        "holdMax": 25,
+        "atrStop": 0.4,
+        "atrTp2": 7
+      },
+      "median": 169.92,
+      "worst": 53.14,
+      "best": 261.22,
+      "avgDD": -8.09,
+      "positive": 5,
+      "total_folds": 5,
+      "totalTrades": 674,
+      "calmar": 21,
+      "score": 235.80349708576188
+    },
+    {
+      "name": "R5-9",
+      "config": {
+        "sizing": 23,
+        "minQuality": 87,
+        "pyramiding": 60,
+        "leverageMult": 2,
+        "leverageThreshold": 88,
+        "holdMax": 30,
+        "atrStop": 0.4,
+        "atrTp2": 6
+      },
+      "median": 169.53,
+      "worst": 56.6,
+      "best": 340.6,
+      "avgDD": -9.95,
+      "positive": 5,
+      "total_folds": 5,
+      "totalTrades": 716,
+      "calmar": 17.04,
+      "score": 231.2824010914052
+    },
+    {
+      "name": "R4-5",
+      "config": {
+        "sizing": 21,
+        "minQuality": 86,
+        "pyramiding": 55,
+        "leverageMult": 2,
+        "leverageThreshold": 89,
+        "holdMax": 30,
+        "atrStop": 0.5,
+        "atrTp2": 7.5
+      },
+      "median": 167.4,
+      "worst": 40.61,
+      "best": 201.04,
+      "avgDD": -9.55,
+      "positive": 5,
+      "total_folds": 5,
+      "totalTrades": 650,
+      "calmar": 17.53,
+      "score": 229.21040620721135
+    },
+    {
+      "name": "R5-1",
+      "config": {
+        "sizing": 21,
+        "minQuality": 83,
+        "pyramiding": 60,
+        "leverageMult": 2,
+        "leverageThreshold": 91,
+        "holdMax": 30,
+        "atrStop": 0.4,
+        "atrTp2": 7
+      },
+      "median": 162.28,
+      "worst": 61.28,
+      "best": 250.25,
+      "avgDD": -8.11,
+      "positive": 5,
+      "total_folds": 5,
+      "totalTrades": 702,
+      "calmar": 20,
+      "score": 225.15955970770514
+    },
+    {
+      "name": "R5-2",
+      "config": {
+        "sizing": 25,
+        "minQuality": 82,
+        "pyramiding": 60,
+        "leverageMult": 2,
+        "leverageThreshold": 91,
+        "holdMax": 25,
+        "atrStop": 0.5,
+        "atrTp2": 7
+      },
+      "median": 164.92,
+      "worst": 61.68,
+      "best": 269.94,
+      "avgDD": -10.27,
+      "positive": 5,
+      "total_folds": 5,
+      "totalTrades": 702,
+      "calmar": 16.05,
+      "score": 224.34025573592092
+    },
+    {
+      "name": "R3-3",
+      "config": {
+        "sizing": 21,
+        "minQuality": 84,
+        "pyramiding": 60,
+        "leverageMult": 2,
+        "leverageThreshold": 88,
+        "holdMax": 30,
+        "atrStop": 0.4,
+        "atrTp2": 6
+      },
+      "median": 158.37,
+      "worst": 58.33,
+      "best": 294.84,
+      "avgDD": -9.19,
+      "positive": 5,
+      "total_folds": 5,
+      "totalTrades": 752,
+      "calmar": 17.23,
+      "score": 217.56113197179226
+    },
+    {
+      "name": "R5-0",
+      "config": {
+        "sizing": 23,
+        "minQuality": 87,
+        "pyramiding": 55,
+        "leverageMult": 2,
+        "leverageThreshold": 92,
+        "holdMax": 35,
+        "atrStop": 0.4,
+        "atrTp2": 6.5
+      },
+      "median": 158.62,
+      "worst": 59.35,
+      "best": 349.79,
+      "avgDD": -9.82,
+      "positive": 5,
+      "total_folds": 5,
+      "totalTrades": 674,
+      "calmar": 16.15,
+      "score": 216.6545255873247
+    },
+    {
+      "name": "R4-8",
+      "config": {
+        "sizing": 20,
+        "minQuality": 86,
+        "pyramiding": 60,
+        "leverageMult": 2,
+        "leverageThreshold": 88,
+        "holdMax": 30,
+        "atrStop": 0.6000000000000001,
+        "atrTp2": 7
+      },
+      "median": 158.08,
+      "worst": 41.06,
+      "best": 175.23,
+      "avgDD": -9.75,
+      "positive": 5,
+      "total_folds": 5,
+      "totalTrades": 625,
+      "calmar": 16.21,
+      "score": 216.05466970387246
+    },
+    {
+      "name": "R5-6",
+      "config": {
+        "sizing": 20,
+        "minQuality": 85,
+        "pyramiding": 55,
+        "leverageMult": 2,
+        "leverageThreshold": 89,
+        "holdMax": 30,
+        "atrStop": 0.5,
+        "atrTp2": 6.5
+      },
+      "median": 158.19,
+      "worst": 42.47,
+      "best": 241.26,
+      "avgDD": -10.25,
+      "positive": 5,
+      "total_folds": 5,
+      "totalTrades": 701,
+      "calmar": 15.44,
+      "score": 215.22448979591834
+    }
+  ]
+}

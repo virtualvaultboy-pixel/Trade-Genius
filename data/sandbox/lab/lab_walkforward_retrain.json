@@ -1,0 +1,212 @@
+{
+  "IA INDICES | baseline": {
+    "annual_return_pct": 21.415589629888963,
+    "max_dd_pct": -34.5291223345362,
+    "worst_monthly": -14.64153533806767,
+    "final_value": 5945.493843127326,
+    "calmar": 0.6202181863298908
+  },
+  "IA INDICES | WF retrain_60j method=inverse_vol": {
+    "annual_return_pct": 5.439275572095115,
+    "max_dd_pct": -32.1364983045061,
+    "worst_monthly": -10.081569495722325,
+    "final_value": 1626.7164308883546,
+    "calmar": 0.16925539057042918
+  },
+  "IA INDICES | WF retrain_90j method=inverse_vol": {
+    "annual_return_pct": 5.395620978820581,
+    "max_dd_pct": -31.90445536107286,
+    "worst_monthly": -10.081569495722325,
+    "final_value": 1620.5397673794532,
+    "calmar": 0.16911810334188826
+  },
+  "IA INDICES | WF retrain_180j method=inverse_vol": {
+    "annual_return_pct": 5.706235097901868,
+    "max_dd_pct": -30.57468992227543,
+    "worst_monthly": -10.081569495722325,
+    "final_value": 1664.9469453927372,
+    "calmar": 0.18663264001721064
+  },
+  "IA INDICES | WF retrain_60j method=inverse_vol_momentum": {
+    "annual_return_pct": 5.668171616606177,
+    "max_dd_pct": -30.164992456933266,
+    "worst_monthly": -10.393720465736868,
+    "final_value": 1659.4475022518056,
+    "calmar": 0.18790562022180707
+  },
+  "IA INDICES | WF retrain_90j method=inverse_vol_momentum": {
+    "annual_return_pct": 5.679106029353331,
+    "max_dd_pct": -31.090440504924306,
+    "worst_monthly": -10.393720465736868,
+    "final_value": 1661.0256556013392,
+    "calmar": 0.1826640580552031
+  },
+  "IA INDICES | WF retrain_180j method=inverse_vol_momentum": {
+    "annual_return_pct": 6.8960501904676175,
+    "max_dd_pct": -30.418637915978874,
+    "worst_monthly": -10.393720465736868,
+    "final_value": 1845.255481154415,
+    "calmar": 0.22670476598970696
+  },
+  "IA INDICES | WF retrain_60j method=momentum_only": {
+    "annual_return_pct": 8.369673059023386,
+    "max_dd_pct": -45.25297702901558,
+    "worst_monthly": -17.360222098611025,
+    "final_value": 2092.572160449696,
+    "calmar": 0.18495298229013457
+  },
+  "IA INDICES | WF retrain_90j method=momentum_only": {
+    "annual_return_pct": 10.130294005932438,
+    "max_dd_pct": -36.82685938372617,
+    "worst_monthly": -15.78202383533735,
+    "final_value": 2426.482358521876,
+    "calmar": 0.27507895529123033
+  },
+  "IA INDICES | WF retrain_180j method=momentum_only": {
+    "annual_return_pct": 14.175903303232772,
+    "max_dd_pct": -40.48698736254068,
+    "worst_monthly": -16.87463099982915,
+    "final_value": 3379.9338371601953,
+    "calmar": 0.35013480198698566
+  },
+  "IA CRYPTO | baseline": {
+    "annual_return_pct": 40.98985148717065,
+    "max_dd_pct": -58.422596511865855,
+    "worst_monthly": -17.24369565712123,
+    "final_value": 23470.124655352163,
+    "calmar": 0.7016095472382069
+  },
+  "IA CRYPTO | WF retrain_60j method=inverse_vol": {
+    "annual_return_pct": 17.282642098861988,
+    "max_dd_pct": -47.84024974577734,
+    "worst_monthly": -16.33500750847532,
+    "final_value": 4325.300758946032,
+    "calmar": 0.3612573552751458
+  },
+  "IA CRYPTO | WF retrain_90j method=inverse_vol": {
+    "annual_return_pct": 12.73578878422974,
+    "max_dd_pct": -54.680026954156205,
+    "worst_monthly": -16.6045903440385,
+    "final_value": 3007.9195113480455,
+    "calmar": 0.232914822717762
+  },
+  "IA CRYPTO | WF retrain_180j method=inverse_vol": {
+    "annual_return_pct": 12.47999517930294,
+    "max_dd_pct": -56.16329150445662,
+    "worst_monthly": -16.604133228052024,
+    "final_value": 2945.8019704436297,
+    "calmar": 0.22220911283863476
+  },
+  "IA CRYPTO | WF retrain_60j method=inverse_vol_momentum": {
+    "annual_return_pct": 20.36533030508414,
+    "max_dd_pct": -47.63407519231059,
+    "worst_monthly": -19.02156601110903,
+    "final_value": 5489.42505075157,
+    "calmar": 0.4275370146867394
+  },
+  "IA CRYPTO | WF retrain_90j method=inverse_vol_momentum": {
+    "annual_return_pct": 23.418026104405087,
+    "max_dd_pct": -54.15084104189626,
+    "worst_monthly": -18.391153946621973,
+    "final_value": 6909.556927774221,
+    "calmar": 0.43245913920869056
+  },
+  "IA CRYPTO | WF retrain_180j method=inverse_vol_momentum": {
+    "annual_return_pct": 24.986115348444415,
+    "max_dd_pct": -48.13217023772257,
+    "worst_monthly": -18.389396300034132,
+    "final_value": 7759.27992530225,
+    "calmar": 0.5191146633330503
+  },
+  "IA CRYPTO | WF retrain_60j method=momentum_only": {
+    "annual_return_pct": 40.33712043987621,
+    "max_dd_pct": -49.54818532636605,
+    "worst_monthly": -18.828088221051765,
+    "final_value": 22490.64445863084,
+    "calmar": 0.8140988448755889
+  },
+  "IA CRYPTO | WF retrain_90j method=momentum_only": {
+    "annual_return_pct": 28.457245264380227,
+    "max_dd_pct": -56.066688634054415,
+    "worst_monthly": -20.346217782042842,
+    "final_value": 9979.568943000953,
+    "calmar": 0.5075606560273215
+  },
+  "IA CRYPTO | WF retrain_180j method=momentum_only": {
+    "annual_return_pct": 32.73530313611739,
+    "max_dd_pct": -51.48653039091191,
+    "worst_monthly": -20.346217782042867,
+    "final_value": 13483.913633203869,
+    "calmar": 0.6358032457727162
+  },
+  "IA MIXTE | baseline": {
+    "annual_return_pct": 22.584613402468246,
+    "max_dd_pct": -32.004646882955974,
+    "worst_monthly": -15.941182993480298,
+    "final_value": 6492.585305462587,
+    "calmar": 0.7056666953727787
+  },
+  "IA MIXTE | WF retrain_60j method=inverse_vol": {
+    "annual_return_pct": 9.37413910336302,
+    "max_dd_pct": -29.239205833840526,
+    "worst_monthly": -8.524928827655943,
+    "final_value": 2277.6643254233254,
+    "calmar": 0.3206017002183312
+  },
+  "IA MIXTE | WF retrain_90j method=inverse_vol": {
+    "annual_return_pct": 9.150116862699708,
+    "max_dd_pct": -29.038862022266347,
+    "worst_monthly": -8.49139906123881,
+    "final_value": 2235.165375547783,
+    "calmar": 0.3150990164726016
+  },
+  "IA MIXTE | WF retrain_180j method=inverse_vol": {
+    "annual_return_pct": 9.463662612638668,
+    "max_dd_pct": -28.133087825982823,
+    "worst_monthly": -8.154717125228697,
+    "final_value": 2294.8480807860465,
+    "calmar": 0.3363890473443989
+  },
+  "IA MIXTE | WF retrain_60j method=inverse_vol_momentum": {
+    "annual_return_pct": 9.31845589728666,
+    "max_dd_pct": -29.55241676938546,
+    "worst_monthly": -8.154717125228697,
+    "final_value": 2267.0340408466723,
+    "calmar": 0.31531958858065456
+  },
+  "IA MIXTE | WF retrain_90j method=inverse_vol_momentum": {
+    "annual_return_pct": 10.187290809378169,
+    "max_dd_pct": -29.414718532725892,
+    "worst_monthly": -8.154717125228697,
+    "final_value": 2438.043254105287,
+    "calmar": 0.34633310524607297
+  },
+  "IA MIXTE | WF retrain_180j method=inverse_vol_momentum": {
+    "annual_return_pct": 11.644764027038867,
+    "max_dd_pct": -27.109672500086358,
+    "worst_monthly": -8.154717125228697,
+    "final_value": 2750.8535810288395,
+    "calmar": 0.4295427776562691
+  },
+  "IA MIXTE | WF retrain_60j method=momentum_only": {
+    "annual_return_pct": 12.667814989664649,
+    "max_dd_pct": -41.848799929806596,
+    "worst_monthly": -17.81576706106214,
+    "final_value": 2991.29975123025,
+    "calmar": 0.30270437888093565
+  },
+  "IA MIXTE | WF retrain_90j method=momentum_only": {
+    "annual_return_pct": 21.977279128966053,
+    "max_dd_pct": -42.35471025535828,
+    "worst_monthly": -16.267730691017764,
+    "final_value": 6203.005720887028,
+    "calmar": 0.5188863055953905
+  },
+  "IA MIXTE | WF retrain_180j method=momentum_only": {
+    "annual_return_pct": 22.819663889362985,
+    "max_dd_pct": -43.09897909240614,
+    "worst_monthly": -16.14978206928233,
+    "final_value": 6607.852096583138,
+    "calmar": 0.5294711004740184
+  }
+}

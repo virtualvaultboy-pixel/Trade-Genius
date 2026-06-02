@@ -1,0 +1,358 @@
+{
+  "generated": "2026-05-31T14:42:28.718Z",
+  "assets": 98,
+  "yearlyResults": [
+    {
+      "year": 2019,
+      "bh": 28.714795902338295,
+      "top1": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 83,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 87,
+          "holdMax": 20,
+          "atrStop": 0.4,
+          "atrTp2": 7
+        },
+        "train": 114.38262460128439,
+        "oos": 15.345170683477408,
+        "dd": -12.905944608851847
+      },
+      "top2": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 85,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 87,
+          "holdMax": 20,
+          "atrStop": 0.4,
+          "atrTp2": 7
+        },
+        "train": 114.16013198949044,
+        "oos": 13.679013918430746,
+        "dd": -14.501213196645365
+      },
+      "top3": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 85,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 88,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 7
+        },
+        "train": 110.90848073480515,
+        "oos": 19.735101182889682,
+        "dd": -15.115250483605394
+      }
+    },
+    {
+      "year": 2020,
+      "bh": 15.292906541696084,
+      "top1": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 85,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 88,
+          "holdMax": 30,
+          "atrStop": 0.4,
+          "atrTp2": 7
+        },
+        "train": 116.53854041358633,
+        "oos": 34.9819106371818,
+        "dd": -36.48424886799052
+      },
+      "top2": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 85,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 88,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 7
+        },
+        "train": 115.07897470459842,
+        "oos": 37.43626342042993,
+        "dd": -36.48424886799052
+      },
+      "top3": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 85,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 89,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 7
+        },
+        "train": 113.52730722538294,
+        "oos": 38.446959067589205,
+        "dd": -36.48424886799052
+      }
+    },
+    {
+      "year": 2021,
+      "bh": 28.793058018340577,
+      "top1": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 81,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 85,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 6.5
+        },
+        "train": 202.9874254765675,
+        "oos": 17.70782370891311,
+        "dd": -14.05580155027889
+      },
+      "top2": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 83,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 86,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 7
+        },
+        "train": 198.97207979557035,
+        "oos": 27.32796526209611,
+        "dd": -10.766944404227754
+      },
+      "top3": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 84,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 85,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 6.5
+        },
+        "train": 194.3778394109787,
+        "oos": 22.665648768706863,
+        "dd": -13.1934643296266
+      }
+    },
+    {
+      "year": 2022,
+      "bh": -19.953050663444415,
+      "top1": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 83,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 87,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 7.5
+        },
+        "train": 237.07104314666006,
+        "oos": 12.643371001368717,
+        "dd": -12.894834857392857
+      },
+      "top2": {
+        "config": {
+          "sizing": 24,
+          "minQuality": 83,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 88,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 6.5
+        },
+        "train": 213.1190959021952,
+        "oos": 9.29869925253319,
+        "dd": -15.101809305388164
+      },
+      "top3": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 83,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 88,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 7
+        },
+        "train": 206.17148772757554,
+        "oos": 10.210248293244538,
+        "dd": -15.43257979508805
+      }
+    },
+    {
+      "year": 2023,
+      "bh": 24.729487207888678,
+      "top1": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 86,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 87,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 7
+        },
+        "train": 116.77116407262767,
+        "oos": -22.77038277125283,
+        "dd": -31.7756336568224
+      },
+      "top2": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 85,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 87,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 7
+        },
+        "train": 115.24518006539648,
+        "oos": -25.026081326083922,
+        "dd": -34.03314038072311
+      },
+      "top3": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 85,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 88,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 7
+        },
+        "train": 115.07897470459842,
+        "oos": -25.16152370225031,
+        "dd": -34.14889399008559
+      }
+    },
+    {
+      "year": 2024,
+      "bh": 24.01097627216082,
+      "top1": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 86,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 87,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 7.5
+        },
+        "train": 117.05763271926261,
+        "oos": -4.336122653475388,
+        "dd": -20.114468494231268
+      },
+      "top2": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 85,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 88,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 7
+        },
+        "train": 115.07897470459842,
+        "oos": -5.09395393476807,
+        "dd": -20.82189595262615
+      },
+      "top3": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 84,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 88,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 7
+        },
+        "train": 113.44410914949654,
+        "oos": -5.523288177163886,
+        "dd": -20.855958484448447
+      }
+    },
+    {
+      "year": 2025,
+      "bh": 16.64721656672594,
+      "top1": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 86,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 87,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 6.5
+        },
+        "train": 118.47756436979586,
+        "oos": 31.040200575231278,
+        "dd": -14.681081324379171
+      },
+      "top2": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 86,
+          "pyramiding": 55,
+          "leverageMult": 2,
+          "leverageThreshold": 86,
+          "holdMax": 25,
+          "atrStop": 0.4,
+          "atrTp2": 6.5
+        },
+        "train": 115.57704714090092,
+        "oos": 26.559602199786564,
+        "dd": -15.176008335745495
+      },
+      "top3": {
+        "config": {
+          "sizing": 25,
+          "minQuality": 85,
+          "pyramiding": 60,
+          "leverageMult": 2,
+          "leverageThreshold": 89,
+          "holdMax": 30,
+          "atrStop": 0.4,
+          "atrTp2": 7
+        },
+        "train": 114.99858646993077,
+        "oos": 36.96942300719719,
+        "dd": -14.09882146162257
+      }
+    }
+  ],
+  "summary": {
+    "top1Median": 15.345170683477408,
+    "top1Mean": 12.087424454492012,
+    "top1Pos": 5,
+    "top1BeatBH": 3,
+    "totalYears": 7,
+    "bestMedian": 19.735101182889682,
+    "bestMean": 15.43090201377324
+  }
+}

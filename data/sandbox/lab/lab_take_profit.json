@@ -1,0 +1,58 @@
+{
+  "Baseline (rebal 50/50 simple)": {
+    "annual_return_pct": 18.73010997600295,
+    "max_dd_pct": -28.343057365533834,
+    "best_month": 17.069342086456007,
+    "worst_month": -10.36169278673369,
+    "pos_months_pct": 65.78947368421053,
+    "calmar": 0.6608359054016322
+  },
+  "TP threshold +5% / mois": {
+    "annual_return_pct": 19.124719787709243,
+    "max_dd_pct": -26.70361550028532,
+    "best_month": 17.807645679944393,
+    "worst_month": -9.22449477010262,
+    "pos_months_pct": 65.78947368421053,
+    "calmar": 0.716184659995007
+  },
+  "TP threshold +10% / mois": {
+    "annual_return_pct": 19.131361742875796,
+    "max_dd_pct": -27.433980258043412,
+    "best_month": 17.80764567994435,
+    "worst_month": -9.224494770102575,
+    "pos_months_pct": 65.78947368421053,
+    "calmar": 0.6973600462975708
+  },
+  "TP threshold +15% / mois": {
+    "annual_return_pct": 18.955444124258115,
+    "max_dd_pct": -28.343057365533834,
+    "best_month": 17.807645679944372,
+    "worst_month": -10.361692786733734,
+    "pos_months_pct": 65.78947368421053,
+    "calmar": 0.6687861468081636
+  },
+  "Trailing peak (lock 30% au peak)": {
+    "annual_return_pct": 17.857962103034673,
+    "max_dd_pct": -27.0229138303778,
+    "best_month": 17.069342086456007,
+    "worst_month": -9.589946109195557,
+    "pos_months_pct": 65.78947368421053,
+    "calmar": 0.6608451706995288
+  },
+  "Scaling out (110/120/130%)": {
+    "annual_return_pct": 14.632298257174448,
+    "max_dd_pct": -26.080868021122665,
+    "best_month": 13.610247689141142,
+    "worst_month": -9.448167863293012,
+    "pos_months_pct": 65.78947368421053,
+    "calmar": 0.5610357080647729
+  },
+  "Streak 3 mois +": {
+    "annual_return_pct": 18.180075694995914,
+    "max_dd_pct": -28.343057365533873,
+    "best_month": 17.069342086456007,
+    "worst_month": -10.361692786733723,
+    "pos_months_pct": 65.78947368421053,
+    "calmar": 0.641429591046995
+  }
+}

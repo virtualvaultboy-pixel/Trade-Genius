@@ -1,0 +1,422 @@
+{
+  "generated": "2026-05-31T09:40:28.380Z",
+  "assets": 54,
+  "results": {
+    "R4-5 BAYESIAN-WINNER (stress 20.87%)": {
+      "config": {
+        "name": "R4-5 BAYESIAN-WINNER (stress 20.87%)",
+        "sizing": 21,
+        "minQuality": 86,
+        "pyramiding": 55,
+        "leverageMult": 2,
+        "leverageThreshold": 89,
+        "holdMax": 30,
+        "atrStop": 0.5,
+        "atrTp2": 7.5
+      },
+      "yearResults": [
+        {
+          "year": 2025,
+          "ret": 101.9,
+          "dd": -17.11,
+          "trades": 78,
+          "wr": 29.5,
+          "final_equity": 2019,
+          "bh_return": 16.65,
+          "excess": 85.25
+        },
+        {
+          "year": 2024,
+          "ret": 109.47,
+          "dd": -4.94,
+          "trades": 77,
+          "wr": 39,
+          "final_equity": 2094.73,
+          "bh_return": 24.01,
+          "excess": 85.46
+        },
+        {
+          "year": 2023,
+          "ret": 56.91,
+          "dd": -5.37,
+          "trades": 87,
+          "wr": 33.3,
+          "final_equity": 1569.13,
+          "bh_return": 24.73,
+          "excess": 32.18
+        },
+        {
+          "year": 2022,
+          "ret": 37.92,
+          "dd": -4.89,
+          "trades": 35,
+          "wr": 34.3,
+          "final_equity": 1379.24,
+          "bh_return": -19.95,
+          "excess": 57.87
+        },
+        {
+          "year": 2021,
+          "ret": 124.05,
+          "dd": -4.39,
+          "trades": 92,
+          "wr": 40.2,
+          "final_equity": 2240.51,
+          "bh_return": 28.79,
+          "excess": 95.26
+        },
+        {
+          "year": 2020,
+          "ret": 40.58,
+          "dd": -13.76,
+          "trades": 68,
+          "wr": 26.5,
+          "final_equity": 1405.82,
+          "bh_return": 15.29,
+          "excess": 25.29
+        },
+        {
+          "year": 2019,
+          "ret": 86.12,
+          "dd": -4.49,
+          "trades": 96,
+          "wr": 29.2,
+          "final_equity": 1861.16,
+          "bh_return": 28.71,
+          "excess": 57.41
+        },
+        {
+          "year": 2018,
+          "ret": 68.25,
+          "dd": -3.98,
+          "trades": 88,
+          "wr": 35.2,
+          "final_equity": 1682.52,
+          "bh_return": -7.01,
+          "excess": 75.26
+        }
+      ],
+      "summary": {
+        "median": 86.12,
+        "mean": 78.15,
+        "meanExcess": 64.25,
+        "positive": 8,
+        "beatBH": 8,
+        "total": 8,
+        "avgDD": -7.37
+      }
+    },
+    "WINNER-1 (deep validation 40.02%)": {
+      "config": {
+        "name": "WINNER-1 (deep validation 40.02%)",
+        "sizing": 18,
+        "minQuality": 85,
+        "pyramiding": 50,
+        "leverageMult": 1.75,
+        "leverageThreshold": 90,
+        "holdMax": 30,
+        "atrStop": 0.5,
+        "atrTp2": 7
+      },
+      "yearResults": [
+        {
+          "year": 2025,
+          "ret": 63.03,
+          "dd": -15.19,
+          "trades": 79,
+          "wr": 30.4,
+          "final_equity": 1630.27,
+          "bh_return": 16.65,
+          "excess": 46.38
+        },
+        {
+          "year": 2024,
+          "ret": 67.82,
+          "dd": -4.28,
+          "trades": 80,
+          "wr": 37.5,
+          "final_equity": 1678.2,
+          "bh_return": 24.01,
+          "excess": 43.81
+        },
+        {
+          "year": 2023,
+          "ret": 37.45,
+          "dd": -4.18,
+          "trades": 94,
+          "wr": 33,
+          "final_equity": 1374.52,
+          "bh_return": 24.73,
+          "excess": 12.72
+        },
+        {
+          "year": 2022,
+          "ret": 26.16,
+          "dd": -4.54,
+          "trades": 36,
+          "wr": 33.3,
+          "final_equity": 1261.55,
+          "bh_return": -19.95,
+          "excess": 46.11
+        },
+        {
+          "year": 2021,
+          "ret": 78.54,
+          "dd": -3.16,
+          "trades": 94,
+          "wr": 39.4,
+          "final_equity": 1785.42,
+          "bh_return": 28.79,
+          "excess": 49.75
+        },
+        {
+          "year": 2020,
+          "ret": 46.83,
+          "dd": -9.14,
+          "trades": 74,
+          "wr": 31.1,
+          "final_equity": 1468.31,
+          "bh_return": 15.29,
+          "excess": 31.54
+        },
+        {
+          "year": 2019,
+          "ret": 55.16,
+          "dd": -3.38,
+          "trades": 101,
+          "wr": 29.7,
+          "final_equity": 1551.6,
+          "bh_return": 28.71,
+          "excess": 26.45
+        },
+        {
+          "year": 2018,
+          "ret": 45.35,
+          "dd": -3.03,
+          "trades": 91,
+          "wr": 36.3,
+          "final_equity": 1453.46,
+          "bh_return": -7.01,
+          "excess": 52.36
+        }
+      ],
+      "summary": {
+        "median": 55.16,
+        "mean": 52.54,
+        "meanExcess": 38.64,
+        "positive": 8,
+        "beatBH": 8,
+        "total": 8,
+        "avgDD": -5.86
+      }
+    },
+    "MODERATE (baseline 30.9%)": {
+      "config": {
+        "name": "MODERATE (baseline 30.9%)",
+        "sizing": 18,
+        "minQuality": 78,
+        "pyramiding": 30,
+        "leverageMult": 1.5,
+        "leverageThreshold": 88,
+        "holdMax": 30,
+        "atrStop": 0.7,
+        "atrTp2": 6
+      },
+      "yearResults": [
+        {
+          "year": 2025,
+          "ret": 37.04,
+          "dd": -15.08,
+          "trades": 82,
+          "wr": 36.6,
+          "final_equity": 1370.45,
+          "bh_return": 16.65,
+          "excess": 20.39
+        },
+        {
+          "year": 2024,
+          "ret": 40.67,
+          "dd": -4.12,
+          "trades": 93,
+          "wr": 40.9,
+          "final_equity": 1406.68,
+          "bh_return": 24.01,
+          "excess": 16.66
+        },
+        {
+          "year": 2023,
+          "ret": 29.82,
+          "dd": -3.61,
+          "trades": 101,
+          "wr": 37.6,
+          "final_equity": 1298.25,
+          "bh_return": 24.73,
+          "excess": 5.09
+        },
+        {
+          "year": 2022,
+          "ret": 15.43,
+          "dd": -4.09,
+          "trades": 39,
+          "wr": 30.8,
+          "final_equity": 1154.28,
+          "bh_return": -19.95,
+          "excess": 35.38
+        },
+        {
+          "year": 2021,
+          "ret": 44.33,
+          "dd": -1.64,
+          "trades": 103,
+          "wr": 41.7,
+          "final_equity": 1443.28,
+          "bh_return": 28.79,
+          "excess": 15.54
+        },
+        {
+          "year": 2020,
+          "ret": 38.58,
+          "dd": -10.47,
+          "trades": 85,
+          "wr": 36.5,
+          "final_equity": 1385.78,
+          "bh_return": 15.29,
+          "excess": 23.29
+        },
+        {
+          "year": 2019,
+          "ret": 33.73,
+          "dd": -3.25,
+          "trades": 109,
+          "wr": 32.1,
+          "final_equity": 1337.3,
+          "bh_return": 28.71,
+          "excess": 5.02
+        },
+        {
+          "year": 2018,
+          "ret": 29.54,
+          "dd": -3.13,
+          "trades": 102,
+          "wr": 39.2,
+          "final_equity": 1295.4,
+          "bh_return": -7.01,
+          "excess": 36.55
+        }
+      ],
+      "summary": {
+        "median": 37.04,
+        "mean": 33.64,
+        "meanExcess": 19.74,
+        "positive": 8,
+        "beatBH": 8,
+        "total": 8,
+        "avgDD": -5.67
+      }
+    },
+    "SELECTIVE (ultra défensif 6.32%)": {
+      "config": {
+        "name": "SELECTIVE (ultra défensif 6.32%)",
+        "sizing": 12,
+        "minQuality": 85,
+        "pyramiding": 0,
+        "leverageMult": 1,
+        "leverageThreshold": 999,
+        "holdMax": 30,
+        "atrStop": 0.7,
+        "atrTp2": 6
+      },
+      "yearResults": [
+        {
+          "year": 2025,
+          "ret": 4.57,
+          "dd": -10.69,
+          "trades": 73,
+          "wr": 35.6,
+          "final_equity": 1045.69,
+          "bh_return": 16.65,
+          "excess": -12.08
+        },
+        {
+          "year": 2024,
+          "ret": 10.64,
+          "dd": -2.34,
+          "trades": 79,
+          "wr": 39.2,
+          "final_equity": 1106.42,
+          "bh_return": 24.01,
+          "excess": -13.37
+        },
+        {
+          "year": 2023,
+          "ret": 9.94,
+          "dd": -1.69,
+          "trades": 87,
+          "wr": 40.2,
+          "final_equity": 1099.41,
+          "bh_return": 24.73,
+          "excess": -14.79
+        },
+        {
+          "year": 2022,
+          "ret": 4.95,
+          "dd": -1.93,
+          "trades": 36,
+          "wr": 33.3,
+          "final_equity": 1049.52,
+          "bh_return": -19.95,
+          "excess": 24.9
+        },
+        {
+          "year": 2021,
+          "ret": 14.05,
+          "dd": -1.07,
+          "trades": 91,
+          "wr": 41.8,
+          "final_equity": 1140.47,
+          "bh_return": 28.79,
+          "excess": -14.74
+        },
+        {
+          "year": 2020,
+          "ret": 8.1,
+          "dd": -4.99,
+          "trades": 74,
+          "wr": 32.4,
+          "final_equity": 1081.04,
+          "bh_return": 15.29,
+          "excess": -7.19
+        },
+        {
+          "year": 2019,
+          "ret": 9.39,
+          "dd": -1.47,
+          "trades": 97,
+          "wr": 32,
+          "final_equity": 1093.89,
+          "bh_return": 28.71,
+          "excess": -19.32
+        },
+        {
+          "year": 2018,
+          "ret": 10.6,
+          "dd": -1.56,
+          "trades": 90,
+          "wr": 38.9,
+          "final_equity": 1106.02,
+          "bh_return": -7.01,
+          "excess": 17.61
+        }
+      ],
+      "summary": {
+        "median": 9.94,
+        "mean": 9.03,
+        "meanExcess": -4.87,
+        "positive": 8,
+        "beatBH": 2,
+        "total": 8,
+        "avgDD": -3.22
+      }
+    }
+  }
+}

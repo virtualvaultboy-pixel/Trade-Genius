@@ -1,0 +1,80 @@
+{
+  "MAX_COMPOUND": {
+    "config": {
+      "mom_lookback": 60,
+      "top_n": 5,
+      "rebal_days": 21,
+      "sma_len": 60,
+      "stop_pct": 25,
+      "min_mom_pct": 5
+    },
+    "mc_shuffle": null,
+    "mc_time": {
+      "n_iters": 200,
+      "window_years": 2,
+      "return_mean": 423.4462779447465,
+      "return_median": 130.86396625702247,
+      "return_p5": -21.135450335096944,
+      "return_p95": 1796.3479567407528,
+      "p_profit": 0.73,
+      "dd_mean": 37.94631825783924,
+      "dd_worst": 29.7400737354018,
+      "dd_p5": 29.7400737354018
+    },
+    "oos_universe_annual_pct": 0.0,
+    "oos_universe_dd_pct": 48.866331416773924,
+    "report_html": "C:\\Users\\qfichet\\Desktop\\Document IA\\Trade Genius\\files\\data\\sandbox\\lab\\report_MAX_COMPOUND.html"
+  },
+  "MIN_DD": {
+    "config": {
+      "mom_lookback": 60,
+      "top_n": 5,
+      "rebal_days": 14,
+      "sma_len": 150,
+      "stop_pct": 10,
+      "min_mom_pct": 5
+    },
+    "mc_shuffle": null,
+    "mc_time": {
+      "n_iters": 200,
+      "window_years": 2,
+      "return_mean": 152.63165000986598,
+      "return_median": 88.82081300649031,
+      "return_p5": -18.949475306417977,
+      "return_p95": 371.13264080977666,
+      "p_profit": 0.73,
+      "dd_mean": 39.80950014342167,
+      "dd_worst": 26.957828654579085,
+      "dd_p5": 26.957828654579085
+    },
+    "oos_universe_annual_pct": 0.0,
+    "oos_universe_dd_pct": 47.72335303844733,
+    "report_html": "C:\\Users\\qfichet\\Desktop\\Document IA\\Trade Genius\\files\\data\\sandbox\\lab\\report_MIN_DD.html"
+  },
+  "MAX_STABILITY": {
+    "config": {
+      "mom_lookback": 14,
+      "top_n": 3,
+      "rebal_days": 21,
+      "sma_len": 60,
+      "stop_pct": 15,
+      "min_mom_pct": 0
+    },
+    "mc_shuffle": null,
+    "mc_time": {
+      "n_iters": 200,
+      "window_years": 2,
+      "return_mean": 154.84348788781531,
+      "return_median": 140.45979257664425,
+      "return_p5": -66.36319902517259,
+      "return_p95": 452.2392986815185,
+      "p_profit": 0.73,
+      "dd_mean": 47.333650767852326,
+      "dd_worst": 33.074885288230476,
+      "dd_p5": 33.074885288230476
+    },
+    "oos_universe_annual_pct": 0.0,
+    "oos_universe_dd_pct": 64.23523473036309,
+    "report_html": "C:\\Users\\qfichet\\Desktop\\Document IA\\Trade Genius\\files\\data\\sandbox\\lab\\report_MAX_STABILITY.html"
+  }
+}

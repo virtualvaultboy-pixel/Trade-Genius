@@ -1,0 +1,354 @@
+{
+  "yearlyResults": [
+    {
+      "year": 2019,
+      "bh": 28.714795902338295,
+      "top1": {
+        "config": {
+          "momentumLookback": 147,
+          "topN": 3,
+          "rebalanceDays": 21,
+          "regimeSMA": 225,
+          "volTarget": 0.16,
+          "maxPosPct": 30,
+          "minMomentum": 2,
+          "bearAction": "cash"
+        },
+        "ret_yr": -15.408385909865421,
+        "dd": -22.616972314978604,
+        "trades": 19
+      },
+      "top2": {
+        "config": {
+          "momentumLookback": 168,
+          "topN": 3,
+          "rebalanceDays": 21,
+          "regimeSMA": 225,
+          "volTarget": 0.16,
+          "maxPosPct": 35,
+          "minMomentum": 3,
+          "bearAction": "tlt"
+        },
+        "ret_yr": -16.13971478047181,
+        "dd": -23.609053791822625,
+        "trades": 20
+      },
+      "top3": {
+        "config": {
+          "momentumLookback": 168,
+          "topN": 3,
+          "rebalanceDays": 21,
+          "regimeSMA": 225,
+          "volTarget": 0.16,
+          "maxPosPct": 30,
+          "minMomentum": 2,
+          "bearAction": "tlt"
+        },
+        "ret_yr": -15.808416849157606,
+        "dd": -22.647295997105346,
+        "trades": 20
+      }
+    },
+    {
+      "year": 2020,
+      "bh": 15.232460270780289,
+      "top1": {
+        "config": {
+          "momentumLookback": 189,
+          "topN": 4,
+          "rebalanceDays": 42,
+          "regimeSMA": 250,
+          "volTarget": 0.16,
+          "maxPosPct": 25,
+          "minMomentum": -1,
+          "bearAction": "tlt"
+        },
+        "ret_yr": 19.947869189651904,
+        "dd": -22.166968158949704,
+        "trades": 14
+      },
+      "top2": {
+        "config": {
+          "momentumLookback": 189,
+          "topN": 4,
+          "rebalanceDays": 42,
+          "regimeSMA": 250,
+          "volTarget": 0.16,
+          "maxPosPct": 25,
+          "minMomentum": 1,
+          "bearAction": "tlt"
+        },
+        "ret_yr": 19.947869189651904,
+        "dd": -22.166968158949704,
+        "trades": 14
+      },
+      "top3": {
+        "config": {
+          "momentumLookback": 189,
+          "topN": 4,
+          "rebalanceDays": 42,
+          "regimeSMA": 250,
+          "volTarget": 0.16,
+          "maxPosPct": 25,
+          "minMomentum": 0,
+          "bearAction": "tlt"
+        },
+        "ret_yr": 19.947869189651904,
+        "dd": -22.166968158949704,
+        "trades": 14
+      }
+    },
+    {
+      "year": 2021,
+      "bh": 28.793058018340577,
+      "top1": {
+        "config": {
+          "momentumLookback": 210,
+          "topN": 5,
+          "rebalanceDays": 63,
+          "regimeSMA": 250,
+          "volTarget": 0.12,
+          "maxPosPct": 20,
+          "minMomentum": -3,
+          "bearAction": "gld"
+        },
+        "ret_yr": 20.55361701647496,
+        "dd": -11.063922417663418,
+        "trades": 12
+      },
+      "top2": {
+        "config": {
+          "momentumLookback": 210,
+          "topN": 5,
+          "rebalanceDays": 63,
+          "regimeSMA": 250,
+          "volTarget": 0.14,
+          "maxPosPct": 20,
+          "minMomentum": -3,
+          "bearAction": "gld"
+        },
+        "ret_yr": 20.553617016474938,
+        "dd": -11.063922417663411,
+        "trades": 12
+      },
+      "top3": {
+        "config": {
+          "momentumLookback": 210,
+          "topN": 5,
+          "rebalanceDays": 63,
+          "regimeSMA": 250,
+          "volTarget": 0.12,
+          "maxPosPct": 20,
+          "minMomentum": -2,
+          "bearAction": "gld"
+        },
+        "ret_yr": 20.55361701647496,
+        "dd": -11.063922417663418,
+        "trades": 12
+      }
+    },
+    {
+      "year": 2022,
+      "bh": -20.03254488919519,
+      "top1": {
+        "config": {
+          "momentumLookback": 90,
+          "topN": 4,
+          "rebalanceDays": 63,
+          "regimeSMA": 175,
+          "volTarget": 0.16,
+          "maxPosPct": 35,
+          "minMomentum": 3,
+          "bearAction": "tlt"
+        },
+        "ret_yr": -26.176945358271713,
+        "dd": -35.27144136476777,
+        "trades": 5
+      },
+      "top2": {
+        "config": {
+          "momentumLookback": 90,
+          "topN": 4,
+          "rebalanceDays": 63,
+          "regimeSMA": 175,
+          "volTarget": 0.16,
+          "maxPosPct": 35,
+          "minMomentum": 4,
+          "bearAction": "tlt"
+        },
+        "ret_yr": -26.176945358271713,
+        "dd": -35.27144136476777,
+        "trades": 5
+      },
+      "top3": {
+        "config": {
+          "momentumLookback": 189,
+          "topN": 4,
+          "rebalanceDays": 42,
+          "regimeSMA": 250,
+          "volTarget": 0.1,
+          "maxPosPct": 30,
+          "minMomentum": 2,
+          "bearAction": "gld"
+        },
+        "ret_yr": 2.5713009417996426,
+        "dd": -15.203819233531538,
+        "trades": 6
+      }
+    },
+    {
+      "year": 2023,
+      "bh": 24.927323105551785,
+      "top1": {
+        "config": {
+          "momentumLookback": 252,
+          "topN": 4,
+          "rebalanceDays": 42,
+          "regimeSMA": 225,
+          "volTarget": 0.16,
+          "maxPosPct": 30,
+          "minMomentum": 3,
+          "bearAction": "cash"
+        },
+        "ret_yr": 16.316047672863643,
+        "dd": -13.442628901523745,
+        "trades": 10
+      },
+      "top2": {
+        "config": {
+          "momentumLookback": 231,
+          "topN": 5,
+          "rebalanceDays": 42,
+          "regimeSMA": 225,
+          "volTarget": 0.16,
+          "maxPosPct": 30,
+          "minMomentum": 5,
+          "bearAction": "cash"
+        },
+        "ret_yr": 11.343751596167957,
+        "dd": -12.100125145087555,
+        "trades": 12
+      },
+      "top3": {
+        "config": {
+          "momentumLookback": 231,
+          "topN": 5,
+          "rebalanceDays": 42,
+          "regimeSMA": 225,
+          "volTarget": 0.16,
+          "maxPosPct": 30,
+          "minMomentum": 4,
+          "bearAction": "cash"
+        },
+        "ret_yr": 11.343751596167957,
+        "dd": -12.100125145087555,
+        "trades": 12
+      }
+    },
+    {
+      "year": 2024,
+      "bh": 24.01097627216082,
+      "top1": {
+        "config": {
+          "momentumLookback": 210,
+          "topN": 4,
+          "rebalanceDays": 63,
+          "regimeSMA": 225,
+          "volTarget": 0.16,
+          "maxPosPct": 30,
+          "minMomentum": 6,
+          "bearAction": "gld"
+        },
+        "ret_yr": 5.387816206008642,
+        "dd": -21.501967696673766,
+        "trades": 5
+      },
+      "top2": {
+        "config": {
+          "momentumLookback": 210,
+          "topN": 4,
+          "rebalanceDays": 63,
+          "regimeSMA": 225,
+          "volTarget": 0.16,
+          "maxPosPct": 30,
+          "minMomentum": 3,
+          "bearAction": "gld"
+        },
+        "ret_yr": 5.387816206008642,
+        "dd": -21.501967696673766,
+        "trades": 5
+      },
+      "top3": {
+        "config": {
+          "momentumLookback": 210,
+          "topN": 4,
+          "rebalanceDays": 63,
+          "regimeSMA": 225,
+          "volTarget": 0.16,
+          "maxPosPct": 30,
+          "minMomentum": 7,
+          "bearAction": "gld"
+        },
+        "ret_yr": 5.387816206008642,
+        "dd": -21.501967696673766,
+        "trades": 5
+      }
+    },
+    {
+      "year": 2025,
+      "bh": 16.780394299259747,
+      "top1": {
+        "config": {
+          "momentumLookback": 189,
+          "topN": 4,
+          "rebalanceDays": 21,
+          "regimeSMA": 250,
+          "volTarget": 0.14,
+          "maxPosPct": 35,
+          "minMomentum": 5,
+          "bearAction": "gld"
+        },
+        "ret_yr": -0.34481356998062873,
+        "dd": -22.58525010896658,
+        "trades": 15
+      },
+      "top2": {
+        "config": {
+          "momentumLookback": 189,
+          "topN": 4,
+          "rebalanceDays": 21,
+          "regimeSMA": 250,
+          "volTarget": 0.14,
+          "maxPosPct": 35,
+          "minMomentum": 4,
+          "bearAction": "cash"
+        },
+        "ret_yr": -0.34481356998062873,
+        "dd": -22.58525010896658,
+        "trades": 15
+      },
+      "top3": {
+        "config": {
+          "momentumLookback": 231,
+          "topN": 5,
+          "rebalanceDays": 63,
+          "regimeSMA": 250,
+          "volTarget": 0.08,
+          "maxPosPct": 30,
+          "minMomentum": 3,
+          "bearAction": "gld"
+        },
+        "ret_yr": 16.929856347617246,
+        "dd": -9.30502472182559,
+        "trades": 10
+      }
+    }
+  ],
+  "summary": {
+    "top1Median": 5.387816206008642,
+    "top1Mean": 2.896457892411626,
+    "top1Positive": 4,
+    "beatBH": 1,
+    "n": 7
+  }
+}

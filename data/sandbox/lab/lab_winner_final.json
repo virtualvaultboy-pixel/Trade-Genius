@@ -1,0 +1,79 @@
+{
+  "config": {
+    "TQQQ": 0.3,
+    "TLT": 0.4,
+    "GLD": 0.1,
+    "BTC-USD": 0.2
+  },
+  "score": 6,
+  "max_score": 7,
+  "verdict": "CANDIDAT FORT - usage prudent",
+  "failures": [
+    "Post-COVID 5.7% < 10%"
+  ],
+  "results": {
+    "baseline": {
+      "final_value": 32630.69126891759,
+      "total_return_pct": 3163.069126891759,
+      "annual_return_pct": 20.05567368234784,
+      "max_dd_pct": -55.7279590077553,
+      "n_years": 19.067460317460316,
+      "n_trades_approx": 916
+    },
+    "no_2020_2021": {
+      "final_value": 35313.74799071119,
+      "total_return_pct": 3431.374799071119,
+      "annual_return_pct": 24.66630910533305,
+      "max_dd_pct": -53.40837577110664,
+      "n_years": 16.166666666666668,
+      "n_trades_approx": 776
+    },
+    "post_covid": {
+      "final_value": 1382.69655793448,
+      "total_return_pct": 38.26965579344801,
+      "annual_return_pct": 5.744214892100508,
+      "max_dd_pct": -53.19259314381688,
+      "n_years": 5.801587301587301,
+      "n_trades_approx": 280
+    },
+    "frais_3x": {
+      "final_value": 30971.653685314348,
+      "total_return_pct": 2997.1653685314345,
+      "annual_return_pct": 19.727572845688222,
+      "max_dd_pct": -55.32034502179711,
+      "n_years": 19.067460317460316,
+      "n_trades_approx": 916
+    },
+    "monte_carlo": {
+      "median": 557.7561285786833,
+      "p5": 334.75133934354153,
+      "p_profit": 1.0,
+      "p_above_15": 1.0,
+      "p_above_20": 1.0
+    },
+    "decade_a": {
+      "final_value": 5134.5021156500825,
+      "total_return_pct": 413.45021156500826,
+      "annual_return_pct": 20.12865393516652,
+      "max_dd_pct": -31.948842747752238,
+      "n_years": 8.920634920634921,
+      "n_trades_approx": 432
+    },
+    "decade_b": {
+      "final_value": 6477.325759333619,
+      "total_return_pct": 547.732575933362,
+      "annual_return_pct": 20.208233940705746,
+      "max_dd_pct": -55.72795900775531,
+      "n_years": 10.15079365079365,
+      "n_trades_approx": 488
+    },
+    "user_real": {
+      "final_value": 328809.1568133391,
+      "total_return_pct": 3188.091568133391,
+      "annual_return_pct": 20.103782022298034,
+      "max_dd_pct": -55.65516859632966,
+      "n_years": 19.067460317460316,
+      "n_trades_approx": 916
+    }
+  }
+}

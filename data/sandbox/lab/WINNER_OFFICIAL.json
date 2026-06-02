@@ -1,0 +1,489 @@
+{
+  "winners": {
+    "INDICES": {
+      "name": "INDICES_LT_180_5_quarterly",
+      "mean": 5.639128598277517,
+      "dd": 1.6122321941658075,
+      "n_pos": 10,
+      "n_total": 14,
+      "source": "longterm",
+      "config": {
+        "name": "LT_180_5_quarterly",
+        "mom_lookback": 180,
+        "top_n": 5,
+        "rebal_days": 63,
+        "sma_len": 250,
+        "stop_pct": 30,
+        "min_mom_pct": 5
+      },
+      "verdict": "CANDIDAT",
+      "reasons_ok": [
+        "DD 1.6% excellent",
+        "71% pos OK"
+      ],
+      "reasons_ko": [
+        "mean 5.6%/an trop faible"
+      ],
+      "pos_ratio": 0.7142857142857143
+    },
+    "CRYPTO": {
+      "name": "CRYPTO_LT_60_5_biweekly",
+      "mean": 183.81283298961804,
+      "dd": 17.315348372262577,
+      "n_pos": 5,
+      "n_total": 7,
+      "source": "longterm",
+      "config": {
+        "name": "LT_60_5_biweekly",
+        "mom_lookback": 60,
+        "top_n": 5,
+        "rebal_days": 14,
+        "sma_len": 150,
+        "stop_pct": 15,
+        "min_mom_pct": 5
+      },
+      "verdict": "WINNER",
+      "reasons_ok": [
+        "mean 183.8%/an >= 25%",
+        "DD 17.3% excellent",
+        "71% pos OK"
+      ],
+      "reasons_ko": [],
+      "pos_ratio": 0.7142857142857143
+    }
+  },
+  "all_candidates": {
+    "INDICES": [
+      {
+        "name": "INDICES_ensemble_2_of_3",
+        "mean": 9.656494380447475,
+        "dd": 8.613269903683697,
+        "n_pos": 4,
+        "n_total": 6,
+        "source": "ensemble",
+        "verdict": "REJETE",
+        "reasons_ok": [
+          "DD 8.6% excellent",
+          "66% pos OK"
+        ],
+        "reasons_ko": [
+          "mean 9.7%/an trop faible",
+          "crashtest 3/7 fragile",
+          "MC P(profit) 12% FAIL"
+        ],
+        "pos_ratio": 0.6666666666666666
+      },
+      {
+        "name": "INDICES_ensemble_3_of_3",
+        "mean": 24.633922277347324,
+        "dd": 10.895090962080149,
+        "n_pos": 4,
+        "n_total": 6,
+        "source": "ensemble",
+        "verdict": "REJETE",
+        "reasons_ok": [
+          "mean 24.6%/an dans range",
+          "DD 10.9% excellent",
+          "66% pos OK"
+        ],
+        "reasons_ko": [
+          "crashtest 3/7 fragile",
+          "MC P(profit) 12% FAIL"
+        ],
+        "pos_ratio": 0.6666666666666666
+      },
+      {
+        "name": "INDICES_genetic_top1",
+        "mean": 23.372707704728587,
+        "dd": 3.160230892832272,
+        "n_pos": 7,
+        "n_total": 8,
+        "source": "genetic",
+        "config": {
+          "mom_lookback": 90,
+          "top_n": 2,
+          "rebal_days": 29,
+          "sma_filter_len": 73,
+          "stop_pct": 7,
+          "min_mom_pct": 17,
+          "use_rsi_filter": 0,
+          "rsi_max": 79,
+          "use_macd_filter": 0,
+          "use_bb_filter": 0,
+          "bb_pos_max": 0.5132273260173515,
+          "regime_filter_asset": "SPY"
+        },
+        "verdict": "REJETE",
+        "reasons_ok": [
+          "mean 23.4%/an dans range",
+          "DD 3.2% excellent",
+          "87% annees positives"
+        ],
+        "reasons_ko": [
+          "crashtest 3/7 fragile",
+          "MC P(profit) 12% FAIL"
+        ],
+        "pos_ratio": 0.875
+      },
+      {
+        "name": "INDICES_genetic_top2",
+        "mean": 23.372707704728587,
+        "dd": 3.160230892832272,
+        "n_pos": 7,
+        "n_total": 8,
+        "source": "genetic",
+        "config": {
+          "mom_lookback": 90,
+          "top_n": 2,
+          "rebal_days": 29,
+          "sma_filter_len": 73,
+          "stop_pct": 7,
+          "min_mom_pct": 17,
+          "use_rsi_filter": 0,
+          "rsi_max": 79,
+          "use_macd_filter": 0,
+          "use_bb_filter": 0,
+          "bb_pos_max": 0.5132273260173515,
+          "regime_filter_asset": "SPY"
+        },
+        "verdict": "REJETE",
+        "reasons_ok": [
+          "mean 23.4%/an dans range",
+          "DD 3.2% excellent",
+          "87% annees positives"
+        ],
+        "reasons_ko": [
+          "crashtest 3/7 fragile",
+          "MC P(profit) 12% FAIL"
+        ],
+        "pos_ratio": 0.875
+      },
+      {
+        "name": "INDICES_genetic_top3",
+        "mean": 23.372707704728587,
+        "dd": 3.160230892832272,
+        "n_pos": 7,
+        "n_total": 8,
+        "source": "genetic",
+        "config": {
+          "mom_lookback": 90,
+          "top_n": 2,
+          "rebal_days": 29,
+          "sma_filter_len": 73,
+          "stop_pct": 7,
+          "min_mom_pct": 17,
+          "use_rsi_filter": 0,
+          "rsi_max": 78,
+          "use_macd_filter": 0,
+          "use_bb_filter": 0,
+          "bb_pos_max": 0.5132273260173515,
+          "regime_filter_asset": "SPY"
+        },
+        "verdict": "REJETE",
+        "reasons_ok": [
+          "mean 23.4%/an dans range",
+          "DD 3.2% excellent",
+          "87% annees positives"
+        ],
+        "reasons_ko": [
+          "crashtest 3/7 fragile",
+          "MC P(profit) 12% FAIL"
+        ],
+        "pos_ratio": 0.875
+      },
+      {
+        "name": "INDICES_LT_180_5_quarterly",
+        "mean": 5.639128598277517,
+        "dd": 1.6122321941658075,
+        "n_pos": 10,
+        "n_total": 14,
+        "source": "longterm",
+        "config": {
+          "name": "LT_180_5_quarterly",
+          "mom_lookback": 180,
+          "top_n": 5,
+          "rebal_days": 63,
+          "sma_len": 250,
+          "stop_pct": 30,
+          "min_mom_pct": 5
+        },
+        "verdict": "CANDIDAT",
+        "reasons_ok": [
+          "DD 1.6% excellent",
+          "71% pos OK"
+        ],
+        "reasons_ko": [
+          "mean 5.6%/an trop faible"
+        ],
+        "pos_ratio": 0.7142857142857143
+      },
+      {
+        "name": "INDICES_LT_120_3_biweekly",
+        "mean": 5.628505776789939,
+        "dd": 2.51655812827512,
+        "n_pos": 10,
+        "n_total": 14,
+        "source": "longterm",
+        "config": {
+          "name": "LT_120_3_biweekly",
+          "mom_lookback": 120,
+          "top_n": 3,
+          "rebal_days": 14,
+          "sma_len": 150,
+          "stop_pct": 20,
+          "min_mom_pct": 5
+        },
+        "verdict": "CANDIDAT",
+        "reasons_ok": [
+          "DD 2.5% excellent",
+          "71% pos OK"
+        ],
+        "reasons_ko": [
+          "mean 5.6%/an trop faible"
+        ],
+        "pos_ratio": 0.7142857142857143
+      },
+      {
+        "name": "INDICES_LT_180_3_monthly",
+        "mean": 5.423378220910375,
+        "dd": 1.7357307697889905,
+        "n_pos": 10,
+        "n_total": 14,
+        "source": "longterm",
+        "config": {
+          "name": "LT_180_3_monthly",
+          "mom_lookback": 180,
+          "top_n": 3,
+          "rebal_days": 21,
+          "sma_len": 200,
+          "stop_pct": 25,
+          "min_mom_pct": 5
+        },
+        "verdict": "CANDIDAT",
+        "reasons_ok": [
+          "DD 1.7% excellent",
+          "71% pos OK"
+        ],
+        "reasons_ko": [
+          "mean 5.4%/an trop faible"
+        ],
+        "pos_ratio": 0.7142857142857143
+      }
+    ],
+    "CRYPTO": [
+      {
+        "name": "CRYPTO_ensemble_2_of_3",
+        "mean": 149.8804096241311,
+        "dd": 33.45851403222739,
+        "n_pos": 4,
+        "n_total": 6,
+        "source": "ensemble",
+        "verdict": "REJETE",
+        "reasons_ok": [
+          "mean 149.9%/an >= 25%",
+          "DD 33.5% excellent",
+          "66% pos OK"
+        ],
+        "reasons_ko": [
+          "crashtest 2/7 fragile",
+          "MC P(profit) 10% FAIL"
+        ],
+        "pos_ratio": 0.6666666666666666
+      },
+      {
+        "name": "CRYPTO_ensemble_3_of_3",
+        "mean": 43.614326875490214,
+        "dd": 9.163681801551911,
+        "n_pos": 5,
+        "n_total": 6,
+        "source": "ensemble",
+        "verdict": "REJETE",
+        "reasons_ok": [
+          "mean 43.6%/an >= 25%",
+          "DD 9.2% excellent",
+          "83% annees positives"
+        ],
+        "reasons_ko": [
+          "crashtest 2/7 fragile",
+          "MC P(profit) 10% FAIL"
+        ],
+        "pos_ratio": 0.8333333333333334
+      },
+      {
+        "name": "CRYPTO_genetic_top1",
+        "mean": 522.0730214784187,
+        "dd": 15.981969763804974,
+        "n_pos": 3,
+        "n_total": 5,
+        "source": "genetic",
+        "config": {
+          "mom_lookback": 97,
+          "top_n": 4,
+          "rebal_days": 22,
+          "sma_filter_len": 222,
+          "stop_pct": 19,
+          "min_mom_pct": -3,
+          "use_rsi_filter": 0,
+          "rsi_max": 78,
+          "use_macd_filter": 0,
+          "use_bb_filter": 0,
+          "bb_pos_max": 0.8126123022601448,
+          "regime_filter_asset": "BTC-USD"
+        },
+        "verdict": "REJETE",
+        "reasons_ok": [
+          "mean 522.1%/an >= 25%",
+          "DD 16.0% excellent",
+          "60% pos OK"
+        ],
+        "reasons_ko": [
+          "crashtest 2/7 fragile",
+          "MC P(profit) 10% FAIL"
+        ],
+        "pos_ratio": 0.6
+      },
+      {
+        "name": "CRYPTO_genetic_top2",
+        "mean": 517.2742234890507,
+        "dd": 15.981969763804974,
+        "n_pos": 3,
+        "n_total": 5,
+        "source": "genetic",
+        "config": {
+          "mom_lookback": 97,
+          "top_n": 4,
+          "rebal_days": 22,
+          "sma_filter_len": 224,
+          "stop_pct": 19,
+          "min_mom_pct": 13,
+          "use_rsi_filter": 0,
+          "rsi_max": 77,
+          "use_macd_filter": 0,
+          "use_bb_filter": 0,
+          "bb_pos_max": 0.8126123022601448,
+          "regime_filter_asset": "BTC-USD"
+        },
+        "verdict": "REJETE",
+        "reasons_ok": [
+          "mean 517.3%/an >= 25%",
+          "DD 16.0% excellent",
+          "60% pos OK"
+        ],
+        "reasons_ko": [
+          "crashtest 2/7 fragile",
+          "MC P(profit) 10% FAIL"
+        ],
+        "pos_ratio": 0.6
+      },
+      {
+        "name": "CRYPTO_genetic_top3",
+        "mean": 517.2742234890507,
+        "dd": 15.981969763804974,
+        "n_pos": 3,
+        "n_total": 5,
+        "source": "genetic",
+        "config": {
+          "mom_lookback": 97,
+          "top_n": 4,
+          "rebal_days": 22,
+          "sma_filter_len": 224,
+          "stop_pct": 19,
+          "min_mom_pct": 13,
+          "use_rsi_filter": 0,
+          "rsi_max": 77,
+          "use_macd_filter": 0,
+          "use_bb_filter": 0,
+          "bb_pos_max": 0.8126123022601448,
+          "regime_filter_asset": "BTC-USD"
+        },
+        "verdict": "REJETE",
+        "reasons_ok": [
+          "mean 517.3%/an >= 25%",
+          "DD 16.0% excellent",
+          "60% pos OK"
+        ],
+        "reasons_ko": [
+          "crashtest 2/7 fragile",
+          "MC P(profit) 10% FAIL"
+        ],
+        "pos_ratio": 0.6
+      },
+      {
+        "name": "CRYPTO_LT_60_5_biweekly",
+        "mean": 183.81283298961804,
+        "dd": 17.315348372262577,
+        "n_pos": 5,
+        "n_total": 7,
+        "source": "longterm",
+        "config": {
+          "name": "LT_60_5_biweekly",
+          "mom_lookback": 60,
+          "top_n": 5,
+          "rebal_days": 14,
+          "sma_len": 150,
+          "stop_pct": 15,
+          "min_mom_pct": 5
+        },
+        "verdict": "WINNER",
+        "reasons_ok": [
+          "mean 183.8%/an >= 25%",
+          "DD 17.3% excellent",
+          "71% pos OK"
+        ],
+        "reasons_ko": [],
+        "pos_ratio": 0.7142857142857143
+      },
+      {
+        "name": "CRYPTO_LT_60_3_biweekly",
+        "mean": 94.93574846760337,
+        "dd": 19.30854525361961,
+        "n_pos": 5,
+        "n_total": 7,
+        "source": "longterm",
+        "config": {
+          "name": "LT_60_3_biweekly",
+          "mom_lookback": 60,
+          "top_n": 3,
+          "rebal_days": 14,
+          "sma_len": 150,
+          "stop_pct": 15,
+          "min_mom_pct": 5
+        },
+        "verdict": "WINNER",
+        "reasons_ok": [
+          "mean 94.9%/an >= 25%",
+          "DD 19.3% excellent",
+          "71% pos OK"
+        ],
+        "reasons_ko": [],
+        "pos_ratio": 0.7142857142857143
+      },
+      {
+        "name": "CRYPTO_LT_90_3_monthly",
+        "mean": 61.3788801577226,
+        "dd": 19.69863260785438,
+        "n_pos": 4,
+        "n_total": 7,
+        "source": "longterm",
+        "config": {
+          "name": "LT_90_3_monthly",
+          "mom_lookback": 90,
+          "top_n": 3,
+          "rebal_days": 21,
+          "sma_len": 200,
+          "stop_pct": 20,
+          "min_mom_pct": 5
+        },
+        "verdict": "CANDIDAT",
+        "reasons_ok": [
+          "mean 61.4%/an >= 25%",
+          "DD 19.7% excellent"
+        ],
+        "reasons_ko": [
+          "57% pos faible"
+        ],
+        "pos_ratio": 0.5714285714285714
+      }
+    ]
+  }
+}

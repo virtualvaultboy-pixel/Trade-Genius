@@ -1,0 +1,572 @@
+{
+  "DONCHIAN": {
+    "yearlyResults": [
+      {
+        "year": 2020,
+        "bh": 301.9646242528781,
+        "top1": {
+          "config": {
+            "lookback": 60,
+            "breakoutPct": 0.5,
+            "trailingPct": 22,
+            "stopPct": 7,
+            "maxHold": 20,
+            "maxPos": 4,
+            "sizingPct": 20,
+            "minRange": 0.3
+          },
+          "ret_yr": 68.87667844543515,
+          "dd": -46.78420419791885,
+          "trades": 89,
+          "winrate": 0.33707865168539325
+        },
+        "top2": {
+          "config": {
+            "lookback": 60,
+            "breakoutPct": 0.5,
+            "trailingPct": 21,
+            "stopPct": 7,
+            "maxHold": 20,
+            "maxPos": 4,
+            "sizingPct": 19,
+            "minRange": 0.3
+          },
+          "ret_yr": 66.27912040258911,
+          "dd": -45.762749363251835,
+          "trades": 89,
+          "winrate": 0.33707865168539325
+        },
+        "top3": {
+          "config": {
+            "lookback": 40,
+            "breakoutPct": 3,
+            "trailingPct": 21,
+            "stopPct": 14,
+            "maxHold": 50,
+            "maxPos": 5,
+            "sizingPct": 24,
+            "minRange": 0.15000000000000002
+          },
+          "ret_yr": 61.203708637991625,
+          "dd": -35.65719956519163,
+          "trades": 59,
+          "winrate": 0.3728813559322034
+        }
+      },
+      {
+        "year": 2021,
+        "bh": 57.643511787507705,
+        "top1": {
+          "config": {
+            "lookback": 40,
+            "breakoutPct": 3,
+            "trailingPct": 24,
+            "stopPct": 8,
+            "maxHold": 30,
+            "maxPos": 4,
+            "sizingPct": 19,
+            "minRange": 0.15000000000000002
+          },
+          "ret_yr": 20.10726050769276,
+          "dd": -27.8710765526829,
+          "trades": 64,
+          "winrate": 0.296875
+        },
+        "top2": {
+          "config": {
+            "lookback": 40,
+            "breakoutPct": 3,
+            "trailingPct": 24,
+            "stopPct": 8,
+            "maxHold": 30,
+            "maxPos": 4,
+            "sizingPct": 17,
+            "minRange": 0.15000000000000002
+          },
+          "ret_yr": 18.712436496113877,
+          "dd": -26.132067938293723,
+          "trades": 64,
+          "winrate": 0.296875
+        },
+        "top3": {
+          "config": {
+            "lookback": 48,
+            "breakoutPct": 3,
+            "trailingPct": 25,
+            "stopPct": 6,
+            "maxHold": 25,
+            "maxPos": 3,
+            "sizingPct": 14,
+            "minRange": 0.1
+          },
+          "ret_yr": 49.11035010790222,
+          "dd": -18.308865189733563,
+          "trades": 67,
+          "winrate": 0.26865671641791045
+        }
+      },
+      {
+        "year": 2022,
+        "bh": -65.29963898562102,
+        "top1": {
+          "config": {
+            "lookback": 60,
+            "breakoutPct": 1.5,
+            "trailingPct": 23,
+            "stopPct": 10,
+            "maxHold": 50,
+            "maxPos": 5,
+            "sizingPct": 24,
+            "minRange": 0.15000000000000002
+          },
+          "ret_yr": -31.38293246240024,
+          "dd": -39.71728647526119,
+          "trades": 32,
+          "winrate": 0.3125
+        },
+        "top2": {
+          "config": {
+            "lookback": 60,
+            "breakoutPct": 2,
+            "trailingPct": 20,
+            "stopPct": 12,
+            "maxHold": 55,
+            "maxPos": 5,
+            "sizingPct": 20,
+            "minRange": 0.1
+          },
+          "ret_yr": -31.83421885328464,
+          "dd": -38.80903452292642,
+          "trades": 33,
+          "winrate": 0.3333333333333333
+        },
+        "top3": {
+          "config": {
+            "lookback": 52,
+            "breakoutPct": 3,
+            "trailingPct": 25,
+            "stopPct": 8,
+            "maxHold": 20,
+            "maxPos": 4,
+            "sizingPct": 24,
+            "minRange": 0.2
+          },
+          "ret_yr": -33.99521583897126,
+          "dd": -46.909662341566644,
+          "trades": 38,
+          "winrate": 0.34210526315789475
+        }
+      },
+      {
+        "year": 2023,
+        "bh": 154.22546719406074,
+        "top1": {
+          "config": {
+            "lookback": 44,
+            "breakoutPct": 1.5,
+            "trailingPct": 16,
+            "stopPct": 12,
+            "maxHold": 60,
+            "maxPos": 5,
+            "sizingPct": 20,
+            "minRange": 0.15000000000000002
+          },
+          "ret_yr": -18.110387307719193,
+          "dd": -46.73845280212557,
+          "trades": 29,
+          "winrate": 0.3448275862068966
+        },
+        "top2": {
+          "config": {
+            "lookback": 46,
+            "breakoutPct": 1.5,
+            "trailingPct": 15,
+            "stopPct": 12,
+            "maxHold": 60,
+            "maxPos": 5,
+            "sizingPct": 19,
+            "minRange": 0.15000000000000002
+          },
+          "ret_yr": -17.422138461686973,
+          "dd": -47.01187362459824,
+          "trades": 29,
+          "winrate": 0.3793103448275862
+        },
+        "top3": {
+          "config": {
+            "lookback": 58,
+            "breakoutPct": 2.5,
+            "trailingPct": 19,
+            "stopPct": 6,
+            "maxHold": 20,
+            "maxPos": 5,
+            "sizingPct": 21,
+            "minRange": 0.05
+          },
+          "ret_yr": -6.203369206601712,
+          "dd": -38.1772324723868,
+          "trades": 46,
+          "winrate": 0.30434782608695654
+        }
+      },
+      {
+        "year": 2024,
+        "bh": 111.22989222617798,
+        "top1": {
+          "config": {
+            "lookback": 60,
+            "breakoutPct": 1,
+            "trailingPct": 21,
+            "stopPct": 6,
+            "maxHold": 30,
+            "maxPos": 6,
+            "sizingPct": 22,
+            "minRange": 0.1
+          },
+          "ret_yr": -52.18724016531449,
+          "dd": -57.54616741917595,
+          "trades": 34,
+          "winrate": 0.29411764705882354
+        },
+        "top2": {
+          "config": {
+            "lookback": 48,
+            "breakoutPct": 2,
+            "trailingPct": 16,
+            "stopPct": 10,
+            "maxHold": 20,
+            "maxPos": 4,
+            "sizingPct": 24,
+            "minRange": 0.2
+          },
+          "ret_yr": -50.774967145742394,
+          "dd": -62.75554615016999,
+          "trades": 26,
+          "winrate": 0.46153846153846156
+        },
+        "top3": {
+          "config": {
+            "lookback": 60,
+            "breakoutPct": 1,
+            "trailingPct": 22,
+            "stopPct": 6,
+            "maxHold": 30,
+            "maxPos": 6,
+            "sizingPct": 22,
+            "minRange": 0.1
+          },
+          "ret_yr": -52.18724016531449,
+          "dd": -57.54616741917595,
+          "trades": 34,
+          "winrate": 0.29411764705882354
+        }
+      },
+      {
+        "year": 2025,
+        "bh": -7.3193681572704445,
+        "top1": {
+          "config": {
+            "lookback": 48,
+            "breakoutPct": 3,
+            "trailingPct": 18,
+            "stopPct": 10,
+            "maxHold": 55,
+            "maxPos": 5,
+            "sizingPct": 20,
+            "minRange": 0.15000000000000002
+          },
+          "ret_yr": 2.9951216872296524,
+          "dd": -4.379988076001152,
+          "trades": 3,
+          "winrate": 0.6666666666666666
+        },
+        "top2": {
+          "config": {
+            "lookback": 46,
+            "breakoutPct": 2.5,
+            "trailingPct": 16,
+            "stopPct": 11,
+            "maxHold": 50,
+            "maxPos": 5,
+            "sizingPct": 20,
+            "minRange": 0.15000000000000002
+          },
+          "ret_yr": -5.493797420138299,
+          "dd": -8.725804026929552,
+          "trades": 4,
+          "winrate": 0.5
+        },
+        "top3": {
+          "config": {
+            "lookback": 48,
+            "breakoutPct": 2.5,
+            "trailingPct": 16,
+            "stopPct": 12,
+            "maxHold": 55,
+            "maxPos": 5,
+            "sizingPct": 20,
+            "minRange": 0.15000000000000002
+          },
+          "ret_yr": -3.4785392543891134,
+          "dd": -8.725804026929545,
+          "trades": 4,
+          "winrate": 0.5
+        }
+      }
+    ],
+    "top1Median": 2.9951216872296524,
+    "top1Mean": -1.6169165491793933,
+    "top1Positive": 3,
+    "beatBH": 2,
+    "n": 6
+  },
+  "MOMENTUM": {
+    "yearlyResults": [
+      {
+        "year": 2020,
+        "bh": 301.9646242528781,
+        "top1": {
+          "config": {
+            "momLookback": 84,
+            "rebalanceDays": 15,
+            "topN": 2,
+            "minMom": 6,
+            "btcFilterMult": 0.9
+          },
+          "ret_yr": -53.08082143426015,
+          "dd": -72.52180251417514,
+          "trades": 57
+        },
+        "top2": {
+          "config": {
+            "momLookback": 84,
+            "rebalanceDays": 15,
+            "topN": 2,
+            "minMom": 4,
+            "btcFilterMult": 0.9
+          },
+          "ret_yr": -53.08082143426015,
+          "dd": -72.52180251417514,
+          "trades": 57
+        },
+        "top3": {
+          "config": {
+            "momLookback": 84,
+            "rebalanceDays": 15,
+            "topN": 2,
+            "minMom": 8,
+            "btcFilterMult": 0.9
+          },
+          "ret_yr": -53.08082143426015,
+          "dd": -72.52180251417514,
+          "trades": 57
+        }
+      },
+      {
+        "year": 2021,
+        "bh": 57.643511787507705,
+        "top1": {
+          "config": {
+            "momLookback": 21,
+            "rebalanceDays": 14,
+            "topN": 4,
+            "minMom": -8,
+            "btcFilterMult": 0.8500000000000001
+          },
+          "ret_yr": -19.352630948418277,
+          "dd": -38.658833414888186,
+          "trades": 135
+        },
+        "top2": {
+          "config": {
+            "momLookback": 28,
+            "rebalanceDays": 13,
+            "topN": 4,
+            "minMom": -10,
+            "btcFilterMult": 0.8500000000000001
+          },
+          "ret_yr": -18.593638970282857,
+          "dd": -42.097444829570065,
+          "trades": 118
+        },
+        "top3": {
+          "config": {
+            "momLookback": 35,
+            "rebalanceDays": 15,
+            "topN": 5,
+            "minMom": -6,
+            "btcFilterMult": 0.8500000000000001
+          },
+          "ret_yr": -7.745271149427128,
+          "dd": -29.62977864653304,
+          "trades": 139
+        }
+      },
+      {
+        "year": 2022,
+        "bh": -65.29963898562102,
+        "top1": {
+          "config": {
+            "momLookback": 35,
+            "rebalanceDays": 6,
+            "topN": 3,
+            "minMom": 0,
+            "btcFilterMult": 0.9
+          },
+          "ret_yr": -49.19482383273529,
+          "dd": -54.34022479395036,
+          "trades": 127
+        },
+        "top2": {
+          "config": {
+            "momLookback": 35,
+            "rebalanceDays": 6,
+            "topN": 3,
+            "minMom": 2,
+            "btcFilterMult": 0.9
+          },
+          "ret_yr": -49.45597257129551,
+          "dd": -54.57493398376357,
+          "trades": 123
+        },
+        "top3": {
+          "config": {
+            "momLookback": 42,
+            "rebalanceDays": 6,
+            "topN": 3,
+            "minMom": -2,
+            "btcFilterMult": 0.8500000000000001
+          },
+          "ret_yr": -68.36338929474852,
+          "dd": -70.04910916504457,
+          "trades": 144
+        }
+      },
+      {
+        "year": 2023,
+        "bh": 154.22546719406074,
+        "top1": {
+          "config": {
+            "momLookback": 77,
+            "rebalanceDays": 11,
+            "topN": 3,
+            "minMom": 8,
+            "btcFilterMult": 0.9
+          },
+          "ret_yr": 117.2652366802587,
+          "dd": -46.236963702194934,
+          "trades": 73
+        },
+        "top2": {
+          "config": {
+            "momLookback": 77,
+            "rebalanceDays": 11,
+            "topN": 3,
+            "minMom": 10,
+            "btcFilterMult": 0.9
+          },
+          "ret_yr": 117.2652366802587,
+          "dd": -46.236963702194934,
+          "trades": 73
+        },
+        "top3": {
+          "config": {
+            "momLookback": 77,
+            "rebalanceDays": 11,
+            "topN": 3,
+            "minMom": 6,
+            "btcFilterMult": 0.9
+          },
+          "ret_yr": 124.9313944816794,
+          "dd": -46.26637586794057,
+          "trades": 71
+        }
+      },
+      {
+        "year": 2024,
+        "bh": 111.22989222617798,
+        "top1": {
+          "config": {
+            "momLookback": 28,
+            "rebalanceDays": 15,
+            "topN": 4,
+            "minMom": 20,
+            "btcFilterMult": 0.9
+          },
+          "ret_yr": 3.9655666754174956,
+          "dd": -27.00718400384643,
+          "trades": 28
+        },
+        "top2": {
+          "config": {
+            "momLookback": 28,
+            "rebalanceDays": 15,
+            "topN": 4,
+            "minMom": 18,
+            "btcFilterMult": 0.9
+          },
+          "ret_yr": 4.739175049834967,
+          "dd": -31.166915343322778,
+          "trades": 33
+        },
+        "top3": {
+          "config": {
+            "momLookback": 77,
+            "rebalanceDays": 11,
+            "topN": 3,
+            "minMom": 2,
+            "btcFilterMult": 0.9
+          },
+          "ret_yr": -57.00695632445955,
+          "dd": -71.45570702835381,
+          "trades": 63
+        }
+      },
+      {
+        "year": 2025,
+        "bh": -7.3193681572704445,
+        "top1": {
+          "config": {
+            "momLookback": 35,
+            "rebalanceDays": 5,
+            "topN": 2,
+            "minMom": 20,
+            "btcFilterMult": 0.8500000000000001
+          },
+          "ret_yr": -19.128689537453113,
+          "dd": -21.01680810930717,
+          "trades": 12
+        },
+        "top2": {
+          "config": {
+            "momLookback": 35,
+            "rebalanceDays": 5,
+            "topN": 2,
+            "minMom": 18,
+            "btcFilterMult": 0.8500000000000001
+          },
+          "ret_yr": -19.128689537453113,
+          "dd": -21.01680810930717,
+          "trades": 12
+        },
+        "top3": {
+          "config": {
+            "momLookback": 35,
+            "rebalanceDays": 5,
+            "topN": 2,
+            "minMom": 16,
+            "btcFilterMult": 0.8500000000000001
+          },
+          "ret_yr": -13.650955806804394,
+          "dd": -21.42188702137663,
+          "trades": 13
+        }
+      }
+    ],
+    "top1Median": -19.128689537453113,
+    "top1Mean": -3.2543603995317745,
+    "top1Positive": 2,
+    "beatBH": 1,
+    "n": 6
+  }
+}

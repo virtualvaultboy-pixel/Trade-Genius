@@ -1,0 +1,67 @@
+{
+  "individual": {
+    "INDICES": {
+      "annual_return_pct": 21.415589629888963,
+      "max_dd_pct": -34.5291223345362,
+      "worst_monthly": -14.64153533806767,
+      "final_value": 5945.493843127326,
+      "calmar": 0.6202181863298908
+    },
+    "CRYPTO": {
+      "annual_return_pct": 40.33712043987621,
+      "max_dd_pct": -49.54818532636605,
+      "worst_monthly": -18.828088221051765,
+      "final_value": 22490.64445863084,
+      "calmar": 0.8140988448755889
+    },
+    "MIXTE": {
+      "annual_return_pct": 22.584613402468246,
+      "max_dd_pct": -32.004646882955974,
+      "worst_monthly": -15.941182993480297,
+      "final_value": 6492.585305462587,
+      "calmar": 0.7056666953727787
+    }
+  },
+  "correlations": {
+    "IND_CRP": 0.16181141593051349,
+    "IND_MIX": 0.8025270457383087,
+    "CRP_MIX": 0.33877821920276935
+  },
+  "meta_ensembles": {
+    "META_equiponder\u00e9": {
+      "annual_return_pct": 30.631054055086192,
+      "max_dd_pct": -38.18981620353475,
+      "worst_monthly": -15.178102915127411,
+      "final_value": 11642.907869073584,
+      "calmar": 0.8020738799012881
+    },
+    "META_crypto_heavy": {
+      "annual_return_pct": 33.67044750828994,
+      "max_dd_pct": -42.27862113191579,
+      "worst_monthly": -16.03509102244819,
+      "final_value": 14382.19658957966,
+      "calmar": 0.7963941729138463
+    },
+    "META_mixte_heavy": {
+      "annual_return_pct": 28.975124093403636,
+      "max_dd_pct": -35.82985355982192,
+      "worst_monthly": -14.837712737342379,
+      "final_value": 10355.327228170836,
+      "calmar": 0.8086866457610955
+    },
+    "META_indices_heavy": {
+      "annual_return_pct": 28.78858865327927,
+      "max_dd_pct": -35.46025600781247,
+      "worst_monthly": -14.52296850740382,
+      "final_value": 10218.554362587021,
+      "calmar": 0.8118550708414705
+    },
+    "META_adaptive_sharpe": {
+      "annual_return_pct": 30.914610983992663,
+      "max_dd_pct": -40.927412899715144,
+      "worst_monthly": -16.419501699687757,
+      "final_value": 11877.151295902895,
+      "calmar": 0.7553521904681112
+    }
+  }
+}

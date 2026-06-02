@@ -1,0 +1,72 @@
+{
+  "REF: 4 actifs (BTC40+ETH20+SOL20+TLT20)": {
+    "annual_return_pct": 40.337107735840114,
+    "max_dd_pct": -49.548179604823176,
+    "worst_monthly": -18.828088221051754,
+    "final_value": 22490.62575519684,
+    "calmar": 0.8140986824854727
+  },
+  "EXT 8 actifs equipondere": {
+    "annual_return_pct": -0.28522316393467806,
+    "max_dd_pct": -83.95123586458159,
+    "worst_monthly": -25.11622436555575,
+    "final_value": 974.1017770055643,
+    "calmar": -0.003397486183464413
+  },
+  "EXT 8 actifs + top 4": {
+    "annual_return_pct": 17.12248020527516,
+    "max_dd_pct": -75.44492746697485,
+    "worst_monthly": -29.427824202574033,
+    "final_value": 4271.341525513421,
+    "calmar": 0.2269533655893609
+  },
+  "EXT 12 actifs + top 4": {
+    "annual_return_pct": 10.08109696677093,
+    "max_dd_pct": -74.24153407407255,
+    "worst_monthly": -18.219953096190693,
+    "final_value": 2416.542830417891,
+    "calmar": 0.13578783214140996
+  },
+  "EXT 12 actifs + top 5": {
+    "annual_return_pct": 12.033796252403594,
+    "max_dd_pct": -78.11178230266128,
+    "worst_monthly": -21.92753752481885,
+    "final_value": 2840.177352615639,
+    "calmar": 0.15405865667967994
+  },
+  "EXT 12 actifs + top 6": {
+    "annual_return_pct": 0.47336923158936006,
+    "max_dd_pct": -83.80993794809353,
+    "worst_monthly": -21.298515870908304,
+    "final_value": 1044.3383226212131,
+    "calmar": 0.005648127694385532
+  },
+  "REF 4 + MASTER + ON-CHAIN": {
+    "annual_return_pct": 37.684047887903446,
+    "max_dd_pct": -51.22421684650901,
+    "worst_monthly": -18.84896221658212,
+    "final_value": 18873.63403359613,
+    "calmar": 0.7356685998894223
+  },
+  "EXT 12 + top 4 + MASTER + ON-CHAIN": {
+    "annual_return_pct": 6.812047408632393,
+    "max_dd_pct": -65.48897195408601,
+    "worst_monthly": -20.21382332259214,
+    "final_value": 1831.9771838385768,
+    "calmar": 0.10401823704620505
+  },
+  "EXT 12 + top 5 + inverse_vol_momentum + ON-CHAIN": {
+    "annual_return_pct": 28.309792777827457,
+    "max_dd_pct": -39.114621299491496,
+    "worst_monthly": -22.987214572961072,
+    "final_value": 9874.82811431655,
+    "calmar": 0.7237649716985882
+  },
+  "EXT 12 + top 5 + retrain 30j": {
+    "annual_return_pct": -2.430602631389911,
+    "max_dd_pct": -85.97094221880016,
+    "worst_monthly": -18.88354081163753,
+    "final_value": 797.6814804043331,
+    "calmar": -0.02827237399822734
+  }
+}

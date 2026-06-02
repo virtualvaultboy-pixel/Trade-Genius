@@ -1,0 +1,60 @@
+{
+  "name": "Mix BH 50/50",
+  "description": "Mix 50% Buy & Hold safe + 50% META 3 IAs leveraged",
+  "validation_date": "2026-05-31",
+  "validation_period": "2019-09 -> 2026-01 (6.3 ans)",
+  "performance": {
+    "annual_return_pct": 23.05240846697929,
+    "max_dd_pct": -33.186562518963555,
+    "calmar": 0.6946307998548094,
+    "mc_p_profit": 0.996,
+    "mc_p_above_15": 0.826,
+    "mc_annual_median": 23.636149425309405,
+    "mc_dd_worst": -58.481072285323854
+  },
+  "allocations": {
+    "bh_safe_50pct": {
+      "SPY": 0.6,
+      "TLT": 0.3,
+      "GLD": 0.1
+    },
+    "meta_50pct": {
+      "IA_INDICES_33pct": {
+        "weights": {
+          "TQQQ": 0.6,
+          "TLT": 0.2,
+          "GLD": 0.2
+        },
+        "use_master": false,
+        "use_onchain": true
+      },
+      "IA_CRYPTO_33pct": {
+        "wf_tickers": [
+          "BTC-USD",
+          "ETH-USD",
+          "SOL-USD",
+          "TLT"
+        ],
+        "use_wf": true,
+        "wf_retrain": 60,
+        "use_master": false,
+        "use_onchain": true
+      },
+      "IA_MIXTE_33pct": {
+        "weights": {
+          "TQQQ": 0.5,
+          "BTC-USD": 0.1,
+          "ETH-USD": 0.1,
+          "TLT": 0.1,
+          "GLD": 0.1,
+          "XLK": 0.1
+        },
+        "use_master": true,
+        "use_onchain": false
+      }
+    }
+  },
+  "rebal_days": 21,
+  "commission_modelled": 0.0015,
+  "slippage_modelled": 0.004
+}

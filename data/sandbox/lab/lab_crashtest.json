@@ -1,0 +1,172 @@
+{
+  "indices": {
+    "stress_fees_2x": {
+      "total_return_pct": 36.34979671305303,
+      "annual_return_pct": 0.0,
+      "sharpe": 0.511695303438824,
+      "max_dd_pct": 23.015139198056062,
+      "n_trades": 382
+    },
+    "slippage_extreme": {
+      "total_return_pct": -10.939774635625989,
+      "annual_return_pct": 0.0,
+      "sharpe": -0.0637119301399323,
+      "max_dd_pct": 32.65720781903394,
+      "n_trades": 382
+    },
+    "bear_2018": {
+      "total_return_pct": -13.940387533130355,
+      "annual_return_pct": 0.0,
+      "sharpe": -1.8893183669912628,
+      "max_dd_pct": 18.229852728140706,
+      "n_trades": 79
+    },
+    "bear_2022": {
+      "total_return_pct": -9.270081396523015,
+      "annual_return_pct": 0.0,
+      "sharpe": -0.7063754851956368,
+      "max_dd_pct": 21.17970785993692,
+      "n_trades": 69
+    },
+    "post_covid": {
+      "total_return_pct": 36.241957085564515,
+      "annual_return_pct": 0.0,
+      "sharpe": 1.1376477803711431,
+      "max_dd_pct": 17.836957436555178,
+      "n_trades": 203
+    },
+    "universe_subset_mean": 0.0,
+    "universe_subset_std": 0.0,
+    "mc_blocks_mean": 26.22351763765106,
+    "mc_blocks_median": -9.832532246189828,
+    "mc_blocks_p5": -76.59819082035523,
+    "mc_blocks_p95": 275.7005152286984,
+    "mc_blocks_p_profit": 0.455,
+    "param_sensitivity": {
+      "mom_lookback": {
+        "base": 0.0,
+        "high_30pct": 0.0,
+        "low_30pct": 0.0,
+        "sensitivity_score": 0.0
+      },
+      "top_n": {
+        "base": 0.0,
+        "high_30pct": 0.0,
+        "low_30pct": 0.0,
+        "sensitivity_score": 0.0
+      },
+      "rebal_days": {
+        "base": 0.0,
+        "high_30pct": 0.0,
+        "low_30pct": 0.0,
+        "sensitivity_score": 0.0
+      },
+      "sma_filter_len": {
+        "base": 0.0,
+        "high_30pct": 0.0,
+        "low_30pct": 0.0,
+        "sensitivity_score": 0.0
+      },
+      "stop_pct": {
+        "base": 0.0,
+        "high_30pct": 0.0,
+        "low_30pct": 0.0,
+        "sensitivity_score": 0.0
+      },
+      "min_mom_pct": {
+        "base": 0.0,
+        "high_30pct": 0.0,
+        "low_30pct": 0.0,
+        "sensitivity_score": 0.0
+      }
+    },
+    "verdict": "FRAGILE",
+    "score": 2,
+    "max_score": 7
+  },
+  "crypto": {
+    "stress_fees_2x": {
+      "total_return_pct": 252.94050175653075,
+      "annual_return_pct": 0.0,
+      "sharpe": 0.6628364083242467,
+      "max_dd_pct": 47.21509637009102,
+      "n_trades": 200
+    },
+    "slippage_extreme": {
+      "total_return_pct": 176.35764693069115,
+      "annual_return_pct": 0.0,
+      "sharpe": 0.5852669420272759,
+      "max_dd_pct": 48.73058432860787,
+      "n_trades": 200
+    },
+    "bear_2018": {
+      "total_return_pct": -38.899545461143504,
+      "annual_return_pct": 0.0,
+      "sharpe": -1.4682658838805376,
+      "max_dd_pct": 47.927781048026496,
+      "n_trades": 16
+    },
+    "bear_2022": {
+      "total_return_pct": -11.35859480714863,
+      "annual_return_pct": 0.0,
+      "sharpe": -1.5707687187748227,
+      "max_dd_pct": 11.35859480714862,
+      "n_trades": 5
+    },
+    "post_covid": {
+      "total_return_pct": 42.05283991287472,
+      "annual_return_pct": 0.0,
+      "sharpe": 0.48277845924496504,
+      "max_dd_pct": 47.60643810800511,
+      "n_trades": 132
+    },
+    "universe_subset_mean": 0.0,
+    "universe_subset_std": 0.0,
+    "mc_blocks_mean": -69.61269241706373,
+    "mc_blocks_median": -91.66071745657806,
+    "mc_blocks_p5": -99.07846076471218,
+    "mc_blocks_p95": 19.98363027514455,
+    "mc_blocks_p_profit": 0.055,
+    "param_sensitivity": {
+      "mom_lookback": {
+        "base": 0.0,
+        "high_30pct": 0.0,
+        "low_30pct": 0.0,
+        "sensitivity_score": 0.0
+      },
+      "top_n": {
+        "base": 0.0,
+        "high_30pct": 0.0,
+        "low_30pct": 0.0,
+        "sensitivity_score": 0.0
+      },
+      "rebal_days": {
+        "base": 0.0,
+        "high_30pct": 0.0,
+        "low_30pct": 0.0,
+        "sensitivity_score": 0.0
+      },
+      "sma_filter_len": {
+        "base": 0.0,
+        "high_30pct": 0.0,
+        "low_30pct": 0.0,
+        "sensitivity_score": 0.0
+      },
+      "stop_pct": {
+        "base": 0.0,
+        "high_30pct": 0.0,
+        "low_30pct": 0.0,
+        "sensitivity_score": 0.0
+      },
+      "min_mom_pct": {
+        "base": 0.0,
+        "high_30pct": 0.0,
+        "low_30pct": 0.0,
+        "sensitivity_score": 0.0
+      }
+    },
+    "verdict": "FRAGILE",
+    "score": 2,
+    "max_score": 7
+  }
+}

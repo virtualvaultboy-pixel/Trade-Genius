@@ -1,0 +1,86 @@
+{
+  "META equipondere": {
+    "baseline": {
+      "annual_return_pct": 30.631054055086192,
+      "max_dd_pct": -38.189816203534754,
+      "final_value": 11642.907869073584
+    },
+    "monte_carlo": {
+      "n_iters": 200,
+      "annual_median": 1.2731665222179611,
+      "annual_mean": 2.227791713183186,
+      "annual_p5": -8.284934574450112,
+      "annual_p95": 13.281303040133144,
+      "p_profit": 0.555,
+      "p_above_15": 0.045,
+      "p_above_20": 0.035,
+      "dd_median": -80.84918355570203,
+      "dd_worst": -94.58005590430153,
+      "dd_p5": -91.95957380267457
+    },
+    "verdict": "FRAGILE"
+  },
+  "META indices-heavy (50/25/25)": {
+    "baseline": {
+      "annual_return_pct": 28.78858865327927,
+      "max_dd_pct": -35.46025600781247,
+      "final_value": 10218.554362587021
+    },
+    "monte_carlo": {
+      "n_iters": 200,
+      "annual_median": 1.518782800080587,
+      "annual_mean": 2.123079320974853,
+      "annual_p5": -7.499046753731035,
+      "annual_p95": 11.88035091759077,
+      "p_profit": 0.585,
+      "p_above_15": 0.045,
+      "p_above_20": 0.03,
+      "dd_median": -79.39259436809513,
+      "dd_worst": -93.64866511848321,
+      "dd_p5": -90.27016430094966
+    },
+    "verdict": "FRAGILE"
+  },
+  "META crypto-heavy (20/50/30)": {
+    "baseline": {
+      "annual_return_pct": 33.67044750828994,
+      "max_dd_pct": -42.27862113191579,
+      "final_value": 14382.19658957966
+    },
+    "monte_carlo": {
+      "n_iters": 200,
+      "annual_median": 0.49408601313672973,
+      "annual_mean": 1.8430710826557195,
+      "annual_p5": -10.235289653997969,
+      "annual_p95": 16.30668184144289,
+      "p_profit": 0.53,
+      "p_above_15": 0.075,
+      "p_above_20": 0.04,
+      "dd_median": -85.93268170592339,
+      "dd_worst": -95.64294035312604,
+      "dd_p5": -94.35716136176418
+    },
+    "verdict": "FRAGILE"
+  },
+  "META mixte-heavy (25/25/50)": {
+    "baseline": {
+      "annual_return_pct": 28.975124093403636,
+      "max_dd_pct": -35.82985355982192,
+      "final_value": 10355.327228170836
+    },
+    "monte_carlo": {
+      "n_iters": 200,
+      "annual_median": 1.701164814040712,
+      "annual_mean": 2.385472481306571,
+      "annual_p5": -8.236031000258127,
+      "annual_p95": 13.592395090636392,
+      "p_profit": 0.595,
+      "p_above_15": 0.04,
+      "p_above_20": 0.03,
+      "dd_median": -80.41753576424371,
+      "dd_worst": -93.43415273679113,
+      "dd_p5": -90.58640436858761
+    },
+    "verdict": "FRAGILE"
+  }
+}

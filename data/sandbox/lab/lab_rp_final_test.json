@@ -1,0 +1,67 @@
+{
+  "results": {
+    "full_period_continuous": {
+      "total_return_pct": 221.3867975071953,
+      "annual_return_pct": 0.0,
+      "sharpe": 0.9385388624318913,
+      "max_dd_pct": 20.462555089527008,
+      "n_trades": 3,
+      "annualized": 6.314199244635943
+    },
+    "mc_blocks": {
+      "median": 8.507439470787412,
+      "p5": -40.39322803412872,
+      "p95": 1177.3425857661898,
+      "p_profit": 0.565,
+      "n_iters": 200
+    },
+    "frais_3x": {
+      "total_return_pct": 218.31472951954413,
+      "annual_return_pct": 0.0,
+      "sharpe": 0.9328677465697675,
+      "max_dd_pct": 20.425433701147703,
+      "n_trades": 3,
+      "annualized": 6.260659559483495
+    },
+    "no_2017": {
+      "total_return_pct": 221.3867975071953,
+      "annual_return_pct": 0.0,
+      "sharpe": 0.9270402683114978,
+      "max_dd_pct": 20.462555089527008,
+      "n_trades": 3,
+      "annualized": 6.8506741733127985
+    },
+    "no_btc": {
+      "total_return_pct": 272.8622041960134,
+      "annual_return_pct": 0.0,
+      "sharpe": 0.9463617798875147,
+      "max_dd_pct": 21.986516106892747,
+      "n_trades": 3,
+      "annualized": 7.1457785792475415
+    },
+    "post_covid": {
+      "total_return_pct": 118.61718859748032,
+      "annual_return_pct": 0.0,
+      "sharpe": 1.3195471438389115,
+      "max_dd_pct": 18.552178926952724,
+      "n_trades": 4,
+      "annualized": 19.682705781944286
+    },
+    "user_simulation": {
+      "initial": 10000,
+      "final": 32180.99545572685,
+      "annual_gain_pct": 11.632905004876518
+    }
+  },
+  "score": 1,
+  "max_score": 7,
+  "verdict": "FRAGILE - ne pas deployer",
+  "failures": [
+    "Full period annualise 6.3% < 20%",
+    "MC P(profit) 56.5% < 65%",
+    "Frais 3x annualise 6.3% < 15%",
+    "Sans 2017 annualise 6.9% < 15%",
+    "RP - B&H ponderee = nan% (rebalance ne sert a rien)",
+    "Gain user reel 11.6%/an < 15%"
+  ]
+}

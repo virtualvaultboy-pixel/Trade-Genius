@@ -1,0 +1,98 @@
+{
+  "BASELINE Mix 50/50 (current winner)": {
+    "baseline": {
+      "annual_return_pct": 23.05240846697929,
+      "max_dd_pct": -33.186562518963555,
+      "final_value": 6723.781439525715
+    },
+    "mc": {
+      "annual_median": 23.414480530489023,
+      "annual_p5": 10.101143738753985,
+      "p_profit": 1.0,
+      "p_above_15": 0.82,
+      "p_above_10": 0.96,
+      "dd_worst": -58.481072285323854,
+      "dd_median": -29.586406673091183
+    }
+  },
+  "+ HY Spread overlay": {
+    "baseline": {
+      "annual_return_pct": 23.18908596757312,
+      "max_dd_pct": -33.18656251896355,
+      "final_value": 6792.701591897425
+    },
+    "mc": {
+      "annual_median": 23.77625424690577,
+      "annual_p5": 9.946975880920755,
+      "p_profit": 1.0,
+      "p_above_15": 0.82,
+      "p_above_10": 0.94,
+      "dd_worst": -58.5045933389898,
+      "dd_median": -30.082688778944323
+    }
+  },
+  "+ Google Trends overlay": {
+    "baseline": {
+      "annual_return_pct": 22.64588190927068,
+      "max_dd_pct": -33.02884794895498,
+      "final_value": 6522.456879101484
+    },
+    "mc": {
+      "annual_median": 22.715026242036927,
+      "annual_p5": 10.013545802067098,
+      "p_profit": 1.0,
+      "p_above_15": 0.8,
+      "p_above_10": 0.95,
+      "dd_worst": -58.289804173911165,
+      "dd_median": -29.508061684707204
+    }
+  },
+  "+ USD Index overlay": {
+    "baseline": {
+      "annual_return_pct": 22.99418459568936,
+      "max_dd_pct": -33.18656251896365,
+      "final_value": 6694.6116020326945
+    },
+    "mc": {
+      "annual_median": 23.387374781351323,
+      "annual_p5": 10.058858259204651,
+      "p_profit": 1.0,
+      "p_above_15": 0.81,
+      "p_above_10": 0.96,
+      "dd_worst": -58.48107228532382,
+      "dd_median": -29.58640667309122
+    }
+  },
+  "+ HY + GT": {
+    "baseline": {
+      "annual_return_pct": 22.764951746369743,
+      "max_dd_pct": -33.02884794895498,
+      "final_value": 6580.860112115023
+    },
+    "mc": {
+      "annual_median": 23.14791905974272,
+      "annual_p5": 9.868569415233253,
+      "p_profit": 1.0,
+      "p_above_15": 0.81,
+      "p_above_10": 0.93,
+      "dd_worst": -58.31343358363925,
+      "dd_median": -29.827794528664576
+    }
+  },
+  "+ HY + GT + USD (all 3 exotic)": {
+    "baseline": {
+      "annual_return_pct": 22.706863889021346,
+      "max_dd_pct": -33.02884794895491,
+      "final_value": 6552.310311417088
+    },
+    "mc": {
+      "annual_median": 23.118797491960265,
+      "annual_p5": 9.868569415233207,
+      "p_profit": 1.0,
+      "p_above_15": 0.8,
+      "p_above_10": 0.93,
+      "dd_worst": -58.31343358363939,
+      "dd_median": -29.827794528664704
+    }
+  }
+}
