@@ -1,0 +1,37 @@
+name: Drift detection IAs
+on:
+  schedule:
+    # Cron hebdo : lundi 06:00 UTC (8h00 Paris hiver / 7h00 Paris été).
+    # Compare la perf actuelle des IAs au baseline initial.
+    - cron: '0 6 * * 1'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/drift-check.mjs'
+      - '.github/workflows/drift-detection.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run drift check (compare current stress vs baseline)
+        run: node scripts/drift-check.mjs
+      - name: Commit drift baseline + alerts if changed
+        run: |
+          git config user.name 'trade-genius-bot'
+          git config user.email 'bot@deponchy.studio'
+          if [[ -n "$(git status --porcelain data/drift-baseline.json data/drift-alerts.json)" ]]; then
+            git add data/drift-baseline.json data/drift-alerts.json
+            git commit -m "chore: refresh drift detection [skip ci]"
+            git push
+          else
+            echo "Drift detection unchanged."
+          fi
