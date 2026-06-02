@@ -14,11 +14,11 @@ import path from 'node:path';
 
 const MAX_BODY = 240;
 const LIMIT_PER_SOURCE = 6;
-// v2.86 — On accumule maintenant les news des 48 dernières heures pour permettre
-// au croisement IA × news (build-ai-study.mjs) de détecter les contextes
-// d'actualité récente sur les actifs.
-const KEEP_HOURS = 48;
-const MAX_KEPT_NEWS = 150;
+// v2.86 — Window 48h pour croisement IA × news (build-ai-study).
+// v11.14 — Étendu à 168h (7j) pour détection spike thèmes (24h vs moy 7j).
+// MAX_KEPT_NEWS augmenté à 400 (vs 150) pour accommoder le pool élargi.
+const KEEP_HOURS = 168;
+const MAX_KEPT_NEWS = 400;
 
 function trim(s, n) {
   if (!s) return '';

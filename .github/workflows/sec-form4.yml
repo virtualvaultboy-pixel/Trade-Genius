@@ -1,0 +1,38 @@
+name: SEC Form 4 (insider trading)
+on:
+  schedule:
+    # Cron toutes les 6h : 04, 10, 16, 22 UTC.
+    # Flux SEC RSS ne donne que les 50 derniers filings (~5 min),
+    # le script accumule entre runs sur 7j (v11.14).
+    - cron: '0 4,10,16,22 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build-sec-form4.mjs'
+      - '.github/workflows/sec-form4.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Build SEC Form 4 (insider trading signal)
+        run: node scripts/build-sec-form4.mjs
+      - name: Commit data/sec-form4.json if changed
+        run: |
+          git config user.name 'trade-genius-bot'
+          git config user.email 'bot@deponchy.studio'
+          if [[ -n "$(git status --porcelain data/sec-form4.json)" ]]; then
+            git add data/sec-form4.json
+            git commit -m "chore: refresh SEC Form 4 insider [skip ci]"
+            git push
+          else
+            echo "SEC Form 4 unchanged."
+          fi

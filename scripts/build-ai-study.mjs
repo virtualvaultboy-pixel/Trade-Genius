@@ -3256,6 +3256,20 @@ async function main() {
   const enrichedTop = Object.entries(enrichedThemes).sort((a, b) => b[1] - a[1]).slice(0, 3);
   if (enrichedTop.length > 0) console.log(`v9.0 Enriched themes:`, enrichedTop.map(([k, v]) => `${k}=${v}`).join(' · '));
 
+  // v11.14 — SEC EDGAR Form 4 insider trading signals (7j accumulator)
+  // ticker_signals = { 'Apple': { count: 4, intensity: 'medium' }, ... }
+  // intensity : low (2) / medium (3-4) / high (5+) → boost quality_score
+  let secInsiderSignals = {};
+  try {
+    const raw = await fs.readFile('data/sec-form4.json', 'utf8');
+    const j = JSON.parse(raw);
+    secInsiderSignals = j?.ticker_signals || {};
+    const insiderTickers = Object.keys(secInsiderSignals);
+    if (insiderTickers.length) {
+      console.log(`v11.14 SEC Form 4 insider activity: ${insiderTickers.length} tickers (${insiderTickers.slice(0, 5).map(t => `${t}=${secInsiderSignals[t].count}`).join(' · ')})`);
+    }
+  } catch { /* fichier pas encore généré, premier run = pas de boost */ }
+
   // 10. ETF flow signals (volume anormal)
   const etfFlows = computeEtfFlowSignal(valid);
   const flowEntries = Object.entries(etfFlows);
@@ -3507,6 +3521,24 @@ async function main() {
       }
     });
 
+    // v11.14 — SEC Form 4 insider boost : si insiders ont acheté/vendu sur 7j,
+    // c'est un signal fort (ils savent quelque chose). Boost quality_score :
+    //   intensity high (5+ filings/7j) → ×1.10
+    //   intensity medium (3-4)         → ×1.06
+    //   intensity low (2)              → ×1.03
+    if (Object.keys(secInsiderSignals).length > 0) {
+      setups.forEach(s => {
+        const sig = secInsiderSignals[s.asset];
+        if (!sig) return;
+        const mult = sig.intensity === 'high' ? 1.10 : sig.intensity === 'medium' ? 1.06 : 1.03;
+        if (s.quality_score != null) {
+          s.quality_score = Math.max(0, Math.min(100, Math.round(s.quality_score * mult)));
+        }
+        s.insider_signal = { count: sig.count, intensity: sig.intensity };
+        s.insider_reason = `Insider activity ${sig.intensity} (${sig.count} Form 4 / 7j)`;
+      });
+    }
+
     // v8.8 — Wisdom adjustment : ajuste quality_score selon le top analog historique
     const wAdj = wisdomAdjustments[agent.id];
     if (wAdj && wAdj.adjustment !== 0) {
@@ -3577,6 +3609,9 @@ async function main() {
         alpha_quality: s.alpha_quality ?? null,
         alpha_pattern: s.alpha_pattern || null,
         alpha_rules: s.alpha_rules || null,
+        // v11.14 — SEC Form 4 insider signal (boost quality si insiders actifs)
+        insider_signal: s.insider_signal || null,
+        insider_reason: s.insider_reason || null,
       })),
     };
   });
