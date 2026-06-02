@@ -364,6 +364,64 @@
     margin-top: auto;
     flex-shrink: 0;
   }
+
+  /* v11.22 — Onboarding XTB-épuré : 1 écran simple, action claire */
+  .w-title-clean {
+    font-family: var(--font-d);
+    font-size: 38px; font-weight: 800;
+    letter-spacing: -0.025em; line-height: 1.05;
+    margin: 8px 0 12px;
+  }
+  .w-title-clean em {
+    font-style: italic;
+    color: #bef264;
+    font-weight: 800;
+  }
+  .w-subtitle-clean {
+    font-size: 15px; color: var(--text-soft);
+    line-height: 1.5; margin: 0 0 26px;
+  }
+  .w-stats-clean {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 26px;
+  }
+  .w-stats-clean > div {
+    background: #14171c;
+    padding: 14px 8px;
+    text-align: center;
+  }
+  .w-stats-clean b {
+    display: block;
+    font-size: 22px; font-weight: 800;
+    color: #bef264;
+    line-height: 1;
+  }
+  .w-stats-clean span {
+    display: block;
+    font-size: 10.5px; color: var(--text-faint);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+  .w-cta-clean {
+    width: 100%;
+    background: #ef4444; color: #fff;
+    border: none; border-radius: 14px;
+    padding: 16px 18px;
+    font-size: 15px; font-weight: 800; letter-spacing: 0.5px;
+    cursor: pointer; text-transform: uppercase;
+    box-shadow: 0 4px 18px rgba(239,68,68,0.30);
+    margin-bottom: 16px;
+  }
+  .w-cta-clean:active { transform: scale(0.98); }
+  .w-foot-clean {
+    font-size: 10.5px; color: var(--text-faint);
+    text-align: center; line-height: 1.5;
+    padding: 0 8px;
+  }
   .w-cta {
     display: flex;
     align-items: center;
@@ -5419,7 +5477,7 @@
       </div>
       <div>
         <div class="bd-brand-name">TRADE GENIUS</div>
-        <div class="bd-brand-ver" id="bd-version">v11.21</div>
+        <div class="bd-brand-ver" id="bd-version">v11.22</div>
       </div>
     </div>
 
@@ -5537,138 +5595,47 @@
   <!-- ============================================
        VIEW : WELCOME (onboarding 1ère ouverture)
        ============================================ -->
-  <div id="view-welcome" class="view">
+    <div id="view-welcome" class="view">
+    <!-- v11.22 — Onboarding refondu XTB-style ultra-épuré. -->
     <div class="w-inner">
 
-    <!-- Brand + hero -->
-    <div class="w-brand">
-      <span class="w-brand-dot"></span>
-      <span>TRADE GENIUS</span>
-    </div>
+      <div class="w-brand"><span class="w-brand-dot"></span><span>TRADE GENIUS</span></div>
 
-    <div class="w-visual">
-      <svg viewBox="0 0 340 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="welcomeLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#bef264" stop-opacity="0.2"/>
-            <stop offset="100%" stop-color="#bef264" stop-opacity="1"/>
-          </linearGradient>
-          <linearGradient id="welcomeFillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#bef264" stop-opacity="0.3"/>
-            <stop offset="100%" stop-color="#bef264" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        <g stroke="rgba(255,255,255,0.04)" stroke-width="0.5">
-          <line x1="0" y1="45" x2="340" y2="45"/>
-          <line x1="0" y1="80" x2="340" y2="80"/>
-          <line x1="0" y1="115" x2="340" y2="115"/>
-        </g>
-        <path d="M 10 125 L 40 120 L 70 122 L 100 108 L 130 112 L 160 92 L 190 96 L 220 78 L 250 65 L 280 50 L 310 38 L 330 30 L 330 150 L 10 150 Z" fill="url(#welcomeFillGrad)"/>
-        <path class="w-line-anim" d="M 10 125 L 40 120 L 70 122 L 100 108 L 130 112 L 160 92 L 190 96 L 220 78 L 250 65 L 280 50 L 310 38 L 330 30" fill="none" stroke="url(#welcomeLineGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <g class="w-candle" style="animation-delay:0.5s">
-          <line x1="65" y1="113" x2="65" y2="132" stroke="#bef264" stroke-width="0.8"/>
-          <rect x="59" y="118" width="12" height="11" fill="#bef264" opacity="0.9"/>
-        </g>
-        <g class="w-candle" style="animation-delay:0.7s">
-          <line x1="125" y1="105" x2="125" y2="125" stroke="#fb7185" stroke-width="0.8"/>
-          <rect x="119" y="108" width="12" height="11" fill="#fb7185" opacity="0.75"/>
-        </g>
-        <g class="w-candle" style="animation-delay:0.9s">
-          <line x1="215" y1="72" x2="215" y2="100" stroke="#bef264" stroke-width="0.8"/>
-          <rect x="209" y="77" width="12" height="18" fill="#bef264" opacity="0.95"/>
-        </g>
-        <g class="w-candle" style="animation-delay:1.1s">
-          <line x1="305" y1="32" x2="305" y2="55" stroke="#bef264" stroke-width="0.8"/>
-          <rect x="299" y="38" width="12" height="13" fill="#bef264" opacity="1"/>
-        </g>
-        <circle cx="330" cy="30" r="4" fill="#bef264"/>
-        <circle cx="330" cy="30" r="4" fill="#bef264" opacity="0.4" class="w-pulse-dot"/>
-      </svg>
-    </div>
+      <div class="w-visual">
+        <svg viewBox="0 0 340 140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="wg1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#bef264" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#bef264" stop-opacity="1"/>
+            </linearGradient>
+            <linearGradient id="wg2" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#bef264" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#bef264" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M 10 110 L 50 105 L 90 95 L 130 100 L 170 80 L 210 70 L 250 55 L 290 40 L 330 25 L 330 135 L 10 135 Z" fill="url(#wg2)"/>
+          <path d="M 10 110 L 50 105 L 90 95 L 130 100 L 170 80 L 210 70 L 250 55 L 290 40 L 330 25" fill="none" stroke="url(#wg1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="330" cy="25" r="5" fill="#bef264"/>
+        </svg>
+      </div>
 
-    <div class="w-tag">▸ COMPRENDS, NE DEVINE PAS</div>
-    <h1 class="w-title">Apprends<br>la <em>bourse.</em><br>Gratuitement.</h1>
-    <p class="w-subtitle">Un feed quotidien · 6 modules · simulateur · biblio.<br><strong>De zéro à autonome</strong>, à ton rythme.</p>
+      <h1 class="w-title-clean">La bourse,<br><em>simplement.</em></h1>
+      <p class="w-subtitle-clean">L'IA scanne les marchés. Tu copies. C'est tout.</p>
 
-    <!-- Stats hero -->
-    <div class="w-stats-hero">
-      <div class="w-stat">
-        <div class="w-stat-num">6</div>
-        <div class="w-stat-lbl">Modules</div>
+      <div class="w-stats-clean">
+        <div><b>3</b><span>IA validées</span></div>
+        <div><b>30%</b><span>par an cible</span></div>
+        <div><b>0€</b><span>à payer</span></div>
       </div>
-      <div class="w-stat">
-        <div class="w-stat-num">26</div>
-        <div class="w-stat-lbl">Fiches</div>
-      </div>
-      <div class="w-stat">
-        <div class="w-stat-num">12</div>
-        <div class="w-stat-lbl">Patterns</div>
-      </div>
-      <div class="w-stat">
-        <div class="w-stat-num">0€</div>
-        <div class="w-stat-lbl">À payer</div>
-      </div>
-    </div>
 
-    <!-- Modules preview -->
-    <div class="w-section-title">Ce que tu vas apprendre</div>
-    <div class="w-modules-preview">
-      <div class="w-mod"><span class="w-mod-emo">🪙</span><div class="w-mod-body"><div class="w-mod-num">M0</div><div class="w-mod-name">Monnaie · Du troc à Bitcoin</div></div></div>
-      <div class="w-mod"><span class="w-mod-emo">📈</span><div class="w-mod-body"><div class="w-mod-num">M1</div><div class="w-mod-name">Marché · Action, obligation, ETF</div></div></div>
-      <div class="w-mod"><span class="w-mod-emo">📊</span><div class="w-mod-body"><div class="w-mod-num">M2</div><div class="w-mod-name">Chart · Lire un graphique</div></div></div>
-      <div class="w-mod"><span class="w-mod-emo">🧠</span><div class="w-mod-body"><div class="w-mod-num">M3</div><div class="w-mod-name">Psycho · Les pièges du cerveau</div></div></div>
-      <div class="w-mod"><span class="w-mod-emo">📊</span><div class="w-mod-body"><div class="w-mod-num">M4</div><div class="w-mod-name">Courbes · Analyse technique</div></div></div>
-      <div class="w-mod"><span class="w-mod-emo">💰</span><div class="w-mod-body"><div class="w-mod-num">M5</div><div class="w-mod-name">Fiscalité FR · PEA, flat tax, crypto</div></div></div>
-    </div>
+      <button class="w-cta-clean" onclick="finishOnboarding()">Commencer →</button>
 
-    <!-- Parcours -->
-    <div class="w-section-title">Ton parcours</div>
-    <div class="w-steps">
-      <div class="w-step">
-        <div class="w-step-num">1</div>
-        <div class="w-step-txt"><strong>Un accueil qui te suit</strong> — feed quotidien : marché, décryptages, cas d'école pédago. Pas de signal d'achat.</div>
-      </div>
-      <div class="w-step">
-        <div class="w-step-num">2</div>
-        <div class="w-step-txt"><strong>6 modules pour les fondations</strong> — monnaie, marché, charts, psycho, courbes, fiscalité FR. À ton rythme.</div>
-      </div>
-      <div class="w-step">
-        <div class="w-step-num">3</div>
-        <div class="w-step-txt"><strong>Simulateur historique</strong> — trade Apple 2008, Bitcoin 2017, GameStop 2021 sans risque. Compte simulé illimité.</div>
-      </div>
-      <div class="w-step">
-        <div class="w-step-num">4</div>
-        <div class="w-step-txt"><strong>Bibliothèque + glossaire</strong> — 26 fiches placements (PEA, ETF, crypto, or, immo) et 26 termes du jargon.</div>
-      </div>
-      <div class="w-step">
-        <div class="w-step-num">5</div>
-        <div class="w-step-txt"><strong>Mode expert (optionnel)</strong> — marché live multi-actifs, Patterns Lab, krachs historiques, analyse technique avancée.</div>
-      </div>
-    </div>
-
-    <!-- Promesses -->
-    <div class="w-section-title">Pourquoi c'est gratuit</div>
-    <div class="w-promises">
-      <div class="w-promise"><span class="w-promise-check">✓</span><span><strong>Pas de pub, pas d'affiliation</strong> — on ne gagne rien si tu ouvres un compte courtier</span></div>
-      <div class="w-promise"><span class="w-promise-check">✓</span><span><strong>Pas un conseil financier</strong> — apprentissage uniquement, jamais "achète ça"</span></div>
-      <div class="w-promise"><span class="w-promise-check">✓</span><span><strong>Pas de tracking</strong> — données 100% locales, analytics cookieless (Umami)</span></div>
-      <div class="w-promise"><span class="w-promise-check">✓</span><span><strong>Gratuit, pour toujours</strong> — aucun paywall sur les bases, aucun freemium déguisé</span></div>
-    </div>
-
-    <!-- CTA + footer -->
-    <div class="w-cta-wrap">
-      <button class="w-cta" onclick="finishOnboarding()">
-        <span>Choisir mon profil</span>
-        <span class="w-cta-arrow">→</span>
-      </button>
-      <p class="w-cta-note">Pseudo + avatar en 5 secondes · Tout reste sur ton appareil</p>
-      <div class="w-footer"><span class="dot">✦</span> DEPONCHY STUDIO · 2026</div>
-    </div>
+      <p class="w-foot-clean">⚠ Pédagogique · pas un conseil financier · données locales</p>
 
     </div>
   </div>
 
-  <!-- ============================================
+    <!-- ============================================
        VIEW : MODULES
        ============================================ -->
   <div id="view-modules" class="view">
@@ -5686,7 +5653,7 @@
 
     <div class="modules">
 
-      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=1121')">
+      <div class="module-card" data-module="0" data-storage="tradegenius_v1" style="--module-color: var(--acid);" onclick="openModule(0, 'scene-01.html?v=1122')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🪙</div>
@@ -5705,7 +5672,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=1121')">
+      <div class="module-card" data-module="1" data-storage="tradegenius_m1" data-requires="0" style="--module-color: var(--acid);" onclick="openModule(1, 'scene-02.html?v=1122')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📈</div>
@@ -5724,7 +5691,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=1121')">
+      <div class="module-card" data-module="2" data-storage="tradegenius_m2" data-requires="1" style="--module-color: var(--clay);" onclick="openModule(2, 'scene-03.html?v=1122')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -5743,7 +5710,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=1121')">
+      <div class="module-card" data-module="3" data-storage="tradegenius_m3" data-requires="2" style="--module-color: var(--purple);" onclick="openModule(3, 'scene-04.html?v=1122')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🧠</div>
@@ -5762,7 +5729,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=1121')">
+      <div class="module-card" data-module="4" data-storage="tradegenius_m4" data-requires="3" style="--module-color: var(--blue);" onclick="openModule(4, 'scene-07.html?v=1122')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">📊</div>
@@ -5781,7 +5748,7 @@
         </div>
       </div>
 
-      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=1121')">
+      <div class="module-card" data-module="5" data-storage="tradegenius_m5" data-requires="1" style="--module-color: var(--green);" onclick="openModule(5, 'scene-11.html?v=1122')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💰</div>
@@ -5801,7 +5768,7 @@
       </div>
 
       <!-- v8.3 — Module passerelle "Découvre nos outils Premium" (visible FREE uniquement, caché si Premium) -->
-      <div class="module-card premium-discovery-card" id="premium-discovery-card" style="--module-color: var(--gold); cursor:pointer; background:linear-gradient(160deg, rgba(212,165,116,0.10) 0%, rgba(168,85,247,0.06) 100%); border-color:rgba(212,165,116,0.45);" onclick="window.location.href='scene-12.html?v=1121'">
+      <div class="module-card premium-discovery-card" id="premium-discovery-card" style="--module-color: var(--gold); cursor:pointer; background:linear-gradient(160deg, rgba(212,165,116,0.10) 0%, rgba(168,85,247,0.06) 100%); border-color:rgba(212,165,116,0.45);" onclick="window.location.href='scene-12.html?v=1122'">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar" style="background:linear-gradient(135deg,#d4a574,#a855f7);color:#fff;">✦</div>
@@ -5825,7 +5792,7 @@
       </div>
 
       <!-- v2.46 — Module 6 : Krachs historiques (Premium, deplace depuis le burger) -->
-      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=1121')">
+      <div class="module-card" data-module="6" data-storage="tradegenius_m6_krachs" data-requires="3" style="--module-color: var(--red);" onclick="openModule(6, 'scene-09.html?v=1122')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">💥</div>
@@ -5845,7 +5812,7 @@
       </div>
 
       <!-- v2.71 — Module 7 : Patterns Lab (Premium, déplacé depuis le burger) -->
-      <div class="module-card" data-module="7" data-storage="tradegenius_m7_patterns" data-requires="3" style="--module-color: var(--gold);" onclick="openModule(7, 'scene-08.html?v=1121')">
+      <div class="module-card" data-module="7" data-storage="tradegenius_m7_patterns" data-requires="3" style="--module-color: var(--gold);" onclick="openModule(7, 'scene-08.html?v=1122')">
         <div class="card-top">
           <div class="card-top-left">
             <div class="card-avatar">🔬</div>
@@ -5927,7 +5894,7 @@
         <p class="fc-body">3e test de la zone 8 100 en 10 jours. RSI quotidien à 68 — on est proche du surachat. Cassure haussière ? Cible technique 8 280. Rejet ? Retour possible vers la MA50 à 7 950.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p2">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=1121'">VOIR EN DIRECT →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-10.html?v=1122'">VOIR EN DIRECT →</button>
         </div>
       </article>
 
@@ -5967,7 +5934,7 @@
         <p class="fc-body">PEA, CTO, flat tax, abattements, crypto, ETF UCITS et plan optimal — 7 chapitres pour optimiser tes impôts d'investisseur. 100 % gratuit, comme tout le reste de l'app.</p>
         <div class="fc-actions">
           <button class="fc-like" data-post="p4">♡ <span>0</span></button>
-          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=1121'">OUVRIR →</button>
+          <button class="fc-cta" onclick="event.stopPropagation(); location.href='scene-11.html?v=1122'">OUVRIR →</button>
         </div>
       </article>
 
@@ -6383,22 +6350,22 @@
           <div class="ppu-body"><div class="ppu-title" style="color:#facc15;">3 IA Premium recommandées</div><div class="ppu-sub">🔥 PHÉNIX everyday · ⚡ VOLT haute conviction · 🎯 ALPHA sniper (validé 14 ans)</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-10.html?v=1121">
+        <a class="pp-unlock-card" href="scene-10.html?v=1122">
           <span class="ppu-ico">📊</span>
           <div class="ppu-body"><div class="ppu-title">Marché Live</div><div class="ppu-sub">Crypto · Actions · ETF · 10 indicateurs en direct</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-08.html?v=1121">
+        <a class="pp-unlock-card" href="scene-08.html?v=1122">
           <span class="ppu-ico">🕯️</span>
           <div class="ppu-body"><div class="ppu-title">Patterns Lab</div><div class="ppu-sub">12 patterns chartistes décortiqués</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-09.html?v=1121">
+        <a class="pp-unlock-card" href="scene-09.html?v=1122">
           <span class="ppu-ico">💥</span>
           <div class="ppu-body"><div class="ppu-title">Krachs historiques</div><div class="ppu-sub">1929 · 1987 · 2008 · COVID</div></div>
           <span class="ppu-arrow">→</span>
         </a>
-        <a class="pp-unlock-card" href="scene-07.html?v=1121">
+        <a class="pp-unlock-card" href="scene-07.html?v=1122">
           <span class="ppu-ico">📈</span>
           <div class="ppu-body"><div class="ppu-title">Module 4 · chap. 4-7</div><div class="ppu-sub">Dow · Volume Profile · Order book · Equity</div></div>
           <span class="ppu-arrow">→</span>
@@ -7239,7 +7206,7 @@
       widget.style.cursor = 'pointer';
       widget.addEventListener('click', (e) => {
         if (e.target.closest('.ml-ticker') || e.target.closest('.ml-chart')) return;
-        location.href = 'scene-10.html?v=1121';
+        location.href = 'scene-10.html?v=1122';
       });
       widget._linked = true;
     }
@@ -7292,7 +7259,7 @@
   function openSimulator() {
     if (navigator.vibrate) navigator.vibrate(8);
     if (_modulesAllDone()) {
-      location.href = 'scene-05.html?v=1121';
+      location.href = 'scene-05.html?v=1122';
       return;
     }
     // Verrouillé : montrer info pédagogique
@@ -7822,7 +7789,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=1121'; };
+        card.onclick = () => { if (window.location) window.location.href = 'scene-05.html?v=1122'; };
         block.style.display = 'block';
         return;
       }
@@ -7864,7 +7831,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-05.html?v=1121';
+        card.onclick = () => location.href = 'scene-05.html?v=1122';
         block.style.display = 'block';
         return;
       }
@@ -7884,7 +7851,7 @@
             </div>
             <div class="resume-arrow">→</div>
           `;
-          card.onclick = () => location.href = 'scene-06.html?v=1121';
+          card.onclick = () => location.href = 'scene-06.html?v=1122';
           block.style.display = 'block';
           return;
         }
@@ -7898,7 +7865,7 @@
           </div>
           <div class="resume-arrow">→</div>
         `;
-        card.onclick = () => location.href = 'scene-06.html?v=1121';
+        card.onclick = () => location.href = 'scene-06.html?v=1122';
         block.style.display = 'block';
         return;
       }
@@ -7913,7 +7880,7 @@
       </div>
       <div class="resume-arrow">→</div>
     `;
-    card.onclick = () => location.href = 'scene-05.html?v=1121';
+    card.onclick = () => location.href = 'scene-05.html?v=1122';
     block.style.display = 'block';
   }
 
@@ -8520,13 +8487,13 @@
     const asset = getAsset(id);
     if (!asset) return;
     if (_isPremiumSafe()) {
-      location.href = 'scene-10.html?v=1121&asset=' + encodeURIComponent(id);
+      location.href = 'scene-10.html?v=1122&asset=' + encodeURIComponent(id);
     } else {
       showView('premium');
     }
   }
   function openMarketDeep() {
-    if (_isPremiumSafe()) location.href = 'scene-10.html?v=1121';
+    if (_isPremiumSafe()) location.href = 'scene-10.html?v=1122';
     else showView('premium');
   }
 
@@ -9836,7 +9803,7 @@
         + '<span class="v-placeholder-ico">📓</span>'
         + '<div class="v-placeholder-txt"><strong>Aucune session simu enregistrée.</strong><br>'
         + 'Ouvre le simulateur et joue un scénario : ton historique s\'écrit automatiquement ici.</div>'
-        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=1121\'">Ouvrir le simulateur →</button>'
+        + '<button class="pm-btn" style="margin-top:18px; max-width:260px;" onclick="location.href=\'scene-05.html?v=1122\'">Ouvrir le simulateur →</button>'
         + (streakCount > 0 ? '<p class="v-sub" style="margin-top:14px;">Ta série actuelle : <strong style="color:var(--acid);">'+ streakCount +' jour(s)</strong> 🔥</p>' : '')
         + '</div>';
       return;
@@ -9881,7 +9848,7 @@
       html += '<div class="j-summary-row"><span class="jsr-label">Série quotidienne</span><span class="jsr-value">🔥 '+ streakCount +' jour(s)</span></div>';
     }
 
-    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=1121\'">Reprendre le simulateur →</button>';
+    html += '<button class="pm-btn" style="margin-top:18px;" onclick="location.href=\'scene-05.html?v=1122\'">Reprendre le simulateur →</button>';
 
     body.innerHTML = html;
   }
@@ -13630,7 +13597,7 @@ CONTRAINTES STRICTES :
         cls: 'fc-news', label: '📅 Samedi', time: now,
         title: 'Marchés fermés · bon moment pour réviser',
         body: 'Indices et actions ne tournent pas. La crypto, elle, ne dort jamais. Le simulateur attend.',
-        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=1121'",
+        ctaLabel: 'OUVRIR LE SIMU →', ctaAction: "location.href='scene-05.html?v=1122'",
       });
     }
 
@@ -14238,11 +14205,11 @@ CONTRAINTES STRICTES :
     if (shortcut === 'resultats') { showView('resultats'); return; }
     if (shortcut === 'modules')   { showView('modules'); return; }
     if (shortcut === 'simu') {
-      location.href = 'scene-05.html?v=1121';
+      location.href = 'scene-05.html?v=1122';
       return;
     }
     if (shortcut === 'biblio') {
-      location.href = 'scene-06.html?v=1121';
+      location.href = 'scene-06.html?v=1122';
       return;
     }
 
@@ -14265,13 +14232,13 @@ CONTRAINTES STRICTES :
   init();
 </script>
 
-  <script type="module" src="tg-common.js?v=1121"></script>
-  <script src="tg-analyst.js?v=1121"></script>
-  <script src="tg-bubble.js?v=1121"></script>
+  <script type="module" src="tg-common.js?v=1122"></script>
+  <script src="tg-analyst.js?v=1122"></script>
+  <script src="tg-bubble.js?v=1122"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js?v=1121').catch(() => {});
+        navigator.serviceWorker.register('sw.js?v=1122').catch(() => {});
       });
     }
   </script>
