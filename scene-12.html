@@ -5,8 +5,8 @@
         MODULE PASSERELLE — Découvre nos outils Premium (v8.4)
 ═══════════════════════════════════════════════════════════════════
   Affiché uniquement aux users FREE après la formation pédago FREE
-  (M0-M5). Présente les 5 IA, panier multi-IA, stacking, Patterns Lab,
-  Krachs, Marché Live. CTA conversion en sticky bas.
+  (M0-M5). Présente les 3 IA recommandées (v11.18), panier multi-IA,
+  stacking, Patterns Lab, Krachs, Marché Live. CTA conversion sticky bas.
   Caché automatiquement si Premium (via card-css body.premium-mode).
 -->
 <html lang="fr">
@@ -15,9 +15,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#0a0a0c">
   <title>Trade Genius — Découvre nos outils Premium</title>
-  <meta name="description" content="Présentation détaillée des 5 IA Trade Genius (BASTION, PHÉNIX, RAFALE, NEXUS, VOLT), du panier multi-IA quotidien, du badge stacking et des modules Premium.">
+  <meta name="description" content="Présentation détaillée des 3 IA recommandées Trade Genius (PHÉNIX everyday, VOLT haute conviction, ALPHA sniper validée 14 ans), du panier multi-IA quotidien, du badge stacking et des modules Premium.">
   <link rel="manifest" href="manifest.json">
-  <script type="module" src="tg-common.js?v=1117"></script>
+  <script type="module" src="tg-common.js?v=1118"></script>
   <link rel="icon" type="image/svg+xml" href="icon.svg">
   <link rel="apple-touch-icon" href="icon-192.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -285,52 +285,65 @@
   <div class="hero-emoji">✦</div>
   <div class="hero-eyebrow">Tu as terminé la formation</div>
   <h1 class="hero-title">Place aux <em>vrais outils</em></h1>
-  <p class="hero-sub">Tu maîtrises les bases. Nos 5 IA scannent maintenant les marchés en continu et te livrent les meilleurs setups quotidiennement, avec la discipline qu'un humain ne peut pas tenir seul.</p>
+  <p class="hero-sub">Tu maîtrises les bases. Nos IA scannent maintenant les marchés en continu et te livrent les meilleurs setups quotidiennement, avec la discipline qu'un humain ne peut pas tenir seul.</p>
 </div>
 
 <div class="section">
-  <h2 class="section-title"><span class="num">1</span>Nos 5 IA · une méthode par horizon</h2>
-  <p class="section-intro">Chaque IA est calibrée pour une fenêtre de trading précise. Tu choisis ce qui colle à ton rythme. Ou tu utilises le panier multi-IA qui combine les meilleurs setups de chacune.</p>
+  <h2 class="section-title"><span class="num">1</span>Nos 3 IA recommandées</h2>
+  <p class="section-intro">PHÉNIX (everyday · indices/actions), VOLT (haute conviction · crypto/high-beta), ALPHA (sniper · validé 14 ans walk-forward). Tu choisis selon ton profil. Ou tu utilises le panier multi-IA qui combine les meilleurs setups des trois.</p>
+  <!-- v11.18 — Reorder : 3 IA recommandées (PHÉNIX/VOLT/ALPHA) en haut · 3 legacy (RAFALE/BASTION/NEXUS) en option avancée -->
   <div class="ia-list">
-    <div class="ia-card" style="--ia-color:#ef4444;">
-      <div class="ia-card-head">
-        <span class="ia-card-icon">⚡</span>
-        <span class="ia-card-name">RAFALE</span>
-        <span class="ia-card-tag">Court terme</span>
-      </div>
-      <div class="ia-card-desc">3-7 jours · 5-9 trades/semaine. Tu vois l'app travailler chaque jour.</div>
-    </div>
+    <!-- 1. PHÉNIX — Everyday recommandée -->
     <div class="ia-card" style="--ia-color:#f59e0b;">
       <div class="ia-card-head">
         <span class="ia-card-icon">🔥</span>
         <span class="ia-card-name">PHÉNIX</span>
-        <span class="ia-card-tag">Équilibré · Reco débutant</span>
+        <span class="ia-card-tag">★ Everyday · Reco débutant</span>
       </div>
-      <div class="ia-card-desc">1-3 semaines · 5-7 trades/semaine. Le meilleur compromis fréquence/qualité.</div>
+      <div class="ia-card-desc">1-3 semaines · 5-7 trades/semaine. Le meilleur compromis fréquence/qualité. Validation walk-forward 6 folds × 150j (5.55%/an médian, DD -1.31%).</div>
     </div>
-    <div class="ia-card" style="--ia-color:#60a5fa;">
-      <div class="ia-card-head">
-        <span class="ia-card-icon">🗿</span>
-        <span class="ia-card-name">BASTION</span>
-        <span class="ia-card-tag">Long terme</span>
-      </div>
-      <div class="ia-card-desc">1-3 mois · 3-4 trades/semaine. Tu laisses tourner sans stress, gros gagnants peu fréquents.</div>
-    </div>
-    <div class="ia-card" style="--ia-color:#a855f7;">
-      <div class="ia-card-head">
-        <span class="ia-card-icon">₿</span>
-        <span class="ia-card-name">NEXUS</span>
-        <span class="ia-card-tag">Crypto</span>
-      </div>
-      <div class="ia-card-desc">5-30 jours · 15 cryptos majeurs (BTC, ETH, SOL, BNB...). Volatilité adaptée.</div>
-    </div>
+    <!-- 2. VOLT — High conviction recommandée -->
     <div class="ia-card volt">
       <div class="ia-card-head">
         <span class="ia-card-icon">⚡</span>
         <span class="ia-card-name">VOLT</span>
-        <span class="ia-card-tag">Haute conviction</span>
+        <span class="ia-card-tag">★ Haute conviction</span>
       </div>
-      <div class="ia-card-desc">3-15 jours · 42 actifs volatils (cryptos mid-cap + actions high-beta). Sizing renforcé, garde-fous automatiques. <strong style="color:#fca5a5;">⚠ Capital à risque · pas pour débutants.</strong></div>
+      <div class="ia-card-desc">3-15 jours · 42 actifs volatils (cryptos mid-cap + actions high-beta). 10.66%/an médian validé walk-forward + bear test BTC -46%. Sizing renforcé, garde-fous auto. <strong style="color:#fca5a5;">⚠ Capital à risque.</strong></div>
+    </div>
+    <!-- 3. ALPHA — Sniper recommandée (v10.9, validé 14 ans) -->
+    <div class="ia-card" style="--ia-color:#facc15;">
+      <div class="ia-card-head">
+        <span class="ia-card-icon">🎯</span>
+        <span class="ia-card-name">ALPHA</span>
+        <span class="ia-card-tag">★ Sniper · validé 14 ans</span>
+      </div>
+      <div class="ia-card-desc">5-30 jours · ultra-sélectif (quality 85+). Validation walk-forward 14 ans × 14 folds × 54 actifs (1298 trades) : <strong>40%/an médian, DD -4.13%, Calmar 9.68, 14/14 années positives.</strong> R/R 14:1. ⚠ Peu de signaux, patience requise.</div>
+    </div>
+    <!-- IAs legacy : masquées via display:none (backend tourne toujours, cf v11.4 focus 3 IA) -->
+    <div class="ia-card" style="--ia-color:#ef4444;display:none;">
+      <div class="ia-card-head">
+        <span class="ia-card-icon">⚡</span>
+        <span class="ia-card-name">RAFALE</span>
+        <span class="ia-card-tag">Court terme (legacy)</span>
+      </div>
+      <div class="ia-card-desc">3-7 jours · 5-9 trades/semaine. Redondante avec PHÉNIX, conservée pour usage avancé.</div>
+    </div>
+    <div class="ia-card" style="--ia-color:#60a5fa;display:none;">
+      <div class="ia-card-head">
+        <span class="ia-card-icon">🗿</span>
+        <span class="ia-card-name">BASTION</span>
+        <span class="ia-card-tag">Long terme (legacy)</span>
+      </div>
+      <div class="ia-card-desc">1-3 mois · 3-4 trades/semaine. Redondante avec PHÉNIX, conservée pour usage avancé.</div>
+    </div>
+    <div class="ia-card" style="--ia-color:#a855f7;display:none;">
+      <div class="ia-card-head">
+        <span class="ia-card-icon">₿</span>
+        <span class="ia-card-name">NEXUS</span>
+        <span class="ia-card-tag">Crypto (legacy)</span>
+      </div>
+      <div class="ia-card-desc">5-30 jours · 15 cryptos majeurs. Crypto déjà couvert par VOLT + ALPHA, conservée pour usage avancé.</div>
     </div>
   </div>
 </div>
