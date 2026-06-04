@@ -6,8 +6,41 @@
   "icon": "⚡",
   "created_at": "2026-05-30T17:55:42.952Z",
   "capital_initial": 1000,
-  "cash": 950,
+  "cash": 949.475297649839,
   "positions": [
+    {
+      "id": "pos-1780570261393-us90",
+      "asset": "SOL",
+      "kind": "crypto",
+      "agent": "volt",
+      "type": "volt-D-A-contrarian",
+      "entry": 71.7542230388688,
+      "stop": 70.88085690933444,
+      "tp1": 75.02934602462263,
+      "tp2": 78.30446901037647,
+      "initial_stop": 70.88085690933444,
+      "high_since_entry": 71.7542230388688,
+      "rr1": 3.75,
+      "rr2": 7.5,
+      "risk_pct": 0.012171633843227095,
+      "size_eur": 49.972384086833635,
+      "quality_score": 97,
+      "sizing_pct": 5,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 0,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-06-04T10:51:01.393Z",
+      "opened_at_cycle": 4,
+      "opened_at_date": "2026-06-04",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
+    }
+  ],
+  "closed_trades": [
     {
       "id": "pos-1780502745888-35za",
       "asset": "SOL",
@@ -34,13 +67,16 @@
       "opened_at": "2026-06-03T16:05:45.888Z",
       "opened_at_cycle": 3,
       "opened_at_date": "2026-06-03",
-      "status": "open",
+      "status": "loss",
       "touched_tp1": false,
-      "closed_at": null,
-      "pnl_eur": null
+      "closed_at": "2026-06-04T10:51:01.393Z",
+      "pnl_eur": -0.5523182633274113,
+      "current_price": 68.05732252966125,
+      "age_days": 1,
+      "closed_at_cycle": 4,
+      "exit_price": 72.44296631358907
     }
   ],
-  "closed_trades": [],
   "equity_history": [
     {
       "date": "2026-05-30",
@@ -62,7 +98,14 @@
       "equity": 1000,
       "cash": 950,
       "positions_count": 1
+    },
+    {
+      "date": "2026-06-04",
+      "cycle": 4,
+      "equity": 999.45,
+      "cash": 949.48,
+      "positions_count": 1
     }
   ],
-  "last_cycle": "2026-06-03"
+  "last_cycle": "2026-06-04"
 }
