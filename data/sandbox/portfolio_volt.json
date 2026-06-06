@@ -6,40 +6,8 @@
   "icon": "⚡",
   "created_at": "2026-05-30T17:55:42.952Z",
   "capital_initial": 1000,
-  "cash": 948.8974643665299,
-  "positions": [
-    {
-      "id": "pos-1780659588168-bdvi",
-      "asset": "SOL",
-      "kind": "crypto",
-      "agent": "volt",
-      "type": "volt-D-A-contrarian",
-      "entry": 68.72800299382831,
-      "stop": 67.77394658915564,
-      "tp1": 72.30571451135086,
-      "tp2": 75.88342602887339,
-      "initial_stop": 67.77394658915564,
-      "high_since_entry": 68.72800299382831,
-      "rr1": 3.75,
-      "rr2": 7.5,
-      "risk_pct": 0.013881625583655372,
-      "size_eur": 49.941971808764734,
-      "quality_score": 97,
-      "sizing_pct": 5,
-      "trailing_after_tp1": true,
-      "trailing_active": false,
-      "pyramiding_pct": 0,
-      "pyramided": false,
-      "stacked": false,
-      "opened_at": "2026-06-05T11:39:48.168Z",
-      "opened_at_cycle": 5,
-      "opened_at_date": "2026-06-05",
-      "status": "open",
-      "touched_tp1": false,
-      "closed_at": null,
-      "pnl_eur": null
-    }
-  ],
+  "cash": 998.1461604217359,
+  "positions": [],
   "closed_trades": [
     {
       "id": "pos-1780502745888-35za",
@@ -110,6 +78,41 @@
       "age_days": 1,
       "closed_at_cycle": 5,
       "exit_price": 70.88085690933444
+    },
+    {
+      "id": "pos-1780659588168-bdvi",
+      "asset": "SOL",
+      "kind": "crypto",
+      "agent": "volt",
+      "type": "volt-D-A-contrarian",
+      "entry": 68.72800299382831,
+      "stop": 67.77394658915564,
+      "tp1": 72.30571451135086,
+      "tp2": 75.88342602887339,
+      "initial_stop": 67.77394658915564,
+      "high_since_entry": 68.72800299382831,
+      "rr1": 3.75,
+      "rr2": 7.5,
+      "risk_pct": 0.013881625583655372,
+      "size_eur": 49.941971808764734,
+      "quality_score": 97,
+      "sizing_pct": 5,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 0,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-06-05T11:39:48.168Z",
+      "opened_at_cycle": 5,
+      "opened_at_date": "2026-06-05",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-06-06T08:18:02.843Z",
+      "pnl_eur": -0.6932757535587439,
+      "current_price": 62.89514230484956,
+      "age_days": 1,
+      "closed_at_cycle": 6,
+      "exit_price": 67.77394658915564
     }
   ],
   "equity_history": [
@@ -147,7 +150,14 @@
       "equity": 998.84,
       "cash": 948.9,
       "positions_count": 1
+    },
+    {
+      "date": "2026-06-06",
+      "cycle": 6,
+      "equity": 998.15,
+      "cash": 998.15,
+      "positions_count": 0
     }
   ],
-  "last_cycle": "2026-06-05"
+  "last_cycle": "2026-06-06"
 }
