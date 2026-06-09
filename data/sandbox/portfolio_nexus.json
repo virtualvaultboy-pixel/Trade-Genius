@@ -19,7 +19,7 @@
       "tp1": 65309.35716301575,
       "tp2": 69743.80786571877,
       "initial_stop": 60241.41350278373,
-      "high_since_entry": 60874.90646031273,
+      "high_since_entry": 63053.571512930466,
       "rr1": 7,
       "rr2": 14,
       "risk_pct": 0.010406471144920857,
@@ -37,7 +37,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 63053.571512930466,
+      "age_days": 1
     },
     {
       "id": "pos-1780733882841-7hgd",
@@ -50,7 +52,7 @@
       "tp1": 1713.9346181761298,
       "tp2": 1864.3147336103186,
       "initial_stop": 1542.0716291084852,
-      "high_since_entry": 1563.5545027419407,
+      "high_since_entry": 1686.0806610337097,
       "rr1": 7,
       "rr2": 14,
       "risk_pct": 0.013739766407747128,
@@ -68,7 +70,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 1686.0806610337097,
+      "age_days": 1
     },
     {
       "id": "pos-1780733882841-rmm2",
@@ -81,7 +85,7 @@
       "tp1": 0.17856192816004124,
       "tp2": 0.20361007974041545,
       "initial_stop": 0.14993546921104217,
-      "high_since_entry": 0.15351377657966706,
+      "high_since_entry": 0.17038986439145787,
       "rr1": 7,
       "rr2": 14,
       "risk_pct": 0.023309356647661494,
@@ -99,7 +103,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 0.17038986439145787,
+      "age_days": 1
     },
     {
       "id": "pos-1780733882841-tjii",
@@ -112,7 +118,7 @@
       "tp1": 68.57910180380478,
       "tp2": 74.67110629129539,
       "initial_stop": 61.61681096095836,
-      "high_since_entry": 62.48709731631416,
+      "high_since_entry": 66.6630673664522,
       "rr1": 7,
       "rr2": 14,
       "risk_pct": 0.013927456910829925,
@@ -130,7 +136,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 66.6630673664522,
+      "age_days": 1
     },
     {
       "id": "pos-1780733882841-tapd",
@@ -143,7 +151,7 @@
       "tp1": 1.1709941286199812,
       "tp2": 1.2547374797897832,
       "initial_stop": 1.0752874415687788,
-      "high_since_entry": 1.087250777450179,
+      "high_since_entry": 1.1689686783067987,
       "rr1": 7,
       "rr2": 14,
       "risk_pct": 0.011003290252370861,
@@ -161,7 +169,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 1.1689686783067987,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -978,7 +988,14 @@
       "equity": 983.36,
       "cash": 764.92,
       "positions_count": 5
+    },
+    {
+      "date": "2026-06-09",
+      "cycle": 7,
+      "equity": 999.2,
+      "cash": 764.92,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-06-06"
+  "last_cycle": "2026-06-09"
 }
