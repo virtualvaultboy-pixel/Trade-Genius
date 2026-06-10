@@ -6,7 +6,7 @@
   "icon": "🗿",
   "created_at": "2026-05-30T17:55:42.941Z",
   "capital_initial": 1000,
-  "cash": 705.7659319885632,
+  "cash": 705.042201575921,
   "positions": [
     {
       "id": "pos-1780733882551-fjj4",
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 63053.571512930466,
-      "age_days": 1
+      "current_price": 61739.17859933809,
+      "age_days": 2
     },
     {
       "id": "pos-1780733882551-mixw",
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 1686.0806610337097,
-      "age_days": 1
+      "current_price": 1639.5010480109988,
+      "age_days": 2
     },
     {
       "id": "pos-1780733882551-fdcr",
@@ -104,8 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 0.17038986439145787,
-      "age_days": 1
+      "current_price": 0.1658850475842914,
+      "age_days": 2
     },
     {
       "id": "pos-1780733882552-tkrq",
@@ -137,35 +137,35 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 66.6630673664522,
-      "age_days": 1
+      "current_price": 64.98299084198574,
+      "age_days": 2
     },
     {
-      "id": "pos-1780963803748-op5q",
-      "asset": "DOGE",
-      "kind": "crypto",
+      "id": "pos-1781050737268-ynw5",
+      "asset": "Netflix",
+      "kind": "action",
       "agent": "atlas",
       "type": "grid-month-A",
-      "entry": 0.08693806869236721,
-      "stop": 0.085664483267001,
-      "tp1": 0.09330599581919824,
-      "tp2": 0.09967392294602927,
-      "initial_stop": 0.085664483267001,
-      "high_since_entry": 0.08693806869236721,
+      "entry": 81.41000366210938,
+      "stop": 80.87086009679723,
+      "tp1": 84.10572148867013,
+      "tp2": 86.80143931523088,
+      "initial_stop": 80.87086009679723,
+      "high_since_entry": 81.41000366210938,
       "rr1": 5,
       "rr2": 10,
-      "risk_pct": 0.014649341128945777,
-      "size_eur": 53.12216692387036,
-      "quality_score": 74,
+      "risk_pct": 0.006622571441586585,
+      "size_eur": 53.06769259173599,
+      "quality_score": 64,
       "sizing_pct": 10,
       "trailing_after_tp1": true,
       "trailing_active": false,
       "pyramiding_pct": 50,
       "pyramided": false,
       "stacked": false,
-      "opened_at": "2026-06-09T00:10:03.749Z",
-      "opened_at_cycle": 7,
-      "opened_at_date": "2026-06-09",
+      "opened_at": "2026-06-10T00:18:57.268Z",
+      "opened_at_cycle": 8,
+      "opened_at_date": "2026-06-10",
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
@@ -733,6 +733,41 @@
       "age_days": 5,
       "closed_at_cycle": 7,
       "exit_price": 304.8909929434891
+    },
+    {
+      "id": "pos-1780963803748-op5q",
+      "asset": "DOGE",
+      "kind": "crypto",
+      "agent": "atlas",
+      "type": "grid-month-A",
+      "entry": 0.08693806869236721,
+      "stop": 0.085664483267001,
+      "tp1": 0.09330599581919824,
+      "tp2": 0.09967392294602927,
+      "initial_stop": 0.085664483267001,
+      "high_since_entry": 0.08693806869236721,
+      "rr1": 5,
+      "rr2": 10,
+      "risk_pct": 0.014649341128945777,
+      "size_eur": 53.12216692387036,
+      "quality_score": 74,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-06-09T00:10:03.749Z",
+      "opened_at_cycle": 7,
+      "opened_at_date": "2026-06-09",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-06-10T00:18:57.267Z",
+      "pnl_eur": -0.7782047447765771,
+      "current_price": 0.08486563316237866,
+      "age_days": 1,
+      "closed_at_cycle": 8,
+      "exit_price": 0.085664483267001
     }
   ],
   "equity_history": [
@@ -784,7 +819,14 @@
       "equity": 1010.51,
       "cash": 705.77,
       "positions_count": 5
+    },
+    {
+      "date": "2026-06-10",
+      "cycle": 8,
+      "equity": 1003.45,
+      "cash": 705.04,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-06-09"
+  "last_cycle": "2026-06-10"
 }
