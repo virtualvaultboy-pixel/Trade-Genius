@@ -1,15 +1,451 @@
 {
-  "generated": "2026-06-10T23:23:06.175Z",
+  "generated": "2026-06-11T08:42:27.240Z",
   "source": "SEC EDGAR Form 4 RSS",
   "window_days": 7,
-  "count": 147,
+  "count": 148,
   "ticker_signals": {
+    "MicroStrategy": {
+      "count": 2,
+      "intensity": "low"
+    },
     "Intel": {
       "count": 7,
       "intensity": "high"
     }
   },
   "filings": [
+    {
+      "company": "MICROVISION, INC.",
+      "cik": "0000065770",
+      "filed_at": "2026-06-11T01:56:50.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/65770/000149315226028198/0001493152-26-028198-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": "MicroStrategy"
+    },
+    {
+      "company": "MICROVISION, INC.",
+      "cik": "0000065770",
+      "filed_at": "2026-06-11T01:56:44.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/65770/000149315226028197/0001493152-26-028197-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": "MicroStrategy"
+    },
+    {
+      "company": "ALTISOURCE PORTFOLIO SOLUTIONS S.A.",
+      "cik": "0001462418",
+      "filed_at": "2026-06-11T01:55:03.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1462418/000149315226028195/0001493152-26-028195-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Aditxt, Inc.",
+      "cik": "0001726711",
+      "filed_at": "2026-06-11T01:51:15.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1726711/000212409926000005/0002124099-26-000005-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Axsome Therapeutics, Inc.",
+      "cik": "0001579428",
+      "filed_at": "2026-06-11T01:49:45.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1579428/000119312526266437/0001193125-26-266437-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Axsome Therapeutics, Inc.",
+      "cik": "0001579428",
+      "filed_at": "2026-06-11T01:49:38.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1579428/000119312526266436/0001193125-26-266436-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Axsome Therapeutics, Inc.",
+      "cik": "0001579428",
+      "filed_at": "2026-06-11T01:49:26.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1579428/000119312526266435/0001193125-26-266435-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Axsome Therapeutics, Inc.",
+      "cik": "0001579428",
+      "filed_at": "2026-06-11T01:49:14.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1579428/000119312526266433/0001193125-26-266433-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "AXIA Energia S.A.",
+      "cik": "0001439124",
+      "filed_at": "2026-06-11T01:48:15.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1439124/000121390026067519/0001213900-26-067519-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "BANK OF HAWAII CORP",
+      "cik": "0000046195",
+      "filed_at": "2026-06-11T01:48:12.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/46195/000120467926000006/0001204679-26-000006-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "ASP Isotopes Inc.",
+      "cik": "0001921865",
+      "filed_at": "2026-06-11T01:48:01.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1921865/000147793226003753/0001477932-26-003753-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Octagon XAI CLO Income Fund",
+      "cik": "0002000645",
+      "filed_at": "2026-06-11T01:46:55.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/2000645/000171821826000001/0001718218-26-000001-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Ramaco Resources, Inc.",
+      "cik": "0001687187",
+      "filed_at": "2026-06-11T01:33:35.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1687187/000114036126024840/0001140361-26-024840-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "SIGA TECHNOLOGIES INC",
+      "cik": "0001010086",
+      "filed_at": "2026-06-11T01:33:06.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1010086/000119312526266423/0001193125-26-266423-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Sinclair, Inc.",
+      "cik": "0001971213",
+      "filed_at": "2026-06-11T01:31:16.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1971213/000001794026000001/0000017940-26-000001-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "SIGA TECHNOLOGIES INC",
+      "cik": "0001010086",
+      "filed_at": "2026-06-11T01:30:33.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1010086/000119312526266418/0001193125-26-266418-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Ramaco Resources, Inc.",
+      "cik": "0001687187",
+      "filed_at": "2026-06-11T01:30:27.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1687187/000114036126024839/0001140361-26-024839-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Ramaco Resources, Inc.",
+      "cik": "0001687187",
+      "filed_at": "2026-06-11T01:28:58.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1687187/000114036126024838/0001140361-26-024838-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "SIGA TECHNOLOGIES INC",
+      "cik": "0001010086",
+      "filed_at": "2026-06-11T01:27:56.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1010086/000119312526266414/0001193125-26-266414-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "SIGA TECHNOLOGIES INC",
+      "cik": "0001010086",
+      "filed_at": "2026-06-11T01:26:08.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1010086/000119312526266410/0001193125-26-266410-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "SIGA TECHNOLOGIES INC",
+      "cik": "0001010086",
+      "filed_at": "2026-06-11T01:23:27.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1010086/000119312526266406/0001193125-26-266406-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Seven Hills Realty Trust",
+      "cik": "0001452477",
+      "filed_at": "2026-06-11T01:20:32.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1452477/000110465926072506/0001104659-26-072506-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Seven Hills Realty Trust",
+      "cik": "0001452477",
+      "filed_at": "2026-06-11T01:19:58.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1452477/000110465926072505/0001104659-26-072505-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Seven Hills Realty Trust",
+      "cik": "0001452477",
+      "filed_at": "2026-06-11T01:19:29.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1452477/000110465926072504/0001104659-26-072504-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Seven Hills Realty Trust",
+      "cik": "0001452477",
+      "filed_at": "2026-06-11T01:18:56.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1452477/000110465926072503/0001104659-26-072503-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Seven Hills Realty Trust",
+      "cik": "0001452477",
+      "filed_at": "2026-06-11T01:18:18.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1452477/000110465926072502/0001104659-26-072502-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "SIGA TECHNOLOGIES INC",
+      "cik": "0001010086",
+      "filed_at": "2026-06-11T01:18:14.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1010086/000119312526266399/0001193125-26-266399-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Seven Hills Realty Trust",
+      "cik": "0001452477",
+      "filed_at": "2026-06-11T01:17:37.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1452477/000110465926072501/0001104659-26-072501-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "AVITA Medical, Inc.",
+      "cik": "0001762303",
+      "filed_at": "2026-06-11T01:17:19.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1762303/000119312526266397/0001193125-26-266397-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Seven Hills Realty Trust",
+      "cik": "0001452477",
+      "filed_at": "2026-06-11T01:16:54.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1452477/000110465926072500/0001104659-26-072500-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "InMed Pharmaceuticals Inc.",
+      "cik": "0001728328",
+      "filed_at": "2026-06-11T01:14:46.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1728328/000121390026067505/0001213900-26-067505-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "SIGA TECHNOLOGIES INC",
+      "cik": "0001010086",
+      "filed_at": "2026-06-11T01:14:15.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1010086/000119312526266390/0001193125-26-266390-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "ANI PHARMACEUTICALS INC",
+      "cik": "0001023024",
+      "filed_at": "2026-06-11T01:10:23.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1023024/000181987926000003/0001819879-26-000003-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "ANI PHARMACEUTICALS INC",
+      "cik": "0001023024",
+      "filed_at": "2026-06-11T01:09:17.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1023024/000154317426000003/0001543174-26-000003-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "ANI PHARMACEUTICALS INC",
+      "cik": "0001023024",
+      "filed_at": "2026-06-11T01:08:22.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1023024/000168932526000003/0001689325-26-000003-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "ANI PHARMACEUTICALS INC",
+      "cik": "0001023024",
+      "filed_at": "2026-06-11T01:08:03.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1023024/000177315226000003/0001773152-26-000003-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "ANI PHARMACEUTICALS INC",
+      "cik": "0001023024",
+      "filed_at": "2026-06-11T01:06:55.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1023024/000127224726000004/0001272247-26-000004-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Phunware, Inc.",
+      "cik": "0001665300",
+      "filed_at": "2026-06-11T01:00:06.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1665300/000209556926000002/0002095569-26-000002-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "MAGNITE, INC.",
+      "cik": "0001595974",
+      "filed_at": "2026-06-11T00:58:47.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1595974/000119312526266380/0001193125-26-266380-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "CoreWeave, Inc.",
+      "cik": "0001769628",
+      "filed_at": "2026-06-11T00:55:50.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000276/0001769628-26-000276-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Ramaco Resources, Inc.",
+      "cik": "0001687187",
+      "filed_at": "2026-06-11T00:55:36.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1687187/000114036126024829/0001140361-26-024829-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "CoreWeave, Inc.",
+      "cik": "0001769628",
+      "filed_at": "2026-06-11T00:54:52.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000275/0001769628-26-000275-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "MAGNITE, INC.",
+      "cik": "0001595974",
+      "filed_at": "2026-06-11T00:54:37.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1595974/000119312526266376/0001193125-26-266376-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "MAGNITE, INC.",
+      "cik": "0001595974",
+      "filed_at": "2026-06-11T00:54:31.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1595974/000119312526266375/0001193125-26-266375-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "CoreWeave, Inc.",
+      "cik": "0001769628",
+      "filed_at": "2026-06-11T00:54:12.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000274/0001769628-26-000274-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "CoreWeave, Inc.",
+      "cik": "0001769628",
+      "filed_at": "2026-06-11T00:53:02.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000273/0001769628-26-000273-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "CoreWeave, Inc.",
+      "cik": "0001769628",
+      "filed_at": "2026-06-11T00:52:05.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000272/0001769628-26-000272-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "MP Materials Corp. / DE",
+      "cik": "0001801368",
+      "filed_at": "2026-06-11T00:50:44.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1801368/000103160926000002/0001031609-26-000002-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
     {
       "company": "Snowflake Inc.",
       "cik": "0001640147",
@@ -474,438 +910,6 @@
       "cik": "0001174850",
       "filed_at": "2026-06-10T18:21:06.000Z",
       "url": "https://www.sec.gov/Archives/edgar/data/1174850/000117485026000155/0001174850-26-000155-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "KinderCare Learning Companies, Inc.",
-      "cik": "0001873529",
-      "filed_at": "2026-06-10T18:20:41.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1873529/000119312526265612/0001193125-26-265612-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "KinderCare Learning Companies, Inc.",
-      "cik": "0001873529",
-      "filed_at": "2026-06-10T18:20:22.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1873529/000119312526265610/0001193125-26-265610-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "PROCTER &amp; GAMBLE Co",
-      "cik": "0000080424",
-      "filed_at": "2026-06-10T18:20:08.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/80424/000008042426000073/0000080424-26-000073-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "PROCTER &amp; GAMBLE Co",
-      "cik": "0000080424",
-      "filed_at": "2026-06-10T18:18:49.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/80424/000008042426000072/0000080424-26-000072-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "PROCTER &amp; GAMBLE Co",
-      "cik": "0000080424",
-      "filed_at": "2026-06-10T18:17:26.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/80424/000008042426000071/0000080424-26-000071-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "FARMERS &amp; MERCHANTS BANCORP INC",
-      "cik": "0000792966",
-      "filed_at": "2026-06-10T18:17:20.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/792966/000119312526265603/0001193125-26-265603-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "URSB Bancorp, Inc.",
-      "cik": "0002084261",
-      "filed_at": "2026-06-10T18:14:54.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/2084261/000143774926020130/0001437749-26-020130-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CINCINNATI FINANCIAL CORP",
-      "cik": "0000020286",
-      "filed_at": "2026-06-10T18:14:48.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/20286/000114126826000008/0001141268-26-000008-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "HERITAGE FINANCIAL CORP /WA/",
-      "cik": "0001046025",
-      "filed_at": "2026-06-10T18:08:28.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1046025/000162828026042137/0001628280-26-042137-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CALERES INC",
-      "cik": "0000014707",
-      "filed_at": "2026-06-10T18:06:51.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/14707/000001470726000098/0000014707-26-000098-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "PROVIDENT FINANCIAL HOLDINGS INC",
-      "cik": "0001010470",
-      "filed_at": "2026-06-10T18:01:14.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1010470/000093905726000127/0000939057-26-000127-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CALERES INC",
-      "cik": "0000014707",
-      "filed_at": "2026-06-10T18:00:05.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/14707/000001470726000095/0000014707-26-000095-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "INDEPENDENT BANK CORP /MI/",
-      "cik": "0000039311",
-      "filed_at": "2026-06-10T12:16:39.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/39311/000172516326000007/0001725163-26-000007-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Borr Drilling Ltd",
-      "cik": "0001715497",
-      "filed_at": "2026-06-10T12:13:14.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1715497/000162828026042068/0001628280-26-042068-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Rigetti Computing, Inc.",
-      "cik": "0001838359",
-      "filed_at": "2026-06-10T12:06:48.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1838359/000112329226000855/0001123292-26-000855-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Rigetti Computing, Inc.",
-      "cik": "0001838359",
-      "filed_at": "2026-06-10T12:06:28.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1838359/000112329226000854/0001123292-26-000854-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Rigetti Computing, Inc.",
-      "cik": "0001838359",
-      "filed_at": "2026-06-10T12:06:04.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1838359/000112329226000853/0001123292-26-000853-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Rigetti Computing, Inc.",
-      "cik": "0001838359",
-      "filed_at": "2026-06-10T12:05:37.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1838359/000112329226000852/0001123292-26-000852-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "IDT CORP",
-      "cik": "0001005731",
-      "filed_at": "2026-06-10T12:05:24.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1005731/000119312526265115/0001193125-26-265115-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CITIZENS FINANCIAL SERVICES INC",
-      "cik": "0000739421",
-      "filed_at": "2026-06-10T12:04:00.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/739421/000073942126000044/0000739421-26-000044-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Borr Drilling Ltd",
-      "cik": "0001715497",
-      "filed_at": "2026-06-10T12:03:22.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1715497/000162828026042066/0001628280-26-042066-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Coherus Oncology, Inc.",
-      "cik": "0001512762",
-      "filed_at": "2026-06-10T01:57:30.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1512762/000161071726000206/0001610717-26-000206-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Anteris Technologies Global Corp.",
-      "cik": "0002011514",
-      "filed_at": "2026-06-10T01:46:20.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/2011514/000114036126024701/0001140361-26-024701-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CrowdStrike Holdings, Inc.",
-      "cik": "0001535527",
-      "filed_at": "2026-06-10T01:44:29.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1535527/000177856426000076/0001778564-26-000076-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Anteris Technologies Global Corp.",
-      "cik": "0002011514",
-      "filed_at": "2026-06-10T01:41:12.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/2011514/000114036126024699/0001140361-26-024699-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "AST SpaceMobile, Inc.",
-      "cik": "0001780312",
-      "filed_at": "2026-06-10T01:32:03.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1780312/000149315226028024/0001493152-26-028024-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "NETLIST INC",
-      "cik": "0001282631",
-      "filed_at": "2026-06-10T01:31:56.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1282631/000110465926071997/0001104659-26-071997-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "NETLIST INC",
-      "cik": "0001282631",
-      "filed_at": "2026-06-10T01:31:24.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1282631/000110465926071996/0001104659-26-071996-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "NETLIST INC",
-      "cik": "0001282631",
-      "filed_at": "2026-06-10T01:30:48.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1282631/000110465926071995/0001104659-26-071995-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "NETLIST INC",
-      "cik": "0001282631",
-      "filed_at": "2026-06-10T01:30:17.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1282631/000110465926071994/0001104659-26-071994-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Pangaea Logistics Solutions Ltd.",
-      "cik": "0001606909",
-      "filed_at": "2026-06-10T01:28:20.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1606909/000162828026042048/0001628280-26-042048-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Dynatrace, Inc.",
-      "cik": "0001773383",
-      "filed_at": "2026-06-10T01:24:04.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1773383/000198938226000011/0001989382-26-000011-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Dynatrace, Inc.",
-      "cik": "0001773383",
-      "filed_at": "2026-06-10T01:23:49.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1773383/000178350726000006/0001783507-26-000006-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Dynatrace, Inc.",
-      "cik": "0001773383",
-      "filed_at": "2026-06-10T01:23:32.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1773383/000198311226000006/0001983112-26-000006-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Dynatrace, Inc.",
-      "cik": "0001773383",
-      "filed_at": "2026-06-10T01:23:14.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1773383/000154256726000008/0001542567-26-000008-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Dynatrace, Inc.",
-      "cik": "0001773383",
-      "filed_at": "2026-06-10T01:22:59.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1773383/000206888426000005/0002068884-26-000005-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Dynatrace, Inc.",
-      "cik": "0001773383",
-      "filed_at": "2026-06-10T01:22:43.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1773383/000123916526000006/0001239165-26-000006-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "SOUNDTHINKING, INC.",
-      "cik": "0001351636",
-      "filed_at": "2026-06-10T01:22:00.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1351636/000210830726000006/0002108307-26-000006-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Arcutis Biotherapeutics, Inc.",
-      "cik": "0001787306",
-      "filed_at": "2026-06-10T01:21:32.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1787306/000162828026042046/0001628280-26-042046-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Arcutis Biotherapeutics, Inc.",
-      "cik": "0001787306",
-      "filed_at": "2026-06-10T01:21:26.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1787306/000162828026042045/0001628280-26-042045-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Arcutis Biotherapeutics, Inc.",
-      "cik": "0001787306",
-      "filed_at": "2026-06-10T01:21:20.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1787306/000162828026042044/0001628280-26-042044-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Arcutis Biotherapeutics, Inc.",
-      "cik": "0001787306",
-      "filed_at": "2026-06-10T01:21:14.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1787306/000162828026042043/0001628280-26-042043-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Arcutis Biotherapeutics, Inc.",
-      "cik": "0001787306",
-      "filed_at": "2026-06-10T01:21:08.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1787306/000162828026042042/0001628280-26-042042-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Mirum Pharmaceuticals, Inc.",
-      "cik": "0001759425",
-      "filed_at": "2026-06-10T01:21:05.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1759425/000119735026000007/0001197350-26-000007-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Arcutis Biotherapeutics, Inc.",
-      "cik": "0001787306",
-      "filed_at": "2026-06-10T01:21:02.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1787306/000162828026042041/0001628280-26-042041-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Arcutis Biotherapeutics, Inc.",
-      "cik": "0001787306",
-      "filed_at": "2026-06-10T01:20:56.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1787306/000162828026042040/0001628280-26-042040-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Arcutis Biotherapeutics, Inc.",
-      "cik": "0001787306",
-      "filed_at": "2026-06-10T01:20:49.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1787306/000162828026042039/0001628280-26-042039-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "VIASAT INC",
-      "cik": "0000797721",
-      "filed_at": "2026-06-10T01:13:47.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/797721/000119312526264582/0001193125-26-264582-index.htm",
       "isIssuer": true,
       "isForm4": true,
       "ticker": null
