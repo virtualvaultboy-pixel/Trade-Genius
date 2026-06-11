@@ -1,9 +1,13 @@
 {
-  "generated": "2026-06-11T13:56:13.821Z",
+  "generated": "2026-06-11T18:44:28.079Z",
   "source": "SEC EDGAR Form 4 RSS",
   "window_days": 7,
-  "count": 118,
+  "count": 115,
   "ticker_signals": {
+    "Meta": {
+      "count": 2,
+      "intensity": "low"
+    },
     "MicroStrategy": {
       "count": 2,
       "intensity": "low"
@@ -14,6 +18,141 @@
     }
   },
   "filings": [
+    {
+      "company": "Metagenomi Therapeutics, Inc.",
+      "cik": "0001785279",
+      "filed_at": "2026-06-11T18:31:48.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1785279/000119312526267272/0001193125-26-267272-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": "Meta"
+    },
+    {
+      "company": "TREDEGAR CORP",
+      "cik": "0000850429",
+      "filed_at": "2026-06-11T18:30:42.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/850429/000119312526267270/0001193125-26-267270-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "UMH PROPERTIES, INC.",
+      "cik": "0000752642",
+      "filed_at": "2026-06-11T18:26:25.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/752642/000075264226000071/0000752642-26-000071-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "TREDEGAR CORP",
+      "cik": "0000850429",
+      "filed_at": "2026-06-11T18:25:25.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/850429/000119312526267261/0001193125-26-267261-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Metagenomi Therapeutics, Inc.",
+      "cik": "0001785279",
+      "filed_at": "2026-06-11T18:23:03.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1785279/000119312526267255/0001193125-26-267255-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": "Meta"
+    },
+    {
+      "company": "UMH PROPERTIES, INC.",
+      "cik": "0000752642",
+      "filed_at": "2026-06-11T18:21:32.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/752642/000075264226000070/0000752642-26-000070-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "TREDEGAR CORP",
+      "cik": "0000850429",
+      "filed_at": "2026-06-11T18:17:39.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/850429/000119312526267249/0001193125-26-267249-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "UMH PROPERTIES, INC.",
+      "cik": "0000752642",
+      "filed_at": "2026-06-11T18:17:20.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/752642/000075264226000069/0000752642-26-000069-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "UMH PROPERTIES, INC.",
+      "cik": "0000752642",
+      "filed_at": "2026-06-11T18:13:13.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/752642/000075264226000068/0000752642-26-000068-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "UMH PROPERTIES, INC.",
+      "cik": "0000752642",
+      "filed_at": "2026-06-11T18:02:21.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/752642/000075264226000067/0000752642-26-000067-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "BROADRIDGE FINANCIAL SOLUTIONS, INC.",
+      "cik": "0001383312",
+      "filed_at": "2026-06-11T18:02:06.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1383312/000122520826005933/0001225208-26-005933-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "BROADRIDGE FINANCIAL SOLUTIONS, INC.",
+      "cik": "0001383312",
+      "filed_at": "2026-06-11T18:02:04.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1383312/000122520826005932/0001225208-26-005932-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "BROADRIDGE FINANCIAL SOLUTIONS, INC.",
+      "cik": "0001383312",
+      "filed_at": "2026-06-11T18:02:03.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1383312/000122520826005931/0001225208-26-005931-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "BROADRIDGE FINANCIAL SOLUTIONS, INC.",
+      "cik": "0001383312",
+      "filed_at": "2026-06-11T18:02:01.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1383312/000122520826005930/0001225208-26-005930-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "BROADRIDGE FINANCIAL SOLUTIONS, INC.",
+      "cik": "0001383312",
+      "filed_at": "2026-06-11T18:02:00.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1383312/000122520826005929/0001225208-26-005929-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
     {
       "company": "EPR PROPERTIES",
       "cik": "0001045450",
@@ -775,141 +914,6 @@
       "cik": "0001560327",
       "filed_at": "2026-06-10T23:05:19.000Z",
       "url": "https://www.sec.gov/Archives/edgar/data/1560327/000090266426002747/0000902664-26-002747-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "TELEPHONE &amp; DATA SYSTEMS INC /DE/",
-      "cik": "0001051512",
-      "filed_at": "2026-06-10T23:04:39.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1051512/000207228926000007/0002072289-26-000007-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Cabaletta Bio, Inc.",
-      "cik": "0001759138",
-      "filed_at": "2026-06-10T23:04:14.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1759138/000119312526266239/0001193125-26-266239-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Intellia Therapeutics, Inc.",
-      "cik": "0001652130",
-      "filed_at": "2026-06-10T23:02:49.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1652130/000119312526266236/0001193125-26-266236-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": "Intel"
-    },
-    {
-      "company": "Intellia Therapeutics, Inc.",
-      "cik": "0001652130",
-      "filed_at": "2026-06-10T23:01:52.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1652130/000119312526266233/0001193125-26-266233-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": "Intel"
-    },
-    {
-      "company": "Intellia Therapeutics, Inc.",
-      "cik": "0001652130",
-      "filed_at": "2026-06-10T23:00:39.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1652130/000156357226000001/0001563572-26-000001-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": "Intel"
-    },
-    {
-      "company": "Chime Financial, Inc.",
-      "cik": "0001795586",
-      "filed_at": "2026-06-10T23:00:00.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1795586/000124152626000013/0001241526-26-000013-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "TEXAS CAPITAL BANCSHARES INC/TX",
-      "cik": "0001077428",
-      "filed_at": "2026-06-10T22:59:58.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1077428/000172916126000008/0001729161-26-000008-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Cabaletta Bio, Inc.",
-      "cik": "0001759138",
-      "filed_at": "2026-06-10T22:59:48.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1759138/000119312526266232/0001193125-26-266232-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Intellia Therapeutics, Inc.",
-      "cik": "0001652130",
-      "filed_at": "2026-06-10T22:57:33.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1652130/000119312526266230/0001193125-26-266230-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": "Intel"
-    },
-    {
-      "company": "Acushnet Holdings Corp.",
-      "cik": "0001672013",
-      "filed_at": "2026-06-10T22:57:21.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1672013/000167201326000137/0001672013-26-000137-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Acushnet Holdings Corp.",
-      "cik": "0001672013",
-      "filed_at": "2026-06-10T22:56:38.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1672013/000167201326000136/0001672013-26-000136-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Cabaletta Bio, Inc.",
-      "cik": "0001759138",
-      "filed_at": "2026-06-10T22:56:14.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1759138/000119312526266229/0001193125-26-266229-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Acushnet Holdings Corp.",
-      "cik": "0001672013",
-      "filed_at": "2026-06-10T22:55:57.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1672013/000167201326000135/0001672013-26-000135-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Acushnet Holdings Corp.",
-      "cik": "0001672013",
-      "filed_at": "2026-06-10T22:55:12.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1672013/000167201326000134/0001672013-26-000134-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Acushnet Holdings Corp.",
-      "cik": "0001672013",
-      "filed_at": "2026-06-10T22:54:27.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1672013/000167201326000133/0001672013-26-000133-index.htm",
       "isIssuer": true,
       "isForm4": true,
       "ticker": null
