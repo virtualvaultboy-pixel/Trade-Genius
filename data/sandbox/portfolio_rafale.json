@@ -6,7 +6,7 @@
   "icon": "⚡",
   "created_at": "2026-05-30T17:55:42.945Z",
   "capital_initial": 1000,
-  "cash": 889.9506281175287,
+  "cash": 800.9555653057758,
   "positions": [
     {
       "id": "pos-1780659588067-xcte",
@@ -15,11 +15,11 @@
       "agent": "kairo",
       "type": "grid-day-A",
       "entry": 94.13999938964844,
-      "stop": 94.13999938964844,
+      "stop": 98.09742860636972,
       "tp1": 96.90071352977463,
       "tp2": 99.66142766990083,
       "initial_stop": 93.47742799601815,
-      "high_since_entry": 97.41,
+      "high_since_entry": 98.76,
       "rr1": 4.17,
       "rr2": 8.33,
       "risk_pct": 0.007038149542447768,
@@ -38,9 +38,40 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 97.41,
-      "age_days": 3,
+      "current_price": 98.76,
+      "age_days": 4,
       "size_eur_added": 39.506468721653995
+    },
+    {
+      "id": "pos-1781137216700-7ouj",
+      "asset": "Blé",
+      "kind": "metal",
+      "agent": "kairo",
+      "type": "grid-day-A",
+      "entry": 587.25,
+      "stop": 583.3607142857143,
+      "tp1": 603.4553571428571,
+      "tp2": 619.6607142857143,
+      "initial_stop": 583.3607142857143,
+      "high_since_entry": 587.25,
+      "rr1": 4.17,
+      "rr2": 8.33,
+      "risk_pct": 0.006622879036672173,
+      "size_eur": 88.99506281175287,
+      "quality_score": 66,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-06-11T00:20:16.700Z",
+      "opened_at_cycle": 9,
+      "opened_at_date": "2026-06-11",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
     }
   ],
   "closed_trades": [
@@ -384,7 +415,14 @@
       "equity": 1012.59,
       "cash": 889.95,
       "positions_count": 1
+    },
+    {
+      "date": "2026-06-11",
+      "cycle": 9,
+      "equity": 1014.29,
+      "cash": 800.96,
+      "positions_count": 2
     }
   ],
-  "last_cycle": "2026-06-10"
+  "last_cycle": "2026-06-11"
 }
