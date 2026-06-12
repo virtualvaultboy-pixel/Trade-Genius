@@ -1,19 +1,78 @@
 {
-  "generated": "2026-06-12T12:51:51.514Z",
+  "generated": "2026-06-12T18:03:10.710Z",
   "source": "SEC EDGAR Form 4 RSS",
   "window_days": 7,
-  "count": 122,
+  "count": 107,
   "ticker_signals": {
     "Cisco": {
       "count": 3,
       "intensity": "medium"
-    },
-    "Meta": {
-      "count": 2,
-      "intensity": "low"
     }
   },
   "filings": [
+    {
+      "company": "REPUBLIC BANCORP INC /KY/",
+      "cik": "0000921557",
+      "filed_at": "2026-06-12T17:49:53.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/921557/000163247726000012/0001632477-26-000012-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Vroom, Inc.",
+      "cik": "0001580864",
+      "filed_at": "2026-06-12T17:46:43.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1580864/000121460726000008/0001214607-26-000008-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "TFS Financial CORP",
+      "cik": "0001381668",
+      "filed_at": "2026-06-12T17:39:49.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1381668/000153099726000008/0001530997-26-000008-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "ARROW FINANCIAL CORP",
+      "cik": "0000717538",
+      "filed_at": "2026-06-12T17:34:16.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/717538/000146324726000006/0001463247-26-000006-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Cosmos Health Inc.",
+      "cik": "0001474167",
+      "filed_at": "2026-06-12T17:22:32.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1474167/000147793226003831/0001477932-26-003831-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "SPAR Group, Inc.",
+      "cik": "0001004989",
+      "filed_at": "2026-06-12T17:18:34.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1004989/000109039426000003/0001090394-26-000003-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "BARINGS CORPORATE INVESTORS",
+      "cik": "0000275694",
+      "filed_at": "2026-06-12T17:13:47.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/275694/000122520826005971/0001225208-26-005971-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
     {
       "company": "OBOOK HOLDINGS INC.",
       "cik": "0002025416",
@@ -847,69 +906,6 @@
       "cik": "0001881551",
       "filed_at": "2026-06-11T22:52:48.000Z",
       "url": "https://www.sec.gov/Archives/edgar/data/1881551/000209233226000004/0002092332-26-000004-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "NEXSTAR MEDIA GROUP, INC.",
-      "cik": "0001142417",
-      "filed_at": "2026-06-11T22:52:11.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1142417/000119312526268089/0001193125-26-268089-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Bank of Marin Bancorp",
-      "cik": "0001403475",
-      "filed_at": "2026-06-11T22:50:25.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1403475/000198897626000004/0001988976-26-000004-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "NEXSTAR MEDIA GROUP, INC.",
-      "cik": "0001142417",
-      "filed_at": "2026-06-11T22:49:32.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1142417/000119312526268081/0001193125-26-268081-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "OOMA INC",
-      "cik": "0001327688",
-      "filed_at": "2026-06-11T22:49:00.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1327688/000119312526268080/0001193125-26-268080-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "NEXSTAR MEDIA GROUP, INC.",
-      "cik": "0001142417",
-      "filed_at": "2026-06-11T22:47:24.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1142417/000119312526268076/0001193125-26-268076-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "OOMA INC",
-      "cik": "0001327688",
-      "filed_at": "2026-06-11T22:47:21.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1327688/000119312526268075/0001193125-26-268075-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "OOMA INC",
-      "cik": "0001327688",
-      "filed_at": "2026-06-11T22:45:59.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1327688/000119312526268070/0001193125-26-268070-index.htm",
       "isIssuer": true,
       "isForm4": true,
       "ticker": null
