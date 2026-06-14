@@ -1,14 +1,14 @@
 {
-  "generated": "2026-06-14T11:34:05.693Z",
+  "generated": "2026-06-14T13:19:31.724Z",
   "source": "Pollinations · openai",
   "date": "2026-06-14",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (38 indices · 6 crypto · 355 actions) : S&P 500 +0.50% (RSI 47, plutôt baissier) · Nasdaq +0.31% (RSI 44, baissier fort) · BTC +0.29% (RSI 27, indécis) · ETH -0.21% (RSI 27, plutôt baissier) · Apple -1.52% (RSI 34, plutôt baissier). Globalement, 191 actifs en biais haussier contre 180 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (38 indices · 8 crypto · 355 actions) : S&P 500 +0.50% (RSI 47, plutôt baissier) · Nasdaq +0.31% (RSI 44, baissier fort) · BTC -0.03% (RSI 27, indécis) · ETH -0.66% (RSI 26, plutôt baissier) · Apple -1.52% (RSI 34, plutôt baissier). Globalement, 191 actifs en biais haussier contre 182 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : pression vendeuse persistante (RSI 47)",
     "Nasdaq : pression vendeuse persistante (RSI 44)",
     "BTC : sans direction nette (RSI 27)",
-    "ETH : pression vendeuse persistante (RSI 27)",
+    "ETH : pression vendeuse persistante (RSI 26)",
     "Apple : pression vendeuse persistante (RSI 34)"
   ],
   "plan_pedago": [
@@ -1334,17 +1334,12 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Silver Lake, Dell director Egon Durban sells $27.26m Dell Technologies",
                 "time": "2026-06-13T00:07:49.000Z",
-                "source": "Investing.com"
-              },
-              {
-                "title": "Dell: Silver Lake entities, director Durban sell $33,587 in stock",
-                "time": "2026-06-11T23:51:58.000Z",
                 "source": "Investing.com"
               }
             ]
@@ -1687,17 +1682,12 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Silver Lake, Dell director Egon Durban sells $27.26m Dell Technologies",
                 "time": "2026-06-13T00:07:49.000Z",
-                "source": "Investing.com"
-              },
-              {
-                "title": "Dell: Silver Lake entities, director Durban sell $33,587 in stock",
-                "time": "2026-06-11T23:51:58.000Z",
                 "source": "Investing.com"
               }
             ]
@@ -3644,17 +3634,12 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Silver Lake, Dell director Egon Durban sells $27.26m Dell Technologies",
                 "time": "2026-06-13T00:07:49.000Z",
-                "source": "Investing.com"
-              },
-              {
-                "title": "Dell: Silver Lake entities, director Durban sell $33,587 in stock",
-                "time": "2026-06-11T23:51:58.000Z",
                 "source": "Investing.com"
               }
             ]
@@ -3678,12 +3663,12 @@
           "timeframe": "Court terme · 2-5 jours",
           "confidence": "medium",
           "direction": "long",
-          "config": "MFI 18 (capitulation vendeuse) + RSI bas + signal Hull MA proche.",
+          "config": "MFI 15 (capitulation vendeuse) + RSI bas + signal Hull MA proche.",
           "rationale": "Money Flow Index très bas = volume vendeur extrême. Combiné à un RSI faible et au prix qui approche la Hull MA (ligne réactive), c'est souvent le creux avant un rebond technique.",
-          "entry": 64565.47095271379,
-          "stop": 61424.44905831259,
-          "tp1": 67420.94540216943,
-          "tp2": 71704.15707635289,
+          "entry": 64360.83106158735,
+          "stop": 61246.70395275807,
+          "tp1": 67191.8557059776,
+          "tp2": 71438.39267256299,
           "rr1": "0.91",
           "rr2": "2.27",
           "currency": "USD",
@@ -3747,9 +3732,9 @@
             63552.3009,
             63537.739,
             64377.5767,
-            64565.471
+            64360.8311
           ],
-          "quality_score": 71,
+          "quality_score": 73,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -3782,13 +3767,13 @@
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 62,
+          "quality_score_pre_wisdom": 64,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"trump\" ×3.6 (9 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"trump\" ×5.5 (11 mentions/24h)"
         },
         {
           "asset": "ETH",
@@ -3800,10 +3785,10 @@
           "direction": "long",
           "config": "MFI 21 (capitulation vendeuse) + RSI bas + signal Hull MA proche.",
           "rationale": "Money Flow Index très bas = volume vendeur extrême. Combiné à un RSI faible et au prix qui approche la Hull MA (ligne réactive), c'est souvent le creux avant un rebond technique.",
-          "entry": 1675.1433729197895,
-          "stop": 1565.1378843662442,
-          "tp1": 1775.1483625139217,
-          "tp2": 1925.15584690512,
+          "entry": 1667.6828615930583,
+          "stop": 1556.5050069738838,
+          "tp1": 1768.7536385195806,
+          "tp2": 1920.359803909364,
           "rr1": "0.91",
           "rr2": "2.27",
           "currency": "USD",
@@ -3867,7 +3852,7 @@
             1671.8891,
             1665.0473,
             1678.7302,
-            1675.1434
+            1667.6829
           ],
           "quality_score": 73,
           "sizing_pct": 2,
@@ -3908,7 +3893,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"crypto\" ×5 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"street\" ×5 (5 mentions/24h)"
         },
         {
           "asset": "BNB",
@@ -3920,10 +3905,10 @@
           "direction": "long",
           "config": "MFI 22 (capitulation vendeuse) + RSI bas + signal Hull MA proche.",
           "rationale": "Money Flow Index très bas = volume vendeur extrême. Combiné à un RSI faible et au prix qui approche la Hull MA (ligne réactive), c'est souvent le creux avant un rebond technique.",
-          "entry": 612.2702295007202,
-          "stop": 578.4375586797107,
-          "tp1": 643.0272029743652,
-          "tp2": 689.1626631848327,
+          "entry": 611.2685156799373,
+          "stop": 577.5932570307651,
+          "tp1": 641.8823871791848,
+          "tp2": 687.8031944280559,
           "rr1": "0.91",
           "rr2": "2.27",
           "currency": "USD",
@@ -3987,9 +3972,9 @@
             605.0998,
             603.4976,
             609.396,
-            612.2702
+            611.2685
           ],
-          "quality_score": 73,
+          "quality_score": 71,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -4017,92 +4002,92 @@
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 64,
+          "quality_score_pre_wisdom": 62,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"crypto\" ×5 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"crypto\" ×3.4 (4 mentions/24h)"
         },
         {
-          "asset": "AVAX",
+          "asset": "APT",
           "kind": "crypto",
           "type": "kairo-capitulation",
           "label": "Capitulation volume — rebond imminent",
           "timeframe": "Court terme · 2-5 jours",
           "confidence": "medium",
           "direction": "long",
-          "config": "MFI 16 (capitulation vendeuse) + RSI bas + signal Hull MA proche.",
+          "config": "MFI 14 (capitulation vendeuse) + RSI bas + signal Hull MA proche.",
           "rationale": "Money Flow Index très bas = volume vendeur extrême. Combiné à un RSI faible et au prix qui approche la Hull MA (ligne réactive), c'est souvent le creux avant un rebond technique.",
-          "entry": 6.644401810600622,
-          "stop": 6.117408917160385,
-          "tp1": 7.123486259182656,
-          "tp2": 7.8421129320557075,
+          "entry": 0.6573785448230834,
+          "stop": 0.589730151525863,
+          "tp1": 0.718877084184193,
+          "tp2": 0.8111248932258573,
           "rr1": "0.91",
           "rr2": "2.27",
           "currency": "USD",
           "prices60": [
-            9.7269,
-            9.7373,
-            9.3426,
-            9.0103,
-            9.2796,
-            9.3883,
-            9.3536,
-            9.3942,
-            9.3955,
-            9.3661,
-            9.4736,
-            9.2542,
-            9.1678,
-            9.1181,
-            9.0874,
-            9.0823,
-            9.1839,
-            9.0859,
-            9.1677,
-            9.4011,
-            9.6044,
-            9.5035,
-            9.8912,
-            9.9479,
-            10.2529,
-            10.1389,
-            9.8395,
-            9.7473,
-            9.8923,
-            9.5352,
-            9.2913,
-            9.1312,
-            9.2308,
-            9.1037,
-            9.2793,
-            9.4471,
-            9.135,
-            9.3823,
-            9.2104,
-            9.2995,
-            9.1329,
-            9.0354,
-            8.9068,
-            8.8163,
-            8.9178,
-            8.944,
-            8.9165,
-            8.1582,
-            8.0524,
-            7.6856,
-            6.6977,
-            6.6639,
-            6.793,
-            6.7542,
-            6.6346,
-            6.391,
-            6.6377,
-            6.5587,
-            6.7099,
-            6.6444
+            1.0009,
+            0.998,
+            0.9371,
+            0.9115,
+            0.9355,
+            0.9381,
+            0.9464,
+            0.9535,
+            0.9854,
+            0.9676,
+            0.9855,
+            0.9659,
+            0.9645,
+            0.9865,
+            0.9936,
+            0.9912,
+            1.003,
+            0.9871,
+            0.9642,
+            0.9917,
+            1.0223,
+            1.0262,
+            1.121,
+            1.1027,
+            1.1593,
+            1.1286,
+            1.0816,
+            1.0455,
+            1.0522,
+            0.9878,
+            0.947,
+            0.9212,
+            0.9456,
+            0.9301,
+            0.9496,
+            0.9734,
+            0.938,
+            0.9692,
+            0.945,
+            0.9668,
+            0.9727,
+            0.9493,
+            0.9374,
+            0.9361,
+            0.9364,
+            0.9416,
+            0.9404,
+            0.8222,
+            0.812,
+            0.7531,
+            0.6631,
+            0.6561,
+            0.671,
+            0.6698,
+            0.6645,
+            0.6205,
+            0.6476,
+            0.6391,
+            0.6702,
+            0.6574
           ],
           "quality_score": 69,
           "sizing_pct": 2,
@@ -4561,9 +4546,9 @@
           "config": "MFI 19 (capitulation vendeuse) + RSI bas + signal Hull MA proche.",
           "rationale": "Money Flow Index très bas = volume vendeur extrême. Combiné à un RSI faible et au prix qui approche la Hull MA (ligne réactive), c'est souvent le creux avant un rebond technique.",
           "entry": 1293,
-          "stop": 1268.7686174665178,
-          "tp1": 1315.028529575893,
-          "tp2": 1348.071323939732,
+          "stop": 1268.7048999873116,
+          "tp1": 1315.0864545569896,
+          "tp2": 1348.2161363924738,
           "rr1": "0.91",
           "rr2": "2.27",
           "currency": "EUR",
@@ -5398,9 +5383,9 @@
                 "source": "Investing.com"
               },
               {
-                "title": "Target investors reject proposal for independent board chair, support rises but stays below majority",
-                "time": "2026-06-12T22:36:55.000Z",
-                "source": "Investing.com"
+                "title": "JPMorgan Raises its Price Target on UnitedHealth Group (UNH)",
+                "time": "2026-06-13T10:39:48.000Z",
+                "source": "Yahoo Finance Crypto"
               }
             ]
           },
@@ -6779,7 +6764,7 @@
             119.64,
             143.66
           ],
-          "quality_score": 70,
+          "quality_score": 72,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -6812,7 +6797,7 @@
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 61,
+          "quality_score_pre_wisdom": 63,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
@@ -6821,7 +6806,7 @@
             "intensity": "high"
           },
           "insider_reason": "Insider activity high (9 Form 4 / 7j)",
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"iran\" ×3.2 (14 mentions/24h)"
         },
         {
           "asset": "Seagate",
@@ -8521,12 +8506,12 @@
           "timeframe": "Court terme · 3-7 jours",
           "confidence": "medium",
           "direction": "long",
-          "config": "RSI 30 (bas) + prix qui repasse au-dessus de la Hull MA + slope-up 3 derniers jours.",
+          "config": "RSI 29 (bas) + prix qui repasse au-dessus de la Hull MA + slope-up 3 derniers jours.",
           "rationale": "Quand un actif (souvent forex/devises sans volumes fiables) ressort par le haut de sa Hull MA après un RSI bas et que la pente vient de s'inverser, c'est un signal de retournement précoce. KAIRO entre avant que la tendance ne soit confirmée par les MA classiques.",
-          "entry": 68.18900231732727,
-          "stop": 63.25918090133294,
-          "tp1": 73.11882373332159,
-          "tp2": 78.04864514931592,
+          "entry": 67.77758102893414,
+          "stop": 62.78898514316936,
+          "tp1": 72.7661769146989,
+          "tp2": 77.75477280046368,
           "rr1": "1.00",
           "rr2": "2.00",
           "currency": "USD",
@@ -8590,7 +8575,7 @@
             66.7413,
             66.7038,
             68.8088,
-            68.189
+            67.7776
           ],
           "quality_score": 64,
           "sizing_pct": 1,
@@ -9276,7 +9261,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×4.2 (9 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"x2019\" ×3 (7 mentions/24h)"
         },
         {
           "asset": "Palantir",
@@ -9686,17 +9671,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Form 4 Intuit Inc For: 11 June",
-                "time": "2026-06-11T23:50:20.000Z",
-                "source": "Investing.com"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
@@ -10851,7 +10826,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "JetBlue bets big on Fort Lauderdale, from a new airport lounge to an international gateway",
+                "time": "2026-06-14T12:00:02.000Z",
+                "source": "CNBC"
+              }
+            ]
+          },
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
@@ -11609,9 +11594,9 @@
           "config": "Plongeon -6.8% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.",
           "rationale": "Stratégie momentum baissier : on suit le mouvement déjà engagé. Pour les traders qui savent shorter (ou crypto via futures). Sinon : éviter d'acheter ici et attendre stabilisation.",
           "entry": 1116.4000244140625,
-          "stop": 1160.0071855000572,
-          "tp1": 1076.7571506995218,
-          "tp2": 1027.2035585563463,
+          "stop": 1160.0892125855826,
+          "tp1": 1076.6825806217714,
+          "tp2": 1027.0357758814077,
           "rr1": "0.91",
           "rr2": "2.05",
           "currency": "EUR",
@@ -12111,17 +12096,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Rocket Lab and these four stocks are joining the Nasdaq 100, with SpaceX waiting in the wings",
-                "time": "2026-06-12T01:56:00.000Z",
-                "source": "MarketWatch"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
@@ -12867,7 +12842,7 @@
             1016.58,
             1032
           ],
-          "quality_score": 65,
+          "quality_score": 63,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -12895,13 +12870,13 @@
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 56,
+          "quality_score_pre_wisdom": 54,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"bitcoin\" ×3 (6 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Costco",
@@ -13016,7 +12991,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"could\" ×9 (9 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"could\" ×6.9 (8 mentions/24h)"
         },
         {
           "asset": "Sanofi",
@@ -15945,17 +15920,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Space X Vs Microsoft valuation lol",
-                "time": "2026-06-12T00:22:52.000Z",
-                "source": "Reddit r/stocks"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
@@ -16046,7 +16011,7 @@
             488.45,
             511.57
           ],
-          "quality_score": 68,
+          "quality_score": 67,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16061,8 +16026,8 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 3,
-            "risk": "alert",
+            "count": 2,
+            "risk": "caution",
             "items": [
               {
                 "title": "Cathie Wood’s ARK sells AMD stock, buys SpaceX shares in major trade",
@@ -16079,13 +16044,13 @@
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 59,
+          "quality_score_pre_wisdom": 58,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2014\" ×9 (6 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"x2014\" ×4 (4 mentions/24h)"
         },
         {
           "asset": "Intel",
@@ -18440,7 +18405,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"could\" ×9 (9 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"could\" ×6.9 (8 mentions/24h)"
         },
         {
           "asset": "Chevron",
@@ -19376,9 +19341,14 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 1,
-            "risk": "normal",
+            "count": 2,
+            "risk": "caution",
             "items": [
+              {
+                "title": "Is Abbott (ABT) the Best Longevity Stock to Buy Now?",
+                "time": "2026-06-13T10:40:11.000Z",
+                "source": "Yahoo Finance Crypto"
+              },
               {
                 "title": "Abbott declares 410th consecutive quarterly dividend",
                 "time": "2026-06-12T18:29:00.000Z",
@@ -21607,13 +21577,13 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 64565.47095271379,
-      "change": "0.29",
+      "price": 64360.83106158735,
+      "change": "-0.03",
       "rsi": "27",
       "maCross": "bear",
-      "macdHist": "224.71",
-      "boll": "39%",
-      "adx": "45",
+      "macdHist": "211.65",
+      "boll": "38%",
+      "adx": "47",
       "atr": "2.2%",
       "verdict": "Indécis",
       "score": 53,
@@ -21622,13 +21592,13 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 1675.1433729197895,
-      "change": "-0.21",
-      "rsi": "27",
+      "price": 1667.6828615930583,
+      "change": "-0.66",
+      "rsi": "26",
       "maCross": "bear",
-      "macdHist": "4.45",
-      "boll": "32%",
-      "adx": "47",
+      "macdHist": "3.97",
+      "boll": "31%",
+      "adx": "48",
       "atr": "3.0%",
       "verdict": "Plutôt baissier",
       "score": 37,
@@ -21637,14 +21607,14 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 68.18900231732727,
-      "change": "-0.90",
-      "rsi": "30",
+      "price": 67.77758102893414,
+      "change": "-1.50",
+      "rsi": "29",
       "maCross": "bear",
-      "macdHist": "0.17",
-      "boll": "36%",
+      "macdHist": "0.15",
+      "boll": "35%",
       "adx": "41",
-      "atr": "3.6%",
+      "atr": "3.7%",
       "verdict": "Plutôt baissier",
       "score": 37,
       "cls": "bear"
@@ -21652,12 +21622,12 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "price": 612.2702295007202,
-      "change": "0.47",
-      "rsi": "28",
+      "price": 611.2685156799373,
+      "change": "0.31",
+      "rsi": "27",
       "maCross": "bear",
-      "macdHist": "-1.02",
-      "boll": "41%",
+      "macdHist": "-1.08",
+      "boll": "40%",
       "adx": "45",
       "atr": "2.5%",
       "verdict": "Plutôt baissier",
@@ -21665,31 +21635,61 @@
       "cls": "bear"
     },
     {
+      "label": "XRP",
+      "kind": "crypto",
+      "price": 1.138152075836284,
+      "change": "-0.94",
+      "rsi": "29",
+      "maCross": "bear",
+      "macdHist": "0.00",
+      "boll": "31%",
+      "adx": "42",
+      "atr": "2.9%",
+      "verdict": "Plutôt baissier",
+      "score": 37,
+      "cls": "bear"
+    },
+    {
       "label": "ADA",
       "kind": "crypto",
-      "price": 0.16997894478127054,
-      "change": "-0.91",
-      "rsi": "22",
+      "price": 0.16835031039931517,
+      "change": "-1.86",
+      "rsi": "21",
       "maCross": "bear",
       "macdHist": "-0.00",
-      "boll": "31%",
+      "boll": "30%",
       "adx": "57",
-      "atr": "4.8%",
+      "atr": "4.9%",
       "verdict": "Baissier fort",
       "score": 17,
       "cls": "bear"
     },
     {
-      "label": "AVAX",
+      "label": "NEAR",
       "kind": "crypto",
-      "price": 6.644401810600622,
-      "change": "-0.98",
-      "rsi": "16",
+      "price": 2.093943561810484,
+      "change": "-1.40",
+      "rsi": "45",
+      "maCross": "bull",
+      "macdHist": "-0.05",
+      "boll": "34%",
+      "adx": "9",
+      "atr": "7.8%",
+      "verdict": "Plutôt baissier",
+      "score": 31,
+      "cls": "bear"
+    },
+    {
+      "label": "APT",
+      "kind": "crypto",
+      "price": 0.6573785448230834,
+      "change": "-1.92",
+      "rsi": "17",
       "maCross": "bear",
-      "macdHist": "-0.06",
-      "boll": "26%",
-      "adx": "69",
-      "atr": "3.6%",
+      "macdHist": "-0.01",
+      "boll": "27%",
+      "adx": "66",
+      "atr": "4.7%",
       "verdict": "Baissier fort",
       "score": 17,
       "cls": "bear"
@@ -26887,8 +26887,8 @@
     {
       "label": "Infosys (NSE)",
       "kind": "action",
-      "price": 1116.4,
-      "change": "0.16",
+      "price": 1118.5,
+      "change": "0.35",
       "rsi": "41",
       "maCross": "bear",
       "macdHist": "-6.47",
@@ -26902,8 +26902,8 @@
     {
       "label": "Reliance Industries",
       "kind": "action",
-      "price": 1293,
-      "change": "2.38",
+      "price": 1296.4,
+      "change": "2.64",
       "rsi": "26",
       "maCross": "bear",
       "macdHist": "-4.08",
@@ -26917,8 +26917,8 @@
     {
       "label": "TCS",
       "kind": "action",
-      "price": 2161.4,
-      "change": "1.21",
+      "price": 2161.1,
+      "change": "1.19",
       "rsi": "38",
       "maCross": "bear",
       "macdHist": "-10.43",
@@ -26932,8 +26932,8 @@
     {
       "label": "HDFC Bank",
       "kind": "action",
-      "price": 772.45,
-      "change": "3.74",
+      "price": 771.95,
+      "change": "3.67",
       "rsi": "43",
       "maCross": "bear",
       "macdHist": "1.51",
@@ -29074,7 +29074,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 50
+    "matched_assets": 49
   },
   "macro": {
     "vix": 17.68,
@@ -29084,7 +29084,7 @@
     "cross_asset": {
       "sp500_change": 0.5025513873057041,
       "nasdaq_change": 0.3067831463903489,
-      "btc_change": 0.29186290157911493,
+      "btc_change": -0.026011584616116648,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -29096,7 +29096,7 @@
     "current_state": {
       "vix": 17.68,
       "yield_curve": null,
-      "btc_30d_change": -17.36678475480404,
+      "btc_30d_change": -17.62869025818973,
       "sp500_30d_change": 2.7847371895160262,
       "dominant_sectors": [
         "SOXX",
@@ -29105,25 +29105,25 @@
       ],
       "dominant_news_themes": [
         "war",
-        "tech",
-        "crypto"
+        "crypto",
+        "tech"
       ],
       "special_flags": []
     },
     "dominant_themes": [
       "war",
-      "tech",
-      "crypto"
+      "crypto",
+      "tech"
     ],
     "theme_counts": {
-      "war": 85,
-      "geopolitical": 56,
+      "geopolitical": 51,
+      "fed": 43,
       "tech": 62,
-      "oil": 25,
-      "crypto": 62,
-      "fed": 46,
+      "war": 85,
+      "oil": 26,
+      "crypto": 63,
       "earnings": 17,
-      "credit": 16
+      "credit": 17
     },
     "top_sectors_60d": [
       "SOXX",
@@ -29288,7 +29288,7 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 63,
+      "ev_battery": 65,
       "rate_pivot": 2,
       "crypto_hack": 1,
       "defi_growth": 4,
@@ -29302,8 +29302,8 @@
       "index": 100,
       "level": "extreme",
       "war": 85,
-      "credit": 16,
-      "geopol": 56
+      "credit": 17,
+      "geopol": 51
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -29554,8 +29554,8 @@
       "label": "BTC",
       "kind": "crypto",
       "rsi": 27,
-      "change": 0.29,
-      "adx": 45,
+      "change": -0.03,
+      "adx": 47,
       "verdict": "Indécis",
       "cls": "neutral",
       "score": 53
@@ -29563,9 +29563,9 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "rsi": 27,
-      "change": -0.21,
-      "adx": 47,
+      "rsi": 26,
+      "change": -0.66,
+      "adx": 48,
       "verdict": "Plutôt baissier",
       "cls": "bear",
       "score": 37
@@ -29573,8 +29573,8 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "rsi": 30,
-      "change": -0.9,
+      "rsi": 29,
+      "change": -1.5,
       "adx": 41,
       "verdict": "Plutôt baissier",
       "cls": "bear",
@@ -29583,29 +29583,49 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "rsi": 28,
-      "change": 0.47,
+      "rsi": 27,
+      "change": 0.31,
       "adx": 45,
       "verdict": "Plutôt baissier",
       "cls": "bear",
       "score": 33
     },
     {
+      "label": "XRP",
+      "kind": "crypto",
+      "rsi": 29,
+      "change": -0.94,
+      "adx": 42,
+      "verdict": "Plutôt baissier",
+      "cls": "bear",
+      "score": 37
+    },
+    {
       "label": "ADA",
       "kind": "crypto",
-      "rsi": 22,
-      "change": -0.91,
+      "rsi": 21,
+      "change": -1.86,
       "adx": 57,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 17
     },
     {
-      "label": "AVAX",
+      "label": "NEAR",
       "kind": "crypto",
-      "rsi": 16,
-      "change": -0.98,
-      "adx": 69,
+      "rsi": 45,
+      "change": -1.4,
+      "adx": 9,
+      "verdict": "Plutôt baissier",
+      "cls": "bear",
+      "score": 31
+    },
+    {
+      "label": "APT",
+      "kind": "crypto",
+      "rsi": 17,
+      "change": -1.92,
+      "adx": 66,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 17
@@ -33074,7 +33094,7 @@
       "label": "Infosys (NSE)",
       "kind": "action",
       "rsi": 41,
-      "change": 0.16,
+      "change": 0.35,
       "adx": 19,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -33084,7 +33104,7 @@
       "label": "Reliance Industries",
       "kind": "action",
       "rsi": 26,
-      "change": 2.38,
+      "change": 2.64,
       "adx": 48,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -33094,7 +33114,7 @@
       "label": "TCS",
       "kind": "action",
       "rsi": 38,
-      "change": 1.21,
+      "change": 1.19,
       "adx": 25,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -33104,7 +33124,7 @@
       "label": "HDFC Bank",
       "kind": "action",
       "rsi": 43,
-      "change": 3.74,
+      "change": 3.67,
       "adx": 13,
       "verdict": "Plutôt haussier",
       "cls": "bull",
