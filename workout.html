@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circuit Training – Bodyweight</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;800&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161a22;
+    --card: #1e2330;
+    --accent: #f5a623;
+    --accent2: #e84545;
+    --text: #f0f2f7;
+    --muted: #7a8299;
+    --green: #2ecc71;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ---- SCREENS ---- */
+  .screen { display: none; min-height: 100vh; }
+  .screen.active { display: flex; flex-direction: column; }
+
+  /* ---- HOME ---- */
+  #home {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .logo span { color: var(--accent); }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 0.95rem;
+    max-width: 320px;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .stat-pill {
+    background: var(--card);
+    border-radius: 50px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .stat-pill strong { color: var(--accent); }
+
+  .week-selector {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 1.2rem;
+    width: 100%;
+    max-width: 360px;
+  }
+  .week-selector h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+  .week-btn {
+    background: var(--card);
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 0.3rem;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+  }
+  .week-btn:hover { background: var(--accent); color: #000; }
+  .week-btn.selected { background: var(--accent); color: #000; font-weight: 600; }
+
+  .btn-start {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 3rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 0 30px rgba(245,166,35,0.3);
+  }
+  .btn-start:hover { transform: scale(1.04); box-shadow: 0 0 40px rgba(245,166,35,0.5); }
+  .btn-start:active { transform: scale(0.97); }
+
+  /* ---- WORKOUT SCREEN ---- */
+  #workout {
+    flex-direction: column;
+    padding: 0;
+    position: relative;
+  }
+
+  .workout-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.2rem 0.8rem;
+    background: var(--surface);
+    border-bottom: 1px solid #ffffff10;
+  }
+  .workout-header .back-btn {
+    background: none; border: none; color: var(--muted);
+    font-size: 1.2rem; cursor: pointer; padding: 0.3rem;
+  }
+  .workout-header .phase-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .round-badge {
+    background: var(--card);
+    border-radius: 50px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* Progress bar */
+  .progress-bar-wrap {
+    height: 3px;
+    background: var(--card);
+    position: relative;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.3s;
+  }
+
+  /* Main exercise area */
+  .exercise-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    gap: 1.2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Animation canvas */
+  .anim-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+
+  .stick-figure {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Exercise name */
+  .exercise-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    text-align: center;
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+
+  .exercise-target {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* Timer circle */
+  .timer-wrap {
+    position: relative;
+    width: 150px;
+    height: 150px;
+  }
+  .timer-svg {
+    transform: rotate(-90deg);
+    width: 150px;
+    height: 150px;
+  }
+  .timer-track { fill: none; stroke: var(--card); stroke-width: 8; }
+  .timer-arc {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 408;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.1s linear, stroke 0.3s;
+  }
+  .timer-text-wrap {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .timer-number {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text);
+  }
+  .timer-unit {
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Reps display */
+  .reps-display {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-align: center;
+  }
+  .reps-display span { font-size: 1rem; color: var(--muted); display: block; text-transform: uppercase; letter-spacing: 2px; }
+
+  /* Controls */
+  .controls {
+    display: flex;
+    gap: 0.8rem;
+    padding: 1rem 1.2rem 1.5rem;
+    background: var(--surface);
+    border-top: 1px solid #ffffff10;
+  }
+  .ctrl-btn {
+    flex: 1;
+    border: none;
+    border-radius: 12px;
+    padding: 0.9rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ctrl-btn.secondary {
+    background: var(--card);
+    color: var(--muted);
+  }
+  .ctrl-btn.secondary:hover { color: var(--text); }
+  .ctrl-btn.primary {
+    background: var(--accent);
+    color: #000;
+    font-size: 1.2rem;
+  }
+  .ctrl-btn.primary:hover { filter: brightness(1.1); }
+  .ctrl-btn.danger { background: var(--accent2); color: #fff; }
+
+  /* Exercise queue */
+  .queue-strip {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.8rem 1.2rem;
+    overflow-x: auto;
+    background: var(--surface);
+    border-bottom: 1px solid #ffffff10;
+    scrollbar-width: none;
+  }
+  .queue-strip::-webkit-scrollbar { display: none; }
+  .queue-item {
+    flex-shrink: 0;
+    background: var(--card);
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    white-space: nowrap;
+    transition: all 0.3s;
+  }
+  .queue-item.current {
+    background: var(--accent);
+    color: #000;
+    font-weight: 600;
+  }
+  .queue-item.done {
+    opacity: 0.4;
+    text-decoration: line-through;
+  }
+
+  /* REST screen overlay */
+  .rest-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(13,15,20,0.95);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    z-index: 100;
+  }
+  .rest-overlay.show { display: flex; }
+  .rest-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 4px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .rest-next {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: center;
+  }
+  .rest-next strong { color: var(--accent); }
+  .rest-skip-btn {
+    background: var(--card);
+    border: 1px solid #ffffff20;
+    border-radius: 50px;
+    padding: 0.7rem 2rem;
+    color: var(--text);
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .rest-skip-btn:hover { background: var(--accent); color: #000; border-color: transparent; }
+
+  /* DONE screen */
+  #done {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  .done-icon { font-size: 4rem; }
+  .done-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .done-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 100%;
+    max-width: 300px;
+  }
+  .done-stat {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 1rem;
+  }
+  .done-stat-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .done-stat-label { font-size: 0.75rem; color: var(--muted); }
+
+  /* Flash animation */
+  @keyframes flash-in {
+    0% { opacity: 0; transform: scale(0.85); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  .exercise-area { animation: flash-in 0.3s ease; }
+
+  /* Stick figure animations */
+  @keyframes burpee {
+    0%,100% { transform: translateY(0) scaleY(1); }
+    25% { transform: translateY(20px) scaleY(0.6); }
+    50% { transform: translateY(0) scaleY(1); }
+    75% { transform: translateY(-15px) scaleY(1.1); }
+  }
+  @keyframes pushup {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(12px); }
+  }
+  @keyframes squat {
+    0%,100% { transform: scaleY(1) translateY(0); }
+    50% { transform: scaleY(0.75) translateY(18px); }
+  }
+  @keyframes lunge {
+    0%,100% { transform: translateX(0) rotate(0deg); }
+    50% { transform: translateX(10px) rotate(5deg); }
+  }
+  @keyframes climber {
+    0%,100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+  @keyframes superman-anim {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(5deg); }
+  }
+  @keyframes plank-anim {
+    0%,100% { transform: rotate(0deg) scaleX(1); }
+    50% { transform: rotate(1deg) scaleX(1.02); }
+  }
+  @keyframes shadow-box {
+    0%,100% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-8px) rotate(-5deg); }
+    75% { transform: translateX(8px) rotate(5deg); }
+  }
+  @keyframes rest-bob {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HOME -->
+<div id="home" class="screen active">
+  <div>
+    <div class="logo">CIRCUIT<br><span>TRAINING</span></div>
+    <p class="subtitle" style="margin-top:0.5rem">Bodyweight · 20-30 min · 3×/semaine</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-pill"><strong>7</strong> exercices</div>
+    <div class="stat-pill"><strong>4</strong> tours</div>
+    <div class="stat-pill"><strong>~22</strong> min</div>
+  </div>
+
+  <div class="week-selector">
+    <h3>Semaine de progression</h3>
+    <div class="week-grid">
+      <button class="week-btn selected" data-week="1" onclick="selectWeek(this)">S1-2<br><small style="color:inherit;opacity:0.6">Débutant</small></button>
+      <button class="week-btn" data-week="3" onclick="selectWeek(this)">S3-4<br><small style="color:inherit;opacity:0.6">Interméd.</small></button>
+      <button class="week-btn" data-week="5" onclick="selectWeek(this)">S5-8<br><small style="color:inherit;opacity:0.6">Avancé</small></button>
+      <button class="week-btn" data-week="emom" onclick="selectWeek(this)">EMOM<br><small style="color:inherit;opacity:0.6">Chrono</small></button>
+    </div>
+  </div>
+
+  <button class="btn-start" onclick="startWorkout()">▶ COMMENCER</button>
+</div>
+
+<!-- WORKOUT -->
+<div id="workout" class="screen">
+  <div class="workout-header">
+    <button class="back-btn" onclick="goHome()">✕</button>
+    <span class="phase-label" id="phaseLabel">ÉCHAUFFEMENT</span>
+    <span class="round-badge" id="roundBadge">Tour 1/4</span>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+  </div>
+  <div class="queue-strip" id="queueStrip"></div>
+
+  <div class="exercise-area" id="exerciseArea">
+    <div class="anim-container">
+      <svg class="stick-figure" id="stickFig" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+    <div class="exercise-name" id="exName">—</div>
+    <div class="exercise-target" id="exTarget"></div>
+
+    <div class="timer-wrap" id="timerWrap">
+      <svg class="timer-svg" viewBox="0 0 150 150">
+        <circle class="timer-track" cx="75" cy="75" r="65"/>
+        <circle class="timer-arc" id="timerArc" cx="75" cy="75" r="65"/>
+      </svg>
+      <div class="timer-text-wrap">
+        <div class="timer-number" id="timerNum">30</div>
+        <div class="timer-unit">sec</div>
+      </div>
+    </div>
+
+    <div class="reps-display" id="repsDisplay" style="display:none">
+      <span>Reps à faire</span>
+      00
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="ctrl-btn secondary" id="prevBtn" onclick="prevExercise()">⏮ Préc.</button>
+    <button class="ctrl-btn primary" id="pauseBtn" onclick="togglePause()">⏸ Pause</button>
+    <button class="ctrl-btn secondary" id="nextBtn" onclick="nextExercise()">Suiv. ⏭</button>
+  </div>
+</div>
+
+<!-- REST OVERLAY -->
+<div class="rest-overlay" id="restOverlay">
+  <div class="rest-title">💤 Repos</div>
+  <div class="timer-wrap">
+    <svg class="timer-svg" viewBox="0 0 150 150">
+      <circle class="timer-track" cx="75" cy="75" r="65"/>
+      <circle class="timer-arc" id="restArc" cx="75" cy="75" r="65" style="stroke:#2ecc71"/>
+    </svg>
+    <div class="timer-text-wrap">
+      <div class="timer-number" id="restNum">45</div>
+      <div class="timer-unit">sec</div>
+    </div>
+  </div>
+  <div class="rest-next" id="restNext">Prochain : <strong>—</strong></div>
+  <button class="rest-skip-btn" onclick="skipRest()">Passer le repos →</button>
+</div>
+
+<!-- DONE -->
+<div id="done" class="screen">
+  <div class="done-icon">🔥</div>
+  <div class="done-title">SÉANCE TERMINÉE !</div>
+  <p style="color:var(--muted);font-size:0.9rem">Excellent travail. Récupère bien.</p>
+  <div class="done-stats">
+    <div class="done-stat">
+      <div class="done-stat-val" id="doneTime">22</div>
+      <div class="done-stat-label">Minutes</div>
+    </div>
+    <div class="done-stat">
+      <div class="done-stat-val">4</div>
+      <div class="done-stat-label">Tours</div>
+    </div>
+    <div class="done-stat">
+      <div class="done-stat-val">7</div>
+      <div class="done-stat-label">Exercices</div>
+    </div>
+    <div class="done-stat">
+      <div class="done-stat-val">~280</div>
+      <div class="done-stat-label">kcal estimées</div>
+    </div>
+  </div>
+  <button class="btn-start" onclick="goHome()" style="margin-top:1rem">↩ Retour</button>
+</div>
+
+<script>
+// =========================================================
+// DATA
+// =========================================================
+
+const EXERCISES_BY_WEEK = {
+  1: [
+    { name: "Burpees", target: "Full body · Cardio", type: "reps", val: 8, anim: "burpee", tip: "Sans pompe" },
+    { name: "Pompes", target: "Pectoraux · Triceps", type: "reps", val: 10, anim: "pushup", tip: "Sur les genoux si besoin" },
+    { name: "Squats", target: "Quadriceps · Fessiers", type: "reps", val: 15, anim: "squat", tip: "Classiques" },
+    { name: "Fentes marchées", target: "Jambes · Équilibre", type: "reps", val: 10, anim: "lunge", tip: "10 par jambe" },
+    { name: "Mountain Climbers", target: "Abdos · Cardio", type: "time", val: 30, anim: "climber", tip: "Rythme lent contrôlé" },
+    { name: "Superman", target: "Dos · Fessiers", type: "reps", val: 12, anim: "superman", tip: "Tenir 2s en haut" },
+    { name: "Planche", target: "Core", type: "time", val: 30, anim: "plank", tip: "Classique" },
+  ],
+  3: [
+    { name: "Burpees", target: "Full body · Cardio", type: "reps", val: 10, anim: "burpee", tip: "Avec pompe" },
+    { name: "Pompes", target: "Pectoraux · Triceps", type: "reps", val: 12, anim: "pushup", tip: "Classiques" },
+    { name: "Jump Squats", target: "Quadriceps · Cardio", type: "reps", val: 15, anim: "squat", tip: "Saut à chaque rep" },
+    { name: "Fentes marchées", target: "Jambes · Équilibre", type: "reps", val: 12, anim: "lunge", tip: "12 par jambe" },
+    { name: "Mountain Climbers", target: "Abdos · Cardio", type: "time", val: 35, anim: "climber", tip: "Rythme rapide" },
+    { name: "Superman", target: "Dos · Fessiers", type: "reps", val: 15, anim: "superman", tip: "Tenir 2s" },
+    { name: "Planche", target: "Core", type: "time", val: 45, anim: "plank", tip: "Épaule tap" },
+  ],
+  5: [
+    { name: "Burpees + Push", target: "Full body · Cardio", type: "reps", val: 10, anim: "burpee", tip: "Avec pompe + saut" },
+    { name: "Pompes Diamant", target: "Triceps · Pectoraux", type: "reps", val: 12, anim: "pushup", tip: "Mains en diamant" },
+    { name: "Jump Squats", target: "Quadriceps · Cardio", type: "reps", val: 20, anim: "squat", tip: "Explosif" },
+    { name: "Fentes sautées", target: "Jambes · Cardio", type: "reps", val: 10, anim: "lunge", tip: "10 par jambe" },
+    { name: "Mountain Climbers", target: "Abdos · Cardio", type: "time", val: 40, anim: "climber", tip: "Sprint" },
+    { name: "Superman", target: "Dos · Fessiers", type: "reps", val: 15, anim: "superman", tip: "Tenir 3s" },
+    { name: "Side Plank", target: "Core · Obliques", type: "time", val: 45, anim: "plank", tip: "30s chaque côté" },
+  ],
+  emom: [
+    { name: "Burpees", target: "Full body · Cardio", type: "time", val: 60, anim: "burpee", tip: "10 reps puis repos" },
+    { name: "Pompes", target: "Pectoraux · Triceps", type: "time", val: 60, anim: "pushup", tip: "15 reps puis repos" },
+    { name: "Squats", target: "Quadriceps · Fessiers", type: "time", val: 60, anim: "squat", tip: "20 reps puis repos" },
+    { name: "Mountain Climbers", target: "Abdos · Cardio", type: "time", val: 60, anim: "climber", tip: "30s non-stop" },
+    { name: "Pompes", target: "Pectoraux · Triceps", type: "time", val: 60, anim: "pushup", tip: "15 reps puis repos" },
+    { name: "Burpees", target: "Full body", type: "time", val: 60, anim: "burpee", tip: "10 reps puis repos" },
+    { name: "Planche", target: "Core", type: "time", val: 60, anim: "plank", tip: "Max hold" },
+  ]
+};
+
+const WARMUP = [
+  { name: "Jumping Jacks", target: "Échauffement global", type: "time", val: 60, anim: "jacks" },
+  { name: "Squats lents", target: "Mobilité jambes", type: "reps", val: 10, anim: "squat" },
+  { name: "Pompes lentes", target: "Activation haut du corps", type: "reps", val: 8, anim: "pushup" },
+  { name: "Cercles de bras", target: "Épaules", type: "time", val: 30, anim: "rest" },
+  { name: "Fentes marchées", target: "Hanche · Mobilité", type: "reps", val: 8, anim: "lunge" },
+];
+
+const COOLDOWN = [
+  { name: "Shadow Boxing", target: "Cardio léger · Finisher", type: "time", val: 90, anim: "shadow" },
+  { name: "Étirements", target: "Récupération", type: "time", val: 60, anim: "rest" },
+];
+
+// =========================================================
+// SVG STICK FIGURES
+// =========================================================
+
+const STROKE = '#f5a623';
+const STROKE2 = '#e84545';
+const W = 1.5; // stroke-width of limbs
+const HEAD_R = 14;
+
+function mkLine(x1,y1,x2,y2,color=STROKE,w=W){
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${w}" stroke-linecap="round"/>`;
+}
+function mkCircle(cx,cy,r,fill='none',stroke=STROKE){
+  return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${W}"/>`;
+}
+
+function getFigureSVG(anim) {
+  let animStyle = '';
+  const dur = animDuration(anim);
+
+  switch(anim) {
+    case 'burpee': return svgBurpee(dur);
+    case 'pushup': return svgPushup(dur);
+    case 'squat': return svgSquat(dur);
+    case 'lunge': return svgLunge(dur);
+    case 'climber': return svgClimber(dur);
+    case 'superman': return svgSuperman(dur);
+    case 'plank': return svgPlank(dur);
+    case 'shadow': return svgShadow(dur);
+    case 'jacks': return svgJacks(dur);
+    default: return svgRest(dur);
+  }
+}
+
+function animDuration(a) {
+  const map = { burpee:'1.2s', pushup:'1s', squat:'1.2s', lunge:'1.4s', climber:'0.6s',
+                superman:'1.5s', plank:'2s', shadow:'0.8s', jacks:'0.7s', rest:'2s' };
+  return map[a] || '1s';
+}
+
+function svgBurpee(dur) {
+  return `
+    <g style="animation: burpee ${dur} ease-in-out infinite; transform-origin: 100px 130px;">
+      ${mkCircle(100,60,HEAD_R,'none',STROKE)}
+      ${mkLine(100,74,100,110)}
+      ${mkLine(100,85,75,100)}
+      ${mkLine(100,85,125,100)}
+      ${mkLine(100,110,82,140)}
+      ${mkLine(100,110,118,140)}
+    </g>`;
+}
+
+function svgPushup(dur) {
+  return `
+    <g style="animation: pushup ${dur} ease-in-out infinite; transform-origin: 100px 130px;">
+      ${mkCircle(70,100,HEAD_R,'none',STROKE)}
+      ${mkLine(84,100,140,100)}
+      ${mkLine(140,100,155,85)}
+      ${mkLine(140,100,155,115)}
+      ${mkLine(100,100,95,120)}
+      ${mkLine(120,100,115,120)}
+    </g>`;
+}
+
+function svgSquat(dur) {
+  return `
+    <g style="animation: squat ${dur} ease-in-out infinite; transform-origin: 100px 130px;">
+      ${mkCircle(100,60,HEAD_R,'none',STROKE)}
+      ${mkLine(100,74,100,105)}
+      ${mkLine(100,85,75,100)}
+      ${mkLine(100,85,125,100)}
+      ${mkLine(100,105,82,135)}
+      ${mkLine(82,135,75,155)}
+      ${mkLine(100,105,118,135)}
+      ${mkLine(118,135,125,155)}
+    </g>`;
+}
+
+function svgLunge(dur) {
+  return `
+    <g style="animation: lunge ${dur} ease-in-out infinite; transform-origin: 100px 130px;">
+      ${mkCircle(100,55,HEAD_R,'none',STROKE)}
+      ${mkLine(100,69,100,100)}
+      ${mkLine(100,80,75,95)}
+      ${mkLine(100,80,125,95)}
+      ${mkLine(100,100,80,130)}
+      ${mkLine(80,130,60,160)}
+      ${mkLine(100,100,120,130)}
+      ${mkLine(120,130,125,160)}
+    </g>`;
+}
+
+function svgClimber(dur) {
+  return `
+    <g style="animation: climber ${dur} ease-in-out infinite; transform-origin: 100px 120px;">
+      ${mkCircle(65,95,HEAD_R,'none',STROKE)}
+      ${mkLine(79,95,130,95)}
+      ${mkLine(130,95,145,80)}
+      ${mkLine(130,95,145,110)}
+      ${mkLine(90,95,75,115)}
+      ${mkLine(75,115,60,135)}
+      ${mkLine(110,95,115,120)}
+      ${mkLine(115,120,125,145)}
+    </g>`;
+}
+
+function svgSuperman(dur) {
+  return `
+    <g style="animation: superman-anim ${dur} ease-in-out infinite; transform-origin: 100px 120px;">
+      ${mkCircle(55,105,HEAD_R,'none',STROKE)}
+      ${mkLine(69,105,130,100)}
+      ${mkLine(90,102,80,85)}
+      ${mkLine(110,101,120,85)}
+      ${mkLine(100,100,90,125)}
+      ${mkLine(90,125,75,145)}
+      ${mkLine(100,100,110,125)}
+      ${mkLine(110,125,125,145)}
+    </g>`;
+}
+
+function svgPlank(dur) {
+  return `
+    <g style="animation: plank-anim ${dur} ease-in-out infinite; transform-origin: 100px 120px;">
+      ${mkCircle(58,110,HEAD_R,'none',STROKE)}
+      ${mkLine(72,110,145,105)}
+      ${mkLine(72,110,60,130)}
+      ${mkLine(145,105,150,125)}
+      ${mkLine(95,108,88,128)}
+      ${mkLine(120,107,118,127)}
+    </g>`;
+}
+
+function svgShadow(dur) {
+  return `
+    <g style="animation: shadow-box ${dur} ease-in-out infinite; transform-origin: 100px 120px;">
+      ${mkCircle(100,60,HEAD_R,'none',STROKE)}
+      ${mkLine(100,74,100,110)}
+      ${mkLine(100,83,70,93)}
+      ${mkLine(100,83,135,78)}
+      ${mkLine(100,110,83,140)}
+      ${mkLine(100,110,117,140)}
+      ${mkLine(83,140,78,165)}
+      ${mkLine(117,140,122,165)}
+    </g>`;
+}
+
+function svgRest(dur) {
+  return `
+    <g style="animation: rest-bob ${dur} ease-in-out infinite; transform-origin: 100px 110px;">
+      ${mkCircle(100,65,HEAD_R,'none',STROKE2)}
+      ${mkLine(100,79,100,115)}
+      ${mkLine(100,88,80,105)}
+      ${mkLine(100,88,120,105)}
+      ${mkLine(100,115,85,145)}
+      ${mkLine(100,115,115,145)}
+      ${mkLine(85,145,83,165)}
+      ${mkLine(115,145,117,165)}
+    </g>`;
+}
+
+function svgJacks(dur) {
+  return `
+    <g style="animation: burpee ${dur} ease-in-out infinite; transform-origin: 100px 110px;">
+      ${mkCircle(100,60,HEAD_R,'none',STROKE)}
+      ${mkLine(100,74,100,115)}
+      ${mkLine(100,85,68,70)}
+      ${mkLine(100,85,132,70)}
+      ${mkLine(100,115,80,148)}
+      ${mkLine(80,148,65,165)}
+      ${mkLine(100,115,120,148)}
+      ${mkLine(120,148,135,165)}
+    </g>`;
+}
+
+// =========================================================
+// STATE
+// =========================================================
+
+let currentWeek = 1;
+let exercises = [];
+let currentIdx = 0;
+let currentRound = 1;
+let totalRounds = 4;
+let isWarmup = true;
+let isCooldown = false;
+let timerInterval = null;
+let restInterval = null;
+let secondsLeft = 0;
+let maxSeconds = 30;
+let paused = false;
+let startTime = null;
+let restDuration = 45;
+
+function selectWeek(btn) {
+  document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  currentWeek = btn.dataset.week;
+  restDuration = currentWeek === '1' ? 45 : currentWeek === '3' ? 35 : 30;
+}
+
+function buildExerciseList() {
+  const ex = EXERCISES_BY_WEEK[currentWeek] || EXERCISES_BY_WEEK[1];
+  let list = [];
+  // Warmup
+  WARMUP.forEach(e => list.push({...e, phase:'warmup'}));
+  // Circuit rounds
+  for(let r = 1; r <= totalRounds; r++) {
+    ex.forEach((e,i) => list.push({...e, phase:'circuit', round:r, roundIdx:i}));
+    if(r < totalRounds) list.push({name:'REPOS ENTRE TOURS', phase:'rest_round', val: currentWeek==='1'?90:currentWeek==='3'?75:60, type:'time', anim:'rest'});
+  }
+  // Cooldown
+  COOLDOWN.forEach(e => list.push({...e, phase:'cooldown'}));
+  return list;
+}
+
+function startWorkout() {
+  exercises = buildExerciseList();
+  currentIdx = 0;
+  currentRound = 1;
+  paused = false;
+  startTime = Date.now();
+  showScreen('workout');
+  loadExercise(currentIdx);
+}
+
+function loadExercise(idx) {
+  if(idx >= exercises.length) { endWorkout(); return; }
+  const ex = exercises[idx];
+
+  // Update phase label
+  const phaseMap = { warmup:'Échauffement', circuit:'Circuit', cooldown:'Retour au calme', rest_round:'Repos' };
+  document.getElementById('phaseLabel').textContent = phaseMap[ex.phase] || 'Circuit';
+
+  // Round badge
+  const circuitExs = exercises.filter(e => e.phase === 'circuit');
+  const circuitRounds = totalRounds;
+  if(ex.phase === 'circuit') {
+    document.getElementById('roundBadge').textContent = `Tour ${ex.round}/${totalRounds}`;
+  } else if(ex.phase === 'warmup') {
+    document.getElementById('roundBadge').textContent = 'Échauffement';
+  } else if(ex.phase === 'cooldown') {
+    document.getElementById('roundBadge').textContent = 'Finisher';
+  } else {
+    document.getElementById('roundBadge').textContent = '';
+  }
+
+  // Exercise name & target
+  document.getElementById('exName').textContent = ex.name;
+  document.getElementById('exTarget').textContent = ex.target || '';
+
+  // Stick figure
+  document.getElementById('stickFig').innerHTML = getFigureSVG(ex.anim || 'rest');
+
+  // Timer or reps
+  if(ex.type === 'time') {
+    document.getElementById('timerWrap').style.display = 'block';
+    document.getElementById('repsDisplay').style.display = 'none';
+    startTimer(ex.val);
+  } else {
+    document.getElementById('timerWrap').style.display = 'none';
+    document.getElementById('repsDisplay').style.display = 'block';
+    document.getElementById('repsDisplay').innerHTML = `<span>Reps à faire</span>${ex.val}`;
+  }
+
+  // Queue strip
+  buildQueue(idx);
+
+  // Progress
+  document.getElementById('progressFill').style.width = ((idx / exercises.length) * 100) + '%';
+
+  // Pause button text
+  document.getElementById('pauseBtn').textContent = '⏸ Pause';
+  paused = false;
+}
+
+function buildQueue(currentI) {
+  const strip = document.getElementById('queueStrip');
+  strip.innerHTML = '';
+  const slice = exercises.slice(Math.max(0, currentI-1), currentI+6);
+  const offset = Math.max(0, currentI-1);
+  slice.forEach((ex, i) => {
+    const div = document.createElement('div');
+    div.className = 'queue-item';
+    const absI = i + offset;
+    if(absI < currentI) div.classList.add('done');
+    if(absI === currentI) div.classList.add('current');
+    div.textContent = ex.name;
+    strip.appendChild(div);
+  });
+}
+
+function startTimer(seconds) {
+  clearInterval(timerInterval);
+  secondsLeft = seconds;
+  maxSeconds = seconds;
+  updateTimerUI();
+  timerInterval = setInterval(() => {
+    if(paused) return;
+    secondsLeft--;
+    updateTimerUI();
+    if(secondsLeft <= 0) {
+      clearInterval(timerInterval);
+      onExerciseDone();
+    }
+  }, 1000);
+}
+
+function updateTimerUI() {
+  document.getElementById('timerNum').textContent = secondsLeft;
+  const circ = 2 * Math.PI * 65;
+  const pct = secondsLeft / maxSeconds;
+  document.getElementById('timerArc').style.strokeDashoffset = circ * (1 - pct);
+  const col = pct > 0.5 ? '#f5a623' : pct > 0.25 ? '#e88f23' : '#e84545';
+  document.getElementById('timerArc').style.stroke = col;
+}
+
+function onExerciseDone() {
+  const ex = exercises[currentIdx];
+  const next = exercises[currentIdx + 1];
+  // Show rest if next is a circuit exercise (not rest_round itself) and not warmup/cooldown
+  if(next && ex.phase === 'circuit' && next.phase === 'circuit') {
+    showRest(restDuration, next.name);
+  } else {
+    currentIdx++;
+    loadExercise(currentIdx);
+  }
+}
+
+function showRest(secs, nextName) {
+  clearInterval(restInterval);
+  let restLeft = secs;
+  const circ = 2 * Math.PI * 65;
+  document.getElementById('restNum').textContent = restLeft;
+  document.getElementById('restArc').style.strokeDashoffset = 0;
+  document.getElementById('restNext').innerHTML = `Prochain : <strong>${nextName || '—'}</strong>`;
+  document.getElementById('restOverlay').classList.add('show');
+
+  restInterval = setInterval(() => {
+    if(paused) return;
+    restLeft--;
+    document.getElementById('restNum').textContent = restLeft;
+    const pct = restLeft / secs;
+    document.getElementById('restArc').style.strokeDashoffset = circ * (1 - pct);
+    if(restLeft <= 0) {
+      clearInterval(restInterval);
+      skipRest();
+    }
+  }, 1000);
+}
+
+function skipRest() {
+  clearInterval(restInterval);
+  document.getElementById('restOverlay').classList.remove('show');
+  currentIdx++;
+  loadExercise(currentIdx);
+}
+
+function togglePause() {
+  paused = !paused;
+  document.getElementById('pauseBtn').textContent = paused ? '▶ Reprendre' : '⏸ Pause';
+}
+
+function nextExercise() {
+  clearInterval(timerInterval);
+  clearInterval(restInterval);
+  document.getElementById('restOverlay').classList.remove('show');
+  currentIdx++;
+  loadExercise(currentIdx);
+}
+
+function prevExercise() {
+  clearInterval(timerInterval);
+  clearInterval(restInterval);
+  document.getElementById('restOverlay').classList.remove('show');
+  if(currentIdx > 0) currentIdx--;
+  loadExercise(currentIdx);
+}
+
+function endWorkout() {
+  clearInterval(timerInterval);
+  clearInterval(restInterval);
+  const elapsed = Math.round((Date.now() - startTime) / 60000);
+  document.getElementById('doneTime').textContent = elapsed;
+  showScreen('done');
+}
+
+function goHome() {
+  clearInterval(timerInterval);
+  clearInterval(restInterval);
+  paused = false;
+  document.getElementById('restOverlay').classList.remove('show');
+  showScreen('home');
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>
