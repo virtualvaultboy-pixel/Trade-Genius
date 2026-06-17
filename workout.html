@@ -184,14 +184,25 @@
   /* Animation canvas */
   .anim-container {
     position: relative;
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--card);
+    box-shadow: 0 0 0 2px #ffffff10;
   }
 
-  .stick-figure {
-    width: 200px;
-    height: 200px;
+  .exercise-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: opacity 0.35s ease;
   }
+  .exercise-photo.hide { opacity: 0; z-index: 1; }
+  .exercise-photo.show { opacity: 1; z-index: 2; }
 
   /* Exercise name */
   .exercise-name {
@@ -406,46 +417,6 @@
   }
   .exercise-area { animation: flash-in 0.3s ease; }
 
-  /* Stick figure animations */
-  @keyframes burpee {
-    0%,100% { transform: translateY(0) scaleY(1); }
-    25% { transform: translateY(20px) scaleY(0.6); }
-    50% { transform: translateY(0) scaleY(1); }
-    75% { transform: translateY(-15px) scaleY(1.1); }
-  }
-  @keyframes pushup {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(12px); }
-  }
-  @keyframes squat {
-    0%,100% { transform: scaleY(1) translateY(0); }
-    50% { transform: scaleY(0.75) translateY(18px); }
-  }
-  @keyframes lunge {
-    0%,100% { transform: translateX(0) rotate(0deg); }
-    50% { transform: translateX(10px) rotate(5deg); }
-  }
-  @keyframes climber {
-    0%,100% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
-  }
-  @keyframes superman-anim {
-    0%,100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-8px) rotate(5deg); }
-  }
-  @keyframes plank-anim {
-    0%,100% { transform: rotate(0deg) scaleX(1); }
-    50% { transform: rotate(1deg) scaleX(1.02); }
-  }
-  @keyframes shadow-box {
-    0%,100% { transform: translateX(0) rotate(0deg); }
-    25% { transform: translateX(-8px) rotate(-5deg); }
-    75% { transform: translateX(8px) rotate(5deg); }
-  }
-  @keyframes rest-bob {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-  }
 </style>
 </head>
 <body>
@@ -490,7 +461,8 @@
 
   <div class="exercise-area" id="exerciseArea">
     <div class="anim-container">
-      <svg class="stick-figure" id="stickFig" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"></svg>
+      <img class="exercise-photo show" id="framePhotoA" alt="">
+      <img class="exercise-photo hide" id="framePhotoB" alt="">
     </div>
     <div class="exercise-name" id="exName">—</div>
     <div class="exercise-target" id="exTarget"></div>
@@ -580,7 +552,7 @@ const EXERCISES_BY_WEEK = {
   3: [
     { name: "Burpees", target: "Full body · Cardio", type: "reps", val: 10, anim: "burpee", tip: "Avec pompe" },
     { name: "Pompes", target: "Pectoraux · Triceps", type: "reps", val: 12, anim: "pushup", tip: "Classiques" },
-    { name: "Jump Squats", target: "Quadriceps · Cardio", type: "reps", val: 15, anim: "squat", tip: "Saut à chaque rep" },
+    { name: "Jump Squats", target: "Quadriceps · Cardio", type: "reps", val: 15, anim: "jumpsquat", tip: "Saut à chaque rep" },
     { name: "Fentes marchées", target: "Jambes · Équilibre", type: "reps", val: 12, anim: "lunge", tip: "12 par jambe" },
     { name: "Mountain Climbers", target: "Abdos · Cardio", type: "time", val: 35, anim: "climber", tip: "Rythme rapide" },
     { name: "Superman", target: "Dos · Fessiers", type: "reps", val: 15, anim: "superman", tip: "Tenir 2s" },
@@ -588,12 +560,12 @@ const EXERCISES_BY_WEEK = {
   ],
   5: [
     { name: "Burpees + Push", target: "Full body · Cardio", type: "reps", val: 10, anim: "burpee", tip: "Avec pompe + saut" },
-    { name: "Pompes Diamant", target: "Triceps · Pectoraux", type: "reps", val: 12, anim: "pushup", tip: "Mains en diamant" },
-    { name: "Jump Squats", target: "Quadriceps · Cardio", type: "reps", val: 20, anim: "squat", tip: "Explosif" },
-    { name: "Fentes sautées", target: "Jambes · Cardio", type: "reps", val: 10, anim: "lunge", tip: "10 par jambe" },
+    { name: "Pompes Diamant", target: "Triceps · Pectoraux", type: "reps", val: 12, anim: "diamond", tip: "Mains en diamant" },
+    { name: "Jump Squats", target: "Quadriceps · Cardio", type: "reps", val: 20, anim: "jumpsquat", tip: "Explosif" },
+    { name: "Fentes sautées", target: "Jambes · Cardio", type: "reps", val: 10, anim: "jumplunge", tip: "10 par jambe" },
     { name: "Mountain Climbers", target: "Abdos · Cardio", type: "time", val: 40, anim: "climber", tip: "Sprint" },
     { name: "Superman", target: "Dos · Fessiers", type: "reps", val: 15, anim: "superman", tip: "Tenir 3s" },
-    { name: "Side Plank", target: "Core · Obliques", type: "time", val: 45, anim: "plank", tip: "30s chaque côté" },
+    { name: "Side Plank", target: "Core · Obliques", type: "time", val: 45, anim: "sideplank", tip: "30s chaque côté" },
   ],
   emom: [
     { name: "Burpees", target: "Full body · Cardio", type: "time", val: 60, anim: "burpee", tip: "10 reps puis repos" },
@@ -610,187 +582,66 @@ const WARMUP = [
   { name: "Jumping Jacks", target: "Échauffement global", type: "time", val: 60, anim: "jacks" },
   { name: "Squats lents", target: "Mobilité jambes", type: "reps", val: 10, anim: "squat" },
   { name: "Pompes lentes", target: "Activation haut du corps", type: "reps", val: 8, anim: "pushup" },
-  { name: "Cercles de bras", target: "Épaules", type: "time", val: 30, anim: "rest" },
+  { name: "Cercles de bras", target: "Épaules", type: "time", val: 30, anim: "armcircle" },
   { name: "Fentes marchées", target: "Hanche · Mobilité", type: "reps", val: 8, anim: "lunge" },
 ];
 
 const COOLDOWN = [
   { name: "Shadow Boxing", target: "Cardio léger · Finisher", type: "time", val: 90, anim: "shadow" },
-  { name: "Étirements", target: "Récupération", type: "time", val: 60, anim: "rest" },
+  { name: "Étirements", target: "Récupération", type: "time", val: 60, anim: "stretch" },
 ];
 
 // =========================================================
-// SVG STICK FIGURES
+// REAL EXERCISE PHOTOS (Free Exercise DB, public domain / Unlicense
+// https://github.com/yuhonas/free-exercise-db)
 // =========================================================
 
-const STROKE = '#f5a623';
-const STROKE2 = '#e84545';
-const W = 1.5; // stroke-width of limbs
-const HEAD_R = 14;
+const PHOTO_BASE = 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/';
 
-function mkLine(x1,y1,x2,y2,color=STROKE,w=W){
-  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${color}" stroke-width="${w}" stroke-linecap="round"/>`;
-}
-function mkCircle(cx,cy,r,fill='none',stroke=STROKE){
-  return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${W}"/>`;
-}
+const EXERCISE_PHOTOS = {
+  burpee: 'Plyo_Push-up',
+  pushup: 'Pushups',
+  diamond: 'Push-Ups_-_Close_Triceps_Position',
+  squat: 'Bodyweight_Squat',
+  jumpsquat: 'Freehand_Jump_Squat',
+  lunge: 'Bodyweight_Walking_Lunge',
+  jumplunge: 'Split_Jump',
+  climber: 'Mountain_Climbers',
+  superman: 'Superman',
+  plank: 'Plank',
+  sideplank: 'Push_Up_to_Side_Plank',
+  shadow: 'Heavy_Bag_Thrust',
+  jacks: 'Star_Jump',
+  armcircle: 'Arm_Circles',
+  stretch: 'Hamstring_Stretch',
+  rest: 'Hamstring_Stretch'
+};
 
-function getFigureSVG(anim) {
-  let animStyle = '';
-  const dur = animDuration(anim);
-
-  switch(anim) {
-    case 'burpee': return svgBurpee(dur);
-    case 'pushup': return svgPushup(dur);
-    case 'squat': return svgSquat(dur);
-    case 'lunge': return svgLunge(dur);
-    case 'climber': return svgClimber(dur);
-    case 'superman': return svgSuperman(dur);
-    case 'plank': return svgPlank(dur);
-    case 'shadow': return svgShadow(dur);
-    case 'jacks': return svgJacks(dur);
-    default: return svgRest(dur);
-  }
+function getPhotoFrames(anim) {
+  const folder = EXERCISE_PHOTOS[anim] || EXERCISE_PHOTOS.rest;
+  return [PHOTO_BASE + folder + '/0.jpg', PHOTO_BASE + folder + '/1.jpg'];
 }
 
-function animDuration(a) {
-  const map = { burpee:'1.2s', pushup:'1s', squat:'1.2s', lunge:'1.4s', climber:'0.6s',
-                superman:'1.5s', plank:'2s', shadow:'0.8s', jacks:'0.7s', rest:'2s' };
-  return map[a] || '1s';
-}
+let photoFlipInterval = null;
 
-function svgBurpee(dur) {
-  return `
-    <g style="animation: burpee ${dur} ease-in-out infinite; transform-origin: 100px 130px;">
-      ${mkCircle(100,60,HEAD_R,'none',STROKE)}
-      ${mkLine(100,74,100,110)}
-      ${mkLine(100,85,75,100)}
-      ${mkLine(100,85,125,100)}
-      ${mkLine(100,110,82,140)}
-      ${mkLine(100,110,118,140)}
-    </g>`;
-}
+function startPhotoAnimation(anim) {
+  clearInterval(photoFlipInterval);
+  const frames = getPhotoFrames(anim);
+  const a = document.getElementById('framePhotoA');
+  const b = document.getElementById('framePhotoB');
+  a.src = frames[0];
+  b.src = frames[1];
+  a.classList.add('show'); a.classList.remove('hide');
+  b.classList.add('hide'); b.classList.remove('show');
 
-function svgPushup(dur) {
-  return `
-    <g style="animation: pushup ${dur} ease-in-out infinite; transform-origin: 100px 130px;">
-      ${mkCircle(70,100,HEAD_R,'none',STROKE)}
-      ${mkLine(84,100,140,100)}
-      ${mkLine(140,100,155,85)}
-      ${mkLine(140,100,155,115)}
-      ${mkLine(100,100,95,120)}
-      ${mkLine(120,100,115,120)}
-    </g>`;
-}
-
-function svgSquat(dur) {
-  return `
-    <g style="animation: squat ${dur} ease-in-out infinite; transform-origin: 100px 130px;">
-      ${mkCircle(100,60,HEAD_R,'none',STROKE)}
-      ${mkLine(100,74,100,105)}
-      ${mkLine(100,85,75,100)}
-      ${mkLine(100,85,125,100)}
-      ${mkLine(100,105,82,135)}
-      ${mkLine(82,135,75,155)}
-      ${mkLine(100,105,118,135)}
-      ${mkLine(118,135,125,155)}
-    </g>`;
-}
-
-function svgLunge(dur) {
-  return `
-    <g style="animation: lunge ${dur} ease-in-out infinite; transform-origin: 100px 130px;">
-      ${mkCircle(100,55,HEAD_R,'none',STROKE)}
-      ${mkLine(100,69,100,100)}
-      ${mkLine(100,80,75,95)}
-      ${mkLine(100,80,125,95)}
-      ${mkLine(100,100,80,130)}
-      ${mkLine(80,130,60,160)}
-      ${mkLine(100,100,120,130)}
-      ${mkLine(120,130,125,160)}
-    </g>`;
-}
-
-function svgClimber(dur) {
-  return `
-    <g style="animation: climber ${dur} ease-in-out infinite; transform-origin: 100px 120px;">
-      ${mkCircle(65,95,HEAD_R,'none',STROKE)}
-      ${mkLine(79,95,130,95)}
-      ${mkLine(130,95,145,80)}
-      ${mkLine(130,95,145,110)}
-      ${mkLine(90,95,75,115)}
-      ${mkLine(75,115,60,135)}
-      ${mkLine(110,95,115,120)}
-      ${mkLine(115,120,125,145)}
-    </g>`;
-}
-
-function svgSuperman(dur) {
-  return `
-    <g style="animation: superman-anim ${dur} ease-in-out infinite; transform-origin: 100px 120px;">
-      ${mkCircle(55,105,HEAD_R,'none',STROKE)}
-      ${mkLine(69,105,130,100)}
-      ${mkLine(90,102,80,85)}
-      ${mkLine(110,101,120,85)}
-      ${mkLine(100,100,90,125)}
-      ${mkLine(90,125,75,145)}
-      ${mkLine(100,100,110,125)}
-      ${mkLine(110,125,125,145)}
-    </g>`;
-}
-
-function svgPlank(dur) {
-  return `
-    <g style="animation: plank-anim ${dur} ease-in-out infinite; transform-origin: 100px 120px;">
-      ${mkCircle(58,110,HEAD_R,'none',STROKE)}
-      ${mkLine(72,110,145,105)}
-      ${mkLine(72,110,60,130)}
-      ${mkLine(145,105,150,125)}
-      ${mkLine(95,108,88,128)}
-      ${mkLine(120,107,118,127)}
-    </g>`;
-}
-
-function svgShadow(dur) {
-  return `
-    <g style="animation: shadow-box ${dur} ease-in-out infinite; transform-origin: 100px 120px;">
-      ${mkCircle(100,60,HEAD_R,'none',STROKE)}
-      ${mkLine(100,74,100,110)}
-      ${mkLine(100,83,70,93)}
-      ${mkLine(100,83,135,78)}
-      ${mkLine(100,110,83,140)}
-      ${mkLine(100,110,117,140)}
-      ${mkLine(83,140,78,165)}
-      ${mkLine(117,140,122,165)}
-    </g>`;
-}
-
-function svgRest(dur) {
-  return `
-    <g style="animation: rest-bob ${dur} ease-in-out infinite; transform-origin: 100px 110px;">
-      ${mkCircle(100,65,HEAD_R,'none',STROKE2)}
-      ${mkLine(100,79,100,115)}
-      ${mkLine(100,88,80,105)}
-      ${mkLine(100,88,120,105)}
-      ${mkLine(100,115,85,145)}
-      ${mkLine(100,115,115,145)}
-      ${mkLine(85,145,83,165)}
-      ${mkLine(115,145,117,165)}
-    </g>`;
-}
-
-function svgJacks(dur) {
-  return `
-    <g style="animation: burpee ${dur} ease-in-out infinite; transform-origin: 100px 110px;">
-      ${mkCircle(100,60,HEAD_R,'none',STROKE)}
-      ${mkLine(100,74,100,115)}
-      ${mkLine(100,85,68,70)}
-      ${mkLine(100,85,132,70)}
-      ${mkLine(100,115,80,148)}
-      ${mkLine(80,148,65,165)}
-      ${mkLine(100,115,120,148)}
-      ${mkLine(120,148,135,165)}
-    </g>`;
+  let toggle = false;
+  photoFlipInterval = setInterval(() => {
+    toggle = !toggle;
+    const visible = toggle ? b : a;
+    const hidden = toggle ? a : b;
+    visible.classList.add('show'); visible.classList.remove('hide');
+    hidden.classList.add('hide'); hidden.classList.remove('show');
+  }, 650);
 }
 
 // =========================================================
@@ -869,8 +720,8 @@ function loadExercise(idx) {
   document.getElementById('exName').textContent = ex.name;
   document.getElementById('exTarget').textContent = ex.target || '';
 
-  // Stick figure
-  document.getElementById('stickFig').innerHTML = getFigureSVG(ex.anim || 'rest');
+  // Exercise demo photo
+  startPhotoAnimation(ex.anim || 'rest');
 
   // Timer or reps
   if(ex.type === 'time') {
@@ -1000,6 +851,7 @@ function prevExercise() {
 function endWorkout() {
   clearInterval(timerInterval);
   clearInterval(restInterval);
+  clearInterval(photoFlipInterval);
   const elapsed = Math.round((Date.now() - startTime) / 60000);
   document.getElementById('doneTime').textContent = elapsed;
   showScreen('done');
@@ -1008,6 +860,7 @@ function endWorkout() {
 function goHome() {
   clearInterval(timerInterval);
   clearInterval(restInterval);
+  clearInterval(photoFlipInterval);
   paused = false;
   document.getElementById('restOverlay').classList.remove('show');
   showScreen('home');
