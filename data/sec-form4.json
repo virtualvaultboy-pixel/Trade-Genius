@@ -1,9 +1,13 @@
 {
-  "generated": "2026-06-16T23:21:19.014Z",
+  "generated": "2026-06-17T08:59:14.381Z",
   "source": "SEC EDGAR Form 4 RSS",
   "window_days": 7,
-  "count": 139,
+  "count": 143,
   "ticker_signals": {
+    "Adobe": {
+      "count": 2,
+      "intensity": "low"
+    },
     "Cisco": {
       "count": 3,
       "intensity": "medium"
@@ -14,6 +18,393 @@
     }
   },
   "filings": [
+    {
+      "company": "Spire Global, Inc.",
+      "cik": "0001816017",
+      "filed_at": "2026-06-17T01:55:05.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1816017/000185651326000002/0001856513-26-000002-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Spire Global, Inc.",
+      "cik": "0001816017",
+      "filed_at": "2026-06-17T01:55:03.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1816017/000185630426000002/0001856304-26-000002-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Theravance Biopharma, Inc.",
+      "cik": "0001583107",
+      "filed_at": "2026-06-17T01:40:59.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1583107/000158960226000002/0001589602-26-000002-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Theravance Biopharma, Inc.",
+      "cik": "0001583107",
+      "filed_at": "2026-06-17T01:39:42.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1583107/000183345326000006/0001833453-26-000006-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "CHEGG, INC",
+      "cik": "0001364954",
+      "filed_at": "2026-06-17T01:38:28.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1364954/000136495426000064/0001364954-26-000064-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Theravance Biopharma, Inc.",
+      "cik": "0001583107",
+      "filed_at": "2026-06-17T01:37:40.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1583107/000119929726000003/0001199297-26-000003-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Theravance Biopharma, Inc.",
+      "cik": "0001583107",
+      "filed_at": "2026-06-17T01:36:48.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1583107/000162537726000004/0001625377-26-000004-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Theravance Biopharma, Inc.",
+      "cik": "0001583107",
+      "filed_at": "2026-06-17T01:35:54.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1583107/000127073426000004/0001270734-26-000004-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Natera, Inc.",
+      "cik": "0001604821",
+      "filed_at": "2026-06-17T01:35:06.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1604821/000164638226000010/0001646382-26-000010-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "ADOBE INC.",
+      "cik": "0000796343",
+      "filed_at": "2026-06-17T01:30:52.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/796343/000164372426000003/0001643724-26-000003-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": "Adobe"
+    },
+    {
+      "company": "Talkspace, Inc.",
+      "cik": "0001803901",
+      "filed_at": "2026-06-17T01:30:09.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1803901/000119312526273179/0001193125-26-273179-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Talkspace, Inc.",
+      "cik": "0001803901",
+      "filed_at": "2026-06-17T01:30:07.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1803901/000119312526273178/0001193125-26-273178-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Talkspace, Inc.",
+      "cik": "0001803901",
+      "filed_at": "2026-06-17T01:30:06.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1803901/000119312526273177/0001193125-26-273177-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Clearwater Analytics Holdings, Inc.",
+      "cik": "0001866368",
+      "filed_at": "2026-06-17T01:30:04.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1866368/000119312526273176/0001193125-26-273176-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Talkspace, Inc.",
+      "cik": "0001803901",
+      "filed_at": "2026-06-17T01:30:03.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1803901/000119312526273175/0001193125-26-273175-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Vroom, Inc.",
+      "cik": "0001580864",
+      "filed_at": "2026-06-17T01:26:06.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1580864/000110465926074792/0001104659-26-074792-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Delek Logistics Partners, LP",
+      "cik": "0001552797",
+      "filed_at": "2026-06-17T01:25:03.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1552797/000136102126000004/0001361021-26-000004-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Vroom, Inc.",
+      "cik": "0001580864",
+      "filed_at": "2026-06-17T01:24:35.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1580864/000110465926074791/0001104659-26-074791-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Shoals Technologies Group, Inc.",
+      "cik": "0001831651",
+      "filed_at": "2026-06-17T01:22:49.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1831651/000183165126000100/0001831651-26-000100-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "ADOBE INC.",
+      "cik": "0000796343",
+      "filed_at": "2026-06-17T01:21:58.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/796343/000079634326000116/0000796343-26-000116-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": "Adobe"
+    },
+    {
+      "company": "PayPal Holdings, Inc.",
+      "cik": "0001633917",
+      "filed_at": "2026-06-17T01:21:18.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1633917/000119312526273170/0001193125-26-273170-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "PayPal Holdings, Inc.",
+      "cik": "0001633917",
+      "filed_at": "2026-06-17T01:18:07.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1633917/000119312526273162/0001193125-26-273162-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Village Farms International, Inc.",
+      "cik": "0001584549",
+      "filed_at": "2026-06-17T01:18:06.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1584549/000119312526273161/0001193125-26-273161-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "LiveWire Group, Inc.",
+      "cik": "0001898795",
+      "filed_at": "2026-06-17T01:17:26.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1898795/000162828026043704/0001628280-26-043704-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "LiveWire Group, Inc.",
+      "cik": "0001898795",
+      "filed_at": "2026-06-17T01:17:02.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1898795/000162828026043703/0001628280-26-043703-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "LiveWire Group, Inc.",
+      "cik": "0001898795",
+      "filed_at": "2026-06-17T01:16:36.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1898795/000162828026043702/0001628280-26-043702-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Navios Maritime Partners L.P.",
+      "cik": "0001415921",
+      "filed_at": "2026-06-17T01:10:03.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1415921/000119312526273154/0001193125-26-273154-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Vera Bradley, Inc.",
+      "cik": "0001495320",
+      "filed_at": "2026-06-17T01:08:33.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1495320/000163246826000011/0001632468-26-000011-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Vera Bradley, Inc.",
+      "cik": "0001495320",
+      "filed_at": "2026-06-17T01:06:33.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1495320/000207410426000007/0002074104-26-000007-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Vera Bradley, Inc.",
+      "cik": "0001495320",
+      "filed_at": "2026-06-17T01:05:13.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1495320/000181204426000004/0001812044-26-000004-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Enovis CORP",
+      "cik": "0001420800",
+      "filed_at": "2026-06-17T01:05:03.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1420800/000119312526273151/0001193125-26-273151-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Garrett Motion Inc.",
+      "cik": "0001735707",
+      "filed_at": "2026-06-17T01:00:18.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1735707/000095014226001808/0000950142-26-001808-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "NEXTNAV INC.",
+      "cik": "0001865631",
+      "filed_at": "2026-06-17T01:00:10.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1865631/000155485526001347/0001554855-26-001347-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Enovis CORP",
+      "cik": "0001420800",
+      "filed_at": "2026-06-17T01:00:04.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1420800/000119312526273148/0001193125-26-273148-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Marvell Technology, Inc.",
+      "cik": "0001835632",
+      "filed_at": "2026-06-17T00:51:43.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1835632/000162828026043700/0001628280-26-043700-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Alpha Metallurgical Resources, Inc.",
+      "cik": "0001704715",
+      "filed_at": "2026-06-17T00:41:42.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1704715/000181274626000007/0001812746-26-000007-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Grab Holdings Ltd",
+      "cik": "0001855612",
+      "filed_at": "2026-06-17T00:39:17.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1855612/000185561226000090/0001855612-26-000090-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "CEMEX SAB DE CV",
+      "cik": "0001076378",
+      "filed_at": "2026-06-17T00:35:49.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1076378/000201835026000004/0002018350-26-000004-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "WhiteHorse Finance, Inc.",
+      "cik": "0001552198",
+      "filed_at": "2026-06-17T00:32:38.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1552198/000110465926074784/0001104659-26-074784-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "INNODATA INC",
+      "cik": "0000903651",
+      "filed_at": "2026-06-17T00:32:36.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/903651/000110465926074783/0001104659-26-074783-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Joint Stock Co Kaspi.kz",
+      "cik": "0001985487",
+      "filed_at": "2026-06-17T00:32:34.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1985487/000121390026069382/0001213900-26-069382-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Septerna, Inc.",
+      "cik": "0001984086",
+      "filed_at": "2026-06-17T00:31:54.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1984086/000119312526273126/0001193125-26-273126-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "FORMFACTOR INC",
+      "cik": "0001039399",
+      "filed_at": "2026-06-17T00:31:06.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1039399/000162828026043696/0001628280-26-043696-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
     {
       "company": "NEXSTAR MEDIA GROUP, INC.",
       "cik": "0001142417",
@@ -523,393 +914,6 @@
       "cik": "0001964789",
       "filed_at": "2026-06-16T01:53:18.000Z",
       "url": "https://www.sec.gov/Archives/edgar/data/1964789/000196478926000030/0001964789-26-000030-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CHEGG, INC",
-      "cik": "0001364954",
-      "filed_at": "2026-06-16T01:49:43.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1364954/000136495426000062/0001364954-26-000062-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CHEGG, INC",
-      "cik": "0001364954",
-      "filed_at": "2026-06-16T01:44:31.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1364954/000136495426000060/0001364954-26-000060-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CHEGG, INC",
-      "cik": "0001364954",
-      "filed_at": "2026-06-16T01:43:24.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1364954/000136495426000058/0001364954-26-000058-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CHEGG, INC",
-      "cik": "0001364954",
-      "filed_at": "2026-06-16T01:42:23.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1364954/000136495426000056/0001364954-26-000056-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Hut 8 Corp.",
-      "cik": "0001964789",
-      "filed_at": "2026-06-16T01:42:11.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1964789/000196478926000028/0001964789-26-000028-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CHEGG, INC",
-      "cik": "0001364954",
-      "filed_at": "2026-06-16T01:41:22.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1364954/000136495426000054/0001364954-26-000054-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Thryv Holdings, Inc.",
-      "cik": "0001556739",
-      "filed_at": "2026-06-16T01:38:13.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1556739/000207513426000005/0002075134-26-000005-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CORVEL CORP",
-      "cik": "0000874866",
-      "filed_at": "2026-06-16T01:35:44.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/874866/000164124826000014/0001641248-26-000014-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "MOBIX LABS, INC",
-      "cik": "0001855467",
-      "filed_at": "2026-06-16T01:35:19.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1855467/000149315226028787/0001493152-26-028787-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Enovix Corp",
-      "cik": "0001828318",
-      "filed_at": "2026-06-16T01:34:33.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1828318/000118971026000002/0001189710-26-000002-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Enovix Corp",
-      "cik": "0001828318",
-      "filed_at": "2026-06-16T01:33:49.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1828318/000180714226000004/0001807142-26-000004-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Enovix Corp",
-      "cik": "0001828318",
-      "filed_at": "2026-06-16T01:32:48.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1828318/000158453126000003/0001584531-26-000003-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Enovix Corp",
-      "cik": "0001828318",
-      "filed_at": "2026-06-16T01:32:10.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1828318/000155892126000002/0001558921-26-000002-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Enovix Corp",
-      "cik": "0001828318",
-      "filed_at": "2026-06-16T01:31:25.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1828318/000189206426000002/0001892064-26-000002-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Enovix Corp",
-      "cik": "0001828318",
-      "filed_at": "2026-06-16T01:30:23.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1828318/000117963126000004/0001179631-26-000004-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Cardiff Oncology, Inc.",
-      "cik": "0001213037",
-      "filed_at": "2026-06-16T01:30:09.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1213037/000137008726000005/0001370087-26-000005-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Cardiff Oncology, Inc.",
-      "cik": "0001213037",
-      "filed_at": "2026-06-16T01:30:06.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1213037/000163549326000002/0001635493-26-000002-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Fold Holdings, Inc.",
-      "cik": "0001889123",
-      "filed_at": "2026-06-16T01:30:05.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1889123/000119312526271577/0001193125-26-271577-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Cardiff Oncology, Inc.",
-      "cik": "0001213037",
-      "filed_at": "2026-06-16T01:30:05.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1213037/000154317426000005/0001543174-26-000005-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Cardiff Oncology, Inc.",
-      "cik": "0001213037",
-      "filed_at": "2026-06-16T01:30:03.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1213037/000139341526000002/0001393415-26-000002-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Cardiff Oncology, Inc.",
-      "cik": "0001213037",
-      "filed_at": "2026-06-16T01:30:03.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1213037/000118477826000007/0001184778-26-000007-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Enovix Corp",
-      "cik": "0001828318",
-      "filed_at": "2026-06-16T01:29:37.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1828318/000118396726000004/0001183967-26-000004-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Thryv Holdings, Inc.",
-      "cik": "0001556739",
-      "filed_at": "2026-06-16T01:29:29.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1556739/000148201326000007/0001482013-26-000007-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Centurion Acquisition Corp.",
-      "cik": "0002010930",
-      "filed_at": "2026-06-16T01:28:24.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/2010930/000121390026068991/0001213900-26-068991-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Hut 8 Corp.",
-      "cik": "0001964789",
-      "filed_at": "2026-06-16T01:27:02.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1964789/000196478926000026/0001964789-26-000026-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Thryv Holdings, Inc.",
-      "cik": "0001556739",
-      "filed_at": "2026-06-16T01:24:40.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1556739/000182492626000002/0001824926-26-000002-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Hut 8 Corp.",
-      "cik": "0001964789",
-      "filed_at": "2026-06-16T01:23:03.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1964789/000196478926000024/0001964789-26-000024-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "PULSE BIOSCIENCES, INC.",
-      "cik": "0001625101",
-      "filed_at": "2026-06-16T01:21:58.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1625101/000143774926020722/0001437749-26-020722-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Hut 8 Corp.",
-      "cik": "0001964789",
-      "filed_at": "2026-06-16T01:21:01.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1964789/000196478926000022/0001964789-26-000022-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "TIGO ENERGY, INC.",
-      "cik": "0001855447",
-      "filed_at": "2026-06-16T01:19:39.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1855447/000121390026068987/0001213900-26-068987-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Hut 8 Corp.",
-      "cik": "0001964789",
-      "filed_at": "2026-06-16T01:19:14.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1964789/000196478926000020/0001964789-26-000020-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Thryv Holdings, Inc.",
-      "cik": "0001556739",
-      "filed_at": "2026-06-16T01:19:08.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1556739/000124749026000002/0001247490-26-000002-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CORPAY, INC.",
-      "cik": "0001175454",
-      "filed_at": "2026-06-16T01:18:55.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1175454/000119312526271566/0001193125-26-271566-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Freedom Holding Corp.",
-      "cik": "0000924805",
-      "filed_at": "2026-06-16T01:18:14.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/924805/000092963826002222/0000929638-26-002222-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Freedom Holding Corp.",
-      "cik": "0000924805",
-      "filed_at": "2026-06-16T01:17:46.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/924805/000092963826002221/0000929638-26-002221-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Freedom Holding Corp.",
-      "cik": "0000924805",
-      "filed_at": "2026-06-16T01:17:13.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/924805/000092963826002220/0000929638-26-002220-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CORVEL CORP",
-      "cik": "0000874866",
-      "filed_at": "2026-06-16T01:15:51.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/874866/000170303926000007/0001703039-26-000007-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Hut 8 Corp.",
-      "cik": "0001964789",
-      "filed_at": "2026-06-16T01:14:57.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1964789/000196478926000018/0001964789-26-000018-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Hut 8 Corp.",
-      "cik": "0001964789",
-      "filed_at": "2026-06-16T01:12:22.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1964789/000196478926000016/0001964789-26-000016-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Boundless Bio, Inc.",
-      "cik": "0001782303",
-      "filed_at": "2026-06-15T23:40:59.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1782303/000119312526271474/0001193125-26-271474-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Xerox Holdings Corp",
-      "cik": "0001770450",
-      "filed_at": "2026-06-15T23:40:30.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1770450/000119312526271472/0001193125-26-271472-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Xerox Holdings Corp",
-      "cik": "0001770450",
-      "filed_at": "2026-06-15T23:38:21.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1770450/000119312526271468/0001193125-26-271468-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Nebius Group N.V.",
-      "cik": "0001513845",
-      "filed_at": "2026-06-15T23:37:42.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1513845/000151384526000074/0001513845-26-000074-index.htm",
       "isIssuer": true,
       "isForm4": true,
       "ticker": null
