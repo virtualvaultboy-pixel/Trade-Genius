@@ -197,12 +197,9 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    transition: opacity 0.35s ease;
+    object-fit: contain;
+    background: #fff;
   }
-  .exercise-photo.hide { opacity: 0; z-index: 1; }
-  .exercise-photo.show { opacity: 1; z-index: 2; }
 
   /* Exercise name */
   .exercise-name {
@@ -461,8 +458,7 @@
 
   <div class="exercise-area" id="exerciseArea">
     <div class="anim-container">
-      <img class="exercise-photo show" id="framePhotoA" alt="">
-      <img class="exercise-photo hide" id="framePhotoB" alt="">
+      <img class="exercise-photo" id="exercisePhoto" alt="">
     </div>
     <div class="exercise-name" id="exName">—</div>
     <div class="exercise-target" id="exTarget"></div>
@@ -596,52 +592,31 @@ const COOLDOWN = [
 // https://github.com/yuhonas/free-exercise-db)
 // =========================================================
 
+const GIF_BASE = 'https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/videos/';
 const PHOTO_BASE = 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/';
 
-const EXERCISE_PHOTOS = {
-  burpee: 'Plyo_Push-up',
-  pushup: 'Pushups',
-  diamond: 'Push-Ups_-_Close_Triceps_Position',
-  squat: 'Bodyweight_Squat',
-  jumpsquat: 'Freehand_Jump_Squat',
-  lunge: 'Bodyweight_Walking_Lunge',
-  jumplunge: 'Split_Jump',
-  climber: 'Mountain_Climbers',
-  superman: 'Superman',
-  plank: 'Plank',
-  sideplank: 'Push_Up_to_Side_Plank',
-  shadow: 'Heavy_Bag_Thrust',
-  jacks: 'Star_Jump',
-  armcircle: 'Arm_Circles',
-  stretch: 'Hamstring_Stretch',
-  rest: 'Hamstring_Stretch'
+const EXERCISE_MEDIA = {
+  burpee: GIF_BASE + '1160-dK9394r.gif',
+  pushup: GIF_BASE + '0662-I4hDWkc.gif',
+  diamond: GIF_BASE + '0283-soIB2rj.gif',
+  squat: GIF_BASE + '3119-75Bgtjy.gif',
+  jumpsquat: GIF_BASE + '0514-LIlE5Tn.gif',
+  lunge: GIF_BASE + '1460-IZVHb27.gif',
+  jumplunge: GIF_BASE + '3582-PM1PZjg.gif',
+  climber: GIF_BASE + '0630-RJgzwny.gif',
+  superman: GIF_BASE + '0803-4GqRrAk.gif',
+  plank: GIF_BASE + '0464-CosupLu.gif',
+  sideplank: GIF_BASE + '1775-VO2qeJg.gif',
+  shadow: GIF_BASE + '2271-hoXt6wv.gif',
+  jacks: GIF_BASE + '3223-HtfCpfi.gif',
+  stretch: GIF_BASE + '1511-99rWm7w.gif',
+  armcircle: PHOTO_BASE + 'Arm_Circles/0.jpg',
+  rest: PHOTO_BASE + 'Hamstring_Stretch/0.jpg'
 };
 
-function getPhotoFrames(anim) {
-  const folder = EXERCISE_PHOTOS[anim] || EXERCISE_PHOTOS.rest;
-  return [PHOTO_BASE + folder + '/0.jpg', PHOTO_BASE + folder + '/1.jpg'];
-}
-
-let photoFlipInterval = null;
-
-function startPhotoAnimation(anim) {
-  clearInterval(photoFlipInterval);
-  const frames = getPhotoFrames(anim);
-  const a = document.getElementById('framePhotoA');
-  const b = document.getElementById('framePhotoB');
-  a.src = frames[0];
-  b.src = frames[1];
-  a.classList.add('show'); a.classList.remove('hide');
-  b.classList.add('hide'); b.classList.remove('show');
-
-  let toggle = false;
-  photoFlipInterval = setInterval(() => {
-    toggle = !toggle;
-    const visible = toggle ? b : a;
-    const hidden = toggle ? a : b;
-    visible.classList.add('show'); visible.classList.remove('hide');
-    hidden.classList.add('hide'); hidden.classList.remove('show');
-  }, 650);
+function setExercisePhoto(anim) {
+  const img = document.getElementById('exercisePhoto');
+  img.src = EXERCISE_MEDIA[anim] || EXERCISE_MEDIA.rest;
 }
 
 // =========================================================
@@ -720,8 +695,8 @@ function loadExercise(idx) {
   document.getElementById('exName').textContent = ex.name;
   document.getElementById('exTarget').textContent = ex.target || '';
 
-  // Exercise demo photo
-  startPhotoAnimation(ex.anim || 'rest');
+  // Exercise demo animation
+  setExercisePhoto(ex.anim || 'rest');
 
   // Timer or reps
   if(ex.type === 'time') {
@@ -851,7 +826,6 @@ function prevExercise() {
 function endWorkout() {
   clearInterval(timerInterval);
   clearInterval(restInterval);
-  clearInterval(photoFlipInterval);
   const elapsed = Math.round((Date.now() - startTime) / 60000);
   document.getElementById('doneTime').textContent = elapsed;
   showScreen('done');
@@ -860,7 +834,6 @@ function endWorkout() {
 function goHome() {
   clearInterval(timerInterval);
   clearInterval(restInterval);
-  clearInterval(photoFlipInterval);
   paused = false;
   document.getElementById('restOverlay').classList.remove('show');
   showScreen('home');
