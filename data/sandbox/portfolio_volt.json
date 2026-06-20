@@ -37,7 +37,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 128.47,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -252,7 +254,14 @@
       "equity": 998.15,
       "cash": 963.21,
       "positions_count": 1
+    },
+    {
+      "date": "2026-06-20",
+      "cycle": 16,
+      "equity": 998.15,
+      "cash": 963.21,
+      "positions_count": 1
     }
   ],
-  "last_cycle": "2026-06-19"
+  "last_cycle": "2026-06-20"
 }

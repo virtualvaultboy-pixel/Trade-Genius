@@ -1,6 +1,6 @@
 {
-  "generated": "2026-06-19T01:46:05.464Z",
-  "date": "2026-06-19",
+  "generated": "2026-06-20T00:13:45.047Z",
+  "date": "2026-06-20",
   "capital_initial_per_sandbox": 1000,
   "sandboxes": [
     {
@@ -10,9 +10,9 @@
       "trades_open": 5,
       "win_rate": 0.217,
       "profit_factor": 3.39,
-      "total_return_pct": 3.09,
+      "total_return_pct": 3.1,
       "max_drawdown_pct": -1.12,
-      "equity_current": 1030.89,
+      "equity_current": 1030.96,
       "equity_high": 1042.56,
       "cash": 640.11
     },
@@ -25,35 +25,35 @@
       "profit_factor": 1.33,
       "total_return_pct": 1.27,
       "max_drawdown_pct": -0.58,
-      "equity_current": 1012.74,
+      "equity_current": 1012.75,
       "equity_high": 1018.64,
       "cash": 642.11
     },
     {
       "sandbox_id": "rafale",
       "ia_name": "RAFALE",
-      "trades_closed": 14,
+      "trades_closed": 15,
       "trades_open": 3,
-      "win_rate": 0.429,
-      "profit_factor": 0.82,
-      "total_return_pct": -0.58,
-      "max_drawdown_pct": -2.42,
-      "equity_current": 994.16,
+      "win_rate": 0.4,
+      "profit_factor": 0.67,
+      "total_return_pct": -1.27,
+      "max_drawdown_pct": -3,
+      "equity_current": 987.34,
       "equity_high": 1017.84,
-      "cash": 724.74
+      "cash": 726.66
     },
     {
       "sandbox_id": "nexus",
       "ia_name": "NEXUS",
-      "trades_closed": 26,
-      "trades_open": 5,
-      "win_rate": 0.115,
-      "profit_factor": 1.06,
-      "total_return_pct": 0.62,
+      "trades_closed": 27,
+      "trades_open": 4,
+      "win_rate": 0.111,
+      "profit_factor": 0.9,
+      "total_return_pct": 0.26,
       "max_drawdown_pct": -1.66,
-      "equity_current": 1006.16,
+      "equity_current": 1002.65,
       "equity_high": 1016.32,
-      "cash": 738.46
+      "cash": 799.49
     },
     {
       "sandbox_id": "volt",
@@ -70,8 +70,8 @@
     }
   ],
   "aggregate": {
-    "equity_total": 5042.099999999999,
-    "trades_total": 89,
-    "trades_open": 19
+    "equity_total": 5031.85,
+    "trades_total": 91,
+    "trades_open": 18
   }
 }

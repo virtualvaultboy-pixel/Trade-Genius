@@ -6,7 +6,7 @@
   "icon": "₿",
   "created_at": "2026-05-30T17:55:42.950Z",
   "capital_initial": 1000,
-  "cash": 738.4615373065252,
+  "cash": 799.4864197583416,
   "positions": [
     {
       "id": "pos-1780733882841-rmm2",
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 0.16389829035785752,
-      "age_days": 9
+      "current_price": 0.16203840646509304,
+      "age_days": 10
     },
     {
       "id": "pos-1780733882841-tapd",
@@ -71,39 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 1.146543465247398,
-      "age_days": 9
-    },
-    {
-      "id": "pos-1781833565461-4xvs",
-      "asset": "DOGE",
-      "kind": "crypto",
-      "agent": "kairo",
-      "type": "kairo-shortMomentum",
-      "entry": 0.08336473771532499,
-      "stop": 0.08756829434690215,
-      "tp1": 0.07954332259570938,
-      "tp2": 0.0747665536961899,
-      "initial_stop": 0.08756829434690215,
-      "high_since_entry": 0.08336473771532499,
-      "rr1": 0.91,
-      "rr2": 2.05,
-      "risk_pct": 0.050423677285851044,
-      "size_eur": 64.26537919289167,
-      "quality_score": 67,
-      "sizing_pct": 7,
-      "trailing_after_tp1": true,
-      "trailing_active": false,
-      "pyramiding_pct": 30,
-      "pyramided": false,
-      "stacked": false,
-      "opened_at": "2026-06-19T01:46:05.461Z",
-      "opened_at_cycle": 15,
-      "opened_at_date": "2026-06-19",
-      "status": "open",
-      "touched_tp1": false,
-      "closed_at": null,
-      "pnl_eur": null
+      "current_price": 1.1369077419002007,
+      "age_days": 10
     },
     {
       "id": "pos-1781833565461-v537",
@@ -116,7 +85,7 @@
       "tp1": 64595.85760080417,
       "tp2": 67285.19082177106,
       "initial_stop": 60561.85776935383,
-      "high_since_entry": 62802.96878682624,
+      "high_since_entry": 63431.59712600347,
       "rr1": 0.8,
       "rr2": 2,
       "risk_pct": 0.03568479421855789,
@@ -134,7 +103,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 63431.59712600347,
+      "age_days": 1
     },
     {
       "id": "pos-1781833565462-13sv",
@@ -1081,6 +1052,41 @@
       "size_eur_added": 12.43291087868796,
       "closed_at_cycle": 15,
       "exit_price": 73.2590482704488
+    },
+    {
+      "id": "pos-1781833565461-4xvs",
+      "asset": "DOGE",
+      "kind": "crypto",
+      "agent": "kairo",
+      "type": "kairo-shortMomentum",
+      "entry": 0.08336473771532499,
+      "stop": 0.08756829434690215,
+      "tp1": 0.07954332259570938,
+      "tp2": 0.0747665536961899,
+      "initial_stop": 0.08756829434690215,
+      "high_since_entry": 0.08340095025085068,
+      "rr1": 0.91,
+      "rr2": 2.05,
+      "risk_pct": 0.050423677285851044,
+      "size_eur": 64.26537919289167,
+      "quality_score": 67,
+      "sizing_pct": 7,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 30,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-06-19T01:46:05.461Z",
+      "opened_at_cycle": 15,
+      "opened_at_date": "2026-06-19",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-06-20T00:13:44.931Z",
+      "pnl_eur": -3.240496741075216,
+      "current_price": 0.08340095025085068,
+      "age_days": 1,
+      "closed_at_cycle": 16,
+      "exit_price": 0.08756829434690215
     }
   ],
   "equity_history": [
@@ -1188,7 +1194,14 @@
       "equity": 1006.16,
       "cash": 738.46,
       "positions_count": 5
+    },
+    {
+      "date": "2026-06-20",
+      "cycle": 16,
+      "equity": 1002.65,
+      "cash": 799.49,
+      "positions_count": 4
     }
   ],
-  "last_cycle": "2026-06-19"
+  "last_cycle": "2026-06-20"
 }
