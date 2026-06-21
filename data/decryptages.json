@@ -1,10 +1,62 @@
 {
-  "generated": "2026-06-14T19:41:22.332Z",
+  "generated": "2026-06-21T19:47:54.479Z",
   "sources": [
     "Yahoo Finance",
     "CoinGecko"
   ],
   "entries": [
+    {
+      "id": "sem25-2026",
+      "week": "Sem. 25",
+      "date": "2026-06-21",
+      "title": "Marchés portés · les hausses dominent",
+      "method": "Lecture des 4 grands indices (S&P, Nasdaq, CAC, Dow) + 2 crypto majors (BTC, ETH) sur le tf daily. Agrégation des outils RSI · MA20/MA50 · MACD · Bollinger · ADX · ATR · Momentum.",
+      "verdict": {
+        "score": 68,
+        "cls": "bull",
+        "label": "Plutôt haussier"
+      },
+      "indicators": [
+        {
+          "sym": "S&P 500",
+          "read": "RSI 46 · MA20 > MA50 · MACD négatif · +1.4% / 5j",
+          "sig": "neutral",
+          "val": "Indécis"
+        },
+        {
+          "sym": "Nasdaq",
+          "read": "RSI 46 · MA20 > MA50 · MACD négatif · +2.7% / 5j",
+          "sig": "neutral",
+          "val": "Indécis"
+        },
+        {
+          "sym": "CAC 40",
+          "read": "RSI 70 · MA20 > MA50 · MACD positif · +0.8% / 5j",
+          "sig": "bull",
+          "val": "Haussier fort"
+        },
+        {
+          "sym": "Dow",
+          "read": "RSI 54 · MA20 > MA50 · MACD négatif · +1.4% / 5j",
+          "sig": "bull",
+          "val": "Plutôt haussier"
+        },
+        {
+          "sym": "BTC",
+          "read": "RSI 54 · MA20 < MA50 · MACD positif · -2.2% / 5j",
+          "sig": "bull",
+          "val": "Plutôt haussier"
+        },
+        {
+          "sym": "ETH",
+          "read": "RSI 56 · MA20 < MA50 · MACD positif · -3.2% / 5j",
+          "sig": "bull",
+          "val": "Haussier fort"
+        }
+      ],
+      "conclusion": "<strong class=\"bull\">Biais acheteur modéré.</strong> La majorité des outils signalent un environnement favorable, mais sans unanimité. La prudence reste de mise sur les zones tendues.",
+      "generated": "2026-06-21T19:47:54.479Z"
+    },
     {
       "id": "sem24-2026",
       "week": "Sem. 24",
