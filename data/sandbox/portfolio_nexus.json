@@ -6,7 +6,7 @@
   "icon": "₿",
   "created_at": "2026-05-30T17:55:42.950Z",
   "capital_initial": 1000,
-  "cash": 799.4864197583416,
+  "cash": 853.2063107904125,
   "positions": [
     {
       "id": "pos-1780733882841-rmm2",
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 0.16203840646509304,
-      "age_days": 10
+      "current_price": 0.15838242272163744,
+      "age_days": 11
     },
     {
       "id": "pos-1780733882841-tapd",
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 1.1369077419002007,
-      "age_days": 10
+      "current_price": 1.1285769079001173,
+      "age_days": 11
     },
     {
       "id": "pos-1781833565461-v537",
@@ -85,7 +85,7 @@
       "tp1": 64595.85760080417,
       "tp2": 67285.19082177106,
       "initial_stop": 60561.85776935383,
-      "high_since_entry": 63431.59712600347,
+      "high_since_entry": 63878.300867662394,
       "rr1": 0.8,
       "rr2": 2,
       "risk_pct": 0.03568479421855789,
@@ -104,39 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 63431.59712600347,
-      "age_days": 1
-    },
-    {
-      "id": "pos-1781833565462-13sv",
-      "asset": "BNB",
-      "kind": "crypto",
-      "agent": "kairo",
-      "type": "kairo-shortMomentum",
-      "entry": 577.6213301688807,
-      "stop": 596.9841223872675,
-      "tp1": 560.0187917885291,
-      "tp2": 538.0156188130898,
-      "initial_stop": 596.9841223872675,
-      "high_since_entry": 577.6213301688807,
-      "rr1": 0.91,
-      "rr2": 2.05,
-      "risk_pct": 0.033521601795289645,
-      "size_eur": 55.58312646393201,
-      "quality_score": 64,
-      "sizing_pct": 7,
-      "trailing_after_tp1": true,
-      "trailing_active": false,
-      "pyramiding_pct": 30,
-      "pyramided": false,
-      "stacked": false,
-      "opened_at": "2026-06-19T01:46:05.462Z",
-      "opened_at_cycle": 15,
-      "opened_at_date": "2026-06-19",
-      "status": "open",
-      "touched_tp1": false,
-      "closed_at": null,
-      "pnl_eur": null
+      "current_price": 63878.300867662394,
+      "age_days": 2
     }
   ],
   "closed_trades": [
@@ -1087,6 +1056,41 @@
       "age_days": 1,
       "closed_at_cycle": 16,
       "exit_price": 0.08756829434690215
+    },
+    {
+      "id": "pos-1781833565462-13sv",
+      "asset": "BNB",
+      "kind": "crypto",
+      "agent": "kairo",
+      "type": "kairo-shortMomentum",
+      "entry": 577.6213301688807,
+      "stop": 596.9841223872675,
+      "tp1": 560.0187917885291,
+      "tp2": 538.0156188130898,
+      "initial_stop": 596.9841223872675,
+      "high_since_entry": 589.1936895705758,
+      "rr1": 0.91,
+      "rr2": 2.05,
+      "risk_pct": 0.033521601795289645,
+      "size_eur": 55.58312646393201,
+      "quality_score": 64,
+      "sizing_pct": 7,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 30,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-06-19T01:46:05.462Z",
+      "opened_at_cycle": 15,
+      "opened_at_date": "2026-06-19",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-06-23T00:12:23.634Z",
+      "pnl_eur": -1.8632354318611546,
+      "current_price": 589.1936895705758,
+      "age_days": 2,
+      "closed_at_cycle": 17,
+      "exit_price": 596.9841223872675
     }
   ],
   "equity_history": [
@@ -1201,7 +1205,14 @@
       "equity": 1002.65,
       "cash": 799.49,
       "positions_count": 4
+    },
+    {
+      "date": "2026-06-23",
+      "cycle": 17,
+      "equity": 999.87,
+      "cash": 853.21,
+      "positions_count": 3
     }
   ],
-  "last_cycle": "2026-06-20"
+  "last_cycle": "2026-06-23"
 }
