@@ -1,19 +1,141 @@
 {
-  "generated": "2026-06-24T07:36:23.269Z",
+  "generated": "2026-06-24T12:16:41.211Z",
   "source": "SEC EDGAR Form 4 RSS",
   "window_days": 7,
-  "count": 144,
+  "count": 114,
   "ticker_signals": {
     "Salesforce": {
-      "count": 5,
-      "intensity": "high"
-    },
-    "Nvidia": {
       "count": 5,
       "intensity": "high"
     }
   },
   "filings": [
+    {
+      "company": "VICOR CORP",
+      "cik": "0000751978",
+      "filed_at": "2026-06-24T12:14:14.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/751978/000194113226000005/0001941132-26-000005-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Alliance Laundry Holdings Inc.",
+      "cik": "0001317685",
+      "filed_at": "2026-06-24T11:55:48.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1317685/000162828026045036/0001628280-26-045036-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "SCHMID Group N.V.",
+      "cik": "0001987240",
+      "filed_at": "2026-06-24T11:54:49.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1987240/000212046226000013/0002120462-26-000013-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Baozun Inc.",
+      "cik": "0001625414",
+      "filed_at": "2026-06-24T11:24:39.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1625414/000110465926077056/0001104659-26-077056-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "NuCana plc",
+      "cik": "0001709626",
+      "filed_at": "2026-06-24T11:09:38.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1709626/000119312526280239/0001193125-26-280239-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+      "cik": "0001046179",
+      "filed_at": "2026-06-24T10:43:03.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000375/0001046179-26-000375-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Jiayin Group Inc.",
+      "cik": "0001743102",
+      "filed_at": "2026-06-24T10:24:40.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1743102/000119312526280202/0001193125-26-280202-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Jiayin Group Inc.",
+      "cik": "0001743102",
+      "filed_at": "2026-06-24T10:23:43.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1743102/000119312526280200/0001193125-26-280200-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Jiayin Group Inc.",
+      "cik": "0001743102",
+      "filed_at": "2026-06-24T10:23:00.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1743102/000119312526280199/0001193125-26-280199-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Jinxin Technology Holding Co",
+      "cik": "0001967631",
+      "filed_at": "2026-06-24T10:22:47.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1967631/000121390026071279/0001213900-26-071279-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "X Financial",
+      "cik": "0001725033",
+      "filed_at": "2026-06-24T10:20:18.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1725033/000110465926077018/0001104659-26-077018-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Seaport Therapeutics, Inc.",
+      "cik": "0002042347",
+      "filed_at": "2026-06-24T10:05:17.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/2042347/000119312526280175/0001193125-26-280175-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Latch, Inc.",
+      "cik": "0001826000",
+      "filed_at": "2026-06-24T10:01:43.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1826000/000110465926076981/0001104659-26-076981-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Amber International Holding Ltd",
+      "cik": "0001697818",
+      "filed_at": "2026-06-24T10:01:13.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1697818/000110465926076980/0001104659-26-076980-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
     {
       "company": "ConnectM Technology Solutions, Inc.",
       "cik": "0001895249",
@@ -784,132 +906,6 @@
       "cik": "0001315257",
       "filed_at": "2026-06-23T22:27:58.000Z",
       "url": "https://www.sec.gov/Archives/edgar/data/1315257/000122977126000016/0001229771-26-000016-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Salesforce, Inc.",
-      "cik": "0001108524",
-      "filed_at": "2026-06-23T22:23:06.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1108524/000110852426000144/0001108524-26-000144-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": "Salesforce"
-    },
-    {
-      "company": "Playboy, Inc.",
-      "cik": "0001803914",
-      "filed_at": "2026-06-23T22:22:21.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1803914/000101297526000558/0001012975-26-000558-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Hyatt Hotels Corp",
-      "cik": "0001468174",
-      "filed_at": "2026-06-23T22:21:28.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1468174/000133198326000008/0001331983-26-000008-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CIENA CORP",
-      "cik": "0000936395",
-      "filed_at": "2026-06-23T17:46:14.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/936395/000196378126000008/0001963781-26-000008-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CIENA CORP",
-      "cik": "0000936395",
-      "filed_at": "2026-06-23T17:40:25.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/936395/000199882626000012/0001998826-26-000012-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CAMDEN NATIONAL CORP",
-      "cik": "0000750686",
-      "filed_at": "2026-06-23T17:40:04.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/750686/000075068626000044/0000750686-26-000044-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CAMDEN NATIONAL CORP",
-      "cik": "0000750686",
-      "filed_at": "2026-06-23T17:39:58.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/750686/000075068626000043/0000750686-26-000043-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CAMDEN NATIONAL CORP",
-      "cik": "0000750686",
-      "filed_at": "2026-06-23T17:39:53.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/750686/000075068626000042/0000750686-26-000042-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CAMDEN NATIONAL CORP",
-      "cik": "0000750686",
-      "filed_at": "2026-06-23T17:39:45.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/750686/000075068626000041/0000750686-26-000041-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CIENA CORP",
-      "cik": "0000936395",
-      "filed_at": "2026-06-23T17:37:13.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/936395/000199846026000007/0001998460-26-000007-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "MESA LABORATORIES INC /CO/",
-      "cik": "0000724004",
-      "filed_at": "2026-06-23T17:34:00.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/724004/000072400426000065/0000724004-26-000065-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CIENA CORP",
-      "cik": "0000936395",
-      "filed_at": "2026-06-23T17:32:58.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/936395/000196363826000007/0001963638-26-000007-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "GLOBALFOUNDRIES Inc.",
-      "cik": "0001709048",
-      "filed_at": "2026-06-23T17:32:48.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1709048/000170904826000145/0001709048-26-000145-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Voip-pal.com Inc",
-      "cik": "0001410738",
-      "filed_at": "2026-06-23T17:30:15.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1410738/000196638126000001/0001966381-26-000001-index.htm",
       "isIssuer": true,
       "isForm4": true,
       "ticker": null
