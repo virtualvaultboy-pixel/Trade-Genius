@@ -6,7 +6,7 @@
   "icon": "₿",
   "created_at": "2026-05-30T17:55:42.950Z",
   "capital_initial": 1000,
-  "cash": 853.2063107904125,
+  "cash": 737.9381382026279,
   "positions": [
     {
       "id": "pos-1780733882841-rmm2",
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 0.15838242272163744,
-      "age_days": 11
+      "current_price": 0.1513823744231735,
+      "age_days": 12
     },
     {
       "id": "pos-1780733882841-tapd",
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 1.1285769079001173,
-      "age_days": 11
+      "current_price": 1.109176078218134,
+      "age_days": 12
     },
     {
       "id": "pos-1781833565461-v537",
@@ -104,8 +104,70 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 63878.300867662394,
-      "age_days": 2
+      "current_price": 62713.56759602506,
+      "age_days": 3
+    },
+    {
+      "id": "pos-1782259355381-p7ld",
+      "asset": "DOGE",
+      "kind": "crypto",
+      "agent": "kairo",
+      "type": "kairo-shortMomentum",
+      "entry": 0.07875458131909148,
+      "stop": 0.08170009687805359,
+      "tp1": 0.07607683990185321,
+      "tp2": 0.07272966313030536,
+      "initial_stop": 0.08170009687805359,
+      "high_since_entry": 0.07875458131909148,
+      "rr1": 0.91,
+      "rr2": 2.05,
+      "risk_pct": 0.03740119634472699,
+      "size_eur": 59.72444175532888,
+      "quality_score": 65,
+      "sizing_pct": 7,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 30,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-06-24T00:02:35.381Z",
+      "opened_at_cycle": 18,
+      "opened_at_date": "2026-06-24",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
+    },
+    {
+      "id": "pos-1782259355381-guom",
+      "asset": "UNI",
+      "kind": "crypto",
+      "agent": "kairo",
+      "type": "kairo-shortMomentum",
+      "entry": 2.910486781865963,
+      "stop": 3.1257197728602293,
+      "tp1": 2.7148204264166305,
+      "tp2": 2.4702374821049644,
+      "initial_stop": 3.1257197728602293,
+      "high_since_entry": 2.910486781865963,
+      "rr1": 0.91,
+      "rr2": 2.05,
+      "risk_pct": 0.0739508567210453,
+      "size_eur": 55.543730832455864,
+      "quality_score": 65,
+      "sizing_pct": 7,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 30,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-06-24T00:02:35.381Z",
+      "opened_at_cycle": 18,
+      "opened_at_date": "2026-06-24",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
     }
   ],
   "closed_trades": [
@@ -1212,7 +1274,14 @@
       "equity": 999.87,
       "cash": 853.21,
       "positions_count": 3
+    },
+    {
+      "date": "2026-06-24",
+      "cycle": 18,
+      "equity": 996.07,
+      "cash": 737.94,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-06-23"
+  "last_cycle": "2026-06-24"
 }
