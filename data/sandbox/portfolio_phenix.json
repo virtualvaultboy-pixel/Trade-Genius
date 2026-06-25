@@ -6,7 +6,7 @@
   "icon": "🔥",
   "created_at": "2026-05-30T17:55:42.943Z",
   "capital_initial": 1000,
-  "cash": 704.2219603412119,
+  "cash": 684.6162454638793,
   "positions": [
     {
       "id": "pos-1782173543020-y0kj",
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 264.94,
-      "age_days": 1
+      "current_price": 262.96,
+      "age_days": 2
     },
     {
       "id": "pos-1782173543020-kw3m",
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 153.38,
-      "age_days": 1
+      "current_price": 152.75,
+      "age_days": 2
     },
     {
       "id": "pos-1782259355226-k2dc",
@@ -103,7 +103,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 157.53,
+      "age_days": 1
     },
     {
       "id": "pos-1782259355226-u97c",
@@ -134,34 +136,36 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 196.57,
+      "age_days": 1
     },
     {
-      "id": "pos-1782259355226-grbs",
-      "asset": "Uber",
+      "id": "pos-1782346639638-y12y",
+      "asset": "TotalEnergies",
       "kind": "action",
       "agent": "nova",
-      "type": "doji-baissier",
-      "entry": 69.66999816894531,
-      "stop": 71.78327938842773,
-      "tp1": 67.39714153310837,
-      "tp2": 65.12428489727144,
-      "initial_stop": 71.78327938842773,
-      "high_since_entry": 69.66999816894531,
-      "rr1": 1.08,
-      "rr2": 2.15,
-      "risk_pct": 0.030332729654418022,
-      "size_eur": 53.00595400417725,
-      "quality_score": 75,
+      "type": "rebond-survente",
+      "entry": 70.80999755859375,
+      "stop": 69.61204335694241,
+      "tp1": 72.4072698274622,
+      "tp2": 73.20590596189642,
+      "initial_stop": 69.61204335694241,
+      "high_since_entry": 70.80999755859375,
+      "rr1": 1.33,
+      "rr2": 2,
+      "risk_pct": 0.016917868139453906,
+      "size_eur": 76.06847171820881,
+      "quality_score": 72,
       "sizing_pct": 10,
       "trailing_after_tp1": true,
       "trailing_active": false,
       "pyramiding_pct": 50,
       "pyramided": false,
       "stacked": false,
-      "opened_at": "2026-06-24T00:02:35.226Z",
-      "opened_at_cycle": 18,
-      "opened_at_date": "2026-06-24",
+      "opened_at": "2026-06-25T00:17:19.638Z",
+      "opened_at_cycle": 19,
+      "opened_at_date": "2026-06-25",
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
@@ -1223,6 +1227,41 @@
       "age_days": 1,
       "closed_at_cycle": 18,
       "exit_price": 76.9435809173584
+    },
+    {
+      "id": "pos-1782259355226-grbs",
+      "asset": "Uber",
+      "kind": "action",
+      "agent": "nova",
+      "type": "doji-baissier",
+      "entry": 69.66999816894531,
+      "stop": 71.78327938842773,
+      "tp1": 67.39714153310837,
+      "tp2": 65.12428489727144,
+      "initial_stop": 71.78327938842773,
+      "high_since_entry": 73.85,
+      "rr1": 1.08,
+      "rr2": 2.15,
+      "risk_pct": 0.030332729654418022,
+      "size_eur": 53.00595400417725,
+      "quality_score": 75,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-06-24T00:02:35.226Z",
+      "opened_at_cycle": 18,
+      "opened_at_date": "2026-06-24",
+      "status": "win",
+      "touched_tp1": false,
+      "closed_at": "2026-06-25T00:17:19.638Z",
+      "pnl_eur": 3.4568028366989334,
+      "current_price": 73.85,
+      "age_days": 1,
+      "closed_at_cycle": 19,
+      "exit_price": 65.12428489727144
     }
   ],
   "equity_history": [
@@ -1351,7 +1390,14 @@
       "equity": 1005.31,
       "cash": 704.22,
       "positions_count": 5
+    },
+    {
+      "date": "2026-06-25",
+      "cycle": 19,
+      "equity": 1004.92,
+      "cash": 684.62,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-06-24"
+  "last_cycle": "2026-06-25"
 }
