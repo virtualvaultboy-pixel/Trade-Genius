@@ -19,7 +19,7 @@
       "tp1": 115.54517758244315,
       "tp2": 123.82035852181988,
       "initial_stop": 105.06328172589927,
-      "high_since_entry": 107.2699966430664,
+      "high_since_entry": 112.93,
       "rr1": 3.75,
       "rr2": 7.5,
       "risk_pct": 0.02057159491213397,
@@ -37,7 +37,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 112.93,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -427,7 +429,14 @@
       "equity": 995.52,
       "cash": 960.68,
       "positions_count": 1
+    },
+    {
+      "date": "2026-06-27",
+      "cycle": 21,
+      "equity": 997.36,
+      "cash": 960.68,
+      "positions_count": 1
     }
   ],
-  "last_cycle": "2026-06-26"
+  "last_cycle": "2026-06-27"
 }
