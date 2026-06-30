@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 158.37,
-      "age_days": 6
+      "current_price": 157.93,
+      "age_days": 7
     },
     {
       "id": "pos-1782173543167-pzzh",
@@ -48,11 +48,11 @@
       "agent": "kairo",
       "type": "grid-day-A",
       "entry": 252.22000122070312,
-      "stop": 252.22000122070312,
+      "stop": 273.6611406808766,
       "tp1": 270.29858171705064,
       "tp2": 288.37716221339815,
       "initial_stop": 247.88114190157972,
-      "high_since_entry": 271.63,
+      "high_since_entry": 278,
       "rr1": 4.17,
       "rr2": 8.33,
       "risk_pct": 0.017202677417032904,
@@ -71,8 +71,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 271.63,
-      "age_days": 4,
+      "current_price": 278,
+      "age_days": 5,
       "size_eur_added": 31.479007136487795
     },
     {
@@ -105,8 +105,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 283.78,
-      "age_days": 1
+      "current_price": 281.74,
+      "age_days": 2
     }
   ],
   "closed_trades": [
@@ -963,7 +963,14 @@
       "equity": 987.72,
       "cash": 741.95,
       "positions_count": 3
+    },
+    {
+      "date": "2026-06-30",
+      "cycle": 22,
+      "equity": 989.44,
+      "cash": 741.95,
+      "positions_count": 3
     }
   ],
-  "last_cycle": "2026-06-27"
+  "last_cycle": "2026-06-30"
 }
