@@ -1,6 +1,6 @@
 {
   "version": "4.0",
-  "trained_at": "2026-06-01T20:43:48.354044+00:00",
+  "trained_at": "2026-07-01T13:41:55.408161+00:00",
   "feature_keys": [
     "rsi",
     "macd_line",
@@ -37,164 +37,164 @@
   ],
   "horizons": {
     "day": {
-      "auc": 0.5608476133726813,
-      "accuracy": 0.5727538223672909,
-      "precision": 0.18461073622721322,
-      "win_rate_test": 0.15826318501975606,
-      "thr_high": 0.6408010125160217,
-      "thr_med": 0.5508089065551758,
-      "thr_low": 0.445189893245697,
-      "mean_prob": 0.4379812180995941,
-      "std_prob": 0.15943406522274017
+      "auc": 0.5595989137038192,
+      "accuracy": 0.5494977247359835,
+      "precision": 0.1792,
+      "win_rate_test": 0.15785180733236026,
+      "thr_high": 0.6360990405082703,
+      "thr_med": 0.552898645401001,
+      "thr_low": 0.4509603679180145,
+      "mean_prob": 0.44076353311538696,
+      "std_prob": 0.15705692768096924
     },
     "week": {
-      "auc": 0.5242906810916825,
-      "accuracy": 0.5571637175742999,
-      "precision": 0.23831148725358653,
-      "win_rate_test": 0.22504724274179694,
-      "thr_high": 0.6121054887771606,
-      "thr_med": 0.54610276222229,
-      "thr_low": 0.4726051986217499,
-      "mean_prob": 0.46271276473999023,
-      "std_prob": 0.12756401300430298
+      "auc": 0.5287294728804575,
+      "accuracy": 0.5737099682321628,
+      "precision": 0.23864519711271515,
+      "win_rate_test": 0.22422082939812826,
+      "thr_high": 0.604134202003479,
+      "thr_med": 0.5420840978622437,
+      "thr_low": 0.4727354943752289,
+      "mean_prob": 0.46169430017471313,
+      "std_prob": 0.12376640737056732
     },
     "month": {
-      "auc": 0.5145454775347332,
-      "accuracy": 0.5720237072667926,
-      "precision": 0.20565323837079902,
-      "win_rate_test": 0.20078165263700395,
-      "thr_high": 0.6038215756416321,
-      "thr_med": 0.5371111035346985,
-      "thr_low": 0.4662269055843353,
-      "mean_prob": 0.4583820104598999,
-      "std_prob": 0.12479172646999359
+      "auc": 0.5216728715584014,
+      "accuracy": 0.6271142783549412,
+      "precision": 0.21498371335504887,
+      "win_rate_test": 0.200094444921439,
+      "thr_high": 0.5961050987243652,
+      "thr_med": 0.5329603552818298,
+      "thr_low": 0.46341902017593384,
+      "mean_prob": 0.45452558994293213,
+      "std_prob": 0.12196078896522522
     }
   },
   "feature_importance_top10": {
     "day": [
       {
         "feature": "vol_regime",
-        "importance": 0.05631821230053902
+        "importance": 0.054232534021139145
       },
       {
         "feature": "atr_pct",
-        "importance": 0.05372638627886772
+        "importance": 0.05343328043818474
       },
       {
         "feature": "ichi_pos",
-        "importance": 0.052574921399354935
-      },
-      {
-        "feature": "stoch_k",
-        "importance": 0.04490860551595688
+        "importance": 0.04448480159044266
       },
       {
         "feature": "regime",
-        "importance": 0.035124070942401886
-      },
-      {
-        "feature": "stoch_d",
-        "importance": 0.03268447145819664
-      },
-      {
-        "feature": "vol20",
-        "importance": 0.03182332217693329
-      },
-      {
-        "feature": "chg5",
-        "importance": 0.03133486583828926
-      },
-      {
-        "feature": "moy",
-        "importance": 0.03125728294253349
+        "importance": 0.042283687740564346
       },
       {
         "feature": "macd_hist",
-        "importance": 0.031084870919585228
+        "importance": 0.035664353519678116
+      },
+      {
+        "feature": "stoch_d",
+        "importance": 0.03521746024489403
+      },
+      {
+        "feature": "stoch_k",
+        "importance": 0.03516548499464989
+      },
+      {
+        "feature": "vol20",
+        "importance": 0.031996238976716995
+      },
+      {
+        "feature": "moy",
+        "importance": 0.031402647495269775
+      },
+      {
+        "feature": "ma200_rel",
+        "importance": 0.031087085604667664
       }
     ],
     "week": [
       {
-        "feature": "vol_regime",
-        "importance": 0.04678826034069061
-      },
-      {
         "feature": "atr_pct",
-        "importance": 0.043945569545030594
+        "importance": 0.04564296826720238
       },
       {
         "feature": "regime",
-        "importance": 0.04149364307522774
+        "importance": 0.041886106133461
+      },
+      {
+        "feature": "vol_regime",
+        "importance": 0.041316960006952286
       },
       {
         "feature": "moy",
-        "importance": 0.03988821059465408
+        "importance": 0.03836284205317497
       },
       {
         "feature": "ma200_rel",
-        "importance": 0.03560163825750351
-      },
-      {
-        "feature": "macd_signal",
-        "importance": 0.03466150164604187
+        "importance": 0.035068269819021225
       },
       {
         "feature": "rsi_weekly",
-        "importance": 0.03361000120639801
-      },
-      {
-        "feature": "vol20",
-        "importance": 0.03338317945599556
-      },
-      {
-        "feature": "kurt60",
-        "importance": 0.032720595598220825
+        "importance": 0.03329717740416527
       },
       {
         "feature": "ma_spread_20_50",
-        "importance": 0.032663509249687195
+        "importance": 0.032913800328969955
+      },
+      {
+        "feature": "kurt60",
+        "importance": 0.032661303877830505
+      },
+      {
+        "feature": "vol20",
+        "importance": 0.03261705860495567
+      },
+      {
+        "feature": "skew60",
+        "importance": 0.03201477229595184
       }
     ],
     "month": [
       {
         "feature": "moy",
-        "importance": 0.04279584065079689
+        "importance": 0.041696906089782715
       },
       {
         "feature": "regime",
-        "importance": 0.04147818684577942
+        "importance": 0.04035315290093422
       },
       {
-        "feature": "vol20",
-        "importance": 0.03732527047395706
-      },
-      {
-        "feature": "skew60",
-        "importance": 0.03695535287261009
+        "feature": "ichi_pos",
+        "importance": 0.03814879432320595
       },
       {
         "feature": "ma200_rel",
-        "importance": 0.0364471934735775
+        "importance": 0.035871315747499466
       },
       {
         "feature": "vol_regime",
-        "importance": 0.03500169888138771
+        "importance": 0.03542741760611534
+      },
+      {
+        "feature": "vol20",
+        "importance": 0.035266630351543427
       },
       {
         "feature": "macd_signal",
-        "importance": 0.03478020802140236
+        "importance": 0.03508302569389343
+      },
+      {
+        "feature": "skew60",
+        "importance": 0.034754689782857895
       },
       {
         "feature": "rsi_weekly",
-        "importance": 0.03426000848412514
+        "importance": 0.03397739678621292
       },
       {
         "feature": "kurt60",
-        "importance": 0.03422290086746216
-      },
-      {
-        "feature": "ma20_rel_weekly",
-        "importance": 0.03336838632822037
+        "importance": 0.03355959430336952
       }
     ]
   }
