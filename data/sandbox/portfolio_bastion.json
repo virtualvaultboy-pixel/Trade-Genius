@@ -6,7 +6,7 @@
   "icon": "🗿",
   "created_at": "2026-05-30T17:55:42.941Z",
   "capital_initial": 1000,
-  "cash": 708.1754922750576,
+  "cash": 644.3785882450185,
   "positions": [
     {
       "id": "pos-1781833564995-5d1e",
@@ -19,7 +19,7 @@
       "tp1": 168.13428619458875,
       "tp2": 184.4885736098806,
       "initial_stop": 148.5091412962385,
-      "high_since_entry": 158.37,
+      "high_since_entry": 163.23,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.021549990178972887,
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 156.66,
-      "age_days": 8
+      "current_price": 163.23,
+      "age_days": 9
     },
     {
       "id": "pos-1782432846087-c2sb",
@@ -48,31 +48,32 @@
       "agent": "atlas",
       "type": "grid-month-A",
       "entry": 275.1499938964844,
-      "stop": 272.29656452933773,
+      "stop": 275.1499938964844,
       "tp1": 289.4171407322176,
       "tp2": 303.6842875679509,
       "initial_stop": 272.29656452933773,
-      "high_since_entry": 289.36,
+      "high_since_entry": 294.38,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.010370450410477383,
-      "size_eur": 66.11078137827887,
+      "size_eur": 99.1661720674183,
       "quality_score": 94,
       "sizing_pct": 10,
       "trailing_after_tp1": true,
-      "trailing_active": false,
+      "trailing_active": true,
       "pyramiding_pct": 50,
-      "pyramided": false,
+      "pyramided": true,
       "stacked": false,
       "opened_at": "2026-06-26T00:14:06.087Z",
       "opened_at_cycle": 20,
       "opened_at_date": "2026-06-26",
       "status": "open",
-      "touched_tp1": false,
+      "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 289.36,
-      "age_days": 3
+      "current_price": 294.38,
+      "age_days": 4,
+      "size_eur_added": 33.055390689139436
     },
     {
       "id": "pos-1782432846087-hnxe",
@@ -81,31 +82,32 @@
       "agent": "atlas",
       "type": "grid-month-A",
       "entry": 352.8299865722656,
-      "stop": 348.19112836349694,
+      "stop": 352.8299865722656,
       "tp1": 376.02427761610903,
       "tp2": 399.21856865995244,
       "initial_stop": 348.19112836349694,
-      "high_since_entry": 373.02,
+      "high_since_entry": 384.28,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.013147573577390832,
-      "size_eur": 61.48302668179935,
+      "size_eur": 92.22454002269903,
       "quality_score": 94,
       "sizing_pct": 10,
       "trailing_after_tp1": true,
-      "trailing_active": false,
+      "trailing_active": true,
       "pyramiding_pct": 50,
-      "pyramided": false,
+      "pyramided": true,
       "stacked": false,
       "opened_at": "2026-06-26T00:14:06.087Z",
       "opened_at_cycle": 20,
       "opened_at_date": "2026-06-26",
       "status": "open",
-      "touched_tp1": false,
+      "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 373.02,
-      "age_days": 3
+      "current_price": 384.28,
+      "age_days": 4,
+      "size_eur_added": 30.741513340899676
     },
     {
       "id": "pos-1782432846088-fzds",
@@ -137,8 +139,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 580.91,
-      "age_days": 3
+      "current_price": 540.88,
+      "age_days": 4
     },
     {
       "id": "pos-1782864687854-gnek",
@@ -151,7 +153,7 @@
       "tp1": 61272.79626702137,
       "tp2": 64024.590050282895,
       "initial_stop": 57970.643727107534,
-      "high_since_entry": 58521.00248375984,
+      "high_since_entry": 59886.73646447988,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.009404465632745024,
@@ -169,7 +171,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 59886.73646447988,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -1634,7 +1638,14 @@
       "equity": 1027.42,
       "cash": 708.18,
       "positions_count": 5
+    },
+    {
+      "date": "2026-07-02",
+      "cycle": 24,
+      "equity": 1035.96,
+      "cash": 644.38,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-07-01"
+  "last_cycle": "2026-07-02"
 }

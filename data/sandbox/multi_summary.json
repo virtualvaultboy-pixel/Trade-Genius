@@ -1,6 +1,6 @@
 {
-  "generated": "2026-07-01T00:11:28.704Z",
-  "date": "2026-07-01",
+  "generated": "2026-07-02T00:12:56.008Z",
+  "date": "2026-07-02",
   "capital_initial_per_sandbox": 1000,
   "sandboxes": [
     {
@@ -10,24 +10,24 @@
       "trades_open": 5,
       "win_rate": 0.135,
       "profit_factor": 1.49,
-      "total_return_pct": 2.74,
+      "total_return_pct": 3.6,
       "max_drawdown_pct": -2.66,
-      "equity_current": 1027.42,
+      "equity_current": 1035.96,
       "equity_high": 1042.56,
-      "cash": 708.18
+      "cash": 644.38
     },
     {
       "sandbox_id": "phenix",
       "ia_name": "PHÉNIX",
-      "trades_closed": 34,
+      "trades_closed": 36,
       "trades_open": 5,
-      "win_rate": 0.294,
-      "profit_factor": 0.97,
-      "total_return_pct": 1.88,
+      "win_rate": 0.306,
+      "profit_factor": 1.03,
+      "total_return_pct": 2.48,
       "max_drawdown_pct": -1.83,
-      "equity_current": 1018.75,
-      "equity_high": 1018.75,
-      "cash": 612.46
+      "equity_current": 1024.8,
+      "equity_high": 1024.8,
+      "cash": 608.23
     },
     {
       "sandbox_id": "rafale",
@@ -36,11 +36,11 @@
       "trades_open": 3,
       "win_rate": 0.3,
       "profit_factor": 0.51,
-      "total_return_pct": -0.69,
+      "total_return_pct": 0.31,
       "max_drawdown_pct": -4.13,
-      "equity_current": 993.08,
+      "equity_current": 1003.09,
       "equity_high": 1017.84,
-      "cash": 712.84
+      "cash": 672.58
     },
     {
       "sandbox_id": "nexus",
@@ -49,29 +49,29 @@
       "trades_open": 5,
       "win_rate": 0.079,
       "profit_factor": 0.46,
-      "total_return_pct": -2.51,
+      "total_return_pct": -1.96,
       "max_drawdown_pct": -4.07,
-      "equity_current": 974.91,
+      "equity_current": 980.41,
       "equity_high": 1016.32,
       "cash": 772.25
     },
     {
       "sandbox_id": "volt",
       "ia_name": "VOLT",
-      "trades_closed": 7,
-      "trades_open": 2,
-      "win_rate": 0,
-      "profit_factor": 0,
-      "total_return_pct": -0.14,
+      "trades_closed": 8,
+      "trades_open": 1,
+      "win_rate": 0.125,
+      "profit_factor": 1.2,
+      "total_return_pct": 0.17,
       "max_drawdown_pct": -0.45,
-      "equity_current": 998.57,
-      "equity_high": 1000,
-      "cash": 927.05
+      "equity_current": 1001.66,
+      "equity_high": 1001.66,
+      "cash": 967.27
     }
   ],
   "aggregate": {
-    "equity_total": 5012.73,
-    "trades_total": 136,
-    "trades_open": 20
+    "equity_total": 5045.92,
+    "trades_total": 139,
+    "trades_open": 19
   }
 }
