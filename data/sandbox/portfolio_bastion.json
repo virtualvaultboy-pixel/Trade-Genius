@@ -39,7 +39,7 @@
       "closed_at": null,
       "pnl_eur": null,
       "current_price": 166.11,
-      "age_days": 10
+      "age_days": 11
     },
     {
       "id": "pos-1782432846087-hnxe",
@@ -72,7 +72,7 @@
       "closed_at": null,
       "pnl_eur": null,
       "current_price": 390.49,
-      "age_days": 5,
+      "age_days": 6,
       "size_eur_added": 30.741513340899676
     },
     {
@@ -106,7 +106,7 @@
       "closed_at": null,
       "pnl_eur": null,
       "current_price": 517.82,
-      "age_days": 5
+      "age_days": 6
     },
     {
       "id": "pos-1782864687854-gnek",
@@ -115,11 +115,11 @@
       "agent": "atlas",
       "type": "grid-month-A",
       "entry": 58521.00248375984,
-      "stop": 58521.00248375984,
+      "stop": 62197.13542153111,
       "tp1": 61272.79626702137,
       "tp2": 64024.590050282895,
       "initial_stop": 57970.643727107534,
-      "high_since_entry": 61356.19445443153,
+      "high_since_entry": 62747.49417818341,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.009404465632745024,
@@ -138,8 +138,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 61356.19445443153,
-      "age_days": 2,
+      "current_price": 62747.49417818341,
+      "age_days": 3,
       "size_eur_added": 26.651765838308624
     },
     {
@@ -153,7 +153,7 @@
       "tp1": 77.17928908914556,
       "tp2": 82.74857756793955,
       "initial_stop": 70.49614291459277,
-      "high_since_entry": 71.61000061035156,
+      "high_since_entry": 72.13,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.015554499179794483,
@@ -171,7 +171,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 72.13,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -1686,7 +1688,14 @@
       "equity": 1042.62,
       "cash": 654.46,
       "positions_count": 5
+    },
+    {
+      "date": "2026-07-04",
+      "cycle": 26,
+      "equity": 1045.05,
+      "cash": 654.46,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-07-03"
+  "last_cycle": "2026-07-04"
 }
