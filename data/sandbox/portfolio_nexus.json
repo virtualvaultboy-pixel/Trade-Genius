@@ -6,7 +6,7 @@
   "icon": "₿",
   "created_at": "2026-05-30T17:55:42.950Z",
   "capital_initial": 1000,
-  "cash": 708.8031954684,
+  "cash": 706.154567141562,
   "positions": [
     {
       "id": "pos-1782864688654-pkib",
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 1.5691811003081833,
-      "age_days": 6
+      "current_price": 1.5500151297367861,
+      "age_days": 7
     },
     {
       "id": "pos-1783383162002-0m4e",
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 62189.6866403123,
-      "age_days": 2
+      "current_price": 63137.49413747078,
+      "age_days": 3
     },
     {
       "id": "pos-1783383162002-gpsx",
@@ -104,8 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 1741.4728699455025,
-      "age_days": 2
+      "current_price": 1742.2605683866873,
+      "age_days": 3
     },
     {
       "id": "pos-1783468885451-b3pb",
@@ -137,35 +137,35 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 568.0215127330829,
-      "age_days": 1
+      "current_price": 568.424945740213,
+      "age_days": 2
     },
     {
-      "id": "pos-1783556140567-7dpm",
-      "asset": "SOL",
+      "id": "pos-1783642135059-2nx5",
+      "asset": "DOT",
       "kind": "crypto",
       "agent": "kairo",
       "type": "kairo-shortMomentum",
-      "entry": 77.52249609079131,
-      "stop": 81.66082552968584,
-      "tp1": 73.76037841906901,
-      "tp2": 69.05773132941613,
-      "initial_stop": 81.66082552968584,
-      "high_since_entry": 77.52249609079131,
+      "entry": 0.8247665160800058,
+      "stop": 0.8565374826154654,
+      "tp1": 0.7958838192295881,
+      "tp2": 0.7597804481665659,
+      "initial_stop": 0.8565374826154654,
+      "high_since_entry": 0.8247665160800058,
       "rr1": 0.91,
       "rr2": 2.05,
-      "risk_pct": 0.05338230381601595,
-      "size_eur": 53.350778153535494,
-      "quality_score": 70,
+      "risk_pct": 0.038521164373236515,
+      "size_eur": 53.15141903216058,
+      "quality_score": 66,
       "sizing_pct": 7,
       "trailing_after_tp1": true,
       "trailing_active": false,
       "pyramiding_pct": 30,
       "pyramided": false,
       "stacked": false,
-      "opened_at": "2026-07-09T00:15:40.567Z",
-      "opened_at_cycle": 29,
-      "opened_at_date": "2026-07-09",
+      "opened_at": "2026-07-10T00:08:55.059Z",
+      "opened_at_cycle": 30,
+      "opened_at_date": "2026-07-10",
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
@@ -1684,6 +1684,41 @@
       "size_eur_added": 11.767564233095728,
       "closed_at_cycle": 29,
       "exit_price": 78.68548953442009
+    },
+    {
+      "id": "pos-1783556140567-7dpm",
+      "asset": "SOL",
+      "kind": "crypto",
+      "agent": "kairo",
+      "type": "kairo-shortMomentum",
+      "entry": 77.52249609079131,
+      "stop": 81.66082552968584,
+      "tp1": 73.76037841906901,
+      "tp2": 69.05773132941613,
+      "initial_stop": 81.66082552968584,
+      "high_since_entry": 77.94161442483139,
+      "rr1": 0.91,
+      "rr2": 2.05,
+      "risk_pct": 0.05338230381601595,
+      "size_eur": 53.350778153535494,
+      "quality_score": 70,
+      "sizing_pct": 7,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 30,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-07-09T00:15:40.567Z",
+      "opened_at_cycle": 29,
+      "opened_at_date": "2026-07-09",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-07-10T00:08:55.059Z",
+      "pnl_eur": -2.847987448212898,
+      "current_price": 77.94161442483139,
+      "age_days": 1,
+      "closed_at_cycle": 30,
+      "exit_price": 81.66082552968584
     }
   ],
   "equity_history": [
@@ -1889,7 +1924,14 @@
       "equity": 985.69,
       "cash": 708.8,
       "positions_count": 5
+    },
+    {
+      "date": "2026-07-10",
+      "cycle": 30,
+      "equity": 983.39,
+      "cash": 706.15,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-07-09"
+  "last_cycle": "2026-07-10"
 }
