@@ -1,9 +1,9 @@
 {
-  "generated": "2026-07-11T12:41:30.984Z",
+  "generated": "2026-07-11T14:13:23.416Z",
   "source": "Pollinations · openai",
   "date": "2026-07-11",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (38 indices · 10 crypto · 355 actions) : S&P 500 +0.42% (RSI 57, haussier fort) · Nasdaq +0.29% (RSI 47, plutôt haussier) · BTC +0.02% (RSI 68, haussier fort) · ETH +0.11% (RSI 77, plutôt haussier) · Apple -0.28% (RSI 62, haussier fort). Globalement, 223 actifs en biais haussier contre 147 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (38 indices · 8 crypto · 355 actions) : S&P 500 +0.42% (RSI 57, haussier fort) · Nasdaq +0.29% (RSI 47, plutôt haussier) · BTC +0.22% (RSI 68, haussier fort) · ETH +0.40% (RSI 77, plutôt haussier) · Apple -0.28% (RSI 62, haussier fort). Globalement, 221 actifs en biais haussier contre 147 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : tendance haussière confirmée (RSI 57, bull MA50)",
     "Nasdaq : tendance haussière confirmée (RSI 47, bear MA50)",
@@ -1343,7 +1343,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "A tiny GLP-1 implant is the latest bet to help patients maintain their weight loss",
+                "time": "2026-07-11T12:00:01.000Z",
+                "source": "CNBC"
+              }
+            ]
+          },
           "wisdom_adjustment": 0,
           "wisdom_note": null,
           "historical_analog": null,
@@ -1996,7 +2006,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "A tiny GLP-1 implant is the latest bet to help patients maintain their weight loss",
+                "time": "2026-07-11T12:00:01.000Z",
+                "source": "CNBC"
+              }
+            ]
+          },
           "wisdom_adjustment": 4,
           "wisdom_note": "Bottom-fishing post-overreaction",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
@@ -2417,12 +2437,17 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 1,
-            "risk": "normal",
+            "count": 2,
+            "risk": "caution",
             "items": [
               {
-                "title": "Here’s Why TSMC Investors Are Counting Down to July 16",
-                "time": "2026-07-09T16:46:15.000Z",
+                "title": "Stock Market Week Ahead: Watching Big Banks, Warsh, TSMC For Signals",
+                "time": "2026-07-11T13:10:05.000Z",
+                "source": "Yahoo Finance"
+              },
+              {
+                "title": "Stock Market Week Ahead: Watching Big Banks, GE, TSMC For Signals",
+                "time": "2026-07-11T13:10:05.000Z",
                 "source": "Yahoo Finance Crypto"
               }
             ]
@@ -2436,7 +2461,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"july\" ×9 (15 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"ahead\" ×6 (4 mentions/24h)"
         },
         {
           "asset": "Marvell Tech",
@@ -4233,7 +4258,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "A tiny GLP-1 implant is the latest bet to help patients maintain their weight loss",
+                "time": "2026-07-11T12:00:01.000Z",
+                "source": "CNBC"
+              }
+            ]
+          },
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
@@ -6014,7 +6049,7 @@
             112.54,
             109.84
           ],
-          "quality_score": 77,
+          "quality_score": 81,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -6042,13 +6077,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 72,
+          "quality_score_pre_wisdom": 76,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"shares\" ×6 (3 mentions/24h)"
         },
         {
           "asset": "Qualcomm",
@@ -6903,7 +6938,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"debut\" ×48 (16 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"debut\" ×30 (15 mentions/24h)"
         },
         {
           "asset": "LIT Lithium",
@@ -8574,12 +8609,17 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 1,
-            "risk": "normal",
+            "count": 2,
+            "risk": "caution",
             "items": [
               {
-                "title": "Here’s Why TSMC Investors Are Counting Down to July 16",
-                "time": "2026-07-09T16:46:15.000Z",
+                "title": "Stock Market Week Ahead: Watching Big Banks, Warsh, TSMC For Signals",
+                "time": "2026-07-11T13:10:05.000Z",
+                "source": "Yahoo Finance"
+              },
+              {
+                "title": "Stock Market Week Ahead: Watching Big Banks, GE, TSMC For Signals",
+                "time": "2026-07-11T13:10:05.000Z",
                 "source": "Yahoo Finance Crypto"
               }
             ]
@@ -8593,7 +8633,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"july\" ×9 (15 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"ahead\" ×6 (4 mentions/24h)"
         },
         {
           "asset": "AMD",
@@ -9409,7 +9449,7 @@
             450.22,
             434.97
           ],
-          "quality_score": 63,
+          "quality_score": 61,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9437,13 +9477,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 58,
+          "quality_score_pre_wisdom": 56,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sells\" ×3.6 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "HP",
@@ -9873,7 +9913,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"debut\" ×48 (16 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"debut\" ×30 (15 mentions/24h)"
         },
         {
           "asset": "Lowe's",
@@ -11261,9 +11301,9 @@
           "config": "ATR 0.60% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
           "rationale": "Théorie : la volatilité finit toujours par revenir. Quand l'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).",
           "entry": 2977.81005859375,
-          "stop": 2933.495820257198,
-          "tp1": 3013.261449262992,
-          "tp2": 3066.438535266854,
+          "stop": 2933.4958172808956,
+          "tp1": 3013.2614516440335,
+          "tp2": 3066.438541219459,
           "rr1": "0.80",
           "rr2": "2.00",
           "currency": "EUR",
@@ -11573,7 +11613,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"tensions\" ×6 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"tensions\" ×6 (3 mentions/24h)"
         },
         {
           "asset": "OMX Stockholm",
@@ -15673,7 +15713,7 @@
             "items": [
               {
                 "title": "Dow Jones Futures: Watch Nvidia, Micron, Sandisk, Robinhood As Market Sets Up; Big Earnings Due",
-                "time": "2026-07-11T02:39:48.000Z",
+                "time": "2026-07-11T12:49:37.000Z",
                 "source": "Yahoo Finance"
               },
               {
@@ -15692,7 +15732,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"debut\" ×48 (16 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"debut\" ×30 (15 mentions/24h)"
         },
         {
           "asset": "Netflix",
@@ -15812,7 +15852,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"season\" ×24 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"season\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Brent",
@@ -15893,7 +15933,7 @@
             76.3,
             76.01
           ],
-          "quality_score": 59,
+          "quality_score": 57,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15907,27 +15947,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Pennant group CEO Brent Guerisoli sells $128,214 in company stock",
-                "time": "2026-07-09T15:36:47.000Z",
-                "source": "Investing.com"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 54,
+          "quality_score_pre_wisdom": 52,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sells\" ×3.6 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Jus d'orange",
@@ -18219,7 +18249,7 @@
           "trailing_after_tp1": false,
           "macro_reason": null,
           "earnings_reason": null,
-          "news_sentiment": null,
+          "news_sentiment": "neutral",
           "news_sentiment_reason": null,
           "macro_event_reason": null,
           "cross_asset_reason": null,
@@ -18228,9 +18258,14 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 1,
-            "risk": "normal",
+            "count": 2,
+            "risk": "caution",
             "items": [
+              {
+                "title": "Stock Market Week Ahead: Watching Big Banks, Warsh, TSMC For Signals",
+                "time": "2026-07-11T13:10:05.000Z",
+                "source": "Yahoo Finance"
+              },
               {
                 "title": "A hedge-fund trade blamed for a massive market blowup in 2024 has made a big comeback, Goldman Sachs says",
                 "time": "2026-07-10T19:04:00.000Z",
@@ -18247,7 +18282,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"trade\" ×14 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"trade\" ×24 (8 mentions/24h)"
         },
         {
           "asset": "Morgan Stanley",
@@ -18328,7 +18363,7 @@
             222.13,
             222.28
           ],
-          "quality_score": 64,
+          "quality_score": 62,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18361,13 +18396,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 59,
+          "quality_score_pre_wisdom": 57,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"coverage\" ×24 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"coverage\" ×9 (3 mentions/24h)"
         },
         {
           "asset": "Berkshire",
@@ -18448,7 +18483,7 @@
             495.45,
             493.71
           ],
-          "quality_score": 59,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18462,17 +18497,27 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Berkshire Hathaway gains ground, but still trails the S&amp;P 500 as &apos;26 enters second half",
+                "time": "2026-07-11T13:07:41.000Z",
+                "source": "CNBC"
+              }
+            ]
+          },
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 54,
+          "quality_score_pre_wisdom": 59,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"half\" ×30 (5 mentions/24h)"
         },
         {
           "asset": "Walmart",
@@ -18568,18 +18613,13 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Can Walmart help the Fed harness real-time U.S. economic data? We&#x2019;re about to find out.",
                 "time": "2026-07-09T21:52:00.000Z",
                 "source": "MarketWatch"
-              },
-              {
-                "title": "Walmart (WMT) Offers Lower Prices Across Stores and Clubs",
-                "time": "2026-07-09T16:45:12.000Z",
-                "source": "Yahoo Finance Crypto"
               }
             ]
           },
@@ -18592,7 +18632,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×6.9 (16 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"x2019\" ×6.8 (17 mentions/24h)"
         },
         {
           "asset": "McDonald's",
@@ -21193,7 +21233,7 @@
             1034.87,
             1051.21
           ],
-          "quality_score": 60,
+          "quality_score": 62,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -21221,13 +21261,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 55,
+          "quality_score_pre_wisdom": 57,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"july\" ×9 (15 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"july\" ×11.3 (15 mentions/24h)"
         },
         {
           "asset": "Warner Bros Discovery",
@@ -24613,7 +24653,7 @@
     {
       "label": "Russell 2000",
       "kind": "index",
-      "price": 2977.805,
+      "price": 2977.8052,
       "change": "-0.49",
       "rsi": "50",
       "maCross": "bull",
@@ -24928,12 +24968,12 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 64095.106781456176,
-      "change": "0.02",
+      "price": 64220.33382242863,
+      "change": "0.22",
       "rsi": "68",
       "maCross": "bear",
-      "macdHist": "672.96",
-      "boll": "81%",
+      "macdHist": "680.96",
+      "boll": "83%",
       "adx": "36",
       "atr": "1.3%",
       "verdict": "Haussier fort",
@@ -24943,12 +24983,12 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 1797.6718055942108,
-      "change": "0.11",
+      "price": 1802.8763656294482,
+      "change": "0.40",
       "rsi": "77",
       "maCross": "bear",
-      "macdHist": "23.96",
-      "boll": "81%",
+      "macdHist": "24.29",
+      "boll": "82%",
       "adx": "54",
       "atr": "1.7%",
       "verdict": "Plutôt haussier",
@@ -24958,13 +24998,13 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 77.95979861627191,
-      "change": "-0.10",
-      "rsi": "68",
+      "price": 78.21576564541732,
+      "change": "0.22",
+      "rsi": "69",
       "maCross": "bull",
-      "macdHist": "0.23",
-      "boll": "61%",
-      "adx": "36",
+      "macdHist": "0.25",
+      "boll": "62%",
+      "adx": "37",
       "atr": "1.9%",
       "verdict": "Haussier fort",
       "score": 100,
@@ -24973,14 +25013,14 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "price": 578.6569515075524,
-      "change": "0.65",
-      "rsi": "61",
+      "price": 581.5828425472063,
+      "change": "1.16",
+      "rsi": "62",
       "maCross": "bear",
-      "macdHist": "3.81",
-      "boll": "71%",
-      "adx": "22",
-      "atr": "1.2%",
+      "macdHist": "4.00",
+      "boll": "76%",
+      "adx": "24",
+      "atr": "1.3%",
       "verdict": "Haussier fort",
       "score": 76,
       "cls": "bull"
@@ -24988,12 +25028,12 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "price": 1.1074760765257197,
-      "change": "0.34",
+      "price": 1.1089993067682555,
+      "change": "0.48",
       "rsi": "63",
       "maCross": "bear",
       "macdHist": "0.01",
-      "boll": "60%",
+      "boll": "61%",
       "adx": "26",
       "atr": "1.5%",
       "verdict": "Haussier fort",
@@ -25003,13 +25043,13 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "price": 0.16769859303868567,
-      "change": "0.69",
+      "price": 0.16806501882377262,
+      "change": "0.91",
       "rsi": "64",
       "maCross": "bear",
       "macdHist": "0.00",
       "boll": "60%",
-      "adx": "28",
+      "adx": "29",
       "atr": "3.4%",
       "verdict": "Haussier fort",
       "score": 80,
@@ -25018,61 +25058,31 @@
     {
       "label": "DOGE",
       "kind": "crypto",
-      "price": 0.07433176783609877,
-      "change": "0.41",
-      "rsi": "50",
+      "price": 0.07490270942629895,
+      "change": "1.18",
+      "rsi": "51",
       "maCross": "bear",
       "macdHist": "0.00",
-      "boll": "42%",
-      "adx": "1",
+      "boll": "47%",
+      "adx": "3",
       "atr": "1.6%",
       "verdict": "Indécis",
-      "score": 45,
+      "score": 51,
       "cls": "neutral"
     },
     {
       "label": "AVAX",
       "kind": "crypto",
-      "price": 6.721893229929619,
-      "change": "-0.19",
-      "rsi": "59",
+      "price": 6.744092893125914,
+      "change": "0.14",
+      "rsi": "60",
       "maCross": "bear",
-      "macdHist": "0.06",
-      "boll": "61%",
-      "adx": "18",
+      "macdHist": "0.07",
+      "boll": "63%",
+      "adx": "20",
       "atr": "1.7%",
       "verdict": "Haussier fort",
       "score": 76,
-      "cls": "bull"
-    },
-    {
-      "label": "SHIB",
-      "kind": "crypto",
-      "price": 0.000004392479057139192,
-      "change": "-0.02",
-      "rsi": "62",
-      "maCross": "bear",
-      "macdHist": "0.00",
-      "boll": "60%",
-      "adx": "24",
-      "atr": "1.2%",
-      "verdict": "Haussier fort",
-      "score": 76,
-      "cls": "bull"
-    },
-    {
-      "label": "SUI",
-      "kind": "crypto",
-      "price": 0.7407471644360801,
-      "change": "0.40",
-      "rsi": "63",
-      "maCross": "bear",
-      "macdHist": "0.01",
-      "boll": "71%",
-      "adx": "27",
-      "atr": "2.0%",
-      "verdict": "Haussier fort",
-      "score": 80,
       "cls": "bull"
     },
     {
@@ -31330,12 +31340,17 @@
         434.11
       ],
       "news_context": {
-        "count": 1,
-        "risk": "normal",
+        "count": 2,
+        "risk": "caution",
         "items": [
           {
-            "title": "Here’s Why TSMC Investors Are Counting Down to July 16",
-            "time": "2026-07-09T16:46:15.000Z",
+            "title": "Stock Market Week Ahead: Watching Big Banks, Warsh, TSMC For Signals",
+            "time": "2026-07-11T13:10:05.000Z",
+            "source": "Yahoo Finance"
+          },
+          {
+            "title": "Stock Market Week Ahead: Watching Big Banks, GE, TSMC For Signals",
+            "time": "2026-07-11T13:10:05.000Z",
             "source": "Yahoo Finance Crypto"
           }
         ]
@@ -32435,7 +32450,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 46
+    "matched_assets": 52
   },
   "macro": {
     "vix": 15.03,
@@ -32445,7 +32460,7 @@
     "cross_asset": {
       "sp500_change": 0.4208843399813908,
       "nasdaq_change": 0.28511108421508896,
-      "btc_change": 0.020390132197723773,
+      "btc_change": 0.2158068827442582,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -32457,7 +32472,7 @@
     "current_state": {
       "vix": 15.03,
       "yield_curve": null,
-      "btc_30d_change": 0.8772231849745094,
+      "btc_30d_change": 1.0743139894885718,
       "sp500_30d_change": 0.15548425938944815,
       "dominant_sectors": [
         "SOXX",
@@ -32465,25 +32480,25 @@
         "XLK"
       ],
       "dominant_news_themes": [
-        "tech",
         "war",
+        "tech",
         "earnings"
       ],
       "special_flags": []
     },
     "dominant_themes": [
-      "tech",
       "war",
+      "tech",
       "earnings"
     ],
     "theme_counts": {
-      "war": 89,
+      "war": 93,
+      "tech": 88,
+      "earnings": 68,
       "credit": 22,
-      "fed": 47,
-      "earnings": 67,
-      "crypto": 47,
-      "tech": 91,
       "geopolitical": 50,
+      "fed": 52,
+      "crypto": 50,
       "oil": 29
     },
     "top_sectors_60d": [
@@ -32628,20 +32643,19 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 70,
+      "ev_battery": 71,
+      "ai_breakthrough": 6,
       "crypto_etf": 1,
       "defi_growth": 3,
       "rate_pivot": 3,
       "recession": 2,
-      "crypto_hack": 4,
-      "ai_breakthrough": 5,
-      "semicon_supply": 2
+      "crypto_hack": 4
     },
     "etf_flows": {},
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 89,
+      "war": 93,
       "credit": 22,
       "geopol": 50
     },
@@ -32894,7 +32908,7 @@
       "label": "BTC",
       "kind": "crypto",
       "rsi": 68,
-      "change": 0.02,
+      "change": 0.22,
       "adx": 36,
       "verdict": "Haussier fort",
       "cls": "bull",
@@ -32904,7 +32918,7 @@
       "label": "ETH",
       "kind": "crypto",
       "rsi": 77,
-      "change": 0.11,
+      "change": 0.4,
       "adx": 54,
       "verdict": "Plutôt haussier",
       "cls": "bull",
@@ -32913,9 +32927,9 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "rsi": 68,
-      "change": -0.1,
-      "adx": 36,
+      "rsi": 69,
+      "change": 0.22,
+      "adx": 37,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 100
@@ -32923,9 +32937,9 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "rsi": 61,
-      "change": 0.65,
-      "adx": 22,
+      "rsi": 62,
+      "change": 1.16,
+      "adx": 24,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 76
@@ -32934,7 +32948,7 @@
       "label": "XRP",
       "kind": "crypto",
       "rsi": 63,
-      "change": 0.34,
+      "change": 0.48,
       "adx": 26,
       "verdict": "Haussier fort",
       "cls": "bull",
@@ -32944,8 +32958,8 @@
       "label": "ADA",
       "kind": "crypto",
       "rsi": 64,
-      "change": 0.69,
-      "adx": 28,
+      "change": 0.91,
+      "adx": 29,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 80
@@ -32953,42 +32967,22 @@
     {
       "label": "DOGE",
       "kind": "crypto",
-      "rsi": 50,
-      "change": 0.41,
-      "adx": 1,
+      "rsi": 51,
+      "change": 1.18,
+      "adx": 3,
       "verdict": "Indécis",
       "cls": "neutral",
-      "score": 45
+      "score": 51
     },
     {
       "label": "AVAX",
       "kind": "crypto",
-      "rsi": 59,
-      "change": -0.19,
-      "adx": 18,
+      "rsi": 60,
+      "change": 0.14,
+      "adx": 20,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 76
-    },
-    {
-      "label": "SHIB",
-      "kind": "crypto",
-      "rsi": 62,
-      "change": -0.02,
-      "adx": 24,
-      "verdict": "Haussier fort",
-      "cls": "bull",
-      "score": 76
-    },
-    {
-      "label": "SUI",
-      "kind": "crypto",
-      "rsi": 63,
-      "change": 0.4,
-      "adx": 27,
-      "verdict": "Haussier fort",
-      "cls": "bull",
-      "score": 80
     },
     {
       "label": "Apple",
