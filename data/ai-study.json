@@ -1,9 +1,9 @@
 {
-  "generated": "2026-07-11T10:21:57.858Z",
+  "generated": "2026-07-11T11:31:56.999Z",
   "source": "Pollinations · openai",
   "date": "2026-07-11",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (38 indices · 10 crypto · 355 actions) : S&P 500 +0.42% (RSI 57, haussier fort) · Nasdaq +0.29% (RSI 47, plutôt haussier) · BTC +0.02% (RSI 68, haussier fort) · ETH -0.07% (RSI 77, plutôt haussier) · Apple -0.28% (RSI 62, haussier fort). Globalement, 223 actifs en biais haussier contre 147 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (38 indices · 7 crypto · 355 actions) : S&P 500 +0.42% (RSI 57, haussier fort) · Nasdaq +0.29% (RSI 47, plutôt haussier) · BTC +0.05% (RSI 68, haussier fort) · ETH +0.12% (RSI 77, plutôt haussier) · Apple -0.28% (RSI 62, haussier fort). Globalement, 221 actifs en biais haussier contre 147 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : tendance haussière confirmée (RSI 57, bull MA50)",
     "Nasdaq : tendance haussière confirmée (RSI 47, bear MA50)",
@@ -2402,7 +2402,7 @@
             436.96,
             434.11
           ],
-          "quality_score": 90,
+          "quality_score": 87,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -2430,13 +2430,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Bottom-fishing post-overreaction",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 85,
+          "quality_score_pre_wisdom": 82,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"july\" ×13.7 (16 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"july\" ×9 (15 mentions/24h)"
         },
         {
           "asset": "Marvell Tech",
@@ -2727,7 +2727,7 @@
             278000,
             285000
           ],
-          "quality_score": 68,
+          "quality_score": 66,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -2741,27 +2741,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Samsung Just Reported a Profit That Was Up 19-Fold. That’s Great News for Micron Stock.",
-                "time": "2026-07-09T15:12:29.000Z",
-                "source": "Yahoo Finance Crypto"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Bottom-fishing post-overreaction",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 63,
+          "quality_score_pre_wisdom": 61,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"micron\" ×4 (4 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Diageo",
@@ -6913,7 +6903,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"debut\" ×45 (15 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"debut\" ×48 (16 mentions/24h)"
         },
         {
           "asset": "LIT Lithium",
@@ -8569,7 +8559,7 @@
             436.96,
             434.11
           ],
-          "quality_score": 78,
+          "quality_score": 75,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -8597,13 +8587,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 73,
+          "quality_score_pre_wisdom": 70,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"july\" ×13.7 (16 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"july\" ×9 (15 mentions/24h)"
         },
         {
           "asset": "AMD",
@@ -9419,7 +9409,7 @@
             450.22,
             434.97
           ],
-          "quality_score": 67,
+          "quality_score": 63,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9434,31 +9424,26 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Dell Technologies director Silver Lake sells $271,229 in stock",
                 "time": "2026-07-10T22:16:00.000Z",
                 "source": "Investing.com"
-              },
-              {
-                "title": "Stock Market Today: Dow Builds Gains Amid U.S.-Iran News; Arm, Dell Lead Upside (Live Coverage)",
-                "time": "2026-07-09T14:54:01.000Z",
-                "source": "Yahoo Finance"
               }
             ]
           },
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 62,
+          "quality_score_pre_wisdom": 58,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"coverage\" ×12 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"sells\" ×3.6 (3 mentions/24h)"
         },
         {
           "asset": "HP",
@@ -9888,7 +9873,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"debut\" ×45 (15 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"debut\" ×48 (16 mentions/24h)"
         },
         {
           "asset": "Lowe's",
@@ -11239,7 +11224,7 @@
             278000,
             285000
           ],
-          "quality_score": 67,
+          "quality_score": 65,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11253,27 +11238,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Samsung Just Reported a Profit That Was Up 19-Fold. That’s Great News for Micron Stock.",
-                "time": "2026-07-09T15:12:29.000Z",
-                "source": "Yahoo Finance Crypto"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 62,
+          "quality_score_pre_wisdom": 60,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"micron\" ×4 (4 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Russell 2000",
@@ -12867,7 +12842,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"post\" ×24 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"hold\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Duke Energy",
@@ -15579,7 +15554,7 @@
           "trailing_after_tp1": false,
           "macro_reason": null,
           "earnings_reason": null,
-          "news_sentiment": null,
+          "news_sentiment": "neutral",
           "news_sentiment_reason": null,
           "macro_event_reason": null,
           "cross_asset_reason": null,
@@ -15612,7 +15587,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"debut\" ×45 (15 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"debut\" ×48 (16 mentions/24h)"
         },
         {
           "asset": "Netflix",
@@ -18148,18 +18123,13 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "A hedge-fund trade blamed for a massive market blowup in 2024 has made a big comeback, Goldman Sachs says",
                 "time": "2026-07-10T19:04:00.000Z",
                 "source": "MarketWatch"
-              },
-              {
-                "title": "Goldman Sachs wins $70 billion in asset management deals with Verizon, Lockheed Martin",
-                "time": "2026-07-09T15:00:50.000Z",
-                "source": "CNBC"
               }
             ]
           },
@@ -18172,7 +18142,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"trade\" ×10 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"trade\" ×14 (7 mentions/24h)"
         },
         {
           "asset": "Morgan Stanley",
@@ -18292,7 +18262,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"coverage\" ×12 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"coverage\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Berkshire",
@@ -18517,7 +18487,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×9.8 (18 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"x2019\" ×7.8 (17 mentions/24h)"
         },
         {
           "asset": "McDonald's",
@@ -21118,7 +21088,7 @@
             1034.87,
             1051.21
           ],
-          "quality_score": 62,
+          "quality_score": 60,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -21146,13 +21116,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 57,
+          "quality_score_pre_wisdom": 55,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"july\" ×13.7 (16 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"july\" ×9 (15 mentions/24h)"
         },
         {
           "asset": "Warner Bros Discovery",
@@ -24853,11 +24823,11 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 64094.19338987589,
-      "change": "0.02",
+      "price": 64115.39035887903,
+      "change": "0.05",
       "rsi": "68",
       "maCross": "bear",
-      "macdHist": "672.91",
+      "macdHist": "674.26",
       "boll": "81%",
       "adx": "36",
       "atr": "1.3%",
@@ -24868,13 +24838,13 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 1794.3664727036264,
-      "change": "-0.07",
+      "price": 1797.7008853306438,
+      "change": "0.12",
       "rsi": "77",
       "maCross": "bear",
-      "macdHist": "23.75",
-      "boll": "80%",
-      "adx": "53",
+      "macdHist": "23.96",
+      "boll": "81%",
+      "adx": "54",
       "atr": "1.7%",
       "verdict": "Plutôt haussier",
       "score": 63,
@@ -24883,13 +24853,13 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 77.76026450228541,
-      "change": "-0.36",
-      "rsi": "67",
+      "price": 77.94436688313564,
+      "change": "-0.12",
+      "rsi": "68",
       "maCross": "bull",
-      "macdHist": "0.22",
-      "boll": "60%",
-      "adx": "35",
+      "macdHist": "0.23",
+      "boll": "61%",
+      "adx": "36",
       "atr": "1.9%",
       "verdict": "Haussier fort",
       "score": 100,
@@ -24898,12 +24868,12 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "price": 576.724101397946,
-      "change": "0.32",
-      "rsi": "60",
+      "price": 577.3658905113481,
+      "change": "0.43",
+      "rsi": "61",
       "maCross": "bear",
-      "macdHist": "3.69",
-      "boll": "67%",
+      "macdHist": "3.73",
+      "boll": "68%",
       "adx": "21",
       "atr": "1.2%",
       "verdict": "Haussier fort",
@@ -24913,13 +24883,13 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "price": 1.1059138229145,
-      "change": "0.20",
+      "price": 1.1085712622602402,
+      "change": "0.44",
       "rsi": "63",
       "maCross": "bear",
       "macdHist": "0.01",
-      "boll": "60%",
-      "adx": "25",
+      "boll": "61%",
+      "adx": "26",
       "atr": "1.5%",
       "verdict": "Haussier fort",
       "score": 80,
@@ -24928,12 +24898,12 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "price": 0.16693409121105388,
-      "change": "0.23",
+      "price": 0.16771511848721277,
+      "change": "0.70",
       "rsi": "64",
       "maCross": "bear",
       "macdHist": "0.00",
-      "boll": "59%",
+      "boll": "60%",
       "adx": "28",
       "atr": "3.4%",
       "verdict": "Haussier fort",
@@ -24941,63 +24911,18 @@
       "cls": "bull"
     },
     {
-      "label": "DOGE",
-      "kind": "crypto",
-      "price": 0.07414442316656647,
-      "change": "0.16",
-      "rsi": "49",
-      "maCross": "bear",
-      "macdHist": "0.00",
-      "boll": "40%",
-      "adx": "2",
-      "atr": "1.5%",
-      "verdict": "Indécis",
-      "score": 45,
-      "cls": "neutral"
-    },
-    {
       "label": "AVAX",
       "kind": "crypto",
-      "price": 6.694840603782534,
-      "change": "-0.60",
-      "rsi": "58",
+      "price": 6.717513532461704,
+      "change": "-0.26",
+      "rsi": "59",
       "maCross": "bear",
       "macdHist": "0.06",
-      "boll": "58%",
-      "adx": "16",
-      "atr": "1.8%",
-      "verdict": "Haussier fort",
-      "score": 76,
-      "cls": "bull"
-    },
-    {
-      "label": "DOT",
-      "kind": "crypto",
-      "price": 0.8806546394285047,
-      "change": "0.51",
-      "rsi": "65",
-      "maCross": "bear",
-      "macdHist": "0.01",
-      "boll": "67%",
-      "adx": "30",
+      "boll": "61%",
+      "adx": "18",
       "atr": "1.7%",
       "verdict": "Haussier fort",
-      "score": 80,
-      "cls": "bull"
-    },
-    {
-      "label": "LINK",
-      "kind": "crypto",
-      "price": 7.970140578394553,
-      "change": "0.13",
-      "rsi": "67",
-      "maCross": "bear",
-      "macdHist": "0.08",
-      "boll": "77%",
-      "adx": "35",
-      "atr": "1.8%",
-      "verdict": "Haussier fort",
-      "score": 80,
+      "score": 76,
       "cls": "bull"
     },
     {
@@ -31347,17 +31272,7 @@
         278000,
         285000
       ],
-      "news_context": {
-        "count": 1,
-        "risk": "normal",
-        "items": [
-          {
-            "title": "Samsung Just Reported a Profit That Was Up 19-Fold. That’s Great News for Micron Stock.",
-            "time": "2026-07-09T15:12:29.000Z",
-            "source": "Yahoo Finance Crypto"
-          }
-        ]
-      },
+      "news_context": null,
       "wisdom_adjustment": 0,
       "historical_analog": null
     },
@@ -32370,7 +32285,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 49
+    "matched_assets": 46
   },
   "macro": {
     "vix": 15.03,
@@ -32380,7 +32295,7 @@
     "cross_asset": {
       "sp500_change": 0.4208843399813908,
       "nasdaq_change": 0.28511108421508896,
-      "btc_change": 0.0189647849787008,
+      "btc_change": 0.05204264717094488,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -32392,7 +32307,7 @@
     "current_state": {
       "vix": 15.03,
       "yield_curve": null,
-      "btc_30d_change": 0.8757856273991048,
+      "btc_30d_change": 0.9091468538694131,
       "sp500_30d_change": 0.15548425938944815,
       "dominant_sectors": [
         "SOXX",
@@ -32412,14 +32327,14 @@
       "earnings"
     ],
     "theme_counts": {
-      "earnings": 69,
-      "war": 87,
-      "geopolitical": 51,
-      "crypto": 49,
-      "oil": 29,
-      "fed": 43,
-      "tech": 100,
-      "credit": 21
+      "war": 89,
+      "credit": 22,
+      "fed": 47,
+      "earnings": 67,
+      "crypto": 47,
+      "tech": 91,
+      "geopolitical": 50,
+      "oil": 29
     },
     "top_sectors_60d": [
       "SOXX",
@@ -32563,8 +32478,8 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 67,
-      "crypto_etf": 2,
+      "ev_battery": 70,
+      "crypto_etf": 1,
       "defi_growth": 3,
       "rate_pivot": 3,
       "recession": 2,
@@ -32576,9 +32491,9 @@
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 87,
-      "credit": 21,
-      "geopol": 51
+      "war": 89,
+      "credit": 22,
+      "geopol": 50
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -32829,7 +32744,7 @@
       "label": "BTC",
       "kind": "crypto",
       "rsi": 68,
-      "change": 0.02,
+      "change": 0.05,
       "adx": 36,
       "verdict": "Haussier fort",
       "cls": "bull",
@@ -32839,8 +32754,8 @@
       "label": "ETH",
       "kind": "crypto",
       "rsi": 77,
-      "change": -0.07,
-      "adx": 53,
+      "change": 0.12,
+      "adx": 54,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 63
@@ -32848,9 +32763,9 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "rsi": 67,
-      "change": -0.36,
-      "adx": 35,
+      "rsi": 68,
+      "change": -0.12,
+      "adx": 36,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 100
@@ -32858,8 +32773,8 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "rsi": 60,
-      "change": 0.32,
+      "rsi": 61,
+      "change": 0.43,
       "adx": 21,
       "verdict": "Haussier fort",
       "cls": "bull",
@@ -32869,8 +32784,8 @@
       "label": "XRP",
       "kind": "crypto",
       "rsi": 63,
-      "change": 0.2,
-      "adx": 25,
+      "change": 0.44,
+      "adx": 26,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 80
@@ -32879,51 +32794,21 @@
       "label": "ADA",
       "kind": "crypto",
       "rsi": 64,
-      "change": 0.23,
+      "change": 0.7,
       "adx": 28,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 80
     },
     {
-      "label": "DOGE",
-      "kind": "crypto",
-      "rsi": 49,
-      "change": 0.16,
-      "adx": 2,
-      "verdict": "Indécis",
-      "cls": "neutral",
-      "score": 45
-    },
-    {
       "label": "AVAX",
       "kind": "crypto",
-      "rsi": 58,
-      "change": -0.6,
-      "adx": 16,
+      "rsi": 59,
+      "change": -0.26,
+      "adx": 18,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 76
-    },
-    {
-      "label": "DOT",
-      "kind": "crypto",
-      "rsi": 65,
-      "change": 0.51,
-      "adx": 30,
-      "verdict": "Haussier fort",
-      "cls": "bull",
-      "score": 80
-    },
-    {
-      "label": "LINK",
-      "kind": "crypto",
-      "rsi": 67,
-      "change": 0.13,
-      "adx": 35,
-      "verdict": "Haussier fort",
-      "cls": "bull",
-      "score": 80
     },
     {
       "label": "Apple",
