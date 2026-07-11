@@ -1,9 +1,9 @@
 {
-  "generated": "2026-07-11T16:28:37.201Z",
+  "generated": "2026-07-11T17:34:50.818Z",
   "source": "Pollinations · openai",
   "date": "2026-07-11",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (38 indices · 9 crypto · 355 actions) : S&P 500 +0.42% (RSI 57, haussier fort) · Nasdaq +0.29% (RSI 47, plutôt haussier) · BTC +0.12% (RSI 68, haussier fort) · ETH +1.24% (RSI 78, indécis) · Apple -0.28% (RSI 62, haussier fort). Globalement, 221 actifs en biais haussier contre 147 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (38 indices · 10 crypto · 355 actions) : S&P 500 +0.42% (RSI 57, haussier fort) · Nasdaq +0.29% (RSI 47, plutôt haussier) · BTC +0.37% (RSI 68, haussier fort) · ETH +1.59% (RSI 78, indécis) · Apple -0.28% (RSI 62, haussier fort). Globalement, 221 actifs en biais haussier contre 147 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : tendance haussière confirmée (RSI 57, bull MA50)",
     "Nasdaq : tendance haussière confirmée (RSI 47, bear MA50)",
@@ -3953,7 +3953,7 @@
       "desc": "Court terme · 3-7 jours · Patience faible · 5-9 trades/semaine. Idéal si tu veux voir l'app travailler chaque jour. Risque très maîtrisé.",
       "icon": "⚡",
       "color": "#ef4444",
-      "count": 187,
+      "count": 188,
       "setups": [
         {
           "asset": "AbbVie",
@@ -5026,6 +5026,126 @@
           "spike_theme_reason": null
         },
         {
+          "asset": "Meta",
+          "kind": "action",
+          "type": "kairo-momentum",
+          "label": "Momentum vif — saute dedans",
+          "timeframe": "Court terme · 1-3 jours",
+          "confidence": "medium",
+          "direction": "long",
+          "config": "Surge +14.8% sur 5 jours + RSI 69. KAIRO entre dans un mouvement déjà engagé en pariant sur sa continuation.",
+          "rationale": "Stratégie momentum : on saute dans un mouvement vif en pariant sur sa continuation à court terme. Risque : retournement violent si le momentum casse. Stop large à 2.2 ATR.",
+          "entry": 669.2100219726562,
+          "stop": 630.6110320639445,
+          "tp1": 704.3000127987577,
+          "tp2": 748.1625013313848,
+          "rr1": "0.91",
+          "rr2": "2.05",
+          "currency": "EUR",
+          "prices60": [
+            671.58,
+            676.87,
+            688.55,
+            670.91,
+            668.84,
+            674.72,
+            659.15,
+            675.03,
+            678.62,
+            671.34,
+            669.12,
+            611.91,
+            608.75,
+            610.41,
+            604.96,
+            612.88,
+            616.81,
+            609.63,
+            598.86,
+            603,
+            616.63,
+            618.43,
+            614.23,
+            611.21,
+            602.61,
+            605.06,
+            607.38,
+            610.26,
+            612.34,
+            635.26,
+            635.29,
+            632.51,
+            600.47,
+            597.63,
+            622.98,
+            627.57,
+            593,
+            585.39,
+            584.59,
+            570.98,
+            568.43,
+            566.98,
+            593.48,
+            600.21,
+            567.58,
+            577.22,
+            563.85,
+            562.2,
+            557.67,
+            542.87,
+            550.25,
+            562.6,
+            563.29,
+            612.91,
+            582.9,
+            600.29,
+            615.58,
+            603.12,
+            631.48,
+            669.21
+          ],
+          "quality_score": 91,
+          "sizing_pct": 2,
+          "sizing_label": "medium-high",
+          "trailing_after_tp1": false,
+          "macro_reason": null,
+          "earnings_reason": null,
+          "news_sentiment": null,
+          "news_sentiment_reason": null,
+          "macro_event_reason": null,
+          "cross_asset_reason": null,
+          "sector_reason": "Secteur XLK Tech fort (25.6% / 60j) → boost +10%",
+          "stacked": false,
+          "stacked_count": null,
+          "stacked_patterns": null,
+          "news_context": {
+            "count": 3,
+            "risk": "alert",
+            "items": [
+              {
+                "title": "Review &amp; Preview: Why the Dow Snapped Its Streak",
+                "time": "2026-07-10T23:55:00.000Z",
+                "source": "Yahoo Finance"
+              },
+              {
+                "title": "Meta&#x2019;s stock roars back to life as it notches its best week in years",
+                "time": "2026-07-10T22:24:00.000Z",
+                "source": "MarketWatch"
+              }
+            ]
+          },
+          "wisdom_adjustment": 4,
+          "wisdom_note": "Scalp les overreactions rapides",
+          "historical_analog": "Tapering tantrum (Bernanke) (2013)",
+          "quality_score_pre_wisdom": 85,
+          "alpha_quality": null,
+          "alpha_pattern": null,
+          "alpha_rules": null,
+          "insider_signal": null,
+          "insider_reason": null,
+          "spike_theme_reason": "Spike theme \"life\" ×24 (4 mentions/24h)"
+        },
+        {
           "asset": "Cacao",
           "kind": "metal",
           "type": "kairo-momentum",
@@ -6083,7 +6203,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"shares\" ×6 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"shares\" ×8 (4 mentions/24h)"
         },
         {
           "asset": "Qualcomm",
@@ -12992,7 +13112,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"earnings\" ×4.8 (8 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"earnings\" ×3.8 (7 mentions/24h)"
         },
         {
           "asset": "Duke Energy",
@@ -15717,14 +15837,14 @@
             "risk": "alert",
             "items": [
               {
-                "title": "Dow Jones Futures: Watch Nvidia, Micron, Sandisk, Robinhood As Market Sets Up; Big Earnings Due",
-                "time": "2026-07-11T15:41:35.000Z",
-                "source": "Yahoo Finance"
+                "title": "Broader AI demand is key for Nvidia investors, Morgan Stanley says",
+                "time": "2026-07-11T17:08:56.000Z",
+                "source": "Investing.com"
               },
               {
                 "title": "Dow Jones Futures: Watch Nvidia, Micron, Sandisk, Robinhood As Market Sets Up; Big Earnings Due",
                 "time": "2026-07-11T15:41:35.000Z",
-                "source": "Yahoo Finance Crypto"
+                "source": "Yahoo Finance"
               }
             ]
           },
@@ -18368,7 +18488,7 @@
             222.13,
             222.28
           ],
-          "quality_score": 59,
+          "quality_score": 64,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18383,17 +18503,17 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 3,
+            "risk": "alert",
             "items": [
               {
-                "title": "Morgan Stanley Names T-Mobile Top Pick Despite Starlink Competition Concerns",
-                "time": "2026-07-10T15:44:24.000Z",
+                "title": "Broader AI demand is key for Nvidia investors, Morgan Stanley says",
+                "time": "2026-07-11T17:08:56.000Z",
                 "source": "Investing.com"
               },
               {
-                "title": "Lakefront Biotherapeutics stock coverage resumed at Equalweight by Morgan Stanley",
-                "time": "2026-07-10T07:27:00.000Z",
+                "title": "Morgan Stanley Names T-Mobile Top Pick Despite Starlink Competition Concerns",
+                "time": "2026-07-10T15:44:24.000Z",
                 "source": "Investing.com"
               }
             ]
@@ -18401,13 +18521,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 54,
+          "quality_score_pre_wisdom": 59,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"nvidia\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Berkshire",
@@ -18603,7 +18723,7 @@
             112.21,
             113.9
           ],
-          "quality_score": 62,
+          "quality_score": 60,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18631,13 +18751,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 57,
+          "quality_score_pre_wisdom": 55,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"data\" ×10 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"x2019\" ×7.3 (17 mentions/24h)"
         },
         {
           "asset": "McDonald's",
@@ -24983,13 +25103,13 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 64161.11830092105,
-      "change": "0.12",
+      "price": 64322.031871855004,
+      "change": "0.37",
       "rsi": "68",
       "maCross": "bear",
-      "macdHist": "677.18",
-      "boll": "82%",
-      "adx": "36",
+      "macdHist": "687.45",
+      "boll": "84%",
+      "adx": "37",
       "atr": "1.3%",
       "verdict": "Haussier fort",
       "score": 80,
@@ -24998,13 +25118,13 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 1817.8416793301278,
-      "change": "1.24",
+      "price": 1824.2508476563096,
+      "change": "1.59",
       "rsi": "78",
       "maCross": "bear",
-      "macdHist": "25.25",
-      "boll": "86%",
-      "adx": "56",
+      "macdHist": "25.66",
+      "boll": "87%",
+      "adx": "57",
       "atr": "1.7%",
       "verdict": "Indécis",
       "score": 50,
@@ -25013,13 +25133,13 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 78.11620060921787,
-      "change": "0.10",
+      "price": 77.96078331023881,
+      "change": "-0.10",
       "rsi": "68",
       "maCross": "bull",
-      "macdHist": "0.24",
-      "boll": "62%",
-      "adx": "37",
+      "macdHist": "0.23",
+      "boll": "61%",
+      "adx": "36",
       "atr": "1.9%",
       "verdict": "Haussier fort",
       "score": 100,
@@ -25028,12 +25148,12 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "price": 579.8273657817127,
-      "change": "0.86",
-      "rsi": "61",
+      "price": 580.3785727884056,
+      "change": "0.95",
+      "rsi": "62",
       "maCross": "bear",
-      "macdHist": "3.89",
-      "boll": "73%",
+      "macdHist": "3.92",
+      "boll": "74%",
       "adx": "23",
       "atr": "1.3%",
       "verdict": "Haussier fort",
@@ -25043,13 +25163,13 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "price": 1.1128702695961368,
-      "change": "0.83",
+      "price": 1.1138867889321205,
+      "change": "0.92",
       "rsi": "64",
       "maCross": "bear",
       "macdHist": "0.01",
       "boll": "64%",
-      "adx": "27",
+      "adx": "28",
       "atr": "1.5%",
       "verdict": "Haussier fort",
       "score": 80,
@@ -25058,9 +25178,9 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "price": 0.17122444129438144,
-      "change": "2.81",
-      "rsi": "66",
+      "price": 0.1709273339934578,
+      "change": "2.63",
+      "rsi": "65",
       "maCross": "bear",
       "macdHist": "0.00",
       "boll": "65%",
@@ -25073,8 +25193,8 @@
     {
       "label": "DOGE",
       "kind": "crypto",
-      "price": 0.07513975427989696,
-      "change": "1.50",
+      "price": 0.07516952979200436,
+      "change": "1.54",
       "rsi": "52",
       "maCross": "bear",
       "macdHist": "0.00",
@@ -25086,34 +25206,49 @@
       "cls": "neutral"
     },
     {
-      "label": "AVAX",
+      "label": "DOT",
       "kind": "crypto",
-      "price": 6.738235124431538,
-      "change": "0.05",
-      "rsi": "60",
+      "price": 0.8801028006689786,
+      "change": "0.44",
+      "rsi": "65",
       "maCross": "bear",
-      "macdHist": "0.07",
-      "boll": "63%",
-      "adx": "19",
+      "macdHist": "0.01",
+      "boll": "67%",
+      "adx": "30",
       "atr": "1.7%",
       "verdict": "Haussier fort",
-      "score": 76,
+      "score": 80,
       "cls": "bull"
     },
     {
-      "label": "UNI",
+      "label": "LINK",
       "kind": "crypto",
-      "price": 3.729118990665451,
-      "change": "5.72",
-      "rsi": "84",
-      "maCross": "bull",
-      "macdHist": "0.07",
-      "boll": "114%",
-      "adx": "68",
-      "atr": "2.3%",
+      "price": 8.088463592674827,
+      "change": "1.62",
+      "rsi": "69",
+      "maCross": "bear",
+      "macdHist": "0.09",
+      "boll": "86%",
+      "adx": "38",
+      "atr": "1.8%",
       "verdict": "Plutôt haussier",
-      "score": 70,
+      "score": 67,
       "cls": "bull"
+    },
+    {
+      "label": "BCH",
+      "kind": "crypto",
+      "price": 247.92309627164448,
+      "change": "1.06",
+      "rsi": "82",
+      "maCross": "bear",
+      "macdHist": "7.18",
+      "boll": "86%",
+      "adx": "64",
+      "atr": "2.3%",
+      "verdict": "Indécis",
+      "score": 50,
+      "cls": "neutral"
     },
     {
       "label": "Apple",
@@ -32480,7 +32615,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 54
+    "matched_assets": 55
   },
   "macro": {
     "vix": 15.03,
@@ -32490,7 +32625,7 @@
     "cross_asset": {
       "sp500_change": 0.4208843399813908,
       "nasdaq_change": 0.28511108421508896,
-      "btc_change": 0.12340108360480054,
+      "btc_change": 0.37450665079352,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -32502,7 +32637,7 @@
     "current_state": {
       "vix": 15.03,
       "yield_curve": null,
-      "btc_30d_change": 0.9811165883281033,
+      "btc_30d_change": 1.2343732723982825,
       "sp500_30d_change": 0.15548425938944815,
       "dominant_sectors": [
         "SOXX",
@@ -32522,14 +32657,14 @@
       "earnings"
     ],
     "theme_counts": {
-      "tech": 87,
-      "credit": 21,
+      "tech": 90,
+      "crypto": 52,
+      "fed": 45,
       "geopolitical": 48,
       "war": 94,
-      "earnings": 68,
-      "oil": 29,
-      "crypto": 51,
-      "fed": 46
+      "earnings": 67,
+      "credit": 22,
+      "oil": 29
     },
     "top_sectors_60d": [
       "SOXX",
@@ -32645,23 +32780,9 @@
         "title": "S&amp;P Dow Jones Indices Announces Changes to the S&amp;P/TSX Composite Index and S&amp;P/TSX Canadian Dividend Aristocrats Index",
         "url": "https://finance.yahoo.com/markets/stocks/articles/p-dow-jones-indices-announces-211500148.html?.tsrc=rss",
         "source": "Yahoo Finance"
-      },
-      {
-        "asset": "Meta",
-        "kind": "confirmed",
-        "title": "Freedom Metals Acquisition Corp. Announces the Closing of $275 million Initial Public Offering",
-        "url": "https://finance.yahoo.com/markets/stocks/articles/freedom-metals-acquisition-corp-announces-200500168.html?.tsrc=rss",
-        "source": "Yahoo Finance"
-      },
-      {
-        "asset": "ING",
-        "kind": "confirmed",
-        "title": "Freedom Metals Acquisition Corp. Announces the Closing of $275 million Initial Public Offering",
-        "url": "https://finance.yahoo.com/markets/stocks/articles/freedom-metals-acquisition-corp-announces-200500168.html?.tsrc=rss",
-        "source": "Yahoo Finance"
       }
     ],
-    "ma_count": 3,
+    "ma_count": 1,
     "fear_greed": {
       "value": 26,
       "classification": "Fear",
@@ -32673,10 +32794,10 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 69,
+      "ev_battery": 68,
       "ai_breakthrough": 6,
       "crypto_etf": 1,
-      "defi_growth": 3,
+      "defi_growth": 2,
       "rate_pivot": 3,
       "recession": 2,
       "crypto_hack": 4
@@ -32686,7 +32807,7 @@
       "index": 100,
       "level": "extreme",
       "war": 94,
-      "credit": 21,
+      "credit": 22,
       "geopol": 48
     },
     "earnings_top_beats": [],
@@ -32938,8 +33059,8 @@
       "label": "BTC",
       "kind": "crypto",
       "rsi": 68,
-      "change": 0.12,
-      "adx": 36,
+      "change": 0.37,
+      "adx": 37,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 80
@@ -32948,8 +33069,8 @@
       "label": "ETH",
       "kind": "crypto",
       "rsi": 78,
-      "change": 1.24,
-      "adx": 56,
+      "change": 1.59,
+      "adx": 57,
       "verdict": "Indécis",
       "cls": "neutral",
       "score": 50
@@ -32958,8 +33079,8 @@
       "label": "SOL",
       "kind": "crypto",
       "rsi": 68,
-      "change": 0.1,
-      "adx": 37,
+      "change": -0.1,
+      "adx": 36,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 100
@@ -32967,8 +33088,8 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "rsi": 61,
-      "change": 0.86,
+      "rsi": 62,
+      "change": 0.95,
       "adx": 23,
       "verdict": "Haussier fort",
       "cls": "bull",
@@ -32978,8 +33099,8 @@
       "label": "XRP",
       "kind": "crypto",
       "rsi": 64,
-      "change": 0.83,
-      "adx": 27,
+      "change": 0.92,
+      "adx": 28,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 80
@@ -32987,8 +33108,8 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "rsi": 66,
-      "change": 2.81,
+      "rsi": 65,
+      "change": 2.63,
       "adx": 31,
       "verdict": "Haussier fort",
       "cls": "bull",
@@ -32998,31 +33119,41 @@
       "label": "DOGE",
       "kind": "crypto",
       "rsi": 52,
-      "change": 1.5,
+      "change": 1.54,
       "adx": 4,
       "verdict": "Indécis",
       "cls": "neutral",
       "score": 51
     },
     {
-      "label": "AVAX",
+      "label": "DOT",
       "kind": "crypto",
-      "rsi": 60,
-      "change": 0.05,
-      "adx": 19,
+      "rsi": 65,
+      "change": 0.44,
+      "adx": 30,
       "verdict": "Haussier fort",
       "cls": "bull",
-      "score": 76
+      "score": 80
     },
     {
-      "label": "UNI",
+      "label": "LINK",
       "kind": "crypto",
-      "rsi": 84,
-      "change": 5.72,
-      "adx": 68,
+      "rsi": 69,
+      "change": 1.62,
+      "adx": 38,
       "verdict": "Plutôt haussier",
       "cls": "bull",
-      "score": 70
+      "score": 67
+    },
+    {
+      "label": "BCH",
+      "kind": "crypto",
+      "rsi": 82,
+      "change": 1.06,
+      "adx": 64,
+      "verdict": "Indécis",
+      "cls": "neutral",
+      "score": 50
     },
     {
       "label": "Apple",
