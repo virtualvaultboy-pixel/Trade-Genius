@@ -1,10 +1,62 @@
 {
-  "generated": "2026-07-05T19:22:21.320Z",
+  "generated": "2026-07-12T19:09:30.647Z",
   "sources": [
     "Yahoo Finance",
     "CoinGecko"
   ],
   "entries": [
+    {
+      "id": "sem28-2026",
+      "week": "Sem. 28",
+      "date": "2026-07-12",
+      "title": "Marchés portés · les hausses dominent",
+      "method": "Lecture des 4 grands indices (S&P, Nasdaq, CAC, Dow) + 2 crypto majors (BTC, ETH) sur le tf daily. Agrégation des outils RSI · MA20/MA50 · MACD · Bollinger · ADX · ATR · Momentum.",
+      "verdict": {
+        "score": 68,
+        "cls": "bull",
+        "label": "Plutôt haussier"
+      },
+      "indicators": [
+        {
+          "sym": "S&P 500",
+          "read": "RSI 57 · MA20 > MA50 · MACD positif · +1.2% / 5j",
+          "sig": "bull",
+          "val": "Haussier fort"
+        },
+        {
+          "sym": "Nasdaq",
+          "read": "RSI 47 · MA20 < MA50 · MACD positif · +1.7% / 5j",
+          "sig": "bull",
+          "val": "Plutôt haussier"
+        },
+        {
+          "sym": "CAC 40",
+          "read": "RSI 46 · MA20 > MA50 · MACD négatif · -2.0% / 5j",
+          "sig": "bear",
+          "val": "Plutôt baissier"
+        },
+        {
+          "sym": "Dow",
+          "read": "RSI 70 · MA20 > MA50 · MACD négatif · -0.5% / 5j",
+          "sig": "bull",
+          "val": "Haussier fort"
+        },
+        {
+          "sym": "BTC",
+          "read": "RSI 69 · MA20 < MA50 · MACD positif · +1.3% / 5j",
+          "sig": "bull",
+          "val": "Haussier fort"
+        },
+        {
+          "sym": "ETH",
+          "read": "RSI 78 · MA20 < MA50 · MACD positif · +2.8% / 5j",
+          "sig": "bull",
+          "val": "Plutôt haussier"
+        }
+      ],
+      "conclusion": "<strong class=\"bull\">Biais acheteur modéré.</strong> La majorité des outils signalent un environnement favorable, mais sans unanimité. La prudence reste de mise sur les zones tendues.",
+      "generated": "2026-07-12T19:09:30.647Z"
+    },
     {
       "id": "sem27-2026",
       "week": "Sem. 27",
