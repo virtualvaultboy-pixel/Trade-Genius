@@ -1,20 +1,20 @@
 {
-  "generated": "2026-07-11T00:02:20.433Z",
-  "date": "2026-07-11",
+  "generated": "2026-07-13T23:57:00.393Z",
+  "date": "2026-07-13",
   "capital_initial_per_sandbox": 1000,
   "sandboxes": [
     {
       "sandbox_id": "bastion",
       "ia_name": "BASTION",
-      "trades_closed": 42,
-      "trades_open": 3,
-      "win_rate": 0.238,
-      "profit_factor": 3.05,
-      "total_return_pct": 5.8,
+      "trades_closed": 43,
+      "trades_open": 5,
+      "win_rate": 0.233,
+      "profit_factor": 2.92,
+      "total_return_pct": 5.53,
       "max_drawdown_pct": -2.66,
-      "equity_current": 1058.03,
+      "equity_current": 1055.29,
       "equity_high": 1058.69,
-      "cash": 820.5
+      "cash": 648.55
     },
     {
       "sandbox_id": "phenix",
@@ -23,24 +23,24 @@
       "trades_open": 5,
       "win_rate": 0.36,
       "profit_factor": 1.74,
-      "total_return_pct": 3.58,
+      "total_return_pct": 3.29,
       "max_drawdown_pct": -1.83,
-      "equity_current": 1035.8,
+      "equity_current": 1032.9,
       "equity_high": 1036.13,
-      "cash": 654.42
+      "cash": 619.39
     },
     {
       "sandbox_id": "rafale",
       "ia_name": "RAFALE",
-      "trades_closed": 25,
+      "trades_closed": 26,
       "trades_open": 3,
-      "win_rate": 0.36,
-      "profit_factor": 0.89,
-      "total_return_pct": 0.24,
+      "win_rate": 0.346,
+      "profit_factor": 0.78,
+      "total_return_pct": 0.18,
       "max_drawdown_pct": -4.13,
-      "equity_current": 1002.42,
+      "equity_current": 1001.79,
       "equity_high": 1017.84,
-      "cash": 714.81
+      "cash": 707.51
     },
     {
       "sandbox_id": "nexus",
@@ -49,9 +49,9 @@
       "trades_open": 4,
       "win_rate": 0.178,
       "profit_factor": 0.79,
-      "total_return_pct": -0.79,
+      "total_return_pct": -1.29,
       "max_drawdown_pct": -4.07,
-      "equity_current": 992.08,
+      "equity_current": 987.1,
       "equity_high": 1016.32,
       "cash": 763.5
     },
@@ -70,8 +70,8 @@
     }
   ],
   "aggregate": {
-    "equity_total": 5091.05,
-    "trades_total": 171,
-    "trades_open": 15
+    "equity_total": 5079.8,
+    "trades_total": 173,
+    "trades_open": 17
   }
 }
