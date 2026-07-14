@@ -6,7 +6,7 @@
   "icon": "₿",
   "created_at": "2026-05-30T17:55:42.950Z",
   "capital_initial": 1000,
-  "cash": 763.5032679996002,
+  "cash": 744.5838748054733,
   "positions": [
     {
       "id": "pos-1782864688654-pkib",
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 1.5345089797003681,
-      "age_days": 9
+      "current_price": 1.5615131029896225,
+      "age_days": 10
     },
     {
       "id": "pos-1783383162002-0m4e",
@@ -52,7 +52,7 @@
       "tp1": 65958.78928063235,
       "tp2": 68216.22501849997,
       "initial_stop": 62166.297241014756,
-      "high_since_entry": 64152.84069033826,
+      "high_since_entry": 64976.769256850814,
       "rr1": 0.91,
       "rr2": 2.05,
       "risk_pct": 0.030965790882315273,
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 62241.08871998942,
-      "age_days": 5
+      "current_price": 64976.769256850814,
+      "age_days": 6
     },
     {
       "id": "pos-1783383162002-gpsx",
@@ -81,31 +81,32 @@
       "agent": "kairo",
       "type": "kairo-momentum",
       "entry": 1805.5588039563795,
-      "stop": 1728.4707705975954,
+      "stop": 1805.5588039563795,
       "tp1": 1875.638834282547,
       "tp2": 1963.2388721902562,
       "initial_stop": 1728.4707705975954,
-      "high_since_entry": 1805.5588039563795,
+      "high_since_entry": 1890.3488860793414,
       "rr1": 0.91,
       "rr2": 2.05,
       "risk_pct": 0.04269483397044012,
-      "size_eur": 63.06464398042311,
+      "size_eur": 81.98403717455004,
       "quality_score": 61,
       "sizing_pct": 7,
       "trailing_after_tp1": true,
-      "trailing_active": false,
+      "trailing_active": true,
       "pyramiding_pct": 30,
-      "pyramided": false,
+      "pyramided": true,
       "stacked": false,
       "opened_at": "2026-07-07T00:12:42.002Z",
       "opened_at_cycle": 27,
       "opened_at_date": "2026-07-07",
       "status": "open",
-      "touched_tp1": false,
+      "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 1772.853739393086,
-      "age_days": 5
+      "current_price": 1890.3488860793414,
+      "age_days": 6,
+      "size_eur_added": 18.919393194126933
     },
     {
       "id": "pos-1783468885451-b3pb",
@@ -118,7 +119,7 @@
       "tp1": 594.6754827185434,
       "tp2": 619.4552432458975,
       "initial_stop": 557.5058419275125,
-      "high_since_entry": 578.1556423669741,
+      "high_since_entry": 581.8173829547828,
       "rr1": 0.8,
       "rr2": 2,
       "risk_pct": 0.03571668064142928,
@@ -137,8 +138,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 566.6298708371971,
-      "age_days": 4
+      "current_price": 581.8173829547828,
+      "age_days": 5
     }
   ],
   "closed_trades": [
@@ -1949,7 +1950,14 @@
       "equity": 987.1,
       "cash": 763.5,
       "positions_count": 4
+    },
+    {
+      "date": "2026-07-14",
+      "cycle": 33,
+      "equity": 997.18,
+      "cash": 744.58,
+      "positions_count": 4
     }
   ],
-  "last_cycle": "2026-07-13"
+  "last_cycle": "2026-07-14"
 }
