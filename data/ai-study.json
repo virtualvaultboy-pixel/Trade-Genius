@@ -1,9 +1,9 @@
 {
-  "generated": "2026-07-18T16:28:23.431Z",
+  "generated": "2026-07-18T17:35:22.103Z",
   "source": "Pollinations · openai",
   "date": "2026-07-18",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (38 indices · 8 crypto · 355 actions) : S&P 500 -1.01% (RSI 59, plutôt baissier) · Nasdaq -1.40% (RSI 53, baissier fort) · BTC +0.26% (RSI 55, plutôt haussier) · ETH +0.05% (RSI 58, haussier fort) · Apple +0.14% (RSI 89, plutôt haussier). Globalement, 193 actifs en biais haussier contre 161 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (38 indices · 10 crypto · 355 actions) : S&P 500 -1.01% (RSI 59, plutôt baissier) · Nasdaq -1.40% (RSI 53, baissier fort) · BTC +0.55% (RSI 55, haussier fort) · ETH +0.16% (RSI 58, haussier fort) · Apple +0.14% (RSI 89, plutôt haussier). Globalement, 195 actifs en biais haussier contre 161 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : pression vendeuse persistante (RSI 59)",
     "Nasdaq : pression vendeuse persistante (RSI 53)",
@@ -23,17 +23,17 @@
     "label": "Indécis"
   },
   "recommended": {
-    "count": 17,
+    "count": 18,
     "byKind": {
       "index": 0,
-      "crypto": 0,
+      "crypto": 1,
       "action": 15,
       "forex": 2,
       "metal": 0
     },
     "byConfidence": {
       "very-high": 3,
-      "high": 14,
+      "high": 15,
       "medium": 0
     },
     "assets": [
@@ -81,6 +81,15 @@
         "confidence": "high",
         "direction": "long",
         "rr2": "5.36"
+      },
+      {
+        "label": "BTC",
+        "kind": "crypto",
+        "type": "doji-haussier",
+        "label_setup": "Doji — Retournement haussier",
+        "confidence": "high",
+        "direction": "long",
+        "rr2": "5.07"
       },
       {
         "label": "Cloudflare",
@@ -193,7 +202,7 @@
     ],
     "opportunityVerdict": {
       "cls": "bull",
-      "label": "17 opportunités détectées",
+      "label": "18 opportunités détectées",
       "desc": "Plusieurs actifs alignés simultanément — contexte large favorable aux acheteurs trend-follow."
     }
   },
@@ -746,7 +755,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"better\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"better\" ×42 (7 mentions/24h)"
         },
         {
           "asset": "United Airlines",
@@ -827,7 +836,7 @@
             118.81,
             115.41
           ],
-          "quality_score": 83,
+          "quality_score": 78,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -841,17 +850,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "United Airlines stark warning could make your next flight more expensive",
-                "time": "2026-07-17T03:33:00.000Z",
-                "source": "Yahoo Finance Crypto"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 0,
           "wisdom_note": null,
           "historical_analog": null,
@@ -861,7 +860,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"could\" ×6 (5 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "American Airlines",
@@ -1619,7 +1618,7 @@
       "desc": "Moyen terme · 1-3 semaines · Patience moyenne · 5-7 trades/semaine. Le meilleur compromis fréquence/qualité. Risque très maîtrisé.",
       "icon": "🔥",
       "color": "#f59e0b",
-      "count": 24,
+      "count": 25,
       "setups": [
         {
           "asset": "Delta Airlines",
@@ -1844,7 +1843,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"better\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"better\" ×42 (7 mentions/24h)"
         },
         {
           "asset": "United Airlines",
@@ -1925,7 +1924,7 @@
             118.81,
             115.41
           ],
-          "quality_score": 87,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1939,27 +1938,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "United Airlines stark warning could make your next flight more expensive",
-                "time": "2026-07-17T03:33:00.000Z",
-                "source": "Yahoo Finance Crypto"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Bottom-fishing post-overreaction",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 82,
+          "quality_score_pre_wisdom": 77,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"could\" ×6 (5 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "American Airlines",
@@ -3439,7 +3428,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"earnings\" ×3.6 (6 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"earnings\" ×4.2 (7 mentions/24h)"
         },
         {
           "asset": "USD/CAD",
@@ -3755,6 +3744,121 @@
           "insider_signal": null,
           "insider_reason": null,
           "spike_theme_reason": null
+        },
+        {
+          "asset": "BTC",
+          "kind": "crypto",
+          "type": "doji-haussier",
+          "label": "Doji — Retournement haussier",
+          "timeframe": "Swing · 3-10 jours (sortie sur Doji inverse)",
+          "confidence": "high",
+          "direction": "long",
+          "config": "Doji détecté après bougie rouge (-1.4%) puis bougie verte de confirmation (+0.5%). Combat acheteurs/vendeurs résolu côté acheteur.",
+          "rationale": "Stratégie Heikin Ashi adaptée : après une chute, un doji marque une hésitation (combat acheteur/vendeur). La bougie verte qui suit confirme que les acheteurs ont gagné. Stop technique au plus bas de la bougie rouge. Sortie discrétionnaire au prochain Doji baissier (doji après bougie verte).",
+          "entry": 64274.30619992906,
+          "stop": 63661.35116024228,
+          "tp1": 65829.05580271981,
+          "tp2": 67383.80540551057,
+          "rr1": "2.54",
+          "rr2": "5.07",
+          "currency": "USD",
+          "prices60": [
+            77459.9443,
+            77546.3377,
+            75482.5238,
+            76672.7929,
+            76988.1613,
+            77274.4015,
+            75824.0633,
+            74352.6993,
+            73539.8419,
+            73382.7183,
+            73751.0679,
+            73593.3712,
+            71360.3252,
+            66649.8556,
+            64021.8892,
+            63796.2544,
+            60921.7944,
+            60861.8801,
+            63254.5722,
+            63078.4405,
+            61658.312,
+            61492.5144,
+            63552.3009,
+            63537.739,
+            64377.5767,
+            65713.6236,
+            66300.9585,
+            65598.944,
+            64422.5737,
+            62900.2271,
+            63513.6587,
+            64240.2328,
+            63231.8696,
+            63957.1956,
+            62651.9347,
+            60908.9951,
+            59712.6181,
+            59981.8316,
+            59943.1108,
+            59612.294,
+            60159.6302,
+            58550.7478,
+            59979.9007,
+            61487.299,
+            62537.4408,
+            63094.2402,
+            63546.4301,
+            64072.2992,
+            63351.3677,
+            62248.9303,
+            63220.6857,
+            64082.0404,
+            63892.7925,
+            63746.441,
+            62242.2528,
+            64977.3631,
+            64722.0579,
+            63788.929,
+            63925.5093,
+            64274.3062
+          ],
+          "quality_score": 66,
+          "sizing_pct": 1,
+          "sizing_label": "medium",
+          "trailing_after_tp1": false,
+          "macro_reason": null,
+          "earnings_reason": null,
+          "news_sentiment": null,
+          "news_sentiment_reason": null,
+          "macro_event_reason": null,
+          "cross_asset_reason": null,
+          "sector_reason": null,
+          "stacked": false,
+          "stacked_count": null,
+          "stacked_patterns": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Massive bitcoin call spreads target $72,000 by month end, right when the Fed meets",
+                "time": "2026-07-18T14:15:15.000Z",
+                "source": "CoinDesk"
+              }
+            ]
+          },
+          "wisdom_adjustment": 4,
+          "wisdom_note": "Bottom-fishing post-overreaction",
+          "historical_analog": "Tapering tantrum (Bernanke) (2013)",
+          "quality_score_pre_wisdom": 61,
+          "alpha_quality": null,
+          "alpha_pattern": null,
+          "alpha_rules": null,
+          "insider_signal": null,
+          "insider_reason": null,
+          "spike_theme_reason": "Spike theme \"right\" ×36 (6 mentions/24h)"
         },
         {
           "asset": "XLY Consumer Disc.",
@@ -4189,7 +4293,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"better\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"better\" ×42 (7 mentions/24h)"
         }
       ]
     },
@@ -4201,7 +4305,7 @@
       "desc": "Court terme · 3-7 jours · Patience faible · 5-9 trades/semaine. Idéal si tu veux voir l'app travailler chaque jour. Risque très maîtrisé.",
       "icon": "⚡",
       "color": "#ef4444",
-      "count": 169,
+      "count": 168,
       "setups": [
         {
           "asset": "Delta Airlines",
@@ -4426,7 +4530,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"better\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"better\" ×42 (7 mentions/24h)"
         },
         {
           "asset": "United Airlines",
@@ -4507,7 +4611,7 @@
             118.81,
             115.41
           ],
-          "quality_score": 88,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -4521,27 +4625,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "United Airlines stark warning could make your next flight more expensive",
-                "time": "2026-07-17T03:33:00.000Z",
-                "source": "Yahoo Finance Crypto"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 82,
+          "quality_score_pre_wisdom": 77,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"could\" ×6 (5 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "American Airlines",
@@ -6224,111 +6318,6 @@
           "spike_theme_reason": null
         },
         {
-          "asset": "XRP",
-          "kind": "crypto",
-          "type": "kairo-squeeze",
-          "label": "Volatilité comprimée — cassure proche",
-          "timeframe": "Court terme · 3-7 jours",
-          "confidence": "medium",
-          "direction": "long",
-          "config": "ATR 1.31% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
-          "rationale": "Théorie : la volatilité finit toujours par revenir. Quand l'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).",
-          "entry": 1.0867914301490431,
-          "stop": 1.0510720243958127,
-          "tp1": 1.1153669547516274,
-          "tp2": 1.1582302416555041,
-          "rr1": "0.80",
-          "rr2": "2.00",
-          "currency": "USD",
-          "prices60": [
-            1.365,
-            1.3717,
-            1.3335,
-            1.3569,
-            1.3507,
-            1.3492,
-            1.3279,
-            1.3053,
-            1.3129,
-            1.3282,
-            1.338,
-            1.3308,
-            1.2947,
-            1.2085,
-            1.2007,
-            1.1673,
-            1.0962,
-            1.0932,
-            1.1548,
-            1.1674,
-            1.1373,
-            1.0969,
-            1.1408,
-            1.1315,
-            1.149,
-            1.1853,
-            1.2377,
-            1.2165,
-            1.1856,
-            1.1453,
-            1.1327,
-            1.1491,
-            1.1245,
-            1.1286,
-            1.109,
-            1.0717,
-            1.0421,
-            1.0468,
-            1.0472,
-            1.0485,
-            1.0575,
-            1.0386,
-            1.0522,
-            1.0863,
-            1.1337,
-            1.157,
-            1.1573,
-            1.1439,
-            1.1126,
-            1.0889,
-            1.0931,
-            1.1037,
-            1.0987,
-            1.0858,
-            1.065,
-            1.1114,
-            1.1123,
-            1.0863,
-            1.0886,
-            1.0868
-          ],
-          "quality_score": 65,
-          "sizing_pct": 2,
-          "sizing_label": "medium-high",
-          "trailing_after_tp1": false,
-          "macro_reason": null,
-          "earnings_reason": null,
-          "news_sentiment": null,
-          "news_sentiment_reason": null,
-          "macro_event_reason": null,
-          "cross_asset_reason": null,
-          "sector_reason": null,
-          "stacked": false,
-          "stacked_count": null,
-          "stacked_patterns": null,
-          "news_context": null,
-          "wisdom_adjustment": 4,
-          "wisdom_note": "Scalp les overreactions rapides",
-          "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 60,
-          "alpha_quality": null,
-          "alpha_pattern": null,
-          "alpha_rules": null,
-          "insider_signal": null,
-          "insider_reason": null,
-          "spike_theme_reason": null
-        },
-        {
           "asset": "Progressive",
           "kind": "action",
           "type": "kairo-doji",
@@ -6728,7 +6717,7 @@
           "trailing_after_tp1": false,
           "macro_reason": null,
           "earnings_reason": null,
-          "news_sentiment": "neutral",
+          "news_sentiment": null,
           "news_sentiment_reason": null,
           "macro_event_reason": null,
           "cross_asset_reason": null,
@@ -6736,17 +6725,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "China’s Xi promotes China’s commitment to AI access in speech at Shanghai conference",
-                "time": "2026-07-17T03:12:44.000Z",
-                "source": "Investing.com"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
@@ -6837,7 +6816,7 @@
             96.98,
             95.04
           ],
-          "quality_score": 79,
+          "quality_score": 84,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -6865,13 +6844,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 74,
+          "quality_score_pre_wisdom": 79,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sell\" ×3.8 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"google\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Oracle",
@@ -7631,7 +7610,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sells\" ×48 (8 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"sells\" ×42 (7 mentions/24h)"
         },
         {
           "asset": "Zscaler",
@@ -8276,7 +8255,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"iran\" ×7.2 (12 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"energy\" ×9 (3 mentions/24h)"
         },
         {
           "asset": "Enphase",
@@ -8777,7 +8756,7 @@
             279500,
             255000
           ],
-          "quality_score": 72,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -8805,13 +8784,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 67,
+          "quality_score_pre_wisdom": 69,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"chip\" ×4.7 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"chip\" ×5.3 (7 mentions/24h)"
         },
         {
           "asset": "SK Hynix",
@@ -8931,7 +8910,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"better\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"better\" ×42 (7 mentions/24h)"
         },
         {
           "asset": "TCS",
@@ -9907,6 +9886,121 @@
           "insider_signal": null,
           "insider_reason": null,
           "spike_theme_reason": "Spike theme \"drops\" ×18 (3 mentions/24h)"
+        },
+        {
+          "asset": "LINK",
+          "kind": "crypto",
+          "type": "kairo-momentum",
+          "label": "Momentum vif — saute dedans",
+          "timeframe": "Court terme · 1-3 jours",
+          "confidence": "medium",
+          "direction": "long",
+          "config": "Surge +5.3% sur 5 jours + RSI 57. KAIRO entre dans un mouvement déjà engagé en pariant sur sa continuation.",
+          "rationale": "Stratégie momentum : on saute dans un mouvement vif en pariant sur sa continuation à court terme. Risque : retournement violent si le momentum casse. Stop large à 2.2 ATR.",
+          "entry": 8.2794387652857,
+          "stop": 7.967620760609788,
+          "tp1": 8.562909678627438,
+          "tp2": 8.917248320304612,
+          "rr1": "0.91",
+          "rr2": "2.05",
+          "currency": "USD",
+          "prices60": [
+            9.6172,
+            9.7493,
+            9.4041,
+            9.5517,
+            9.4338,
+            9.4943,
+            9.3758,
+            9.1231,
+            8.9822,
+            9.011,
+            9.1621,
+            9.1159,
+            9.0411,
+            8.3507,
+            8.3385,
+            8,
+            7.3449,
+            7.3891,
+            7.8891,
+            7.9849,
+            7.8297,
+            7.5637,
+            7.8813,
+            7.8509,
+            7.9682,
+            8.1559,
+            8.2894,
+            8.2676,
+            8.0782,
+            7.9922,
+            7.9201,
+            7.9768,
+            7.7781,
+            7.86,
+            7.6252,
+            7.4088,
+            7.2375,
+            7.3409,
+            7.2912,
+            7.2641,
+            7.3699,
+            7.1834,
+            7.3506,
+            7.7409,
+            7.9587,
+            7.9974,
+            8.0537,
+            8.0199,
+            7.8603,
+            7.6228,
+            7.7303,
+            7.9597,
+            7.9325,
+            7.9891,
+            7.8648,
+            8.3423,
+            8.529,
+            8.332,
+            8.2602,
+            8.2794
+          ],
+          "quality_score": 61,
+          "sizing_pct": 1,
+          "sizing_label": "medium",
+          "trailing_after_tp1": false,
+          "macro_reason": null,
+          "earnings_reason": null,
+          "news_sentiment": null,
+          "news_sentiment_reason": null,
+          "macro_event_reason": null,
+          "cross_asset_reason": null,
+          "sector_reason": null,
+          "stacked": false,
+          "stacked_count": null,
+          "stacked_patterns": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Your stock portfolio is tied to the Japanese yen &#x2014; and a looming intervention is flashing a major warning sign",
+                "time": "2026-07-18T15:14:00.000Z",
+                "source": "MarketWatch"
+              }
+            ]
+          },
+          "wisdom_adjustment": 4,
+          "wisdom_note": "Scalp les overreactions rapides",
+          "historical_analog": "Tapering tantrum (Bernanke) (2013)",
+          "quality_score_pre_wisdom": 56,
+          "alpha_quality": null,
+          "alpha_pattern": null,
+          "alpha_rules": null,
+          "insider_signal": null,
+          "insider_reason": null,
+          "spike_theme_reason": "Spike theme \"sign\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Qualcomm",
@@ -10966,7 +11060,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"growth\" ×5.3 (8 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"growth\" ×6 (9 mentions/24h)"
         },
         {
           "asset": "Intuitive Surgical",
@@ -11081,7 +11175,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"growth\" ×5.3 (8 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"growth\" ×6 (9 mentions/24h)"
         },
         {
           "asset": "Elevance Health",
@@ -11196,7 +11290,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"form\" ×27 (18 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"july\" ×17.1 (20 mentions/24h)"
         },
         {
           "asset": "Yum! Brands",
@@ -12117,7 +12211,7 @@
             52552.9688,
             52146.4219
           ],
-          "quality_score": 58,
+          "quality_score": 61,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -12150,128 +12244,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 53,
-          "alpha_quality": null,
-          "alpha_pattern": null,
-          "alpha_rules": null,
-          "insider_signal": null,
-          "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sell\" ×3.8 (5 mentions/24h)"
-        },
-        {
-          "asset": "BTC",
-          "kind": "crypto",
-          "type": "kairo-squeeze",
-          "label": "Volatilité comprimée — cassure proche",
-          "timeframe": "Court terme · 3-7 jours",
-          "confidence": "medium",
-          "direction": "long",
-          "config": "ATR 1.19% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
-          "rationale": "Théorie : la volatilité finit toujours par revenir. Quand l'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).",
-          "entry": 64092.03753764387,
-          "stop": 62181.14850956349,
-          "tp1": 65620.74876010817,
-          "tp2": 67913.81559380463,
-          "rr1": "0.80",
-          "rr2": "2.00",
-          "currency": "USD",
-          "prices60": [
-            77459.9443,
-            77546.3377,
-            75482.5238,
-            76672.7929,
-            76988.1613,
-            77274.4015,
-            75824.0633,
-            74352.6993,
-            73539.8419,
-            73382.7183,
-            73751.0679,
-            73593.3712,
-            71360.3252,
-            66649.8556,
-            64021.8892,
-            63796.2544,
-            60921.7944,
-            60861.8801,
-            63254.5722,
-            63078.4405,
-            61658.312,
-            61492.5144,
-            63552.3009,
-            63537.739,
-            64377.5767,
-            65713.6236,
-            66300.9585,
-            65598.944,
-            64422.5737,
-            62900.2271,
-            63513.6587,
-            64240.2328,
-            63231.8696,
-            63957.1956,
-            62651.9347,
-            60908.9951,
-            59712.6181,
-            59981.8316,
-            59943.1108,
-            59612.294,
-            60159.6302,
-            58550.7478,
-            59979.9007,
-            61487.299,
-            62537.4408,
-            63094.2402,
-            63546.4301,
-            64072.2992,
-            63351.3677,
-            62248.9303,
-            63220.6857,
-            64082.0404,
-            63892.7925,
-            63746.441,
-            62242.2528,
-            64977.3631,
-            64722.0579,
-            63788.929,
-            63925.5093,
-            64092.0375
-          ],
-          "quality_score": 61,
-          "sizing_pct": 1,
-          "sizing_label": "medium",
-          "trailing_after_tp1": false,
-          "macro_reason": null,
-          "earnings_reason": null,
-          "news_sentiment": null,
-          "news_sentiment_reason": null,
-          "macro_event_reason": null,
-          "cross_asset_reason": null,
-          "sector_reason": null,
-          "stacked": false,
-          "stacked_count": null,
-          "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Massive bitcoin call spreads target $72,000 by month end, right when the Fed meets",
-                "time": "2026-07-18T14:15:15.000Z",
-                "source": "CoinDesk"
-              }
-            ]
-          },
-          "wisdom_adjustment": 4,
-          "wisdom_note": "Scalp les overreactions rapides",
-          "historical_analog": "Tapering tantrum (Bernanke) (2013)",
           "quality_score_pre_wisdom": 56,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"right\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"google\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "BNB",
@@ -12281,12 +12260,12 @@
           "timeframe": "Court terme · 3-7 jours",
           "confidence": "medium",
           "direction": "long",
-          "config": "ATR 1.03% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
+          "config": "ATR 1.04% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
           "rationale": "Théorie : la volatilité finit toujours par revenir. Quand l'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).",
-          "entry": 569.8735657408221,
-          "stop": 555.1626464545849,
-          "tp1": 581.6423011698118,
-          "tp2": 599.2954043132964,
+          "entry": 570.8291719330828,
+          "stop": 555.9476086839419,
+          "tp1": 582.7344225323955,
+          "tp2": 600.5922984313645,
           "rr1": "0.80",
           "rr2": "2.00",
           "currency": "USD",
@@ -12350,7 +12329,7 @@
             580.0035,
             572.0494,
             567.8597,
-            569.8736
+            570.8292
           ],
           "quality_score": 56,
           "sizing_pct": 1,
@@ -13207,18 +13186,13 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Stock Market Today: Dow, Nasdaq Slide As Oil Climbs, Netflix Tumbles; Eli Lilly In Buy Zone (Live Coverage)",
                 "time": "2026-07-17T19:09:54.000Z",
                 "source": "Yahoo Finance"
-              },
-              {
-                "title": "Eli Lilly to Pay up to $3.8B for AtaiBeckley in Big Pharma’s Latest Psychedelic Foray",
-                "time": "2026-07-17T04:01:00.000Z",
-                "source": "Yahoo Finance Crypto"
               }
             ]
           },
@@ -13231,7 +13205,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"live\" ×3 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"live\" ×3.6 (3 mentions/24h)"
         },
         {
           "asset": "AbbVie",
@@ -14501,7 +14475,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"earnings\" ×3.6 (6 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"earnings\" ×4.2 (7 mentions/24h)"
         },
         {
           "asset": "Lloyds",
@@ -15632,7 +15606,7 @@
             45624.9805,
             42671.2695
           ],
-          "quality_score": 63,
+          "quality_score": 60,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15647,17 +15621,12 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Taiwan Semiconductor Manufacturing (TSM): A Beneficiary of AI Boom",
                 "time": "2026-07-17T14:19:59.000Z",
-                "source": "Yahoo Finance"
-              },
-              {
-                "title": "Nasdaq, Dow, S&amp;P 500 Futures Slip As Chip Selloff Overshadows Strong Earnings Season: NFLX, SNDK, SPCX, MRVL Stoc…",
-                "time": "2026-07-17T01:36:42.000Z",
                 "source": "Yahoo Finance"
               }
             ]
@@ -15665,13 +15634,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 58,
+          "quality_score_pre_wisdom": 55,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"strong\" ×6 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Tesla",
@@ -15752,7 +15721,7 @@
             391.06,
             380.84
           ],
-          "quality_score": 62,
+          "quality_score": 66,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15785,13 +15754,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 57,
+          "quality_score_pre_wisdom": 61,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sell\" ×3.8 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"google\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "AMD",
@@ -15872,7 +15841,7 @@
             500.94,
             495.76
           ],
-          "quality_score": 68,
+          "quality_score": 72,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15905,13 +15874,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 63,
+          "quality_score_pre_wisdom": 67,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sell\" ×3.8 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"google\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Netflix",
@@ -16011,13 +15980,13 @@
             "risk": "alert",
             "items": [
               {
-                "title": "Update: Equities Fall Amid Netflix Sell-Off; Oil Climbs as Middle East Tensions Rise",
-                "time": "2026-07-17T20:46:56.000Z",
-                "source": "Yahoo Finance"
+                "title": "Netflix beat earnings, did its biggest buyback and then restricted access to its engagement data and fell 12% through…",
+                "time": "2026-07-18T14:01:18.000Z",
+                "source": "Reddit r/stocks"
               },
               {
-                "title": "Stock Market Today: Dow Drops 400 Points Amid Iran War News; Netflix Tumbles (Live Coverage)",
-                "time": "2026-07-17T20:28:09.000Z",
+                "title": "Update: Equities Fall Amid Netflix Sell-Off; Oil Climbs as Middle East Tensions Rise",
+                "time": "2026-07-17T20:46:56.000Z",
                 "source": "Yahoo Finance"
               }
             ]
@@ -19096,7 +19065,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"apos\" ×5.1 (6 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"apos\" ×6 (7 mentions/24h)"
         },
         {
           "asset": "CAC 40",
@@ -22723,7 +22692,7 @@
             118.81,
             115.41
           ],
-          "quality_score": 82,
+          "quality_score": 77,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -22737,17 +22706,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "United Airlines stark warning could make your next flight more expensive",
-                "time": "2026-07-17T03:33:00.000Z",
-                "source": "Yahoo Finance Crypto"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 0,
           "wisdom_note": null,
           "historical_analog": null,
@@ -22765,7 +22724,7 @@
           },
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"could\" ×6 (5 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "American Airlines",
@@ -23360,26 +23319,26 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 64092.03753764387,
-      "change": "0.26",
+      "price": 64274.30619992906,
+      "change": "0.55",
       "rsi": "55",
       "maCross": "bear",
-      "macdHist": "346.91",
-      "boll": "68%",
-      "adx": "9",
+      "macdHist": "358.54",
+      "boll": "71%",
+      "adx": "11",
       "atr": "1.2%",
-      "verdict": "Plutôt haussier",
-      "score": 69,
+      "verdict": "Haussier fort",
+      "score": 76,
       "cls": "bull"
     },
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 1842.262182237168,
-      "change": "0.05",
+      "price": 1844.3577772540618,
+      "change": "0.16",
       "rsi": "58",
       "maCross": "bull",
-      "macdHist": "14.86",
+      "macdHist": "15.00",
       "boll": "71%",
       "adx": "16",
       "atr": "1.6%",
@@ -23390,13 +23349,13 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 74.9480628150722,
-      "change": "-0.06",
+      "price": 75.09795917212135,
+      "change": "0.14",
       "rsi": "27",
       "maCross": "bull",
-      "macdHist": "-0.49",
-      "boll": "23%",
-      "adx": "47",
+      "macdHist": "-0.48",
+      "boll": "24%",
+      "adx": "46",
       "atr": "1.4%",
       "verdict": "Plutôt baissier",
       "score": 37,
@@ -23405,27 +23364,27 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "price": 569.8735657408221,
-      "change": "0.35",
-      "rsi": "47",
+      "price": 570.8291719330828,
+      "change": "0.52",
+      "rsi": "48",
       "maCross": "bear",
-      "macdHist": "1.69",
-      "boll": "48%",
-      "adx": "6",
+      "macdHist": "1.76",
+      "boll": "50%",
+      "adx": "5",
       "atr": "1.0%",
-      "verdict": "Indécis",
-      "score": 51,
-      "cls": "neutral"
+      "verdict": "Plutôt haussier",
+      "score": 63,
+      "cls": "bull"
     },
     {
       "label": "XRP",
       "kind": "crypto",
-      "price": 1.0867914301490431,
-      "change": "-0.17",
-      "rsi": "32",
+      "price": 1.0880791490217327,
+      "change": "-0.05",
+      "rsi": "33",
       "maCross": "bear",
       "macdHist": "0.00",
-      "boll": "41%",
+      "boll": "42%",
       "adx": "35",
       "atr": "1.3%",
       "verdict": "Baissier fort",
@@ -23435,28 +23394,28 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "price": 0.16408752478640207,
-      "change": "-1.56",
+      "price": 0.16445342129715387,
+      "change": "-1.34",
       "rsi": "25",
       "maCross": "bear",
       "macdHist": "0.00",
-      "boll": "45%",
+      "boll": "46%",
       "adx": "50",
       "atr": "2.4%",
       "verdict": "Plutôt baissier",
-      "score": 37,
-      "cls": "bear"
+      "score": 44,
+      "cls": "neutral"
     },
     {
       "label": "DOGE",
       "kind": "crypto",
-      "price": 0.07208247954569262,
-      "change": "-0.59",
+      "price": 0.07218762599944517,
+      "change": "-0.44",
       "rsi": "32",
       "maCross": "bear",
       "macdHist": "0.00",
-      "boll": "27%",
-      "adx": "37",
+      "boll": "28%",
+      "adx": "36",
       "atr": "1.5%",
       "verdict": "Baissier fort",
       "score": 20,
@@ -23465,16 +23424,46 @@
     {
       "label": "AVAX",
       "kind": "crypto",
-      "price": 6.528068416016794,
-      "change": "-0.67",
-      "rsi": "37",
+      "price": 6.538644656559241,
+      "change": "-0.51",
+      "rsi": "38",
       "maCross": "bear",
       "macdHist": "0.03",
-      "boll": "29%",
+      "boll": "31%",
       "adx": "25",
       "atr": "1.9%",
       "verdict": "Plutôt baissier",
-      "score": 36,
+      "score": 38,
+      "cls": "bear"
+    },
+    {
+      "label": "LINK",
+      "kind": "crypto",
+      "price": 8.2794387652857,
+      "change": "0.23",
+      "rsi": "57",
+      "maCross": "bear",
+      "macdHist": "0.08",
+      "boll": "76%",
+      "adx": "14",
+      "atr": "1.7%",
+      "verdict": "Haussier fort",
+      "score": 76,
+      "cls": "bull"
+    },
+    {
+      "label": "NEAR",
+      "kind": "crypto",
+      "price": 1.9158662384265692,
+      "change": "-0.57",
+      "rsi": "44",
+      "maCross": "bear",
+      "macdHist": "0.01",
+      "boll": "43%",
+      "adx": "13",
+      "atr": "2.4%",
+      "verdict": "Plutôt baissier",
+      "score": 38,
       "cls": "bear"
     },
     {
@@ -29985,6 +29974,99 @@
       "historical_analog": null
     },
     {
+      "asset": "BTC",
+      "kind": "crypto",
+      "type": "doji-haussier",
+      "label": "Doji — Retournement haussier",
+      "timeframe": "Swing · 3-10 jours (sortie sur Doji inverse)",
+      "confidence": "high",
+      "direction": "long",
+      "config": "Doji détecté après bougie rouge (-1.4%) puis bougie verte de confirmation (+0.5%). Combat acheteurs/vendeurs résolu côté acheteur.",
+      "rationale": "Stratégie Heikin Ashi adaptée : après une chute, un doji marque une hésitation (combat acheteur/vendeur). La bougie verte qui suit confirme que les acheteurs ont gagné. Stop technique au plus bas de la bougie rouge. Sortie discrétionnaire au prochain Doji baissier (doji après bougie verte).",
+      "entry": 64274.30619992906,
+      "stop": 63661.35116024228,
+      "tp1": 65829.05580271981,
+      "tp2": 67383.80540551057,
+      "rr1": "2.54",
+      "rr2": "5.07",
+      "currency": "USD",
+      "prices60": [
+        77459.9443,
+        77546.3377,
+        75482.5238,
+        76672.7929,
+        76988.1613,
+        77274.4015,
+        75824.0633,
+        74352.6993,
+        73539.8419,
+        73382.7183,
+        73751.0679,
+        73593.3712,
+        71360.3252,
+        66649.8556,
+        64021.8892,
+        63796.2544,
+        60921.7944,
+        60861.8801,
+        63254.5722,
+        63078.4405,
+        61658.312,
+        61492.5144,
+        63552.3009,
+        63537.739,
+        64377.5767,
+        65713.6236,
+        66300.9585,
+        65598.944,
+        64422.5737,
+        62900.2271,
+        63513.6587,
+        64240.2328,
+        63231.8696,
+        63957.1956,
+        62651.9347,
+        60908.9951,
+        59712.6181,
+        59981.8316,
+        59943.1108,
+        59612.294,
+        60159.6302,
+        58550.7478,
+        59979.9007,
+        61487.299,
+        62537.4408,
+        63094.2402,
+        63546.4301,
+        64072.2992,
+        63351.3677,
+        62248.9303,
+        63220.6857,
+        64082.0404,
+        63892.7925,
+        63746.441,
+        62242.2528,
+        64977.3631,
+        64722.0579,
+        63788.929,
+        63925.5093,
+        64274.3062
+      ],
+      "news_context": {
+        "count": 1,
+        "risk": "normal",
+        "items": [
+          {
+            "title": "Massive bitcoin call spreads target $72,000 by month end, right when the Fed meets",
+            "time": "2026-07-18T14:15:15.000Z",
+            "source": "CoinDesk"
+          }
+        ]
+      },
+      "wisdom_adjustment": 0,
+      "historical_analog": null
+    },
+    {
       "asset": "Cloudflare",
       "kind": "action",
       "type": "doji-haussier",
@@ -31008,7 +31090,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 58
+    "matched_assets": 60
   },
   "macro": {
     "vix": 18.77,
@@ -31018,7 +31100,7 @@
     "cross_asset": {
       "sp500_change": -1.0098540030789749,
       "nasdaq_change": -1.3975337843293596,
-      "btc_change": 0.2605035177406657,
+      "btc_change": 0.5456301662028086,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -31030,7 +31112,7 @@
     "current_state": {
       "vix": 18.77,
       "yield_curve": null,
-      "btc_30d_change": 0.9106369732865297,
+      "btc_30d_change": 1.1976125090645047,
       "sp500_30d_change": -1.6695008011180563,
       "dominant_sectors": [
         "SOXX",
@@ -31050,14 +31132,14 @@
       "war"
     ],
     "theme_counts": {
-      "war": 80,
-      "earnings": 97,
-      "credit": 28,
       "fed": 50,
-      "geopolitical": 41,
-      "tech": 101,
-      "crypto": 31,
-      "oil": 25
+      "war": 73,
+      "tech": 96,
+      "crypto": 33,
+      "geopolitical": 37,
+      "credit": 27,
+      "earnings": 96,
+      "oil": 27
     },
     "top_sectors_60d": [
       "SOXX",
@@ -31185,7 +31267,7 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 67,
+      "ev_battery": 70,
       "semicon_supply": 3,
       "ai_breakthrough": 2,
       "recession": 1,
@@ -31195,9 +31277,9 @@
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 80,
-      "credit": 28,
-      "geopol": 41
+      "war": 73,
+      "credit": 27,
+      "geopol": 37
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -31448,17 +31530,17 @@
       "label": "BTC",
       "kind": "crypto",
       "rsi": 55,
-      "change": 0.26,
-      "adx": 9,
-      "verdict": "Plutôt haussier",
+      "change": 0.55,
+      "adx": 11,
+      "verdict": "Haussier fort",
       "cls": "bull",
-      "score": 69
+      "score": 76
     },
     {
       "label": "ETH",
       "kind": "crypto",
       "rsi": 58,
-      "change": 0.05,
+      "change": 0.16,
       "adx": 16,
       "verdict": "Haussier fort",
       "cls": "bull",
@@ -31468,8 +31550,8 @@
       "label": "SOL",
       "kind": "crypto",
       "rsi": 27,
-      "change": -0.06,
-      "adx": 47,
+      "change": 0.14,
+      "adx": 46,
       "verdict": "Plutôt baissier",
       "cls": "bear",
       "score": 37
@@ -31477,18 +31559,18 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "rsi": 47,
-      "change": 0.35,
-      "adx": 6,
-      "verdict": "Indécis",
-      "cls": "neutral",
-      "score": 51
+      "rsi": 48,
+      "change": 0.52,
+      "adx": 5,
+      "verdict": "Plutôt haussier",
+      "cls": "bull",
+      "score": 63
     },
     {
       "label": "XRP",
       "kind": "crypto",
-      "rsi": 32,
-      "change": -0.17,
+      "rsi": 33,
+      "change": -0.05,
       "adx": 35,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -31498,18 +31580,18 @@
       "label": "ADA",
       "kind": "crypto",
       "rsi": 25,
-      "change": -1.56,
+      "change": -1.34,
       "adx": 50,
       "verdict": "Plutôt baissier",
-      "cls": "bear",
-      "score": 37
+      "cls": "neutral",
+      "score": 44
     },
     {
       "label": "DOGE",
       "kind": "crypto",
       "rsi": 32,
-      "change": -0.59,
-      "adx": 37,
+      "change": -0.44,
+      "adx": 36,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 20
@@ -31517,12 +31599,32 @@
     {
       "label": "AVAX",
       "kind": "crypto",
-      "rsi": 37,
-      "change": -0.67,
+      "rsi": 38,
+      "change": -0.51,
       "adx": 25,
       "verdict": "Plutôt baissier",
       "cls": "bear",
-      "score": 36
+      "score": 38
+    },
+    {
+      "label": "LINK",
+      "kind": "crypto",
+      "rsi": 57,
+      "change": 0.23,
+      "adx": 14,
+      "verdict": "Haussier fort",
+      "cls": "bull",
+      "score": 76
+    },
+    {
+      "label": "NEAR",
+      "kind": "crypto",
+      "rsi": 44,
+      "change": -0.57,
+      "adx": 13,
+      "verdict": "Plutôt baissier",
+      "cls": "bear",
+      "score": 38
     },
     {
       "label": "Apple",
