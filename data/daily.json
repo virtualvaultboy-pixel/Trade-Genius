@@ -1,15 +1,15 @@
 {
-  "generated": "2026-07-17T22:54:24.070Z",
-  "date": "2026-07-17",
-  "title": "Rapport du 17 juillet 2026",
+  "generated": "2026-07-18T22:56:06.954Z",
+  "date": "2026-07-18",
+  "title": "Rapport du 18 juillet 2026",
   "summary": "Séance largement négative — tous les actifs majeurs reculent.",
   "highlights": [
     "S&P 500 -1.01% · ↘ légère baisse",
     "Nasdaq -1.40% · ↘ légère baisse",
-    "CAC 40 -0.52% · ↘ légère baisse",
+    "CAC 40 -0.47% · ↘ légère baisse",
     "Dow -0.77% · ↘ légère baisse",
-    "BTC +0.24% · → stable",
-    "ETH -1.32% · ↘ légère baisse"
+    "BTC +1.29% · ↗ légère hausse",
+    "ETH +1.14% · ↗ légère hausse"
   ],
   "items": [
     {
@@ -39,8 +39,8 @@
       "symbol": "CAC 40",
       "name": "CAC 40",
       "price": 8338.81,
-      "change": -0.5203704549415645,
-      "rsi": 49.5,
+      "change": -0.4661136605746536,
+      "rsi": 48,
       "verdict": "bear-soft",
       "verdictLabel": "↘ légère baisse",
       "currency": "EUR"
@@ -60,22 +60,22 @@
       "kind": "crypto",
       "symbol": "BTC",
       "name": "Bitcoin",
-      "price": 63941.24700744013,
-      "change": 0.23878436510141438,
-      "rsi": 56.3,
-      "verdict": "flat",
-      "verdictLabel": "→ stable",
+      "price": 64748.5310984333,
+      "change": 1.2874700098301657,
+      "rsi": 57.3,
+      "verdict": "bull-soft",
+      "verdictLabel": "↗ légère hausse",
       "currency": "USD"
     },
     {
       "kind": "crypto",
       "symbol": "ETH",
       "name": "Ethereum",
-      "price": 1838.4942202904872,
-      "change": -1.3197692428055154,
-      "rsi": 59.6,
-      "verdict": "bear-soft",
-      "verdictLabel": "↘ légère baisse",
+      "price": 1862.300418347336,
+      "change": 1.137429493604299,
+      "rsi": 59.8,
+      "verdict": "bull-soft",
+      "verdictLabel": "↗ légère hausse",
       "currency": "USD"
     }
   ]
