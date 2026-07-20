@@ -6,8 +6,40 @@
   "icon": "⚡",
   "created_at": "2026-05-30T17:55:42.952Z",
   "capital_initial": 1000,
-  "cash": 1002.7190463202859,
-  "positions": [],
+  "cash": 952.5830940042716,
+  "positions": [
+    {
+      "id": "pos-1784591993361-3s7z",
+      "asset": "SOL",
+      "kind": "crypto",
+      "agent": "volt",
+      "type": "volt-D-B-trendfollow",
+      "entry": 77.42482164061147,
+      "stop": 76.73894411707204,
+      "tp1": 79.99686235388432,
+      "tp2": 82.56890306715718,
+      "initial_stop": 76.73894411707204,
+      "high_since_entry": 77.42482164061147,
+      "rr1": 3.75,
+      "rr2": 7.5,
+      "risk_pct": 0.008858625812831967,
+      "size_eur": 50.1359523160143,
+      "quality_score": 85,
+      "sizing_pct": 5,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 0,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-07-20T23:59:53.361Z",
+      "opened_at_cycle": 37,
+      "opened_at_date": "2026-07-20",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
+    }
+  ],
   "closed_trades": [
     {
       "id": "pos-1780502745888-35za",
@@ -577,7 +609,14 @@
       "equity": 1002.72,
       "cash": 1002.72,
       "positions_count": 0
+    },
+    {
+      "date": "2026-07-20",
+      "cycle": 37,
+      "equity": 1002.72,
+      "cash": 952.58,
+      "positions_count": 1
     }
   ],
-  "last_cycle": "2026-07-17"
+  "last_cycle": "2026-07-20"
 }
