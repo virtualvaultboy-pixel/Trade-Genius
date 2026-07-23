@@ -15,7 +15,7 @@
       "agent": "kairo",
       "type": "kairo-momentum",
       "entry": 64152.84069033826,
-      "stop": 64152.84069033826,
+      "stop": 64533.491642534624,
       "tp1": 65958.78928063235,
       "tp2": 68216.22501849997,
       "initial_stop": 62166.297241014756,
@@ -38,8 +38,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 66520.03509185812,
-      "age_days": 11,
+      "current_price": 66053.6297365766,
+      "age_days": 12,
       "size_eur_added": 20.65435938223464
     },
     {
@@ -49,11 +49,11 @@
       "agent": "kairo",
       "type": "kairo-momentum",
       "entry": 1805.5588039563795,
-      "stop": 1851.3222172906603,
+      "stop": 1855.9487943828997,
       "tp1": 1875.638834282547,
       "tp2": 1963.2388721902562,
       "initial_stop": 1728.4707705975954,
-      "high_since_entry": 1928.4102506494444,
+      "high_since_entry": 1933.0368277416837,
       "rr1": 0.91,
       "rr2": 2.05,
       "risk_pct": 0.04269483397044012,
@@ -72,8 +72,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 1928.4102506494444,
-      "age_days": 11,
+      "current_price": 1933.0368277416837,
+      "age_days": 12,
       "size_eur_added": 18.919393194126933
     },
     {
@@ -106,8 +106,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 573.5533840534142,
-      "age_days": 10
+      "current_price": 570.7084263475462,
+      "age_days": 11
     },
     {
       "id": "pos-1784160129792-fwbu",
@@ -139,8 +139,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 8.645412002320269,
-      "age_days": 4
+      "current_price": 8.62219282127109,
+      "age_days": 5
     },
     {
       "id": "pos-1784678279210-f2z3",
@@ -171,7 +171,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 5.167078929040207,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -2059,7 +2061,14 @@
       "equity": 998.95,
       "cash": 663.08,
       "positions_count": 5
+    },
+    {
+      "date": "2026-07-23",
+      "cycle": 39,
+      "equity": 996.81,
+      "cash": 663.08,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-07-21"
+  "last_cycle": "2026-07-23"
 }

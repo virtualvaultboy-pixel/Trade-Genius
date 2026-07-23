@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 397.75,
-      "age_days": 10
+      "current_price": 390.34,
+      "age_days": 11
     },
     {
       "id": "pos-1784246497094-36ik",
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 643.81,
-      "age_days": 3
+      "current_price": 627.17,
+      "age_days": 4
     },
     {
       "id": "pos-1784678278841-70nl",
@@ -103,7 +103,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 56.05,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -1538,7 +1540,14 @@
       "equity": 968.52,
       "cash": 743.39,
       "positions_count": 3
+    },
+    {
+      "date": "2026-07-23",
+      "cycle": 39,
+      "equity": 964.67,
+      "cash": 743.39,
+      "positions_count": 3
     }
   ],
-  "last_cycle": "2026-07-21"
+  "last_cycle": "2026-07-23"
 }

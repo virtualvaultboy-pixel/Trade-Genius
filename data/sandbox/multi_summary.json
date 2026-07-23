@@ -1,20 +1,20 @@
 {
-  "generated": "2026-07-21T23:57:59.229Z",
-  "date": "2026-07-21",
+  "generated": "2026-07-23T00:03:25.790Z",
+  "date": "2026-07-23",
   "capital_initial_per_sandbox": 1000,
   "sandboxes": [
     {
       "sandbox_id": "bastion",
       "ia_name": "BASTION",
       "trades_closed": 50,
-      "trades_open": 4,
+      "trades_open": 5,
       "win_rate": 0.2,
       "profit_factor": 2.11,
-      "total_return_pct": 4.49,
+      "total_return_pct": 4.52,
       "max_drawdown_pct": -2.66,
-      "equity_current": 1044.86,
+      "equity_current": 1045.16,
       "equity_high": 1058.69,
-      "cash": 743.69
+      "cash": 691.64
     },
     {
       "sandbox_id": "phenix",
@@ -23,9 +23,9 @@
       "trades_open": 5,
       "win_rate": 0.339,
       "profit_factor": 1.49,
-      "total_return_pct": 3.11,
+      "total_return_pct": 3.25,
       "max_drawdown_pct": -1.83,
-      "equity_current": 1031.11,
+      "equity_current": 1032.52,
       "equity_high": 1036.13,
       "cash": 641.87
     },
@@ -36,9 +36,9 @@
       "trades_open": 3,
       "win_rate": 0.333,
       "profit_factor": 0.69,
-      "total_return_pct": -3.15,
-      "max_drawdown_pct": -4.85,
-      "equity_current": 968.52,
+      "total_return_pct": -3.53,
+      "max_drawdown_pct": -5.22,
+      "equity_current": 964.67,
       "equity_high": 1017.84,
       "cash": 743.39
     },
@@ -49,9 +49,9 @@
       "trades_open": 5,
       "win_rate": 0.174,
       "profit_factor": 0.78,
-      "total_return_pct": -0.1,
+      "total_return_pct": -0.32,
       "max_drawdown_pct": -4.07,
-      "equity_current": 998.95,
+      "equity_current": 996.81,
       "equity_high": 1016.32,
       "cash": 663.08
     },
@@ -70,8 +70,8 @@
     }
   ],
   "aggregate": {
-    "equity_total": 5046.16,
+    "equity_total": 5041.88,
     "trades_total": 197,
-    "trades_open": 18
+    "trades_open": 19
   }
 }

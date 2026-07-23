@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 14298.26,
-      "age_days": 7
+      "current_price": 14315.88,
+      "age_days": 8
     },
     {
       "id": "pos-1784246496876-ayjb",
@@ -52,7 +52,7 @@
       "tp1": 3.0436785097487262,
       "tp2": 3.191357111050187,
       "initial_stop": 2.8369284679266813,
-      "high_since_entry": 2.916,
+      "high_since_entry": 2.943,
       "rr1": 2.5,
       "rr2": 5,
       "risk_pct": 0.020397597509682373,
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 2.885,
-      "age_days": 3
+      "current_price": 2.943,
+      "age_days": 4
     },
     {
       "id": "pos-1784591992435-perw",
@@ -104,8 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 210.5,
-      "age_days": 1
+      "current_price": 205.77,
+      "age_days": 2
     },
     {
       "id": "pos-1784591992435-xr4q",
@@ -114,11 +114,11 @@
       "agent": "nova",
       "type": "doji-haussier",
       "entry": 56.42499923706055,
-      "stop": 56.42499923706055,
+      "stop": 59.306203575134276,
       "tp1": 58.853284051213876,
       "tp2": 61.2815688653672,
       "initial_stop": 55.78620281219482,
-      "high_since_entry": 59.12,
+      "high_since_entry": 59.945,
       "rr1": 3.8,
       "rr2": 7.6,
       "risk_pct": 0.011321159654463153,
@@ -137,8 +137,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 59.12,
-      "age_days": 1,
+      "current_price": 59.945,
+      "age_days": 2,
       "size_eur_added": 35.55114870651938
     },
     {
@@ -170,7 +170,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 56.05,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -2518,7 +2520,14 @@
       "equity": 1031.11,
       "cash": 641.87,
       "positions_count": 5
+    },
+    {
+      "date": "2026-07-23",
+      "cycle": 39,
+      "equity": 1032.52,
+      "cash": 641.87,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-07-21"
+  "last_cycle": "2026-07-23"
 }
