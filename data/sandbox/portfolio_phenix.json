@@ -6,7 +6,7 @@
   "icon": "🔥",
   "created_at": "2026-05-30T17:55:42.943Z",
   "capital_initial": 1000,
-  "cash": 641.8657577572274,
+  "cash": 678.1827056816938,
   "positions": [
     {
       "id": "pos-1783728139392-sygl",
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 14315.88,
-      "age_days": 8
+      "current_price": 14214.95,
+      "age_days": 9
     },
     {
       "id": "pos-1784246496876-ayjb",
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 2.943,
-      "age_days": 4
+      "current_price": 2.913,
+      "age_days": 5
     },
     {
       "id": "pos-1784591992435-perw",
@@ -104,42 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 205.77,
-      "age_days": 2
-    },
-    {
-      "id": "pos-1784591992435-xr4q",
-      "asset": "Argent (Silver)",
-      "kind": "metal",
-      "agent": "nova",
-      "type": "doji-haussier",
-      "entry": 56.42499923706055,
-      "stop": 59.306203575134276,
-      "tp1": 58.853284051213876,
-      "tp2": 61.2815688653672,
-      "initial_stop": 55.78620281219482,
-      "high_since_entry": 59.945,
-      "rr1": 3.8,
-      "rr2": 7.6,
-      "risk_pct": 0.011321159654463153,
-      "size_eur": 106.65344611955814,
-      "quality_score": 66,
-      "sizing_pct": 10,
-      "trailing_after_tp1": true,
-      "trailing_active": true,
-      "pyramiding_pct": 50,
-      "pyramided": true,
-      "stacked": false,
-      "opened_at": "2026-07-20T23:59:52.435Z",
-      "opened_at_cycle": 37,
-      "opened_at_date": "2026-07-20",
-      "status": "open",
-      "touched_tp1": true,
-      "closed_at": null,
-      "pnl_eur": null,
-      "current_price": 59.945,
-      "age_days": 2,
-      "size_eur_added": 35.55114870651938
+      "current_price": 206.65,
+      "age_days": 3
     },
     {
       "id": "pos-1784678278640-ym36",
@@ -171,8 +137,39 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 56.05,
-      "age_days": 1
+      "current_price": 55.83,
+      "age_days": 2
+    },
+    {
+      "id": "pos-1784851467889-0a1b",
+      "asset": "Hang Seng",
+      "kind": "index",
+      "agent": "nova",
+      "type": "doji-baissier",
+      "entry": 24892.66015625,
+      "stop": 25193.3368828125,
+      "tp1": 24341.627391923852,
+      "tp2": 23790.594627597704,
+      "initial_stop": 25193.3368828125,
+      "high_since_entry": 24892.66015625,
+      "rr1": 1.83,
+      "rr2": 3.67,
+      "risk_pct": 0.012078931085515391,
+      "size_eur": 75.35363396463265,
+      "quality_score": 100,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-07-24T00:04:27.889Z",
+      "opened_at_cycle": 40,
+      "opened_at_date": "2026-07-24",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
     }
   ],
   "closed_trades": [
@@ -2252,6 +2249,42 @@
       "age_days": 1,
       "closed_at_cycle": 38,
       "exit_price": 333.9265297851563
+    },
+    {
+      "id": "pos-1784591992435-xr4q",
+      "asset": "Argent (Silver)",
+      "kind": "metal",
+      "agent": "nova",
+      "type": "doji-haussier",
+      "entry": 56.42499923706055,
+      "stop": 59.306203575134276,
+      "tp1": 58.853284051213876,
+      "tp2": 61.2815688653672,
+      "initial_stop": 55.78620281219482,
+      "high_since_entry": 59.945,
+      "rr1": 3.8,
+      "rr2": 7.6,
+      "risk_pct": 0.011321159654463153,
+      "size_eur": 106.65344611955814,
+      "quality_score": 66,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": true,
+      "pyramiding_pct": 50,
+      "pyramided": true,
+      "stacked": false,
+      "opened_at": "2026-07-20T23:59:52.435Z",
+      "opened_at_cycle": 37,
+      "opened_at_date": "2026-07-20",
+      "status": "trail_profit",
+      "touched_tp1": true,
+      "closed_at": "2026-07-24T00:04:27.888Z",
+      "pnl_eur": 5.017135769540985,
+      "current_price": 57.845,
+      "age_days": 3,
+      "size_eur_added": 35.55114870651938,
+      "closed_at_cycle": 40,
+      "exit_price": 59.306203575134276
     }
   ],
   "equity_history": [
@@ -2527,7 +2560,14 @@
       "equity": 1032.52,
       "cash": 641.87,
       "positions_count": 5
+    },
+    {
+      "date": "2026-07-24",
+      "cycle": 40,
+      "equity": 1029.69,
+      "cash": 678.18,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-07-23"
+  "last_cycle": "2026-07-24"
 }
