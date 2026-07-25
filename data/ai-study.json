@@ -1,14 +1,14 @@
 {
-  "generated": "2026-07-25T12:46:46.005Z",
+  "generated": "2026-07-25T14:40:04.383Z",
   "source": "Pollinations · openai",
   "date": "2026-07-25",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (38 indices · 8 crypto · 355 actions) : S&P 500 +0.05% (RSI 39, baissier fort) · Nasdaq -0.64% (RSI 34, baissier fort) · BTC -0.09% (RSI 51, indécis) · ETH -0.21% (RSI 58, plutôt haussier) · Apple +3.53% (RSI 68, haussier fort). Globalement, 166 actifs en biais haussier contre 206 en baissier. On observe une configuration plutôt favorable aux vendeurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (38 indices · 8 crypto · 355 actions) : S&P 500 +0.05% (RSI 39, baissier fort) · Nasdaq -0.64% (RSI 34, baissier fort) · BTC +0.07% (RSI 52, indécis) · ETH +0.33% (RSI 59, plutôt haussier) · Apple +3.53% (RSI 68, haussier fort). Globalement, 167 actifs en biais haussier contre 206 en baissier. On observe une configuration plutôt favorable aux vendeurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : pression vendeuse persistante (RSI 39)",
     "Nasdaq : pression vendeuse persistante (RSI 34)",
-    "BTC : sans direction nette (RSI 51)",
-    "ETH : tendance haussière confirmée (RSI 58, bull MA50)",
+    "BTC : sans direction nette (RSI 52)",
+    "ETH : tendance haussière confirmée (RSI 59, bull MA50)",
     "Apple : tendance haussière confirmée (RSI 68, bull MA50)"
   ],
   "plan_pedago": [
@@ -621,14 +621,14 @@
             "risk": "alert",
             "items": [
               {
+                "title": "Alphabet flops, Intel shocks, and Tesla tanks: AlphaSpace weekly recap",
+                "time": "2026-07-25T12:38:16.000Z",
+                "source": "Yahoo Finance Crypto"
+              },
+              {
                 "title": "Musk&apos;s bad week: Tesla suffers worst slump since 2022, SpaceX drops ahead of Starship test flight",
                 "time": "2026-07-24T21:57:01.000Z",
                 "source": "CNBC"
-              },
-              {
-                "title": "Dow Jones Futures Rise As Oil Prices Retreat; Intel Rises After Google, Tesla Dive",
-                "time": "2026-07-24T11:51:53.000Z",
-                "source": "Yahoo Finance"
               }
             ]
           },
@@ -641,7 +641,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"ahead\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"weekly\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "IBM",
@@ -722,7 +722,7 @@
             206.65,
             214.19
           ],
-          "quality_score": 90,
+          "quality_score": 85,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -736,17 +736,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "IBM&apos;s Krishna tries to reassure investors that AI won&apos;t disrupt company&apos;s software unit",
-                "time": "2026-07-23T19:19:26.000Z",
-                "source": "CNBC"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 0,
           "wisdom_note": null,
           "historical_analog": null,
@@ -756,7 +746,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"investors\" ×5 (5 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Gaz naturel",
@@ -4254,7 +4244,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"ahead\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"ahead\" ×12 (4 mentions/24h)"
         },
         {
           "asset": "Regeneron",
@@ -4896,7 +4886,7 @@
       "desc": "Court terme · 3-7 jours · Patience faible · 5-9 trades/semaine. Idéal si tu veux voir l'app travailler chaque jour. Risque très maîtrisé.",
       "icon": "⚡",
       "color": "#ef4444",
-      "count": 156,
+      "count": 155,
       "setups": [
         {
           "asset": "Moderna",
@@ -6037,7 +6027,7 @@
           "news_sentiment_reason": null,
           "macro_event_reason": null,
           "cross_asset_reason": null,
-          "sector_reason": "Secteur SOXX Semiconductors fort (21.0% / 60j) → boost +10%",
+          "sector_reason": "Secteur SOXX Semiconductors fort (20.1% / 60j) → boost +10%",
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
@@ -7726,14 +7716,14 @@
             "risk": "alert",
             "items": [
               {
+                "title": "Alphabet flops, Intel shocks, and Tesla tanks: AlphaSpace weekly recap",
+                "time": "2026-07-25T12:38:16.000Z",
+                "source": "Yahoo Finance Crypto"
+              },
+              {
                 "title": "319k GOOGL Yolo",
                 "time": "2026-07-25T00:53:06.000Z",
                 "source": "Reddit r/wallstreetbets"
-              },
-              {
-                "title": "Trump defends DOJ subpoenas of NY Times reporters; Google also was targeted",
-                "time": "2026-07-24T20:23:12.000Z",
-                "source": "CNBC"
               }
             ]
           },
@@ -7746,7 +7736,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"bond\" ×18 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"weekly\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Amazon",
@@ -7846,13 +7836,13 @@
             "risk": "alert",
             "items": [
               {
-                "title": "Bond market anxiety is growing over AI capex budgets",
-                "time": "2026-07-24T20:07:36.000Z",
-                "source": "CNBC"
+                "title": "Dow Jones Futures: Market Triggers Sell Signal; Apple Earnings, Iran News, Fed Meeting In Focus",
+                "time": "2026-07-25T12:24:40.000Z",
+                "source": "Yahoo Finance"
               },
               {
-                "title": "Trump threatens EU with &apos;substantial TARIFF&apos; for &apos;ROBBING&apos; U.S. tech giants",
-                "time": "2026-07-24T19:39:50.000Z",
+                "title": "Bond market anxiety is growing over AI capex budgets",
+                "time": "2026-07-24T20:07:36.000Z",
                 "source": "CNBC"
               }
             ]
@@ -7866,7 +7856,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"bond\" ×18 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"giants\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Oracle",
@@ -7986,7 +7976,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"coverage\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"coverage\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Uber",
@@ -8206,111 +8196,6 @@
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
           "quality_score_pre_wisdom": 72,
-          "alpha_quality": null,
-          "alpha_pattern": null,
-          "alpha_rules": null,
-          "insider_signal": null,
-          "insider_reason": null,
-          "spike_theme_reason": null
-        },
-        {
-          "asset": "Disney",
-          "kind": "action",
-          "type": "kairo-shortMomentum",
-          "label": "Crash vif — short tactique",
-          "timeframe": "Court terme · 1-3 jours",
-          "confidence": "medium",
-          "direction": "short",
-          "config": "Plongeon -6.9% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.",
-          "rationale": "Stratégie momentum baissier : on suit le mouvement déjà engagé. Pour les traders qui savent shorter (ou crypto via futures). Sinon : éviter d'acheter ici et attendre stabilisation.",
-          "entry": 92.83000183105469,
-          "stop": 95.27857468556593,
-          "tp1": 90.60402650877174,
-          "tp2": 87.82155735591806,
-          "rr1": "0.91",
-          "rr2": "2.05",
-          "currency": "EUR",
-          "prices60": [
-            101.47,
-            101.3,
-            103.75,
-            103.08,
-            101.31,
-            100.48,
-            108.06,
-            108.66,
-            108.02,
-            104.72,
-            106.16,
-            104.9,
-            105.42,
-            102.72,
-            103.91,
-            102.29,
-            104.08,
-            103.58,
-            103,
-            103.28,
-            104.18,
-            103.73,
-            101.83,
-            102.85,
-            101.41,
-            99.39,
-            99.34,
-            99.71,
-            98.87,
-            99.33,
-            98.61,
-            100.34,
-            100.04,
-            101.69,
-            101.28,
-            100.86,
-            103.89,
-            102.45,
-            103.53,
-            101.12,
-            98.05,
-            98.79,
-            98.63,
-            96.25,
-            95.71,
-            99.5,
-            97.41,
-            97.48,
-            96.7,
-            96.17,
-            95.62,
-            96,
-            95.87,
-            97.15,
-            99.71,
-            97.67,
-            96.41,
-            96.14,
-            95.87,
-            92.83
-          ],
-          "quality_score": 70,
-          "sizing_pct": 1,
-          "sizing_label": "medium",
-          "trailing_after_tp1": false,
-          "macro_reason": null,
-          "earnings_reason": null,
-          "news_sentiment": null,
-          "news_sentiment_reason": null,
-          "macro_event_reason": null,
-          "cross_asset_reason": null,
-          "sector_reason": null,
-          "stacked": false,
-          "stacked_count": null,
-          "stacked_patterns": null,
-          "news_context": null,
-          "wisdom_adjustment": 4,
-          "wisdom_note": "Scalp les overreactions rapides",
-          "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 65,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
@@ -8607,7 +8492,7 @@
             340.84,
             326.17
           ],
-          "quality_score": 75,
+          "quality_score": 77,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -8640,13 +8525,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 70,
+          "quality_score_pre_wisdom": 72,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"spending\" ×4.8 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"spending\" ×6 (4 mentions/24h)"
         },
         {
           "asset": "Moody's",
@@ -8761,7 +8646,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"meta\" ×9 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"spending\" ×6 (4 mentions/24h)"
         },
         {
           "asset": "General Motors",
@@ -10102,7 +9987,7 @@
             206.65,
             214.19
           ],
-          "quality_score": 70,
+          "quality_score": 66,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10116,27 +10001,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "IBM&apos;s Krishna tries to reassure investors that AI won&apos;t disrupt company&apos;s software unit",
-                "time": "2026-07-23T19:19:26.000Z",
-                "source": "CNBC"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 65,
+          "quality_score_pre_wisdom": 61,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"investors\" ×5 (5 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "USD/CAD",
@@ -10322,7 +10197,7 @@
             134.48,
             136.78
           ],
-          "quality_score": 66,
+          "quality_score": 63,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10355,13 +10230,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 61,
+          "quality_score_pre_wisdom": 58,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"valuation\" ×12 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"valuation\" ×6 (3 mentions/24h)"
         },
         {
           "asset": "Boeing",
@@ -11282,7 +11157,7 @@
             539.69,
             521.95
           ],
-          "quality_score": 71,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11292,13 +11167,13 @@
           "news_sentiment_reason": null,
           "macro_event_reason": null,
           "cross_asset_reason": null,
-          "sector_reason": "Secteur SOXX Semiconductors fort (21.0% / 60j) → boost +10%",
+          "sector_reason": "Secteur SOXX Semiconductors fort (20.1% / 60j) → boost +10%",
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 3,
-            "risk": "alert",
+            "count": 2,
+            "risk": "caution",
             "items": [
               {
                 "title": "S&amp;P 500, Dow, Nasdaq End Lower Over Capex Concerns, Surging Oil — CBRS, AMD, GOOGL, TSLA, MSTR In Focus",
@@ -11315,13 +11190,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 66,
+          "quality_score_pre_wisdom": 64,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"capex\" ×12 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"capex\" ×9 (3 mentions/24h)"
         },
         {
           "asset": "Adobe",
@@ -12794,111 +12669,6 @@
           "spike_theme_reason": null
         },
         {
-          "asset": "Danaher",
-          "kind": "action",
-          "type": "kairo-shortMomentum",
-          "label": "Crash vif — short tactique",
-          "timeframe": "Court terme · 1-3 jours",
-          "confidence": "medium",
-          "direction": "short",
-          "config": "Plongeon -6.1% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.",
-          "rationale": "Stratégie momentum baissier : on suit le mouvement déjà engagé. Pour les traders qui savent shorter (ou crypto via futures). Sinon : éviter d'acheter ici et attendre stabilisation.",
-          "entry": 192.5,
-          "stop": 202.54397959183675,
-          "tp1": 183.36910946196662,
-          "tp2": 171.95549628942484,
-          "rr1": "0.91",
-          "rr2": "2.05",
-          "currency": "EUR",
-          "prices60": [
-            178.98,
-            178.8,
-            178.95,
-            175.15,
-            174.04,
-            174.63,
-            174.92,
-            175.66,
-            171.16,
-            166.52,
-            166.26,
-            165.99,
-            164.54,
-            161.91,
-            163.86,
-            167.04,
-            171.12,
-            173.33,
-            172,
-            172.81,
-            173.13,
-            180.63,
-            182.67,
-            179.87,
-            176.11,
-            178.08,
-            186.64,
-            184.3,
-            183.53,
-            188.41,
-            183.63,
-            180.79,
-            180.1,
-            181.1,
-            181.35,
-            177.76,
-            177.17,
-            178.19,
-            178.97,
-            188.87,
-            193.21,
-            196.19,
-            192.78,
-            190.48,
-            193.72,
-            197.93,
-            193.62,
-            194.19,
-            190.77,
-            195.98,
-            199.05,
-            200.16,
-            199.05,
-            200.79,
-            205.01,
-            203.83,
-            201.11,
-            179.01,
-            179.14,
-            192.5
-          ],
-          "quality_score": 65,
-          "sizing_pct": 1,
-          "sizing_label": "medium",
-          "trailing_after_tp1": false,
-          "macro_reason": null,
-          "earnings_reason": null,
-          "news_sentiment": null,
-          "news_sentiment_reason": null,
-          "macro_event_reason": null,
-          "cross_asset_reason": null,
-          "sector_reason": null,
-          "stacked": false,
-          "stacked_count": null,
-          "stacked_patterns": null,
-          "news_context": null,
-          "wisdom_adjustment": 4,
-          "wisdom_note": "Scalp les overreactions rapides",
-          "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 60,
-          "alpha_quality": null,
-          "alpha_pattern": null,
-          "alpha_rules": null,
-          "insider_signal": null,
-          "insider_reason": null,
-          "spike_theme_reason": null
-        },
-        {
           "asset": "S&P Global",
           "kind": "action",
           "type": "kairo-shortMomentum",
@@ -13221,7 +12991,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"earnings\" ×4.1 (13 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"earnings\" ×3.7 (13 mentions/24h)"
         },
         {
           "asset": "T-Mobile",
@@ -13302,7 +13072,7 @@
             170.42,
             180.09
           ],
-          "quality_score": 71,
+          "quality_score": 69,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -13317,31 +13087,26 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "UBS lowers T-Mobile stock price target to $235 on valuation",
                 "time": "2026-07-24T14:14:58.000Z",
                 "source": "Investing.com"
-              },
-              {
-                "title": "T-Mobile&#x2019;s stock sinks despite customers pouring into premium plans",
-                "time": "2026-07-23T20:24:00.000Z",
-                "source": "MarketWatch"
               }
             ]
           },
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 66,
+          "quality_score_pre_wisdom": 64,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"valuation\" ×12 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"valuation\" ×6 (3 mentions/24h)"
         },
         {
           "asset": "Tencent",
@@ -13861,14 +13626,14 @@
             "risk": "alert",
             "items": [
               {
+                "title": "Dow Jones Futures: Market Triggers Sell Signal; Apple Earnings, Iran News, Fed Meeting In Focus",
+                "time": "2026-07-25T12:24:40.000Z",
+                "source": "Yahoo Finance"
+              },
+              {
                 "title": "Nvidia, Microsoft, Meta warn against &apos;premature restrictions&apos; of open-weight models",
                 "time": "2026-07-24T17:26:32.000Z",
                 "source": "CNBC"
-              },
-              {
-                "title": "Nvidia, Microsoft, Meta warn against overregulating open-weight models",
-                "time": "2026-07-24T13:32:30.000Z",
-                "source": "Hacker News"
               }
             ]
           },
@@ -13881,7 +13646,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"against\" ×24 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"against\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Visa",
@@ -15361,7 +15126,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"ahead\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"ahead\" ×12 (4 mentions/24h)"
         },
         {
           "asset": "Siemens",
@@ -16321,7 +16086,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"valuation\" ×12 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"giants\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Sony",
@@ -17252,7 +17017,7 @@
           "news_sentiment_reason": null,
           "macro_event_reason": null,
           "cross_asset_reason": null,
-          "sector_reason": "Secteur SOXX Semiconductors fort (21.0% / 60j) → boost +10%",
+          "sector_reason": "Secteur SOXX Semiconductors fort (20.1% / 60j) → boost +10%",
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
@@ -17276,7 +17041,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"yields\" ×42 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"coverage\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Okta",
@@ -17472,7 +17237,7 @@
           "news_sentiment_reason": null,
           "macro_event_reason": null,
           "cross_asset_reason": null,
-          "sector_reason": "Secteur SOXX Semiconductors fort (21.0% / 60j) → boost +10%",
+          "sector_reason": "Secteur SOXX Semiconductors fort (20.1% / 60j) → boost +10%",
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
@@ -17481,6 +17246,111 @@
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
           "quality_score_pre_wisdom": 52,
+          "alpha_quality": null,
+          "alpha_pattern": null,
+          "alpha_rules": null,
+          "insider_signal": null,
+          "insider_reason": null,
+          "spike_theme_reason": null
+        },
+        {
+          "asset": "Danaher",
+          "kind": "action",
+          "type": "kairo-shortMomentum",
+          "label": "Crash vif — short tactique",
+          "timeframe": "Court terme · 1-3 jours",
+          "confidence": "medium",
+          "direction": "short",
+          "config": "Plongeon -6.0% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.",
+          "rationale": "Stratégie momentum baissier : on suit le mouvement déjà engagé. Pour les traders qui savent shorter (ou crypto via futures). Sinon : éviter d'acheter ici et attendre stabilisation.",
+          "entry": 191.5,
+          "stop": 201.07628609793528,
+          "tp1": 182.7942853655134,
+          "tp2": 171.91214207240512,
+          "rr1": "0.91",
+          "rr2": "2.05",
+          "currency": "EUR",
+          "prices60": [
+            178.8,
+            178.95,
+            175.15,
+            174.04,
+            174.63,
+            174.92,
+            175.66,
+            171.16,
+            166.52,
+            166.26,
+            165.99,
+            164.54,
+            161.91,
+            163.86,
+            167.04,
+            171.12,
+            173.33,
+            172,
+            172.81,
+            173.13,
+            180.63,
+            182.67,
+            179.87,
+            176.11,
+            178.08,
+            186.64,
+            184.3,
+            183.53,
+            188.41,
+            183.63,
+            180.79,
+            180.1,
+            181.1,
+            181.35,
+            177.76,
+            177.17,
+            178.19,
+            178.97,
+            188.87,
+            193.21,
+            196.19,
+            192.78,
+            190.48,
+            193.72,
+            197.93,
+            193.62,
+            194.19,
+            190.77,
+            195.98,
+            199.05,
+            200.16,
+            199.05,
+            200.79,
+            205.01,
+            203.83,
+            201.11,
+            179.01,
+            179.14,
+            192.5,
+            191.5
+          ],
+          "quality_score": 60,
+          "sizing_pct": 1,
+          "sizing_label": "medium",
+          "trailing_after_tp1": false,
+          "macro_reason": null,
+          "earnings_reason": null,
+          "news_sentiment": null,
+          "news_sentiment_reason": null,
+          "macro_event_reason": null,
+          "cross_asset_reason": null,
+          "sector_reason": null,
+          "stacked": false,
+          "stacked_count": null,
+          "stacked_patterns": null,
+          "news_context": null,
+          "wisdom_adjustment": 4,
+          "wisdom_note": "Scalp les overreactions rapides",
+          "historical_analog": "Tapering tantrum (Bernanke) (2013)",
+          "quality_score_pre_wisdom": 55,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
@@ -18827,7 +18697,7 @@
             25.01,
             24.54
           ],
-          "quality_score": 52,
+          "quality_score": 55,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18841,17 +18711,27 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Pfizer's Dividend Yield Looks Almost Too Good. Here's Why Management Isn't Worried.",
+                "time": "2026-07-25T12:35:00.000Z",
+                "source": "Yahoo Finance"
+              }
+            ]
+          },
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 47,
+          "quality_score_pre_wisdom": 50,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"dividend\" ×9 (3 mentions/24h)"
         },
         {
           "asset": "Sanofi",
@@ -20311,17 +20191,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Schneider Electric and AMD unveil AI data center reference design",
-                "time": "2026-07-23T19:04:34.000Z",
-                "source": "Investing.com"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
@@ -21609,14 +21479,14 @@
             "risk": "alert",
             "items": [
               {
+                "title": "Alphabet flops, Intel shocks, and Tesla tanks: AlphaSpace weekly recap",
+                "time": "2026-07-25T12:38:16.000Z",
+                "source": "Yahoo Finance Crypto"
+              },
+              {
                 "title": "Musk&apos;s bad week: Tesla suffers worst slump since 2022, SpaceX drops ahead of Starship test flight",
                 "time": "2026-07-24T21:57:01.000Z",
                 "source": "CNBC"
-              },
-              {
-                "title": "Dow Jones Futures Rise As Oil Prices Retreat; Intel Rises After Google, Tesla Dive",
-                "time": "2026-07-24T11:51:53.000Z",
-                "source": "Yahoo Finance"
               }
             ]
           },
@@ -21629,7 +21499,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"ahead\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"weekly\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Palantir",
@@ -22694,14 +22564,14 @@
             "risk": "alert",
             "items": [
               {
+                "title": "Alphabet flops, Intel shocks, and Tesla tanks: AlphaSpace weekly recap",
+                "time": "2026-07-25T12:38:16.000Z",
+                "source": "Yahoo Finance Crypto"
+              },
+              {
                 "title": "Musk&apos;s bad week: Tesla suffers worst slump since 2022, SpaceX drops ahead of Starship test flight",
                 "time": "2026-07-24T21:57:01.000Z",
                 "source": "CNBC"
-              },
-              {
-                "title": "Dow Jones Futures Rise As Oil Prices Retreat; Intel Rises After Google, Tesla Dive",
-                "time": "2026-07-24T11:51:53.000Z",
-                "source": "Yahoo Finance"
               }
             ]
           },
@@ -22722,7 +22592,7 @@
           },
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"ahead\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"weekly\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Sunrun",
@@ -23567,7 +23437,7 @@
     {
       "label": "Russell 2000",
       "kind": "index",
-      "price": 2929.999,
+      "price": 2929.9988,
       "change": "-0.35",
       "rsi": "36",
       "maCross": "bull",
@@ -23882,13 +23752,13 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 64037.43989051934,
-      "change": "-0.09",
-      "rsi": "51",
+      "price": 64136.820128446474,
+      "change": "0.07",
+      "rsi": "52",
       "maCross": "bull",
-      "macdHist": "50.86",
-      "boll": "46%",
-      "adx": "2",
+      "macdHist": "57.20",
+      "boll": "48%",
+      "adx": "3",
       "atr": "1.2%",
       "verdict": "Indécis",
       "score": 54,
@@ -23897,13 +23767,13 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 1856.1847151210827,
-      "change": "-0.21",
-      "rsi": "58",
+      "price": 1866.5675886576494,
+      "change": "0.33",
+      "rsi": "59",
       "maCross": "bull",
-      "macdHist": "-0.86",
-      "boll": "56%",
-      "adx": "15",
+      "macdHist": "-0.14",
+      "boll": "61%",
+      "adx": "18",
       "atr": "1.7%",
       "verdict": "Plutôt haussier",
       "score": 63,
@@ -23912,8 +23782,8 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 73.8703982352612,
-      "change": "-0.05",
+      "price": 73.85323777783714,
+      "change": "-0.07",
       "rsi": "41",
       "maCross": "bull",
       "macdHist": "-0.48",
@@ -23927,13 +23797,13 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "price": 565.3115485235181,
-      "change": "0.16",
-      "rsi": "41",
+      "price": 566.2847320675993,
+      "change": "0.33",
+      "rsi": "42",
       "maCross": "bear",
-      "macdHist": "0.32",
-      "boll": "19%",
-      "adx": "18",
+      "macdHist": "0.38",
+      "boll": "23%",
+      "adx": "16",
       "atr": "0.7%",
       "verdict": "Baissier fort",
       "score": 24,
@@ -23942,62 +23812,62 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "price": 1.0896688002418655,
-      "change": "-0.15",
-      "rsi": "48",
+      "price": 1.0917612055390205,
+      "change": "0.04",
+      "rsi": "49",
       "maCross": "bear",
       "macdHist": "0.00",
-      "boll": "33%",
-      "adx": "3",
+      "boll": "36%",
+      "adx": "2",
       "atr": "1.4%",
       "verdict": "Plutôt baissier",
       "score": 31,
       "cls": "bear"
     },
     {
-      "label": "AVAX",
+      "label": "DOGE",
       "kind": "crypto",
-      "price": 6.28122493028907,
-      "change": "-0.23",
+      "price": 0.07010488125067182,
+      "change": "0.85",
+      "rsi": "38",
+      "maCross": "bear",
+      "macdHist": "0.00",
+      "boll": "12%",
+      "adx": "24",
+      "atr": "1.3%",
+      "verdict": "Plutôt baissier",
+      "score": 35,
+      "cls": "bear"
+    },
+    {
+      "label": "DOT",
+      "kind": "crypto",
+      "price": 0.819767131618279,
+      "change": "1.45",
       "rsi": "40",
       "maCross": "bear",
-      "macdHist": "-0.01",
-      "boll": "9%",
+      "macdHist": "0.00",
+      "boll": "23%",
       "adx": "20",
-      "atr": "1.6%",
-      "verdict": "Baissier fort",
-      "score": 18,
-      "cls": "bear"
-    },
-    {
-      "label": "ATOM",
-      "kind": "crypto",
-      "price": 1.381899075959562,
-      "change": "-0.77",
-      "rsi": "16",
-      "maCross": "bear",
-      "macdHist": "-0.01",
-      "boll": "-3%",
-      "adx": "68",
       "atr": "1.5%",
       "verdict": "Baissier fort",
-      "score": 30,
+      "score": 24,
       "cls": "bear"
     },
     {
-      "label": "BCH",
+      "label": "LINK",
       "kind": "crypto",
-      "price": 210.498591177218,
-      "change": "-0.10",
-      "rsi": "18",
+      "price": 8.347479791587173,
+      "change": "0.19",
+      "rsi": "61",
       "maCross": "bull",
-      "macdHist": "-2.01",
-      "boll": "13%",
-      "adx": "64",
-      "atr": "1.8%",
-      "verdict": "Indécis",
-      "score": 50,
-      "cls": "neutral"
+      "macdHist": "0.01",
+      "boll": "62%",
+      "adx": "23",
+      "atr": "1.6%",
+      "verdict": "Haussier fort",
+      "score": 80,
+      "cls": "bull"
     },
     {
       "label": "Apple",
@@ -24558,15 +24428,15 @@
       "label": "Disney",
       "kind": "action",
       "price": 94.85,
-      "change": "-1.06",
-      "rsi": "28",
+      "change": "2.18",
+      "rsi": "42",
       "maCross": "bear",
-      "macdHist": "-0.14",
-      "boll": "-16%",
-      "adx": "44",
-      "atr": "1.2%",
+      "macdHist": "-0.13",
+      "boll": "20%",
+      "adx": "17",
+      "atr": "1.1%",
       "verdict": "Baissier fort",
-      "score": 30,
+      "score": 6,
       "cls": "bear"
     },
     {
@@ -24783,13 +24653,13 @@
       "label": "SPY (S&P 500 ETF)",
       "kind": "action",
       "price": 738.93,
-      "change": "-1.13",
-      "rsi": "45",
+      "change": "0.10",
+      "rsi": "39",
       "maCross": "bull",
-      "macdHist": "-1.16",
+      "macdHist": "-1.44",
       "boll": "20%",
-      "adx": "11",
-      "atr": "0.6%",
+      "adx": "22",
+      "atr": "0.5%",
       "verdict": "Baissier fort",
       "score": 24,
       "cls": "bear"
@@ -25383,15 +25253,15 @@
       "label": "Merval Argentine",
       "kind": "index",
       "price": 3283854,
-      "change": "-2.84",
-      "rsi": "61",
+      "change": "-1.07",
+      "rsi": "56",
       "maCross": "bull",
-      "macdHist": "4187.93",
-      "boll": "87%",
-      "adx": "22",
+      "macdHist": "1999.46",
+      "boll": "72%",
+      "adx": "12",
       "atr": "1.6%",
       "verdict": "Haussier fort",
-      "score": 83,
+      "score": 94,
       "cls": "bull"
     },
     {
@@ -25713,15 +25583,15 @@
       "label": "Intuit",
       "kind": "action",
       "price": 296.33,
-      "change": "4.17",
-      "rsi": "54",
+      "change": "5.26",
+      "rsi": "63",
       "maCross": "bear",
-      "macdHist": "3.54",
-      "boll": "59%",
-      "adx": "7",
-      "atr": "2.1%",
+      "macdHist": "3.78",
+      "boll": "90%",
+      "adx": "26",
+      "atr": "2.3%",
       "verdict": "Plutôt haussier",
-      "score": 69,
+      "score": 67,
       "cls": "bull"
     },
     {
@@ -26418,13 +26288,13 @@
       "label": "Danaher",
       "kind": "action",
       "price": 191.5,
-      "change": "6.90",
-      "rsi": "46",
+      "change": "-0.52",
+      "rsi": "48",
       "maCross": "bull",
-      "macdHist": "-1.97",
-      "boll": "41%",
-      "adx": "8",
-      "atr": "2.4%",
+      "macdHist": "-1.78",
+      "boll": "37%",
+      "adx": "3",
+      "atr": "2.3%",
       "verdict": "Plutôt baissier",
       "score": 31,
       "cls": "bear"
@@ -27003,15 +26873,15 @@
       "label": "Caterpillar",
       "kind": "action",
       "price": 888.73,
-      "change": "-0.07",
-      "rsi": "33",
+      "change": "-0.65",
+      "rsi": "29",
       "maCross": "bull",
-      "macdHist": "-9.18",
+      "macdHist": "-7.62",
       "boll": "27%",
-      "adx": "35",
+      "adx": "41",
       "atr": "1.6%",
-      "verdict": "Baissier fort",
-      "score": 20,
+      "verdict": "Plutôt baissier",
+      "score": 37,
       "cls": "bear"
     },
     {
@@ -27408,12 +27278,12 @@
       "label": "Barrick Gold",
       "kind": "action",
       "price": 39.35,
-      "change": "-2.14",
-      "rsi": "34",
+      "change": "-0.46",
+      "rsi": "33",
       "maCross": "bear",
-      "macdHist": "-0.07",
-      "boll": "35%",
-      "adx": "32",
+      "macdHist": "-0.04",
+      "boll": "34%",
+      "adx": "34",
       "atr": "2.5%",
       "verdict": "Baissier fort",
       "score": 0,
@@ -28863,15 +28733,15 @@
       "label": "Alibaba (US ADR)",
       "kind": "action",
       "price": 112.14,
-      "change": "-3.79",
-      "rsi": "75",
+      "change": "-1.68",
+      "rsi": "70",
       "maCross": "bear",
-      "macdHist": "1.80",
-      "boll": "68%",
-      "adx": "50",
+      "macdHist": "1.27",
+      "boll": "61%",
+      "adx": "39",
       "atr": "2.3%",
       "verdict": "Plutôt haussier",
-      "score": 63,
+      "score": 64,
       "cls": "bull"
     },
     {
@@ -29433,15 +29303,15 @@
       "label": "SOXX Semiconductors",
       "kind": "action",
       "price": 527.01,
-      "change": "-5.13",
-      "rsi": "46",
-      "maCross": "bull",
-      "macdHist": "-3.96",
-      "boll": "35%",
-      "adx": "7",
-      "atr": "2.6%",
-      "verdict": "Plutôt baissier",
-      "score": 31,
+      "change": "-4.40",
+      "rsi": "37",
+      "maCross": "bear",
+      "macdHist": "-4.40",
+      "boll": "18%",
+      "adx": "26",
+      "atr": "2.9%",
+      "verdict": "Baissier fort",
+      "score": 0,
       "cls": "bear"
     },
     {
@@ -31525,7 +31395,7 @@
     "cross_asset": {
       "sp500_change": 0.04967638835190524,
       "nasdaq_change": -0.6439300673470496,
-      "btc_change": -0.08613703704948864,
+      "btc_change": 0.0689201215510596,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -31537,7 +31407,7 @@
     "current_state": {
       "vix": 18.58,
       "yield_curve": null,
-      "btc_30d_change": 6.689367963601364,
+      "btc_30d_change": 6.8549400850141735,
       "sp500_30d_change": 0.23910547649206665,
       "dominant_sectors": [
         "SOXX",
@@ -31557,14 +31427,14 @@
       "tech"
     ],
     "theme_counts": {
-      "war": 81,
-      "credit": 27,
-      "earnings": 121,
-      "tech": 81,
-      "fed": 46,
-      "geopolitical": 55,
-      "oil": 57,
-      "crypto": 34
+      "fed": 45,
+      "war": 85,
+      "earnings": 124,
+      "credit": 28,
+      "tech": 78,
+      "crypto": 36,
+      "geopolitical": 54,
+      "oil": 48
     },
     "top_sectors_60d": [
       "SOXX",
@@ -31722,21 +31592,21 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 65,
+      "ev_battery": 67,
+      "semicon_supply": 3,
       "crypto_hack": 3,
-      "semicon_supply": 4,
       "defi_growth": 2,
       "recession": 1,
       "ai_breakthrough": 3,
-      "rate_pivot": 2
+      "rate_pivot": 1
     },
     "etf_flows": {},
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 81,
-      "credit": 27,
-      "geopol": 55
+      "war": 85,
+      "credit": 28,
+      "geopol": 54
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -31986,9 +31856,9 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "rsi": 51,
-      "change": -0.09,
-      "adx": 2,
+      "rsi": 52,
+      "change": 0.07,
+      "adx": 3,
       "verdict": "Indécis",
       "cls": "neutral",
       "score": 54
@@ -31996,9 +31866,9 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "rsi": 58,
-      "change": -0.21,
-      "adx": 15,
+      "rsi": 59,
+      "change": 0.33,
+      "adx": 18,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 63
@@ -32007,7 +31877,7 @@
       "label": "SOL",
       "kind": "crypto",
       "rsi": 41,
-      "change": -0.05,
+      "change": -0.07,
       "adx": 19,
       "verdict": "Plutôt baissier",
       "cls": "bear",
@@ -32016,9 +31886,9 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "rsi": 41,
-      "change": 0.16,
-      "adx": 18,
+      "rsi": 42,
+      "change": 0.33,
+      "adx": 16,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 24
@@ -32026,42 +31896,42 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "rsi": 48,
-      "change": -0.15,
-      "adx": 3,
+      "rsi": 49,
+      "change": 0.04,
+      "adx": 2,
       "verdict": "Plutôt baissier",
       "cls": "bear",
       "score": 31
     },
     {
-      "label": "AVAX",
+      "label": "DOGE",
+      "kind": "crypto",
+      "rsi": 38,
+      "change": 0.85,
+      "adx": 24,
+      "verdict": "Plutôt baissier",
+      "cls": "bear",
+      "score": 35
+    },
+    {
+      "label": "DOT",
       "kind": "crypto",
       "rsi": 40,
-      "change": -0.23,
+      "change": 1.45,
       "adx": 20,
       "verdict": "Baissier fort",
       "cls": "bear",
-      "score": 18
+      "score": 24
     },
     {
-      "label": "ATOM",
+      "label": "LINK",
       "kind": "crypto",
-      "rsi": 16,
-      "change": -0.77,
-      "adx": 68,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 30
-    },
-    {
-      "label": "BCH",
-      "kind": "crypto",
-      "rsi": 18,
-      "change": -0.1,
-      "adx": 64,
-      "verdict": "Indécis",
-      "cls": "neutral",
-      "score": 50
+      "rsi": 61,
+      "change": 0.19,
+      "adx": 23,
+      "verdict": "Haussier fort",
+      "cls": "bull",
+      "score": 80
     },
     {
       "label": "Apple",
@@ -32436,12 +32306,12 @@
     {
       "label": "Disney",
       "kind": "action",
-      "rsi": 28,
-      "change": -1.06,
-      "adx": 44,
+      "rsi": 42,
+      "change": 2.18,
+      "adx": 17,
       "verdict": "Baissier fort",
       "cls": "bear",
-      "score": 30
+      "score": 6
     },
     {
       "label": "Johnson & J.",
@@ -32586,9 +32456,9 @@
     {
       "label": "SPY (S&P 500 ETF)",
       "kind": "action",
-      "rsi": 45,
-      "change": -1.13,
-      "adx": 11,
+      "rsi": 39,
+      "change": 0.1,
+      "adx": 22,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 24
@@ -32986,12 +32856,12 @@
     {
       "label": "Merval Argentine",
       "kind": "index",
-      "rsi": 61,
-      "change": -2.84,
-      "adx": 22,
+      "rsi": 56,
+      "change": -1.07,
+      "adx": 12,
       "verdict": "Haussier fort",
       "cls": "bull",
-      "score": 83
+      "score": 94
     },
     {
       "label": "JKSE Indonésie",
@@ -33206,12 +33076,12 @@
     {
       "label": "Intuit",
       "kind": "action",
-      "rsi": 54,
-      "change": 4.17,
-      "adx": 7,
+      "rsi": 63,
+      "change": 5.26,
+      "adx": 26,
       "verdict": "Plutôt haussier",
       "cls": "bull",
-      "score": 69
+      "score": 67
     },
     {
       "label": "ADP",
@@ -33676,9 +33546,9 @@
     {
       "label": "Danaher",
       "kind": "action",
-      "rsi": 46,
-      "change": 6.9,
-      "adx": 8,
+      "rsi": 48,
+      "change": -0.52,
+      "adx": 3,
       "verdict": "Plutôt baissier",
       "cls": "bear",
       "score": 31
@@ -34066,12 +33936,12 @@
     {
       "label": "Caterpillar",
       "kind": "action",
-      "rsi": 33,
-      "change": -0.07,
-      "adx": 35,
-      "verdict": "Baissier fort",
+      "rsi": 29,
+      "change": -0.65,
+      "adx": 41,
+      "verdict": "Plutôt baissier",
       "cls": "bear",
-      "score": 20
+      "score": 37
     },
     {
       "label": "John Deere",
@@ -34336,9 +34206,9 @@
     {
       "label": "Barrick Gold",
       "kind": "action",
-      "rsi": 34,
-      "change": -2.14,
-      "adx": 32,
+      "rsi": 33,
+      "change": -0.46,
+      "adx": 34,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 0
@@ -35306,12 +35176,12 @@
     {
       "label": "Alibaba (US ADR)",
       "kind": "action",
-      "rsi": 75,
-      "change": -3.79,
-      "adx": 50,
+      "rsi": 70,
+      "change": -1.68,
+      "adx": 39,
       "verdict": "Plutôt haussier",
       "cls": "bull",
-      "score": 63
+      "score": 64
     },
     {
       "label": "PDD Holdings",
@@ -35686,12 +35556,12 @@
     {
       "label": "SOXX Semiconductors",
       "kind": "action",
-      "rsi": 46,
-      "change": -5.13,
-      "adx": 7,
-      "verdict": "Plutôt baissier",
+      "rsi": 37,
+      "change": -4.4,
+      "adx": 26,
+      "verdict": "Baissier fort",
       "cls": "bear",
-      "score": 31
+      "score": 0
     },
     {
       "label": "SMH Semi ETF",
