@@ -1,10 +1,62 @@
 {
-  "generated": "2026-07-19T19:10:26.973Z",
+  "generated": "2026-07-26T19:16:04.657Z",
   "sources": [
     "Yahoo Finance",
     "CoinGecko"
   ],
   "entries": [
+    {
+      "id": "sem30-2026",
+      "week": "Sem. 30",
+      "date": "2026-07-26",
+      "title": "Marchés sous pression · biais vendeur partout",
+      "method": "Lecture des 4 grands indices (S&P, Nasdaq, CAC, Dow) + 2 crypto majors (BTC, ETH) sur le tf daily. Agrégation des outils RSI · MA20/MA50 · MACD · Bollinger · ADX · ATR · Momentum.",
+      "verdict": {
+        "score": 46,
+        "cls": "neutral",
+        "label": "Indécis"
+      },
+      "indicators": [
+        {
+          "sym": "S&P 500",
+          "read": "RSI 44 · MA20 > MA50 · MACD négatif · -1.7% / 5j",
+          "sig": "bear",
+          "val": "Baissier fort"
+        },
+        {
+          "sym": "Nasdaq",
+          "read": "RSI 40 · MA20 < MA50 · MACD négatif · -2.9% / 5j",
+          "sig": "bear",
+          "val": "Baissier fort"
+        },
+        {
+          "sym": "CAC 40",
+          "read": "RSI 34 · MA20 > MA50 · MACD négatif · -0.9% / 5j",
+          "sig": "bear",
+          "val": "Baissier fort"
+        },
+        {
+          "sym": "Dow",
+          "read": "RSI 31 · MA20 > MA50 · MACD négatif · -1.6% / 5j",
+          "sig": "bear",
+          "val": "Plutôt baissier"
+        },
+        {
+          "sym": "BTC",
+          "read": "RSI 54 · MA20 > MA50 · MACD positif · -2.8% / 5j",
+          "sig": "bull",
+          "val": "Haussier fort"
+        },
+        {
+          "sym": "ETH",
+          "read": "RSI 61 · MA20 > MA50 · MACD positif · -0.9% / 5j",
+          "sig": "bull",
+          "val": "Haussier fort"
+        }
+      ],
+      "conclusion": "<strong class=\"neutral\">Marché sans conviction.</strong> Les outils sont partagés, aucun signal franc d'un côté ou de l'autre. Mieux vaut attendre une confirmation avant de prendre position.",
+      "generated": "2026-07-26T19:16:04.657Z"
+    },
     {
       "id": "sem29-2026",
       "week": "Sem. 29",
