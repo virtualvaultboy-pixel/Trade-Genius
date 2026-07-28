@@ -6,39 +6,8 @@
   "icon": "⚡",
   "created_at": "2026-05-30T17:55:42.952Z",
   "capital_initial": 1000,
-  "cash": 859.7062423388552,
+  "cash": 909.3980590135319,
   "positions": [
-    {
-      "id": "pos-1784591993361-3s7z",
-      "asset": "SOL",
-      "kind": "crypto",
-      "agent": "volt",
-      "type": "volt-D-B-trendfollow",
-      "entry": 77.42482164061147,
-      "stop": 76.73894411707204,
-      "tp1": 79.99686235388432,
-      "tp2": 82.56890306715718,
-      "initial_stop": 76.73894411707204,
-      "high_since_entry": 77.42482164061147,
-      "rr1": 3.75,
-      "rr2": 7.5,
-      "risk_pct": 0.008858625812831967,
-      "size_eur": 50.1359523160143,
-      "quality_score": 85,
-      "sizing_pct": 5,
-      "trailing_after_tp1": true,
-      "trailing_active": false,
-      "pyramiding_pct": 0,
-      "pyramided": false,
-      "stacked": false,
-      "opened_at": "2026-07-20T23:59:53.361Z",
-      "opened_at_cycle": 37,
-      "opened_at_date": "2026-07-20",
-      "status": "open",
-      "touched_tp1": false,
-      "closed_at": null,
-      "pnl_eur": null
-    },
     {
       "id": "pos-1784938084724-7m46",
       "asset": "Tesla",
@@ -68,7 +37,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 309.22,
+      "age_days": 1
     },
     {
       "id": "pos-1784938084724-7u20",
@@ -77,11 +48,11 @@
       "agent": "volt",
       "type": "volt-D-B-trendfollow",
       "entry": 122.91999816894531,
-      "stop": 121.4834265358688,
+      "stop": 122.91999816894531,
       "tp1": 128.30714179298224,
       "tp2": 133.6942854170192,
       "initial_stop": 121.4834265358688,
-      "high_since_entry": 122.91999816894531,
+      "high_since_entry": 131.53,
       "rr1": 3.75,
       "rr2": 7.5,
       "risk_pct": 0.011687045675855278,
@@ -89,7 +60,7 @@
       "quality_score": 85,
       "sizing_pct": 5,
       "trailing_after_tp1": true,
-      "trailing_active": false,
+      "trailing_active": true,
       "pyramiding_pct": 0,
       "pyramided": false,
       "stacked": false,
@@ -97,9 +68,11 @@
       "opened_at_cycle": 41,
       "opened_at_date": "2026-07-25",
       "status": "open",
-      "touched_tp1": false,
+      "touched_tp1": true,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 131.53,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -417,6 +390,41 @@
       "age_days": 5,
       "closed_at_cycle": 28,
       "exit_price": 1.5807419305213735
+    },
+    {
+      "id": "pos-1784591993361-3s7z",
+      "asset": "SOL",
+      "kind": "crypto",
+      "agent": "volt",
+      "type": "volt-D-B-trendfollow",
+      "entry": 77.42482164061147,
+      "stop": 76.73894411707204,
+      "tp1": 79.99686235388432,
+      "tp2": 82.56890306715718,
+      "initial_stop": 76.73894411707204,
+      "high_since_entry": 77.42482164061147,
+      "rr1": 3.75,
+      "rr2": 7.5,
+      "risk_pct": 0.008858625812831967,
+      "size_eur": 50.1359523160143,
+      "quality_score": 85,
+      "sizing_pct": 5,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 0,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-07-20T23:59:53.361Z",
+      "opened_at_cycle": 37,
+      "opened_at_date": "2026-07-20",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-07-28T00:05:22.587Z",
+      "pnl_eur": -0.4441356413375569,
+      "current_price": 74.17932020902965,
+      "age_days": 5,
+      "closed_at_cycle": 42,
+      "exit_price": 76.73894411707204
     }
   ],
   "equity_history": [
@@ -706,7 +714,14 @@
       "equity": 1002.72,
       "cash": 859.71,
       "positions_count": 3
+    },
+    {
+      "date": "2026-07-28",
+      "cycle": 42,
+      "equity": 1004.86,
+      "cash": 909.4,
+      "positions_count": 2
     }
   ],
-  "last_cycle": "2026-07-25"
+  "last_cycle": "2026-07-28"
 }
