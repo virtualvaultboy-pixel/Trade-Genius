@@ -6,7 +6,7 @@
   "icon": "⚡",
   "created_at": "2026-05-30T17:55:42.952Z",
   "capital_initial": 1000,
-  "cash": 909.3980590135319,
+  "cash": 956.9575727964769,
   "positions": [
     {
       "id": "pos-1784938084724-7m46",
@@ -38,41 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 309.22,
-      "age_days": 1
-    },
-    {
-      "id": "pos-1784938084724-7u20",
-      "asset": "Palantir",
-      "kind": "action",
-      "agent": "volt",
-      "type": "volt-D-B-trendfollow",
-      "entry": 122.91999816894531,
-      "stop": 122.91999816894531,
-      "tp1": 128.30714179298224,
-      "tp2": 133.6942854170192,
-      "initial_stop": 121.4834265358688,
-      "high_since_entry": 131.53,
-      "rr1": 3.75,
-      "rr2": 7.5,
-      "risk_pct": 0.011687045675855278,
-      "size_eur": 45.247696965202906,
-      "quality_score": 85,
-      "sizing_pct": 5,
-      "trailing_after_tp1": true,
-      "trailing_active": true,
-      "pyramiding_pct": 0,
-      "pyramided": false,
-      "stacked": false,
-      "opened_at": "2026-07-25T00:08:04.724Z",
-      "opened_at_cycle": 41,
-      "opened_at_date": "2026-07-25",
-      "status": "open",
-      "touched_tp1": true,
-      "closed_at": null,
-      "pnl_eur": null,
-      "current_price": 131.53,
-      "age_days": 1
+      "current_price": 307.44,
+      "age_days": 2
     }
   ],
   "closed_trades": [
@@ -425,6 +392,41 @@
       "age_days": 5,
       "closed_at_cycle": 42,
       "exit_price": 76.73894411707204
+    },
+    {
+      "id": "pos-1784938084724-7u20",
+      "asset": "Palantir",
+      "kind": "action",
+      "agent": "volt",
+      "type": "volt-D-B-trendfollow",
+      "entry": 122.91999816894531,
+      "stop": 130.0934283669235,
+      "tp1": 128.30714179298224,
+      "tp2": 133.6942854170192,
+      "initial_stop": 121.4834265358688,
+      "high_since_entry": 131.53,
+      "rr1": 3.75,
+      "rr2": 7.5,
+      "risk_pct": 0.011687045675855278,
+      "size_eur": 45.247696965202906,
+      "quality_score": 85,
+      "sizing_pct": 5,
+      "trailing_after_tp1": true,
+      "trailing_active": true,
+      "pyramiding_pct": 0,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-07-25T00:08:04.724Z",
+      "opened_at_cycle": 41,
+      "opened_at_date": "2026-07-25",
+      "status": "trail_profit",
+      "touched_tp1": true,
+      "closed_at": "2026-07-29T00:00:53.860Z",
+      "pnl_eur": 2.311816817742131,
+      "current_price": 123.53,
+      "age_days": 2,
+      "closed_at_cycle": 43,
+      "exit_price": 130.0934283669235
     }
   ],
   "equity_history": [
@@ -721,7 +723,14 @@
       "equity": 1004.86,
       "cash": 909.4,
       "positions_count": 2
+    },
+    {
+      "date": "2026-07-29",
+      "cycle": 43,
+      "equity": 1003.74,
+      "cash": 956.96,
+      "positions_count": 1
     }
   ],
-  "last_cycle": "2026-07-28"
+  "last_cycle": "2026-07-29"
 }
