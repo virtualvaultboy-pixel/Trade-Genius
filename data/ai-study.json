@@ -1,9 +1,9 @@
 {
-  "generated": "2026-08-01T04:56:51.124Z",
+  "generated": "2026-08-01T07:33:34.729Z",
   "source": "Pollinations · openai",
   "date": "2026-08-01",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (38 indices · 8 crypto · 355 actions) : S&P 500 +0.70% (RSI 48, plutôt haussier) · Nasdaq +1.00% (RSI 43, baissier fort) · BTC +0.34% (RSI 42, baissier fort) · ETH +0.43% (RSI 51, plutôt baissier) · Apple -7.35% (RSI 45, plutôt baissier). Globalement, 232 actifs en biais haussier contre 157 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (38 indices · 6 crypto · 355 actions) : S&P 500 +0.70% (RSI 48, plutôt haussier) · Nasdaq +1.00% (RSI 43, baissier fort) · BTC +0.30% (RSI 42, baissier fort) · ETH +0.37% (RSI 51, plutôt baissier) · Apple -7.35% (RSI 45, plutôt baissier). Globalement, 232 actifs en biais haussier contre 155 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : tendance haussière confirmée (RSI 48, bull MA50)",
     "Nasdaq : pression vendeuse persistante (RSI 43)",
@@ -851,7 +851,7 @@
             314.08,
             316.47
           ],
-          "quality_score": 75,
+          "quality_score": 76,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": true,
@@ -1358,7 +1358,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"iran\" ×60 (10 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"iran\" ×30 (10 mentions/24h)"
         },
         {
           "asset": "Marathon Petroleum",
@@ -2516,7 +2516,7 @@
             3809,
             3787
           ],
-          "quality_score": 89,
+          "quality_score": 88,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -2631,7 +2631,7 @@
             156.97,
             155.44
           ],
-          "quality_score": 89,
+          "quality_score": 88,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -2670,7 +2670,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"iran\" ×60 (10 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"iran\" ×30 (10 mentions/24h)"
         },
         {
           "asset": "Affirm",
@@ -2856,7 +2856,7 @@
             451.1,
             464.72
           ],
-          "quality_score": 89,
+          "quality_score": 88,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -2895,7 +2895,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"amid\" ×36 (6 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"yields\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Mastercard",
@@ -3010,7 +3010,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×11.5 (23 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"x2019\" ×12.5 (23 mentions/24h)"
         },
         {
           "asset": "Cognizant",
@@ -3655,7 +3655,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "AMC credit upgrade comes with a catch",
+                "time": "2026-07-31T02:33:00.000Z",
+                "source": "Yahoo Finance Crypto"
+              }
+            ]
+          },
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
@@ -8130,7 +8140,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"july\" ×13.2 (22 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"form\" ×13.7 (16 mentions/24h)"
         },
         {
           "asset": "Cloudflare",
@@ -12995,7 +13005,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"watch\" ×18 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"value\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Alphabet",
@@ -13115,7 +13125,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"soaring\" ×18 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"value\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "AMD",
@@ -14085,7 +14095,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×11.5 (23 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"x2019\" ×12.5 (23 mentions/24h)"
         },
         {
           "asset": "Applied Materials",
@@ -14740,7 +14750,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"weak\" ×24 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"coverage\" ×30 (5 mentions/24h)"
         },
         {
           "asset": "Snap",
@@ -16960,7 +16970,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"crypto\" ×48 (8 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"crypto\" ×18 (6 mentions/24h)"
         },
         {
           "asset": "Infosys (NSE)",
@@ -17390,7 +17400,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"memory\" ×6 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"memory\" ×8 (4 mentions/24h)"
         },
         {
           "asset": "JSE Top 40 Afrique du Sud",
@@ -21740,7 +21750,7 @@
     {
       "label": "OMX Stockholm",
       "kind": "index",
-      "price": 3246.922,
+      "price": 3246.9224,
       "change": "0.42",
       "rsi": "71",
       "maCross": "bull",
@@ -21905,11 +21915,11 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 63036.23920579202,
-      "change": "0.34",
+      "price": 63006.727494098224,
+      "change": "0.30",
       "rsi": "42",
       "maCross": "bull",
-      "macdHist": "-259.37",
+      "macdHist": "-261.26",
       "boll": "16%",
       "adx": "17",
       "atr": "1.2%",
@@ -21920,12 +21930,12 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 1868.588292482248,
-      "change": "0.43",
+      "price": 1867.5232695608254,
+      "change": "0.37",
       "rsi": "51",
       "maCross": "bull",
-      "macdHist": "-8.85",
-      "boll": "39%",
+      "macdHist": "-8.92",
+      "boll": "38%",
       "adx": "1",
       "atr": "1.6%",
       "verdict": "Plutôt baissier",
@@ -21935,13 +21945,13 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 73.12961069034894,
-      "change": "0.46",
+      "price": 72.91226468155999,
+      "change": "0.16",
       "rsi": "42",
       "maCross": "bull",
-      "macdHist": "-0.49",
-      "boll": "15%",
-      "adx": "15",
+      "macdHist": "-0.50",
+      "boll": "12%",
+      "adx": "17",
       "atr": "1.5%",
       "verdict": "Plutôt baissier",
       "score": 35,
@@ -21950,13 +21960,13 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "price": 591.4460495672005,
-      "change": "0.85",
+      "price": 590.3675833909499,
+      "change": "0.67",
       "rsi": "65",
       "maCross": "bear",
-      "macdHist": "2.90",
-      "boll": "106%",
-      "adx": "31",
+      "macdHist": "2.83",
+      "boll": "103%",
+      "adx": "30",
       "atr": "0.8%",
       "verdict": "Plutôt haussier",
       "score": 67,
@@ -21965,13 +21975,13 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "price": 1.0657562368699671,
-      "change": "0.49",
-      "rsi": "44",
+      "price": 1.061055744904183,
+      "change": "0.04",
+      "rsi": "43",
       "maCross": "bear",
       "macdHist": "-0.00",
-      "boll": "20%",
-      "adx": "12",
+      "boll": "16%",
+      "adx": "15",
       "atr": "1.4%",
       "verdict": "Baissier fort",
       "score": 6,
@@ -21980,47 +21990,17 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "price": 0.1708456494409678,
-      "change": "1.66",
+      "price": 0.1711776828441286,
+      "change": "1.86",
       "rsi": "54",
       "maCross": "bull",
       "macdHist": "0.00",
-      "boll": "77%",
-      "adx": "8",
+      "boll": "79%",
+      "adx": "9",
       "atr": "2.1%",
       "verdict": "Plutôt haussier",
       "score": 73,
       "cls": "bull"
-    },
-    {
-      "label": "DOGE",
-      "kind": "crypto",
-      "price": 0.07010716907381587,
-      "change": "0.83",
-      "rsi": "43",
-      "maCross": "bear",
-      "macdHist": "0.00",
-      "boll": "24%",
-      "adx": "14",
-      "atr": "1.7%",
-      "verdict": "Baissier fort",
-      "score": 24,
-      "cls": "bear"
-    },
-    {
-      "label": "AVAX",
-      "kind": "crypto",
-      "price": 6.438891233438342,
-      "change": "0.95",
-      "rsi": "47",
-      "maCross": "bear",
-      "macdHist": "-0.01",
-      "boll": "35%",
-      "adx": "6",
-      "atr": "2.3%",
-      "verdict": "Baissier fort",
-      "score": 14,
-      "cls": "bear"
     },
     {
       "label": "Apple",
@@ -28806,7 +28786,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 48
+    "matched_assets": 50
   },
   "macro": {
     "vix": 15.99,
@@ -28816,7 +28796,7 @@
     "cross_asset": {
       "sp500_change": 0.7003619815987983,
       "nasdaq_change": 1.0017837823213365,
-      "btc_change": 0.3440827304449989,
+      "btc_change": 0.2971045845874741,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -28828,7 +28808,7 @@
     "current_state": {
       "vix": 15.99,
       "yield_curve": null,
-      "btc_30d_change": 0.7715402703542482,
+      "btc_30d_change": 0.7243620014589583,
       "sp500_30d_change": -0.14478697871544832,
       "dominant_sectors": [
         "XLV",
@@ -28848,14 +28828,14 @@
       "war"
     ],
     "theme_counts": {
-      "geopolitical": 26,
-      "war": 74,
-      "earnings": 179,
-      "tech": 91,
+      "war": 78,
+      "earnings": 170,
+      "crypto": 55,
+      "geopolitical": 27,
+      "credit": 25,
+      "tech": 89,
       "oil": 18,
-      "fed": 72,
-      "crypto": 53,
-      "credit": 23
+      "fed": 67
     },
     "top_sectors_60d": [
       "XLV",
@@ -28966,6 +28946,13 @@
   "news_intel": {
     "ma_events": [
       {
+        "asset": "UniCredit",
+        "kind": "confirmed",
+        "title": "Commerzbank CEO to hold UniCredit talks as takeover battle enters new phase",
+        "url": "https://www.investing.com/news/company-news/commerzbank-ceo-to-hold-unicredit-talks-as-takeover-battle-enters-new-phase-4829570",
+        "source": "Investing.com"
+      },
+      {
         "asset": "Tesla",
         "kind": "confirmed",
         "title": "WSJ | Tesla Weighs Sale of China Business to Pave Way for Potential SpaceX Merger",
@@ -28973,7 +28960,7 @@
         "source": "Reddit r/wallstreetbets"
       }
     ],
-    "ma_count": 1,
+    "ma_count": 2,
     "fear_greed": {
       "value": 27,
       "classification": "Fear",
@@ -28985,11 +28972,11 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
+      "ev_battery": 95,
+      "ai_breakthrough": 7,
       "crypto_etf": 1,
-      "ev_battery": 92,
       "rate_pivot": 3,
-      "ai_breakthrough": 6,
-      "semicon_supply": 5,
+      "semicon_supply": 4,
       "defi_growth": 2,
       "crypto_hack": 3,
       "biotech_fda": 1
@@ -28998,9 +28985,9 @@
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 74,
-      "credit": 23,
-      "geopol": 26
+      "war": 78,
+      "credit": 25,
+      "geopol": 27
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -29251,7 +29238,7 @@
       "label": "BTC",
       "kind": "crypto",
       "rsi": 42,
-      "change": 0.34,
+      "change": 0.3,
       "adx": 17,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -29261,7 +29248,7 @@
       "label": "ETH",
       "kind": "crypto",
       "rsi": 51,
-      "change": 0.43,
+      "change": 0.37,
       "adx": 1,
       "verdict": "Plutôt baissier",
       "cls": "bear",
@@ -29271,8 +29258,8 @@
       "label": "SOL",
       "kind": "crypto",
       "rsi": 42,
-      "change": 0.46,
-      "adx": 15,
+      "change": 0.16,
+      "adx": 17,
       "verdict": "Plutôt baissier",
       "cls": "bear",
       "score": 35
@@ -29281,8 +29268,8 @@
       "label": "BNB",
       "kind": "crypto",
       "rsi": 65,
-      "change": 0.85,
-      "adx": 31,
+      "change": 0.67,
+      "adx": 30,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 67
@@ -29290,9 +29277,9 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "rsi": 44,
-      "change": 0.49,
-      "adx": 12,
+      "rsi": 43,
+      "change": 0.04,
+      "adx": 15,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 6
@@ -29301,31 +29288,11 @@
       "label": "ADA",
       "kind": "crypto",
       "rsi": 54,
-      "change": 1.66,
-      "adx": 8,
+      "change": 1.86,
+      "adx": 9,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 73
-    },
-    {
-      "label": "DOGE",
-      "kind": "crypto",
-      "rsi": 43,
-      "change": 0.83,
-      "adx": 14,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 24
-    },
-    {
-      "label": "AVAX",
-      "kind": "crypto",
-      "rsi": 47,
-      "change": 0.95,
-      "adx": 6,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 14
     },
     {
       "label": "Apple",
