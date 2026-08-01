@@ -1,15 +1,15 @@
 {
-  "generated": "2026-07-31T23:08:10.398Z",
-  "date": "2026-07-31",
-  "title": "Rapport du 31 juillet 2026",
-  "summary": "Séance largement positive sur les principaux indices et la crypto.",
+  "generated": "2026-08-01T22:59:20.362Z",
+  "date": "2026-08-01",
+  "title": "Rapport du 1 août 2026",
+  "summary": "Plus de hausses que de baisses sur la journée, mais sans direction unanime.",
   "highlights": [
     "S&P 500 +0.70% · ↗ légère hausse",
     "Nasdaq +1.00% · ↗ légère hausse",
-    "CAC 40 +1.21% · ↗ légère hausse",
+    "CAC 40 +0.28% · → stable",
     "Dow +0.53% · ↗ légère hausse",
-    "BTC -1.57% · ↘ légère baisse",
-    "ETH -2.43% · ↓ baissier net"
+    "BTC -0.06% · → stable",
+    "ETH -0.79% · ↘ légère baisse"
   ],
   "items": [
     {
@@ -39,10 +39,10 @@
       "symbol": "CAC 40",
       "name": "CAC 40",
       "price": 8509.64,
-      "change": 1.2056044156677903,
-      "rsi": 62,
-      "verdict": "bull-soft",
-      "verdictLabel": "↗ légère hausse",
+      "change": 0.2828349135344053,
+      "rsi": 61.9,
+      "verdict": "flat",
+      "verdictLabel": "→ stable",
       "currency": "EUR"
     },
     {
@@ -60,22 +60,22 @@
       "kind": "crypto",
       "symbol": "BTC",
       "name": "Bitcoin",
-      "price": 62932.98511046018,
-      "change": -1.565860469933994,
-      "rsi": 45.5,
-      "verdict": "bear-soft",
-      "verdictLabel": "↘ légère baisse",
+      "price": 62784.19535662684,
+      "change": -0.057132652499464656,
+      "rsi": 40.3,
+      "verdict": "flat",
+      "verdictLabel": "→ stable",
       "currency": "USD"
     },
     {
       "kind": "crypto",
       "symbol": "ETH",
       "name": "Ethereum",
-      "price": 1861.431663488037,
-      "change": -2.4294893955762413,
-      "rsi": 49.8,
-      "verdict": "bear",
-      "verdictLabel": "↓ baissier net",
+      "price": 1845.9149338828481,
+      "change": -0.7888559322857857,
+      "rsi": 48.1,
+      "verdict": "bear-soft",
+      "verdictLabel": "↘ légère baisse",
       "currency": "USD"
     }
   ]
