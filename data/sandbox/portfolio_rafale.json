@@ -15,7 +15,7 @@
       "agent": "kairo",
       "type": "grid-day-A",
       "entry": 539.030029296875,
-      "stop": 539.030029296875,
+      "stop": 582.553999266794,
       "tp1": 571.0550323519002,
       "tp2": 603.0800354069254,
       "initial_stop": 531.344028563669,
@@ -38,8 +38,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 590.24,
-      "age_days": 2,
+      "current_price": 587.94,
+      "age_days": 3,
       "size_eur_added": 47.80430860141224
     },
     {
@@ -49,11 +49,11 @@
       "agent": "kairo",
       "type": "kairo-momentum",
       "entry": 451.1000061035156,
-      "stop": 451.1000061035156,
+      "stop": 470.853995309627,
       "tp1": 471.0600103674911,
       "tp2": 496.0100156974604,
       "initial_stop": 429.14400141314263,
-      "high_since_entry": 487.65,
+      "high_since_entry": 492.81,
       "rr1": 0.91,
       "rr2": 2.05,
       "risk_pct": 0.0486721445207311,
@@ -72,8 +72,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 487.65,
-      "age_days": 2,
+      "current_price": 492.81,
+      "age_days": 3,
       "size_eur_added": 43.023877741271015
     },
     {
@@ -105,7 +105,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 277.42,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -1988,7 +1990,14 @@
       "equity": 978.3,
       "cash": 613.56,
       "positions_count": 3
+    },
+    {
+      "date": "2026-08-05",
+      "cycle": 48,
+      "equity": 977.58,
+      "cash": 613.56,
+      "positions_count": 3
     }
   ],
-  "last_cycle": "2026-08-04"
+  "last_cycle": "2026-08-05"
 }
