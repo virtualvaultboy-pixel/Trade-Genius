@@ -6,7 +6,7 @@
   "icon": "🔥",
   "created_at": "2026-05-30T17:55:42.943Z",
   "capital_initial": 1000,
-  "cash": 729.7759879355534,
+  "cash": 591.1185502277983,
   "positions": [
     {
       "id": "pos-1784591992435-perw",
@@ -15,11 +15,11 @@
       "agent": "nova",
       "type": "rebond-survente",
       "entry": 213,
-      "stop": 213,
+      "stop": 220.60285151890346,
       "tp1": 233.42286464146204,
       "tp2": 243.63429696219308,
       "initial_stop": 197.68285151890348,
-      "high_since_entry": 235.15,
+      "high_since_entry": 235.92,
       "rr1": 1.33,
       "rr2": 2,
       "risk_pct": 0.0719114952164156,
@@ -38,8 +38,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 235.15,
-      "age_days": 11,
+      "current_price": 235.92,
+      "age_days": 12,
       "size_eur_added": 39.501276340577085
     },
     {
@@ -72,8 +72,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 587.94,
-      "age_days": 3,
+      "current_price": 588.77,
+      "age_days": 4,
       "size_eur_added": 43.00735709365502
     },
     {
@@ -106,8 +106,70 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 327.35,
-      "age_days": 3
+      "current_price": 321.55,
+      "age_days": 4
+    },
+    {
+      "id": "pos-1785974547880-j1ds",
+      "asset": "TotalEnergies",
+      "kind": "action",
+      "agent": "nova",
+      "type": "doji-baissier",
+      "entry": 74.25,
+      "stop": 76.5728381652832,
+      "tp1": 72.06475116680195,
+      "tp2": 69.8795023336039,
+      "initial_stop": 76.5728381652832,
+      "high_since_entry": 74.25,
+      "rr1": 0.94,
+      "rr2": 1.88,
+      "risk_pct": 0.03128401569404985,
+      "size_eur": 72.97759879355534,
+      "quality_score": 80,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-08-06T00:02:27.880Z",
+      "opened_at_cycle": 49,
+      "opened_at_date": "2026-08-06",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
+    },
+    {
+      "id": "pos-1785974547881-bb0c",
+      "asset": "USD/JPY",
+      "kind": "forex",
+      "agent": "nova",
+      "type": "rebond-survente",
+      "entry": 157.6269989013672,
+      "stop": 156.68917682539015,
+      "tp1": 158.87742833600322,
+      "tp2": 159.50264305332124,
+      "initial_stop": 156.68917682539015,
+      "high_since_entry": 157.6269989013672,
+      "rr1": 1.33,
+      "rr2": 2,
+      "risk_pct": 0.005949628442547886,
+      "size_eur": 65.6798389141998,
+      "quality_score": 70,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-08-06T00:02:27.881Z",
+      "opened_at_cycle": 49,
+      "opened_at_date": "2026-08-06",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
     }
   ],
   "closed_trades": [
@@ -3124,7 +3186,14 @@
       "equity": 1075.18,
       "cash": 729.78,
       "positions_count": 3
+    },
+    {
+      "date": "2026-08-06",
+      "cycle": 49,
+      "equity": 1074.5,
+      "cash": 591.12,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-08-05"
+  "last_cycle": "2026-08-06"
 }
