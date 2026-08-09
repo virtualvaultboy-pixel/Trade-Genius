@@ -1,10 +1,62 @@
 {
-  "generated": "2026-08-02T19:14:59.156Z",
+  "generated": "2026-08-09T18:45:22.112Z",
   "sources": [
     "Yahoo Finance",
     "CoinGecko"
   ],
   "entries": [
+    {
+      "id": "sem32-2026",
+      "week": "Sem. 32",
+      "date": "2026-08-09",
+      "title": "Marchés portés · les hausses dominent",
+      "method": "Lecture des 4 grands indices (S&P, Nasdaq, CAC, Dow) + 2 crypto majors (BTC, ETH) sur le tf daily. Agrégation des outils RSI · MA20/MA50 · MACD · Bollinger · ADX · ATR · Momentum.",
+      "verdict": {
+        "score": 78,
+        "cls": "bull",
+        "label": "Haussier fort"
+      },
+      "indicators": [
+        {
+          "sym": "S&P 500",
+          "read": "RSI 70 · MA20 > MA50 · MACD positif · +3.6% / 5j",
+          "sig": "bull",
+          "val": "Haussier fort"
+        },
+        {
+          "sym": "Nasdaq",
+          "read": "RSI 63 · MA20 < MA50 · MACD positif · +5.2% / 5j",
+          "sig": "bull",
+          "val": "Plutôt haussier"
+        },
+        {
+          "sym": "CAC 40",
+          "read": "RSI 75 · MA20 > MA50 · MACD positif · +2.4% / 5j",
+          "sig": "bull",
+          "val": "Plutôt haussier"
+        },
+        {
+          "sym": "Dow",
+          "read": "RSI 67 · MA20 > MA50 · MACD positif · +3.0% / 5j",
+          "sig": "bull",
+          "val": "Haussier fort"
+        },
+        {
+          "sym": "BTC",
+          "read": "RSI 49 · MA20 > MA50 · MACD positif · +1.8% / 5j",
+          "sig": "bull",
+          "val": "Haussier fort"
+        },
+        {
+          "sym": "ETH",
+          "read": "RSI 45 · MA20 > MA50 · MACD négatif · +2.8% / 5j",
+          "sig": "bull",
+          "val": "Plutôt haussier"
+        }
+      ],
+      "conclusion": "<strong class=\"bull\">Vague haussière confirmée.</strong> Plus de 5 actifs majeurs sur 6 pointent dans la même direction, avec ADX qui valide la dynamique. À surveiller : les zones de surachat (RSI > 70) qui peuvent appeler une pause.",
+      "generated": "2026-08-09T18:45:22.112Z"
+    },
     {
       "id": "sem31-2026",
       "week": "Sem. 31",
