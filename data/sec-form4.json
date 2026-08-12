@@ -1,10 +1,19 @@
 {
-  "generated": "2026-08-12T05:27:27.899Z",
+  "generated": "2026-08-12T10:57:03.736Z",
   "source": "SEC EDGAR Form 4 RSS",
   "window_days": 7,
-  "count": 146,
+  "count": 101,
   "ticker_signals": {},
   "filings": [
+    {
+      "company": "Anteris Technologies Global Corp.",
+      "cik": "0002011514",
+      "filed_at": "2026-08-12T10:13:59.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/2011514/000181764626000020/0001817646-26-000020-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
     {
       "company": "Terreno Realty Corp",
       "cik": "0001476150",
@@ -895,15 +904,6 @@
       "isIssuer": true,
       "isForm4": true,
       "ticker": "Coca-Cola"
-    },
-    {
-      "company": "Limoneira CO",
-      "cik": "0001342423",
-      "filed_at": "2026-08-11T16:29:35.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1342423/000110465926093921/0001104659-26-093921-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
     }
   ]
 }
