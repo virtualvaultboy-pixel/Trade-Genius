@@ -6,7 +6,7 @@
   "icon": "₿",
   "created_at": "2026-05-30T17:55:42.950Z",
   "capital_initial": 1000,
-  "cash": 854.4971219029862,
+  "cash": 739.0545607338928,
   "positions": [
     {
       "id": "pos-1786405135541-c4d4",
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 63351.40290735285,
-      "age_days": 2
+      "current_price": 63397.75833311379,
+      "age_days": 3
     },
     {
       "id": "pos-1786405135541-z6iq",
@@ -52,7 +52,7 @@
       "tp1": 1917.053928615158,
       "tp2": 1981.557946157928,
       "initial_stop": 1820.297902301003,
-      "high_since_entry": 1882.5791371358155,
+      "high_since_entry": 1884.650284555786,
       "rr1": 0.8,
       "rr2": 2,
       "risk_pct": 0.02868296581806,
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 1876.4289361131212,
-      "age_days": 2
+      "current_price": 1884.650284555786,
+      "age_days": 3
     },
     {
       "id": "pos-1786491942300-gqbc",
@@ -104,8 +104,70 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 2.1597067566303707,
-      "age_days": 1
+      "current_price": 2.1817331686331776,
+      "age_days": 2
+    },
+    {
+      "id": "pos-1786664762926-t1tp",
+      "asset": "AVAX",
+      "kind": "crypto",
+      "agent": "nova",
+      "type": "doji-haussier",
+      "entry": 6.435169249383689,
+      "stop": 6.296222220015002,
+      "tp1": 6.635735520763222,
+      "tp2": 6.836301792142756,
+      "initial_stop": 6.296222220015002,
+      "high_since_entry": 6.435169249383689,
+      "rr1": 1.44,
+      "rr2": 2.89,
+      "risk_pct": 0.021591822061555608,
+      "size_eur": 59.81479853320904,
+      "quality_score": 67,
+      "sizing_pct": 7,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 30,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-08-13T23:46:02.926Z",
+      "opened_at_cycle": 55,
+      "opened_at_date": "2026-08-13",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
+    },
+    {
+      "id": "pos-1786664762926-qe2u",
+      "asset": "DOGE",
+      "kind": "crypto",
+      "agent": "kairo",
+      "type": "kairo-squeeze",
+      "entry": 0.07015789701172419,
+      "stop": 0.06792385119263833,
+      "tp1": 0.07194513366699287,
+      "tp2": 0.0746259886498959,
+      "initial_stop": 0.06792385119263833,
+      "high_since_entry": 0.07015789701172419,
+      "rr1": 0.8,
+      "rr2": 2,
+      "risk_pct": 0.03184311266788006,
+      "size_eur": 55.62776263588441,
+      "quality_score": 65,
+      "sizing_pct": 7,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 30,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-08-13T23:46:02.926Z",
+      "opened_at_cycle": 55,
+      "opened_at_date": "2026-08-13",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
     }
   ],
   "closed_trades": [
@@ -2353,7 +2415,14 @@
       "equity": 986.35,
       "cash": 854.5,
       "positions_count": 3
+    },
+    {
+      "date": "2026-08-13",
+      "cycle": 55,
+      "equity": 986.97,
+      "cash": 739.05,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-08-12"
+  "last_cycle": "2026-08-13"
 }
