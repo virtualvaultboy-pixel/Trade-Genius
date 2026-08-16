@@ -1,15 +1,15 @@
 {
-  "generated": "2026-08-15T22:27:35.183Z",
-  "date": "2026-08-15",
-  "title": "Rapport du 15 août 2026",
-  "summary": "Séance partagée : pas de direction nette du marché aujourd'hui.",
+  "generated": "2026-08-16T22:27:16.088Z",
+  "date": "2026-08-16",
+  "title": "Rapport du 16 août 2026",
+  "summary": "Plus de baisses que de hausses sur la journée, biais vendeur modéré.",
   "highlights": [
     "S&P 500 -0.17% · → stable",
     "Nasdaq -0.28% · → stable",
     "CAC 40 -0.16% · → stable",
     "Dow -0.20% · → stable",
-    "BTC +0.16% · → stable",
-    "ETH +0.15% · → stable"
+    "BTC -0.34% · ↘ légère baisse",
+    "ETH -0.32% · ↘ légère baisse"
   ],
   "items": [
     {
@@ -60,22 +60,22 @@
       "kind": "crypto",
       "symbol": "BTC",
       "name": "Bitcoin",
-      "price": 63082.49062319007,
-      "change": 0.15591352699437894,
-      "rsi": 53,
-      "verdict": "flat",
-      "verdictLabel": "→ stable",
+      "price": 62814.98471423728,
+      "change": -0.3427890721875329,
+      "rsi": 42.3,
+      "verdict": "bear-soft",
+      "verdictLabel": "↘ légère baisse",
       "currency": "USD"
     },
     {
       "kind": "crypto",
       "symbol": "ETH",
       "name": "Ethereum",
-      "price": 1883.213936386372,
-      "change": 0.15345234910955913,
-      "rsi": 59.8,
-      "verdict": "flat",
-      "verdictLabel": "→ stable",
+      "price": 1874.9110486367026,
+      "change": -0.3215438002916954,
+      "rsi": 47.9,
+      "verdict": "bear-soft",
+      "verdictLabel": "↘ légère baisse",
       "currency": "USD"
     }
   ]
