@@ -15,11 +15,11 @@
       "agent": "volt",
       "type": "volt-D-A-contrarian",
       "entry": 308.8500061035156,
-      "stop": 336.204431359405,
+      "stop": 345.05443135940504,
       "tp1": 331.59588850574676,
       "tp2": 354.3417709079779,
       "initial_stop": 302.78443746292066,
-      "high_since_entry": 342.27,
+      "high_since_entry": 351.12,
       "rr1": 3.75,
       "rr2": 7.5,
       "risk_pct": 0.019639205182861472,
@@ -38,8 +38,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 336.87,
-      "age_days": 13
+      "current_price": 351.12,
+      "age_days": 14
     }
   ],
   "closed_trades": [
@@ -870,7 +870,14 @@
       "equity": 1008.12,
       "cash": 953.39,
       "positions_count": 1
+    },
+    {
+      "date": "2026-08-19",
+      "cycle": 59,
+      "equity": 1010.44,
+      "cash": 953.39,
+      "positions_count": 1
     }
   ],
-  "last_cycle": "2026-08-18"
+  "last_cycle": "2026-08-19"
 }
