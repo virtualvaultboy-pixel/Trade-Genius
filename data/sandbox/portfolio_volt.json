@@ -6,42 +6,8 @@
   "icon": "⚡",
   "created_at": "2026-05-30T17:55:42.952Z",
   "capital_initial": 1000,
-  "cash": 953.392846747323,
-  "positions": [
-    {
-      "id": "pos-1785456333741-d60a",
-      "asset": "Tesla",
-      "kind": "action",
-      "agent": "volt",
-      "type": "volt-D-A-contrarian",
-      "entry": 308.8500061035156,
-      "stop": 345.05443135940504,
-      "tp1": 331.59588850574676,
-      "tp2": 354.3417709079779,
-      "initial_stop": 302.78443746292066,
-      "high_since_entry": 351.12,
-      "rr1": 3.75,
-      "rr2": 7.5,
-      "risk_pct": 0.019639205182861472,
-      "size_eur": 50.178570881438056,
-      "quality_score": 94,
-      "sizing_pct": 5,
-      "trailing_after_tp1": true,
-      "trailing_active": true,
-      "pyramiding_pct": 0,
-      "pyramided": false,
-      "stacked": false,
-      "opened_at": "2026-07-31T00:05:33.741Z",
-      "opened_at_cycle": 45,
-      "opened_at_date": "2026-07-31",
-      "status": "open",
-      "touched_tp1": true,
-      "closed_at": null,
-      "pnl_eur": null,
-      "current_price": 351.12,
-      "age_days": 14
-    }
-  ],
+  "cash": 1009.4657942171906,
+  "positions": [],
   "closed_trades": [
     {
       "id": "pos-1780502745888-35za",
@@ -462,6 +428,41 @@
       "age_days": 3,
       "closed_at_cycle": 44,
       "exit_price": 306.357143703052
+    },
+    {
+      "id": "pos-1785456333741-d60a",
+      "asset": "Tesla",
+      "kind": "action",
+      "agent": "volt",
+      "type": "volt-D-A-contrarian",
+      "entry": 308.8500061035156,
+      "stop": 345.05443135940504,
+      "tp1": 331.59588850574676,
+      "tp2": 354.3417709079779,
+      "initial_stop": 302.78443746292066,
+      "high_since_entry": 351.12,
+      "rr1": 3.75,
+      "rr2": 7.5,
+      "risk_pct": 0.019639205182861472,
+      "size_eur": 50.178570881438056,
+      "quality_score": 94,
+      "sizing_pct": 5,
+      "trailing_after_tp1": true,
+      "trailing_active": true,
+      "pyramiding_pct": 0,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-07-31T00:05:33.741Z",
+      "opened_at_cycle": 45,
+      "opened_at_date": "2026-07-31",
+      "status": "timeout",
+      "touched_tp1": true,
+      "closed_at": "2026-08-20T23:29:08.743Z",
+      "pnl_eur": 5.894376588429534,
+      "current_price": 345.13,
+      "age_days": 15,
+      "closed_at_cycle": 60,
+      "exit_price": 345.13
     }
   ],
   "equity_history": [
@@ -877,7 +878,14 @@
       "equity": 1010.44,
       "cash": 953.39,
       "positions_count": 1
+    },
+    {
+      "date": "2026-08-20",
+      "cycle": 60,
+      "equity": 1009.47,
+      "cash": 1009.47,
+      "positions_count": 0
     }
   ],
-  "last_cycle": "2026-08-19"
+  "last_cycle": "2026-08-20"
 }
