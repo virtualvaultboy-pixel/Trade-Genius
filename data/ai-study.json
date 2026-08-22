@@ -1,14 +1,14 @@
 {
-  "generated": "2026-08-22T14:00:12.109Z",
+  "generated": "2026-08-22T14:32:43.463Z",
   "source": "Pollinations · openai",
   "date": "2026-08-22",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (37 indices · 7 crypto · 355 actions) : S&P 500 +0.43% (RSI 57, plutôt haussier) · Nasdaq +0.43% (RSI 55, indécis) · BTC -1.36% (RSI 83, plutôt haussier) · ETH -3.41% (RSI 82, plutôt haussier) · Apple -0.63% (RSI 57, plutôt baissier). Globalement, 216 actifs en biais haussier contre 161 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (37 indices · 8 crypto · 355 actions) : S&P 500 +0.43% (RSI 57, plutôt haussier) · Nasdaq +0.43% (RSI 55, indécis) · BTC -1.60% (RSI 82, plutôt haussier) · ETH -3.79% (RSI 81, plutôt haussier) · Apple -0.63% (RSI 57, plutôt baissier). Globalement, 218 actifs en biais haussier contre 161 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : tendance haussière confirmée (RSI 57, bull MA50)",
     "Nasdaq : sans direction nette (RSI 55)",
-    "BTC : tendance haussière confirmée (RSI 83, bull MA50)",
-    "ETH : tendance haussière confirmée (RSI 82, bull MA50)",
+    "BTC : tendance haussière confirmée (RSI 82, bull MA50)",
+    "ETH : tendance haussière confirmée (RSI 81, bull MA50)",
     "Apple : pression vendeuse persistante (RSI 57)"
   ],
   "plan_pedago": [
@@ -7897,7 +7897,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"rally\" ×66 (11 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"rally\" ×60 (10 mentions/24h)"
         },
         {
           "asset": "Vertex",
@@ -8948,7 +8948,7 @@
             112.39,
             119.25
           ],
-          "quality_score": 75,
+          "quality_score": 73,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -8976,13 +8976,13 @@
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 66,
+          "quality_score_pre_wisdom": 64,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"bitcoin\" ×10.2 (22 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"bitcoin\" ×6.4 (18 mentions/24h)"
         },
         {
           "asset": "Nifty 50 India",
@@ -9508,8 +9508,8 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 3,
+            "risk": "alert",
             "items": [
               {
                 "title": "Meta is the latest tech giant to land in her courtroom. Meet Judge Yvonne Gonzalez Rogers",
@@ -11093,7 +11093,7 @@
             240.48,
             243.63
           ],
-          "quality_score": 74,
+          "quality_score": 81,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11107,17 +11107,27 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "U.S. Steel Stocks Nucor, Steel Dynamics: Big Winners As Canada Trade Talks Collapse?",
+                "time": "2026-08-22T13:26:57.000Z",
+                "source": "Yahoo Finance Crypto"
+              }
+            ]
+          },
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 65,
+          "quality_score_pre_wisdom": 72,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"trade\" ×78 (13 mentions/24h)"
         },
         {
           "asset": "Paramount",
@@ -12157,17 +12167,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Why is Renault stock sliding today?",
-                "time": "2026-08-21T07:55:12.000Z",
-                "source": "Investing.com"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
@@ -12717,7 +12717,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sell\" ×36 (6 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"hold\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Walmart",
@@ -12837,7 +12837,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"rally\" ×66 (11 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"rally\" ×60 (10 mentions/24h)"
         },
         {
           "asset": "Lam Research",
@@ -14953,18 +14953,13 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "When it comes to stock buybacks, anything SK Hynix can do, Samsung can do bigger",
                 "time": "2026-08-21T12:15:00.000Z",
                 "source": "MarketWatch"
-              },
-              {
-                "title": "SK Hynix is starting to remind me of Ericsson in Sweden’s 1999–2000 tech bubble",
-                "time": "2026-08-21T07:31:21.000Z",
-                "source": "Reddit r/investing"
               }
             ]
           },
@@ -15398,7 +15393,7 @@
               },
               {
                 "title": "Dow Jones Futures: Market Rally Repairs Some Damage; Nvidia Earnings Loom",
-                "time": "2026-08-22T12:08:44.000Z",
+                "time": "2026-08-22T13:27:37.000Z",
                 "source": "Yahoo Finance Crypto"
               }
             ]
@@ -15412,7 +15407,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"rally\" ×66 (11 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"rally\" ×60 (10 mentions/24h)"
         },
         {
           "asset": "DAX",
@@ -15832,8 +15827,8 @@
                 "source": "Yahoo Finance"
               },
               {
-                "title": "Where Will This Vanguard ETF, Loaded With Nvidia and Broadcom, Be in 10 Years?",
-                "time": "2026-08-22T12:20:00.000Z",
+                "title": "Dow Jones Futures: Market Rally Repairs Some Damage; Nvidia Earnings Loom",
+                "time": "2026-08-22T13:27:37.000Z",
                 "source": "Yahoo Finance Crypto"
               }
             ]
@@ -15847,7 +15842,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"rally\" ×66 (11 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"rally\" ×60 (10 mentions/24h)"
         },
         {
           "asset": "IBM",
@@ -16072,7 +16067,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"gains\" ×12 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"ahead\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "BlackRock",
@@ -16153,7 +16148,7 @@
             1139.8199,
             1156.55
           ],
-          "quality_score": 65,
+          "quality_score": 71,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16167,17 +16162,27 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "BlackRock CEO Larry Fink says a bank account is 'one of the worst financial decisions' — and urges Americans to invest",
+                "time": "2026-08-22T14:00:00.000Z",
+                "source": "Yahoo Finance Crypto"
+              }
+            ]
+          },
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 56,
+          "quality_score_pre_wisdom": 62,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"account\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "P&G",
@@ -20017,7 +20022,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"rally\" ×66 (11 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"rally\" ×60 (10 mentions/24h)"
         },
         {
           "asset": "Datadog",
@@ -22987,7 +22992,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"treasury\" ×22.5 (15 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"amid\" ×24 (8 mentions/24h)"
         },
         {
           "asset": "Goldman Sachs",
@@ -26945,13 +26950,13 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 77255.29259779911,
-      "change": "-1.36",
-      "rsi": "83",
+      "price": 77064.15165011863,
+      "change": "-1.60",
+      "rsi": "82",
       "maCross": "bull",
-      "macdHist": "1547.84",
+      "macdHist": "1535.64",
       "boll": "111%",
-      "adx": "66",
+      "adx": "64",
       "atr": "1.7%",
       "verdict": "Plutôt haussier",
       "score": 70,
@@ -26960,13 +26965,13 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 2429.313616115801,
-      "change": "-3.41",
-      "rsi": "82",
+      "price": 2419.740602370609,
+      "change": "-3.79",
+      "rsi": "81",
       "maCross": "bull",
-      "macdHist": "62.01",
-      "boll": "105%",
-      "adx": "64",
+      "macdHist": "61.40",
+      "boll": "104%",
+      "adx": "62",
       "atr": "2.4%",
       "verdict": "Plutôt haussier",
       "score": 70,
@@ -26975,12 +26980,12 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 94.08411614564304,
-      "change": "0.42",
+      "price": 93.81708507997237,
+      "change": "0.13",
       "rsi": "89",
       "maCross": "bull",
-      "macdHist": "2.15",
-      "boll": "113%",
+      "macdHist": "2.13",
+      "boll": "112%",
       "adx": "77",
       "atr": "1.8%",
       "verdict": "Plutôt haussier",
@@ -26990,11 +26995,11 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "price": 694.8078542701968,
-      "change": "1.17",
+      "price": 694.2335878994497,
+      "change": "1.08",
       "rsi": "84",
       "maCross": "bull",
-      "macdHist": "8.55",
+      "macdHist": "8.52",
       "boll": "119%",
       "adx": "69",
       "atr": "1.4%",
@@ -27005,46 +27010,61 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "price": 1.4999682719966874,
-      "change": "3.14",
-      "rsi": "89",
+      "price": 1.48048844107463,
+      "change": "1.80",
+      "rsi": "88",
       "maCross": "bear",
       "macdHist": "0.05",
-      "boll": "122%",
-      "adx": "78",
+      "boll": "120%",
+      "adx": "77",
       "atr": "2.8%",
       "verdict": "Indécis",
       "score": 50,
       "cls": "neutral"
     },
     {
-      "label": "DOT",
+      "label": "ADA",
       "kind": "crypto",
-      "price": 0.9324447642709068,
-      "change": "-0.74",
-      "rsi": "71",
-      "maCross": "bear",
-      "macdHist": "0.02",
-      "boll": "109%",
-      "adx": "42",
-      "atr": "2.1%",
-      "verdict": "Indécis",
-      "score": 50,
-      "cls": "neutral"
+      "price": 0.22464755343197365,
+      "change": "-1.95",
+      "rsi": "65",
+      "maCross": "bull",
+      "macdHist": "0.00",
+      "boll": "106%",
+      "adx": "30",
+      "atr": "2.7%",
+      "verdict": "Haussier fort",
+      "score": 87,
+      "cls": "bull"
     },
     {
-      "label": "LTC",
+      "label": "DOGE",
       "kind": "crypto",
-      "price": 52.17262042202917,
-      "change": "-1.80",
-      "rsi": "73",
+      "price": 0.0907583651964972,
+      "change": "-0.83",
+      "rsi": "84",
       "maCross": "bull",
-      "macdHist": "0.83",
-      "boll": "114%",
-      "adx": "46",
-      "atr": "1.8%",
+      "macdHist": "0.00",
+      "boll": "118%",
+      "adx": "67",
+      "atr": "2.4%",
       "verdict": "Plutôt haussier",
       "score": 70,
+      "cls": "bull"
+    },
+    {
+      "label": "AVAX",
+      "kind": "crypto",
+      "price": 7.490273220291249,
+      "change": "-4.42",
+      "rsi": "70",
+      "maCross": "bull",
+      "macdHist": "0.15",
+      "boll": "102%",
+      "adx": "39",
+      "atr": "2.5%",
+      "verdict": "Haussier fort",
+      "score": 87,
       "cls": "bull"
     },
     {
@@ -34880,7 +34900,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 48
+    "matched_assets": 49
   },
   "macro": {
     "vix": 15.13,
@@ -34890,7 +34910,7 @@
     "cross_asset": {
       "sp500_change": 0.4346193543703738,
       "nasdaq_change": 0.4346118737267626,
-      "btc_change": -1.3566326881854622,
+      "btc_change": -1.6006908759983636,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -34902,7 +34922,7 @@
     "current_state": {
       "vix": 15.13,
       "yield_curve": null,
-      "btc_30d_change": 20.52494982491412,
+      "btc_30d_change": 20.226753386145692,
       "sp500_30d_change": 2.116075609937383,
       "dominant_sectors": [
         "IBB",
@@ -34922,13 +34942,13 @@
       "earnings"
     ],
     "theme_counts": {
-      "fed": 42,
+      "war": 82,
       "earnings": 60,
-      "war": 81,
-      "crypto": 67,
+      "credit": 43,
+      "geopolitical": 37,
+      "fed": 43,
+      "crypto": 66,
       "tech": 44,
-      "credit": 42,
-      "geopolitical": 38,
       "oil": 21
     },
     "top_sectors_60d": [
@@ -35059,10 +35079,10 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 66,
+      "crypto_hack": 4,
+      "crypto_etf": 2,
+      "ev_battery": 67,
       "ai_breakthrough": 11,
-      "crypto_hack": 3,
-      "crypto_etf": 1,
       "defi_growth": 1,
       "semicon_supply": 1
     },
@@ -35070,9 +35090,9 @@
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 81,
-      "credit": 42,
-      "geopol": 38
+      "war": 82,
+      "credit": 43,
+      "geopol": 37
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -35322,9 +35342,9 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "rsi": 83,
-      "change": -1.36,
-      "adx": 66,
+      "rsi": 82,
+      "change": -1.6,
+      "adx": 64,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 70
@@ -35332,9 +35352,9 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "rsi": 82,
-      "change": -3.41,
-      "adx": 64,
+      "rsi": 81,
+      "change": -3.79,
+      "adx": 62,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 70
@@ -35343,7 +35363,7 @@
       "label": "SOL",
       "kind": "crypto",
       "rsi": 89,
-      "change": 0.42,
+      "change": 0.13,
       "adx": 77,
       "verdict": "Plutôt haussier",
       "cls": "bull",
@@ -35353,7 +35373,7 @@
       "label": "BNB",
       "kind": "crypto",
       "rsi": 84,
-      "change": 1.17,
+      "change": 1.08,
       "adx": 69,
       "verdict": "Plutôt haussier",
       "cls": "bull",
@@ -35362,32 +35382,42 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "rsi": 89,
-      "change": 3.14,
-      "adx": 78,
+      "rsi": 88,
+      "change": 1.8,
+      "adx": 77,
       "verdict": "Indécis",
       "cls": "neutral",
       "score": 50
     },
     {
-      "label": "DOT",
+      "label": "ADA",
       "kind": "crypto",
-      "rsi": 71,
-      "change": -0.74,
-      "adx": 42,
-      "verdict": "Indécis",
-      "cls": "neutral",
-      "score": 50
+      "rsi": 65,
+      "change": -1.95,
+      "adx": 30,
+      "verdict": "Haussier fort",
+      "cls": "bull",
+      "score": 87
     },
     {
-      "label": "LTC",
+      "label": "DOGE",
       "kind": "crypto",
-      "rsi": 73,
-      "change": -1.8,
-      "adx": 46,
+      "rsi": 84,
+      "change": -0.83,
+      "adx": 67,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 70
+    },
+    {
+      "label": "AVAX",
+      "kind": "crypto",
+      "rsi": 70,
+      "change": -4.42,
+      "adx": 39,
+      "verdict": "Haussier fort",
+      "cls": "bull",
+      "score": 87
     },
     {
       "label": "Apple",
