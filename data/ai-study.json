@@ -1,9 +1,9 @@
 {
-  "generated": "2026-08-22T10:42:37.155Z",
+  "generated": "2026-08-22T11:01:50.889Z",
   "source": "Pollinations · openai",
   "date": "2026-08-22",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (37 indices · 10 crypto · 355 actions) : S&P 500 +0.43% (RSI 57, plutôt haussier) · Nasdaq +0.43% (RSI 55, indécis) · BTC -1.62% (RSI 82, plutôt haussier) · ETH -4.15% (RSI 80, plutôt haussier) · Apple -0.63% (RSI 57, plutôt baissier). Globalement, 220 actifs en biais haussier contre 161 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (37 indices · 7 crypto · 355 actions) : S&P 500 +0.43% (RSI 57, plutôt haussier) · Nasdaq +0.43% (RSI 55, indécis) · BTC -1.76% (RSI 82, plutôt haussier) · ETH -4.10% (RSI 80, plutôt haussier) · Apple -0.63% (RSI 57, plutôt baissier). Globalement, 217 actifs en biais haussier contre 161 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : tendance haussière confirmée (RSI 57, bull MA50)",
     "Nasdaq : sans direction nette (RSI 55)",
@@ -18,7 +18,7 @@
     "Définir stop loss et take profit AVANT d'entrer sur le marché"
   ],
   "verdict": {
-    "score": 55,
+    "score": 54,
     "cls": "neutral",
     "label": "Indécis"
   },
@@ -1373,7 +1373,7 @@
             321.29,
             332.78
           ],
-          "quality_score": 92,
+          "quality_score": 85,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1387,27 +1387,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Snowflake director Frank Slootman sells $97.4m in shares",
-                "time": "2026-08-21T03:17:21.000Z",
-                "source": "Investing.com"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 12,
           "wisdom_note": "Bull momentum tech/IA, trailing stops larges",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 79,
+          "quality_score_pre_wisdom": 72,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sells\" ×108 (36 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Booking Holdings",
@@ -2561,7 +2551,7 @@
             321.29,
             332.78
           ],
-          "quality_score": 94,
+          "quality_score": 87,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -2575,27 +2565,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Snowflake director Frank Slootman sells $97.4m in shares",
-                "time": "2026-08-21T03:17:21.000Z",
-                "source": "Investing.com"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 14,
           "wisdom_note": "Long semicon + IA infra",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 79,
+          "quality_score_pre_wisdom": 72,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sells\" ×108 (36 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Booking Holdings",
@@ -3025,7 +3005,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nvidia\" ×42 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"nvidia\" ×18 (6 mentions/24h)"
         },
         {
           "asset": "Palladium",
@@ -5638,7 +5618,7 @@
             321.29,
             332.78
           ],
-          "quality_score": 88,
+          "quality_score": 81,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -5652,27 +5632,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Snowflake director Frank Slootman sells $97.4m in shares",
-                "time": "2026-08-21T03:17:21.000Z",
-                "source": "Investing.com"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 79,
+          "quality_score_pre_wisdom": 72,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sells\" ×108 (36 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Booking Holdings",
@@ -6632,7 +6602,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×102 (17 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"x2019\" ×48 (16 mentions/24h)"
         },
         {
           "asset": "Salesforce",
@@ -7387,7 +7357,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nvidia\" ×42 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"nvidia\" ×18 (6 mentions/24h)"
         },
         {
           "asset": "Cognizant",
@@ -9227,7 +9197,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sells\" ×108 (36 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"sells\" ×216 (36 mentions/24h)"
         },
         {
           "asset": "DHL Group",
@@ -13182,7 +13152,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sells\" ×108 (36 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"sells\" ×216 (36 mentions/24h)"
         },
         {
           "asset": "Seagate",
@@ -14877,7 +14847,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"chinese\" ×24 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"shares\" ×42 (14 mentions/24h)"
         },
         {
           "asset": "SK Hynix",
@@ -15867,7 +15837,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nvidia\" ×42 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"rally\" ×42 (7 mentions/24h)"
         },
         {
           "asset": "IBM",
@@ -16092,7 +16062,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nvidia\" ×42 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"gains\" ×36 (6 mentions/24h)"
         },
         {
           "asset": "BlackRock",
@@ -19387,7 +19357,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nvidia\" ×42 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"instead\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Broadcom",
@@ -20018,8 +19988,8 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 3,
-            "risk": "alert",
+            "count": 2,
+            "risk": "caution",
             "items": [
               {
                 "title": "Dow Jones Futures: Market Rally Repairs Some Damage; Nvidia Earnings Loom",
@@ -20042,7 +20012,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nvidia\" ×42 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"rally\" ×42 (7 mentions/24h)"
         },
         {
           "asset": "Datadog",
@@ -22142,9 +22112,9 @@
                 "source": "Yahoo Finance"
               },
               {
-                "title": "A Summer Friday Bounce Can't Save the S&amp;P 500's Weekly Win Streak",
-                "time": "2026-08-21T20:02:13.000Z",
-                "source": "Yahoo Finance"
+                "title": "AIAI Holdings (AIAI) up 45% today on a 379,594% volume increase. Nasdaq holding co. that buys companies and deploys l…",
+                "time": "2026-08-21T22:11:44.000Z",
+                "source": "Reddit r/investing"
               }
             ]
           },
@@ -22157,7 +22127,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"rises\" ×54 (9 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"buys\" ×72 (12 mentions/24h)"
         },
         {
           "asset": "FTSE 100",
@@ -22907,7 +22877,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"treasury\" ×16.8 (14 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"treasury\" ×21 (14 mentions/24h)"
         },
         {
           "asset": "Goldman Sachs",
@@ -23093,7 +23063,7 @@
             933.51,
             947.74
           ],
-          "quality_score": 61,
+          "quality_score": 59,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -23121,13 +23091,13 @@
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 52,
+          "quality_score_pre_wisdom": 50,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"plans\" ×24 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"plans\" ×9 (3 mentions/24h)"
         },
         {
           "asset": "VTI (Total US Market)",
@@ -26860,14 +26830,14 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 77047.02294142892,
-      "change": "-1.62",
+      "price": 76936.39345294193,
+      "change": "-1.76",
       "rsi": "82",
       "maCross": "bull",
-      "macdHist": "1534.55",
-      "boll": "111%",
-      "adx": "64",
-      "atr": "1.7%",
+      "macdHist": "1527.49",
+      "boll": "110%",
+      "adx": "63",
+      "atr": "1.8%",
       "verdict": "Plutôt haussier",
       "score": 70,
       "cls": "bull"
@@ -26875,13 +26845,13 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 2410.4853873432044,
-      "change": "-4.15",
+      "price": 2411.849510932812,
+      "change": "-4.10",
       "rsi": "80",
       "maCross": "bull",
-      "macdHist": "60.81",
+      "macdHist": "60.90",
       "boll": "103%",
-      "adx": "60",
+      "adx": "61",
       "atr": "2.4%",
       "verdict": "Plutôt haussier",
       "score": 70,
@@ -26890,13 +26860,13 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 93.20456314577244,
-      "change": "-0.52",
-      "rsi": "87",
+      "price": 92.85083866779262,
+      "change": "-0.90",
+      "rsi": "85",
       "maCross": "bull",
-      "macdHist": "2.09",
-      "boll": "110%",
-      "adx": "73",
+      "macdHist": "2.07",
+      "boll": "109%",
+      "adx": "71",
       "atr": "1.8%",
       "verdict": "Plutôt haussier",
       "score": 70,
@@ -26905,11 +26875,11 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "price": 691.2842135060422,
-      "change": "0.65",
+      "price": 690.7509095508509,
+      "change": "0.58",
       "rsi": "84",
       "maCross": "bull",
-      "macdHist": "8.33",
+      "macdHist": "8.30",
       "boll": "117%",
       "adx": "68",
       "atr": "1.4%",
@@ -26920,8 +26890,8 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "price": 1.490944928208333,
-      "change": "2.52",
+      "price": 1.4833170638395368,
+      "change": "2.00",
       "rsi": "89",
       "maCross": "bear",
       "macdHist": "0.05",
@@ -26935,74 +26905,29 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "price": 0.22336556984641376,
-      "change": "-2.51",
-      "rsi": "64",
+      "price": 0.22236399099578433,
+      "change": "-2.94",
+      "rsi": "63",
       "maCross": "bull",
       "macdHist": "0.00",
-      "boll": "105%",
-      "adx": "28",
-      "atr": "2.7%",
+      "boll": "104%",
+      "adx": "27",
+      "atr": "2.8%",
       "verdict": "Haussier fort",
       "score": 87,
       "cls": "bull"
     },
     {
-      "label": "DOGE",
-      "kind": "crypto",
-      "price": 0.09003537904905151,
-      "change": "-1.62",
-      "rsi": "82",
-      "maCross": "bull",
-      "macdHist": "0.00",
-      "boll": "116%",
-      "adx": "63",
-      "atr": "2.5%",
-      "verdict": "Plutôt haussier",
-      "score": 70,
-      "cls": "bull"
-    },
-    {
       "label": "AVAX",
       "kind": "crypto",
-      "price": 7.532138378747262,
-      "change": "-3.88",
-      "rsi": "71",
+      "price": 7.4996529932345055,
+      "change": "-4.30",
+      "rsi": "70",
       "maCross": "bull",
       "macdHist": "0.15",
-      "boll": "104%",
-      "adx": "41",
-      "atr": "2.4%",
-      "verdict": "Plutôt haussier",
-      "score": 70,
-      "cls": "bull"
-    },
-    {
-      "label": "DOT",
-      "kind": "crypto",
-      "price": 0.920020909516843,
-      "change": "-2.06",
-      "rsi": "68",
-      "maCross": "bear",
-      "macdHist": "0.02",
-      "boll": "104%",
-      "adx": "36",
-      "atr": "2.3%",
-      "verdict": "Plutôt haussier",
-      "score": 67,
-      "cls": "bull"
-    },
-    {
-      "label": "SHIB",
-      "kind": "crypto",
-      "price": 0.000005476680258173411,
-      "change": "-7.23",
-      "rsi": "66",
-      "maCross": "bull",
-      "macdHist": "0.00",
-      "boll": "99%",
-      "adx": "32",
-      "atr": "3.5%",
+      "boll": "103%",
+      "adx": "40",
+      "atr": "2.5%",
       "verdict": "Haussier fort",
       "score": 87,
       "cls": "bull"
@@ -34840,7 +34765,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 52
+    "matched_assets": 50
   },
   "macro": {
     "vix": 15.13,
@@ -34850,7 +34775,7 @@
     "cross_asset": {
       "sp500_change": 0.4346193543703738,
       "nasdaq_change": 0.4346118737267626,
-      "btc_change": -1.6225616559286424,
+      "btc_change": -1.763818842347619,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -34862,7 +34787,7 @@
     "current_state": {
       "vix": 15.13,
       "yield_curve": null,
-      "btc_30d_change": 20.200031116564237,
+      "btc_30d_change": 20.02743952962318,
       "sp500_30d_change": 2.116075609937383,
       "dominant_sectors": [
         "IBB",
@@ -34870,26 +34795,26 @@
         "XLF"
       ],
       "dominant_news_themes": [
-        "crypto",
         "war",
+        "crypto",
         "earnings"
       ],
       "special_flags": []
     },
     "dominant_themes": [
-      "crypto",
       "war",
+      "crypto",
       "earnings"
     ],
     "theme_counts": {
-      "war": 69,
-      "geopolitical": 31,
-      "fed": 32,
+      "fed": 33,
+      "war": 78,
+      "geopolitical": 33,
       "crypto": 73,
-      "earnings": 69,
-      "oil": 21,
-      "credit": 35,
-      "tech": 43
+      "earnings": 67,
+      "oil": 22,
+      "credit": 33,
+      "tech": 45
     },
     "top_sectors_60d": [
       "IBB",
@@ -35019,7 +34944,7 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 62,
+      "ev_battery": 63,
       "crypto_etf": 1,
       "ai_breakthrough": 9,
       "crypto_hack": 3,
@@ -35032,9 +34957,9 @@
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 69,
-      "credit": 35,
-      "geopol": 31
+      "war": 78,
+      "credit": 33,
+      "geopol": 33
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -35285,8 +35210,8 @@
       "label": "BTC",
       "kind": "crypto",
       "rsi": 82,
-      "change": -1.62,
-      "adx": 64,
+      "change": -1.76,
+      "adx": 63,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 70
@@ -35295,8 +35220,8 @@
       "label": "ETH",
       "kind": "crypto",
       "rsi": 80,
-      "change": -4.15,
-      "adx": 60,
+      "change": -4.1,
+      "adx": 61,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 70
@@ -35304,9 +35229,9 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "rsi": 87,
-      "change": -0.52,
-      "adx": 73,
+      "rsi": 85,
+      "change": -0.9,
+      "adx": 71,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 70
@@ -35315,7 +35240,7 @@
       "label": "BNB",
       "kind": "crypto",
       "rsi": 84,
-      "change": 0.65,
+      "change": 0.58,
       "adx": 68,
       "verdict": "Plutôt haussier",
       "cls": "bull",
@@ -35325,7 +35250,7 @@
       "label": "XRP",
       "kind": "crypto",
       "rsi": 89,
-      "change": 2.52,
+      "change": 2,
       "adx": 77,
       "verdict": "Indécis",
       "cls": "neutral",
@@ -35334,49 +35259,19 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "rsi": 64,
-      "change": -2.51,
-      "adx": 28,
+      "rsi": 63,
+      "change": -2.94,
+      "adx": 27,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 87
     },
     {
-      "label": "DOGE",
-      "kind": "crypto",
-      "rsi": 82,
-      "change": -1.62,
-      "adx": 63,
-      "verdict": "Plutôt haussier",
-      "cls": "bull",
-      "score": 70
-    },
-    {
       "label": "AVAX",
       "kind": "crypto",
-      "rsi": 71,
-      "change": -3.88,
-      "adx": 41,
-      "verdict": "Plutôt haussier",
-      "cls": "bull",
-      "score": 70
-    },
-    {
-      "label": "DOT",
-      "kind": "crypto",
-      "rsi": 68,
-      "change": -2.06,
-      "adx": 36,
-      "verdict": "Plutôt haussier",
-      "cls": "bull",
-      "score": 67
-    },
-    {
-      "label": "SHIB",
-      "kind": "crypto",
-      "rsi": 66,
-      "change": -7.23,
-      "adx": 32,
+      "rsi": 70,
+      "change": -4.3,
+      "adx": 40,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 87
