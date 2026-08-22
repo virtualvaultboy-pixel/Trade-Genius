@@ -1,15 +1,15 @@
 {
-  "generated": "2026-08-21T22:30:07.723Z",
-  "date": "2026-08-21",
-  "title": "Rapport du 21 août 2026",
+  "generated": "2026-08-22T22:27:28.035Z",
+  "date": "2026-08-22",
+  "title": "Rapport du 22 août 2026",
   "summary": "Séance largement positive sur les principaux indices et la crypto.",
   "highlights": [
     "S&P 500 +0.43% · ↗ légère hausse",
     "Nasdaq +0.43% · ↗ légère hausse",
-    "CAC 40 -0.21% · → stable",
+    "CAC 40 +0.37% · ↗ légère hausse",
     "Dow +0.98% · ↗ légère hausse",
-    "BTC +7.52% · ↑ haussier mais surchauffe",
-    "ETH +8.87% · ↑ haussier mais surchauffe"
+    "BTC -1.54% · ↘ légère baisse",
+    "ETH -3.69% · ↓ baissier net"
   ],
   "items": [
     {
@@ -39,10 +39,10 @@
       "symbol": "CAC 40",
       "name": "CAC 40",
       "price": 8484.43,
-      "change": -0.20560269314478158,
-      "rsi": 44.2,
-      "verdict": "flat",
-      "verdictLabel": "→ stable",
+      "change": 0.37075385248829934,
+      "rsi": 34.5,
+      "verdict": "bull-soft",
+      "verdictLabel": "↗ légère hausse",
       "currency": "EUR"
     },
     {
@@ -60,22 +60,22 @@
       "kind": "crypto",
       "symbol": "BTC",
       "name": "Bitcoin",
-      "price": 78515.56764357138,
-      "change": 7.524720422921065,
-      "rsi": 88.3,
-      "verdict": "overheated",
-      "verdictLabel": "↑ haussier mais surchauffe",
+      "price": 77115.08300350061,
+      "change": -1.5356592124008632,
+      "rsi": 82.5,
+      "verdict": "bear-soft",
+      "verdictLabel": "↘ légère baisse",
       "currency": "USD"
     },
     {
       "kind": "crypto",
       "symbol": "ETH",
       "name": "Ethereum",
-      "price": 2532.997950429196,
-      "change": 8.874584629549194,
-      "rsi": 92.2,
-      "verdict": "overheated",
-      "verdictLabel": "↑ haussier mais surchauffe",
+      "price": 2422.1930344981893,
+      "change": -3.688896191748721,
+      "rsi": 81.4,
+      "verdict": "bear",
+      "verdictLabel": "↓ baissier net",
       "currency": "USD"
     }
   ]
