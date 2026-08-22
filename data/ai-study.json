@@ -1,14 +1,14 @@
 {
-  "generated": "2026-08-22T04:42:47.037Z",
+  "generated": "2026-08-22T05:12:03.360Z",
   "source": "Pollinations · openai",
   "date": "2026-08-22",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (38 indices · 8 crypto · 355 actions) : S&P 500 +0.43% (RSI 57, plutôt haussier) · Nasdaq +0.43% (RSI 55, indécis) · BTC +0.44% (RSI 88, plutôt haussier) · ETH +0.32% (RSI 92, plutôt haussier) · Apple -0.63% (RSI 57, plutôt baissier). Globalement, 220 actifs en biais haussier contre 161 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (37 indices · 7 crypto · 355 actions) : S&P 500 +0.43% (RSI 57, plutôt haussier) · Nasdaq +0.43% (RSI 55, indécis) · BTC -0.40% (RSI 87, plutôt haussier) · SOL +3.15% (RSI 90, plutôt haussier) · Apple -0.63% (RSI 57, plutôt baissier). Globalement, 214 actifs en biais haussier contre 161 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : tendance haussière confirmée (RSI 57, bull MA50)",
     "Nasdaq : sans direction nette (RSI 55)",
-    "BTC : tendance haussière confirmée (RSI 88, bull MA50)",
-    "ETH : tendance haussière confirmée (RSI 92, bull MA50)",
+    "BTC : tendance haussière confirmée (RSI 87, bull MA50)",
+    "SOL : tendance haussière confirmée (RSI 90, bull MA50)",
     "Apple : pression vendeuse persistante (RSI 57)"
   ],
   "plan_pedago": [
@@ -7937,7 +7937,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"bitcoin\" ×198 (33 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"bitcoin\" ×96 (32 mentions/24h)"
         },
         {
           "asset": "Vertex",
@@ -9022,7 +9022,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"bitcoin\" ×198 (33 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"bitcoin\" ×96 (32 mentions/24h)"
         },
         {
           "asset": "Nifty 50 India",
@@ -12872,7 +12872,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"bitcoin\" ×198 (33 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"bitcoin\" ×96 (32 mentions/24h)"
         },
         {
           "asset": "Lam Research",
@@ -14892,7 +14892,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"chinese\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"former\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "SK Hynix",
@@ -17802,7 +17802,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"chinese\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"services\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Bayer",
@@ -26980,29 +26980,14 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 78665.73441577822,
-      "change": "0.44",
-      "rsi": "88",
+      "price": 78000.63284707871,
+      "change": "-0.40",
+      "rsi": "87",
       "maCross": "bull",
-      "macdHist": "1637.85",
-      "boll": "116%",
-      "adx": "77",
+      "macdHist": "1595.41",
+      "boll": "114%",
+      "adx": "73",
       "atr": "1.6%",
-      "verdict": "Plutôt haussier",
-      "score": 70,
-      "cls": "bull"
-    },
-    {
-      "label": "ETH",
-      "kind": "crypto",
-      "price": 2523.1013219050437,
-      "change": "0.32",
-      "rsi": "92",
-      "maCross": "bull",
-      "macdHist": "68.00",
-      "boll": "112%",
-      "adx": "84",
-      "atr": "2.0%",
       "verdict": "Plutôt haussier",
       "score": 70,
       "cls": "bull"
@@ -27010,92 +26995,92 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 100.60344217611883,
-      "change": "7.37",
-      "rsi": "91",
+      "price": 96.64670288664486,
+      "change": "3.15",
+      "rsi": "90",
       "maCross": "bull",
-      "macdHist": "2.56",
+      "macdHist": "2.31",
+      "boll": "119%",
+      "adx": "80",
+      "atr": "1.9%",
+      "verdict": "Plutôt haussier",
+      "score": 70,
+      "cls": "bull"
+    },
+    {
+      "label": "XRP",
+      "kind": "crypto",
+      "price": 1.544599546432104,
+      "change": "6.21",
+      "rsi": "90",
+      "maCross": "bear",
+      "macdHist": "0.06",
       "boll": "126%",
-      "adx": "82",
-      "atr": "2.1%",
-      "verdict": "Plutôt haussier",
-      "score": 70,
-      "cls": "bull"
-    },
-    {
-      "label": "BNB",
-      "kind": "crypto",
-      "price": 720.4257208779685,
-      "change": "4.90",
-      "rsi": "87",
-      "maCross": "bull",
-      "macdHist": "10.19",
-      "boll": "129%",
-      "adx": "74",
-      "atr": "1.6%",
-      "verdict": "Plutôt haussier",
-      "score": 70,
-      "cls": "bull"
-    },
-    {
-      "label": "ADA",
-      "kind": "crypto",
-      "price": 0.2520616741739232,
-      "change": "10.02",
-      "rsi": "76",
-      "maCross": "bull",
-      "macdHist": "0.01",
-      "boll": "130%",
-      "adx": "51",
+      "adx": "79",
       "atr": "2.9%",
-      "verdict": "Plutôt haussier",
-      "score": 70,
-      "cls": "bull"
-    },
-    {
-      "label": "DOGE",
-      "kind": "crypto",
-      "price": 0.09848075072297029,
-      "change": "7.60",
-      "rsi": "89",
-      "maCross": "bull",
-      "macdHist": "0.00",
-      "boll": "131%",
-      "adx": "77",
-      "atr": "2.6%",
-      "verdict": "Plutôt haussier",
-      "score": 70,
-      "cls": "bull"
+      "verdict": "Indécis",
+      "score": 50,
+      "cls": "neutral"
     },
     {
       "label": "AVAX",
       "kind": "crypto",
-      "price": 8.202098111867837,
-      "change": "4.67",
-      "rsi": "83",
+      "price": 8.070943549504047,
+      "change": "2.99",
+      "rsi": "82",
       "maCross": "bull",
-      "macdHist": "0.19",
-      "boll": "126%",
-      "adx": "66",
-      "atr": "2.3%",
+      "macdHist": "0.18",
+      "boll": "122%",
+      "adx": "64",
+      "atr": "2.2%",
       "verdict": "Plutôt haussier",
       "score": 70,
       "cls": "bull"
     },
     {
-      "label": "LINK",
+      "label": "ATOM",
       "kind": "crypto",
-      "price": 12.4935618765057,
-      "change": "4.18",
-      "rsi": "93",
-      "maCross": "bull",
-      "macdHist": "0.36",
-      "boll": "115%",
-      "adx": "86",
-      "atr": "2.8%",
-      "verdict": "Plutôt haussier",
-      "score": 70,
-      "cls": "bull"
+      "price": 1.6595243952878531,
+      "change": "3.61",
+      "rsi": "74",
+      "maCross": "bear",
+      "macdHist": "0.03",
+      "boll": "116%",
+      "adx": "49",
+      "atr": "2.4%",
+      "verdict": "Indécis",
+      "score": 50,
+      "cls": "neutral"
+    },
+    {
+      "label": "NEAR",
+      "kind": "crypto",
+      "price": 2.055832571826929,
+      "change": "4.56",
+      "rsi": "83",
+      "maCross": "bear",
+      "macdHist": "0.05",
+      "boll": "126%",
+      "adx": "66",
+      "atr": "2.3%",
+      "verdict": "Indécis",
+      "score": 50,
+      "cls": "neutral"
+    },
+    {
+      "label": "OP",
+      "kind": "crypto",
+      "price": 0.11453395267689583,
+      "change": "6.88",
+      "rsi": "74",
+      "maCross": "bear",
+      "macdHist": "0.00",
+      "boll": "128%",
+      "adx": "48",
+      "atr": "3.3%",
+      "verdict": "Indécis",
+      "score": 50,
+      "cls": "neutral"
     },
     {
       "label": "Apple",
@@ -28520,21 +28505,6 @@
       "atr": "0.3%",
       "verdict": "Haussier fort",
       "score": 76,
-      "cls": "bull"
-    },
-    {
-      "label": "SET Thailand",
-      "kind": "index",
-      "price": 1613.78,
-      "change": "-1.32",
-      "rsi": "70",
-      "maCross": "bull",
-      "macdHist": "4.83",
-      "boll": "85%",
-      "adx": "40",
-      "atr": "0.7%",
-      "verdict": "Plutôt haussier",
-      "score": 70,
       "cls": "bull"
     },
     {
@@ -34945,7 +34915,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 52
+    "matched_assets": 53
   },
   "macro": {
     "vix": 15.13,
@@ -34955,7 +34925,7 @@
     "cross_asset": {
       "sp500_change": 0.4346193543703738,
       "nasdaq_change": 0.4346118737267626,
-      "btc_change": 0.44428897872464984,
+      "btc_change": -0.40494550262606566,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -34967,7 +34937,7 @@
     "current_state": {
       "vix": 15.13,
       "yield_curve": null,
-      "btc_30d_change": 22.725361261162256,
+      "btc_30d_change": 21.687745189816695,
       "sp500_30d_change": 2.116075609937383,
       "dominant_sectors": [
         "IBB",
@@ -35388,19 +35358,9 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "rsi": 88,
-      "change": 0.44,
-      "adx": 77,
-      "verdict": "Plutôt haussier",
-      "cls": "bull",
-      "score": 70
-    },
-    {
-      "label": "ETH",
-      "kind": "crypto",
-      "rsi": 92,
-      "change": 0.32,
-      "adx": 84,
+      "rsi": 87,
+      "change": -0.4,
+      "adx": 73,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 70
@@ -35408,62 +35368,62 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "rsi": 91,
-      "change": 7.37,
-      "adx": 82,
+      "rsi": 90,
+      "change": 3.15,
+      "adx": 80,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 70
     },
     {
-      "label": "BNB",
+      "label": "XRP",
       "kind": "crypto",
-      "rsi": 87,
-      "change": 4.9,
-      "adx": 74,
-      "verdict": "Plutôt haussier",
-      "cls": "bull",
-      "score": 70
-    },
-    {
-      "label": "ADA",
-      "kind": "crypto",
-      "rsi": 76,
-      "change": 10.02,
-      "adx": 51,
-      "verdict": "Plutôt haussier",
-      "cls": "bull",
-      "score": 70
-    },
-    {
-      "label": "DOGE",
-      "kind": "crypto",
-      "rsi": 89,
-      "change": 7.6,
-      "adx": 77,
-      "verdict": "Plutôt haussier",
-      "cls": "bull",
-      "score": 70
+      "rsi": 90,
+      "change": 6.21,
+      "adx": 79,
+      "verdict": "Indécis",
+      "cls": "neutral",
+      "score": 50
     },
     {
       "label": "AVAX",
       "kind": "crypto",
-      "rsi": 83,
-      "change": 4.67,
-      "adx": 66,
+      "rsi": 82,
+      "change": 2.99,
+      "adx": 64,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 70
     },
     {
-      "label": "LINK",
+      "label": "ATOM",
       "kind": "crypto",
-      "rsi": 93,
-      "change": 4.18,
-      "adx": 86,
-      "verdict": "Plutôt haussier",
-      "cls": "bull",
-      "score": 70
+      "rsi": 74,
+      "change": 3.61,
+      "adx": 49,
+      "verdict": "Indécis",
+      "cls": "neutral",
+      "score": 50
+    },
+    {
+      "label": "NEAR",
+      "kind": "crypto",
+      "rsi": 83,
+      "change": 4.56,
+      "adx": 66,
+      "verdict": "Indécis",
+      "cls": "neutral",
+      "score": 50
+    },
+    {
+      "label": "OP",
+      "kind": "crypto",
+      "rsi": 74,
+      "change": 6.88,
+      "adx": 48,
+      "verdict": "Indécis",
+      "cls": "neutral",
+      "score": 50
     },
     {
       "label": "Apple",
@@ -36414,16 +36374,6 @@
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 76
-    },
-    {
-      "label": "SET Thailand",
-      "kind": "index",
-      "rsi": 70,
-      "change": -1.32,
-      "adx": 40,
-      "verdict": "Plutôt haussier",
-      "cls": "bull",
-      "score": 70
     },
     {
       "label": "Tel Aviv 125",
