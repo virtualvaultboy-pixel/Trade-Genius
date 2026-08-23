@@ -1,9 +1,9 @@
 {
-  "generated": "2026-08-23T15:02:32.955Z",
+  "generated": "2026-08-23T15:39:32.090Z",
   "source": "Pollinations · openai",
   "date": "2026-08-23",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (37 indices · 9 crypto · 355 actions) : S&P 500 +0.43% (RSI 57, plutôt haussier) · Nasdaq +0.43% (RSI 55, indécis) · BTC +0.11% (RSI 82, plutôt haussier) · ETH +0.62% (RSI 82, plutôt haussier) · Apple -0.63% (RSI 57, plutôt baissier). Globalement, 219 actifs en biais haussier contre 161 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (37 indices · 9 crypto · 355 actions) : S&P 500 +0.43% (RSI 57, plutôt haussier) · Nasdaq +0.43% (RSI 55, indécis) · BTC +0.15% (RSI 82, plutôt haussier) · ETH +0.63% (RSI 82, plutôt haussier) · Apple -0.63% (RSI 57, plutôt baissier). Globalement, 219 actifs en biais haussier contre 161 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : tendance haussière confirmée (RSI 57, bull MA50)",
     "Nasdaq : sans direction nette (RSI 55)",
@@ -3121,7 +3121,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nvidia\" ×8.3 (11 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"nvidia\" ×8 (12 mentions/24h)"
         },
         {
           "asset": "UPS",
@@ -7039,7 +7039,7 @@
             172.35,
             186.49
           ],
-          "quality_score": 65,
+          "quality_score": 71,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -7053,17 +7053,27 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Crypto’s next billion users might be AI agents, and they’re paying with stablecoins",
+                "time": "2026-08-23T13:00:00.000Z",
+                "source": "CoinDesk"
+              }
+            ]
+          },
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 60,
+          "quality_score_pre_wisdom": 66,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"billion\" ×16 (8 mentions/24h)"
         },
         {
           "asset": "Super Micro",
@@ -7178,7 +7188,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nvidia\" ×8.3 (11 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"nvidia\" ×8 (12 mentions/24h)"
         },
         {
           "asset": "Cognizant",
@@ -15438,13 +15448,13 @@
             "risk": "alert",
             "items": [
               {
-                "title": "Dow Jones Futures: Market Rally Repairs Some Damage As Nvidia Looms; New Trump Tariffs On Canada",
-                "time": "2026-08-23T03:01:55.000Z",
+                "title": "Dow Jones Futures Due After Market Damage; Nvidia, Canada Tariffs In Focus",
+                "time": "2026-08-23T14:55:02.000Z",
                 "source": "Yahoo Finance"
               },
               {
-                "title": "Dow Jones Futures: Market Rally Repairs Some Damage As Nvidia Looms; New Trump Tariffs On Canada",
-                "time": "2026-08-22T15:25:48.000Z",
+                "title": "Dow Jones Futures Due After Market Damage; Nvidia, Canada Tariffs In Focus",
+                "time": "2026-08-23T14:55:02.000Z",
                 "source": "Yahoo Finance Crypto"
               }
             ]
@@ -15458,7 +15468,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"looms\" ×9 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"nvidia\" ×8 (12 mentions/24h)"
         },
         {
           "asset": "DAX",
@@ -15854,7 +15864,7 @@
             216.85,
             214.72
           ],
-          "quality_score": 61,
+          "quality_score": 59,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15873,27 +15883,27 @@
             "risk": "alert",
             "items": [
               {
-                "title": "Nvidia is the beating heart of the AI boom and the stock market &#x2014; which sets up a big test",
-                "time": "2026-08-23T13:00:00.000Z",
-                "source": "MarketWatch"
+                "title": "Dow Jones Futures Due After Market Damage; Nvidia, Canada Tariffs In Focus",
+                "time": "2026-08-23T14:55:02.000Z",
+                "source": "Yahoo Finance"
               },
               {
-                "title": "Citi expects Nvidia stock to trade higher post earnings",
-                "time": "2026-08-23T11:17:07.000Z",
-                "source": "Investing.com"
+                "title": "Dow Jones Futures Due After Market Damage; Nvidia, Canada Tariffs In Focus",
+                "time": "2026-08-23T14:55:02.000Z",
+                "source": "Yahoo Finance Crypto"
               }
             ]
           },
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 56,
+          "quality_score_pre_wisdom": 54,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"hole\" ×18 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"nvidia\" ×8 (12 mentions/24h)"
         },
         {
           "asset": "IBM",
@@ -16113,7 +16123,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nvidia\" ×8.3 (11 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"nvidia\" ×8 (12 mentions/24h)"
         },
         {
           "asset": "BlackRock",
@@ -17898,17 +17908,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Top Business and Info Services Stocks, Deutsche Bank Says",
-                "time": "2026-08-21T16:28:06.000Z",
-                "source": "Investing.com"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
@@ -19398,7 +19398,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nvidia\" ×8.3 (11 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"nvidia\" ×8 (12 mentions/24h)"
         },
         {
           "asset": "Broadcom",
@@ -19518,7 +19518,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nvidia\" ×8.3 (11 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"nvidia\" ×8 (12 mentions/24h)"
         },
         {
           "asset": "Airbus",
@@ -20048,13 +20048,13 @@
             "risk": "alert",
             "items": [
               {
-                "title": "Dow Jones Futures: Market Rally Repairs Some Damage As Nvidia Looms; New Trump Tariffs On Canada",
-                "time": "2026-08-23T03:01:55.000Z",
+                "title": "Dow Jones Futures Due After Market Damage; Nvidia, Canada Tariffs In Focus",
+                "time": "2026-08-23T14:55:02.000Z",
                 "source": "Yahoo Finance"
               },
               {
-                "title": "Dow Jones Futures: Market Rally Repairs Some Damage; Nvidia Earnings Loom",
-                "time": "2026-08-22T13:27:37.000Z",
+                "title": "Dow Jones Futures: Market Rally Repairs Some Damage As Nvidia Looms; New Trump Tariffs On Canada",
+                "time": "2026-08-23T03:01:55.000Z",
                 "source": "Yahoo Finance"
               }
             ]
@@ -20068,7 +20068,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"looms\" ×9 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"nvidia\" ×8 (12 mentions/24h)"
         },
         {
           "asset": "Datadog",
@@ -21988,7 +21988,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"iran\" ×3.8 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"iran\" ×4.2 (7 mentions/24h)"
         },
         {
           "asset": "FTSE 100",
@@ -26602,11 +26602,11 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 77164.3936869177,
-      "change": "0.11",
+      "price": 77193.99393412072,
+      "change": "0.15",
       "rsi": "82",
       "maCross": "bull",
-      "macdHist": "1575.82",
+      "macdHist": "1577.70",
       "boll": "101%",
       "adx": "65",
       "atr": "1.8%",
@@ -26617,11 +26617,11 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 2438.430651762769,
-      "change": "0.62",
+      "price": 2438.686830234476,
+      "change": "0.63",
       "rsi": "82",
       "maCross": "bull",
-      "macdHist": "61.17",
+      "macdHist": "61.19",
       "boll": "97%",
       "adx": "64",
       "atr": "2.4%",
@@ -26632,14 +26632,14 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 95.05855263313377,
-      "change": "1.25",
+      "price": 95.75145313581362,
+      "change": "1.99",
       "rsi": "89",
       "maCross": "bull",
-      "macdHist": "2.27",
-      "boll": "105%",
-      "adx": "78",
-      "atr": "1.8%",
+      "macdHist": "2.32",
+      "boll": "106%",
+      "adx": "79",
+      "atr": "1.9%",
       "verdict": "Plutôt haussier",
       "score": 70,
       "cls": "bull"
@@ -26647,13 +26647,13 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "price": 695.1798857409924,
-      "change": "-0.03",
+      "price": 695.7350472107405,
+      "change": "0.05",
       "rsi": "84",
       "maCross": "bull",
-      "macdHist": "9.38",
+      "macdHist": "9.41",
       "boll": "106%",
-      "adx": "68",
+      "adx": "69",
       "atr": "1.4%",
       "verdict": "Plutôt haussier",
       "score": 70,
@@ -26662,12 +26662,12 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "price": 1.515678100338929,
-      "change": "3.55",
-      "rsi": "91",
+      "price": 1.5027585431555548,
+      "change": "2.66",
+      "rsi": "90",
       "maCross": "bull",
       "macdHist": "0.06",
-      "boll": "111%",
+      "boll": "110%",
       "adx": "81",
       "atr": "2.8%",
       "verdict": "Plutôt haussier",
@@ -26677,13 +26677,13 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "price": 0.22500020314635405,
-      "change": "-0.48",
+      "price": 0.2249107556911908,
+      "change": "-0.52",
       "rsi": "69",
       "maCross": "bull",
       "macdHist": "0.00",
       "boll": "98%",
-      "adx": "39",
+      "adx": "38",
       "atr": "2.5%",
       "verdict": "Haussier fort",
       "score": 87,
@@ -26692,12 +26692,12 @@
     {
       "label": "DOGE",
       "kind": "crypto",
-      "price": 0.09236971710067063,
-      "change": "0.45",
+      "price": 0.09254825271858498,
+      "change": "0.65",
       "rsi": "90",
       "maCross": "bull",
       "macdHist": "0.00",
-      "boll": "107%",
+      "boll": "108%",
       "adx": "80",
       "atr": "2.3%",
       "verdict": "Plutôt haussier",
@@ -26707,8 +26707,8 @@
     {
       "label": "AVAX",
       "kind": "crypto",
-      "price": 7.560123323621153,
-      "change": "0.89",
+      "price": 7.572309877944837,
+      "change": "1.05",
       "rsi": "72",
       "maCross": "bull",
       "macdHist": "0.15",
@@ -26720,18 +26720,18 @@
       "cls": "bull"
     },
     {
-      "label": "SHIB",
+      "label": "LINK",
       "kind": "crypto",
-      "price": 0.000005463943876763451,
-      "change": "0.23",
-      "rsi": "65",
+      "price": 11.486389960681214,
+      "change": "-1.39",
+      "rsi": "85",
       "maCross": "bull",
-      "macdHist": "0.00",
+      "macdHist": "0.29",
       "boll": "93%",
-      "adx": "30",
-      "atr": "3.7%",
-      "verdict": "Haussier fort",
-      "score": 87,
+      "adx": "69",
+      "atr": "3.0%",
+      "verdict": "Plutôt haussier",
+      "score": 70,
       "cls": "bull"
     },
     {
@@ -34494,7 +34494,7 @@
     "cross_asset": {
       "sp500_change": 0.4346193543703738,
       "nasdaq_change": 0.4346118737267626,
-      "btc_change": 0.10815982154165263,
+      "btc_change": 0.14656129320720093,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -34506,7 +34506,7 @@
     "current_state": {
       "vix": 15.13,
       "yield_curve": null,
-      "btc_30d_change": 19.97629940558793,
+      "btc_30d_change": 20.022322291937794,
       "sp500_30d_change": 2.116075609937383,
       "dominant_sectors": [
         "IBB",
@@ -34526,14 +34526,14 @@
       "fed"
     ],
     "theme_counts": {
-      "fed": 52,
-      "war": 95,
+      "credit": 29,
+      "crypto": 52,
+      "fed": 53,
+      "war": 96,
+      "tech": 61,
       "geopolitical": 38,
       "earnings": 44,
-      "oil": 23,
-      "tech": 60,
-      "credit": 29,
-      "crypto": 49
+      "oil": 21
     },
     "top_sectors_60d": [
       "IBB",
@@ -34677,7 +34677,7 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 50,
+      "ev_battery": 51,
       "semicon_supply": 1,
       "crypto_hack": 4,
       "ai_breakthrough": 7,
@@ -34690,7 +34690,7 @@
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 95,
+      "war": 96,
       "credit": 29,
       "geopol": 38
     },
@@ -34943,7 +34943,7 @@
       "label": "BTC",
       "kind": "crypto",
       "rsi": 82,
-      "change": 0.11,
+      "change": 0.15,
       "adx": 65,
       "verdict": "Plutôt haussier",
       "cls": "bull",
@@ -34953,7 +34953,7 @@
       "label": "ETH",
       "kind": "crypto",
       "rsi": 82,
-      "change": 0.62,
+      "change": 0.63,
       "adx": 64,
       "verdict": "Plutôt haussier",
       "cls": "bull",
@@ -34963,8 +34963,8 @@
       "label": "SOL",
       "kind": "crypto",
       "rsi": 89,
-      "change": 1.25,
-      "adx": 78,
+      "change": 1.99,
+      "adx": 79,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 70
@@ -34973,8 +34973,8 @@
       "label": "BNB",
       "kind": "crypto",
       "rsi": 84,
-      "change": -0.03,
-      "adx": 68,
+      "change": 0.05,
+      "adx": 69,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 70
@@ -34982,8 +34982,8 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "rsi": 91,
-      "change": 3.55,
+      "rsi": 90,
+      "change": 2.66,
       "adx": 81,
       "verdict": "Plutôt haussier",
       "cls": "bull",
@@ -34993,8 +34993,8 @@
       "label": "ADA",
       "kind": "crypto",
       "rsi": 69,
-      "change": -0.48,
-      "adx": 39,
+      "change": -0.52,
+      "adx": 38,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 87
@@ -35003,7 +35003,7 @@
       "label": "DOGE",
       "kind": "crypto",
       "rsi": 90,
-      "change": 0.45,
+      "change": 0.65,
       "adx": 80,
       "verdict": "Plutôt haussier",
       "cls": "bull",
@@ -35013,21 +35013,21 @@
       "label": "AVAX",
       "kind": "crypto",
       "rsi": 72,
-      "change": 0.89,
+      "change": 1.05,
       "adx": 44,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 70
     },
     {
-      "label": "SHIB",
+      "label": "LINK",
       "kind": "crypto",
-      "rsi": 65,
-      "change": 0.23,
-      "adx": 30,
-      "verdict": "Haussier fort",
+      "rsi": 85,
+      "change": -1.39,
+      "adx": 69,
+      "verdict": "Plutôt haussier",
       "cls": "bull",
-      "score": 87
+      "score": 70
     },
     {
       "label": "Apple",
