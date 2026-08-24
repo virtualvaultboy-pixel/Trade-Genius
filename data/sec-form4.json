@@ -1,10 +1,60 @@
 {
-  "generated": "2026-08-24T10:32:36.022Z",
+  "generated": "2026-08-24T16:31:06.368Z",
   "source": "SEC EDGAR Form 4 RSS",
   "window_days": 7,
-  "count": 103,
-  "ticker_signals": {},
+  "count": 105,
+  "ticker_signals": {
+    "Coca-Cola": {
+      "count": 2,
+      "intensity": "low"
+    }
+  },
   "filings": [
+    {
+      "company": "Track Group, Inc.",
+      "cik": "0001045942",
+      "filed_at": "2026-08-24T16:28:13.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1045942/000172722726000004/0001727227-26-000004-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "MATTHEWS INTERNATIONAL CORP",
+      "cik": "0000063296",
+      "filed_at": "2026-08-24T16:28:10.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/63296/000006329626000088/0000063296-26-000088-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Patria Investments Ltd",
+      "cik": "0001825570",
+      "filed_at": "2026-08-24T16:25:22.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1825570/000095010326012783/0000950103-26-012783-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "COCA COLA CO",
+      "cik": "0000021344",
+      "filed_at": "2026-08-24T16:04:00.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/21344/000002134426000167/0000021344-26-000167-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": "Coca-Cola"
+    },
+    {
+      "company": "IRIDEX CORP",
+      "cik": "0001006045",
+      "filed_at": "2026-08-24T16:03:19.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1006045/000119312526362654/0001193125-26-362654-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
     {
       "company": "Alibaba Group Holding Ltd",
       "cik": "0001577552",
@@ -856,51 +906,6 @@
       "cik": "0001866581",
       "filed_at": "2026-08-21T16:19:12.000Z",
       "url": "https://www.sec.gov/Archives/edgar/data/1866581/000186658126000147/0001866581-26-000147-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "TREDEGAR CORP",
-      "cik": "0000850429",
-      "filed_at": "2026-08-21T16:19:09.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/850429/000119312526360416/0001193125-26-360416-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Dutch Bros Inc.",
-      "cik": "0001866581",
-      "filed_at": "2026-08-21T16:19:06.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1866581/000130505226000009/0001305052-26-000009-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Dutch Bros Inc.",
-      "cik": "0001866581",
-      "filed_at": "2026-08-21T16:19:01.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1866581/000186658126000146/0001866581-26-000146-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Dutch Bros Inc.",
-      "cik": "0001866581",
-      "filed_at": "2026-08-21T16:18:54.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1866581/000186658126000145/0001866581-26-000145-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Dutch Bros Inc.",
-      "cik": "0001866581",
-      "filed_at": "2026-08-21T16:18:45.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1866581/000157849026000006/0001578490-26-000006-index.htm",
       "isIssuer": true,
       "isForm4": true,
       "ticker": null
