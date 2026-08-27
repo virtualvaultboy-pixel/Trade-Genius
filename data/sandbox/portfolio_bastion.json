@@ -6,7 +6,7 @@
   "icon": "🗿",
   "created_at": "2026-05-30T17:55:42.941Z",
   "capital_initial": 1000,
-  "cash": 753.8181430638537,
+  "cash": 678.4363287574683,
   "positions": [
     {
       "id": "pos-1787268548116-xwz9",
@@ -38,8 +38,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 66293.07,
-      "age_days": 3,
+      "current_price": 66191.11,
+      "age_days": 4,
       "size_eur_added": 47.22178013279019
     },
     {
@@ -72,8 +72,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 153.88,
-      "age_days": 3
+      "current_price": 150.29,
+      "age_days": 4
     },
     {
       "id": "pos-1787613928533-3asp",
@@ -105,8 +105,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 356.74,
-      "age_days": 1
+      "current_price": 355.59,
+      "age_days": 2
     },
     {
       "id": "pos-1787700468323-9jsn",
@@ -134,6 +134,39 @@
       "opened_at": "2026-08-25T23:27:48.323Z",
       "opened_at_cycle": 63,
       "opened_at_date": "2026-08-25",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null,
+      "current_price": 61.81,
+      "age_days": 1
+    },
+    {
+      "id": "pos-1787804741485-z7k5",
+      "asset": "BNP Paribas",
+      "kind": "action",
+      "agent": "atlas",
+      "type": "grid-month-A",
+      "entry": 104.44000244140625,
+      "stop": 103.84132562821976,
+      "tp1": 107.43338650733871,
+      "tp2": 110.42677057327117,
+      "initial_stop": 103.84132562821976,
+      "high_since_entry": 104.44000244140625,
+      "rr1": 5,
+      "rr2": 10,
+      "risk_pct": 0.005732255832934902,
+      "size_eur": 75.38181430638537,
+      "quality_score": 86,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-08-27T04:25:41.485Z",
+      "opened_at_cycle": 64,
+      "opened_at_date": "2026-08-27",
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
@@ -3090,7 +3123,14 @@
       "equity": 1143.45,
       "cash": 753.82,
       "positions_count": 4
+    },
+    {
+      "date": "2026-08-27",
+      "cycle": 64,
+      "equity": 1140.3,
+      "cash": 678.44,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-08-25"
+  "last_cycle": "2026-08-27"
 }
