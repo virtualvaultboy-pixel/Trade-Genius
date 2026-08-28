@@ -6,7 +6,7 @@
   "icon": "🔥",
   "created_at": "2026-05-30T17:55:42.943Z",
   "capital_initial": 1000,
-  "cash": 673.8335878275258,
+  "cash": 673.1917311142488,
   "positions": [
     {
       "id": "pos-1784591992435-perw",
@@ -15,11 +15,11 @@
       "agent": "nova",
       "type": "rebond-survente",
       "entry": 213,
-      "stop": 223.10285151890346,
+      "stop": 223.47285151890347,
       "tp1": 233.42286464146204,
       "tp2": 243.63429696219308,
       "initial_stop": 197.68285151890348,
-      "high_since_entry": 238.42,
+      "high_since_entry": 238.79,
       "rr1": 1.33,
       "rr2": 2,
       "risk_pct": 0.0719114952164156,
@@ -38,8 +38,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 229.87,
-      "age_days": 27,
+      "current_price": 238.79,
+      "age_days": 28,
       "size_eur_added": 39.501276340577085
     },
     {
@@ -53,7 +53,7 @@
       "tp1": 510.578221708822,
       "tp2": 539.5264385348315,
       "initial_stop": 470.0507181524087,
-      "high_since_entry": 496.37,
+      "high_since_entry": 505.06,
       "rr1": 2.5,
       "rr2": 5,
       "risk_pct": 0.02404187158817317,
@@ -72,8 +72,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 496.37,
-      "age_days": 6
+      "current_price": 505.06,
+      "age_days": 7
     },
     {
       "id": "pos-1787268548407-wsu0",
@@ -86,7 +86,7 @@
       "tp1": 158.5639150017563,
       "tp2": 169.94783732773138,
       "initial_stop": 142.62642374539124,
-      "high_since_entry": 153.88,
+      "high_since_entry": 154.33,
       "rr1": 2.5,
       "rr2": 5,
       "risk_pct": 0.0309387767155346,
@@ -105,8 +105,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 150.29,
-      "age_days": 4
+      "current_price": 154.33,
+      "age_days": 5
     },
     {
       "id": "pos-1787613928826-21kl",
@@ -119,7 +119,7 @@
       "tp1": 375.5600178096458,
       "tp2": 392.36002585366657,
       "initial_stop": 352.04000654801666,
-      "high_since_entry": 358.760009765625,
+      "high_since_entry": 371.54,
       "rr1": 2.5,
       "rr2": 5,
       "risk_pct": 0.018731193652264812,
@@ -138,41 +138,39 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 355.59,
-      "age_days": 2
+      "current_price": 371.54,
+      "age_days": 3
     },
     {
-      "id": "pos-1787613928826-2iy4",
-      "asset": "Bank of America",
+      "id": "pos-1787899752491-kbsk",
+      "asset": "Chevron",
       "kind": "action",
       "agent": "nova",
-      "type": "doji-haussier",
-      "entry": 62.33000183105469,
-      "stop": 61.73628060913086,
-      "tp1": 63.422860249703376,
-      "tp2": 64.51571866835206,
-      "initial_stop": 61.73628060913086,
-      "high_since_entry": 62.43,
-      "rr1": 1.84,
-      "rr2": 3.68,
-      "risk_pct": 0.009525448491612578,
-      "size_eur": 74.87039864750287,
-      "quality_score": 66,
+      "type": "grid-week-B",
+      "entry": 199.77000427246094,
+      "stop": 197.91500313502706,
+      "tp1": 204.4075071160456,
+      "tp2": 209.04500995963025,
+      "initial_stop": 197.91500313502706,
+      "high_since_entry": 199.77000427246094,
+      "rr1": 2.5,
+      "rr2": 5,
+      "risk_pct": 0.009285684025435007,
+      "size_eur": 74.79908123491654,
+      "quality_score": 98,
       "sizing_pct": 10,
       "trailing_after_tp1": true,
       "trailing_active": false,
       "pyramiding_pct": 50,
       "pyramided": false,
       "stacked": false,
-      "opened_at": "2026-08-24T23:25:28.826Z",
-      "opened_at_cycle": 62,
-      "opened_at_date": "2026-08-24",
+      "opened_at": "2026-08-28T06:49:12.491Z",
+      "opened_at_cycle": 65,
+      "opened_at_date": "2026-08-28",
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null,
-      "current_price": 62.23,
-      "age_days": 2
+      "pnl_eur": null
     }
   ],
   "closed_trades": [
@@ -3346,6 +3344,41 @@
       "size_eur_added": 48.33661378147205,
       "closed_at_cycle": 62,
       "exit_price": 91.47357186224784
+    },
+    {
+      "id": "pos-1787613928826-2iy4",
+      "asset": "Bank of America",
+      "kind": "action",
+      "agent": "nova",
+      "type": "doji-haussier",
+      "entry": 62.33000183105469,
+      "stop": 61.73628060913086,
+      "tp1": 63.422860249703376,
+      "tp2": 64.51571866835206,
+      "initial_stop": 61.73628060913086,
+      "high_since_entry": 62.43,
+      "rr1": 1.84,
+      "rr2": 3.68,
+      "risk_pct": 0.009525448491612578,
+      "size_eur": 74.87039864750287,
+      "quality_score": 66,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-08-24T23:25:28.826Z",
+      "opened_at_cycle": 62,
+      "opened_at_date": "2026-08-24",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-08-28T06:49:12.490Z",
+      "pnl_eur": -0.7131741258632885,
+      "current_price": 61.17,
+      "age_days": 3,
+      "closed_at_cycle": 65,
+      "exit_price": 61.73628060913086
     }
   ],
   "equity_history": [
@@ -3796,7 +3829,14 @@
       "equity": 1103.45,
       "cash": 673.83,
       "positions_count": 5
+    },
+    {
+      "date": "2026-08-28",
+      "cycle": 65,
+      "equity": 1114.7,
+      "cash": 673.19,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-08-27"
+  "last_cycle": "2026-08-28"
 }
