@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 369.68,
-      "age_days": 6
+      "current_price": 367.24,
+      "age_days": 7
     },
     {
       "id": "pos-1787899752193-dy7j",
@@ -48,11 +48,11 @@
       "agent": "atlas",
       "type": "grid-month-B",
       "entry": 62.290000915527344,
-      "stop": 62.290000915527344,
+      "stop": 64.72928598131364,
       "tp1": 64.14357100895913,
       "tp2": 65.9971411023909,
       "initial_stop": 61.91928689684099,
-      "high_since_entry": 64.77,
+      "high_since_entry": 65.1,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.0059514209863167165,
@@ -71,8 +71,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 64.77,
-      "age_days": 3,
+      "current_price": 65.1,
+      "age_days": 4,
       "size_eur_added": 40.417373604418074
     },
     {
@@ -86,7 +86,7 @@
       "tp1": 104.91744723575394,
       "tp2": 109.1748908093985,
       "initial_stop": 99.80851494738046,
-      "high_since_entry": 102.78,
+      "high_since_entry": 103.1,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.008459057060907249,
@@ -105,8 +105,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 102.6,
-      "age_days": 2
+      "current_price": 103.1,
+      "age_days": 3
     },
     {
       "id": "pos-1788310447737-j93f",
@@ -137,7 +137,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 318.51,
+      "age_days": 1
     },
     {
       "id": "pos-1788310447737-u98l",
@@ -168,7 +170,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 196.9,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -3333,7 +3337,14 @@
       "equity": 1151.45,
       "cash": 704.04,
       "positions_count": 5
+    },
+    {
+      "date": "2026-09-03",
+      "cycle": 69,
+      "equity": 1151.53,
+      "cash": 704.04,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-09-02"
+  "last_cycle": "2026-09-03"
 }
