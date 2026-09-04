@@ -6,7 +6,7 @@
   "icon": "🗿",
   "created_at": "2026-05-30T17:55:42.941Z",
   "capital_initial": 1000,
-  "cash": 704.0445525576903,
+  "cash": 746.5273689032829,
   "positions": [
     {
       "id": "pos-1787613928533-3asp",
@@ -38,42 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 367.24,
-      "age_days": 7
-    },
-    {
-      "id": "pos-1787899752193-dy7j",
-      "asset": "XLE Energy",
-      "kind": "action",
-      "agent": "atlas",
-      "type": "grid-month-B",
-      "entry": 62.290000915527344,
-      "stop": 64.72928598131364,
-      "tp1": 64.14357100895913,
-      "tp2": 65.9971411023909,
-      "initial_stop": 61.91928689684099,
-      "high_since_entry": 65.1,
-      "rr1": 5,
-      "rr2": 10,
-      "risk_pct": 0.0059514209863167165,
-      "size_eur": 121.25212081325422,
-      "quality_score": 88,
-      "sizing_pct": 10,
-      "trailing_after_tp1": true,
-      "trailing_active": true,
-      "pyramiding_pct": 50,
-      "pyramided": true,
-      "stacked": false,
-      "opened_at": "2026-08-28T06:49:12.193Z",
-      "opened_at_cycle": 65,
-      "opened_at_date": "2026-08-28",
-      "status": "open",
-      "touched_tp1": true,
-      "closed_at": null,
-      "pnl_eur": null,
-      "current_price": 65.1,
-      "age_days": 4,
-      "size_eur_added": 40.417373604418074
+      "current_price": 357.16,
+      "age_days": 8
     },
     {
       "id": "pos-1787976245021-mcx4",
@@ -86,7 +52,7 @@
       "tp1": 104.91744723575394,
       "tp2": 109.1748908093985,
       "initial_stop": 99.80851494738046,
-      "high_since_entry": 103.1,
+      "high_since_entry": 104.14,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.008459057060907249,
@@ -105,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 103.1,
-      "age_days": 3
+      "current_price": 104.14,
+      "age_days": 4
     },
     {
       "id": "pos-1788310447737-j93f",
@@ -138,8 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 318.51,
-      "age_days": 1
+      "current_price": 318.07,
+      "age_days": 2
     },
     {
       "id": "pos-1788310447737-u98l",
@@ -171,8 +137,39 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 196.9,
-      "age_days": 1
+      "current_price": 197,
+      "age_days": 2
+    },
+    {
+      "id": "pos-1788483114632-d2d5",
+      "asset": "Tesla",
+      "kind": "action",
+      "agent": "atlas",
+      "type": "atlas-ponchy",
+      "entry": 376.364990234375,
+      "stop": 355.37781634521485,
+      "tp1": 404.0924755206509,
+      "tp2": 431.8199608069268,
+      "initial_stop": 355.37781634521485,
+      "high_since_entry": 376.364990234375,
+      "rr1": 1.32,
+      "rr2": 2.64,
+      "risk_pct": 0.05576282181849788,
+      "size_eur": 82.9474854336981,
+      "quality_score": 100,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-09-04T00:51:54.632Z",
+      "opened_at_cycle": 70,
+      "opened_at_date": "2026-09-04",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
     }
   ],
   "closed_trades": [
@@ -2859,6 +2856,42 @@
       "size_eur_added": 44.90819289379786,
       "closed_at_cycle": 68,
       "exit_price": 210.90001109706412
+    },
+    {
+      "id": "pos-1787899752193-dy7j",
+      "asset": "XLE Energy",
+      "kind": "action",
+      "agent": "atlas",
+      "type": "grid-month-B",
+      "entry": 62.290000915527344,
+      "stop": 64.72928598131364,
+      "tp1": 64.14357100895913,
+      "tp2": 65.9971411023909,
+      "initial_stop": 61.91928689684099,
+      "high_since_entry": 65.1,
+      "rr1": 5,
+      "rr2": 10,
+      "risk_pct": 0.0059514209863167165,
+      "size_eur": 121.25212081325422,
+      "quality_score": 88,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": true,
+      "pyramiding_pct": 50,
+      "pyramided": true,
+      "stacked": false,
+      "opened_at": "2026-08-28T06:49:12.193Z",
+      "opened_at_cycle": 65,
+      "opened_at_date": "2026-08-28",
+      "status": "trail_profit",
+      "touched_tp1": true,
+      "closed_at": "2026-09-04T00:51:54.413Z",
+      "pnl_eur": 4.178180966036557,
+      "current_price": 64.62,
+      "age_days": 5,
+      "size_eur_added": 40.417373604418074,
+      "closed_at_cycle": 70,
+      "exit_price": 64.72928598131364
     }
   ],
   "equity_history": [
@@ -3344,7 +3377,14 @@
       "equity": 1151.53,
       "cash": 704.04,
       "positions_count": 5
+    },
+    {
+      "date": "2026-09-04",
+      "cycle": 70,
+      "equity": 1148.99,
+      "cash": 746.53,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-09-03"
+  "last_cycle": "2026-09-04"
 }

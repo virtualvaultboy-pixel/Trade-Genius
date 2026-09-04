@@ -6,7 +6,7 @@
   "icon": "🔥",
   "created_at": "2026-05-30T17:55:42.943Z",
   "capital_initial": 1000,
-  "cash": 673.9783804528062,
+  "cash": 673.6316283808139,
   "positions": [
     {
       "id": "pos-1787613928826-21kl",
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 367.24,
-      "age_days": 7
+      "current_price": 357.16,
+      "age_days": 8
     },
     {
       "id": "pos-1788310447864-e0yx",
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 318.51,
-      "age_days": 1
+      "current_price": 318.07,
+      "age_days": 2
     },
     {
       "id": "pos-1788310447864-unex",
@@ -104,8 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 196.9,
-      "age_days": 1
+      "current_price": 197,
+      "age_days": 2
     },
     {
       "id": "pos-1788310447864-n272",
@@ -137,41 +137,39 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 8280.63,
-      "age_days": 1
+      "current_price": 8286.4,
+      "age_days": 2
     },
     {
-      "id": "pos-1788310447864-zr3t",
-      "asset": "Sensex India",
-      "kind": "index",
+      "id": "pos-1788483114714-2n1j",
+      "asset": "Exxon",
+      "kind": "action",
       "agent": "nova",
-      "type": "rebond-survente",
-      "entry": 76957.2734375,
-      "stop": 76561.33946108086,
-      "tp1": 77485.18540605885,
-      "tp2": 77749.14139033828,
-      "initial_stop": 76561.33946108086,
-      "high_since_entry": 76957.2734375,
-      "rr1": 1.33,
-      "rr2": 2,
-      "risk_pct": 0.005144854524253545,
-      "size_eur": 74.88648671697847,
-      "quality_score": 57,
+      "type": "doji-baissier",
+      "entry": 162.2100067138672,
+      "stop": 164.87910305786133,
+      "tp1": 158.24001219696305,
+      "tp2": 154.2700176800589,
+      "initial_stop": 164.87910305786133,
+      "high_since_entry": 162.2100067138672,
+      "rr1": 1.49,
+      "rr2": 2.97,
+      "risk_pct": 0.016454572674436382,
+      "size_eur": 74.84795870897933,
+      "quality_score": 87,
       "sizing_pct": 10,
       "trailing_after_tp1": true,
       "trailing_active": false,
       "pyramiding_pct": 50,
       "pyramided": false,
       "stacked": false,
-      "opened_at": "2026-09-02T00:54:07.864Z",
-      "opened_at_cycle": 68,
-      "opened_at_date": "2026-09-02",
+      "opened_at": "2026-09-04T00:51:54.714Z",
+      "opened_at_cycle": 70,
+      "opened_at_date": "2026-09-04",
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null,
-      "current_price": 76570.35,
-      "age_days": 1
+      "pnl_eur": null
     }
   ],
   "closed_trades": [
@@ -3558,6 +3556,41 @@
       "age_days": 1,
       "closed_at_cycle": 68,
       "exit_price": 8358.908708299288
+    },
+    {
+      "id": "pos-1788310447864-zr3t",
+      "asset": "Sensex India",
+      "kind": "index",
+      "agent": "nova",
+      "type": "rebond-survente",
+      "entry": 76957.2734375,
+      "stop": 76561.33946108086,
+      "tp1": 77485.18540605885,
+      "tp2": 77749.14139033828,
+      "initial_stop": 76561.33946108086,
+      "high_since_entry": 76957.2734375,
+      "rr1": 1.33,
+      "rr2": 2,
+      "risk_pct": 0.005144854524253545,
+      "size_eur": 74.88648671697847,
+      "quality_score": 57,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-09-02T00:54:07.864Z",
+      "opened_at_cycle": 68,
+      "opened_at_date": "2026-09-02",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-09-04T00:51:54.713Z",
+      "pnl_eur": -0.38528007999129965,
+      "current_price": 76152.86,
+      "age_days": 2,
+      "closed_at_cycle": 70,
+      "exit_price": 76561.33946108086
     }
   ],
   "equity_history": [
@@ -4043,7 +4076,14 @@
       "equity": 1110.93,
       "cash": 673.98,
       "positions_count": 5
+    },
+    {
+      "date": "2026-09-04",
+      "cycle": 70,
+      "equity": 1108.54,
+      "cash": 673.63,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-09-03"
+  "last_cycle": "2026-09-04"
 }
