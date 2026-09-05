@@ -1,15 +1,15 @@
 {
-  "generated": "2026-09-04T23:51:14.214Z",
-  "date": "2026-09-04",
-  "title": "Rapport du 4 septembre 2026",
-  "summary": "Séance largement négative — tous les actifs majeurs reculent.",
+  "generated": "2026-09-05T23:42:18.304Z",
+  "date": "2026-09-05",
+  "title": "Rapport du 5 septembre 2026",
+  "summary": "Plus de baisses que de hausses sur la journée, biais vendeur modéré.",
   "highlights": [
     "S&P 500 -0.38% · ↘ légère baisse",
     "Nasdaq -0.29% · → stable",
-    "CAC 40 -0.02% · → stable",
+    "CAC 40 -0.09% · → stable",
     "Dow -0.51% · ↘ légère baisse",
-    "BTC -1.96% · ↘ légère baisse",
-    "ETH -2.10% · ↓ baissier net"
+    "BTC +0.12% · → stable",
+    "ETH +0.98% · ↗ légère hausse"
   ],
   "items": [
     {
@@ -39,8 +39,8 @@
       "symbol": "CAC 40",
       "name": "CAC 40",
       "price": 8278.77,
-      "change": -0.02246064416379709,
-      "rsi": 22.3,
+      "change": -0.09208329630839915,
+      "rsi": 24.2,
       "verdict": "flat",
       "verdictLabel": "→ stable",
       "currency": "EUR"
@@ -60,22 +60,22 @@
       "kind": "crypto",
       "symbol": "BTC",
       "name": "Bitcoin",
-      "price": 79668.61911817685,
-      "change": -1.9640537430808847,
-      "rsi": 54.1,
-      "verdict": "bear-soft",
-      "verdictLabel": "↘ légère baisse",
+      "price": 79768.47031044777,
+      "change": 0.1220171980260818,
+      "rsi": 58.8,
+      "verdict": "flat",
+      "verdictLabel": "→ stable",
       "currency": "USD"
     },
     {
       "kind": "crypto",
       "symbol": "ETH",
       "name": "Ethereum",
-      "price": 2454.9369178882894,
-      "change": -2.102023897679735,
-      "rsi": 45.6,
-      "verdict": "bear",
-      "verdictLabel": "↓ baissier net",
+      "price": 2480.273739991032,
+      "change": 0.9848467366791008,
+      "rsi": 54.7,
+      "verdict": "bull-soft",
+      "verdictLabel": "↗ légère hausse",
       "currency": "USD"
     }
   ]
