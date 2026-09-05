@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 357.16,
-      "age_days": 8
+      "current_price": 357.895,
+      "age_days": 9
     },
     {
       "id": "pos-1788310447905-czbx",
@@ -52,7 +52,7 @@
       "tp1": 329.6110690636956,
       "tp2": 339.4521491137194,
       "initial_stop": 317.4081298016662,
-      "high_since_entry": 319.7699890136719,
+      "high_since_entry": 321.05,
       "rr1": 4.17,
       "rr2": 8.33,
       "risk_pct": 0.007386119064177456,
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 318.07,
-      "age_days": 2
+      "current_price": 321.05,
+      "age_days": 3
     },
     {
       "id": "pos-1788310447905-ft5a",
@@ -85,7 +85,7 @@
       "tp1": 202.36588075214698,
       "tp2": 207.49175601112992,
       "initial_stop": 196.00979543100817,
-      "high_since_entry": 197.24000549316406,
+      "high_since_entry": 198.96,
       "rr1": 4.17,
       "rr2": 8.33,
       "risk_pct": 0.006237122428991857,
@@ -104,8 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 197,
-      "age_days": 2
+      "current_price": 198.96,
+      "age_days": 3
     }
   ],
   "closed_trades": [
@@ -2468,7 +2468,14 @@
       "equity": 977.85,
       "cash": 777.54,
       "positions_count": 3
+    },
+    {
+      "date": "2026-09-05",
+      "cycle": 71,
+      "equity": 979.18,
+      "cash": 777.54,
+      "positions_count": 3
     }
   ],
-  "last_cycle": "2026-09-04"
+  "last_cycle": "2026-09-05"
 }
