@@ -1,14 +1,14 @@
 {
-  "generated": "2026-09-05T15:59:04.337Z",
+  "generated": "2026-09-05T18:10:54.633Z",
   "source": "Pollinations · openai",
   "date": "2026-09-05",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (38 indices · 6 crypto · 355 actions) : S&P 500 -0.38% (RSI 47, plutôt haussier) · Nasdaq -0.29% (RSI 47, plutôt haussier) · BTC +0.14% (RSI 59, haussier fort) · ETH +0.12% (RSI 53, indécis) · Apple -2.51% (RSI 64, haussier fort). Globalement, 168 actifs en biais haussier contre 206 en baissier. On observe une configuration plutôt favorable aux vendeurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (38 indices · 5 crypto · 355 actions) : S&P 500 -0.38% (RSI 47, plutôt haussier) · Nasdaq -0.29% (RSI 47, plutôt haussier) · XRP +1.72% (RSI 46, plutôt haussier) · ADA +4.18% (RSI 47, haussier fort) · Apple -2.51% (RSI 64, haussier fort). Globalement, 168 actifs en biais haussier contre 206 en baissier. On observe une configuration plutôt favorable aux vendeurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : tendance haussière confirmée (RSI 47, bull MA50)",
     "Nasdaq : tendance haussière confirmée (RSI 47, bull MA50)",
-    "BTC : tendance haussière confirmée (RSI 59, bull MA50)",
-    "ETH : sans direction nette (RSI 53)",
+    "XRP : tendance haussière confirmée (RSI 46, bull MA50)",
+    "ADA : tendance haussière confirmée (RSI 47, bull MA50)",
     "Apple : tendance haussière confirmée (RSI 64, bear MA50)"
   ],
   "plan_pedago": [
@@ -2927,7 +2927,7 @@
             "items": [
               {
                 "title": "U.S. attacks 3 Iranian oil tankers after missiles target Navy warships",
-                "time": "2026-09-05T15:00:03.000Z",
+                "time": "2026-09-05T15:43:08.000Z",
                 "source": "CNBC"
               },
               {
@@ -4225,7 +4225,7 @@
             "items": [
               {
                 "title": "U.S. attacks 3 Iranian oil tankers after missiles target Navy warships",
-                "time": "2026-09-05T15:00:03.000Z",
+                "time": "2026-09-05T15:43:08.000Z",
                 "source": "CNBC"
               },
               {
@@ -4850,7 +4850,7 @@
             64214.4805,
             65020.9414
           ],
-          "quality_score": 88,
+          "quality_score": 81,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -4864,27 +4864,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Berkshire eyes bigger stakes in Japan’s top trading houses, CEO tells Nikkei",
-                "time": "2026-09-03T03:24:37.000Z",
-                "source": "Investing.com"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 14,
           "wisdom_note": "Long semicon + IA infra",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 73,
+          "quality_score_pre_wisdom": 66,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"bigger\" ×18 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Spotify",
@@ -7842,7 +7832,7 @@
             "items": [
               {
                 "title": "U.S. attacks 3 Iranian oil tankers after missiles target Navy warships",
-                "time": "2026-09-05T15:00:03.000Z",
+                "time": "2026-09-05T15:43:08.000Z",
                 "source": "CNBC"
               },
               {
@@ -8152,7 +8142,7 @@
             64214.4805,
             65020.9414
           ],
-          "quality_score": 79,
+          "quality_score": 72,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -8166,27 +8156,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Berkshire eyes bigger stakes in Japan’s top trading houses, CEO tells Nikkei",
-                "time": "2026-09-03T03:24:37.000Z",
-                "source": "Investing.com"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 69,
+          "quality_score_pre_wisdom": 63,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"bigger\" ×18 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Applied Materials",
@@ -9366,7 +9346,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"energy\" ×6 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"energy\" ×8 (8 mentions/24h)"
         },
         {
           "asset": "Marathon Petroleum",
@@ -14432,6 +14412,111 @@
           "spike_theme_reason": null
         },
         {
+          "asset": "ADA",
+          "kind": "crypto",
+          "type": "kairo-momentum",
+          "label": "Momentum vif — saute dedans",
+          "timeframe": "Court terme · 1-3 jours",
+          "confidence": "medium",
+          "direction": "long",
+          "config": "Surge +11.3% sur 5 jours + RSI 47. KAIRO entre dans un mouvement déjà engagé en pariant sur sa continuation.",
+          "rationale": "Stratégie momentum : on saute dans un mouvement vif en pariant sur sa continuation à court terme. Risque : retournement violent si le momentum casse. Stop large à 2.2 ATR.",
+          "entry": 0.22003979496818535,
+          "stop": 0.20528507161865883,
+          "tp1": 0.23345317983139127,
+          "tp2": 0.25021991091039864,
+          "rr1": "0.91",
+          "rr2": "2.05",
+          "currency": "USD",
+          "prices60": [
+            0.167,
+            0.1665,
+            0.1666,
+            0.1656,
+            0.162,
+            0.1574,
+            0.1654,
+            0.165,
+            0.1607,
+            0.1667,
+            0.1666,
+            0.166,
+            0.1696,
+            0.1735,
+            0.1744,
+            0.1684,
+            0.1638,
+            0.1647,
+            0.1659,
+            0.1554,
+            0.1618,
+            0.162,
+            0.1697,
+            0.168,
+            0.1743,
+            0.1894,
+            0.1935,
+            0.1928,
+            0.1911,
+            0.201,
+            0.2008,
+            0.1994,
+            0.1944,
+            0.1907,
+            0.1869,
+            0.1824,
+            0.1822,
+            0.18,
+            0.1763,
+            0.1748,
+            0.1741,
+            0.1744,
+            0.187,
+            0.199,
+            0.2291,
+            0.2261,
+            0.2268,
+            0.2214,
+            0.2091,
+            0.2124,
+            0.2138,
+            0.2031,
+            0.2018,
+            0.1927,
+            0.1978,
+            0.1966,
+            0.201,
+            0.2212,
+            0.2112,
+            0.22
+          ],
+          "quality_score": 63,
+          "sizing_pct": 1,
+          "sizing_label": "medium",
+          "trailing_after_tp1": false,
+          "macro_reason": null,
+          "earnings_reason": null,
+          "news_sentiment": null,
+          "news_sentiment_reason": null,
+          "macro_event_reason": null,
+          "cross_asset_reason": null,
+          "sector_reason": null,
+          "stacked": false,
+          "stacked_count": null,
+          "stacked_patterns": null,
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 54,
+          "alpha_quality": null,
+          "alpha_pattern": null,
+          "alpha_rules": null,
+          "insider_signal": null,
+          "insider_reason": null,
+          "spike_theme_reason": null
+        },
+        {
           "asset": "DOT",
           "kind": "crypto",
           "type": "kairo-momentum",
@@ -14439,12 +14524,12 @@
           "timeframe": "Court terme · 1-3 jours",
           "confidence": "medium",
           "direction": "long",
-          "config": "Surge +8.4% sur 5 jours + RSI 48. KAIRO entre dans un mouvement déjà engagé en pariant sur sa continuation.",
+          "config": "Surge +8.3% sur 5 jours + RSI 48. KAIRO entre dans un mouvement déjà engagé en pariant sur sa continuation.",
           "rationale": "Stratégie momentum : on saute dans un mouvement vif en pariant sur sa continuation à court terme. Risque : retournement violent si le momentum casse. Stop large à 2.2 ATR.",
-          "entry": 0.9103391290195576,
-          "stop": 0.8668959025761143,
-          "tp1": 0.9498329712408697,
-          "tp2": 0.9992002740175099,
+          "entry": 0.9095124863932152,
+          "stop": 0.8661991609339114,
+          "tp1": 0.9488882368107642,
+          "tp2": 0.9981079248327004,
           "rr1": "0.91",
           "rr2": "2.05",
           "currency": "USD",
@@ -14508,7 +14593,7 @@
             0.8672,
             0.8884,
             0.8997,
-            0.9103
+            0.9095
           ],
           "quality_score": 63,
           "sizing_pct": 1,
@@ -14544,12 +14629,12 @@
           "timeframe": "Court terme · 1-3 jours",
           "confidence": "medium",
           "direction": "long",
-          "config": "Surge +5.6% sur 5 jours + RSI 54. KAIRO entre dans un mouvement déjà engagé en pariant sur sa continuation.",
+          "config": "Surge +6.6% sur 5 jours + RSI 56. KAIRO entre dans un mouvement déjà engagé en pariant sur sa continuation.",
           "rationale": "Stratégie momentum : on saute dans un mouvement vif en pariant sur sa continuation à court terme. Risque : retournement violent si le momentum casse. Stop large à 2.2 ATR.",
-          "entry": 11.95348551865214,
-          "stop": 11.384690937167866,
-          "tp1": 12.470571501819663,
-          "tp2": 13.116928980779065,
+          "entry": 12.069452712205278,
+          "stop": 11.482434714591225,
+          "tp1": 12.603105437308962,
+          "tp2": 13.270171343688567,
           "rr1": "0.91",
           "rr2": "2.05",
           "currency": "USD",
@@ -14613,7 +14698,7 @@
             11.1097,
             11.8327,
             11.6313,
-            11.9535
+            12.0695
           ],
           "quality_score": 63,
           "sizing_pct": 1,
@@ -14640,111 +14725,6 @@
               }
             ]
           },
-          "wisdom_adjustment": 8,
-          "wisdom_note": "Scalper rotations sectorielles",
-          "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 54,
-          "alpha_quality": null,
-          "alpha_pattern": null,
-          "alpha_rules": null,
-          "insider_signal": null,
-          "insider_reason": null,
-          "spike_theme_reason": null
-        },
-        {
-          "asset": "APT",
-          "kind": "crypto",
-          "type": "kairo-momentum",
-          "label": "Momentum vif — saute dedans",
-          "timeframe": "Court terme · 1-3 jours",
-          "confidence": "medium",
-          "direction": "long",
-          "config": "Surge +11.8% sur 5 jours + RSI 44. KAIRO entre dans un mouvement déjà engagé en pariant sur sa continuation.",
-          "rationale": "Stratégie momentum : on saute dans un mouvement vif en pariant sur sa continuation à court terme. Risque : retournement violent si le momentum casse. Stop large à 2.2 ATR.",
-          "entry": 0.5986344028798476,
-          "stop": 0.5538977818487734,
-          "tp1": 0.6393040583626423,
-          "tp2": 0.6901411277161357,
-          "rr1": "0.91",
-          "rr2": "2.05",
-          "currency": "USD",
-          "prices60": [
-            0.6164,
-            0.6253,
-            0.6293,
-            0.6243,
-            0.6102,
-            0.5913,
-            0.6205,
-            0.6232,
-            0.6102,
-            0.6227,
-            0.608,
-            0.5952,
-            0.6043,
-            0.6098,
-            0.6221,
-            0.6179,
-            0.6009,
-            0.6106,
-            0.628,
-            0.592,
-            0.5867,
-            0.564,
-            0.5685,
-            0.5561,
-            0.5517,
-            0.5625,
-            0.5748,
-            0.5772,
-            0.5921,
-            0.5906,
-            0.5792,
-            0.6029,
-            0.5891,
-            0.5878,
-            0.5788,
-            0.5592,
-            0.5596,
-            0.5414,
-            0.5371,
-            0.5182,
-            0.5309,
-            0.528,
-            0.562,
-            0.5748,
-            0.6479,
-            0.632,
-            0.6381,
-            0.6078,
-            0.5618,
-            0.5709,
-            0.5737,
-            0.5388,
-            0.5428,
-            0.5179,
-            0.5355,
-            0.5462,
-            0.5855,
-            0.6027,
-            0.5799,
-            0.5986
-          ],
-          "quality_score": 63,
-          "sizing_pct": 1,
-          "sizing_label": "medium",
-          "trailing_after_tp1": false,
-          "macro_reason": null,
-          "earnings_reason": null,
-          "news_sentiment": null,
-          "news_sentiment_reason": null,
-          "macro_event_reason": null,
-          "cross_asset_reason": null,
-          "sector_reason": null,
-          "stacked": false,
-          "stacked_count": null,
-          "stacked_patterns": null,
-          "news_context": null,
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
@@ -14835,7 +14815,7 @@
             91.67,
             95.8
           ],
-          "quality_score": 63,
+          "quality_score": 66,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -14863,13 +14843,13 @@
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 54,
+          "quality_score_pre_wisdom": 57,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"billion\" ×6 (3 mentions/24h)"
         },
         {
           "asset": "Oracle",
@@ -14950,7 +14930,7 @@
             154.04,
             158.78
           ],
-          "quality_score": 67,
+          "quality_score": 68,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -14983,13 +14963,13 @@
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 58,
+          "quality_score_pre_wisdom": 59,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×4.1 (13 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"x2019\" ×5 (15 mentions/24h)"
         },
         {
           "asset": "Adobe",
@@ -15070,7 +15050,7 @@
             285.75,
             266.51
           ],
-          "quality_score": 74,
+          "quality_score": 76,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15103,13 +15083,13 @@
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 65,
+          "quality_score_pre_wisdom": 67,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×4.1 (13 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"x2019\" ×5 (15 mentions/24h)"
         },
         {
           "asset": "Blé",
@@ -15520,18 +15500,18 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 3,
+            "risk": "alert",
             "items": [
               {
                 "title": "Dow Jones Futures: Nvidia, Micron, Sandisk Flash Buy Signals; Apple, Inflation Reports Ahead",
-                "time": "2026-09-05T12:05:42.000Z",
+                "time": "2026-09-05T16:46:30.000Z",
                 "source": "Yahoo Finance"
               },
               {
-                "title": "Micron is doubling down on AI memory chips. That could pay off big time for investors.",
-                "time": "2026-09-04T20:12:00.000Z",
-                "source": "MarketWatch"
+                "title": "Dow Jones Futures: Nvidia, Micron, Sandisk Flash Buy Signals; Apple, Inflation Reports Ahead",
+                "time": "2026-09-05T16:46:30.000Z",
+                "source": "Yahoo Finance Crypto"
               }
             ]
           },
@@ -15544,7 +15524,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"reports\" ×18 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"reports\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Zscaler",
@@ -16290,7 +16270,7 @@
             516.39,
             524.14
           ],
-          "quality_score": 65,
+          "quality_score": 68,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16309,27 +16289,27 @@
             "risk": "caution",
             "items": [
               {
+                "title": "DELL gain $44k",
+                "time": "2026-09-04T21:15:19.000Z",
+                "source": "Reddit r/wallstreetbets"
+              },
+              {
                 "title": "Goldman Sachs resets Dell stock price target by $60",
                 "time": "2026-09-04T03:33:00.000Z",
                 "source": "Yahoo Finance Crypto"
-              },
-              {
-                "title": "Dow, S&amp;P 500, Nasdaq Futures Rise As Investors Look Past Iran Tensions, Focus On Earnings: AVGO, SNOW, DELL, HPE …",
-                "time": "2026-09-03T03:52:50.000Z",
-                "source": "Yahoo Finance"
               }
             ]
           },
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 56,
+          "quality_score_pre_wisdom": 59,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"focus\" ×3 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"gain\" ×24 (4 mentions/24h)"
         },
         {
           "asset": "Etsy",
@@ -16549,7 +16529,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"energy\" ×6 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"energy\" ×8 (8 mentions/24h)"
         },
         {
           "asset": "GameStop",
@@ -17812,126 +17792,6 @@
           "spike_theme_reason": null
         },
         {
-          "asset": "BTC",
-          "kind": "crypto",
-          "type": "kairo-squeeze",
-          "label": "Volatilité comprimée — cassure proche",
-          "timeframe": "Court terme · 3-7 jours",
-          "confidence": "medium",
-          "direction": "long",
-          "config": "ATR 1.37% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
-          "rationale": "Théorie : la volatilité finit toujours par revenir. Quand l'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).",
-          "entry": 79784.88223919678,
-          "stop": 77042.67088274944,
-          "tp1": 81978.65132435465,
-          "tp2": 85269.30495209146,
-          "rr1": "0.80",
-          "rr2": "2.00",
-          "currency": "USD",
-          "prices60": [
-            62247.1305,
-            63192.879,
-            64110.9748,
-            63791.3531,
-            63746.656,
-            62278.963,
-            64983.5191,
-            64717.1689,
-            63792.2874,
-            63904.954,
-            64795.7038,
-            64670.4012,
-            65184.9214,
-            66520.9816,
-            66077.0565,
-            65052.4767,
-            64092.6474,
-            64318.2452,
-            65343.8245,
-            63701.3529,
-            63881.9433,
-            63916.5979,
-            64743.3371,
-            62820.0861,
-            62772.5773,
-            63504.4156,
-            63465.1997,
-            64062.1737,
-            64608.7054,
-            64262.7483,
-            64879.7561,
-            64917.2393,
-            64856.0978,
-            63915.7121,
-            63537.5599,
-            63408.6257,
-            63429.1791,
-            62984.2896,
-            63031.0483,
-            62843.7037,
-            64491.3453,
-            64686.2578,
-            69291.0104,
-            73020.9456,
-            78317.7772,
-            77081.023,
-            77712.3201,
-            78973.8869,
-            78511.2331,
-            79018.0341,
-            80268.3747,
-            77820.7643,
-            78225.1395,
-            77658.2313,
-            78552.7793,
-            77416.4411,
-            77297.1335,
-            81264.7015,
-            79671.2577,
-            79784.8822
-          ],
-          "quality_score": 65,
-          "sizing_pct": 1,
-          "sizing_label": "medium",
-          "trailing_after_tp1": false,
-          "macro_reason": null,
-          "earnings_reason": null,
-          "news_sentiment": null,
-          "news_sentiment_reason": null,
-          "macro_event_reason": null,
-          "cross_asset_reason": null,
-          "sector_reason": null,
-          "stacked": false,
-          "stacked_count": null,
-          "stacked_patterns": null,
-          "news_context": {
-            "count": 3,
-            "risk": "alert",
-            "items": [
-              {
-                "title": "British investor thought he lost $2,000 in bitcoin in 2012. He just recovered $4.5 million",
-                "time": "2026-09-05T12:00:00.000Z",
-                "source": "CoinDesk"
-              },
-              {
-                "title": "Bitcoin clears $81,000 as privacy coins lead a broad crypto rally",
-                "time": "2026-09-04T09:57:01.000Z",
-                "source": "CoinDesk"
-              }
-            ]
-          },
-          "wisdom_adjustment": 8,
-          "wisdom_note": "Scalper rotations sectorielles",
-          "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 56,
-          "alpha_quality": null,
-          "alpha_pattern": null,
-          "alpha_rules": null,
-          "insider_signal": null,
-          "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"million\" ×4.8 (4 mentions/24h)"
-        },
-        {
           "asset": "TRX",
           "kind": "crypto",
           "type": "kairo-squeeze",
@@ -17941,10 +17801,10 @@
           "direction": "long",
           "config": "ATR 0.99% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
           "rationale": "Théorie : la volatilité finit toujours par revenir. Quand l'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).",
-          "entry": 0.33399698272543976,
-          "stop": 0.32575711532146695,
-          "tp1": 0.340588876648618,
-          "tp2": 0.3504767175333854,
+          "entry": 0.3341253909228623,
+          "stop": 0.3258625934836355,
+          "tp1": 0.34073562887424375,
+          "tp2": 0.350650985801316,
           "rr1": "0.80",
           "rr2": "2.00",
           "currency": "USD",
@@ -18008,7 +17868,7 @@
             0.325,
             0.3308,
             0.3315,
-            0.334
+            0.3341
           ],
           "quality_score": 63,
           "sizing_pct": 1,
@@ -18154,7 +18014,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"could\" ×3 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"could\" ×3.8 (5 mentions/24h)"
         },
         {
           "asset": "Disney",
@@ -23154,7 +23014,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"fall\" ×6 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"x2019\" ×5 (15 mentions/24h)"
         },
         {
           "asset": "Bank of America",
@@ -23350,7 +23210,7 @@
             1037.9301,
             1038.61
           ],
-          "quality_score": 66,
+          "quality_score": 63,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -23383,13 +23243,13 @@
           "wisdom_adjustment": 8,
           "wisdom_note": "Scalper rotations sectorielles",
           "historical_analog": "Rally IA + Halving BTC (2024)",
-          "quality_score_pre_wisdom": 57,
+          "quality_score_pre_wisdom": 54,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"indexes\" ×9 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Berkshire",
@@ -23485,18 +23345,13 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Berkshire Hathaway Outperformed the S&amp;P 500 Over a 60-Year Period Under Warren Buffett. Here's the Stock That Cou…",
                 "time": "2026-09-05T05:20:00.000Z",
                 "source": "Yahoo Finance"
-              },
-              {
-                "title": "Berkshire eyes bigger stakes in Japan’s top trading houses, CEO tells Nikkei",
-                "time": "2026-09-03T03:24:37.000Z",
-                "source": "Investing.com"
               }
             ]
           },
@@ -23509,7 +23364,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"bigger\" ×18 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"buffett\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Exxon",
@@ -25390,9 +25245,14 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 1,
-            "risk": "normal",
+            "count": 2,
+            "risk": "caution",
             "items": [
+              {
+                "title": "Tyler Perry pays $18K lien for 81-year-old woman after Allstate denied her home insurance claim",
+                "time": "2026-09-05T16:00:00.000Z",
+                "source": "Yahoo Finance Crypto"
+              },
               {
                 "title": "Michael Rulli trades in Allstate Corporation and Equinix, Inc. stocks",
                 "time": "2026-09-03T17:06:06.000Z",
@@ -27090,6 +26950,111 @@
           "insider_signal": null,
           "insider_reason": null,
           "spike_theme_reason": null
+        },
+        {
+          "asset": "USD/SEK",
+          "kind": "forex",
+          "type": "kairo-squeeze",
+          "label": "Volatilité comprimée — cassure proche",
+          "timeframe": "Court terme · 3-7 jours",
+          "confidence": "medium",
+          "direction": "long",
+          "config": "ATR 0.45% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
+          "rationale": "Théorie : la volatilité finit toujours par revenir. Quand l'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).",
+          "entry": 9.564299583435059,
+          "stop": 9.456207066323966,
+          "tp1": 9.650773597123933,
+          "tp2": 9.780484617657246,
+          "rr1": "0.80",
+          "rr2": "2.00",
+          "currency": "EUR",
+          "prices60": [
+            9.3969,
+            9.3575,
+            9.5087,
+            9.5822,
+            9.5888,
+            9.6196,
+            9.7344,
+            9.7535,
+            9.7403,
+            9.7347,
+            9.709,
+            9.7057,
+            9.7195,
+            9.6839,
+            9.6402,
+            9.6246,
+            9.6991,
+            9.6902,
+            9.6594,
+            9.6789,
+            9.7145,
+            9.6558,
+            9.5911,
+            9.6399,
+            9.6675,
+            9.6848,
+            9.7059,
+            9.6958,
+            9.7565,
+            9.6758,
+            9.7205,
+            9.6913,
+            9.6409,
+            9.5381,
+            9.5025,
+            9.5665,
+            9.5147,
+            9.4803,
+            9.5117,
+            9.483,
+            9.4851,
+            9.5171,
+            9.5776,
+            9.5572,
+            9.5156,
+            9.5067,
+            9.5345,
+            9.4407,
+            9.4749,
+            9.4696,
+            9.4906,
+            9.4522,
+            9.5232,
+            9.514,
+            9.6063,
+            9.576,
+            9.6153,
+            9.6308,
+            9.534,
+            9.5643
+          ],
+          "quality_score": 57,
+          "sizing_pct": 1,
+          "sizing_label": "medium",
+          "trailing_after_tp1": false,
+          "macro_reason": null,
+          "earnings_reason": null,
+          "news_sentiment": null,
+          "news_sentiment_reason": null,
+          "macro_event_reason": null,
+          "cross_asset_reason": null,
+          "sector_reason": null,
+          "stacked": false,
+          "stacked_count": null,
+          "stacked_patterns": null,
+          "news_context": null,
+          "wisdom_adjustment": 8,
+          "wisdom_note": "Scalper rotations sectorielles",
+          "historical_analog": "Rally IA + Halving BTC (2024)",
+          "quality_score_pre_wisdom": 48,
+          "alpha_quality": null,
+          "alpha_pattern": null,
+          "alpha_rules": null,
+          "insider_signal": null,
+          "insider_reason": null,
+          "spike_theme_reason": null
         }
       ]
     },
@@ -28478,40 +28443,40 @@
       "cls": "bull"
     },
     {
-      "label": "BTC",
+      "label": "XRP",
       "kind": "crypto",
-      "price": 79784.88223919678,
-      "change": "0.14",
-      "rsi": "59",
+      "price": 1.42279574482777,
+      "change": "1.72",
+      "rsi": "46",
       "maCross": "bull",
-      "macdHist": "-106.65",
-      "boll": "68%",
-      "adx": "18",
-      "atr": "1.4%",
-      "verdict": "Haussier fort",
-      "score": 76,
+      "macdHist": "-0.01",
+      "boll": "62%",
+      "adx": "8",
+      "atr": "2.7%",
+      "verdict": "Plutôt haussier",
+      "score": 69,
       "cls": "bull"
     },
     {
-      "label": "ETH",
+      "label": "ADA",
       "kind": "crypto",
-      "price": 2459.141398583097,
-      "change": "0.12",
-      "rsi": "53",
+      "price": 0.22003979496818535,
+      "change": "4.18",
+      "rsi": "47",
       "maCross": "bull",
-      "macdHist": "-13.95",
-      "boll": "60%",
+      "macdHist": "0.00",
+      "boll": "72%",
       "adx": "6",
-      "atr": "1.7%",
-      "verdict": "Indécis",
-      "score": 55,
-      "cls": "neutral"
+      "atr": "3.0%",
+      "verdict": "Haussier fort",
+      "score": 86,
+      "cls": "bull"
     },
     {
       "label": "DOT",
       "kind": "crypto",
-      "price": 0.9103391290195576,
-      "change": "1.18",
+      "price": 0.9095124863932152,
+      "change": "1.09",
       "rsi": "48",
       "maCross": "bull",
       "macdHist": "0.00",
@@ -28525,23 +28490,23 @@
     {
       "label": "LINK",
       "kind": "crypto",
-      "price": 11.95348551865214,
-      "change": "2.77",
-      "rsi": "54",
+      "price": 12.069452712205278,
+      "change": "3.77",
+      "rsi": "56",
       "maCross": "bull",
-      "macdHist": "-0.05",
-      "boll": "76%",
-      "adx": "8",
+      "macdHist": "-0.04",
+      "boll": "79%",
+      "adx": "11",
       "atr": "2.2%",
-      "verdict": "Plutôt haussier",
-      "score": 69,
+      "verdict": "Haussier fort",
+      "score": 76,
       "cls": "bull"
     },
     {
       "label": "TRX",
       "kind": "crypto",
-      "price": 0.33399698272543976,
-      "change": "0.76",
+      "price": 0.3341253909228623,
+      "change": "0.80",
       "rsi": "39",
       "maCross": "bull",
       "macdHist": "-0.00",
@@ -28551,21 +28516,6 @@
       "verdict": "Baissier fort",
       "score": 24,
       "cls": "bear"
-    },
-    {
-      "label": "APT",
-      "kind": "crypto",
-      "price": 0.5986344028798476,
-      "change": "3.23",
-      "rsi": "44",
-      "maCross": "bear",
-      "macdHist": "0.00",
-      "boll": "67%",
-      "adx": "12",
-      "atr": "3.4%",
-      "verdict": "Plutôt haussier",
-      "score": 61,
-      "cls": "bull"
     },
     {
       "label": "Apple",
@@ -34329,8 +34279,8 @@
     {
       "label": "USD/SEK",
       "kind": "forex",
-      "price": 9.5655,
-      "change": "0.33",
+      "price": 9.5643,
+      "change": "0.32",
       "rsi": "55",
       "maCross": "bear",
       "macdHist": "0.01",
@@ -35733,17 +35683,7 @@
         64214.4805,
         65020.9414
       ],
-      "news_context": {
-        "count": 1,
-        "risk": "normal",
-        "items": [
-          {
-            "title": "Berkshire eyes bigger stakes in Japan’s top trading houses, CEO tells Nikkei",
-            "time": "2026-09-03T03:24:37.000Z",
-            "source": "Investing.com"
-          }
-        ]
-      },
+      "news_context": null,
       "wisdom_adjustment": 0,
       "historical_analog": null
     },
@@ -36922,7 +36862,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 61
+    "matched_assets": 60
   },
   "macro": {
     "vix": 14.53,
@@ -36932,7 +36872,7 @@
     "cross_asset": {
       "sp500_change": -0.375722160845159,
       "nasdaq_change": -0.28991174002219816,
-      "btc_change": 0.14261675830430734,
+      "btc_change": null,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -36944,7 +36884,7 @@
     "current_state": {
       "vix": 14.53,
       "yield_curve": null,
-      "btc_30d_change": 22.973462067181043,
+      "btc_30d_change": null,
       "sp500_30d_change": 4.119958164146642,
       "dominant_sectors": [
         "IBB",
@@ -36964,14 +36904,14 @@
       "tech"
     ],
     "theme_counts": {
+      "tech": 56,
+      "earnings": 76,
+      "fed": 119,
       "war": 51,
-      "earnings": 79,
+      "crypto": 46,
+      "credit": 33,
       "oil": 34,
-      "fed": 116,
-      "geopolitical": 36,
-      "tech": 58,
-      "crypto": 51,
-      "credit": 33
+      "geopolitical": 34
     },
     "top_sectors_60d": [
       "IBB",
@@ -36984,7 +36924,7 @@
         "name": "Rally IA + Halving BTC",
         "date": "2024-03-08",
         "category": "bull-run",
-        "similarity": 70,
+        "similarity": 65,
         "lesson": "Narrative IA + halving BTC + Fed pause = bull 6-12 mois, momentum porte mais reversion brutale possible.",
         "market_response": {
           "duration_days": 240,
@@ -37053,7 +36993,7 @@
     "top_analog": {
       "name": "Rally IA + Halving BTC",
       "year": "2024",
-      "similarity": 70,
+      "similarity": 65,
       "lesson": "Narrative IA + halving BTC + Fed pause = bull 6-12 mois, momentum porte mais reversion brutale possible."
     },
     "ia_priorities": {
@@ -37164,11 +37104,11 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 76,
+      "ev_battery": 75,
       "ai_breakthrough": 2,
       "crypto_hack": 1,
       "semicon_supply": 3,
-      "defi_growth": 6,
+      "defi_growth": 7,
       "rate_pivot": 3,
       "crypto_etf": 2,
       "recession": 1
@@ -37179,7 +37119,7 @@
       "level": "extreme",
       "war": 51,
       "credit": 33,
-      "geopol": 36
+      "geopol": 34
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -37427,30 +37367,30 @@
       "score": 63
     },
     {
-      "label": "BTC",
+      "label": "XRP",
       "kind": "crypto",
-      "rsi": 59,
-      "change": 0.14,
-      "adx": 18,
-      "verdict": "Haussier fort",
+      "rsi": 46,
+      "change": 1.72,
+      "adx": 8,
+      "verdict": "Plutôt haussier",
       "cls": "bull",
-      "score": 76
+      "score": 69
     },
     {
-      "label": "ETH",
+      "label": "ADA",
       "kind": "crypto",
-      "rsi": 53,
-      "change": 0.12,
+      "rsi": 47,
+      "change": 4.18,
       "adx": 6,
-      "verdict": "Indécis",
-      "cls": "neutral",
-      "score": 55
+      "verdict": "Haussier fort",
+      "cls": "bull",
+      "score": 86
     },
     {
       "label": "DOT",
       "kind": "crypto",
       "rsi": 48,
-      "change": 1.18,
+      "change": 1.09,
       "adx": 4,
       "verdict": "Haussier fort",
       "cls": "bull",
@@ -37459,32 +37399,22 @@
     {
       "label": "LINK",
       "kind": "crypto",
-      "rsi": 54,
-      "change": 2.77,
-      "adx": 8,
-      "verdict": "Plutôt haussier",
+      "rsi": 56,
+      "change": 3.77,
+      "adx": 11,
+      "verdict": "Haussier fort",
       "cls": "bull",
-      "score": 69
+      "score": 76
     },
     {
       "label": "TRX",
       "kind": "crypto",
       "rsi": 39,
-      "change": 0.76,
+      "change": 0.8,
       "adx": 22,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 24
-    },
-    {
-      "label": "APT",
-      "kind": "crypto",
-      "rsi": 44,
-      "change": 3.23,
-      "adx": 12,
-      "verdict": "Plutôt haussier",
-      "cls": "bull",
-      "score": 61
     },
     {
       "label": "Apple",
@@ -41330,7 +41260,7 @@
       "label": "USD/SEK",
       "kind": "forex",
       "rsi": 55,
-      "change": 0.33,
+      "change": 0.32,
       "adx": 10,
       "verdict": "Plutôt haussier",
       "cls": "bull",
