@@ -19,7 +19,7 @@
       "tp1": 0.09326403729015934,
       "tp2": 0.09887174757005322,
       "initial_stop": 0.08147928447960416,
-      "high_since_entry": 0.08765632701026545,
+      "high_since_entry": 0.09131097828769466,
       "rr1": 0.91,
       "rr2": 1.82,
       "risk_pct": 0.07046887248581488,
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 0.08480231506662034,
-      "age_days": 1
+      "current_price": 0.09131097828769466,
+      "age_days": 2
     },
     {
       "id": "pos-1788569086102-sgts",
@@ -70,7 +70,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 79282.2902957875,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -2825,7 +2827,14 @@
       "equity": 1004.7,
       "cash": 912.29,
       "positions_count": 2
+    },
+    {
+      "date": "2026-09-08",
+      "cycle": 72,
+      "equity": 1007.96,
+      "cash": 912.29,
+      "positions_count": 2
     }
   ],
-  "last_cycle": "2026-09-05"
+  "last_cycle": "2026-09-08"
 }
