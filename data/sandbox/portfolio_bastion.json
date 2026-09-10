@@ -6,7 +6,7 @@
   "icon": "🗿",
   "created_at": "2026-05-30T17:55:42.941Z",
   "capital_initial": 1000,
-  "cash": 745.7774467702476,
+  "cash": 827.9923340803068,
   "positions": [
     {
       "id": "pos-1787613928533-3asp",
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 368.56,
-      "age_days": 11
+      "current_price": 364.38,
+      "age_days": 12
     },
     {
       "id": "pos-1787976245021-mcx4",
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 103.88,
-      "age_days": 7
+      "current_price": 102.76,
+      "age_days": 8
     },
     {
       "id": "pos-1788310447737-u98l",
@@ -104,41 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 200.7,
-      "age_days": 5
-    },
-    {
-      "id": "pos-1788569085739-ucya",
-      "asset": "CAC 40",
-      "kind": "index",
-      "agent": "atlas",
-      "type": "grid-month-A",
-      "entry": 8286.400390625,
-      "stop": 8259.2703317291,
-      "tp1": 8422.050685104505,
-      "tp2": 8557.70097958401,
-      "initial_stop": 8259.2703317291,
-      "high_since_entry": 8317.98,
-      "rr1": 5,
-      "rr2": 10,
-      "risk_pct": 0.0032740463430411117,
-      "size_eur": 82.48494684864494,
-      "quality_score": 85,
-      "sizing_pct": 10,
-      "trailing_after_tp1": true,
-      "trailing_active": false,
-      "pyramiding_pct": 50,
-      "pyramided": false,
-      "stacked": false,
-      "opened_at": "2026-09-05T00:44:45.739Z",
-      "opened_at_cycle": 71,
-      "opened_at_date": "2026-09-05",
-      "status": "open",
-      "touched_tp1": false,
-      "closed_at": null,
-      "pnl_eur": null,
-      "current_price": 8317.98,
-      "age_days": 2
+      "current_price": 196.34,
+      "age_days": 6
     },
     {
       "id": "pos-1788916007261-lz33",
@@ -151,7 +118,7 @@
       "tp1": 317.28215783716655,
       "tp2": 344.61430346730185,
       "initial_stop": 284.4835830810042,
-      "high_since_entry": 289.95001220703125,
+      "high_since_entry": 291.15,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.018853005331566863,
@@ -169,7 +136,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 291.15,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -2962,6 +2931,41 @@
       "age_days": 5,
       "closed_at_cycle": 73,
       "exit_price": 317.4081298016662
+    },
+    {
+      "id": "pos-1788569085739-ucya",
+      "asset": "CAC 40",
+      "kind": "index",
+      "agent": "atlas",
+      "type": "grid-month-A",
+      "entry": 8286.400390625,
+      "stop": 8259.2703317291,
+      "tp1": 8422.050685104505,
+      "tp2": 8557.70097958401,
+      "initial_stop": 8259.2703317291,
+      "high_since_entry": 8317.98,
+      "rr1": 5,
+      "rr2": 10,
+      "risk_pct": 0.0032740463430411117,
+      "size_eur": 82.48494684864494,
+      "quality_score": 85,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-09-05T00:44:45.739Z",
+      "opened_at_cycle": 71,
+      "opened_at_date": "2026-09-05",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-09-10T00:55:23.482Z",
+      "pnl_eur": -0.27005953858574644,
+      "current_price": 8156.67,
+      "age_days": 3,
+      "closed_at_cycle": 74,
+      "exit_price": 8259.2703317291
     }
   ],
   "equity_history": [
@@ -3475,7 +3479,14 @@
       "equity": 1148.03,
       "cash": 745.78,
       "positions_count": 5
+    },
+    {
+      "date": "2026-09-10",
+      "cycle": 74,
+      "equity": 1144.32,
+      "cash": 827.99,
+      "positions_count": 4
     }
   ],
-  "last_cycle": "2026-09-09"
+  "last_cycle": "2026-09-10"
 }
