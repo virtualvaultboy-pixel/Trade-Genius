@@ -1,15 +1,15 @@
 {
-  "generated": "2026-09-12T00:01:19.005Z",
+  "generated": "2026-09-12T23:52:57.633Z",
   "date": "2026-09-12",
   "title": "Rapport du 12 septembre 2026",
   "summary": "Séance largement positive sur les principaux indices et la crypto.",
   "highlights": [
     "S&P 500 +0.86% · ↗ légère hausse",
     "Nasdaq +0.96% · ↗ légère hausse",
-    "CAC 40 +0.28% · → stable",
+    "CAC 40 +0.78% · ↗ légère hausse",
     "Dow +0.98% · ↗ légère hausse",
-    "BTC +0.84% · ↗ légère hausse",
-    "ETH +3.18% · ↑ haussier net"
+    "BTC +0.06% · → stable",
+    "ETH +0.40% · ↗ légère hausse"
   ],
   "items": [
     {
@@ -39,10 +39,10 @@
       "symbol": "CAC 40",
       "name": "CAC 40",
       "price": 8179.77,
-      "change": 0.28320476795376254,
-      "rsi": 22.4,
-      "verdict": "flat",
-      "verdictLabel": "→ stable",
+      "change": 0.7762978848019235,
+      "rsi": 30.4,
+      "verdict": "bull-soft",
+      "verdictLabel": "↗ légère hausse",
       "currency": "EUR"
     },
     {
@@ -60,22 +60,22 @@
       "kind": "crypto",
       "symbol": "BTC",
       "name": "Bitcoin",
-      "price": 77197.33938375245,
-      "change": 0.8390736673478715,
-      "rsi": 47.7,
-      "verdict": "bull-soft",
-      "verdictLabel": "↗ légère hausse",
+      "price": 77250.78833516943,
+      "change": 0.061206896097736704,
+      "rsi": 46.4,
+      "verdict": "flat",
+      "verdictLabel": "→ stable",
       "currency": "USD"
     },
     {
       "kind": "crypto",
       "symbol": "ETH",
       "name": "Ethereum",
-      "price": 2515.0187973229345,
-      "change": 3.1796313350963867,
-      "rsi": 56.5,
-      "verdict": "bull",
-      "verdictLabel": "↑ haussier net",
+      "price": 2524.998665701498,
+      "change": 0.40367653321589814,
+      "rsi": 56.1,
+      "verdict": "bull-soft",
+      "verdictLabel": "↗ légère hausse",
       "currency": "USD"
     }
   ]
