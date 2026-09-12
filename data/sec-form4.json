@@ -1,15 +1,262 @@
 {
-  "generated": "2026-09-11T23:50:17.756Z",
+  "generated": "2026-09-12T08:19:04.400Z",
   "source": "SEC EDGAR Form 4 RSS",
   "window_days": 7,
-  "count": 142,
+  "count": 127,
   "ticker_signals": {
+    "Meta": {
+      "count": 2,
+      "intensity": "low"
+    },
     "Johnson & J.": {
       "count": 3,
       "intensity": "medium"
     }
   },
   "filings": [
+    {
+      "company": "Hyperscale Data, Inc.",
+      "cik": "0000896493",
+      "filed_at": "2026-09-12T01:59:18.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/896493/000121465926011648/0001214659-26-011648-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "IonQ, Inc.",
+      "cik": "0001824920",
+      "filed_at": "2026-09-12T01:55:03.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1824920/000119312526389607/0001193125-26-389607-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Natera, Inc.",
+      "cik": "0001604821",
+      "filed_at": "2026-09-12T01:35:06.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1604821/000164638226000019/0001646382-26-000019-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Fold Holdings, Inc.",
+      "cik": "0001889123",
+      "filed_at": "2026-09-12T01:30:04.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1889123/000119312526389597/0001193125-26-389597-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Safe Pro Group Inc.",
+      "cik": "0002011208",
+      "filed_at": "2026-09-12T01:30:02.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/2011208/000149315226042449/0001493152-26-042449-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Health In Tech, Inc.",
+      "cik": "0002019505",
+      "filed_at": "2026-09-12T01:14:35.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/2019505/000121390026099421/0001213900-26-099421-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Ocugen, Inc.",
+      "cik": "0001372299",
+      "filed_at": "2026-09-12T01:13:47.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1372299/000162828026061626/0001628280-26-061626-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Capstone Energy Plus, Inc.",
+      "cik": "0001009759",
+      "filed_at": "2026-09-12T01:03:25.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1009759/000100975926000010/0001009759-26-000010-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "KULR Technology Group, Inc.",
+      "cik": "0001662684",
+      "filed_at": "2026-09-12T01:01:31.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1662684/000110465926107179/0001104659-26-107179-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "KULR Technology Group, Inc.",
+      "cik": "0001662684",
+      "filed_at": "2026-09-12T01:00:48.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1662684/000110465926107178/0001104659-26-107178-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "KULR Technology Group, Inc.",
+      "cik": "0001662684",
+      "filed_at": "2026-09-12T01:00:11.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1662684/000110465926107177/0001104659-26-107177-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "TERAWULF INC.",
+      "cik": "0001083301",
+      "filed_at": "2026-09-12T00:52:13.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1083301/000162828026061623/0001628280-26-061623-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Alignment Healthcare, Inc.",
+      "cik": "0001832466",
+      "filed_at": "2026-09-12T00:41:04.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1832466/000162828026061621/0001628280-26-061621-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Alpha Compute Corp",
+      "cik": "0001095435",
+      "filed_at": "2026-09-12T00:39:13.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1095435/000117184326006009/0001171843-26-006009-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Alignment Healthcare, Inc.",
+      "cik": "0001832466",
+      "filed_at": "2026-09-12T00:38:11.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1832466/000162828026061620/0001628280-26-061620-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "HALOZYME THERAPEUTICS, INC.",
+      "cik": "0001159036",
+      "filed_at": "2026-09-12T00:35:17.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1159036/000115903626000119/0001159036-26-000119-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Warner Bros. Discovery, Inc.",
+      "cik": "0001437107",
+      "filed_at": "2026-09-12T00:35:07.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1437107/000143710726000079/0001437107-26-000079-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Data Storage Corp",
+      "cik": "0001419951",
+      "filed_at": "2026-09-12T00:33:22.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1419951/000173112226001231/0001731122-26-001231-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Data Storage Corp",
+      "cik": "0001419951",
+      "filed_at": "2026-09-12T00:32:26.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1419951/000173112226001230/0001731122-26-001230-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Data Storage Corp",
+      "cik": "0001419951",
+      "filed_at": "2026-09-12T00:31:33.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1419951/000173112226001229/0001731122-26-001229-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "TELOS CORP",
+      "cik": "0000320121",
+      "filed_at": "2026-09-12T00:31:01.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/320121/000162828026061619/0001628280-26-061619-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Aardvark Therapeutics, Inc.",
+      "cik": "0001774857",
+      "filed_at": "2026-09-12T00:14:00.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1774857/000119312526389564/0001193125-26-389564-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Tenaya Therapeutics, Inc.",
+      "cik": "0001858848",
+      "filed_at": "2026-09-12T00:10:47.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1858848/000119312526389563/0001193125-26-389563-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Tenaya Therapeutics, Inc.",
+      "cik": "0001858848",
+      "filed_at": "2026-09-12T00:10:02.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1858848/000119312526389561/0001193125-26-389561-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Wheels Up Experience Inc.",
+      "cik": "0001819516",
+      "filed_at": "2026-09-12T00:00:16.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1819516/000110465926107155/0001104659-26-107155-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "CrowdStrike Holdings, Inc.",
+      "cik": "0001535527",
+      "filed_at": "2026-09-12T00:00:05.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1535527/000177856426000159/0001778564-26-000159-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Metagenomi Therapeutics, Inc.",
+      "cik": "0001785279",
+      "filed_at": "2026-09-11T23:51:38.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1785279/000119312526389550/0001193125-26-389550-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": "Meta"
+    },
     {
       "company": "AN2 Therapeutics, Inc.",
       "cik": "0001880438",
@@ -663,249 +910,6 @@
       "cik": "0001635088",
       "filed_at": "2026-09-11T01:00:26.000Z",
       "url": "https://www.sec.gov/Archives/edgar/data/1635088/000114036126036246/0001140361-26-036246-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Alphatec Holdings, Inc.",
-      "cik": "0001350653",
-      "filed_at": "2026-09-11T00:58:43.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1350653/000128940926000008/0001289409-26-000008-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "JOHNSON &amp; JOHNSON",
-      "cik": "0000200406",
-      "filed_at": "2026-09-11T00:51:17.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/200406/000020040626000185/0000200406-26-000185-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": "Johnson & J."
-    },
-    {
-      "company": "JOHNSON &amp; JOHNSON",
-      "cik": "0000200406",
-      "filed_at": "2026-09-11T00:50:45.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/200406/000020040626000184/0000200406-26-000184-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": "Johnson & J."
-    },
-    {
-      "company": "JOHNSON &amp; JOHNSON",
-      "cik": "0000200406",
-      "filed_at": "2026-09-11T00:50:12.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/200406/000020040626000183/0000200406-26-000183-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": "Johnson & J."
-    },
-    {
-      "company": "Rubrik, Inc.",
-      "cik": "0001943896",
-      "filed_at": "2026-09-11T00:46:56.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1943896/000201914326000019/0002019143-26-000019-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "KESTRA MEDICAL TECHNOLOGIES, LTD.",
-      "cik": "0001877184",
-      "filed_at": "2026-09-11T00:43:30.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1877184/000095013026000223/0000950130-26-000223-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "IBEX Ltd",
-      "cik": "0001720420",
-      "filed_at": "2026-09-11T00:39:58.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1720420/000197408726000008/0001974087-26-000008-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CLEANSPARK, INC.",
-      "cik": "0000827876",
-      "filed_at": "2026-09-11T00:36:03.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/827876/000119312526388317/0001193125-26-388317-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CLEANSPARK, INC.",
-      "cik": "0000827876",
-      "filed_at": "2026-09-11T00:34:04.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/827876/000119312526388315/0001193125-26-388315-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Snowflake Inc.",
-      "cik": "0001640147",
-      "filed_at": "2026-09-11T00:34:02.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1640147/000164014726000038/0001640147-26-000038-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Snowflake Inc.",
-      "cik": "0001640147",
-      "filed_at": "2026-09-11T00:33:30.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1640147/000143176826000005/0001431768-26-000005-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Snowflake Inc.",
-      "cik": "0001640147",
-      "filed_at": "2026-09-11T00:33:06.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1640147/000182173726000013/0001821737-26-000013-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Agassi Sports Entertainment Corp.",
-      "cik": "0000930245",
-      "filed_at": "2026-09-11T00:32:46.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/930245/000149315226042260/0001493152-26-042260-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CLEANSPARK, INC.",
-      "cik": "0000827876",
-      "filed_at": "2026-09-11T00:32:02.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/827876/000119312526388309/0001193125-26-388309-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "KESTRA MEDICAL TECHNOLOGIES, LTD.",
-      "cik": "0001877184",
-      "filed_at": "2026-09-11T00:31:29.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1877184/000119312526388308/0001193125-26-388308-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "KESTRA MEDICAL TECHNOLOGIES, LTD.",
-      "cik": "0001877184",
-      "filed_at": "2026-09-11T00:30:08.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1877184/000119312526388306/0001193125-26-388306-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "CLEANSPARK, INC.",
-      "cik": "0000827876",
-      "filed_at": "2026-09-11T00:30:03.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/827876/000119312526388305/0001193125-26-388305-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "NEUROCRINE BIOSCIENCES INC",
-      "cik": "0000914475",
-      "filed_at": "2026-09-11T00:29:07.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/914475/000164365326000016/0001643653-26-000016-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Snowflake Inc.",
-      "cik": "0001640147",
-      "filed_at": "2026-09-11T00:28:50.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1640147/000171547226000009/0001715472-26-000009-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "KESTRA MEDICAL TECHNOLOGIES, LTD.",
-      "cik": "0001877184",
-      "filed_at": "2026-09-11T00:28:36.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1877184/000119312526388302/0001193125-26-388302-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Snowflake Inc.",
-      "cik": "0001640147",
-      "filed_at": "2026-09-11T00:28:04.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1640147/000203874026000010/0002038740-26-000010-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Snowflake Inc.",
-      "cik": "0001640147",
-      "filed_at": "2026-09-11T00:27:39.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1640147/000201202426000008/0002012024-26-000008-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Snowflake Inc.",
-      "cik": "0001640147",
-      "filed_at": "2026-09-11T00:27:13.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1640147/000212702526000006/0002127025-26-000006-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Ceribell, Inc.",
-      "cik": "0001861107",
-      "filed_at": "2026-09-11T00:27:08.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1861107/000119312526388299/0001193125-26-388299-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "KESTRA MEDICAL TECHNOLOGIES, LTD.",
-      "cik": "0001877184",
-      "filed_at": "2026-09-11T00:26:55.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1877184/000119312526388298/0001193125-26-388298-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "KESTRA MEDICAL TECHNOLOGIES, LTD.",
-      "cik": "0001877184",
-      "filed_at": "2026-09-11T00:25:49.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1877184/000119312526388297/0001193125-26-388297-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Ceribell, Inc.",
-      "cik": "0001861107",
-      "filed_at": "2026-09-11T00:23:58.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1861107/000119312526388295/0001193125-26-388295-index.htm",
       "isIssuer": true,
       "isForm4": true,
       "ticker": null
