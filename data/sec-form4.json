@@ -1,19 +1,51 @@
 {
-  "generated": "2026-09-18T08:41:33.604Z",
+  "generated": "2026-09-18T14:03:06.994Z",
   "source": "SEC EDGAR Form 4 RSS",
   "window_days": 7,
-  "count": 150,
+  "count": 104,
   "ticker_signals": {
     "Oracle": {
       "count": 6,
       "intensity": "high"
-    },
-    "Alphabet": {
-      "count": 11,
-      "intensity": "high"
     }
   },
   "filings": [
+    {
+      "company": "Gold.com, Inc.",
+      "cik": "0001591588",
+      "filed_at": "2026-09-18T13:50:50.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1591588/000119401626000006/0001194016-26-000006-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Logistic Properties of the Americas",
+      "cik": "0001997711",
+      "filed_at": "2026-09-18T13:50:23.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1997711/000199771126000161/0001997711-26-000161-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "COMMUNITY FINANCIAL SYSTEM, INC.",
+      "cik": "0000723188",
+      "filed_at": "2026-09-18T13:33:19.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/723188/000072318826000114/0000723188-26-000114-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "BARINGS CORPORATE INVESTORS",
+      "cik": "0000275694",
+      "filed_at": "2026-09-18T13:25:30.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/275694/000122520826007867/0001225208-26-007867-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
     {
       "company": "XP Inc.",
       "cik": "0001787425",
@@ -874,42 +906,6 @@
       "cik": "0001635088",
       "filed_at": "2026-09-17T22:43:13.000Z",
       "url": "https://www.sec.gov/Archives/edgar/data/1635088/000180735926000014/0001807359-26-000014-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Roivant Sciences Ltd.",
-      "cik": "0001635088",
-      "filed_at": "2026-09-17T22:42:16.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1635088/000134929726000008/0001349297-26-000008-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Happen, Inc.",
-      "cik": "0001409970",
-      "filed_at": "2026-09-17T22:41:53.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1409970/000140997026000196/0001409970-26-000196-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Avidia Bancorp, Inc.",
-      "cik": "0002058758",
-      "filed_at": "2026-09-17T19:29:15.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/2058758/000143774926030657/0001437749-26-030657-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Avidia Bancorp, Inc.",
-      "cik": "0002058758",
-      "filed_at": "2026-09-17T19:28:41.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/2058758/000143774926030656/0001437749-26-030656-index.htm",
       "isIssuer": true,
       "isForm4": true,
       "ticker": null
