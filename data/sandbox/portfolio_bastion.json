@@ -6,7 +6,7 @@
   "icon": "🗿",
   "created_at": "2026-05-30T17:55:42.941Z",
   "capital_initial": 1000,
-  "cash": 809.3059857860017,
+  "cash": 808.3589126367324,
   "positions": [
     {
       "id": "pos-1787976245021-mcx4",
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 103.78,
-      "age_days": 14
+      "current_price": 100.74,
+      "age_days": 15
     },
     {
       "id": "pos-1789174666463-ipc0",
@@ -71,41 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 13947.31,
-      "age_days": 4
-    },
-    {
-      "id": "pos-1789174666464-l7oq",
-      "asset": "CAC 40",
-      "kind": "index",
-      "agent": "atlas",
-      "type": "grid-month-A",
-      "entry": 8116.759765625,
-      "stop": 8087.968084169182,
-      "tp1": 8260.718172904093,
-      "tp2": 8404.676580183184,
-      "initial_stop": 8087.968084169182,
-      "high_since_entry": 8186.93,
-      "rr1": 5,
-      "rr2": 10,
-      "risk_pct": 0.0035471890615456007,
-      "size_eur": 60.110368924587334,
-      "quality_score": 85,
-      "sizing_pct": 10,
-      "trailing_after_tp1": true,
-      "trailing_active": false,
-      "pyramiding_pct": 50,
-      "pyramided": false,
-      "stacked": false,
-      "opened_at": "2026-09-12T00:57:46.464Z",
-      "opened_at_cycle": 76,
-      "opened_at_date": "2026-09-12",
-      "status": "open",
-      "touched_tp1": false,
-      "closed_at": null,
-      "pnl_eur": null,
-      "current_price": 8186.93,
-      "age_days": 4
+      "current_price": 13786.72,
+      "age_days": 5
     },
     {
       "id": "pos-1789521047015-ygkx",
@@ -137,8 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 8756.4,
-      "age_days": 2
+      "current_price": 8731.2,
+      "age_days": 3
     },
     {
       "id": "pos-1789607543257-mbwo",
@@ -170,8 +137,39 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 276.75,
-      "age_days": 1
+      "current_price": 277.2,
+      "age_days": 2
+    },
+    {
+      "id": "pos-1789779741693-2bbs",
+      "asset": "Nike",
+      "kind": "action",
+      "agent": "atlas",
+      "type": "grid-month-A",
+      "entry": 35.5099983215332,
+      "stop": 35.1924265575164,
+      "tp1": 37.09785714161722,
+      "tp2": 38.685715961701234,
+      "initial_stop": 35.1924265575164,
+      "high_since_entry": 35.5099983215332,
+      "rr1": 5,
+      "rr2": 10,
+      "risk_pct": 0.00894316471494254,
+      "size_eur": 60.8442192307218,
+      "quality_score": 100,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-09-19T01:02:21.693Z",
+      "opened_at_cycle": 81,
+      "opened_at_date": "2026-09-19",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
     }
   ],
   "closed_trades": [
@@ -3244,6 +3242,41 @@
       "age_days": 1,
       "closed_at_cycle": 79,
       "exit_price": 1050.4906008496941
+    },
+    {
+      "id": "pos-1789174666464-l7oq",
+      "asset": "CAC 40",
+      "kind": "index",
+      "agent": "atlas",
+      "type": "grid-month-A",
+      "entry": 8116.759765625,
+      "stop": 8087.968084169182,
+      "tp1": 8260.718172904093,
+      "tp2": 8404.676580183184,
+      "initial_stop": 8087.968084169182,
+      "high_since_entry": 8186.93,
+      "rr1": 5,
+      "rr2": 10,
+      "risk_pct": 0.0035471890615456007,
+      "size_eur": 60.110368924587334,
+      "quality_score": 85,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-09-12T00:57:46.464Z",
+      "opened_at_cycle": 76,
+      "opened_at_date": "2026-09-12",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-09-19T01:02:21.468Z",
+      "pnl_eur": -0.21322284313476678,
+      "current_price": 8065.02,
+      "age_days": 5,
+      "closed_at_cycle": 81,
+      "exit_price": 8087.968084169182
     }
   ],
   "equity_history": [
@@ -3806,7 +3839,14 @@
       "equity": 1139.98,
       "cash": 809.31,
       "positions_count": 5
+    },
+    {
+      "date": "2026-09-19",
+      "cycle": 81,
+      "equity": 1135.97,
+      "cash": 808.36,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-09-18"
+  "last_cycle": "2026-09-19"
 }
