@@ -1,15 +1,15 @@
 {
-  "generated": "2026-09-19T00:03:49.862Z",
+  "generated": "2026-09-19T23:59:42.022Z",
   "date": "2026-09-19",
   "title": "Rapport du 19 septembre 2026",
   "summary": "Plus de hausses que de baisses sur la journée, mais sans direction unanime.",
   "highlights": [
     "S&P 500 +0.17% · → stable",
     "Nasdaq +0.39% · ↗ légère hausse",
-    "CAC 40 -0.93% · ↘ légère baisse",
+    "CAC 40 -1.49% · ↘ légère baisse",
     "Dow -0.18% · → stable",
-    "BTC +5.93% · ↑ haussier net",
-    "ETH +6.72% · ↑ haussier net"
+    "BTC +0.47% · ↗ légère hausse",
+    "ETH +0.82% · ↗ légère hausse"
   ],
   "items": [
     {
@@ -39,8 +39,8 @@
       "symbol": "CAC 40",
       "name": "CAC 40",
       "price": 8065.02,
-      "change": -0.928309191354468,
-      "rsi": 32.8,
+      "change": -1.4890828816628585,
+      "rsi": 30.1,
       "verdict": "bear-soft",
       "verdictLabel": "↘ légère baisse",
       "currency": "EUR"
@@ -60,22 +60,22 @@
       "kind": "crypto",
       "symbol": "BTC",
       "name": "Bitcoin",
-      "price": 80900.4953867498,
-      "change": 5.930408420662762,
-      "rsi": 54.1,
-      "verdict": "bull",
-      "verdictLabel": "↑ haussier net",
+      "price": 81255.49749440186,
+      "change": 0.47223655021218036,
+      "rsi": 54.8,
+      "verdict": "bull-soft",
+      "verdictLabel": "↗ légère hausse",
       "currency": "USD"
     },
     {
       "kind": "crypto",
       "symbol": "ETH",
       "name": "Ethereum",
-      "price": 2610.4244700553745,
-      "change": 6.715927927682907,
-      "rsi": 62.1,
-      "verdict": "bull",
-      "verdictLabel": "↑ haussier net",
+      "price": 2632.9028925396756,
+      "change": 0.8174183911817371,
+      "rsi": 62,
+      "verdict": "bull-soft",
+      "verdictLabel": "↗ légère hausse",
       "currency": "USD"
     }
   ]
