@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 8731.2,
-      "age_days": 4
+      "current_price": 8750.1,
+      "age_days": 5
     },
     {
       "id": "pos-1789607543459-gb60",
@@ -52,7 +52,7 @@
       "tp1": 1092.0106182010063,
       "tp2": 1125.3612022223251,
       "initial_stop": 1050.655894014571,
-      "high_since_entry": 1069.78,
+      "high_since_entry": 1090.27,
       "rr1": 4.17,
       "rr2": 8.33,
       "risk_pct": 0.0075606331652243565,
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 1069.78,
-      "age_days": 2
+      "current_price": 1090.27,
+      "age_days": 3
     },
     {
       "id": "pos-1789779742094-kvoi",
@@ -85,7 +85,7 @@
       "tp1": 73.28928347996303,
       "tp2": 76.07856695992606,
       "initial_stop": 69.83057196480887,
-      "high_since_entry": 70.5,
+      "high_since_entry": 70.84,
       "rr1": 4.17,
       "rr2": 8.33,
       "risk_pct": 0.009495433123278463,
@@ -103,7 +103,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 70.84,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -2859,7 +2861,14 @@
       "equity": 975.28,
       "cash": 772.35,
       "positions_count": 3
+    },
+    {
+      "date": "2026-09-22",
+      "cycle": 82,
+      "equity": 977.35,
+      "cash": 772.35,
+      "positions_count": 3
     }
   ],
-  "last_cycle": "2026-09-19"
+  "last_cycle": "2026-09-22"
 }
