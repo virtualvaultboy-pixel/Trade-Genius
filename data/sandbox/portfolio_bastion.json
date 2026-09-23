@@ -6,7 +6,7 @@
   "icon": "🗿",
   "created_at": "2026-05-30T17:55:42.941Z",
   "capital_initial": 1000,
-  "cash": 807.6679748139331,
+  "cash": 807.2838765209957,
   "positions": [
     {
       "id": "pos-1787976245021-mcx4",
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 101.1,
-      "age_days": 16
+      "current_price": 101.3,
+      "age_days": 17
     },
     {
       "id": "pos-1789174666463-ipc0",
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 13956.58,
-      "age_days": 6
+      "current_price": 13953.39,
+      "age_days": 7
     },
     {
       "id": "pos-1789521047015-ygkx",
@@ -85,7 +85,7 @@
       "tp1": 8884.491462460544,
       "tp2": 9019.082534296087,
       "initial_stop": 8722.98217625789,
-      "high_since_entry": 8756.4,
+      "high_since_entry": 8758,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.0030764023777860245,
@@ -104,8 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 8750.1,
-      "age_days": 4
+      "current_price": 8758,
+      "age_days": 5
     },
     {
       "id": "pos-1789779741693-2bbs",
@@ -138,34 +138,34 @@
       "closed_at": null,
       "pnl_eur": null,
       "current_price": 36.1,
-      "age_days": 1
+      "age_days": 2
     },
     {
-      "id": "pos-1790040634805-oi9i",
-      "asset": "Starbucks",
+      "id": "pos-1790126404929-9pmb",
+      "asset": "McDonald's",
       "kind": "action",
       "agent": "atlas",
       "type": "grid-month-A",
-      "entry": 95.83000183105469,
-      "stop": 95.17895388873696,
-      "tp1": 99.08524154264332,
-      "tp2": 102.34048125423193,
-      "initial_stop": 95.17895388873696,
-      "high_since_entry": 95.83000183105469,
+      "entry": 247.8800048828125,
+      "stop": 246.76240805032234,
+      "tp1": 253.46798904526332,
+      "tp2": 259.05597320771415,
+      "initial_stop": 246.76240805032234,
+      "high_since_entry": 247.8800048828125,
       "rr1": 5,
       "rr2": 10,
-      "risk_pct": 0.0067937799215063025,
-      "size_eur": 60.79221315803798,
-      "quality_score": 87,
+      "risk_pct": 0.004508620342405264,
+      "size_eur": 60.7633025338384,
+      "quality_score": 80,
       "sizing_pct": 10,
       "trailing_after_tp1": true,
       "trailing_active": false,
       "pyramiding_pct": 50,
       "pyramided": false,
       "stacked": false,
-      "opened_at": "2026-09-22T01:30:34.805Z",
-      "opened_at_cycle": 82,
-      "opened_at_date": "2026-09-22",
+      "opened_at": "2026-09-23T01:20:04.929Z",
+      "opened_at_cycle": 83,
+      "opened_at_date": "2026-09-23",
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
@@ -3312,6 +3312,41 @@
       "age_days": 3,
       "closed_at_cycle": 82,
       "exit_price": 276.01071297781806
+    },
+    {
+      "id": "pos-1790040634805-oi9i",
+      "asset": "Starbucks",
+      "kind": "action",
+      "agent": "atlas",
+      "type": "grid-month-A",
+      "entry": 95.83000183105469,
+      "stop": 95.17895388873696,
+      "tp1": 99.08524154264332,
+      "tp2": 102.34048125423193,
+      "initial_stop": 95.17895388873696,
+      "high_since_entry": 95.83000183105469,
+      "rr1": 5,
+      "rr2": 10,
+      "risk_pct": 0.0067937799215063025,
+      "size_eur": 60.79221315803798,
+      "quality_score": 87,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-09-22T01:30:34.805Z",
+      "opened_at_cycle": 82,
+      "opened_at_date": "2026-09-22",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-09-23T01:20:04.928Z",
+      "pnl_eur": -0.4130089171370097,
+      "current_price": 95.11,
+      "age_days": 1,
+      "closed_at_cycle": 83,
+      "exit_price": 95.17895388873696
     }
   ],
   "equity_history": [
@@ -3888,7 +3923,14 @@
       "equity": 1137.94,
       "cash": 807.67,
       "positions_count": 5
+    },
+    {
+      "date": "2026-09-23",
+      "cycle": 83,
+      "equity": 1137.73,
+      "cash": 807.28,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-09-22"
+  "last_cycle": "2026-09-23"
 }
