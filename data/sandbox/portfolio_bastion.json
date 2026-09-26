@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 13905.82,
-      "age_days": 9
+      "current_price": 13945.71,
+      "age_days": 10
     },
     {
       "id": "pos-1789779741693-2bbs",
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 35.99,
-      "age_days": 4
+      "current_price": 35.75,
+      "age_days": 5
     },
     {
       "id": "pos-1790212491801-zoog",
@@ -85,7 +85,7 @@
       "tp1": 58.298930251655314,
       "tp2": 60.397859740371175,
       "initial_stop": 55.78021486519628,
-      "high_since_entry": 56.20000076293945,
+      "high_since_entry": 56.7,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.007469499858441261,
@@ -104,8 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 56.03,
-      "age_days": 1
+      "current_price": 56.7,
+      "age_days": 2
     },
     {
       "id": "pos-1790299003496-s0pj",
@@ -118,7 +118,7 @@
       "tp1": 348.04427235494387,
       "tp2": 357.52854715129394,
       "initial_stop": 336.66314259932375,
-      "high_since_entry": 338.55999755859375,
+      "high_since_entry": 343.06,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.005602714357716515,
@@ -136,7 +136,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 343.06,
+      "age_days": 1
     },
     {
       "id": "pos-1790299003496-14tr",
@@ -149,7 +151,7 @@
       "tp1": 290.7107279252369,
       "tp2": 304.82144974695814,
       "initial_stop": 273.7778617391714,
-      "high_since_entry": 276.6000061035156,
+      "high_since_entry": 278.1,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.01020298012317495,
@@ -167,7 +169,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 278.1,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -4082,7 +4086,14 @@
       "equity": 1135.01,
       "cash": 815.73,
       "positions_count": 5
+    },
+    {
+      "date": "2026-09-26",
+      "cycle": 86,
+      "equity": 1136.77,
+      "cash": 815.73,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-09-25"
+  "last_cycle": "2026-09-26"
 }
