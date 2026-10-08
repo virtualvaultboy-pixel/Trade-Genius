@@ -6,41 +6,8 @@
   "icon": "🗿",
   "created_at": "2026-05-30T17:55:42.941Z",
   "capital_initial": 1000,
-  "cash": 688.715934695104,
+  "cash": 739.3126352280417,
   "positions": [
-    {
-      "id": "pos-1790906643137-j2tt",
-      "asset": "Goldman Sachs",
-      "kind": "action",
-      "agent": "atlas",
-      "type": "grid-month-A",
-      "entry": 896.6699829101562,
-      "stop": 887.3018334919302,
-      "tp1": 943.5107300012867,
-      "tp2": 990.3514770924172,
-      "initial_stop": 887.3018334919302,
-      "high_since_entry": 902.56,
-      "rr1": 5,
-      "rr2": 10,
-      "risk_pct": 0.010447711640598881,
-      "size_eur": 107.36561309649547,
-      "quality_score": 79,
-      "sizing_pct": 10,
-      "trailing_after_tp1": true,
-      "trailing_active": false,
-      "pyramiding_pct": 50,
-      "pyramided": false,
-      "stacked": false,
-      "opened_at": "2026-10-02T02:04:03.137Z",
-      "opened_at_cycle": 90,
-      "opened_at_date": "2026-10-02",
-      "status": "open",
-      "touched_tp1": false,
-      "closed_at": null,
-      "pnl_eur": null,
-      "current_price": 897.18,
-      "age_days": 3
-    },
     {
       "id": "pos-1790906643137-cnhu",
       "asset": "Bank of America",
@@ -71,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 54.09,
-      "age_days": 3
+      "current_price": 53.52,
+      "age_days": 4
     },
     {
       "id": "pos-1790906643137-mwfe",
@@ -104,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 81.51,
-      "age_days": 3
+      "current_price": 80.26,
+      "age_days": 4
     },
     {
       "id": "pos-1790906643137-vtrf",
@@ -137,8 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 191.02,
-      "age_days": 3
+      "current_price": 189.71,
+      "age_days": 4
     },
     {
       "id": "pos-1790992088488-eccd",
@@ -151,7 +118,7 @@
       "tp1": 71.1871410237543,
       "tp2": 75.31428448891482,
       "initial_stop": 66.23456886556164,
-      "high_since_entry": 68.69,
+      "high_since_entry": 69.7,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.012308808873887736,
@@ -170,8 +137,39 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 68.69,
-      "age_days": 2
+      "current_price": 69.7,
+      "age_days": 3
+    },
+    {
+      "id": "pos-1791426974771-xcps",
+      "asset": "CAC 40",
+      "kind": "index",
+      "agent": "atlas",
+      "type": "grid-month-A",
+      "entry": 7769.2099609375,
+      "stop": 7735.585958257282,
+      "tp1": 7937.329974338588,
+      "tp2": 8105.449987739675,
+      "initial_stop": 7735.585958257282,
+      "high_since_entry": 7769.2099609375,
+      "rr1": 5,
+      "rr2": 10,
+      "risk_pct": 0.004327853520406155,
+      "size_eur": 55.64718759780959,
+      "quality_score": 77,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-10-08T02:36:14.771Z",
+      "opened_at_cycle": 94,
+      "opened_at_date": "2026-10-08",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
     }
   ],
   "closed_trades": [
@@ -3770,6 +3768,41 @@
       "age_days": 4,
       "closed_at_cycle": 91,
       "exit_price": 249.87002307669985
+    },
+    {
+      "id": "pos-1790906643137-j2tt",
+      "asset": "Goldman Sachs",
+      "kind": "action",
+      "agent": "atlas",
+      "type": "grid-month-A",
+      "entry": 896.6699829101562,
+      "stop": 887.3018334919302,
+      "tp1": 943.5107300012867,
+      "tp2": 990.3514770924172,
+      "initial_stop": 887.3018334919302,
+      "high_since_entry": 902.56,
+      "rr1": 5,
+      "rr2": 10,
+      "risk_pct": 0.010447711640598881,
+      "size_eur": 107.36561309649547,
+      "quality_score": 79,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-10-02T02:04:03.137Z",
+      "opened_at_cycle": 90,
+      "opened_at_date": "2026-10-02",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-10-08T02:36:14.319Z",
+      "pnl_eur": -1.1217249657482913,
+      "current_price": 887.21,
+      "age_days": 4,
+      "closed_at_cycle": 94,
+      "exit_price": 887.3018334919302
     }
   ],
   "equity_history": [
@@ -4423,7 +4456,14 @@
       "equity": 1139.66,
       "cash": 688.72,
       "positions_count": 5
+    },
+    {
+      "date": "2026-10-08",
+      "cycle": 94,
+      "equity": 1136.7,
+      "cash": 739.31,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-10-07"
+  "last_cycle": "2026-10-08"
 }
