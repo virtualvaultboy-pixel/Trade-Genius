@@ -1,8 +1,8 @@
 {
-  "generated": "2026-10-14T09:14:05.893Z",
+  "generated": "2026-10-14T14:50:56.425Z",
   "source": "SEC EDGAR Form 4 RSS",
   "window_days": 7,
-  "count": 125,
+  "count": 101,
   "ticker_signals": {
     "Palantir": {
       "count": 2,
@@ -10,6 +10,15 @@
     }
   },
   "filings": [
+    {
+      "company": "GREIF, INC",
+      "cik": "0000043920",
+      "filed_at": "2026-10-14T14:29:18.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/43920/000004392026000134/0000043920-26-000134-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
     {
       "company": "Joint Stock Co Kaspi.kz",
       "cik": "0001985487",
@@ -897,15 +906,6 @@
       "cik": "0001377789",
       "filed_at": "2026-10-13T20:44:34.000Z",
       "url": "https://www.sec.gov/Archives/edgar/data/1377789/000162828026065743/0001628280-26-065743-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "IMPINJ INC",
-      "cik": "0001114995",
-      "filed_at": "2026-10-13T20:43:18.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1114995/000167772126000020/0001677721-26-000020-index.htm",
       "isIssuer": true,
       "isForm4": true,
       "ticker": null
