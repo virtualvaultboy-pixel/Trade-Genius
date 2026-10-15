@@ -6,8 +6,40 @@
   "icon": "₿",
   "created_at": "2026-05-30T17:55:42.950Z",
   "capital_initial": 1000,
-  "cash": 984.9525862447258,
-  "positions": [],
+  "cash": 936.6899095187342,
+  "positions": [
+    {
+      "id": "pos-1792027084397-umxe",
+      "asset": "SOL",
+      "kind": "crypto",
+      "agent": "volt",
+      "type": "volt-D-A-contrarian",
+      "entry": 104.34478498755391,
+      "stop": 103.17786660996367,
+      "tp1": 108.72072890351731,
+      "tp2": 113.09667281948072,
+      "initial_stop": 103.17786660996367,
+      "high_since_entry": 104.34478498755391,
+      "rr1": 3.75,
+      "rr2": 7.5,
+      "risk_pct": 0.011183293709689696,
+      "size_eur": 48.26267672599156,
+      "quality_score": 85,
+      "sizing_pct": 7,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 30,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-10-15T01:18:04.397Z",
+      "opened_at_cycle": 99,
+      "opened_at_date": "2026-10-15",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
+    }
+  ],
   "closed_trades": [
     {
       "id": "pos-1780163742950-l1kn",
@@ -3370,7 +3402,14 @@
       "equity": 984.95,
       "cash": 984.95,
       "positions_count": 0
+    },
+    {
+      "date": "2026-10-15",
+      "cycle": 99,
+      "equity": 984.95,
+      "cash": 936.69,
+      "positions_count": 1
     }
   ],
-  "last_cycle": "2026-10-14"
+  "last_cycle": "2026-10-15"
 }
