@@ -1,15 +1,15 @@
 {
-  "generated": "2026-10-17T00:14:25.723Z",
+  "generated": "2026-10-17T23:54:07.111Z",
   "date": "2026-10-17",
   "title": "Rapport du 17 octobre 2026",
-  "summary": "Plus de baisses que de hausses sur la journée, biais vendeur modéré.",
+  "summary": "Séance largement négative — tous les actifs majeurs reculent.",
   "highlights": [
     "S&P 500 -1.09% · ↘ légère baisse",
     "Nasdaq -2.15% · ↓ baissier net",
-    "CAC 40 +1.06% · ↗ légère hausse",
+    "CAC 40 +0.28% · → stable",
     "Dow -0.34% · ↘ légère baisse",
-    "BTC -0.00% · → stable",
-    "ETH -0.03% · → stable"
+    "BTC -0.21% · → stable",
+    "ETH -0.96% · ↘ légère baisse"
   ],
   "items": [
     {
@@ -39,10 +39,10 @@
       "symbol": "CAC 40",
       "name": "CAC 40",
       "price": 7956.7,
-      "change": 1.0617168840561846,
-      "rsi": 40.5,
-      "verdict": "bull-soft",
-      "verdictLabel": "↗ légère hausse",
+      "change": 0.27726069222497424,
+      "rsi": 42.1,
+      "verdict": "flat",
+      "verdictLabel": "→ stable",
       "currency": "EUR"
     },
     {
@@ -60,9 +60,9 @@
       "kind": "crypto",
       "symbol": "BTC",
       "name": "Bitcoin",
-      "price": 81522.64838424517,
-      "change": -0.0012384617789567836,
-      "rsi": 38.9,
+      "price": 81356.06100208842,
+      "change": -0.20558084066061286,
+      "rsi": 38.4,
       "verdict": "flat",
       "verdictLabel": "→ stable",
       "currency": "USD"
@@ -71,11 +71,11 @@
       "kind": "crypto",
       "symbol": "ETH",
       "name": "Ethereum",
-      "price": 2419.7609787702486,
-      "change": -0.033001755444260705,
-      "rsi": 28.1,
-      "verdict": "flat",
-      "verdictLabel": "→ stable",
+      "price": 2397.3767254690406,
+      "change": -0.9577569813115565,
+      "rsi": 27.1,
+      "verdict": "bear-soft",
+      "verdictLabel": "↘ légère baisse",
       "currency": "USD"
     }
   ]
