@@ -1,14 +1,14 @@
 {
-  "generated": "2026-10-17T17:19:35.262Z",
+  "generated": "2026-10-17T19:29:49.443Z",
   "source": "Pollinations · openai",
   "date": "2026-10-17",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (37 indices · 7 crypto · 354 actions) : S&P 500 -1.09% (RSI 48, plutôt baissier) · Nasdaq -2.15% (RSI 37, plutôt baissier) · BTC -0.41% (RSI 38, plutôt baissier) · ETH -0.77% (RSI 27, indécis) · Apple +0.43% (RSI 56, haussier fort). Globalement, 179 actifs en biais haussier contre 163 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (37 indices · 7 crypto · 354 actions) : S&P 500 -1.09% (RSI 48, plutôt baissier) · Nasdaq -2.15% (RSI 37, plutôt baissier) · BTC -0.10% (RSI 39, baissier fort) · XRP -0.97% (RSI 24, indécis) · Apple +0.43% (RSI 56, haussier fort). Globalement, 180 actifs en biais haussier contre 165 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : sans direction nette (RSI 48)",
     "Nasdaq : pression vendeuse persistante (RSI 37)",
-    "BTC : pression vendeuse persistante (RSI 38)",
-    "ETH : sans direction nette (RSI 27)",
+    "BTC : pression vendeuse persistante (RSI 39)",
+    "XRP : sans direction nette (RSI 24)",
     "Apple : tendance haussière confirmée (RSI 56, bull MA50)"
   ],
   "plan_pedago": [
@@ -23,32 +23,23 @@
     "label": "Indécis"
   },
   "recommended": {
-    "count": 12,
+    "count": 9,
     "byKind": {
       "index": 1,
-      "crypto": 4,
+      "crypto": 1,
       "action": 6,
       "forex": 0,
       "metal": 1
     },
     "byConfidence": {
-      "very-high": 2,
-      "high": 10,
+      "very-high": 1,
+      "high": 8,
       "medium": 0
     },
     "assets": [
       {
         "label": "Shanghai",
         "kind": "index",
-        "type": "rebond-survente",
-        "label_setup": "Rebond technique sur survente",
-        "confidence": "very-high",
-        "direction": "long",
-        "rr2": "2.00"
-      },
-      {
-        "label": "BNB",
-        "kind": "crypto",
         "type": "rebond-survente",
         "label_setup": "Rebond technique sur survente",
         "confidence": "very-high",
@@ -92,25 +83,7 @@
         "rr2": "2.06"
       },
       {
-        "label": "ETH",
-        "kind": "crypto",
-        "type": "rebond-survente",
-        "label_setup": "Rebond technique sur survente",
-        "confidence": "high",
-        "direction": "long",
-        "rr2": "2.00"
-      },
-      {
-        "label": "SOL",
-        "kind": "crypto",
-        "type": "rebond-survente",
-        "label_setup": "Rebond technique sur survente",
-        "confidence": "high",
-        "direction": "long",
-        "rr2": "2.00"
-      },
-      {
-        "label": "LTC",
+        "label": "XLM",
         "kind": "crypto",
         "type": "rebond-survente",
         "label_setup": "Rebond technique sur survente",
@@ -148,7 +121,7 @@
     ],
     "opportunityVerdict": {
       "cls": "bull",
-      "label": "12 opportunités détectées",
+      "label": "9 opportunités détectées",
       "desc": "Plusieurs actifs alignés simultanément — contexte large favorable aux acheteurs trend-follow."
     }
   },
@@ -677,18 +650,13 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "A stock-market &#x2018;sell&#x2019; signal has been silenced &#x2014; but these Bank of America strategists say it&#x…",
                 "time": "2026-10-16T14:14:00.000Z",
                 "source": "MarketWatch"
-              },
-              {
-                "title": "Stock Market Today: Nasdaq Dives 2% On Rate Hike Jitters, AI Woes; These Home Builders Slide (Live Coverage)",
-                "time": "2026-10-14T19:08:20.000Z",
-                "source": "Yahoo Finance"
               }
             ]
           },
@@ -782,7 +750,7 @@
             182.1,
             180.57
           ],
-          "quality_score": 77,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -796,7 +764,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Goldman, Wells Fargo, Morgan Stanley see tokenization as a growth play, not a threat",
+                "time": "2026-10-17T17:00:00.000Z",
+                "source": "CoinDesk"
+              }
+            ]
+          },
           "wisdom_adjustment": 0,
           "wisdom_note": null,
           "historical_analog": null,
@@ -806,7 +784,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"growth\" ×6 (6 mentions/24h)"
         },
         {
           "asset": "Maïs",
@@ -2157,7 +2135,7 @@
             210000,
             215500
           ],
-          "quality_score": 79,
+          "quality_score": 77,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -2177,7 +2155,7 @@
             "items": [
               {
                 "title": "Is Apple&#x2019;s foldable iPhone Duo worth $2,000? See how it stacks up against other foldable phones.",
-                "time": "2026-10-16T14:40:00.000Z",
+                "time": "2026-10-17T18:40:00.000Z",
                 "source": "MarketWatch"
               },
               {
@@ -2196,7 +2174,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×3 (10 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "SK Hynix",
@@ -2316,7 +2294,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"shares\" ×8.6 (10 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"shares\" ×5.3 (8 mentions/24h)"
         },
         {
           "asset": "SOXX Semiconductors",
@@ -2922,7 +2900,7 @@
             55.25,
             50.84
           ],
-          "quality_score": 79,
+          "quality_score": 77,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -2956,7 +2934,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×3 (10 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Joby Aviation",
@@ -3490,7 +3468,7 @@
             210000,
             215500
           ],
-          "quality_score": 84,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3510,7 +3488,7 @@
             "items": [
               {
                 "title": "Is Apple&#x2019;s foldable iPhone Duo worth $2,000? See how it stacks up against other foldable phones.",
-                "time": "2026-10-16T14:40:00.000Z",
+                "time": "2026-10-17T18:40:00.000Z",
                 "source": "MarketWatch"
               },
               {
@@ -3523,13 +3501,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Bottom-fishing post-overreaction",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 79,
+          "quality_score_pre_wisdom": 77,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×3 (10 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "SK Hynix",
@@ -3649,7 +3627,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"shares\" ×8.6 (10 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"shares\" ×5.3 (8 mentions/24h)"
         },
         {
           "asset": "SOXX Semiconductors",
@@ -5012,7 +4990,7 @@
             210000,
             215500
           ],
-          "quality_score": 85,
+          "quality_score": 83,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -5032,7 +5010,7 @@
             "items": [
               {
                 "title": "Is Apple&#x2019;s foldable iPhone Duo worth $2,000? See how it stacks up against other foldable phones.",
-                "time": "2026-10-16T14:40:00.000Z",
+                "time": "2026-10-17T18:40:00.000Z",
                 "source": "MarketWatch"
               },
               {
@@ -5045,13 +5023,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 79,
+          "quality_score_pre_wisdom": 77,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×3 (10 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "SK Hynix",
@@ -5171,7 +5149,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"shares\" ×8.6 (10 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"shares\" ×5.3 (8 mentions/24h)"
         },
         {
           "asset": "SOXX Semiconductors",
@@ -8442,18 +8420,13 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "A stock-market &#x2018;sell&#x2019; signal has been silenced &#x2014; but these Bank of America strategists say it&#x…",
                 "time": "2026-10-16T14:14:00.000Z",
                 "source": "MarketWatch"
-              },
-              {
-                "title": "Stock Market Today: Nasdaq Dives 2% On Rate Hike Jitters, AI Woes; These Home Builders Slide (Live Coverage)",
-                "time": "2026-10-14T19:08:20.000Z",
-                "source": "Yahoo Finance"
               }
             ]
           },
@@ -9006,7 +8979,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nasdaq\" ×4.5 (6 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"nasdaq\" ×3.8 (5 mentions/24h)"
         },
         {
           "asset": "Applied Materials",
@@ -9637,7 +9610,7 @@
             473.39,
             451.71
           ],
-          "quality_score": 78,
+          "quality_score": 72,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9670,13 +9643,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 72,
+          "quality_score_pre_wisdom": 67,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"break\" ×18 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"nasdaq\" ×3.8 (5 mentions/24h)"
         },
         {
           "asset": "Eli Lilly",
@@ -14057,13 +14030,13 @@
             214.7,
             203.8
           ],
-          "quality_score": 67,
+          "quality_score": 65,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
           "macro_reason": null,
           "earnings_reason": null,
-          "news_sentiment": "neutral",
+          "news_sentiment": null,
           "news_sentiment_reason": null,
           "macro_event_reason": null,
           "cross_asset_reason": null,
@@ -14071,27 +14044,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Dell stock plunges 11%, leading data center sell-off as fears mount about &apos;enterprise AI timing&apos;",
-                "time": "2026-10-14T20:19:25.000Z",
-                "source": "CNBC"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 62,
+          "quality_score_pre_wisdom": 60,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"data\" ×3.6 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Regeneron",
@@ -17122,7 +17085,7 @@
             246.74,
             240.7
           ],
-          "quality_score": 52,
+          "quality_score": 55,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -17150,13 +17113,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 47,
+          "quality_score_pre_wisdom": 50,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"buys\" ×6 (3 mentions/24h)"
         },
         {
           "asset": "Oracle",
@@ -17251,17 +17214,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Over 25% of the Stocks in the S&amp;P 500 Are Down 40% or More. 4 Bargain Tech Stocks to Buy Now",
-                "time": "2026-10-14T19:50:00.000Z",
-                "source": "Yahoo Finance"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
@@ -17352,7 +17305,7 @@
             344.33,
             328.75
           ],
-          "quality_score": 53,
+          "quality_score": 52,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -17385,13 +17338,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 48,
+          "quality_score_pre_wisdom": 47,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"investors\" ×3.1 (12 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Starbucks",
@@ -17577,7 +17530,7 @@
             37.14,
             37.13
           ],
-          "quality_score": 57,
+          "quality_score": 55,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -17610,13 +17563,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 52,
+          "quality_score_pre_wisdom": 50,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"wall\" ×12 (6 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"wall\" ×7.5 (5 mentions/24h)"
         },
         {
           "asset": "Airbus",
@@ -19917,18 +19870,13 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Netflix Chief Content Officer Bela Bajaria is leaving, will be replaced by Peter Rice",
                 "time": "2026-10-15T23:08:05.000Z",
                 "source": "CNBC"
-              },
-              {
-                "title": "Over 25% of the Stocks in the S&amp;P 500 Are Down 40% or More. 4 Bargain Tech Stocks to Buy Now",
-                "time": "2026-10-14T19:50:00.000Z",
-                "source": "Yahoo Finance"
               }
             ]
           },
@@ -20056,7 +20004,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nasdaq\" ×4.5 (6 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"nasdaq\" ×3.8 (5 mentions/24h)"
         },
         {
           "asset": "JPMorgan",
@@ -20137,7 +20085,7 @@
             335.53,
             339.72
           ],
-          "quality_score": 53,
+          "quality_score": 52,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20170,13 +20118,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 48,
+          "quality_score_pre_wisdom": 47,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×3 (10 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "GLD (Gold ETF)",
@@ -20921,7 +20869,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sells\" ×9.3 (14 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"sells\" ×8.4 (14 mentions/24h)"
         },
         {
           "asset": "Merck",
@@ -21141,7 +21089,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"shares\" ×8.6 (10 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"shares\" ×5.3 (8 mentions/24h)"
         },
         {
           "asset": "Target",
@@ -21261,7 +21209,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"iran\" ×6 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"iran\" ×9 (3 mentions/24h)"
         },
         {
           "asset": "Ford",
@@ -23570,7 +23518,7 @@
             55.25,
             50.84
           ],
-          "quality_score": 88,
+          "quality_score": 85,
           "sizing_pct": 5,
           "sizing_label": "volt-high",
           "trailing_after_tp1": true,
@@ -23604,7 +23552,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×3 (10 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Joby Aviation",
@@ -24876,7 +24824,7 @@
           },
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"shares\" ×8.6 (10 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"shares\" ×5.3 (8 mentions/24h)"
         },
         {
           "asset": "IonQ",
@@ -25070,7 +25018,7 @@
             55.25,
             50.84
           ],
-          "quality_score": 79,
+          "quality_score": 77,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -25112,7 +25060,7 @@
           },
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×3 (10 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Joby Aviation",
@@ -25830,107 +25778,107 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 81190.08043813411,
-      "change": "-0.41",
-      "rsi": "38",
+      "price": 81438.29576181587,
+      "change": "-0.10",
+      "rsi": "39",
       "maCross": "bull",
-      "macdHist": "-498.04",
-      "boll": "13%",
-      "adx": "24",
+      "macdHist": "-482.20",
+      "boll": "17%",
+      "adx": "23",
       "atr": "1.3%",
-      "verdict": "Plutôt baissier",
-      "score": 35,
+      "verdict": "Baissier fort",
+      "score": 24,
       "cls": "bear"
     },
     {
-      "label": "ETH",
+      "label": "XRP",
       "kind": "crypto",
-      "price": 2401.897607970011,
-      "change": "-0.77",
-      "rsi": "27",
+      "price": 1.2972628341206398,
+      "change": "-0.97",
+      "rsi": "24",
       "maCross": "bull",
-      "macdHist": "-26.21",
-      "boll": "14%",
-      "adx": "45",
-      "atr": "1.9%",
-      "verdict": "Indécis",
-      "score": 50,
-      "cls": "neutral"
-    },
-    {
-      "label": "SOL",
-      "kind": "crypto",
-      "price": 103.10999372249347,
-      "change": "-1.16",
-      "rsi": "22",
-      "maCross": "bull",
-      "macdHist": "-1.81",
-      "boll": "12%",
-      "adx": "56",
+      "macdHist": "-0.02",
+      "boll": "7%",
+      "adx": "51",
       "atr": "2.0%",
       "verdict": "Indécis",
       "score": 50,
       "cls": "neutral"
     },
     {
-      "label": "BNB",
+      "label": "AVAX",
       "kind": "crypto",
-      "price": 712.2779801202918,
-      "change": "-1.19",
-      "rsi": "24",
+      "price": 9.860815607016178,
+      "change": "-0.84",
+      "rsi": "35",
       "maCross": "bull",
-      "macdHist": "-7.16",
-      "boll": "4%",
-      "adx": "51",
-      "atr": "1.5%",
-      "verdict": "Indécis",
-      "score": 50,
-      "cls": "neutral"
-    },
-    {
-      "label": "XRP",
-      "kind": "crypto",
-      "price": 1.289856314991497,
-      "change": "-1.54",
-      "rsi": "24",
-      "maCross": "bull",
-      "macdHist": "-0.02",
-      "boll": "5%",
-      "adx": "52",
-      "atr": "2.1%",
-      "verdict": "Indécis",
-      "score": 50,
-      "cls": "neutral"
-    },
-    {
-      "label": "ADA",
-      "kind": "crypto",
-      "price": 0.21912656320594276,
-      "change": "-2.83",
-      "rsi": "40",
-      "maCross": "bull",
-      "macdHist": "-0.00",
-      "boll": "3%",
-      "adx": "20",
-      "atr": "4.0%",
+      "macdHist": "-0.21",
+      "boll": "13%",
+      "adx": "29",
+      "atr": "3.1%",
       "verdict": "Plutôt baissier",
-      "score": 35,
+      "score": 33,
       "cls": "bear"
     },
     {
-      "label": "LTC",
+      "label": "XLM",
       "kind": "crypto",
-      "price": 58.54727677467791,
-      "change": "-1.87",
-      "rsi": "20",
+      "price": 0.17854884867690357,
+      "change": "-1.51",
+      "rsi": "25",
       "maCross": "bull",
-      "macdHist": "-1.37",
-      "boll": "9%",
-      "adx": "61",
-      "atr": "2.4%",
+      "macdHist": "-0.00",
+      "boll": "12%",
+      "adx": "49",
+      "atr": "3.0%",
       "verdict": "Indécis",
       "score": 50,
       "cls": "neutral"
+    },
+    {
+      "label": "INJ",
+      "kind": "crypto",
+      "price": 8.66223863063517,
+      "change": "-0.69",
+      "rsi": "59",
+      "maCross": "bull",
+      "macdHist": "0.07",
+      "boll": "98%",
+      "adx": "17",
+      "atr": "4.7%",
+      "verdict": "Haussier fort",
+      "score": 83,
+      "cls": "bull"
+    },
+    {
+      "label": "RNDR",
+      "kind": "crypto",
+      "price": 1.8609808442288067,
+      "change": "-3.61",
+      "rsi": "44",
+      "maCross": "bull",
+      "macdHist": "-0.03",
+      "boll": "16%",
+      "adx": "12",
+      "atr": "4.0%",
+      "verdict": "Baissier fort",
+      "score": 24,
+      "cls": "bear"
+    },
+    {
+      "label": "SUI",
+      "kind": "crypto",
+      "price": 0.9865920779483855,
+      "change": "-3.24",
+      "rsi": "30",
+      "maCross": "bull",
+      "macdHist": "-0.03",
+      "boll": "6%",
+      "adx": "39",
+      "atr": "3.6%",
+      "verdict": "Plutôt baissier",
+      "score": 33,
+      "cls": "bear"
     },
     {
       "label": "Apple",
@@ -32078,89 +32026,6 @@
       "historical_analog": null
     },
     {
-      "asset": "BNB",
-      "kind": "crypto",
-      "type": "rebond-survente",
-      "label": "Rebond technique sur survente",
-      "timeframe": "Court terme · 1-3 jours",
-      "confidence": "very-high",
-      "direction": "long",
-      "config": "RSI 24 (vraie survente) · Bollinger 4% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j -2.4%).",
-      "rationale": "Couple RSI<30 + bande basse Bollinger + MA20 au-dessus + plus de continuation baissière = setup contrarian classique. Stop 1.5 ATR sous l'entrée pour absorber la volatilité de survente. TP1 = retour à la MA20 (mean reversion). TP2 = +3 ATR.",
-      "entry": 712.2779801202918,
-      "stop": 696.710159458965,
-      "tp1": 733.0350743353943,
-      "tp2": 743.4136214429454,
-      "rr1": "1.33",
-      "rr2": "2.00",
-      "currency": "USD",
-      "prices60": [
-        627.0534,
-        654.5882,
-        686.7913,
-        695.3708,
-        702.208,
-        704.0936,
-        694.1699,
-        707.4796,
-        712.0504,
-        691.3171,
-        692.527,
-        684.4779,
-        691.1406,
-        682.6729,
-        688.2301,
-        725.0808,
-        721.4303,
-        766.4093,
-        752.7225,
-        739.6791,
-        752.125,
-        722.6593,
-        708.4278,
-        726.5134,
-        727.3861,
-        716.2705,
-        720.3079,
-        711.7408,
-        725.3662,
-        737.807,
-        761.1423,
-        761.7625,
-        772.2241,
-        799.1367,
-        788.1391,
-        767.227,
-        776.4242,
-        776.9555,
-        773.2697,
-        778.5292,
-        763.6764,
-        758.4489,
-        768.7995,
-        771.4236,
-        768.04,
-        786.7952,
-        795.182,
-        786.3872,
-        779.1962,
-        772.0487,
-        735.3774,
-        741.7373,
-        749.5771,
-        753.4665,
-        732.3112,
-        741.2266,
-        729.8955,
-        728.8799,
-        720.8827,
-        712.278
-      ],
-      "news_context": null,
-      "wisdom_adjustment": 0,
-      "historical_analog": null
-    },
-    {
       "asset": "UBS",
       "kind": "action",
       "type": "doji-haussier",
@@ -32503,259 +32368,83 @@
       "historical_analog": null
     },
     {
-      "asset": "ETH",
+      "asset": "XLM",
       "kind": "crypto",
       "type": "rebond-survente",
       "label": "Rebond technique sur survente",
       "timeframe": "Court terme · 1-3 jours",
       "confidence": "high",
       "direction": "long",
-      "config": "RSI 27 (vraie survente) · Bollinger 14% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j -0.7%).",
+      "config": "RSI 25 (vraie survente) · Bollinger 12% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j -2.2%).",
       "rationale": "Couple RSI<30 + bande basse Bollinger + MA20 au-dessus + plus de continuation baissière = setup contrarian classique. Stop 1.5 ATR sous l'entrée pour absorber la volatilité de survente. TP1 = retour à la MA20 (mean reversion). TP2 = +3 ATR.",
-      "entry": 2401.897607970011,
-      "stop": 2334.527096473624,
-      "tp1": 2491.72495663186,
-      "tp2": 2536.638630962785,
+      "entry": 0.17854884867690357,
+      "stop": 0.1704136909834474,
+      "tp1": 0.1893957256015118,
+      "tp2": 0.19481916406381591,
       "rr1": "1.33",
       "rr2": "2.00",
       "currency": "USD",
       "prices60": [
-        2251.7346,
-        2326.5282,
-        2514.9676,
-        2423.4127,
-        2462.4039,
-        2481.8794,
-        2442.0111,
-        2506.3431,
-        2511.4612,
-        2442.4076,
-        2457.0893,
-        2416.2418,
-        2466.5657,
-        2417.6759,
-        2390.783,
-        2507.6483,
-        2456.0851,
-        2480.0032,
-        2514.0093,
-        2489.3968,
-        2485.0697,
-        2467.5292,
-        2437.5148,
-        2514.8468,
-        2525.2673,
-        2476.6825,
-        2514.7596,
-        2397.4973,
-        2415.9597,
-        2446.1433,
-        2611.5556,
-        2632.0096,
-        2644.7349,
-        2775.1687,
-        2752.6291,
-        2684.3429,
-        2687.126,
-        2690.8887,
-        2695.6048,
-        2687.5353,
-        2687.9217,
-        2677.3845,
-        2684.7086,
-        2705.2959,
-        2667.9504,
-        2686.8914,
-        2725.9105,
-        2710.4182,
-        2697.1724,
-        2573.2309,
-        2472.7267,
-        2485.7049,
-        2504.314,
-        2534.6324,
-        2445.8884,
-        2496.5901,
-        2419.6896,
-        2439.9619,
-        2420.5598,
-        2401.8976
-      ],
-      "news_context": null,
-      "wisdom_adjustment": 0,
-      "historical_analog": null
-    },
-    {
-      "asset": "SOL",
-      "kind": "crypto",
-      "type": "rebond-survente",
-      "label": "Rebond technique sur survente",
-      "timeframe": "Court terme · 1-3 jours",
-      "confidence": "high",
-      "direction": "long",
-      "config": "RSI 22 (vraie survente) · Bollinger 12% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j -1.0%).",
-      "rationale": "Couple RSI<30 + bande basse Bollinger + MA20 au-dessus + plus de continuation baissière = setup contrarian classique. Stop 1.5 ATR sous l'entrée pour absorber la volatilité de survente. TP1 = retour à la MA20 (mean reversion). TP2 = +3 ATR.",
-      "entry": 103.10999372249347,
-      "stop": 99.98119791148065,
-      "tp1": 107.28172147051058,
-      "tp2": 109.36758534451913,
-      "rr1": "1.33",
-      "rr2": "2.00",
-      "currency": "USD",
-      "prices60": [
-        85.3331,
-        87.652,
-        93.6938,
-        93.8847,
-        95.4076,
-        98.8672,
-        96.5763,
-        102.0489,
-        109.1773,
-        104.1141,
-        105.5939,
-        101.6829,
-        103.0107,
-        99.9653,
-        100.3906,
-        103.9605,
-        101.9291,
-        103.1664,
-        106.4901,
-        103.7724,
-        103.3601,
-        101.5683,
-        98.6313,
-        102.3944,
-        101.7524,
-        99.326,
-        102.5137,
-        96.8735,
-        98.5424,
-        101.5691,
-        112.7021,
-        111.0153,
-        111.1541,
-        118.8722,
-        118.5071,
-        114.9854,
-        117.0095,
-        122.081,
-        121.3788,
-        121.9555,
-        118.8202,
-        119.0932,
-        118.04,
-        118.3818,
-        118.5893,
-        119.6016,
-        121.516,
-        120.7634,
-        120.6806,
-        116.2261,
-        109.5077,
-        109.0743,
-        109.9998,
-        111.2523,
-        105.6365,
-        106.7489,
-        104.1938,
-        105.3442,
-        104.3166,
-        103.11
-      ],
-      "news_context": {
-        "count": 1,
-        "risk": "normal",
-        "items": [
-          {
-            "title": "Live updates: Bitcoin back above $82,000, ZEC jumps 11% as ETF outflows continue",
-            "time": "2026-10-16T09:48:14.000Z",
-            "source": "CoinDesk"
-          }
-        ]
-      },
-      "wisdom_adjustment": 0,
-      "historical_analog": null
-    },
-    {
-      "asset": "LTC",
-      "kind": "crypto",
-      "type": "rebond-survente",
-      "label": "Rebond technique sur survente",
-      "timeframe": "Court terme · 1-3 jours",
-      "confidence": "high",
-      "direction": "long",
-      "config": "RSI 20 (vraie survente) · Bollinger 9% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j -1.1%).",
-      "rationale": "Couple RSI<30 + bande basse Bollinger + MA20 au-dessus + plus de continuation baissière = setup contrarian classique. Stop 1.5 ATR sous l'entrée pour absorber la volatilité de survente. TP1 = retour à la MA20 (mean reversion). TP2 = +3 ATR.",
-      "entry": 58.54727677467791,
-      "stop": 56.47380621140686,
-      "tp1": 61.311904192372644,
-      "tp2": 62.69421790122001,
-      "rr1": "1.33",
-      "rr2": "2.00",
-      "currency": "USD",
-      "prices60": [
-        46.7607,
-        47.8016,
-        53.1296,
-        52.4803,
-        52.3038,
-        51.6415,
-        49.9291,
-        50.5035,
-        49.9235,
-        49.3126,
-        49.0084,
-        47.8847,
-        48.526,
-        49.54,
-        49.6588,
-        51.4784,
-        50.7574,
-        54.6877,
-        54.9506,
-        55.2023,
-        54.2939,
-        53.1861,
-        52.1078,
-        53.2759,
-        53.6558,
-        53.7639,
-        53.1313,
-        51.2346,
-        51.6552,
-        53.9139,
-        58.1368,
-        58.259,
-        58.7249,
-        61.9886,
-        62.9351,
-        61.8775,
-        71.93,
-        72.5301,
-        72.5538,
-        71.272,
-        69.2068,
-        66.8069,
-        67.1852,
-        68.0878,
-        69.8569,
-        70.2564,
-        70.6647,
-        70.094,
-        68.9731,
-        66.0584,
-        63.1111,
-        63.4394,
-        63.9736,
-        64.6025,
-        60.9832,
-        61.1469,
-        59.224,
-        60.9822,
-        59.6652,
-        58.5473
+        0.1701,
+        0.1816,
+        0.2018,
+        0.1956,
+        0.1996,
+        0.1936,
+        0.1825,
+        0.1854,
+        0.1875,
+        0.1795,
+        0.1797,
+        0.1746,
+        0.1772,
+        0.1757,
+        0.1755,
+        0.1845,
+        0.1795,
+        0.184,
+        0.1874,
+        0.1935,
+        0.1878,
+        0.1812,
+        0.1747,
+        0.1783,
+        0.18,
+        0.1772,
+        0.1916,
+        0.176,
+        0.1837,
+        0.1834,
+        0.1931,
+        0.1961,
+        0.1972,
+        0.2153,
+        0.216,
+        0.2021,
+        0.2174,
+        0.2202,
+        0.2165,
+        0.2157,
+        0.2322,
+        0.2224,
+        0.2264,
+        0.2191,
+        0.2154,
+        0.216,
+        0.2239,
+        0.2156,
+        0.2121,
+        0.2003,
+        0.192,
+        0.1946,
+        0.1965,
+        0.2029,
+        0.1903,
+        0.1902,
+        0.1825,
+        0.1829,
+        0.1813,
+        0.1785
       ],
       "news_context": null,
       "wisdom_adjustment": 0,
@@ -33013,7 +32702,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 69
+    "matched_assets": 67
   },
   "macro": {
     "vix": 19.99,
@@ -33023,7 +32712,7 @@
     "cross_asset": {
       "sp500_change": -1.0927099809045933,
       "nasdaq_change": -2.1450206699957906,
-      "btc_change": -0.4091788734013354,
+      "btc_change": -0.1047085764356036,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -33035,7 +32724,7 @@
     "current_state": {
       "vix": 19.99,
       "yield_curve": null,
-      "btc_30d_change": 0.39134850996352666,
+      "btc_30d_change": 0.6982661892018925,
       "sp500_30d_change": -0.7664622535369329,
       "dominant_sectors": [
         "XLE",
@@ -33055,14 +32744,14 @@
       "earnings"
     ],
     "theme_counts": {
-      "tech": 121,
-      "earnings": 78,
-      "war": 70,
-      "crypto": 44,
+      "crypto": 45,
+      "earnings": 76,
+      "geopolitical": 40,
+      "war": 71,
       "credit": 38,
-      "fed": 99,
-      "geopolitical": 38,
-      "oil": 19
+      "tech": 120,
+      "fed": 84,
+      "oil": 17
     },
     "top_sectors_60d": [
       "XLE",
@@ -33205,9 +32894,9 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 75,
-      "crypto_etf": 3,
+      "ev_battery": 78,
       "recession": 4,
+      "crypto_etf": 3,
       "crypto_hack": 4,
       "ai_breakthrough": 4,
       "defi_growth": 2,
@@ -33222,9 +32911,9 @@
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 70,
+      "war": 71,
       "credit": 38,
-      "geopol": 38
+      "geopol": 40
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -33474,72 +33163,72 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "rsi": 38,
-      "change": -0.41,
-      "adx": 24,
-      "verdict": "Plutôt baissier",
+      "rsi": 39,
+      "change": -0.1,
+      "adx": 23,
+      "verdict": "Baissier fort",
       "cls": "bear",
-      "score": 35
+      "score": 24
     },
     {
-      "label": "ETH",
-      "kind": "crypto",
-      "rsi": 27,
-      "change": -0.77,
-      "adx": 45,
-      "verdict": "Indécis",
-      "cls": "neutral",
-      "score": 50
-    },
-    {
-      "label": "SOL",
-      "kind": "crypto",
-      "rsi": 22,
-      "change": -1.16,
-      "adx": 56,
-      "verdict": "Indécis",
-      "cls": "neutral",
-      "score": 50
-    },
-    {
-      "label": "BNB",
+      "label": "XRP",
       "kind": "crypto",
       "rsi": 24,
-      "change": -1.19,
+      "change": -0.97,
       "adx": 51,
       "verdict": "Indécis",
       "cls": "neutral",
       "score": 50
     },
     {
-      "label": "XRP",
+      "label": "AVAX",
       "kind": "crypto",
-      "rsi": 24,
-      "change": -1.54,
-      "adx": 52,
-      "verdict": "Indécis",
-      "cls": "neutral",
-      "score": 50
-    },
-    {
-      "label": "ADA",
-      "kind": "crypto",
-      "rsi": 40,
-      "change": -2.83,
-      "adx": 20,
+      "rsi": 35,
+      "change": -0.84,
+      "adx": 29,
       "verdict": "Plutôt baissier",
       "cls": "bear",
-      "score": 35
+      "score": 33
     },
     {
-      "label": "LTC",
+      "label": "XLM",
       "kind": "crypto",
-      "rsi": 20,
-      "change": -1.87,
-      "adx": 61,
+      "rsi": 25,
+      "change": -1.51,
+      "adx": 49,
       "verdict": "Indécis",
       "cls": "neutral",
       "score": 50
+    },
+    {
+      "label": "INJ",
+      "kind": "crypto",
+      "rsi": 59,
+      "change": -0.69,
+      "adx": 17,
+      "verdict": "Haussier fort",
+      "cls": "bull",
+      "score": 83
+    },
+    {
+      "label": "RNDR",
+      "kind": "crypto",
+      "rsi": 44,
+      "change": -3.61,
+      "adx": 12,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 24
+    },
+    {
+      "label": "SUI",
+      "kind": "crypto",
+      "rsi": 30,
+      "change": -3.24,
+      "adx": 39,
+      "verdict": "Plutôt baissier",
+      "cls": "bear",
+      "score": 33
     },
     {
       "label": "Apple",
