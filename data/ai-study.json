@@ -1,13 +1,13 @@
 {
-  "generated": "2026-10-18T06:37:02.464Z",
+  "generated": "2026-10-18T11:45:23.381Z",
   "source": "Pollinations · openai",
   "date": "2026-10-18",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (37 indices · 11 crypto · 354 actions) : S&P 500 -1.09% (RSI 48, plutôt baissier) · Nasdaq -2.15% (RSI 37, plutôt baissier) · BTC +0.27% (RSI 31, baissier fort) · ETH +0.35% (RSI 24, plutôt baissier) · Apple +0.43% (RSI 56, haussier fort). Globalement, 180 actifs en biais haussier contre 169 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (37 indices · 8 crypto · 354 actions) : S&P 500 -1.09% (RSI 48, plutôt baissier) · Nasdaq -2.15% (RSI 37, plutôt baissier) · BTC +0.66% (RSI 33, plutôt baissier) · ETH +0.51% (RSI 24, plutôt baissier) · Apple +0.43% (RSI 56, haussier fort). Globalement, 180 actifs en biais haussier contre 169 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : sans direction nette (RSI 48)",
     "Nasdaq : pression vendeuse persistante (RSI 37)",
-    "BTC : pression vendeuse persistante (RSI 31)",
+    "BTC : pression vendeuse persistante (RSI 33)",
     "ETH : pression vendeuse persistante (RSI 24)",
     "Apple : tendance haussière confirmée (RSI 56, bull MA50)"
   ],
@@ -23,17 +23,17 @@
     "label": "Indécis"
   },
   "recommended": {
-    "count": 9,
+    "count": 10,
     "byKind": {
       "index": 1,
-      "crypto": 1,
+      "crypto": 2,
       "action": 6,
       "forex": 0,
       "metal": 1
     },
     "byConfidence": {
       "very-high": 1,
-      "high": 8,
+      "high": 9,
       "medium": 0
     },
     "assets": [
@@ -54,6 +54,15 @@
         "confidence": "high",
         "direction": "long",
         "rr2": "8.23"
+      },
+      {
+        "label": "BTC",
+        "kind": "crypto",
+        "type": "doji-haussier",
+        "label_setup": "Doji — Retournement haussier",
+        "confidence": "high",
+        "direction": "long",
+        "rr2": "6.52"
       },
       {
         "label": "Chipotle",
@@ -121,7 +130,7 @@
     ],
     "opportunityVerdict": {
       "cls": "bull",
-      "label": "9 opportunités détectées",
+      "label": "10 opportunités détectées",
       "desc": "Plusieurs actifs alignés simultanément — contexte large favorable aux acheteurs trend-follow."
     }
   },
@@ -669,7 +678,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"bank\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"early\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Morgan Stanley",
@@ -784,7 +793,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"growth\" ×7.2 (6 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"growth\" ×5 (5 mentions/24h)"
         },
         {
           "asset": "Maïs",
@@ -2270,18 +2279,13 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Memory stocks are getting hammered. China and a 2029 oversupply are the big worries",
                 "time": "2026-10-15T12:15:09.000Z",
                 "source": "CNBC"
-              },
-              {
-                "title": "SK Hynix seeks U.S. chip equipment exports to China tied to new factory - Reuters",
-                "time": "2026-10-15T03:37:33.000Z",
-                "source": "Investing.com"
               }
             ]
           },
@@ -3593,18 +3597,13 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Memory stocks are getting hammered. China and a 2029 oversupply are the big worries",
                 "time": "2026-10-15T12:15:09.000Z",
                 "source": "CNBC"
-              },
-              {
-                "title": "SK Hynix seeks U.S. chip equipment exports to China tied to new factory - Reuters",
-                "time": "2026-10-15T03:37:33.000Z",
-                "source": "Investing.com"
               }
             ]
           },
@@ -4342,17 +4341,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "UBS considers leaving Switzerland over capital rule plans, WSJ reports",
-                "time": "2026-10-15T03:42:08.000Z",
-                "source": "Investing.com"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Bottom-fishing post-overreaction",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
@@ -5115,18 +5104,13 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Memory stocks are getting hammered. China and a 2029 oversupply are the big worries",
                 "time": "2026-10-15T12:15:09.000Z",
                 "source": "CNBC"
-              },
-              {
-                "title": "SK Hynix seeks U.S. chip equipment exports to China tied to new factory - Reuters",
-                "time": "2026-10-15T03:37:33.000Z",
-                "source": "Investing.com"
               }
             ]
           },
@@ -5352,83 +5336,83 @@
           "spike_theme_reason": null
         },
         {
-          "asset": "Platine",
+          "asset": "Palladium",
           "kind": "metal",
           "type": "kairo-capitulation",
           "label": "Capitulation volume — rebond imminent",
           "timeframe": "Court terme · 2-5 jours",
           "confidence": "medium",
           "direction": "long",
-          "config": "MFI 2 (capitulation vendeuse) + RSI bas + signal Hull MA proche.",
+          "config": "MFI 0 (capitulation vendeuse) + RSI bas + signal Hull MA proche.",
           "rationale": "Money Flow Index très bas = volume vendeur extrême. Combiné à un RSI faible et au prix qui approche la Hull MA (ligne réactive), c'est souvent le creux avant un rebond technique.",
-          "entry": 1623.300048828125,
-          "stop": 1559.90530382821,
-          "tp1": 1680.931635191684,
-          "tp2": 1767.3790147370228,
+          "entry": 1118.5999755859375,
+          "stop": 1083.6513995580985,
+          "tp1": 1150.3714083385184,
+          "tp2": 1198.0285574673896,
           "rr1": "0.91",
           "rr2": "2.27",
           "currency": "EUR",
           "prices60": [
-            1599.1,
-            1593.4,
-            1620.6,
-            1612.2,
-            1590.1,
-            1651.9,
-            1650.3,
-            1618,
-            1747.3,
-            1737.4,
-            1729,
-            1750.1,
-            1744.5,
-            1745.8,
-            1761.1,
-            1725.2,
-            1750,
-            1781.5,
-            1726.4,
-            1802.6,
-            1831,
-            1887.3,
-            1880.1,
-            1852.6,
-            1835.7,
-            1845.3,
-            1847.6,
-            1788.4,
-            1761.5,
-            1759.8,
-            1828.4,
-            1821,
-            1848.2,
-            1914.4,
-            1797.1,
-            1793.5,
-            1775.9,
-            1773.2,
-            1783.2,
-            1791.4,
-            1803.5,
-            1798.5,
-            1822.6,
-            1745.7,
-            1749.1,
-            1774.7,
-            1721.2,
-            1680.1,
-            1702.3,
-            1705.5,
-            1683.2,
-            1706.9,
-            1692.7,
-            1625.7,
-            1679.3,
-            1679.4,
-            1657.4,
-            1601.3,
-            1610.7,
-            1623.3
+            1246.7,
+            1289.6,
+            1266.5,
+            1245.7,
+            1302.2,
+            1275.6,
+            1250.9,
+            1355.3,
+            1364.7,
+            1372.9,
+            1374.1,
+            1377.2,
+            1366.1,
+            1370.2,
+            1322.6,
+            1322.5,
+            1334.1,
+            1291.2,
+            1331.9,
+            1336.3,
+            1348.5,
+            1361.8,
+            1331.9,
+            1325.1,
+            1337.6,
+            1428.6,
+            1362.9,
+            1317.2,
+            1346.6,
+            1425.9,
+            1390.1,
+            1355.6,
+            1367.3,
+            1281.3,
+            1310.9,
+            1294.6,
+            1289.2,
+            1300.1,
+            1290.2,
+            1306.2,
+            1302.9,
+            1292.9,
+            1257.9,
+            1270.2,
+            1263.7,
+            1209.8,
+            1201.6,
+            1201.4,
+            1168.8,
+            1161.1,
+            1167.2,
+            1163.6,
+            1116.1,
+            1114.9,
+            1140.5,
+            1136.1,
+            1117.9,
+            1087.1,
+            1121,
+            1118.6
           ],
           "quality_score": 65,
           "sizing_pct": 2,
@@ -7449,7 +7433,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Nestle, Unilever face regulatory action in India over misleading health claims",
+                "time": "2026-10-18T07:40:53.000Z",
+                "source": "Investing.com"
+              }
+            ]
+          },
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
@@ -8219,7 +8213,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"bank\" ×30 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"early\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Home Depot",
@@ -9270,7 +9264,7 @@
             422.25,
             412.61
           ],
-          "quality_score": 66,
+          "quality_score": 63,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9303,13 +9297,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 61,
+          "quality_score_pre_wisdom": 58,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"profit\" ×18 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"billion\" ×6 (3 mentions/24h)"
         },
         {
           "asset": "Cloudflare",
@@ -9720,7 +9714,7 @@
             1251.61,
             1257.03
           ],
-          "quality_score": 60,
+          "quality_score": 63,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -9753,13 +9747,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 55,
+          "quality_score_pre_wisdom": 58,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"near\" ×8 (4 mentions/24h)"
         },
         {
           "asset": "Medtronic",
@@ -10260,7 +10254,7 @@
             532.64,
             552.09
           ],
-          "quality_score": 60,
+          "quality_score": 63,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10288,13 +10282,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 55,
+          "quality_score_pre_wisdom": 58,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"fund\" ×6 (3 mentions/24h)"
         },
         {
           "asset": "Caterpillar",
@@ -13275,7 +13269,7 @@
             244.57,
             227.39
           ],
-          "quality_score": 71,
+          "quality_score": 67,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -13303,13 +13297,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 66,
+          "quality_score_pre_wisdom": 62,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"president\" ×12 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"sells\" ×3.8 (10 mentions/24h)"
         },
         {
           "asset": "Zscaler",
@@ -16869,17 +16863,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "UBS considers leaving Switzerland over capital rule plans, WSJ reports",
-                "time": "2026-10-15T03:42:08.000Z",
-                "source": "Investing.com"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
@@ -16985,9 +16969,14 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 1,
-            "risk": "normal",
+            "count": 2,
+            "risk": "caution",
             "items": [
+              {
+                "title": "5 big analyst AI moves: Meta gets Street-high PT; Salesforce double upgraded",
+                "time": "2026-10-18T07:18:04.000Z",
+                "source": "Investing.com"
+              },
               {
                 "title": "Dow Jones Futures: Disney, Salesforce Lead New Buys After Wild Session; Tesla Roadster On Tap",
                 "time": "2026-10-15T21:48:00.000Z",
@@ -17215,17 +17204,12 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Why Applied Optoelectronics Stock Plummeted This Week",
                 "time": "2026-10-16T17:56:10.000Z",
-                "source": "Yahoo Finance"
-              },
-              {
-                "title": "Elon Musk takes a direct swipe at Broadcom CEO and AI investors",
-                "time": "2026-10-15T02:47:00.000Z",
                 "source": "Yahoo Finance"
               }
             ]
@@ -17464,7 +17448,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"growth\" ×7.2 (6 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"street\" ×6 (5 mentions/24h)"
         },
         {
           "asset": "Airbus",
@@ -20835,7 +20819,7 @@
             196.63,
             190.81
           ],
-          "quality_score": 53,
+          "quality_score": 52,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20849,27 +20833,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Workday chief accounting officer sells $173,915 in shares",
-                "time": "2026-10-15T03:15:58.000Z",
-                "source": "Investing.com"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 48,
+          "quality_score_pre_wisdom": 47,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"shares\" ×4.8 (8 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Merck",
@@ -21089,7 +21063,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"shares\" ×4.8 (8 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"earnings\" ×4.3 (5 mentions/24h)"
         },
         {
           "asset": "Target",
@@ -24782,18 +24756,13 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Memory stocks are getting hammered. China and a 2029 oversupply are the big worries",
                 "time": "2026-10-15T12:15:09.000Z",
                 "source": "CNBC"
-              },
-              {
-                "title": "SK Hynix seeks U.S. chip equipment exports to China tied to new factory - Reuters",
-                "time": "2026-10-15T03:37:33.000Z",
-                "source": "Investing.com"
               }
             ]
           },
@@ -25758,28 +25727,28 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 81624.08526650905,
-      "change": "0.27",
-      "rsi": "31",
+      "price": 81946.79724026557,
+      "change": "0.66",
+      "rsi": "33",
       "maCross": "bull",
-      "macdHist": "-427.61",
-      "boll": "22%",
-      "adx": "37",
-      "atr": "1.1%",
-      "verdict": "Baissier fort",
-      "score": 20,
+      "macdHist": "-407.01",
+      "boll": "27%",
+      "adx": "34",
+      "atr": "1.2%",
+      "verdict": "Plutôt baissier",
+      "score": 36,
       "cls": "bear"
     },
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 2408.7872562785033,
-      "change": "0.35",
+      "price": 2412.572391726967,
+      "change": "0.51",
       "rsi": "24",
       "maCross": "bull",
-      "macdHist": "-22.78",
+      "macdHist": "-22.54",
       "boll": "19%",
-      "adx": "53",
+      "adx": "52",
       "atr": "1.8%",
       "verdict": "Plutôt baissier",
       "score": 37,
@@ -25788,13 +25757,13 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 103.4613994913835,
-      "change": "0.10",
-      "rsi": "17",
+      "price": 103.79717578161225,
+      "change": "0.42",
+      "rsi": "18",
       "maCross": "bull",
-      "macdHist": "-1.60",
-      "boll": "17%",
-      "adx": "67",
+      "macdHist": "-1.57",
+      "boll": "18%",
+      "adx": "64",
       "atr": "1.9%",
       "verdict": "Plutôt baissier",
       "score": 37,
@@ -25803,13 +25772,13 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "price": 720.0880697259564,
-      "change": "0.37",
-      "rsi": "22",
+      "price": 721.9702472000344,
+      "change": "0.64",
+      "rsi": "23",
       "maCross": "bull",
-      "macdHist": "-6.16",
-      "boll": "16%",
-      "adx": "56",
+      "macdHist": "-6.04",
+      "boll": "17%",
+      "adx": "54",
       "atr": "1.3%",
       "verdict": "Plutôt baissier",
       "score": 37,
@@ -25818,8 +25787,8 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "price": 1.2951842874808264,
-      "change": "0.20",
+      "price": 1.2955940224360756,
+      "change": "0.23",
       "rsi": "17",
       "maCross": "bear",
       "macdHist": "-0.02",
@@ -25833,12 +25802,12 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "price": 0.21942486120609636,
-      "change": "0.04",
+      "price": 0.21972117045775835,
+      "change": "0.18",
       "rsi": "31",
       "maCross": "bull",
       "macdHist": "-0.00",
-      "boll": "9%",
+      "boll": "10%",
       "adx": "37",
       "atr": "3.5%",
       "verdict": "Plutôt baissier",
@@ -25848,12 +25817,12 @@
     {
       "label": "DOGE",
       "kind": "crypto",
-      "price": 0.07908776945240835,
-      "change": "-0.22",
+      "price": 0.07918372317532835,
+      "change": "-0.10",
       "rsi": "18",
       "maCross": "bear",
       "macdHist": "-0.00",
-      "boll": "13%",
+      "boll": "14%",
       "adx": "63",
       "atr": "2.4%",
       "verdict": "Baissier fort",
@@ -25863,8 +25832,8 @@
     {
       "label": "AVAX",
       "kind": "crypto",
-      "price": 9.743739345860684,
-      "change": "-0.14",
+      "price": 9.743135384677288,
+      "change": "-0.15",
       "rsi": "35",
       "maCross": "bull",
       "macdHist": "-0.21",
@@ -25874,51 +25843,6 @@
       "verdict": "Plutôt baissier",
       "score": 33,
       "cls": "bear"
-    },
-    {
-      "label": "DOT",
-      "kind": "crypto",
-      "price": 1.100750314858713,
-      "change": "-1.25",
-      "rsi": "41",
-      "maCross": "bull",
-      "macdHist": "-0.02",
-      "boll": "10%",
-      "adx": "18",
-      "atr": "3.7%",
-      "verdict": "Indécis",
-      "score": 49,
-      "cls": "neutral"
-    },
-    {
-      "label": "LINK",
-      "kind": "crypto",
-      "price": 11.98253866107585,
-      "change": "0.04",
-      "rsi": "24",
-      "maCross": "bull",
-      "macdHist": "-0.22",
-      "boll": "12%",
-      "adx": "52",
-      "atr": "2.6%",
-      "verdict": "Indécis",
-      "score": 50,
-      "cls": "neutral"
-    },
-    {
-      "label": "TRX",
-      "kind": "crypto",
-      "price": 0.33319079756971476,
-      "change": "-0.07",
-      "rsi": "43",
-      "maCross": "bear",
-      "macdHist": "0.00",
-      "boll": "49%",
-      "adx": "13",
-      "atr": "0.4%",
-      "verdict": "Plutôt baissier",
-      "score": 43,
-      "cls": "neutral"
     },
     {
       "label": "Apple",
@@ -27035,11 +26959,11 @@
       "kind": "metal",
       "price": 1633.1,
       "change": "1.39",
-      "rsi": "31",
+      "rsi": "33",
       "maCross": "bear",
-      "macdHist": "-9.91",
-      "boll": "18%",
-      "adx": "38",
+      "macdHist": "-9.28",
+      "boll": "22%",
+      "adx": "34",
       "atr": "1.8%",
       "verdict": "Baissier fort",
       "score": 0,
@@ -27052,10 +26976,10 @@
       "change": "-0.21",
       "rsi": "29",
       "maCross": "bear",
-      "macdHist": "-2.97",
-      "boll": "24%",
-      "adx": "42",
-      "atr": "1.5%",
+      "macdHist": "-2.63",
+      "boll": "26%",
+      "adx": "41",
+      "atr": "1.4%",
       "verdict": "Baissier fort",
       "score": 17,
       "cls": "bear"
@@ -32144,14 +32068,97 @@
         39.42,
         39.63
       ],
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
+    },
+    {
+      "asset": "BTC",
+      "kind": "crypto",
+      "type": "doji-haussier",
+      "label": "Doji — Retournement haussier",
+      "timeframe": "Swing · 3-10 jours (sortie sur Doji inverse)",
+      "confidence": "high",
+      "direction": "long",
+      "config": "Doji détecté après bougie rouge (-0.8%) puis bougie verte de confirmation (+0.7%). Combat acheteurs/vendeurs résolu côté acheteur.",
+      "rationale": "Stratégie Heikin Ashi adaptée : après une chute, un doji marque une hésitation (combat acheteur/vendeur). La bougie verte qui suit confirme que les acheteurs ont gagné. Stop technique au plus bas de la bougie rouge. Sortie discrétionnaire au prochain Doji baissier (doji après bougie verte).",
+      "entry": 81946.79724026557,
+      "stop": 81360.61070754341,
+      "tp1": 83857.38040009228,
+      "tp2": 85767.963559919,
+      "rr1": "3.26",
+      "rr2": "6.52",
+      "currency": "USD",
+      "prices60": [
+        73020.9456,
+        78317.7772,
+        77081.023,
+        77712.3201,
+        78973.8869,
+        78511.2331,
+        79018.0341,
+        80268.3747,
+        77820.7643,
+        78225.1395,
+        77658.2313,
+        78552.7793,
+        77416.4411,
+        77297.1335,
+        81264.7015,
+        79671.2577,
+        79821.6987,
+        80329.3478,
+        79093.4642,
+        78450.753,
+        78283.0605,
+        76554.9866,
+        77203.5344,
+        77261.6272,
+        76819.045,
+        78173.3516,
+        75590.2447,
+        76146.8124,
+        76371.3617,
+        80873.5829,
+        81236.4138,
+        81169.0351,
+        86596.74,
+        86183.2944,
+        84382.3999,
+        84377.9651,
+        84075.7166,
+        84416.715,
+        84448.7502,
+        83479.2543,
+        83640.1016,
+        83576.1346,
+        84841.6663,
+        84506.469,
+        84742.7864,
+        86489.7348,
+        85770.8722,
+        85540.0871,
+        83282.0454,
+        81685.8869,
+        82564.2941,
+        82917.9034,
+        83690.8692,
+        81794.8488,
+        83115.1016,
+        81603.6546,
+        82155.5398,
+        81523.658,
+        81408.3452,
+        81946.7972
+      ],
       "news_context": {
         "count": 1,
         "risk": "normal",
         "items": [
           {
-            "title": "UBS considers leaving Switzerland over capital rule plans, WSJ reports",
-            "time": "2026-10-15T03:42:08.000Z",
-            "source": "Investing.com"
+            "title": "Quantum Alliance forms amid warnings 6.4 million bitcoin face future quantum threat",
+            "time": "2026-10-16T10:52:26.000Z",
+            "source": "CoinDesk"
           }
         ]
       },
@@ -32415,12 +32422,12 @@
       "timeframe": "Court terme · 1-3 jours",
       "confidence": "high",
       "direction": "long",
-      "config": "RSI 18 (vraie survente) · Bollinger 13% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j -2.4%).",
+      "config": "RSI 18 (vraie survente) · Bollinger 14% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j -2.3%).",
       "rationale": "Couple RSI<30 + bande basse Bollinger + MA20 au-dessus + plus de continuation baissière = setup contrarian classique. Stop 1.5 ATR sous l'entrée pour absorber la volatilité de survente. TP1 = retour à la MA20 (mean reversion). TP2 = +3 ATR.",
-      "entry": 0.07908776945240835,
-      "stop": 0.07624878638284938,
-      "tp1": 0.08287308021182033,
-      "tp2": 0.08476573559152631,
+      "entry": 0.07918372317532835,
+      "stop": 0.0763550208617965,
+      "tp1": 0.08295532626003746,
+      "tp2": 0.08484112780239202,
       "rr1": "1.33",
       "rr2": "2.00",
       "currency": "USD",
@@ -32484,7 +32491,7 @@
         0.0811,
         0.0808,
         0.0793,
-        0.0791
+        0.0792
       ],
       "news_context": null,
       "wisdom_adjustment": 0,
@@ -32742,7 +32749,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 68
+    "matched_assets": 65
   },
   "macro": {
     "vix": 19.99,
@@ -32752,7 +32759,7 @@
     "cross_asset": {
       "sp500_change": -1.0927099809045933,
       "nasdaq_change": -2.1450206699957906,
-      "btc_change": 0.2650097514393128,
+      "btc_change": 0.6614211671379603,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -32764,7 +32771,7 @@
     "current_state": {
       "vix": 19.99,
       "yield_curve": null,
-      "btc_30d_change": 0.47721386456703646,
+      "btc_30d_change": 0.8744642582213096,
       "sp500_30d_change": -0.7664622535369329,
       "dominant_sectors": [
         "XLE",
@@ -32784,14 +32791,14 @@
       "fed"
     ],
     "theme_counts": {
-      "war": 82,
-      "geopolitical": 43,
-      "tech": 109,
-      "earnings": 73,
-      "oil": 20,
-      "fed": 79,
-      "crypto": 47,
-      "credit": 37
+      "war": 83,
+      "geopolitical": 42,
+      "crypto": 49,
+      "tech": 101,
+      "credit": 39,
+      "earnings": 70,
+      "oil": 19,
+      "fed": 75
     },
     "top_sectors_60d": [
       "XLE",
@@ -32941,10 +32948,11 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 73,
+      "ev_battery": 74,
+      "crypto_hack": 5,
+      "rate_pivot": 1,
       "recession": 3,
       "crypto_etf": 3,
-      "crypto_hack": 4,
       "ai_breakthrough": 4,
       "defi_growth": 2,
       "semicon_supply": 1
@@ -32958,9 +32966,9 @@
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 82,
-      "credit": 37,
-      "geopol": 43
+      "war": 83,
+      "credit": 39,
+      "geopol": 42
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -33210,19 +33218,19 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "rsi": 31,
-      "change": 0.27,
-      "adx": 37,
-      "verdict": "Baissier fort",
+      "rsi": 33,
+      "change": 0.66,
+      "adx": 34,
+      "verdict": "Plutôt baissier",
       "cls": "bear",
-      "score": 20
+      "score": 36
     },
     {
       "label": "ETH",
       "kind": "crypto",
       "rsi": 24,
-      "change": 0.35,
-      "adx": 53,
+      "change": 0.51,
+      "adx": 52,
       "verdict": "Plutôt baissier",
       "cls": "bear",
       "score": 37
@@ -33230,9 +33238,9 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "rsi": 17,
-      "change": 0.1,
-      "adx": 67,
+      "rsi": 18,
+      "change": 0.42,
+      "adx": 64,
       "verdict": "Plutôt baissier",
       "cls": "bear",
       "score": 37
@@ -33240,9 +33248,9 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "rsi": 22,
-      "change": 0.37,
-      "adx": 56,
+      "rsi": 23,
+      "change": 0.64,
+      "adx": 54,
       "verdict": "Plutôt baissier",
       "cls": "bear",
       "score": 37
@@ -33251,7 +33259,7 @@
       "label": "XRP",
       "kind": "crypto",
       "rsi": 17,
-      "change": 0.2,
+      "change": 0.23,
       "adx": 65,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -33261,7 +33269,7 @@
       "label": "ADA",
       "kind": "crypto",
       "rsi": 31,
-      "change": 0.04,
+      "change": 0.18,
       "adx": 37,
       "verdict": "Plutôt baissier",
       "cls": "bear",
@@ -33271,7 +33279,7 @@
       "label": "DOGE",
       "kind": "crypto",
       "rsi": 18,
-      "change": -0.22,
+      "change": -0.1,
       "adx": 63,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -33281,41 +33289,11 @@
       "label": "AVAX",
       "kind": "crypto",
       "rsi": 35,
-      "change": -0.14,
+      "change": -0.15,
       "adx": 31,
       "verdict": "Plutôt baissier",
       "cls": "bear",
       "score": 33
-    },
-    {
-      "label": "DOT",
-      "kind": "crypto",
-      "rsi": 41,
-      "change": -1.25,
-      "adx": 18,
-      "verdict": "Indécis",
-      "cls": "neutral",
-      "score": 49
-    },
-    {
-      "label": "LINK",
-      "kind": "crypto",
-      "rsi": 24,
-      "change": 0.04,
-      "adx": 52,
-      "verdict": "Indécis",
-      "cls": "neutral",
-      "score": 50
-    },
-    {
-      "label": "TRX",
-      "kind": "crypto",
-      "rsi": 43,
-      "change": -0.07,
-      "adx": 13,
-      "verdict": "Plutôt baissier",
-      "cls": "neutral",
-      "score": 43
     },
     {
       "label": "Apple",
@@ -34060,9 +34038,9 @@
     {
       "label": "Platine",
       "kind": "metal",
-      "rsi": 31,
+      "rsi": 33,
       "change": 1.39,
-      "adx": 38,
+      "adx": 34,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 0
@@ -34072,7 +34050,7 @@
       "kind": "metal",
       "rsi": 29,
       "change": -0.21,
-      "adx": 42,
+      "adx": 41,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 17
