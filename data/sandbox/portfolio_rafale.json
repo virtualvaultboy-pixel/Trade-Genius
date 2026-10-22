@@ -19,7 +19,7 @@
       "tp1": 109.20694489417991,
       "tp2": 114.06910480080592,
       "initial_stop": 103.17786660996367,
-      "high_since_entry": 106.32076368986978,
+      "high_since_entry": 107.2786532134371,
       "rr1": 4.17,
       "rr2": 8.33,
       "risk_pct": 0.011183293709689696,
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 106.32076368986978,
-      "age_days": 4
+      "current_price": 107.2786532134371,
+      "age_days": 5
     },
     {
       "id": "pos-1792199449380-l4ao",
@@ -52,7 +52,7 @@
       "tp1": 96.80357181913897,
       "tp2": 103.75714516415684,
       "initial_stop": 88.1811408713168,
-      "high_since_entry": 92.03,
+      "high_since_entry": 92.96,
       "rr1": 4.17,
       "rr2": 8.33,
       "risk_pct": 0.018573818933174103,
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 91.69,
-      "age_days": 2
+      "current_price": 92.96,
+      "age_days": 3
     },
     {
       "id": "pos-1792545835538-uaez",
@@ -103,7 +103,9 @@
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
-      "pnl_eur": null
+      "pnl_eur": null,
+      "current_price": 532.95,
+      "age_days": 1
     }
   ],
   "closed_trades": [
@@ -3854,7 +3856,14 @@
       "equity": 952.68,
       "cash": 773.06,
       "positions_count": 3
+    },
+    {
+      "date": "2026-10-22",
+      "cycle": 104,
+      "equity": 954,
+      "cash": 773.06,
+      "positions_count": 3
     }
   ],
-  "last_cycle": "2026-10-21"
+  "last_cycle": "2026-10-22"
 }

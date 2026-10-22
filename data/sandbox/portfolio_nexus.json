@@ -6,7 +6,7 @@
   "icon": "₿",
   "created_at": "2026-05-30T17:55:42.950Z",
   "capital_initial": 1000,
-  "cash": 930.0402721752171,
+  "cash": 884.4682988386314,
   "positions": [
     {
       "id": "pos-1792027084397-umxe",
@@ -19,7 +19,7 @@
       "tp1": 108.72072890351731,
       "tp2": 113.09667281948072,
       "initial_stop": 103.17786660996367,
-      "high_since_entry": 106.32076368986978,
+      "high_since_entry": 107.2786532134371,
       "rr1": 3.75,
       "rr2": 7.5,
       "risk_pct": 0.011183293709689696,
@@ -38,8 +38,39 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 106.32076368986978,
-      "age_days": 4
+      "current_price": 107.2786532134371,
+      "age_days": 5
+    },
+    {
+      "id": "pos-1792632112258-jpdl",
+      "asset": "PEPE",
+      "kind": "crypto",
+      "agent": "kairo",
+      "type": "kairo-momentum",
+      "entry": 0.000004620941894870233,
+      "stop": 0.000004253306494270997,
+      "tp1": 0.000004955155895414994,
+      "tp2": 0.000005372923396095944,
+      "initial_stop": 0.000004253306494270997,
+      "high_since_entry": 0.000004620941894870233,
+      "rr1": 0.91,
+      "rr2": 2.05,
+      "risk_pct": 0.07955854216807032,
+      "size_eur": 45.57197333658563,
+      "quality_score": 60,
+      "sizing_pct": 7,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 30,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-10-22T01:21:52.258Z",
+      "opened_at_cycle": 104,
+      "opened_at_date": "2026-10-22",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
     }
   ],
   "closed_trades": [
@@ -3544,7 +3575,14 @@
       "equity": 979.22,
       "cash": 930.04,
       "positions_count": 1
+    },
+    {
+      "date": "2026-10-22",
+      "cycle": 104,
+      "equity": 979.66,
+      "cash": 884.47,
+      "positions_count": 2
     }
   ],
-  "last_cycle": "2026-10-21"
+  "last_cycle": "2026-10-22"
 }

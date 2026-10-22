@@ -6,7 +6,7 @@
   "icon": "🔥",
   "created_at": "2026-05-30T17:55:42.943Z",
   "capital_initial": 1000,
-  "cash": 723.9457495665504,
+  "cash": 747.3240630595955,
   "positions": [
     {
       "id": "pos-1792027084065-dm9p",
@@ -19,7 +19,7 @@
       "tp1": 109.20694489417991,
       "tp2": 114.06910480080592,
       "initial_stop": 102.3999210249035,
-      "high_since_entry": 106.32076368986978,
+      "high_since_entry": 107.2786532134371,
       "rr1": 2.5,
       "rr2": 5,
       "risk_pct": 0.018638822849482917,
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 106.32076368986978,
-      "age_days": 4
+      "current_price": 107.2786532134371,
+      "age_days": 5
     },
     {
       "id": "pos-1792027084065-43ff",
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 5437.2,
-      "age_days": 4
+      "current_price": 5430.69,
+      "age_days": 5
     },
     {
       "id": "pos-1792199449309-z0wo",
@@ -85,7 +85,7 @@
       "tp1": 96.80357181913897,
       "tp2": 103.75714516415684,
       "initial_stop": 87.06856913611395,
-      "high_since_entry": 92.03,
+      "high_since_entry": 92.96,
       "rr1": 2.5,
       "rr2": 5,
       "risk_pct": 0.030956364888623345,
@@ -104,8 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 91.69,
-      "age_days": 2
+      "current_price": 92.96,
+      "age_days": 3
     },
     {
       "id": "pos-1792199449309-nxzg",
@@ -137,25 +137,25 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 3735.37,
-      "age_days": 2
+      "current_price": 3713.028,
+      "age_days": 3
     },
     {
-      "id": "pos-1792545835531-xm9g",
-      "asset": "L'Oréal",
+      "id": "pos-1792632112186-80sd",
+      "asset": "TotalEnergies",
       "kind": "action",
       "agent": "nova",
       "type": "doji-baissier",
-      "entry": 403.6000061035156,
-      "stop": 407.6637061157227,
-      "tp1": 396.572489561594,
-      "tp2": 389.5449730196724,
-      "initial_stop": 407.6637061157227,
-      "high_since_entry": 403.6000061035156,
-      "rr1": 1.73,
-      "rr2": 3.46,
-      "risk_pct": 0.010068632187197711,
-      "size_eur": 80.4384166185056,
+      "entry": 79.94000244140625,
+      "stop": 80.87141908264161,
+      "tp1": 78.63595597198966,
+      "tp2": 77.33190950257305,
+      "initial_stop": 80.87141908264161,
+      "high_since_entry": 79.94000244140625,
+      "rr1": 1.4,
+      "rr2": 2.8,
+      "risk_pct": 0.011651446244551476,
+      "size_eur": 56.250198294808264,
       "quality_score": 90,
       "sizing_pct": 10,
       "trailing_after_tp1": true,
@@ -163,9 +163,9 @@
       "pyramiding_pct": 50,
       "pyramided": false,
       "stacked": false,
-      "opened_at": "2026-10-21T01:23:55.531Z",
-      "opened_at_cycle": 103,
-      "opened_at_date": "2026-10-21",
+      "opened_at": "2026-10-22T01:21:52.186Z",
+      "opened_at_cycle": 104,
+      "opened_at_date": "2026-10-22",
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
@@ -5065,6 +5065,41 @@
       "age_days": 16,
       "closed_at_cycle": 103,
       "exit_price": 4129.1068620724855
+    },
+    {
+      "id": "pos-1792545835531-xm9g",
+      "asset": "L'Oréal",
+      "kind": "action",
+      "agent": "nova",
+      "type": "doji-baissier",
+      "entry": 403.6000061035156,
+      "stop": 407.6637061157227,
+      "tp1": 396.572489561594,
+      "tp2": 389.5449730196724,
+      "initial_stop": 407.6637061157227,
+      "high_since_entry": 405.7,
+      "rr1": 1.73,
+      "rr2": 3.46,
+      "risk_pct": 0.010068632187197711,
+      "size_eur": 80.4384166185056,
+      "quality_score": 90,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-10-21T01:23:55.531Z",
+      "opened_at_cycle": 103,
+      "opened_at_date": "2026-10-21",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-10-22T01:21:52.185Z",
+      "pnl_eur": -0.8099048306523048,
+      "current_price": 405.7,
+      "age_days": 1,
+      "closed_at_cycle": 104,
+      "exit_price": 407.6637061157227
     }
   ],
   "equity_history": [
@@ -5788,7 +5823,14 @@
       "equity": 1111.76,
       "cash": 723.95,
       "positions_count": 5
+    },
+    {
+      "date": "2026-10-22",
+      "cycle": 104,
+      "equity": 1112.31,
+      "cash": 747.32,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-10-21"
+  "last_cycle": "2026-10-22"
 }
