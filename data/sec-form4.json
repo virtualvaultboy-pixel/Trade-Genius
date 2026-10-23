@@ -1,10 +1,150 @@
 {
-  "generated": "2026-10-23T00:21:15.048Z",
+  "generated": "2026-10-23T09:02:30.156Z",
   "source": "SEC EDGAR Form 4 RSS",
   "window_days": 7,
-  "count": 140,
-  "ticker_signals": {},
+  "count": 115,
+  "ticker_signals": {
+    "Rivian": {
+      "count": 4,
+      "intensity": "medium"
+    }
+  },
   "filings": [
+    {
+      "company": "BLUE BIOFUELS, INC.",
+      "cik": "0001549145",
+      "filed_at": "2026-10-23T01:44:08.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1549145/000149315226048157/0001493152-26-048157-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "CoreWeave, Inc.",
+      "cik": "0001769628",
+      "filed_at": "2026-10-23T01:29:16.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000451/0001769628-26-000451-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Lyft, Inc.",
+      "cik": "0001759509",
+      "filed_at": "2026-10-23T01:29:08.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1759509/000197349526000007/0001973495-26-000007-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "CoreWeave, Inc.",
+      "cik": "0001769628",
+      "filed_at": "2026-10-23T01:28:16.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1769628/000176962826000450/0001769628-26-000450-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Lyft, Inc.",
+      "cik": "0001759509",
+      "filed_at": "2026-10-23T01:27:47.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1759509/000183416426000005/0001834164-26-000005-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Lyft, Inc.",
+      "cik": "0001759509",
+      "filed_at": "2026-10-23T01:26:30.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1759509/000215744526000002/0002157445-26-000002-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Health In Tech, Inc.",
+      "cik": "0002019505",
+      "filed_at": "2026-10-23T01:23:45.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/2019505/000121390026111813/0001213900-26-111813-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Lion Copper Corp.",
+      "cik": "0001339688",
+      "filed_at": "2026-10-23T01:15:32.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1339688/000106299326005508/0001062993-26-005508-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Fervo Energy Co",
+      "cik": "0001853868",
+      "filed_at": "2026-10-23T01:00:19.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1853868/000149315226048153/0001493152-26-048153-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Rivian Automotive, Inc. / DE",
+      "cik": "0001874178",
+      "filed_at": "2026-10-23T00:58:06.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1874178/000206649126000013/0002066491-26-000013-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": "Rivian"
+    },
+    {
+      "company": "Rivian Automotive, Inc. / DE",
+      "cik": "0001874178",
+      "filed_at": "2026-10-23T00:57:43.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1874178/000189175126000010/0001891751-26-000010-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": "Rivian"
+    },
+    {
+      "company": "Rivian Automotive, Inc. / DE",
+      "cik": "0001874178",
+      "filed_at": "2026-10-23T00:57:21.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1874178/000160787926000008/0001607879-26-000008-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": "Rivian"
+    },
+    {
+      "company": "Agora, Inc.",
+      "cik": "0001802883",
+      "filed_at": "2026-10-23T00:56:55.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1802883/000119312526429245/0001193125-26-429245-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Rivian Automotive, Inc. / DE",
+      "cik": "0001874178",
+      "filed_at": "2026-10-23T00:56:51.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1874178/000189103726000011/0001891037-26-000011-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": "Rivian"
+    },
+    {
+      "company": "INNSUITES HOSPITALITY TRUST",
+      "cik": "0000082473",
+      "filed_at": "2026-10-23T00:27:03.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/82473/000149315226048149/0001493152-26-048149-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
     {
       "company": "Penguin Solutions, Inc.",
       "cik": "0001616533",
@@ -766,141 +906,6 @@
       "cik": "0001551047",
       "filed_at": "2026-10-21T22:21:07.000Z",
       "url": "https://www.sec.gov/Archives/edgar/data/1551047/000139834426018550/0001398344-26-018550-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "AMERICAN INTERNATIONAL GROUP, INC.",
-      "cik": "0000005272",
-      "filed_at": "2026-10-21T22:18:20.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/5272/000204153326000008/0002041533-26-000008-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "TALOS ENERGY INC.",
-      "cik": "0001724965",
-      "filed_at": "2026-10-21T22:15:19.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1724965/000114036126040419/0001140361-26-040419-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Meta Platforms, Inc.",
-      "cik": "0001326801",
-      "filed_at": "2026-10-21T22:07:36.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1326801/000095010326015980/0000950103-26-015980-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": "Meta"
-    },
-    {
-      "company": "Grace Therapeutics, Inc.",
-      "cik": "0001444192",
-      "filed_at": "2026-10-21T22:06:46.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1444192/000149315226047949/0001493152-26-047949-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "PACS Group, Inc.",
-      "cik": "0002001184",
-      "filed_at": "2026-10-21T22:00:23.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/2001184/000201438626000022/0002014386-26-000022-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Vivid Seats Inc.",
-      "cik": "0001856031",
-      "filed_at": "2026-10-21T22:00:12.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1856031/000119312526428045/0001193125-26-428045-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Vivid Seats Inc.",
-      "cik": "0001856031",
-      "filed_at": "2026-10-21T22:00:10.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1856031/000119312526428043/0001193125-26-428043-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Vivid Seats Inc.",
-      "cik": "0001856031",
-      "filed_at": "2026-10-21T22:00:08.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1856031/000119312526428044/0001193125-26-428044-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Vivid Seats Inc.",
-      "cik": "0001856031",
-      "filed_at": "2026-10-21T22:00:07.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1856031/000119312526428042/0001193125-26-428042-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Vivid Seats Inc.",
-      "cik": "0001856031",
-      "filed_at": "2026-10-21T22:00:05.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1856031/000119312526428041/0001193125-26-428041-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Vivid Seats Inc.",
-      "cik": "0001856031",
-      "filed_at": "2026-10-21T22:00:04.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1856031/000119312526428040/0001193125-26-428040-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Enliven Therapeutics, Inc.",
-      "cik": "0001672619",
-      "filed_at": "2026-10-21T21:53:41.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1672619/000188276426000009/0001882764-26-000009-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Trade Desk, Inc.",
-      "cik": "0001671933",
-      "filed_at": "2026-10-21T21:53:33.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1671933/000210927226000012/0002109272-26-000012-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "COPART INC",
-      "cik": "0000900075",
-      "filed_at": "2026-10-21T21:52:44.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/900075/000119312526428030/0001193125-26-428030-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "Trade Desk, Inc.",
-      "cik": "0001671933",
-      "filed_at": "2026-10-21T21:51:39.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1671933/000182673126000012/0001826731-26-000012-index.htm",
       "isIssuer": true,
       "isForm4": true,
       "ticker": null
