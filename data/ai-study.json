@@ -1,14 +1,14 @@
 {
-  "generated": "2026-10-24T14:00:14.562Z",
+  "generated": "2026-10-24T17:23:52.387Z",
   "source": "Pollinations · openai",
   "date": "2026-10-24",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (37 indices · 9 crypto · 354 actions) : S&P 500 -0.52% (RSI 37, plutôt baissier) · Nasdaq -0.21% (RSI 27, indécis) · BTC -0.58% (RSI 41, plutôt baissier) · ETH -0.75% (RSI 36, baissier fort) · Apple -0.14% (RSI 72, plutôt haussier). Globalement, 173 actifs en biais haussier contre 187 en baissier. On observe une configuration plutôt favorable aux vendeurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (37 indices · 7 crypto · 354 actions) : S&P 500 -0.52% (RSI 37, plutôt baissier) · Nasdaq -0.21% (RSI 27, indécis) · BTC -1.28% (RSI 40, plutôt baissier) · ETH -2.90% (RSI 33, baissier fort) · Apple -0.14% (RSI 72, plutôt haussier). Globalement, 173 actifs en biais haussier contre 185 en baissier. On observe une configuration plutôt favorable aux vendeurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : pression vendeuse persistante (RSI 37)",
     "Nasdaq : sans direction nette (RSI 27)",
-    "BTC : pression vendeuse persistante (RSI 41)",
-    "ETH : pression vendeuse persistante (RSI 36)",
+    "BTC : pression vendeuse persistante (RSI 40)",
+    "ETH : pression vendeuse persistante (RSI 33)",
     "Apple : tendance haussière confirmée (RSI 72, bull MA50)"
   ],
   "plan_pedago": [
@@ -330,12 +330,12 @@
           "timeframe": "Long terme · 4-12 semaines",
           "confidence": "high",
           "direction": "long",
-          "config": "RSI 21 (survente extrême) · Bollinger 14% (bande basse) · MACD -0.00 (correction confirmée) · MFI 38 (flux validé) · stop 0.6 ATR · cible 6 ATR.",
+          "config": "RSI 20 (survente extrême) · Bollinger 10% (bande basse) · MACD -0.00 (correction confirmée) · MFI 37 (flux validé) · stop 0.6 ATR · cible 6 ATR.",
           "rationale": "Configuration contrarian validée sur 20 ans × 50 actifs (PF 3.42 walk-forward OOS). Le marché est en survente technique extrême + correction MACD confirmée. Stop technique serré, cible étendue pour capter le retournement complet.",
-          "entry": 0.2076944480325459,
-          "stop": 0.20466262043530414,
-          "tp1": 0.22285358601875457,
-          "tp2": 0.23801272400496326,
+          "entry": 0.20442921169112158,
+          "stop": 0.20125744539353307,
+          "tp1": 0.22028804317906406,
+          "tp2": 0.2361468746670065,
           "rr1": "5.00",
           "rr2": "10.00",
           "currency": "USD",
@@ -399,7 +399,7 @@
             0.2251,
             0.212,
             0.2107,
-            0.2077
+            0.2044
           ],
           "quality_score": 79,
           "sizing_pct": 3,
@@ -435,7 +435,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"record\" ×3 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"million\" ×4.3 (5 mentions/24h)"
         },
         {
           "asset": "Meta",
@@ -555,7 +555,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"jones\" ×3.6 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"jones\" ×4.8 (4 mentions/24h)"
         },
         {
           "asset": "Nvidia",
@@ -660,9 +660,9 @@
                 "source": "CNBC"
               },
               {
-                "title": "Bitcoin's price is as jumpy as Nvidia's and eight times more turbulent than the euro",
-                "time": "2026-10-23T11:22:33.000Z",
-                "source": "CoinDesk"
+                "title": "GPU-unlock: FP/BF16 instruction issue rate on Nvidia 3000's cards",
+                "time": "2026-10-24T09:58:27.000Z",
+                "source": "Hacker News"
               }
             ]
           },
@@ -790,7 +790,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"lead\" ×15 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"lead\" ×10 (5 mentions/24h)"
         },
         {
           "asset": "ASML",
@@ -1220,7 +1220,7 @@
           "timeframe": "Long terme · 4-12 semaines",
           "confidence": "high",
           "direction": "long",
-          "config": "RSI 17 (survente extrême) · Bollinger 1% (bande basse) · MACD -5.77 (correction confirmée) · MFI 26 (flux validé) · stop 0.6 ATR · cible 6 ATR.",
+          "config": "RSI 17 (survente extrême) · Bollinger 1% (bande basse) · MACD -5.77 (correction confirmée) · MFI 27 (flux validé) · stop 0.6 ATR · cible 6 ATR.",
           "rationale": "Configuration contrarian validée sur 20 ans × 50 actifs (PF 3.42 walk-forward OOS). Le marché est en survente technique extrême + correction MACD confirmée. Stop technique serré, cible étendue pour capter le retournement complet.",
           "entry": 625,
           "stop": 620.6178571428571,
@@ -1606,7 +1606,7 @@
             230.15,
             230.1
           ],
-          "quality_score": 78,
+          "quality_score": 75,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1645,7 +1645,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"mixed\" ×24 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"mixed\" ×9 (3 mentions/24h)"
         },
         {
           "asset": "KLA Corp",
@@ -3104,7 +3104,7 @@
             409.45,
             407
           ],
-          "quality_score": 79,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3138,7 +3138,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"bank\" ×3.6 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"bank\" ×6 (5 mentions/24h)"
         },
         {
           "asset": "Rio Tinto",
@@ -3778,7 +3778,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"could\" ×3.4 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"could\" ×4 (4 mentions/24h)"
         },
         {
           "asset": "SK Hynix",
@@ -4981,12 +4981,12 @@
           "timeframe": "Swing · 1-3 semaines",
           "confidence": "high",
           "direction": "long",
-          "config": "RSI 21 (survente extrême) · Bollinger 14% (bande basse) · MACD -0.00 (correction confirmée) · MA20>MA50 (tendance MT préservée) · MFI 38 (flux validé) · stop 1 ATR · cible 5 ATR.",
+          "config": "RSI 20 (survente extrême) · Bollinger 10% (bande basse) · MACD -0.00 (correction confirmée) · MA20>MA50 (tendance MT préservée) · MFI 37 (flux validé) · stop 1 ATR · cible 5 ATR.",
           "rationale": "Configuration contrarian validée sur 20 ans × 50 actifs (PF 3.17 walk-forward OOS). Le marché est en survente technique extrême + correction MACD confirmée. Stop technique serré, cible étendue pour capter le retournement complet.",
-          "entry": 0.2076944480325459,
-          "stop": 0.20264140203714298,
-          "tp1": 0.22032706302105312,
-          "tp2": 0.23295967800956038,
+          "entry": 0.20442921169112158,
+          "stop": 0.1991429345284741,
+          "tp1": 0.2176449045977403,
+          "tp2": 0.23086059750435903,
           "rr1": "2.50",
           "rr2": "5.00",
           "currency": "USD",
@@ -5050,7 +5050,7 @@
             0.2251,
             0.212,
             0.2107,
-            0.2077
+            0.2044
           ],
           "quality_score": 84,
           "sizing_pct": 3,
@@ -5086,7 +5086,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"record\" ×3 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"million\" ×4.3 (5 mentions/24h)"
         },
         {
           "asset": "Meta",
@@ -5206,7 +5206,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"jones\" ×3.6 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"jones\" ×4.8 (4 mentions/24h)"
         },
         {
           "asset": "Nvidia",
@@ -5311,9 +5311,9 @@
                 "source": "CNBC"
               },
               {
-                "title": "Bitcoin's price is as jumpy as Nvidia's and eight times more turbulent than the euro",
-                "time": "2026-10-23T11:22:33.000Z",
-                "source": "CoinDesk"
+                "title": "GPU-unlock: FP/BF16 instruction issue rate on Nvidia 3000's cards",
+                "time": "2026-10-24T09:58:27.000Z",
+                "source": "Hacker News"
               }
             ]
           },
@@ -5441,7 +5441,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"lead\" ×15 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"lead\" ×10 (5 mentions/24h)"
         },
         {
           "asset": "ASML",
@@ -7221,13 +7221,13 @@
             "risk": "alert",
             "items": [
               {
-                "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings; What To Do In Doom-And-Bloom Market",
-                "time": "2026-10-24T13:07:54.000Z",
+                "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings In Doom-And-Bloom Market",
+                "time": "2026-10-24T15:08:44.000Z",
                 "source": "Yahoo Finance"
               },
               {
-                "title": "Nasdaq raises red flag on 3 overnight risks ahead of Dec. 6 — and they pose an extra-big threat to retirement nest eggs",
-                "time": "2026-10-24T11:35:00.000Z",
+                "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings; What To Do In Doom-And-Bloom Market",
+                "time": "2026-10-24T13:07:54.000Z",
                 "source": "Yahoo Finance"
               }
             ]
@@ -7241,7 +7241,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"mixed\" ×24 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"risks\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Nikkei 225",
@@ -7437,7 +7437,7 @@
             51.08,
             50.56
           ],
-          "quality_score": 62,
+          "quality_score": 63,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -7465,13 +7465,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Bottom-fishing post-overreaction",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 57,
+          "quality_score_pre_wisdom": 58,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sells\" ×3.6 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"bank\" ×6 (5 mentions/24h)"
         },
         {
           "asset": "EUR/GBP",
@@ -8323,7 +8323,7 @@
       "desc": "Court terme · 3-7 jours · Patience faible · 5-9 trades/semaine. Idéal si tu veux voir l'app travailler chaque jour. Risque très maîtrisé.",
       "icon": "⚡",
       "color": "#ef4444",
-      "count": 144,
+      "count": 141,
       "setups": [
         {
           "asset": "ADA",
@@ -8333,12 +8333,12 @@
           "timeframe": "Court terme · 3-7 jours",
           "confidence": "high",
           "direction": "long",
-          "config": "RSI 21 (survente extrême) · Bollinger 14% (bande basse) · MACD -0.00 (correction confirmée) · MA20>MA50 (tendance MT préservée) · MFI 38 (flux validé) · stop 0.6 ATR · cible 5 ATR.",
+          "config": "RSI 20 (survente extrême) · Bollinger 10% (bande basse) · MACD -0.00 (correction confirmée) · MA20>MA50 (tendance MT préservée) · MFI 37 (flux validé) · stop 0.6 ATR · cible 5 ATR.",
           "rationale": "Configuration contrarian validée sur 20 ans × 50 actifs (PF 2.80 walk-forward OOS). Le marché est en survente technique extrême + correction MACD confirmée. Stop technique serré, cible étendue pour capter le retournement complet.",
-          "entry": 0.2076944480325459,
-          "stop": 0.20466262043530414,
-          "tp1": 0.22032706302105312,
-          "tp2": 0.23295967800956038,
+          "entry": 0.20442921169112158,
+          "stop": 0.20125744539353307,
+          "tp1": 0.2176449045977403,
+          "tp2": 0.23086059750435903,
           "rr1": "4.17",
           "rr2": "8.33",
           "currency": "USD",
@@ -8402,7 +8402,7 @@
             0.2251,
             0.212,
             0.2107,
-            0.2077
+            0.2044
           ],
           "quality_score": 85,
           "sizing_pct": 3,
@@ -8438,7 +8438,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"record\" ×3 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"million\" ×4.3 (5 mentions/24h)"
         },
         {
           "asset": "Meta",
@@ -8558,7 +8558,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"jones\" ×3.6 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"jones\" ×4.8 (4 mentions/24h)"
         },
         {
           "asset": "Nvidia",
@@ -8663,9 +8663,9 @@
                 "source": "CNBC"
               },
               {
-                "title": "Bitcoin's price is as jumpy as Nvidia's and eight times more turbulent than the euro",
-                "time": "2026-10-23T11:22:33.000Z",
-                "source": "CoinDesk"
+                "title": "GPU-unlock: FP/BF16 instruction issue rate on Nvidia 3000's cards",
+                "time": "2026-10-24T09:58:27.000Z",
+                "source": "Hacker News"
               }
             ]
           },
@@ -8793,7 +8793,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"lead\" ×15 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"lead\" ×10 (5 mentions/24h)"
         },
         {
           "asset": "ASML",
@@ -10659,7 +10659,7 @@
             230.15,
             230.1
           ],
-          "quality_score": 66,
+          "quality_score": 63,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -10692,13 +10692,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 61,
+          "quality_score_pre_wisdom": 58,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"mixed\" ×24 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"mixed\" ×9 (3 mentions/24h)"
         },
         {
           "asset": "Caterpillar",
@@ -12596,14 +12596,14 @@
             "risk": "alert",
             "items": [
               {
-                "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings; What To Do In Doom-And-Bloom Market",
-                "time": "2026-10-24T13:07:54.000Z",
+                "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings In Doom-And-Bloom Market",
+                "time": "2026-10-24T15:08:44.000Z",
                 "source": "Yahoo Finance"
               },
               {
-                "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings Wave; What To Do Amid Mixed Signals",
-                "time": "2026-10-23T23:09:22.000Z",
-                "source": "Yahoo Finance"
+                "title": "Why McDonalds, Microsoft and Google saying no to tokenized stocks isn't a dealbreaker",
+                "time": "2026-10-24T15:00:00.000Z",
+                "source": "CoinDesk"
               }
             ]
           },
@@ -12616,7 +12616,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"mixed\" ×24 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"microsoft\" ×15 (5 mentions/24h)"
         },
         {
           "asset": "Adobe",
@@ -13576,7 +13576,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"could\" ×3.4 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"could\" ×4 (4 mentions/24h)"
         },
         {
           "asset": "Société Générale",
@@ -13867,7 +13867,7 @@
             1366.6,
             1352
           ],
-          "quality_score": 70,
+          "quality_score": 72,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -13900,13 +13900,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 65,
+          "quality_score_pre_wisdom": 67,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"million\" ×4.3 (5 mentions/24h)"
         },
         {
           "asset": "BHP",
@@ -14861,7 +14861,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"lead\" ×15 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"lead\" ×10 (5 mentions/24h)"
         },
         {
           "asset": "Samsung",
@@ -14976,7 +14976,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"could\" ×3.4 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"could\" ×4 (4 mentions/24h)"
         },
         {
           "asset": "SK Hynix",
@@ -15406,111 +15406,6 @@
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
           "quality_score_pre_wisdom": 55,
-          "alpha_quality": null,
-          "alpha_pattern": null,
-          "alpha_rules": null,
-          "insider_signal": null,
-          "insider_reason": null,
-          "spike_theme_reason": null
-        },
-        {
-          "asset": "RNDR",
-          "kind": "crypto",
-          "type": "kairo-shortMomentum",
-          "label": "Crash vif — short tactique",
-          "timeframe": "Court terme · 1-3 jours",
-          "confidence": "medium",
-          "direction": "short",
-          "config": "Plongeon -6.5% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.",
-          "rationale": "Stratégie momentum baissier : on suit le mouvement déjà engagé. Pour les traders qui savent shorter (ou crypto via futures). Sinon : éviter d'acheter ici et attendre stabilisation.",
-          "entry": 1.6927338481607659,
-          "stop": 1.8202518890788122,
-          "tp1": 1.5768083564170876,
-          "tp2": 1.4319014917374895,
-          "rr1": "0.91",
-          "rr2": "2.05",
-          "currency": "USD",
-          "prices60": [
-            1.5347,
-            1.5337,
-            1.4462,
-            1.4574,
-            1.398,
-            1.4244,
-            1.4232,
-            1.41,
-            1.4717,
-            1.4275,
-            1.4653,
-            1.5627,
-            1.5442,
-            1.5052,
-            1.4681,
-            1.3934,
-            1.3904,
-            1.3813,
-            1.3667,
-            1.3827,
-            1.3195,
-            1.3653,
-            1.4369,
-            1.547,
-            1.5742,
-            1.7325,
-            1.8725,
-            1.8505,
-            1.7331,
-            1.8555,
-            1.947,
-            1.9912,
-            2.0547,
-            1.9487,
-            1.9085,
-            1.912,
-            1.9085,
-            1.9737,
-            1.9872,
-            1.9751,
-            2.0655,
-            2.1416,
-            2.023,
-            1.8275,
-            1.8989,
-            1.9307,
-            1.9958,
-            2.0854,
-            2.0053,
-            1.9246,
-            1.958,
-            1.9308,
-            1.8498,
-            1.8138,
-            1.8103,
-            1.8519,
-            1.909,
-            1.7626,
-            1.732,
-            1.6927
-          ],
-          "quality_score": 65,
-          "sizing_pct": 1,
-          "sizing_label": "medium",
-          "trailing_after_tp1": false,
-          "macro_reason": null,
-          "earnings_reason": null,
-          "news_sentiment": null,
-          "news_sentiment_reason": null,
-          "macro_event_reason": null,
-          "cross_asset_reason": null,
-          "sector_reason": null,
-          "stacked": false,
-          "stacked_count": null,
-          "stacked_patterns": null,
-          "news_context": null,
-          "wisdom_adjustment": 4,
-          "wisdom_note": "Scalp les overreactions rapides",
-          "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 60,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
@@ -15951,7 +15846,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"fund\" ×6 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"fund\" ×7.5 (5 mentions/24h)"
         },
         {
           "asset": "DoorDash",
@@ -16032,7 +15927,7 @@
             185.94,
             179.38
           ],
-          "quality_score": 69,
+          "quality_score": 71,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16060,13 +15955,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 64,
+          "quality_score_pre_wisdom": 66,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"reports\" ×6 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"reports\" ×12 (6 mentions/24h)"
         },
         {
           "asset": "Nutanix",
@@ -16582,7 +16477,7 @@
             11.94,
             11.6
           ],
-          "quality_score": 69,
+          "quality_score": 67,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16610,13 +16505,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 64,
+          "quality_score_pre_wisdom": 62,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"markets\" ×7.5 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"markets\" ×4.8 (4 mentions/24h)"
         },
         {
           "asset": "Lucid",
@@ -18081,14 +17976,14 @@
             "risk": "alert",
             "items": [
               {
-                "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings; What To Do In Doom-And-Bloom Market",
-                "time": "2026-10-24T13:07:54.000Z",
+                "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings In Doom-And-Bloom Market",
+                "time": "2026-10-24T15:08:44.000Z",
                 "source": "Yahoo Finance"
               },
               {
-                "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings Wave; What To Do Amid Mixed Signals",
-                "time": "2026-10-23T23:09:22.000Z",
-                "source": "Yahoo Finance"
+                "title": "Why McDonalds, Microsoft and Google saying no to tokenized stocks isn't a dealbreaker",
+                "time": "2026-10-24T15:00:00.000Z",
+                "source": "CoinDesk"
               }
             ]
           },
@@ -18101,7 +17996,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"mixed\" ×24 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"microsoft\" ×15 (5 mentions/24h)"
         },
         {
           "asset": "Wells Fargo",
@@ -18182,7 +18077,7 @@
             83.01,
             82.39
           ],
-          "quality_score": 56,
+          "quality_score": 61,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18196,17 +18091,27 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Wells Fargo, Cisco, Marvell among latest firms objecting to OKXICE's tokenized stock plan",
+                "time": "2026-10-24T14:06:24.000Z",
+                "source": "CoinDesk"
+              }
+            ]
+          },
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 51,
+          "quality_score_pre_wisdom": 56,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"plan\" ×12 (4 mentions/24h)"
         },
         {
           "asset": "IWM (Russell 2000)",
@@ -18602,7 +18507,7 @@
             325.17,
             313.22
           ],
-          "quality_score": 61,
+          "quality_score": 56,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18635,13 +18540,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 56,
+          "quality_score_pre_wisdom": 51,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"prepare\" ×18 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "MetLife",
@@ -19589,231 +19494,6 @@
           "spike_theme_reason": null
         },
         {
-          "asset": "UNI",
-          "kind": "crypto",
-          "type": "kairo-shortMomentum",
-          "label": "Crash vif — short tactique",
-          "timeframe": "Court terme · 1-3 jours",
-          "confidence": "medium",
-          "direction": "short",
-          "config": "Plongeon -6.3% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.",
-          "rationale": "Stratégie momentum baissier : on suit le mouvement déjà engagé. Pour les traders qui savent shorter (ou crypto via futures). Sinon : éviter d'acheter ici et attendre stabilisation.",
-          "entry": 6.850162255104675,
-          "stop": 7.370041661194253,
-          "tp1": 6.3775446132050595,
-          "tp2": 5.786772560830539,
-          "rr1": "0.91",
-          "rr2": "2.05",
-          "currency": "USD",
-          "prices60": [
-            4.3798,
-            4.6849,
-            4.4353,
-            4.682,
-            5.1322,
-            5.229,
-            5.8437,
-            5.8497,
-            6.3278,
-            6.1823,
-            7.0486,
-            7.2912,
-            6.8535,
-            6.7479,
-            6.1587,
-            5.9489,
-            6.0077,
-            6.3704,
-            6.1253,
-            6.5287,
-            6.3648,
-            6.694,
-            7.7915,
-            8.862,
-            8.6661,
-            8.7298,
-            8.99,
-            10.2187,
-            9.2356,
-            9.1473,
-            9.63,
-            9.7011,
-            9.6746,
-            8.8041,
-            8.8855,
-            8.8767,
-            8.9774,
-            8.9489,
-            9.0514,
-            9.077,
-            9.0829,
-            8.5572,
-            7.9107,
-            7.1095,
-            7.3193,
-            7.5836,
-            7.7646,
-            6.9729,
-            7.5365,
-            7.1872,
-            7.4238,
-            7.3266,
-            7.1452,
-            7.1892,
-            7.3086,
-            7.4313,
-            7.4514,
-            7.0019,
-            6.9556,
-            6.8502
-          ],
-          "quality_score": 60,
-          "sizing_pct": 1,
-          "sizing_label": "medium",
-          "trailing_after_tp1": false,
-          "macro_reason": null,
-          "earnings_reason": null,
-          "news_sentiment": null,
-          "news_sentiment_reason": null,
-          "macro_event_reason": null,
-          "cross_asset_reason": null,
-          "sector_reason": null,
-          "stacked": false,
-          "stacked_count": null,
-          "stacked_patterns": null,
-          "news_context": null,
-          "wisdom_adjustment": 4,
-          "wisdom_note": "Scalp les overreactions rapides",
-          "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 55,
-          "alpha_quality": null,
-          "alpha_pattern": null,
-          "alpha_rules": null,
-          "insider_signal": null,
-          "insider_reason": null,
-          "spike_theme_reason": null
-        },
-        {
-          "asset": "NEAR",
-          "kind": "crypto",
-          "type": "kairo-shortMomentum",
-          "label": "Crash vif — short tactique",
-          "timeframe": "Court terme · 1-3 jours",
-          "confidence": "medium",
-          "direction": "short",
-          "config": "Plongeon -9.3% sur 5 jours. KAIRO joue la continuation baissière. Réservé aux brokers qui supportent le short.",
-          "rationale": "Stratégie momentum baissier : on suit le mouvement déjà engagé. Pour les traders qui savent shorter (ou crypto via futures). Sinon : éviter d'acheter ici et attendre stabilisation.",
-          "entry": 4.443691960746353,
-          "stop": 5.043601493095925,
-          "tp1": 3.8983196586103785,
-          "tp2": 3.2166042809404107,
-          "rr1": "0.91",
-          "rr2": "2.05",
-          "currency": "USD",
-          "prices60": [
-            1.9001,
-            1.9277,
-            1.8238,
-            1.8681,
-            1.8181,
-            1.9197,
-            1.8865,
-            1.886,
-            1.9543,
-            2.1719,
-            2.1917,
-            2.4369,
-            2.3054,
-            2.3204,
-            2.4848,
-            2.443,
-            2.3635,
-            2.3703,
-            2.2994,
-            2.4681,
-            2.3352,
-            2.616,
-            3.1485,
-            3.7625,
-            3.5865,
-            4.1634,
-            4.2669,
-            4.4121,
-            4.3331,
-            4.5892,
-            4.9504,
-            5.0358,
-            5.3899,
-            4.8187,
-            4.8866,
-            5.3351,
-            4.807,
-            4.6908,
-            4.8298,
-            4.9133,
-            5.2891,
-            5.0668,
-            5.3346,
-            4.4614,
-            4.8824,
-            5.291,
-            5.8876,
-            5.0862,
-            5.0365,
-            4.8811,
-            5.2575,
-            5.0608,
-            4.8565,
-            5.0075,
-            4.8999,
-            4.9239,
-            5.2611,
-            4.8783,
-            4.6845,
-            4.4437
-          ],
-          "quality_score": 63,
-          "sizing_pct": 1,
-          "sizing_label": "medium",
-          "trailing_after_tp1": false,
-          "macro_reason": null,
-          "earnings_reason": null,
-          "news_sentiment": null,
-          "news_sentiment_reason": null,
-          "macro_event_reason": null,
-          "cross_asset_reason": null,
-          "sector_reason": null,
-          "stacked": false,
-          "stacked_count": null,
-          "stacked_patterns": null,
-          "news_context": {
-            "count": 3,
-            "risk": "alert",
-            "items": [
-              {
-                "title": "I'd Put Most of a Lump Sum Into an S&amp;P 500 Fund Right Away. Here's When I Wouldn't.",
-                "time": "2026-10-24T12:12:02.000Z",
-                "source": "Yahoo Finance"
-              },
-              {
-                "title": "Oil markets are on edge ahead of the weekend, as midterm elections near and fresh U.S. strikes on Iran are predicted",
-                "time": "2026-10-23T20:19:00.000Z",
-                "source": "MarketWatch"
-              }
-            ]
-          },
-          "wisdom_adjustment": 4,
-          "wisdom_note": "Scalp les overreactions rapides",
-          "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 58,
-          "alpha_quality": null,
-          "alpha_pattern": null,
-          "alpha_rules": null,
-          "insider_signal": null,
-          "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"ahead\" ×8 (4 mentions/24h)"
-        },
-        {
           "asset": "Netflix",
           "kind": "action",
           "type": "kairo-shortMomentum",
@@ -20007,7 +19687,7 @@
             69.07,
             66.7
           ],
-          "quality_score": 63,
+          "quality_score": 66,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20040,13 +19720,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 58,
+          "quality_score_pre_wisdom": 61,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"ahead\" ×8 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"reports\" ×12 (6 mentions/24h)"
         },
         {
           "asset": "Palo Alto Networks",
@@ -20666,17 +20346,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "GM aims to develop vehicles in as little as two years with AI, software push",
-                "time": "2026-10-21T18:03:55.000Z",
-                "source": "CNBC"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
@@ -23773,12 +23443,12 @@
           "timeframe": "Crypto · 5-30 jours",
           "confidence": "high",
           "direction": "long",
-          "config": "RSI 21 (survente extrême) · Bollinger 14% (bande basse) · MACD -0.00 (correction confirmée) · MA20>MA50 (tendance MT préservée) · MFI 38 (flux validé) · stop 0.6 ATR · cible 4 ATR.",
+          "config": "RSI 20 (survente extrême) · Bollinger 10% (bande basse) · MACD -0.00 (correction confirmée) · MA20>MA50 (tendance MT préservée) · MFI 37 (flux validé) · stop 0.6 ATR · cible 4 ATR.",
           "rationale": "Configuration contrarian validée sur 20 ans × 50 actifs (PF 2.17 walk-forward OOS). Le marché est en survente technique extrême + correction MACD confirmée. Stop technique serré, cible étendue pour capter le retournement complet.",
-          "entry": 0.2076944480325459,
-          "stop": 0.20466262043530414,
-          "tp1": 0.21780054002335167,
-          "tp2": 0.22790663201415748,
+          "entry": 0.20442921169112158,
+          "stop": 0.20125744539353307,
+          "tp1": 0.21500176601641657,
+          "tp2": 0.22557432034171154,
           "rr1": "3.33",
           "rr2": "6.67",
           "currency": "USD",
@@ -23842,7 +23512,7 @@
             0.2251,
             0.212,
             0.2107,
-            0.2077
+            0.2044
           ],
           "quality_score": 75,
           "sizing_pct": 3,
@@ -23878,7 +23548,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"record\" ×3 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"million\" ×4.3 (5 mentions/24h)"
         }
       ]
     },
@@ -24850,7 +24520,7 @@
             230.15,
             230.1
           ],
-          "quality_score": 78,
+          "quality_score": 75,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -24897,7 +24567,7 @@
           },
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"mixed\" ×24 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"mixed\" ×9 (3 mentions/24h)"
         },
         {
           "asset": "KLA Corp",
@@ -26605,7 +26275,7 @@
           },
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"lead\" ×15 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"lead\" ×10 (5 mentions/24h)"
         },
         {
           "asset": "EUR/GBP",
@@ -27539,13 +27209,13 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 80633.62165287508,
-      "change": "-0.58",
-      "rsi": "41",
+      "price": 80064.17472119891,
+      "change": "-1.28",
+      "rsi": "40",
       "maCross": "bull",
-      "macdHist": "-253.50",
-      "boll": "15%",
-      "adx": "17",
+      "macdHist": "-289.84",
+      "boll": "6%",
+      "adx": "21",
       "atr": "1.2%",
       "verdict": "Plutôt baissier",
       "score": 35,
@@ -27554,29 +27224,59 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 2366.9562207172366,
-      "change": "-0.75",
-      "rsi": "36",
+      "price": 2315.7049509101994,
+      "change": "-2.90",
+      "rsi": "33",
       "maCross": "bear",
-      "macdHist": "-8.06",
-      "boll": "21%",
-      "adx": "28",
-      "atr": "1.5%",
+      "macdHist": "-11.33",
+      "boll": "10%",
+      "adx": "35",
+      "atr": "1.7%",
       "verdict": "Baissier fort",
-      "score": 0,
+      "score": 13,
       "cls": "bear"
     },
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 101.36273416734166,
-      "change": "-1.34",
-      "rsi": "31",
+      "price": 100.32420049528855,
+      "change": "-2.35",
+      "rsi": "30",
       "maCross": "bear",
-      "macdHist": "-0.61",
-      "boll": "20%",
-      "adx": "38",
-      "atr": "1.6%",
+      "macdHist": "-0.67",
+      "boll": "16%",
+      "adx": "41",
+      "atr": "1.7%",
+      "verdict": "Baissier fort",
+      "score": 17,
+      "cls": "bear"
+    },
+    {
+      "label": "BNB",
+      "kind": "crypto",
+      "price": 723.4129504649469,
+      "change": "-2.08",
+      "rsi": "40",
+      "maCross": "bear",
+      "macdHist": "-0.91",
+      "boll": "26%",
+      "adx": "21",
+      "atr": "1.2%",
+      "verdict": "Baissier fort",
+      "score": 6,
+      "cls": "bear"
+    },
+    {
+      "label": "XRP",
+      "kind": "crypto",
+      "price": 1.273355168761172,
+      "change": "-1.58",
+      "rsi": "32",
+      "maCross": "bear",
+      "macdHist": "-0.01",
+      "boll": "16%",
+      "adx": "37",
+      "atr": "1.9%",
       "verdict": "Baissier fort",
       "score": 0,
       "cls": "bear"
@@ -27584,91 +27284,31 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "price": 0.2076944480325459,
-      "change": "-1.42",
-      "rsi": "21",
+      "price": 0.20442921169112158,
+      "change": "-2.97",
+      "rsi": "20",
       "maCross": "bull",
       "macdHist": "-0.00",
-      "boll": "14%",
-      "adx": "58",
-      "atr": "2.4%",
+      "boll": "10%",
+      "adx": "60",
+      "atr": "2.6%",
       "verdict": "Indécis",
       "score": 50,
       "cls": "neutral"
     },
     {
-      "label": "LINK",
+      "label": "SHIB",
       "kind": "crypto",
-      "price": 11.576609473542241,
-      "change": "-2.04",
-      "rsi": "31",
-      "maCross": "bear",
-      "macdHist": "-0.12",
-      "boll": "10%",
-      "adx": "38",
-      "atr": "2.3%",
-      "verdict": "Baissier fort",
-      "score": 13,
-      "cls": "bear"
-    },
-    {
-      "label": "UNI",
-      "kind": "crypto",
-      "price": 6.850162255104675,
-      "change": "-1.52",
-      "rsi": "39",
-      "maCross": "bear",
-      "macdHist": "-0.08",
-      "boll": "22%",
-      "adx": "22",
-      "atr": "3.4%",
-      "verdict": "Baissier fort",
-      "score": 6,
-      "cls": "bear"
-    },
-    {
-      "label": "XLM",
-      "kind": "crypto",
-      "price": 0.17037512488032788,
-      "change": "-1.64",
-      "rsi": "26",
+      "price": 0.000004838209098246716,
+      "change": "-2.61",
+      "rsi": "27",
       "maCross": "bear",
       "macdHist": "-0.00",
-      "boll": "14%",
-      "adx": "49",
-      "atr": "2.2%",
+      "boll": "15%",
+      "adx": "46",
+      "atr": "1.9%",
       "verdict": "Baissier fort",
       "score": 30,
-      "cls": "bear"
-    },
-    {
-      "label": "NEAR",
-      "kind": "crypto",
-      "price": 4.443691960746353,
-      "change": "-5.14",
-      "rsi": "39",
-      "maCross": "bull",
-      "macdHist": "-0.13",
-      "boll": "4%",
-      "adx": "22",
-      "atr": "6.1%",
-      "verdict": "Plutôt baissier",
-      "score": 35,
-      "cls": "bear"
-    },
-    {
-      "label": "RNDR",
-      "kind": "crypto",
-      "price": 1.6927338481607659,
-      "change": "-2.27",
-      "rsi": "35",
-      "maCross": "bull",
-      "macdHist": "-0.04",
-      "boll": "4%",
-      "adx": "29",
-      "atr": "3.4%",
-      "verdict": "Plutôt baissier",
-      "score": 33,
       "cls": "bear"
     },
     {
@@ -34315,13 +33955,13 @@
         "risk": "alert",
         "items": [
           {
-            "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings; What To Do In Doom-And-Bloom Market",
-            "time": "2026-10-24T13:07:54.000Z",
+            "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings In Doom-And-Bloom Market",
+            "time": "2026-10-24T15:08:44.000Z",
             "source": "Yahoo Finance"
           },
           {
-            "title": "Nasdaq raises red flag on 3 overnight risks ahead of Dec. 6 — and they pose an extra-big threat to retirement nest eggs",
-            "time": "2026-10-24T11:35:00.000Z",
+            "title": "Dow Jones Futures: Microsoft, Google, Amazon Lead Earnings; What To Do In Doom-And-Bloom Market",
+            "time": "2026-10-24T13:07:54.000Z",
             "source": "Yahoo Finance"
           }
         ]
@@ -35265,7 +34905,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 60
+    "matched_assets": 63
   },
   "macro": {
     "vix": 19.45,
@@ -35275,7 +34915,7 @@
     "cross_asset": {
       "sp500_change": -0.5186972294159081,
       "nasdaq_change": -0.20577423438047251,
-      "btc_change": -0.5779015353032263,
+      "btc_change": -1.2800355552193305,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -35287,7 +34927,7 @@
     "current_state": {
       "vix": 19.45,
       "yield_curve": null,
-      "btc_30d_change": -4.094041748455922,
+      "btc_30d_change": -4.771344250021746,
       "sp500_30d_change": 0.04855912117858844,
       "dominant_sectors": [
         "XLE",
@@ -35307,14 +34947,14 @@
       "war"
     ],
     "theme_counts": {
-      "tech": 79,
-      "earnings": 126,
       "war": 65,
+      "tech": 78,
+      "geopolitical": 47,
+      "crypto": 48,
+      "oil": 47,
       "fed": 49,
-      "crypto": 46,
-      "credit": 38,
-      "oil": 51,
-      "geopolitical": 48
+      "earnings": 121,
+      "credit": 39
     },
     "top_sectors_60d": [
       "XLE",
@@ -35471,23 +35111,9 @@
         "title": "Why investors should be skeptical of a potential Tesla-SpaceX merger",
         "url": "https://www.marketwatch.com/story/why-investors-should-be-skeptical-of-a-potential-tesla-spacex-merger-9e119d32?mod=mw_rss_topstories",
         "source": "MarketWatch"
-      },
-      {
-        "asset": "Tesla",
-        "kind": "confirmed",
-        "title": "SpaceX stock jumps 10% after earnings beat and Musk hints at Tesla tie-up",
-        "url": "https://www.cnbc.com/2026/10/21/spacex-spcx-stock-musk-merger-tesla.html",
-        "source": "CNBC"
-      },
-      {
-        "asset": "ING",
-        "kind": "confirmed",
-        "title": "SpaceX stock jumps 10% after earnings beat and Musk hints at Tesla tie-up",
-        "url": "https://www.cnbc.com/2026/10/21/spacex-spcx-stock-musk-merger-tesla.html",
-        "source": "CNBC"
       }
     ],
-    "ma_count": 9,
+    "ma_count": 7,
     "fear_greed": {
       "value": 51,
       "classification": "Neutral",
@@ -35499,13 +35125,13 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 90,
+      "ev_battery": 87,
+      "ai_breakthrough": 3,
+      "defi_growth": 4,
       "biotech_fda": 3,
       "semicon_supply": 4,
-      "ai_breakthrough": 3,
       "recession": 5,
       "rate_pivot": 2,
-      "defi_growth": 2,
       "crypto_hack": 2,
       "crypto_etf": 1
     },
@@ -35514,8 +35140,8 @@
       "index": 100,
       "level": "extreme",
       "war": 65,
-      "credit": 38,
-      "geopol": 48
+      "credit": 39,
+      "geopol": 47
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -35765,9 +35391,9 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "rsi": 41,
-      "change": -0.58,
-      "adx": 17,
+      "rsi": 40,
+      "change": -1.28,
+      "adx": 21,
       "verdict": "Plutôt baissier",
       "cls": "bear",
       "score": 35
@@ -35775,19 +35401,39 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "rsi": 36,
-      "change": -0.75,
-      "adx": 28,
+      "rsi": 33,
+      "change": -2.9,
+      "adx": 35,
       "verdict": "Baissier fort",
       "cls": "bear",
-      "score": 0
+      "score": 13
     },
     {
       "label": "SOL",
       "kind": "crypto",
-      "rsi": 31,
-      "change": -1.34,
-      "adx": 38,
+      "rsi": 30,
+      "change": -2.35,
+      "adx": 41,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 17
+    },
+    {
+      "label": "BNB",
+      "kind": "crypto",
+      "rsi": 40,
+      "change": -2.08,
+      "adx": 21,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 6
+    },
+    {
+      "label": "XRP",
+      "kind": "crypto",
+      "rsi": 32,
+      "change": -1.58,
+      "adx": 37,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 0
@@ -35795,62 +35441,22 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "rsi": 21,
-      "change": -1.42,
-      "adx": 58,
+      "rsi": 20,
+      "change": -2.97,
+      "adx": 60,
       "verdict": "Indécis",
       "cls": "neutral",
       "score": 50
     },
     {
-      "label": "LINK",
+      "label": "SHIB",
       "kind": "crypto",
-      "rsi": 31,
-      "change": -2.04,
-      "adx": 38,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 13
-    },
-    {
-      "label": "UNI",
-      "kind": "crypto",
-      "rsi": 39,
-      "change": -1.52,
-      "adx": 22,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 6
-    },
-    {
-      "label": "XLM",
-      "kind": "crypto",
-      "rsi": 26,
-      "change": -1.64,
-      "adx": 49,
+      "rsi": 27,
+      "change": -2.61,
+      "adx": 46,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 30
-    },
-    {
-      "label": "NEAR",
-      "kind": "crypto",
-      "rsi": 39,
-      "change": -5.14,
-      "adx": 22,
-      "verdict": "Plutôt baissier",
-      "cls": "bear",
-      "score": 35
-    },
-    {
-      "label": "RNDR",
-      "kind": "crypto",
-      "rsi": 35,
-      "change": -2.27,
-      "adx": 29,
-      "verdict": "Plutôt baissier",
-      "cls": "bear",
-      "score": 33
     },
     {
       "label": "Apple",
