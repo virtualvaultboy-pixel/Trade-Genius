@@ -1,10 +1,62 @@
 {
-  "generated": "2026-10-18T20:18:17.152Z",
+  "generated": "2026-10-25T20:34:06.365Z",
   "sources": [
     "Yahoo Finance",
     "CoinGecko"
   ],
   "entries": [
+    {
+      "id": "sem43-2026",
+      "week": "Sem. 43",
+      "date": "2026-10-25",
+      "title": "Marchés sous pression · biais vendeur partout",
+      "method": "Lecture des 4 grands indices (S&P, Nasdaq, CAC, Dow) + 2 crypto majors (BTC, ETH) sur le tf daily. Agrégation des outils RSI · MA20/MA50 · MACD · Bollinger · ADX · ATR · Momentum.",
+      "verdict": {
+        "score": 37,
+        "cls": "bear",
+        "label": "Plutôt baissier"
+      },
+      "indicators": [
+        {
+          "sym": "S&P 500",
+          "read": "RSI 37 · MA20 > MA50 · MACD négatif · -0.5% / 5j",
+          "sig": "bear",
+          "val": "Plutôt baissier"
+        },
+        {
+          "sym": "Nasdaq",
+          "read": "RSI 27 · MA20 > MA50 · MACD négatif · -0.7% / 5j",
+          "sig": "neutral",
+          "val": "Indécis"
+        },
+        {
+          "sym": "CAC 40",
+          "read": "RSI 47 · MA20 < MA50 · MACD positif · -2.2% / 5j",
+          "sig": "bear",
+          "val": "Plutôt baissier"
+        },
+        {
+          "sym": "Dow",
+          "read": "RSI 62 · MA20 < MA50 · MACD positif · +0.4% / 5j",
+          "sig": "bull",
+          "val": "Haussier fort"
+        },
+        {
+          "sym": "BTC",
+          "read": "RSI 37 · MA20 > MA50 · MACD négatif · -3.0% / 5j",
+          "sig": "bear",
+          "val": "Plutôt baissier"
+        },
+        {
+          "sym": "ETH",
+          "read": "RSI 30 · MA20 < MA50 · MACD négatif · -4.0% / 5j",
+          "sig": "bear",
+          "val": "Baissier fort"
+        }
+      ],
+      "conclusion": "<strong class=\"bear\">Biais vendeur modéré.</strong> Plus de signaux baissiers qu'acheteurs. Les zones de survente (RSI < 30) peuvent provoquer des rebonds techniques mais la pression reste à la baisse.",
+      "generated": "2026-10-25T20:34:06.365Z"
+    },
     {
       "id": "sem42-2026",
       "week": "Sem. 42",
@@ -576,58 +628,6 @@
       ],
       "conclusion": "<strong class=\"bull\">Vague haussière confirmée.</strong> Plus de 5 actifs majeurs sur 6 pointent dans la même direction, avec ADX qui valide la dynamique. À surveiller : les zones de surachat (RSI > 70) qui peuvent appeler une pause.",
       "generated": "2026-08-09T18:45:22.112Z"
-    },
-    {
-      "id": "sem31-2026",
-      "week": "Sem. 31",
-      "date": "2026-08-02",
-      "title": "Marchés en pause · pas de direction nette",
-      "method": "Lecture des 4 grands indices (S&P, Nasdaq, CAC, Dow) + 2 crypto majors (BTC, ETH) sur le tf daily. Agrégation des outils RSI · MA20/MA50 · MACD · Bollinger · ADX · ATR · Momentum.",
-      "verdict": {
-        "score": 46,
-        "cls": "neutral",
-        "label": "Indécis"
-      },
-      "indicators": [
-        {
-          "sym": "S&P 500",
-          "read": "RSI 48 · MA20 > MA50 · MACD négatif · +1.0% / 5j",
-          "sig": "bull",
-          "val": "Plutôt haussier"
-        },
-        {
-          "sym": "Nasdaq",
-          "read": "RSI 43 · MA20 < MA50 · MACD négatif · +1.6% / 5j",
-          "sig": "bear",
-          "val": "Baissier fort"
-        },
-        {
-          "sym": "CAC 40",
-          "read": "RSI 62 · MA20 > MA50 · MACD positif · +1.6% / 5j",
-          "sig": "bull",
-          "val": "Haussier fort"
-        },
-        {
-          "sym": "Dow",
-          "read": "RSI 50 · MA20 > MA50 · MACD négatif · +1.0% / 5j",
-          "sig": "bull",
-          "val": "Plutôt haussier"
-        },
-        {
-          "sym": "BTC",
-          "read": "RSI 44 · MA20 > MA50 · MACD négatif · -1.0% / 5j",
-          "sig": "bear",
-          "val": "Baissier fort"
-        },
-        {
-          "sym": "ETH",
-          "read": "RSI 50 · MA20 > MA50 · MACD négatif · -2.5% / 5j",
-          "sig": "bear",
-          "val": "Plutôt baissier"
-        }
-      ],
-      "conclusion": "<strong class=\"neutral\">Marché sans conviction.</strong> Les outils sont partagés, aucun signal franc d'un côté ou de l'autre. Mieux vaut attendre une confirmation avant de prendre position.",
-      "generated": "2026-08-02T19:14:59.156Z"
     }
   ]
 }
