@@ -6,7 +6,7 @@
   "icon": "🗿",
   "created_at": "2026-05-30T17:55:42.941Z",
   "capital_initial": 1000,
-  "cash": 832.0264399419336,
+  "cash": 738.5754141592295,
   "positions": [
     {
       "id": "pos-1792805099590-fcpv",
@@ -15,31 +15,32 @@
       "agent": "atlas",
       "type": "grid-month-A",
       "entry": 85.48999786376953,
-      "stop": 83.53262395357629,
+      "stop": 85.48999786376953,
       "tp1": 95.27686741473573,
       "tp2": 105.06373696570193,
       "initial_stop": 83.53262395357629,
-      "high_since_entry": 93.74,
+      "high_since_entry": 95.53,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.022895940567367483,
-      "size_eur": 75.7186558855241,
+      "size_eur": 113.57798382828615,
       "quality_score": 85,
       "sizing_pct": 10,
       "trailing_after_tp1": true,
-      "trailing_active": false,
+      "trailing_active": true,
       "pyramiding_pct": 50,
-      "pyramided": false,
+      "pyramided": true,
       "stacked": false,
       "opened_at": "2026-10-24T01:24:59.590Z",
       "opened_at_cycle": 106,
       "opened_at_date": "2026-10-24",
       "status": "open",
-      "touched_tp1": false,
+      "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 93.74,
-      "age_days": 2
+      "current_price": 95.53,
+      "age_days": 3,
+      "size_eur_added": 37.85932794276205
     },
     {
       "id": "pos-1792805099590-h1z7",
@@ -48,11 +49,11 @@
       "agent": "atlas",
       "type": "grid-month-A",
       "entry": 507.92999267578125,
-      "stop": 507.92999267578125,
+      "stop": 568.0420212298752,
       "tp1": 559.9198865264057,
       "tp2": 611.90978037703,
       "initial_stop": 497.53201390565636,
-      "high_since_entry": 560.26,
+      "high_since_entry": 578.44,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.020471283287187312,
@@ -71,8 +72,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 560.26,
-      "age_days": 2,
+      "current_price": 578.44,
+      "age_days": 3,
       "size_eur_added": 35.20917498676871
     },
     {
@@ -105,8 +106,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 3675.534,
-      "age_days": 2
+      "current_price": 3659.883,
+      "age_days": 3
     },
     {
       "id": "pos-1792805099590-lygt",
@@ -119,7 +120,7 @@
       "tp1": 1516.9280691367192,
       "tp2": 1614.256162687501,
       "initial_stop": 1400.1343568757811,
-      "high_since_entry": 1470,
+      "high_since_entry": 1489.6,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.01371204497388215,
@@ -138,8 +139,39 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 1470,
-      "age_days": 2
+      "current_price": 1489.6,
+      "age_days": 3
+    },
+    {
+      "id": "pos-1793240045026-01o1",
+      "asset": "Alphabet",
+      "kind": "action",
+      "agent": "atlas",
+      "type": "grid-month-A",
+      "entry": 320.5799865722656,
+      "stop": 318.02610847818164,
+      "tp1": 333.3493770426855,
+      "tp2": 346.11876751310535,
+      "initial_stop": 318.02610847818164,
+      "high_since_entry": 320.5799865722656,
+      "rr1": 5,
+      "rr2": 10,
+      "risk_pct": 0.007966430223517042,
+      "size_eur": 55.591697839942015,
+      "quality_score": 74,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-10-29T02:14:05.026Z",
+      "opened_at_cycle": 109,
+      "opened_at_date": "2026-10-29",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null
     }
   ],
   "closed_trades": [
@@ -5235,7 +5267,14 @@
       "equity": 1160.43,
       "cash": 832.03,
       "positions_count": 4
+    },
+    {
+      "date": "2026-10-29",
+      "cycle": 109,
+      "equity": 1170.8,
+      "cash": 738.58,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-10-28"
+  "last_cycle": "2026-10-29"
 }
