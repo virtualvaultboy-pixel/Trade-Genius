@@ -1,19 +1,33 @@
 {
-  "generated": "2026-10-31T01:23:32.080Z",
+  "generated": "2026-10-31T10:08:26.257Z",
   "source": "SEC EDGAR Form 4 RSS",
   "window_days": 7,
-  "count": 146,
+  "count": 102,
   "ticker_signals": {
     "Palantir": {
       "count": 3,
       "intensity": "medium"
-    },
-    "Super Micro": {
-      "count": 2,
-      "intensity": "low"
     }
   },
   "filings": [
+    {
+      "company": "Jefferies Financial Group Inc.",
+      "cik": "0000096223",
+      "filed_at": "2026-10-31T01:37:44.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/96223/000121465926013568/0001214659-26-013568-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
+    {
+      "company": "Natera, Inc.",
+      "cik": "0001604821",
+      "filed_at": "2026-10-31T01:35:06.000Z",
+      "url": "https://www.sec.gov/Archives/edgar/data/1604821/000169736226000021/0001697362-26-000021-index.htm",
+      "isIssuer": true,
+      "isForm4": true,
+      "ticker": null
+    },
     {
       "company": "SenesTech, Inc.",
       "cik": "0001680378",
@@ -892,24 +906,6 @@
       "cik": "0001051627",
       "filed_at": "2026-10-30T00:05:01.000Z",
       "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926034036/0001437749-26-034036-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "AXT INC",
-      "cik": "0001051627",
-      "filed_at": "2026-10-30T00:04:21.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1051627/000143774926034035/0001437749-26-034035-index.htm",
-      "isIssuer": true,
-      "isForm4": true,
-      "ticker": null
-    },
-    {
-      "company": "HEALTHSTREAM INC",
-      "cik": "0001095565",
-      "filed_at": "2026-10-30T00:04:16.000Z",
-      "url": "https://www.sec.gov/Archives/edgar/data/1095565/000143774926034034/0001437749-26-034034-index.htm",
       "isIssuer": true,
       "isForm4": true,
       "ticker": null
