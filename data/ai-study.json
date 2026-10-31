@@ -1,14 +1,14 @@
 {
-  "generated": "2026-10-31T13:30:32.611Z",
+  "generated": "2026-10-31T18:01:43.985Z",
   "source": "Pollinations · openai",
   "date": "2026-10-31",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (37 indices · 10 crypto · 354 actions) : S&P 500 -1.82% (RSI 34, plutôt baissier) · Nasdaq -2.86% (RSI 28, indécis) · ETH +0.20% (RSI 30, baissier fort) · SOL -0.57% (RSI 30, baissier fort) · Apple -1.23% (RSI 55, plutôt haussier). Globalement, 190 actifs en biais haussier contre 183 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (37 indices · 7 crypto · 354 actions) : S&P 500 -1.82% (RSI 34, plutôt baissier) · Nasdaq -2.86% (RSI 28, indécis) · BTC +0.53% (RSI 35, baissier fort) · ETH +0.55% (RSI 31, baissier fort) · Apple -1.23% (RSI 55, plutôt haussier). Globalement, 190 actifs en biais haussier contre 180 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : pression vendeuse persistante (RSI 34)",
     "Nasdaq : sans direction nette (RSI 28)",
-    "ETH : pression vendeuse persistante (RSI 30)",
-    "SOL : pression vendeuse persistante (RSI 30)",
+    "BTC : pression vendeuse persistante (RSI 35)",
+    "ETH : pression vendeuse persistante (RSI 31)",
     "Apple : tendance haussière confirmée (RSI 55, bull MA50)"
   ],
   "plan_pedago": [
@@ -824,7 +824,7 @@
             92.07,
             65.76
           ],
-          "quality_score": 67,
+          "quality_score": 69,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -863,7 +863,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sell\" ×3.6 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"since\" ×9 (3 mentions/24h)"
         },
         {
           "asset": "VWO (Emerging Markets)",
@@ -1889,7 +1889,7 @@
             5.68,
             5.34
           ],
-          "quality_score": 79,
+          "quality_score": 77,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1923,7 +1923,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sell\" ×3.6 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Twilio",
@@ -2214,7 +2214,7 @@
             647.39,
             622.75
           ],
-          "quality_score": 79,
+          "quality_score": 77,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -2248,7 +2248,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×3 (10 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Freeport-McMoRan",
@@ -2553,7 +2553,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Uber tests how tokenization can put idle cash to work with HSBC, Franklin Templeton",
+                "time": "2026-10-31T14:40:29.000Z",
+                "source": "CoinDesk"
+              }
+            ]
+          },
           "wisdom_adjustment": 0,
           "wisdom_note": null,
           "historical_analog": null,
@@ -4462,7 +4472,7 @@
             5.68,
             5.34
           ],
-          "quality_score": 84,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -4490,13 +4500,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Bottom-fishing post-overreaction",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 79,
+          "quality_score_pre_wisdom": 77,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sell\" ×3.6 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Twilio",
@@ -5756,7 +5766,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Uber tests how tokenization can put idle cash to work with HSBC, Franklin Templeton",
+                "time": "2026-10-31T14:40:29.000Z",
+                "source": "CoinDesk"
+              }
+            ]
+          },
           "wisdom_adjustment": 4,
           "wisdom_note": "Bottom-fishing post-overreaction",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
@@ -6616,7 +6636,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"street\" ×4.5 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"wall\" ×4.8 (4 mentions/24h)"
         },
         {
           "asset": "Western Digital",
@@ -6697,7 +6717,7 @@
             395.41,
             366.11
           ],
-          "quality_score": 70,
+          "quality_score": 72,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -6725,13 +6745,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Bottom-fishing post-overreaction",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 65,
+          "quality_score_pre_wisdom": 67,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"x2014\" ×3 (3 mentions/24h)"
         },
         {
           "asset": "Uber",
@@ -6826,7 +6846,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Uber tests how tokenization can put idle cash to work with HSBC, Franklin Templeton",
+                "time": "2026-10-31T14:40:29.000Z",
+                "source": "CoinDesk"
+              }
+            ]
+          },
           "wisdom_adjustment": 4,
           "wisdom_note": "Bottom-fishing post-overreaction",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
@@ -7979,7 +8009,7 @@
             5.68,
             5.34
           ],
-          "quality_score": 85,
+          "quality_score": 83,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -8007,13 +8037,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 79,
+          "quality_score_pre_wisdom": 77,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sell\" ×3.6 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Twilio",
@@ -8538,7 +8568,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Uber tests how tokenization can put idle cash to work with HSBC, Franklin Templeton",
+                "time": "2026-10-31T14:40:29.000Z",
+                "source": "CoinDesk"
+              }
+            ]
+          },
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
@@ -9608,7 +9648,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sells\" ×22 (11 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"sells\" ×78 (13 mentions/24h)"
         },
         {
           "asset": "Paramount",
@@ -10739,7 +10779,7 @@
             92.07,
             65.76
           ],
-          "quality_score": 62,
+          "quality_score": 63,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10772,13 +10812,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 57,
+          "quality_score_pre_wisdom": 58,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sell\" ×3.6 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"since\" ×9 (3 mentions/24h)"
         },
         {
           "asset": "Shopify",
@@ -10964,7 +11004,7 @@
             196.42,
             184.11
           ],
-          "quality_score": 74,
+          "quality_score": 82,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10978,11 +11018,21 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Dow Jones Futures: Stock Market Sells Off As Apple, Palantir, Midterm Elections Loom; What To Do",
+                "time": "2026-10-31T12:41:41.000Z",
+                "source": "Yahoo Finance"
+              }
+            ]
+          },
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 69,
+          "quality_score_pre_wisdom": 76,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
@@ -10991,7 +11041,7 @@
             "intensity": "medium"
           },
           "insider_reason": "Insider activity medium (3 Form 4 / 7j)",
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"sells\" ×78 (13 mentions/24h)"
         },
         {
           "asset": "JKSE Indonésie",
@@ -11492,7 +11542,7 @@
             109.67,
             105.12
           ],
-          "quality_score": 72,
+          "quality_score": 70,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11525,13 +11575,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 67,
+          "quality_score_pre_wisdom": 65,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nasdaq\" ×3.4 (9 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Snowflake",
@@ -11841,13 +11891,13 @@
             "risk": "caution",
             "items": [
               {
-                "title": "Coinbase earnings: Wall Street divided on trading rebound after Robinhood crypto revenue sinks 55%",
-                "time": "2026-10-28T17:02:57.000Z",
-                "source": "CoinDesk"
+                "title": "Coinbase CEO Brian Armstrong Says Quantum Computing Is a Bigger Threat to Crypto Than AI...And they are preparing",
+                "time": "2026-10-31T11:51:37.000Z",
+                "source": "Reddit r/cryptocurrency"
               },
               {
-                "title": "Coinbase says user funds are safe after third-party vendor exposes customer contact info",
-                "time": "2026-10-28T03:11:14.000Z",
+                "title": "Coinbase earnings: Wall Street divided on trading rebound after Robinhood crypto revenue sinks 55%",
+                "time": "2026-10-28T17:02:57.000Z",
                 "source": "CoinDesk"
               }
             ]
@@ -11861,7 +11911,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"street\" ×4.5 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"wall\" ×4.8 (4 mentions/24h)"
         },
         {
           "asset": "Dell",
@@ -14918,7 +14968,7 @@
           "trailing_after_tp1": false,
           "macro_reason": null,
           "earnings_reason": null,
-          "news_sentiment": "neutral",
+          "news_sentiment": null,
           "news_sentiment_reason": null,
           "macro_event_reason": null,
           "cross_asset_reason": null,
@@ -14927,18 +14977,18 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 3,
+            "risk": "alert",
             "items": [
+              {
+                "title": "Automakers like Rivian and Ford are ‘democratizing 3D printing’ to reduce costs and increase speed",
+                "time": "2026-10-31T12:00:01.000Z",
+                "source": "CNBC"
+              },
               {
                 "title": "Looking for income? These dividend stocks have high yields that seem well supported.",
                 "time": "2026-10-29T15:54:00.000Z",
                 "source": "MarketWatch"
-              },
-              {
-                "title": "Ford Is Broken, Again",
-                "time": "2026-10-29T15:44:58.000Z",
-                "source": "Yahoo Finance"
               }
             ]
           },
@@ -16092,7 +16142,7 @@
             52342.5586,
             51770.3086
           ],
-          "quality_score": 58,
+          "quality_score": 61,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16111,13 +16161,13 @@
             "risk": "alert",
             "items": [
               {
-                "title": "Okta jumps after-hours following tapped inclusion in the S&amp;P 500",
-                "time": "2026-10-30T21:59:08.000Z",
+                "title": "Dow Jones Futures: Stock Market Sells Off As Apple, Palantir, Midterm Elections Loom; What To Do",
+                "time": "2026-10-31T12:41:41.000Z",
                 "source": "Yahoo Finance"
               },
               {
-                "title": "Dow, S&amp;P 500, Nasdaq Futures Fall As Weak Tech Earnings Trigger Selloff: INTC, IOVA, SLS, AMZN Stocks In Focus",
-                "time": "2026-10-30T04:03:05.000Z",
+                "title": "Okta jumps after-hours following tapped inclusion in the S&amp;P 500",
+                "time": "2026-10-30T21:59:08.000Z",
                 "source": "Yahoo Finance"
               }
             ]
@@ -16125,13 +16175,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 53,
+          "quality_score_pre_wisdom": 56,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"nasdaq\" ×3.4 (9 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"sells\" ×78 (13 mentions/24h)"
         },
         {
           "asset": "Russell 2000",
@@ -16144,9 +16194,9 @@
           "config": "ATR 0.89% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
           "rationale": "Théorie : la volatilité finit toujours par revenir. Quand l'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).",
           "entry": 2811.840087890625,
-          "stop": 2749.3257448459854,
-          "tp1": 2861.851562326337,
-          "tp2": 2936.8687739799043,
+          "stop": 2749.325740399484,
+          "tp1": 2861.851565883538,
+          "tp2": 2936.8687828729076,
           "rr1": "0.80",
           "rr2": "2.00",
           "currency": "EUR",
@@ -16212,7 +16262,7 @@
             2859.22,
             2811.8401
           ],
-          "quality_score": 56,
+          "quality_score": 59,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16240,13 +16290,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 51,
+          "quality_score_pre_wisdom": 54,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"since\" ×9 (3 mentions/24h)"
         },
         {
           "asset": "AEX Amsterdam",
@@ -16576,7 +16626,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"street\" ×4.5 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"wall\" ×4.8 (4 mentions/24h)"
         },
         {
           "asset": "Disney",
@@ -18686,7 +18736,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"street\" ×4.5 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"wall\" ×4.8 (4 mentions/24h)"
         },
         {
           "asset": "Salesforce",
@@ -19607,7 +19657,7 @@
             395.41,
             366.11
           ],
-          "quality_score": 52,
+          "quality_score": 53,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -19635,13 +19685,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 47,
+          "quality_score_pre_wisdom": 48,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"x2014\" ×3 (3 mentions/24h)"
         },
         {
           "asset": "Lucid",
@@ -20191,7 +20241,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"street\" ×4.5 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"wall\" ×4.8 (4 mentions/24h)"
         },
         {
           "asset": "SoFi",
@@ -21970,7 +22020,7 @@
             5.68,
             5.34
           ],
-          "quality_score": 88,
+          "quality_score": 85,
           "sizing_pct": 5,
           "sizing_label": "volt-high",
           "trailing_after_tp1": true,
@@ -22004,7 +22054,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sell\" ×3.6 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Unity",
@@ -23219,7 +23269,7 @@
             647.39,
             622.75
           ],
-          "quality_score": 79,
+          "quality_score": 77,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -23261,7 +23311,7 @@
           },
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2019\" ×3 (10 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Freeport-McMoRan",
@@ -23469,7 +23519,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Uber tests how tokenization can put idle cash to work with HSBC, Franklin Templeton",
+                "time": "2026-10-31T14:40:29.000Z",
+                "source": "CoinDesk"
+              }
+            ]
+          },
           "wisdom_adjustment": 0,
           "wisdom_note": null,
           "historical_analog": null,
@@ -24671,7 +24731,7 @@
     {
       "label": "Russell 2000",
       "kind": "index",
-      "price": 2811.844,
+      "price": 2811.8442,
       "change": "-1.66",
       "rsi": "52",
       "maCross": "bear",
@@ -24984,15 +25044,30 @@
       "cls": "bear"
     },
     {
+      "label": "BTC",
+      "kind": "crypto",
+      "price": 77631.60946899703,
+      "change": "0.53",
+      "rsi": "35",
+      "maCross": "bear",
+      "macdHist": "-513.57",
+      "boll": "1%",
+      "adx": "30",
+      "atr": "1.2%",
+      "verdict": "Baissier fort",
+      "score": 13,
+      "cls": "bear"
+    },
+    {
       "label": "ETH",
       "kind": "crypto",
-      "price": 2246.874700908995,
-      "change": "0.20",
-      "rsi": "30",
+      "price": 2254.9039623708168,
+      "change": "0.55",
+      "rsi": "31",
       "maCross": "bear",
-      "macdHist": "-12.17",
-      "boll": "4%",
-      "adx": "40",
+      "macdHist": "-11.66",
+      "boll": "6%",
+      "adx": "37",
       "atr": "1.2%",
       "verdict": "Baissier fort",
       "score": 13,
@@ -25001,136 +25076,76 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 95.70335088808733,
-      "change": "-0.57",
-      "rsi": "30",
+      "price": 96.07356432924283,
+      "change": "-0.19",
+      "rsi": "31",
       "maCross": "bear",
-      "macdHist": "-0.77",
-      "boll": "-2%",
-      "adx": "39",
-      "atr": "1.5%",
+      "macdHist": "-0.74",
+      "boll": "0%",
+      "adx": "38",
+      "atr": "1.4%",
       "verdict": "Baissier fort",
       "score": 13,
       "cls": "bear"
     },
     {
-      "label": "BNB",
+      "label": "XRP",
       "kind": "crypto",
-      "price": 704.5595593370714,
-      "change": "0.14",
-      "rsi": "46",
+      "price": 1.254450695702608,
+      "change": "-0.03",
+      "rsi": "44",
       "maCross": "bear",
-      "macdHist": "-3.21",
-      "boll": "8%",
-      "adx": "9",
-      "atr": "1.5%",
+      "macdHist": "-0.00",
+      "boll": "9%",
+      "adx": "13",
+      "atr": "1.7%",
       "verdict": "Baissier fort",
-      "score": 25,
+      "score": 18,
       "cls": "bear"
     },
     {
-      "label": "XRP",
+      "label": "ADA",
       "kind": "crypto",
-      "price": 1.2467041045985459,
-      "change": "-0.65",
-      "rsi": "43",
+      "price": 0.19372369377305618,
+      "change": "-0.71",
+      "rsi": "28",
       "maCross": "bear",
       "macdHist": "-0.00",
-      "boll": "4%",
-      "adx": "15",
-      "atr": "1.8%",
+      "boll": "10%",
+      "adx": "44",
+      "atr": "2.2%",
       "verdict": "Baissier fort",
-      "score": 18,
+      "score": 30,
       "cls": "bear"
     },
     {
       "label": "DOGE",
       "kind": "crypto",
-      "price": 0.0752802779815189,
-      "change": "-0.79",
-      "rsi": "38",
+      "price": 0.07580662308808993,
+      "change": "-0.10",
+      "rsi": "39",
       "maCross": "bear",
       "macdHist": "-0.00",
-      "boll": "8%",
-      "adx": "24",
-      "atr": "1.6%",
+      "boll": "13%",
+      "adx": "22",
+      "atr": "1.5%",
       "verdict": "Baissier fort",
       "score": 18,
       "cls": "bear"
     },
     {
-      "label": "DOT",
+      "label": "AVAX",
       "kind": "crypto",
-      "price": 0.952711290748402,
-      "change": "-2.12",
-      "rsi": "29",
+      "price": 8.581809082882033,
+      "change": "0.50",
+      "rsi": "24",
       "maCross": "bear",
-      "macdHist": "-0.02",
-      "boll": "10%",
-      "adx": "42",
-      "atr": "2.9%",
+      "macdHist": "-0.13",
+      "boll": "16%",
+      "adx": "51",
+      "atr": "1.9%",
       "verdict": "Baissier fort",
-      "score": 30,
-      "cls": "bear"
-    },
-    {
-      "label": "LINK",
-      "kind": "crypto",
-      "price": 11.563125378436002,
-      "change": "1.02",
-      "rsi": "45",
-      "maCross": "bear",
-      "macdHist": "-0.05",
-      "boll": "32%",
-      "adx": "10",
-      "atr": "2.6%",
-      "verdict": "Baissier fort",
-      "score": 14,
-      "cls": "bear"
-    },
-    {
-      "label": "TRX",
-      "kind": "crypto",
-      "price": 0.3189315597776246,
-      "change": "-2.94",
-      "rsi": "40",
-      "maCross": "bear",
-      "macdHist": "-0.00",
-      "boll": "-3%",
-      "adx": "21",
-      "atr": "1.6%",
-      "verdict": "Baissier fort",
-      "score": 18,
-      "cls": "bear"
-    },
-    {
-      "label": "UNI",
-      "kind": "crypto",
-      "price": 6.9721135109422905,
-      "change": "-2.43",
-      "rsi": "47",
-      "maCross": "bear",
-      "macdHist": "-0.01",
-      "boll": "33%",
-      "adx": "6",
-      "atr": "3.1%",
-      "verdict": "Baissier fort",
-      "score": 14,
-      "cls": "bear"
-    },
-    {
-      "label": "ATOM",
-      "kind": "crypto",
-      "price": 1.5078989349900824,
-      "change": "-2.70",
-      "rsi": "28",
-      "maCross": "bear",
-      "macdHist": "-0.02",
-      "boll": "1%",
-      "adx": "43",
-      "atr": "2.1%",
-      "verdict": "Baissier fort",
-      "score": 30,
+      "score": 17,
       "cls": "bear"
     },
     {
@@ -26081,13 +26096,13 @@
     {
       "label": "GBP/USD",
       "kind": "forex",
-      "price": 1.3389,
-      "change": "0.46",
-      "rsi": "64",
+      "price": 1.3393,
+      "change": "0.11",
+      "rsi": "69",
       "maCross": "bear",
       "macdHist": "0.00",
-      "boll": "82%",
-      "adx": "27",
+      "boll": "83%",
+      "adx": "38",
       "atr": "0.3%",
       "verdict": "Haussier fort",
       "score": 80,
@@ -31440,7 +31455,17 @@
         1292.6,
         1277
       ],
-      "news_context": null,
+      "news_context": {
+        "count": 1,
+        "risk": "normal",
+        "items": [
+          {
+            "title": "Uber tests how tokenization can put idle cash to work with HSBC, Franklin Templeton",
+            "time": "2026-10-31T14:40:29.000Z",
+            "source": "CoinDesk"
+          }
+        ]
+      },
       "wisdom_adjustment": 0,
       "historical_analog": null
     },
@@ -32876,13 +32901,13 @@
         "risk": "alert",
         "items": [
           {
-            "title": "Meta outlook revised downward by S&amp;P on cash flow and capex concerns",
-            "time": "2026-10-30T22:42:26.000Z",
-            "source": "CNBC"
+            "title": "Ex-Meta Researcher Torrented Pirated Books, Deleted It 'Due to Litigation'",
+            "time": "2026-10-31T14:57:33.000Z",
+            "source": "Hacker News"
           },
           {
-            "title": "Microsoft plans to raise $25 billion in debt as it pursues AI buildout",
-            "time": "2026-10-30T00:38:13.000Z",
+            "title": "Meta outlook revised downward by S&amp;P on cash flow and capex concerns",
+            "time": "2026-10-30T22:42:26.000Z",
             "source": "CNBC"
           }
         ]
@@ -33052,7 +33077,17 @@
         65.74,
         65.25
       ],
-      "news_context": null,
+      "news_context": {
+        "count": 1,
+        "risk": "normal",
+        "items": [
+          {
+            "title": "Uber tests how tokenization can put idle cash to work with HSBC, Franklin Templeton",
+            "time": "2026-10-31T14:40:29.000Z",
+            "source": "CoinDesk"
+          }
+        ]
+      },
       "wisdom_adjustment": 0,
       "historical_analog": null
     },
@@ -33723,7 +33758,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 57
+    "matched_assets": 55
   },
   "macro": {
     "vix": 19.42,
@@ -33733,7 +33768,7 @@
     "cross_asset": {
       "sp500_change": -1.8175287778868343,
       "nasdaq_change": -2.855561117502253,
-      "btc_change": null,
+      "btc_change": 0.5289065928282602,
       "risk_off": false,
       "tech_risk_off": true,
       "crypto_dump": false,
@@ -33745,7 +33780,7 @@
     "current_state": {
       "vix": 19.42,
       "yield_curve": null,
-      "btc_30d_change": null,
+      "btc_30d_change": -8.135305586990977,
       "sp500_30d_change": -2.377817126863574,
       "dominant_sectors": [
         "XLE",
@@ -33767,14 +33802,14 @@
       "fed"
     ],
     "theme_counts": {
-      "tech": 73,
-      "earnings": 186,
-      "war": 41,
-      "geopolitical": 33,
-      "oil": 15,
-      "crypto": 112,
+      "crypto": 124,
+      "credit": 25,
       "fed": 99,
-      "credit": 23
+      "tech": 65,
+      "war": 43,
+      "oil": 16,
+      "geopolitical": 33,
+      "earnings": 172
     },
     "top_sectors_60d": [
       "XLE",
@@ -33809,7 +33844,7 @@
         "name": "Bull post-COVID (meme stocks + retail)",
         "date": "2021-01-27",
         "category": "bull-run",
-        "similarity": 40,
+        "similarity": 34,
         "lesson": "Easy money + retail euphoria = parabolic 12 mois mais top brutal, garder trailing stops 5-8 ATR.",
         "market_response": {
           "duration_days": 365,
@@ -33828,26 +33863,25 @@
         }
       },
       {
-        "id": "2016-brexit",
-        "name": "Brexit vote",
-        "date": "2016-06-24",
-        "category": "geopolitical",
-        "similarity": 36,
-        "lesson": "Choc politique unique sans contagion économique = recovery <1 mois, BTC commence à jouer safe-haven.",
+        "id": "2000-dotcom-peak",
+        "name": "Pic bulle dot-com (Nasdaq ATH)",
+        "date": "2000-03-10",
+        "category": "bubble-pop",
+        "similarity": 33,
+        "lesson": "Courbe taux inversée + tech bullée + PE >35 = bear market 18-24 mois, rotation défensive obligatoire.",
         "market_response": {
-          "duration_days": 30,
-          "sp500_pct": 5,
-          "btc_pct": 20,
+          "duration_days": 730,
+          "sp500_pct": -49,
+          "btc_pct": null,
           "winners": [
+            "XLP",
             "XLU",
-            "GLD",
-            "TLT",
-            "BTC"
+            "XLE"
           ],
           "losers": [
-            "XLF",
-            "EZU",
-            "EWU"
+            "XLK",
+            "SOXX",
+            "IBB"
           ]
         }
       }
@@ -33932,13 +33966,13 @@
     "tech_events_upcoming": [],
     "enriched_themes": {
       "ev_battery": 86,
-      "crypto_hack": 37,
-      "biotech_fda": 1,
+      "crypto_hack": 44,
       "ai_breakthrough": 6,
+      "defi_growth": 2,
+      "biotech_fda": 1,
       "recession": 1,
       "rate_pivot": 2,
-      "semicon_supply": 1,
-      "defi_growth": 1
+      "semicon_supply": 1
     },
     "etf_flows": {
       "XLK Tech": {
@@ -33949,8 +33983,8 @@
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 41,
-      "credit": 23,
+      "war": 43,
+      "credit": 25,
       "geopol": 33
     },
     "earnings_top_beats": [],
@@ -34199,11 +34233,21 @@
       "score": 35
     },
     {
+      "label": "BTC",
+      "kind": "crypto",
+      "rsi": 35,
+      "change": 0.53,
+      "adx": 30,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 13
+    },
+    {
       "label": "ETH",
       "kind": "crypto",
-      "rsi": 30,
-      "change": 0.2,
-      "adx": 40,
+      "rsi": 31,
+      "change": 0.55,
+      "adx": 37,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 13
@@ -34211,92 +34255,52 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "rsi": 30,
-      "change": -0.57,
-      "adx": 39,
+      "rsi": 31,
+      "change": -0.19,
+      "adx": 38,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 13
     },
     {
-      "label": "BNB",
-      "kind": "crypto",
-      "rsi": 46,
-      "change": 0.14,
-      "adx": 9,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 25
-    },
-    {
       "label": "XRP",
       "kind": "crypto",
-      "rsi": 43,
-      "change": -0.65,
-      "adx": 15,
+      "rsi": 44,
+      "change": -0.03,
+      "adx": 13,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 18
+    },
+    {
+      "label": "ADA",
+      "kind": "crypto",
+      "rsi": 28,
+      "change": -0.71,
+      "adx": 44,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 30
     },
     {
       "label": "DOGE",
       "kind": "crypto",
-      "rsi": 38,
-      "change": -0.79,
-      "adx": 24,
+      "rsi": 39,
+      "change": -0.1,
+      "adx": 22,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 18
     },
     {
-      "label": "DOT",
+      "label": "AVAX",
       "kind": "crypto",
-      "rsi": 29,
-      "change": -2.12,
-      "adx": 42,
+      "rsi": 24,
+      "change": 0.5,
+      "adx": 51,
       "verdict": "Baissier fort",
       "cls": "bear",
-      "score": 30
-    },
-    {
-      "label": "LINK",
-      "kind": "crypto",
-      "rsi": 45,
-      "change": 1.02,
-      "adx": 10,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 14
-    },
-    {
-      "label": "TRX",
-      "kind": "crypto",
-      "rsi": 40,
-      "change": -2.94,
-      "adx": 21,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 18
-    },
-    {
-      "label": "UNI",
-      "kind": "crypto",
-      "rsi": 47,
-      "change": -2.43,
-      "adx": 6,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 14
-    },
-    {
-      "label": "ATOM",
-      "kind": "crypto",
-      "rsi": 28,
-      "change": -2.7,
-      "adx": 43,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 30
+      "score": 17
     },
     {
       "label": "Apple",
@@ -34931,9 +34935,9 @@
     {
       "label": "GBP/USD",
       "kind": "forex",
-      "rsi": 64,
-      "change": 0.46,
-      "adx": 27,
+      "rsi": 69,
+      "change": 0.11,
+      "adx": 38,
       "verdict": "Haussier fort",
       "cls": "bull",
       "score": 80
