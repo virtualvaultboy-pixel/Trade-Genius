@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-01T06:46:57.906Z",
+  "generated": "2026-11-01T13:49:49.215Z",
   "source": "Pollinations · openai",
   "date": "2026-11-01",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (37 indices · 8 crypto · 354 actions) : S&P 500 -1.82% (RSI 34, plutôt baissier) · Nasdaq -2.86% (RSI 28, indécis) · BTC +0.49% (RSI 33, baissier fort) · ETH +0.52% (RSI 32, baissier fort) · Apple -1.23% (RSI 55, plutôt haussier). Globalement, 190 actifs en biais haussier contre 181 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (37 indices · 9 crypto · 354 actions) : S&P 500 -1.82% (RSI 34, plutôt baissier) · Nasdaq -2.86% (RSI 28, indécis) · BTC +0.53% (RSI 33, baissier fort) · ETH +0.50% (RSI 32, baissier fort) · Apple -1.23% (RSI 55, plutôt haussier). Globalement, 190 actifs en biais haussier contre 182 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : pression vendeuse persistante (RSI 34)",
     "Nasdaq : sans direction nette (RSI 28)",
@@ -23,17 +23,17 @@
     "label": "Indécis"
   },
   "recommended": {
-    "count": 31,
+    "count": 32,
     "byKind": {
       "index": 2,
-      "crypto": 2,
+      "crypto": 3,
       "action": 21,
       "forex": 3,
       "metal": 3
     },
     "byConfidence": {
       "very-high": 7,
-      "high": 24,
+      "high": 25,
       "medium": 0
     },
     "assets": [
@@ -227,6 +227,15 @@
         "rr2": "2.00"
       },
       {
+        "label": "DOT",
+        "kind": "crypto",
+        "type": "rebond-survente",
+        "label_setup": "Rebond technique sur survente",
+        "confidence": "high",
+        "direction": "long",
+        "rr2": "2.00"
+      },
+      {
         "label": "Meta",
         "kind": "action",
         "type": "rebond-survente",
@@ -319,7 +328,7 @@
     ],
     "opportunityVerdict": {
       "cls": "bull",
-      "label": "31 opportunités détectées",
+      "label": "32 opportunités détectées",
       "desc": "Plusieurs actifs alignés simultanément — contexte large favorable aux acheteurs trend-follow."
     }
   },
@@ -413,7 +422,7 @@
             178.2,
             184.3
           ],
-          "quality_score": 85,
+          "quality_score": 86,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": false,
@@ -518,7 +527,7 @@
             424.5,
             436.95
           ],
-          "quality_score": 85,
+          "quality_score": 86,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": false,
@@ -623,7 +632,7 @@
             169186,
             167922
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -728,7 +737,7 @@
             46368.3281,
             45211.8281
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -833,7 +842,7 @@
             92.07,
             65.76
           ],
-          "quality_score": 69,
+          "quality_score": 70,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -953,7 +962,7 @@
             56.6,
             55.51
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1058,7 +1067,7 @@
             52.191,
             49.276
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1163,7 +1172,7 @@
             1494.8,
             1436
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1268,7 +1277,7 @@
             1000.6,
             987.7
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1373,7 +1382,7 @@
             603.75,
             603.5
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1478,7 +1487,7 @@
             451.25,
             447.75
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1583,7 +1592,7 @@
             1219.75,
             1234.25
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1688,7 +1697,7 @@
             128.55,
             115.5
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1793,7 +1802,7 @@
             254.39,
             239.11
           ],
-          "quality_score": 69,
+          "quality_score": 70,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -1898,7 +1907,7 @@
             5.68,
             5.34
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -2013,7 +2022,7 @@
             241.9,
             205.03
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -2118,7 +2127,7 @@
             89.47,
             88.05
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -2223,7 +2232,7 @@
             647.39,
             622.75
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -2338,7 +2347,7 @@
             66.14,
             62.47
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -2443,7 +2452,7 @@
             176.28,
             177.46
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -2548,7 +2557,7 @@
             1292.6,
             1277
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -2663,7 +2672,7 @@
             6206,
             6094
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -2768,7 +2777,7 @@
             533.8,
             519.5
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -2873,7 +2882,7 @@
             21.87,
             21.06
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -2978,7 +2987,7 @@
             10.512,
             10.118
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3083,7 +3092,7 @@
             99.54,
             98.04
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3188,7 +3197,7 @@
             112.1,
             113.64
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3293,7 +3302,7 @@
             12.87,
             12.68
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3398,7 +3407,7 @@
             377.6,
             383.6
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3503,7 +3512,7 @@
             101.21,
             99.9
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3608,7 +3617,7 @@
             60.94,
             59.81
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3713,7 +3722,7 @@
             94.94,
             92.91
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3818,7 +3827,7 @@
             33.14,
             32.46
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -3923,7 +3932,7 @@
             48.96,
             49.07
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -4028,7 +4037,7 @@
             39.27,
             37.7
           ],
-          "quality_score": 81,
+          "quality_score": 82,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -4133,7 +4142,7 @@
             121.19,
             121.64
           ],
-          "quality_score": 71,
+          "quality_score": 74,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": true,
@@ -4167,7 +4176,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"slides\" ×4.3 (5 mentions/24h)"
         }
       ]
     },
@@ -4911,7 +4920,7 @@
             121.19,
             121.64
           ],
-          "quality_score": 76,
+          "quality_score": 78,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": true,
@@ -4939,13 +4948,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Bottom-fishing post-overreaction",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 71,
+          "quality_score_pre_wisdom": 73,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"slides\" ×4.3 (5 mentions/24h)"
         },
         {
           "asset": "Plug Power",
@@ -8333,7 +8342,7 @@
             121.19,
             121.64
           ],
-          "quality_score": 77,
+          "quality_score": 78,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": true,
@@ -8361,13 +8370,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 71,
+          "quality_score_pre_wisdom": 73,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"slides\" ×4.3 (5 mentions/24h)"
         },
         {
           "asset": "Uber",
@@ -9823,7 +9832,7 @@
             275.29,
             273.87
           ],
-          "quality_score": 70,
+          "quality_score": 68,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -9851,13 +9860,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 65,
+          "quality_score_pre_wisdom": 63,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"million\" ×4 (4 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Paramount",
@@ -11213,7 +11222,7 @@
             196.42,
             184.11
           ],
-          "quality_score": 79,
+          "quality_score": 74,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11246,7 +11255,7 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 73,
+          "quality_score_pre_wisdom": 69,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
@@ -11255,7 +11264,7 @@
             "intensity": "medium"
           },
           "insider_reason": "Insider activity medium (3 Form 4 / 7j)",
-          "spike_theme_reason": "Spike theme \"midterm\" ×9 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "JKSE Indonésie",
@@ -16431,13 +16440,13 @@
             52342.5586,
             51770.3086
           ],
-          "quality_score": 62,
+          "quality_score": 59,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
           "macro_reason": null,
           "earnings_reason": null,
-          "news_sentiment": null,
+          "news_sentiment": "neutral",
           "news_sentiment_reason": null,
           "macro_event_reason": null,
           "cross_asset_reason": null,
@@ -16464,13 +16473,13 @@
           "wisdom_adjustment": 4,
           "wisdom_note": "Scalp les overreactions rapides",
           "historical_analog": "Tapering tantrum (Bernanke) (2013)",
-          "quality_score_pre_wisdom": 57,
+          "quality_score_pre_wisdom": 54,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"midterm\" ×9 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Russell 2000",
@@ -24972,13 +24981,13 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 77857.21537244365,
-      "change": "0.49",
+      "price": 77880.89706796971,
+      "change": "0.53",
       "rsi": "33",
       "maCross": "bear",
-      "macdHist": "-484.22",
-      "boll": "10%",
-      "adx": "34",
+      "macdHist": "-482.71",
+      "boll": "11%",
+      "adx": "33",
       "atr": "1.1%",
       "verdict": "Baissier fort",
       "score": 13,
@@ -24987,11 +24996,11 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 2265.8141199230945,
-      "change": "0.52",
+      "price": 2265.3613670093478,
+      "change": "0.50",
       "rsi": "32",
       "maCross": "bear",
-      "macdHist": "-9.42",
+      "macdHist": "-9.45",
       "boll": "14%",
       "adx": "36",
       "atr": "1.2%",
@@ -25002,14 +25011,14 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 95.46195540047648,
-      "change": "0.05",
-      "rsi": "28",
+      "price": 94.83493428165691,
+      "change": "-0.61",
+      "rsi": "27",
       "maCross": "bear",
-      "macdHist": "-0.75",
-      "boll": "4%",
-      "adx": "44",
-      "atr": "1.4%",
+      "macdHist": "-0.79",
+      "boll": "1%",
+      "adx": "46",
+      "atr": "1.5%",
       "verdict": "Baissier fort",
       "score": 30,
       "cls": "bear"
@@ -25017,28 +25026,28 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "price": 704.9126293250889,
-      "change": "0.26",
-      "rsi": "44",
+      "price": 714.087317408348,
+      "change": "1.56",
+      "rsi": "47",
       "maCross": "bear",
-      "macdHist": "-3.47",
-      "boll": "13%",
-      "adx": "13",
-      "atr": "1.4%",
+      "macdHist": "-2.88",
+      "boll": "26%",
+      "adx": "6",
+      "atr": "1.5%",
       "verdict": "Baissier fort",
-      "score": 18,
+      "score": 14,
       "cls": "bear"
     },
     {
       "label": "XRP",
       "kind": "crypto",
-      "price": 1.251773688469249,
-      "change": "0.10",
+      "price": 1.2506000479584238,
+      "change": "0.01",
       "rsi": "41",
       "maCross": "bear",
       "macdHist": "-0.00",
-      "boll": "12%",
-      "adx": "18",
+      "boll": "11%",
+      "adx": "19",
       "atr": "1.7%",
       "verdict": "Baissier fort",
       "score": 18,
@@ -25047,13 +25056,13 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "price": 0.19298468826900067,
-      "change": "0.09",
+      "price": 0.19344602133920705,
+      "change": "0.33",
       "rsi": "26",
       "maCross": "bear",
       "macdHist": "-0.00",
-      "boll": "13%",
-      "adx": "48",
+      "boll": "14%",
+      "adx": "47",
       "atr": "2.1%",
       "verdict": "Baissier fort",
       "score": 30,
@@ -25062,8 +25071,8 @@
     {
       "label": "DOGE",
       "kind": "crypto",
-      "price": 0.07578204138259675,
-      "change": "0.27",
+      "price": 0.07568534083182625,
+      "change": "0.14",
       "rsi": "39",
       "maCross": "bear",
       "macdHist": "-0.00",
@@ -25077,16 +25086,31 @@
     {
       "label": "AVAX",
       "kind": "crypto",
-      "price": 8.938570689616416,
-      "change": "4.38",
-      "rsi": "34",
+      "price": 8.77548669616363,
+      "change": "2.48",
+      "rsi": "30",
       "maCross": "bear",
-      "macdHist": "-0.08",
-      "boll": "34%",
-      "adx": "31",
-      "atr": "2.1%",
+      "macdHist": "-0.09",
+      "boll": "27%",
+      "adx": "40",
+      "atr": "2.0%",
       "verdict": "Baissier fort",
       "score": 0,
+      "cls": "bear"
+    },
+    {
+      "label": "DOT",
+      "kind": "crypto",
+      "price": 0.9487815423037645,
+      "change": "0.34",
+      "rsi": "29",
+      "maCross": "bear",
+      "macdHist": "-0.02",
+      "boll": "14%",
+      "adx": "42",
+      "atr": "3.0%",
+      "verdict": "Baissier fort",
+      "score": 30,
       "cls": "bear"
     },
     {
@@ -32756,12 +32780,12 @@
       "timeframe": "Court terme · 1-3 jours",
       "confidence": "high",
       "direction": "long",
-      "config": "RSI 28 (vraie survente) · Bollinger 4% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j -0.0%).",
+      "config": "RSI 27 (vraie survente) · Bollinger 1% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j -0.7%).",
       "rationale": "Couple RSI<30 + bande basse Bollinger + MA20 au-dessus + plus de continuation baissière = setup contrarian classique. Stop 1.5 ATR sous l'entrée pour absorber la volatilité de survente. TP1 = retour à la MA20 (mean reversion). TP2 = +3 ATR.",
-      "entry": 95.46195540047648,
-      "stop": 93.40597471942358,
-      "tp1": 98.20326297521368,
-      "tp2": 99.57391676258227,
+      "entry": 94.83493428165691,
+      "stop": 92.72170063248852,
+      "tp1": 97.65257914721477,
+      "tp2": 99.06140157999369,
       "rr1": "1.33",
       "rr2": "2.00",
       "currency": "USD",
@@ -32825,7 +32849,7 @@
         95.4749,
         96.2533,
         95.4156,
-        95.462
+        94.8349
       ],
       "news_context": {
         "count": 1,
@@ -32849,12 +32873,12 @@
       "timeframe": "Court terme · 1-3 jours",
       "confidence": "high",
       "direction": "long",
-      "config": "RSI 26 (vraie survente) · Bollinger 13% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j 1.5%).",
+      "config": "RSI 26 (vraie survente) · Bollinger 14% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j 1.7%).",
       "rationale": "Couple RSI<30 + bande basse Bollinger + MA20 au-dessus + plus de continuation baissière = setup contrarian classique. Stop 1.5 ATR sous l'entrée pour absorber la volatilité de survente. TP1 = retour à la MA20 (mean reversion). TP2 = +3 ATR.",
-      "entry": 0.19298468826900067,
-      "stop": 0.1867979563543382,
-      "tp1": 0.2012336641552173,
-      "tp2": 0.2053581520983256,
+      "entry": 0.19344602133920705,
+      "stop": 0.18720986088130817,
+      "tp1": 0.20176090194973886,
+      "tp2": 0.20591834225500477,
       "rr1": "1.33",
       "rr2": "2.00",
       "currency": "USD",
@@ -32918,9 +32942,102 @@
         0.1902,
         0.1951,
         0.1928,
-        0.193
+        0.1934
       ],
       "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
+    },
+    {
+      "asset": "DOT",
+      "kind": "crypto",
+      "type": "rebond-survente",
+      "label": "Rebond technique sur survente",
+      "timeframe": "Court terme · 1-3 jours",
+      "confidence": "high",
+      "direction": "long",
+      "config": "RSI 29 (vraie survente) · Bollinger 14% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j 4.5%).",
+      "rationale": "Couple RSI<30 + bande basse Bollinger + MA20 au-dessus + plus de continuation baissière = setup contrarian classique. Stop 1.5 ATR sous l'entrée pour absorber la volatilité de survente. TP1 = retour à la MA20 (mean reversion). TP2 = +3 ATR.",
+      "entry": 0.9487815423037645,
+      "stop": 0.906312354777818,
+      "tp1": 1.0054071256716932,
+      "tp2": 1.0337199173556577,
+      "rr1": "1.33",
+      "rr2": "2.00",
+      "currency": "USD",
+      "prices60": [
+        0.8884,
+        0.8997,
+        0.9153,
+        0.9792,
+        1.0619,
+        1.2475,
+        1.1224,
+        1.096,
+        1.0404,
+        1.0185,
+        0.9998,
+        1.0035,
+        0.9441,
+        1.0186,
+        1.0788,
+        1.1337,
+        1.124,
+        1.1342,
+        1.2062,
+        1.2179,
+        1.1017,
+        1.155,
+        1.2126,
+        1.2418,
+        1.2677,
+        1.1814,
+        1.1929,
+        1.2224,
+        1.1762,
+        1.1542,
+        1.1848,
+        1.2041,
+        1.2304,
+        1.2011,
+        1.1172,
+        1.0896,
+        1.2358,
+        1.2577,
+        1.2549,
+        1.1679,
+        1.1596,
+        1.1463,
+        1.1487,
+        1.1821,
+        1.1147,
+        1.1162,
+        1.1519,
+        1.1505,
+        1.1442,
+        1.1113,
+        1.0847,
+        1.048,
+        1.0274,
+        1.0102,
+        0.9998,
+        1.0104,
+        0.9083,
+        0.9733,
+        0.9456,
+        0.9488
+      ],
+      "news_context": {
+        "count": 1,
+        "risk": "normal",
+        "items": [
+          {
+            "title": "Has the tech bubble burst? Why the Nasdaq&#x2019;s rough ride looks eerily like 2000.",
+            "time": "2026-10-30T23:14:00.000Z",
+            "source": "MarketWatch"
+          }
+        ]
+      },
       "wisdom_adjustment": 0,
       "historical_analog": null
     },
@@ -33782,7 +33899,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 52
+    "matched_assets": 53
   },
   "macro": {
     "vix": 19.42,
@@ -33792,7 +33909,7 @@
     "cross_asset": {
       "sp500_change": -1.8175287778868343,
       "nasdaq_change": -2.855561117502253,
-      "btc_change": 0.49453866652605005,
+      "btc_change": 0.5251059178122384,
       "risk_off": false,
       "tech_risk_off": true,
       "crypto_dump": false,
@@ -33804,7 +33921,7 @@
     "current_state": {
       "vix": 19.42,
       "yield_curve": null,
-      "btc_30d_change": -8.125259159027005,
+      "btc_30d_change": -8.097313776846004,
       "sp500_30d_change": -2.377817126863574,
       "dominant_sectors": [
         "XLE",
@@ -33826,14 +33943,14 @@
       "fed"
     ],
     "theme_counts": {
-      "crypto": 130,
-      "geopolitical": 36,
-      "tech": 64,
-      "earnings": 158,
-      "war": 44,
-      "oil": 18,
-      "credit": 24,
-      "fed": 89
+      "earnings": 157,
+      "war": 45,
+      "tech": 65,
+      "credit": 26,
+      "geopolitical": 37,
+      "crypto": 132,
+      "fed": 80,
+      "oil": 17
     },
     "top_sectors_60d": [
       "XLE",
@@ -33982,10 +34099,10 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "crypto_hack": 48,
-      "defi_growth": 3,
+      "ev_battery": 82,
+      "crypto_hack": 52,
+      "defi_growth": 2,
       "ai_breakthrough": 7,
-      "ev_battery": 81,
       "biotech_fda": 1,
       "recession": 1,
       "rate_pivot": 2,
@@ -34000,9 +34117,9 @@
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 44,
-      "credit": 24,
-      "geopol": 36
+      "war": 45,
+      "credit": 26,
+      "geopol": 37
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -34253,8 +34370,8 @@
       "label": "BTC",
       "kind": "crypto",
       "rsi": 33,
-      "change": 0.49,
-      "adx": 34,
+      "change": 0.53,
+      "adx": 33,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 13
@@ -34263,7 +34380,7 @@
       "label": "ETH",
       "kind": "crypto",
       "rsi": 32,
-      "change": 0.52,
+      "change": 0.5,
       "adx": 36,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -34272,9 +34389,9 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "rsi": 28,
-      "change": 0.05,
-      "adx": 44,
+      "rsi": 27,
+      "change": -0.61,
+      "adx": 46,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 30
@@ -34282,19 +34399,19 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "rsi": 44,
-      "change": 0.26,
-      "adx": 13,
+      "rsi": 47,
+      "change": 1.56,
+      "adx": 6,
       "verdict": "Baissier fort",
       "cls": "bear",
-      "score": 18
+      "score": 14
     },
     {
       "label": "XRP",
       "kind": "crypto",
       "rsi": 41,
-      "change": 0.1,
-      "adx": 18,
+      "change": 0.01,
+      "adx": 19,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 18
@@ -34303,8 +34420,8 @@
       "label": "ADA",
       "kind": "crypto",
       "rsi": 26,
-      "change": 0.09,
-      "adx": 48,
+      "change": 0.33,
+      "adx": 47,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 30
@@ -34313,7 +34430,7 @@
       "label": "DOGE",
       "kind": "crypto",
       "rsi": 39,
-      "change": 0.27,
+      "change": 0.14,
       "adx": 22,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -34322,12 +34439,22 @@
     {
       "label": "AVAX",
       "kind": "crypto",
-      "rsi": 34,
-      "change": 4.38,
-      "adx": 31,
+      "rsi": 30,
+      "change": 2.48,
+      "adx": 40,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 0
+    },
+    {
+      "label": "DOT",
+      "kind": "crypto",
+      "rsi": 29,
+      "change": 0.34,
+      "adx": 42,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 30
     },
     {
       "label": "Apple",
