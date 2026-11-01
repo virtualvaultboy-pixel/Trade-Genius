@@ -1,11 +1,24 @@
 {
-  "generated": "2026-10-31T10:46:39.722Z",
-  "current_month": 10,
+  "generated": "2026-11-01T11:44:05.754Z",
+  "current_month": 11,
   "locale": "FR",
   "disclaimer": "Informations fiscales pédagogiques 2026. Pas un conseil personnalisé. Consulte un expert-comptable pour ta situation.",
   "n_tips_active": 3,
   "n_tips_total": 8,
   "tips": [
+    {
+      "id": "tlh-dec",
+      "category": "cto",
+      "priority": "high",
+      "title": "🍂 Tax-loss harvesting (CTO) — Décembre",
+      "body": "En décembre, vendre les positions en moins-value de ton CTO permet de COMPENSER les plus-values déjà réalisées dans l'année. Tu réduis ton impôt (PFU 30%) sans changer ton expo (rachat possible après J+30 sans wash-sale FR).",
+      "actionable": "Vérifie tes positions CTO en moins-value avant le 31 décembre.",
+      "period": "Novembre-Décembre",
+      "months_active": [
+        11,
+        12
+      ]
+    },
     {
       "id": "pea-5y",
       "category": "pea",
@@ -36,29 +49,6 @@
       "title": "🪙 Crypto : seuil 305€ de plus-value",
       "body": "En FR, les plus-values crypto < 305€/an sont exonérées d'impôt. Au-delà : PFU 30% (12.8% IR + 17.2% PS). À déclarer via formulaire 2086.",
       "actionable": "Track ton P&L crypto réalisé · stay below 305€ si profil faible expo.",
-      "period": "Toute l'année",
-      "months_active": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
-      ]
-    },
-    {
-      "id": "crypto-flat",
-      "category": "crypto",
-      "priority": "low",
-      "title": "💸 Crypto-to-crypto = pas d'imposition",
-      "body": "En FR, échanger une crypto contre une autre (BTC → ETH) ne déclenche PAS d'imposition. Seule la conversion crypto → fiat (€/$) ou achat de biens en crypto crée un événement fiscal.",
-      "actionable": "Profite des arbitrages BTC↔ETH↔stables sans impact fiscal.",
       "period": "Toute l'année",
       "months_active": [
         1,
