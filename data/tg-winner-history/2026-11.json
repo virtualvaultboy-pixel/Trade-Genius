@@ -1,0 +1,257 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-11-01T12:09:49.165Z",
+  "source": "gh-actions-cron",
+  "strategy": {
+    "name": "TG Winner",
+    "version": "1.0.0",
+    "description": "Mix 50% Buy & Hold safe + 50% META 3 IAs leveraged. Rebalance mensuel.",
+    "rebalanceFrequency": "monthly",
+    "expectedPerf": {
+      "annualReturnPct": 23.1,
+      "maxDrawdownPct": -33.2,
+      "calmar": 0.69,
+      "worstMonthPct": -13.34,
+      "bestMonthPct": 27.5,
+      "mcProbProfit": 1,
+      "mcProbAnnual15plus": 0.83,
+      "backtestPeriod": "2016-09 -> 2026-01",
+      "backtestYears": 9.2
+    },
+    "disclaimer": "Performance passee ne prejuge pas du futur. Pas de conseil d'investissement.",
+    "nextRebalance": "2026-12-01"
+  },
+  "fx": {
+    "eurToUsd": 1.1172,
+    "source": "frankfurter.app",
+    "fetchedAt": "2026-10-30"
+  },
+  "basket": [
+    {
+      "ticker": "SPY",
+      "yahoo": "SPY",
+      "name": "SPDR S&P 500 ETF",
+      "kind": "etf",
+      "weightPct": 30,
+      "role": "Base US large cap (volet B&H safe)",
+      "priceUsd": 755.72,
+      "currency": "USD",
+      "priceSource": "yahoo"
+    },
+    {
+      "ticker": "TLT",
+      "yahoo": "TLT",
+      "name": "iShares 20+ Year Treasury Bond ETF",
+      "kind": "etf",
+      "weightPct": 25,
+      "role": "Hedge taux (volet B&H + META)",
+      "priceUsd": 81.84,
+      "currency": "USD",
+      "priceSource": "yahoo"
+    },
+    {
+      "ticker": "TQQQ",
+      "yahoo": "TQQQ",
+      "name": "ProShares UltraPro QQQ (3x Nasdaq)",
+      "kind": "etf-leveraged",
+      "weightPct": 18.3,
+      "role": "Moteur leveraged tech (volet META)",
+      "priceUsd": 62.01,
+      "currency": "USD",
+      "priceSource": "yahoo"
+    },
+    {
+      "ticker": "GLD",
+      "yahoo": "GLD",
+      "name": "SPDR Gold Shares",
+      "kind": "etf",
+      "weightPct": 10,
+      "role": "Hedge or (volet B&H + META)",
+      "priceUsd": 355.78,
+      "currency": "USD",
+      "priceSource": "yahoo"
+    },
+    {
+      "ticker": "BTC",
+      "yahoo": "BTC-USD",
+      "name": "Bitcoin",
+      "kind": "crypto",
+      "weightPct": 6.7,
+      "role": "Crypto majeure (volet META)",
+      "priceUsd": 77833.45,
+      "currency": "USD",
+      "priceSource": "yahoo"
+    },
+    {
+      "ticker": "ETH",
+      "yahoo": "ETH-USD",
+      "name": "Ethereum",
+      "kind": "crypto",
+      "weightPct": 5,
+      "role": "Crypto majeure (volet META)",
+      "priceUsd": 2264.46,
+      "currency": "USD",
+      "priceSource": "yahoo"
+    },
+    {
+      "ticker": "SOL",
+      "yahoo": "SOL-USD",
+      "name": "Solana",
+      "kind": "crypto",
+      "weightPct": 3.3,
+      "role": "Crypto satellite (volet META)",
+      "priceUsd": 95.13,
+      "currency": "USD",
+      "priceSource": "yahoo"
+    },
+    {
+      "ticker": "XLK",
+      "yahoo": "XLK",
+      "name": "Technology Select Sector SPDR",
+      "kind": "etf",
+      "weightPct": 1.7,
+      "role": "Sector tech (volet META MIXTE)",
+      "priceUsd": 179.51,
+      "currency": "USD",
+      "priceSource": "yahoo"
+    }
+  ],
+  "exampleAllocations": [
+    {
+      "capitalEur": 1000,
+      "lines": [
+        {
+          "ticker": "SPY",
+          "weightPct": 30,
+          "amountEur": 300,
+          "amountUsd": 335.16,
+          "unitsApprox": 0.443498
+        },
+        {
+          "ticker": "TLT",
+          "weightPct": 25,
+          "amountEur": 250,
+          "amountUsd": 279.3,
+          "unitsApprox": 3.412757
+        },
+        {
+          "ticker": "TQQQ",
+          "weightPct": 18.3,
+          "amountEur": 183,
+          "amountUsd": 204.45,
+          "unitsApprox": 3.297049
+        },
+        {
+          "ticker": "GLD",
+          "weightPct": 10,
+          "amountEur": 100,
+          "amountUsd": 111.72,
+          "unitsApprox": 0.314014
+        },
+        {
+          "ticker": "BTC",
+          "weightPct": 6.7,
+          "amountEur": 67,
+          "amountUsd": 74.85,
+          "unitsApprox": 0.000962
+        },
+        {
+          "ticker": "ETH",
+          "weightPct": 5,
+          "amountEur": 50,
+          "amountUsd": 55.86,
+          "unitsApprox": 0.024668
+        },
+        {
+          "ticker": "SOL",
+          "weightPct": 3.3,
+          "amountEur": 33,
+          "amountUsd": 36.87,
+          "unitsApprox": 0.387575
+        },
+        {
+          "ticker": "XLK",
+          "weightPct": 1.7,
+          "amountEur": 17,
+          "amountUsd": 18.99,
+          "unitsApprox": 0.105788
+        }
+      ]
+    },
+    {
+      "capitalEur": 10000,
+      "lines": [
+        {
+          "ticker": "SPY",
+          "weightPct": 30,
+          "amountEur": 3000,
+          "amountUsd": 3351.6,
+          "unitsApprox": 4.434976
+        },
+        {
+          "ticker": "TLT",
+          "weightPct": 25,
+          "amountEur": 2500,
+          "amountUsd": 2793,
+          "unitsApprox": 34.127566
+        },
+        {
+          "ticker": "TQQQ",
+          "weightPct": 18.3,
+          "amountEur": 1830,
+          "amountUsd": 2044.48,
+          "unitsApprox": 32.970166
+        },
+        {
+          "ticker": "GLD",
+          "weightPct": 10,
+          "amountEur": 1000,
+          "amountUsd": 1117.2,
+          "unitsApprox": 3.140143
+        },
+        {
+          "ticker": "BTC",
+          "weightPct": 6.7,
+          "amountEur": 670,
+          "amountUsd": 748.52,
+          "unitsApprox": 0.009617
+        },
+        {
+          "ticker": "ETH",
+          "weightPct": 5,
+          "amountEur": 500,
+          "amountUsd": 558.6,
+          "unitsApprox": 0.246681
+        },
+        {
+          "ticker": "SOL",
+          "weightPct": 3.3,
+          "amountEur": 330,
+          "amountUsd": 368.68,
+          "unitsApprox": 3.875539
+        },
+        {
+          "ticker": "XLK",
+          "weightPct": 1.7,
+          "amountEur": 170,
+          "amountUsd": 189.92,
+          "unitsApprox": 1.057991
+        }
+      ]
+    }
+  ],
+  "brokerHints": [
+    {
+      "broker": "Trade Republic",
+      "availability": "SPY/TLT/TQQQ/GLD/XLK ETF + BTC/ETH/SOL crypto. Fractions OK."
+    },
+    {
+      "broker": "BoursoBank",
+      "availability": "ETF US via CTO. Crypto via integration tiers."
+    },
+    {
+      "broker": "Binance",
+      "availability": "BTC/ETH/SOL natifs. Pas d ETF action."
+    }
+  ]
+}
