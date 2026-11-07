@@ -6,7 +6,7 @@
   "icon": "🗿",
   "created_at": "2026-05-30T17:55:42.941Z",
   "capital_initial": 1000,
-  "cash": 762.053909507087,
+  "cash": 761.3603462942232,
   "positions": [
     {
       "id": "pos-1793677922847-q5ii",
@@ -15,7 +15,7 @@
       "agent": "atlas",
       "type": "atlas-ponchy",
       "entry": 436.95001220703125,
-      "stop": 436.95001220703125,
+      "stop": 441.4526817016602,
       "tp1": 455.5308535650578,
       "tp2": 474.11169492308437,
       "initial_stop": 422.8026939086914,
@@ -38,8 +38,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 455.6,
-      "age_days": 3,
+      "current_price": 449.8,
+      "age_days": 4,
       "size_eur_added": 30.642891008224172
     },
     {
@@ -72,8 +72,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 282.57,
-      "age_days": 2
+      "current_price": 284.78,
+      "age_days": 3
     },
     {
       "id": "pos-1793761023876-oasc",
@@ -105,8 +105,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 143.75,
-      "age_days": 2
+      "current_price": 148.91,
+      "age_days": 3
     },
     {
       "id": "pos-1793848774319-4yft",
@@ -119,7 +119,7 @@
       "tp1": 179045.6407106554,
       "tp2": 190527.8126713108,
       "initial_stop": 165267.03435786892,
-      "high_since_entry": 167563.46875,
+      "high_since_entry": 168498.45,
       "rr1": 5,
       "rr2": 10,
       "risk_pct": 0.013704863054352825,
@@ -138,35 +138,35 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 166191.45,
-      "age_days": 1
+      "current_price": 168498.45,
+      "age_days": 2
     },
     {
-      "id": "pos-1793935051969-qim5",
+      "id": "pos-1794019056483-lzn9",
       "asset": "Taiwan",
       "kind": "index",
       "agent": "atlas",
       "type": "grid-month-A",
-      "entry": 42948.91015625,
-      "stop": 42558.02200850417,
-      "tp1": 44903.35089497914,
-      "tp2": 46857.791633708286,
-      "initial_stop": 42558.02200850417,
-      "high_since_entry": 42948.91015625,
+      "entry": 41574.71875,
+      "stop": 41144.50706021031,
+      "tp1": 43725.77719894847,
+      "tp2": 45876.835647896936,
+      "initial_stop": 41144.50706021031,
+      "high_since_entry": 41574.71875,
       "rr1": 5,
       "rr2": 10,
-      "risk_pct": 0.009101235545296937,
-      "size_eur": 84.67265661189856,
-      "quality_score": 73,
+      "risk_pct": 0.010347915818184391,
+      "size_eur": 84.59559403269147,
+      "quality_score": 81,
       "sizing_pct": 10,
       "trailing_after_tp1": true,
       "trailing_active": false,
       "pyramiding_pct": 50,
       "pyramided": false,
       "stacked": false,
-      "opened_at": "2026-11-06T03:17:31.969Z",
-      "opened_at_cycle": 115,
-      "opened_at_date": "2026-11-06",
+      "opened_at": "2026-11-07T02:37:36.483Z",
+      "opened_at_cycle": 116,
+      "opened_at_date": "2026-11-07",
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
@@ -4930,6 +4930,41 @@
       "age_days": 3,
       "closed_at_cycle": 115,
       "exit_price": 606.6330433212645
+    },
+    {
+      "id": "pos-1793935051969-qim5",
+      "asset": "Taiwan",
+      "kind": "index",
+      "agent": "atlas",
+      "type": "grid-month-A",
+      "entry": 42948.91015625,
+      "stop": 42558.02200850417,
+      "tp1": 44903.35089497914,
+      "tp2": 46857.791633708286,
+      "initial_stop": 42558.02200850417,
+      "high_since_entry": 42948.91015625,
+      "rr1": 5,
+      "rr2": 10,
+      "risk_pct": 0.009101235545296937,
+      "size_eur": 84.67265661189856,
+      "quality_score": 73,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-11-06T03:17:31.969Z",
+      "opened_at_cycle": 115,
+      "opened_at_date": "2026-11-06",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-11-07T02:37:36.482Z",
+      "pnl_eur": -0.7706257920709328,
+      "current_price": 39701.64,
+      "age_days": 1,
+      "closed_at_cycle": 116,
+      "exit_price": 42558.02200850417
     }
   ],
   "equity_history": [
@@ -5737,7 +5772,14 @@
       "equity": 1164.58,
       "cash": 762.05,
       "positions_count": 5
+    },
+    {
+      "date": "2026-11-07",
+      "cycle": 116,
+      "equity": 1166.65,
+      "cash": 761.36,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-11-06"
+  "last_cycle": "2026-11-07"
 }
