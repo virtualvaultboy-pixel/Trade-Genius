@@ -1,14 +1,14 @@
 {
-  "generated": "2026-11-07T13:54:27.469Z",
+  "generated": "2026-11-07T18:37:08.481Z",
   "source": "Pollinations · openai",
   "date": "2026-11-07",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (37 indices · 6 crypto · 354 actions) : S&P 500 +0.31% (RSI 35, baissier fort) · Nasdaq +1.09% (RSI 32, baissier fort) · BTC +0.13% (RSI 36, baissier fort) · ETH +0.33% (RSI 41, baissier fort) · Apple -0.52% (RSI 50, plutôt baissier). Globalement, 202 actifs en biais haussier contre 173 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (37 indices · 17 crypto · 354 actions) : S&P 500 +0.31% (RSI 35, baissier fort) · Nasdaq +1.09% (RSI 32, baissier fort) · BTC -0.02% (RSI 35, baissier fort) · ETH -0.05% (RSI 40, baissier fort) · Apple -0.52% (RSI 50, plutôt baissier). Globalement, 203 actifs en biais haussier contre 183 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : pression vendeuse persistante (RSI 35)",
     "Nasdaq : pression vendeuse persistante (RSI 32)",
-    "BTC : pression vendeuse persistante (RSI 36)",
-    "ETH : pression vendeuse persistante (RSI 41)",
+    "BTC : pression vendeuse persistante (RSI 35)",
+    "ETH : pression vendeuse persistante (RSI 40)",
     "Apple : pression vendeuse persistante (RSI 50)"
   ],
   "plan_pedago": [
@@ -18,7 +18,7 @@
     "Définir stop loss et take profit AVANT d'entrer sur le marché"
   ],
   "verdict": {
-    "score": 53,
+    "score": 52,
     "cls": "neutral",
     "label": "Indécis"
   },
@@ -774,7 +774,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"data\" ×3.5 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"data\" ×3.4 (8 mentions/24h)"
         },
         {
           "asset": "Intel",
@@ -4052,7 +4052,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Novartis shelves potential blockbuster pelacarsen as landmark study fails",
+                "time": "2026-11-07T15:16:03.000Z",
+                "source": "Investing.com"
+              }
+            ]
+          },
           "wisdom_adjustment": -6,
           "wisdom_note": "Rotation defensive : XLU/XLP only",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
@@ -5649,7 +5659,7 @@
       "desc": "Court terme · 3-7 jours · Patience faible · 5-9 trades/semaine. Idéal si tu veux voir l'app travailler chaque jour. Risque très maîtrisé.",
       "icon": "⚡",
       "color": "#ef4444",
-      "count": 210,
+      "count": 211,
       "setups": [
         {
           "asset": "Bovespa Brésil",
@@ -6689,7 +6699,17 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Novartis shelves potential blockbuster pelacarsen as landmark study fails",
+                "time": "2026-11-07T15:16:03.000Z",
+                "source": "Investing.com"
+              }
+            ]
+          },
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
@@ -6990,7 +7010,7 @@
             154.99,
             160.38
           ],
-          "quality_score": 45,
+          "quality_score": 43,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -7018,13 +7038,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 56,
+          "quality_score_pre_wisdom": 54,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"x2018\" ×3.6 (6 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Berkshire",
@@ -7105,7 +7125,7 @@
             572.33,
             570.89
           ],
-          "quality_score": 55,
+          "quality_score": 53,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -7120,17 +7140,17 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 3,
+            "risk": "alert",
             "items": [
+              {
+                "title": "Berkshire Hathaway more than doubles buybacks in third quarter as earnings decline",
+                "time": "2026-11-07T15:23:46.000Z",
+                "source": "CNBC"
+              },
               {
                 "title": "Dow Jones Futures: Market Needs Repair But Sandisk, Micron Look Broken; Apple, Amazon, Microsoft Strong",
                 "time": "2026-11-06T23:41:36.000Z",
-                "source": "Yahoo Finance"
-              },
-              {
-                "title": "Dow Jones Futures: Market Needs Repair But Sandisk, Micron Broken; Apple, Amazon, Microsoft Strong",
-                "time": "2026-11-06T21:45:10.000Z",
                 "source": "Yahoo Finance"
               }
             ]
@@ -7138,13 +7158,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 66,
+          "quality_score_pre_wisdom": 64,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"microsoft\" ×6 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"apple\" ×4.8 (4 mentions/24h)"
         },
         {
           "asset": "Disney",
@@ -7240,8 +7260,8 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 3,
-            "risk": "alert",
+            "count": 2,
+            "risk": "caution",
             "items": [
               {
                 "title": "Walt Disney SEVP Horacio Gutierrez sells $2.47M in stock",
@@ -7904,7 +7924,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"director\" ×10 (5 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"director\" ×12 (6 mentions/24h)"
         },
         {
           "asset": "BP",
@@ -10085,7 +10105,7 @@
             181.6,
             186.64
           ],
-          "quality_score": 44,
+          "quality_score": 39,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -10104,27 +10124,27 @@
             "risk": "alert",
             "items": [
               {
+                "title": "U.S. memo alleges Nvidia’s CEO was romantically linked to suspected Beijing spy",
+                "time": "2026-11-07T15:11:08.000Z",
+                "source": "Investing.com"
+              },
+              {
                 "title": "Stock Market Today: Nasdaq Rallies In Tech Turnaround; Airbnb Rockets Higher",
                 "time": "2026-11-06T21:52:14.000Z",
                 "source": "Yahoo Finance"
-              },
-              {
-                "title": "Nvidia, AMD and other chip stocks rebound &#x2014; but is relief from the &#x2018;violent&#x2019; selloff only tempor…",
-                "time": "2026-11-06T21:24:00.000Z",
-                "source": "MarketWatch"
               }
             ]
           },
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 55,
+          "quality_score_pre_wisdom": 50,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"rebound\" ×10 (5 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Intel",
@@ -11360,7 +11380,7 @@
             656.39,
             690
           ],
-          "quality_score": 42,
+          "quality_score": 41,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11393,13 +11413,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 53,
+          "quality_score_pre_wisdom": 52,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"microsoft\" ×6 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"apple\" ×4.8 (4 mentions/24h)"
         },
         {
           "asset": "Applied Materials",
@@ -11949,7 +11969,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"apple\" ×4 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"apple\" ×4.8 (4 mentions/24h)"
         },
         {
           "asset": "Snap",
@@ -14619,7 +14639,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"data\" ×3.5 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"data\" ×3.4 (8 mentions/24h)"
         },
         {
           "asset": "EWZ Brazil ETF",
@@ -15015,7 +15035,7 @@
             291.53,
             293.69
           ],
-          "quality_score": 36,
+          "quality_score": 35,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15043,13 +15063,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 47,
+          "quality_score_pre_wisdom": 46,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"anthropic\" ×4.5 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Shopify",
@@ -15665,7 +15685,7 @@
             98.29,
             98.32
           ],
-          "quality_score": 43,
+          "quality_score": 46,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15693,13 +15713,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 54,
+          "quality_score_pre_wisdom": 57,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"iran\" ×9 (3 mentions/24h)"
         },
         {
           "asset": "KLA Corp",
@@ -16200,7 +16220,7 @@
             170.13,
             189.99
           ],
-          "quality_score": 45,
+          "quality_score": 43,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -16233,13 +16253,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 56,
+          "quality_score_pre_wisdom": 54,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"tech\" ×3 (7 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Lyft",
@@ -19627,6 +19647,121 @@
           "spike_theme_reason": null
         },
         {
+          "asset": "Russell 2000",
+          "kind": "index",
+          "type": "kairo-squeeze",
+          "label": "Volatilité comprimée — cassure proche",
+          "timeframe": "Court terme · 3-7 jours",
+          "confidence": "medium",
+          "direction": "long",
+          "config": "ATR 1.04% (très bas) + prix au milieu de Bollinger. KAIRO anticipe une explosion de volatilité.",
+          "rationale": "Théorie : la volatilité finit toujours par revenir. Quand l'ATR est anormalement bas, une cassure directionnelle se prépare. La direction n'est pas garantie, mais on positionne un long si la tendance MT est haussière (MA20>MA50).",
+          "entry": 2754.110107421875,
+          "stop": 2682.1690482261397,
+          "tp1": 2811.6629547784632,
+          "tp2": 2897.9922258133456,
+          "rr1": "0.80",
+          "rr2": "2.00",
+          "currency": "EUR",
+          "prices60": [
+            3068.4199,
+            3057.54,
+            3017.8899,
+            3032.9399,
+            2992.4299,
+            3017.8701,
+            2995.0801,
+            3010.02,
+            3005.8999,
+            3014.3401,
+            2972.3701,
+            2956.45,
+            2920.1299,
+            2953.1699,
+            2968.27,
+            2975.6499,
+            2960.2,
+            2921.24,
+            2890.95,
+            2903.9399,
+            2892.24,
+            2870.29,
+            2858.8101,
+            2874.6299,
+            2860.3999,
+            2875.3601,
+            2889.9199,
+            2838.6599,
+            2835.5701,
+            2837.55,
+            2817.9099,
+            2807.9199,
+            2796.8601,
+            2806.6299,
+            2832.8999,
+            2847.1399,
+            2830.3,
+            2793.2,
+            2794.1299,
+            2806.98,
+            2794.48,
+            2783.3701,
+            2729.53,
+            2767.27,
+            2721.3701,
+            2728.3,
+            2773.4199,
+            2781.02,
+            2784.03,
+            2775.8999,
+            2786.4199,
+            2818.8701,
+            2830.51,
+            2859.22,
+            2811.8401,
+            2805.8799,
+            2812.45,
+            2856.95,
+            2729.8899,
+            2754.1101
+          ],
+          "quality_score": 43,
+          "sizing_pct": 1,
+          "sizing_label": "medium",
+          "trailing_after_tp1": false,
+          "macro_reason": "VIX stress 25.64",
+          "earnings_reason": null,
+          "news_sentiment": null,
+          "news_sentiment_reason": null,
+          "macro_event_reason": null,
+          "cross_asset_reason": null,
+          "sector_reason": null,
+          "stacked": false,
+          "stacked_count": null,
+          "stacked_patterns": null,
+          "news_context": {
+            "count": 1,
+            "risk": "normal",
+            "items": [
+              {
+                "title": "Retail Flows and Industry Consolidation Power KKR &amp; Co.’s (KKR) Growth Runway",
+                "time": "2026-11-03T16:47:14.000Z",
+                "source": "Yahoo Finance"
+              }
+            ]
+          },
+          "wisdom_adjustment": -12,
+          "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
+          "historical_analog": "Crise asiatique (devaluation baht) (1997)",
+          "quality_score_pre_wisdom": 54,
+          "alpha_quality": null,
+          "alpha_pattern": null,
+          "alpha_rules": null,
+          "insider_signal": null,
+          "insider_reason": null,
+          "spike_theme_reason": null
+        },
+        {
           "asset": "DAX",
           "kind": "index",
           "type": "kairo-squeeze",
@@ -20484,7 +20619,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"data\" ×3.5 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"data\" ×3.4 (8 mentions/24h)"
         },
         {
           "asset": "eBay",
@@ -21720,7 +21855,7 @@
             260.21,
             259.3
           ],
-          "quality_score": 35,
+          "quality_score": 33,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -21753,13 +21888,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 46,
+          "quality_score_pre_wisdom": 44,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"microsoft\" ×6 (3 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"apple\" ×4.8 (4 mentions/24h)"
         },
         {
           "asset": "Tesla",
@@ -21840,7 +21975,7 @@
             343.69,
             358.22
           ],
-          "quality_score": 42,
+          "quality_score": 39,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -21873,13 +22008,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 53,
+          "quality_score_pre_wisdom": 50,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"musk\" ×6 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "AMD",
@@ -21960,7 +22095,7 @@
             404.4,
             449.04
           ],
-          "quality_score": 36,
+          "quality_score": 32,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -21993,13 +22128,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 47,
+          "quality_score_pre_wisdom": 43,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"rebound\" ×10 (5 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Oracle",
@@ -22080,7 +22215,7 @@
             115.16,
             116.1
           ],
-          "quality_score": 35,
+          "quality_score": 32,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -22095,26 +22230,31 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 1,
-            "risk": "normal",
+            "count": 2,
+            "risk": "caution",
             "items": [
               {
                 "title": "Microsoft Corp. is winding down an arrangement to rent AI computing from Oracle.",
                 "time": "2026-11-06T18:02:06.000Z",
                 "source": "Reddit r/stocks"
+              },
+              {
+                "title": "Microsoft Is Winding Down Oracle Deal to Rent AI Cloud Capacity",
+                "time": "2026-11-06T17:45:55.000Z",
+                "source": "Reddit r/wallstreetbets"
               }
             ]
           },
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 46,
+          "quality_score_pre_wisdom": 43,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"microsoft\" ×6 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Uber",
@@ -22195,7 +22335,7 @@
             68.78,
             68.59
           ],
-          "quality_score": 39,
+          "quality_score": 38,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -22223,13 +22363,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 50,
+          "quality_score_pre_wisdom": 49,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"tech\" ×3 (7 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "TotalEnergies",
@@ -25610,18 +25750,13 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Nasdaq sell-off batters Asian chip stocks as SK Hynix, Samsung, Softbank, TSMC tumble",
                 "time": "2026-11-06T02:40:15.000Z",
                 "source": "CNBC"
-              },
-              {
-                "title": "Samsung Electronics Finalizes Taylor Fab 2 Output Entirely for AMD, Nvidia HBM Base Dies",
-                "time": "2026-11-03T13:14:21.000Z",
-                "source": "Reddit r/stocks"
               }
             ]
           },
@@ -29287,7 +29422,7 @@
     {
       "label": "Russell 2000",
       "kind": "index",
-      "price": 2754.105,
+      "price": 2754.1055,
       "change": "0.89",
       "rsi": "53",
       "maCross": "bear",
@@ -29602,13 +29737,13 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 75872.19415509464,
-      "change": "0.13",
-      "rsi": "36",
+      "price": 75759.92999086644,
+      "change": "-0.02",
+      "rsi": "35",
       "maCross": "bear",
-      "macdHist": "-338.87",
-      "boll": "14%",
-      "adx": "29",
+      "macdHist": "-346.04",
+      "boll": "13%",
+      "adx": "30",
       "atr": "1.6%",
       "verdict": "Baissier fort",
       "score": 13,
@@ -29617,27 +29752,42 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 2243.552975048148,
-      "change": "0.33",
-      "rsi": "41",
+      "price": 2235.234149305204,
+      "change": "-0.05",
+      "rsi": "40",
       "maCross": "bear",
-      "macdHist": "1.41",
-      "boll": "23%",
-      "adx": "19",
+      "macdHist": "0.88",
+      "boll": "21%",
+      "adx": "20",
       "atr": "1.9%",
       "verdict": "Baissier fort",
       "score": 24,
       "cls": "bear"
     },
     {
+      "label": "SOL",
+      "kind": "crypto",
+      "price": 89.62878946851716,
+      "change": "-0.48",
+      "rsi": "26",
+      "maCross": "bear",
+      "macdHist": "-0.66",
+      "boll": "12%",
+      "adx": "48",
+      "atr": "2.1%",
+      "verdict": "Baissier fort",
+      "score": 30,
+      "cls": "bear"
+    },
+    {
       "label": "BNB",
       "kind": "crypto",
-      "price": 694.8450385359399,
-      "change": "0.32",
+      "price": 695.4029191991879,
+      "change": "0.40",
       "rsi": "37",
       "maCross": "bear",
-      "macdHist": "-2.47",
-      "boll": "20%",
+      "macdHist": "-2.43",
+      "boll": "21%",
       "adx": "25",
       "atr": "1.8%",
       "verdict": "Baissier fort",
@@ -29647,12 +29797,12 @@
     {
       "label": "XRP",
       "kind": "crypto",
-      "price": 1.1642696720772938,
-      "change": "-1.21",
+      "price": 1.161263976803066,
+      "change": "-1.47",
       "rsi": "31",
       "maCross": "bear",
       "macdHist": "-0.01",
-      "boll": "-5%",
+      "boll": "-6%",
       "adx": "38",
       "atr": "2.2%",
       "verdict": "Baissier fort",
@@ -29662,23 +29812,38 @@
     {
       "label": "ADA",
       "kind": "crypto",
-      "price": 0.18266171460614464,
-      "change": "-0.70",
+      "price": 0.1820807769320777,
+      "change": "-1.01",
       "rsi": "30",
       "maCross": "bear",
       "macdHist": "-0.00",
-      "boll": "15%",
-      "adx": "39",
-      "atr": "2.5%",
+      "boll": "14%",
+      "adx": "40",
+      "atr": "2.6%",
       "verdict": "Baissier fort",
-      "score": 0,
+      "score": 13,
+      "cls": "bear"
+    },
+    {
+      "label": "DOGE",
+      "kind": "crypto",
+      "price": 0.07188434148882318,
+      "change": "-0.66",
+      "rsi": "37",
+      "maCross": "bear",
+      "macdHist": "-0.00",
+      "boll": "9%",
+      "adx": "27",
+      "atr": "2.1%",
+      "verdict": "Baissier fort",
+      "score": 13,
       "cls": "bear"
     },
     {
       "label": "AVAX",
       "kind": "crypto",
-      "price": 8.263277965936927,
-      "change": "-0.86",
+      "price": 8.249513322369669,
+      "change": "-1.03",
       "rsi": "37",
       "maCross": "bear",
       "macdHist": "-0.04",
@@ -29688,6 +29853,141 @@
       "verdict": "Baissier fort",
       "score": 0,
       "cls": "bear"
+    },
+    {
+      "label": "DOT",
+      "kind": "crypto",
+      "price": 0.9008555194891592,
+      "change": "-1.30",
+      "rsi": "29",
+      "maCross": "bear",
+      "macdHist": "-0.01",
+      "boll": "19%",
+      "adx": "41",
+      "atr": "2.8%",
+      "verdict": "Baissier fort",
+      "score": 17,
+      "cls": "bear"
+    },
+    {
+      "label": "LINK",
+      "kind": "crypto",
+      "price": 10.905825621356783,
+      "change": "0.52",
+      "rsi": "43",
+      "maCross": "bear",
+      "macdHist": "-0.03",
+      "boll": "22%",
+      "adx": "14",
+      "atr": "3.3%",
+      "verdict": "Baissier fort",
+      "score": 6,
+      "cls": "bear"
+    },
+    {
+      "label": "LTC",
+      "kind": "crypto",
+      "price": 52.23058426572659,
+      "change": "-0.62",
+      "rsi": "37",
+      "maCross": "bear",
+      "macdHist": "-0.36",
+      "boll": "12%",
+      "adx": "25",
+      "atr": "2.6%",
+      "verdict": "Baissier fort",
+      "score": 13,
+      "cls": "bear"
+    },
+    {
+      "label": "ATOM",
+      "kind": "crypto",
+      "price": 1.3790121058411353,
+      "change": "-0.55",
+      "rsi": "28",
+      "maCross": "bear",
+      "macdHist": "-0.02",
+      "boll": "15%",
+      "adx": "43",
+      "atr": "3.1%",
+      "verdict": "Baissier fort",
+      "score": 30,
+      "cls": "bear"
+    },
+    {
+      "label": "NEAR",
+      "kind": "crypto",
+      "price": 3.6720656463548957,
+      "change": "-1.03",
+      "rsi": "35",
+      "maCross": "bear",
+      "macdHist": "-0.11",
+      "boll": "12%",
+      "adx": "31",
+      "atr": "5.2%",
+      "verdict": "Baissier fort",
+      "score": 13,
+      "cls": "bear"
+    },
+    {
+      "label": "ICP",
+      "kind": "crypto",
+      "price": 2.440582920268032,
+      "change": "0.41",
+      "rsi": "39",
+      "maCross": "bear",
+      "macdHist": "-0.00",
+      "boll": "24%",
+      "adx": "23",
+      "atr": "2.9%",
+      "verdict": "Baissier fort",
+      "score": 6,
+      "cls": "bear"
+    },
+    {
+      "label": "RNDR",
+      "kind": "crypto",
+      "price": 1.5691650498225194,
+      "change": "-0.68",
+      "rsi": "40",
+      "maCross": "bear",
+      "macdHist": "-0.01",
+      "boll": "32%",
+      "adx": "20",
+      "atr": "3.3%",
+      "verdict": "Baissier fort",
+      "score": 6,
+      "cls": "bear"
+    },
+    {
+      "label": "SUI",
+      "kind": "crypto",
+      "price": 0.861006325136078,
+      "change": "-0.86",
+      "rsi": "40",
+      "maCross": "bear",
+      "macdHist": "-0.01",
+      "boll": "20%",
+      "adx": "21",
+      "atr": "3.1%",
+      "verdict": "Baissier fort",
+      "score": 6,
+      "cls": "bear"
+    },
+    {
+      "label": "PEPE",
+      "kind": "crypto",
+      "price": 0.000004885246624929632,
+      "change": "-1.92",
+      "rsi": "57",
+      "maCross": "bull",
+      "macdHist": "0.00",
+      "boll": "70%",
+      "adx": "14",
+      "atr": "4.0%",
+      "verdict": "Haussier fort",
+      "score": 80,
+      "cls": "bull"
     },
     {
       "label": "Apple",
@@ -36411,7 +36711,17 @@
         134.12,
         133.08
       ],
-      "news_context": null,
+      "news_context": {
+        "count": 1,
+        "risk": "normal",
+        "items": [
+          {
+            "title": "Novartis shelves potential blockbuster pelacarsen as landmark study fails",
+            "time": "2026-11-07T15:16:03.000Z",
+            "source": "Investing.com"
+          }
+        ]
+      },
       "wisdom_adjustment": 0,
       "historical_analog": null
     },
@@ -37341,7 +37651,7 @@
     "cross_asset": {
       "sp500_change": 0.3145326640212812,
       "nasdaq_change": 1.087516707793543,
-      "btc_change": 0.1278948303243884,
+      "btc_change": -0.02025924053426075,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -37353,7 +37663,7 @@
     "current_state": {
       "vix": 25.64,
       "yield_curve": null,
-      "btc_30d_change": -8.105319634001203,
+      "btc_30d_change": -8.24129144295163,
       "sp500_30d_change": -3.993264700486401,
       "dominant_sectors": [
         "XLV",
@@ -37373,14 +37683,14 @@
       "geopolitical"
     ],
     "theme_counts": {
-      "geopolitical": 99,
-      "crypto": 61,
+      "crypto": 56,
+      "geopolitical": 101,
       "fed": 51,
-      "war": 39,
-      "earnings": 112,
+      "earnings": 114,
+      "war": 40,
+      "tech": 108,
       "oil": 26,
-      "credit": 20,
-      "tech": 108
+      "credit": 19
     },
     "top_sectors_60d": [
       "XLV",
@@ -37518,12 +37828,13 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 80,
+      "ev_battery": 83,
+      "biotech_fda": 1,
       "recession": 2,
+      "semicon_supply": 3,
       "defi_growth": 2,
-      "ai_breakthrough": 6,
-      "crypto_hack": 9,
-      "semicon_supply": 2,
+      "ai_breakthrough": 5,
+      "crypto_hack": 6,
       "crypto_etf": 1,
       "rate_pivot": 4
     },
@@ -37536,9 +37847,9 @@
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 39,
-      "credit": 20,
-      "geopol": 99
+      "war": 40,
+      "credit": 19,
+      "geopol": 101
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -37788,9 +38099,9 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "rsi": 36,
-      "change": 0.13,
-      "adx": 29,
+      "rsi": 35,
+      "change": -0.02,
+      "adx": 30,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 13
@@ -37798,18 +38109,28 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "rsi": 41,
-      "change": 0.33,
-      "adx": 19,
+      "rsi": 40,
+      "change": -0.05,
+      "adx": 20,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 24
     },
     {
+      "label": "SOL",
+      "kind": "crypto",
+      "rsi": 26,
+      "change": -0.48,
+      "adx": 48,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 30
+    },
+    {
       "label": "BNB",
       "kind": "crypto",
       "rsi": 37,
-      "change": 0.32,
+      "change": 0.4,
       "adx": 25,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -37819,7 +38140,7 @@
       "label": "XRP",
       "kind": "crypto",
       "rsi": 31,
-      "change": -1.21,
+      "change": -1.47,
       "adx": 38,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -37829,21 +38150,121 @@
       "label": "ADA",
       "kind": "crypto",
       "rsi": 30,
-      "change": -0.7,
-      "adx": 39,
+      "change": -1.01,
+      "adx": 40,
       "verdict": "Baissier fort",
       "cls": "bear",
-      "score": 0
+      "score": 13
+    },
+    {
+      "label": "DOGE",
+      "kind": "crypto",
+      "rsi": 37,
+      "change": -0.66,
+      "adx": 27,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 13
     },
     {
       "label": "AVAX",
       "kind": "crypto",
       "rsi": 37,
-      "change": -0.86,
+      "change": -1.03,
       "adx": 26,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 0
+    },
+    {
+      "label": "DOT",
+      "kind": "crypto",
+      "rsi": 29,
+      "change": -1.3,
+      "adx": 41,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 17
+    },
+    {
+      "label": "LINK",
+      "kind": "crypto",
+      "rsi": 43,
+      "change": 0.52,
+      "adx": 14,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 6
+    },
+    {
+      "label": "LTC",
+      "kind": "crypto",
+      "rsi": 37,
+      "change": -0.62,
+      "adx": 25,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 13
+    },
+    {
+      "label": "ATOM",
+      "kind": "crypto",
+      "rsi": 28,
+      "change": -0.55,
+      "adx": 43,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 30
+    },
+    {
+      "label": "NEAR",
+      "kind": "crypto",
+      "rsi": 35,
+      "change": -1.03,
+      "adx": 31,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 13
+    },
+    {
+      "label": "ICP",
+      "kind": "crypto",
+      "rsi": 39,
+      "change": 0.41,
+      "adx": 23,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 6
+    },
+    {
+      "label": "RNDR",
+      "kind": "crypto",
+      "rsi": 40,
+      "change": -0.68,
+      "adx": 20,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 6
+    },
+    {
+      "label": "SUI",
+      "kind": "crypto",
+      "rsi": 40,
+      "change": -0.86,
+      "adx": 21,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 6
+    },
+    {
+      "label": "PEPE",
+      "kind": "crypto",
+      "rsi": 57,
+      "change": -1.92,
+      "adx": 14,
+      "verdict": "Haussier fort",
+      "cls": "bull",
+      "score": 80
     },
     {
       "label": "Apple",
