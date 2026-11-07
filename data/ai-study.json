@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-07T18:37:08.481Z",
+  "generated": "2026-11-07T22:20:13.621Z",
   "source": "Pollinations · openai",
   "date": "2026-11-07",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (37 indices · 17 crypto · 354 actions) : S&P 500 +0.31% (RSI 35, baissier fort) · Nasdaq +1.09% (RSI 32, baissier fort) · BTC -0.02% (RSI 35, baissier fort) · ETH -0.05% (RSI 40, baissier fort) · Apple -0.52% (RSI 50, plutôt baissier). Globalement, 203 actifs en biais haussier contre 183 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (37 indices · 9 crypto · 354 actions) : S&P 500 +0.31% (RSI 35, baissier fort) · Nasdaq +1.09% (RSI 32, baissier fort) · BTC -0.12% (RSI 35, baissier fort) · ETH -0.25% (RSI 40, baissier fort) · Apple -0.52% (RSI 50, plutôt baissier). Globalement, 202 actifs en biais haussier contre 176 en baissier. On observe une configuration plutôt favorable aux acheteurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : pression vendeuse persistante (RSI 35)",
     "Nasdaq : pression vendeuse persistante (RSI 32)",
@@ -18,22 +18,22 @@
     "Définir stop loss et take profit AVANT d'entrer sur le marché"
   ],
   "verdict": {
-    "score": 52,
+    "score": 53,
     "cls": "neutral",
     "label": "Indécis"
   },
   "recommended": {
-    "count": 19,
+    "count": 20,
     "byKind": {
       "index": 3,
-      "crypto": 0,
+      "crypto": 1,
       "action": 12,
       "forex": 0,
       "metal": 4
     },
     "byConfidence": {
       "very-high": 2,
-      "high": 17,
+      "high": 18,
       "medium": 0
     },
     "assets": [
@@ -54,6 +54,15 @@
         "confidence": "very-high",
         "direction": "long",
         "rr2": "2.00"
+      },
+      {
+        "label": "TRX",
+        "kind": "crypto",
+        "type": "doji-haussier",
+        "label_setup": "Doji — Retournement haussier",
+        "confidence": "high",
+        "direction": "long",
+        "rr2": "11.56"
       },
       {
         "label": "Argent (Silver)",
@@ -211,7 +220,7 @@
     ],
     "opportunityVerdict": {
       "cls": "bull",
-      "label": "19 opportunités détectées",
+      "label": "20 opportunités détectées",
       "desc": "Plusieurs actifs alignés simultanément — contexte large favorable aux acheteurs trend-follow."
     }
   },
@@ -735,7 +744,7 @@
             282.57,
             284.78
           ],
-          "quality_score": 68,
+          "quality_score": 66,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -768,13 +777,13 @@
           "wisdom_adjustment": -8,
           "wisdom_note": "Wait — DXY strong tue les EM, attendre stabilisation",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 75,
+          "quality_score_pre_wisdom": 73,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"data\" ×3.4 (8 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Intel",
@@ -7024,17 +7033,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Here&#x2019;s why Palantir&#x2019;s stock is down despite a &#x2018;bombastic&#x2019; quarter",
-                "time": "2026-11-03T16:21:00.000Z",
-                "source": "MarketWatch"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
@@ -7125,7 +7124,7 @@
             572.33,
             570.89
           ],
-          "quality_score": 53,
+          "quality_score": 57,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -7144,13 +7143,13 @@
             "risk": "alert",
             "items": [
               {
-                "title": "Berkshire Hathaway more than doubles buybacks in third quarter as earnings decline",
-                "time": "2026-11-07T15:23:46.000Z",
-                "source": "CNBC"
+                "title": "Dow Jones Futures: Market Needs Repair But Apple, Amazon, Microsoft Strong; Berkshire Doubles Stock Buyback",
+                "time": "2026-11-07T16:19:28.000Z",
+                "source": "Yahoo Finance"
               },
               {
-                "title": "Dow Jones Futures: Market Needs Repair But Sandisk, Micron Look Broken; Apple, Amazon, Microsoft Strong",
-                "time": "2026-11-06T23:41:36.000Z",
+                "title": "Warren Buffett's Berkshire Compounded at More Than 19% a Year Over Six Decades, Nearly Double the S&amp;P 500's 10% R…",
+                "time": "2026-11-07T15:56:00.000Z",
                 "source": "Yahoo Finance"
               }
             ]
@@ -7158,13 +7157,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 64,
+          "quality_score_pre_wisdom": 68,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"apple\" ×4.8 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"berkshire\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Disney",
@@ -7284,7 +7283,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"sells\" ×7.7 (9 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"sells\" ×5.3 (8 mentions/24h)"
         },
         {
           "asset": "Medtronic",
@@ -7890,7 +7889,7 @@
             322.73,
             327.16
           ],
-          "quality_score": 57,
+          "quality_score": 55,
           "sizing_pct": 2,
           "sizing_label": "medium-high",
           "trailing_after_tp1": false,
@@ -7918,13 +7917,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 68,
+          "quality_score_pre_wisdom": 66,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"director\" ×12 (6 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"sells\" ×5.3 (8 mentions/24h)"
         },
         {
           "asset": "BP",
@@ -10124,14 +10123,14 @@
             "risk": "alert",
             "items": [
               {
+                "title": "The S&amp;P 500 Just Had Its Worst Week Since the April 2025 Tariff Crash",
+                "time": "2026-11-07T17:33:39.000Z",
+                "source": "Yahoo Finance"
+              },
+              {
                 "title": "U.S. memo alleges Nvidia’s CEO was romantically linked to suspected Beijing spy",
                 "time": "2026-11-07T15:11:08.000Z",
                 "source": "Investing.com"
-              },
-              {
-                "title": "Stock Market Today: Nasdaq Rallies In Tech Turnaround; Airbnb Rockets Higher",
-                "time": "2026-11-06T21:52:14.000Z",
-                "source": "Yahoo Finance"
               }
             ]
           },
@@ -11380,7 +11379,7 @@
             656.39,
             690
           ],
-          "quality_score": 41,
+          "quality_score": 44,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -11399,13 +11398,13 @@
             "risk": "alert",
             "items": [
               {
-                "title": "Dow Jones Futures: Market Needs Repair But Sandisk, Micron Look Broken; Apple, Amazon, Microsoft Strong",
-                "time": "2026-11-06T23:41:36.000Z",
+                "title": "Dow Jones Futures: Market Needs Repair But Apple, Amazon, Microsoft Strong; Berkshire Doubles Stock Buyback",
+                "time": "2026-11-07T16:19:28.000Z",
                 "source": "Yahoo Finance"
               },
               {
-                "title": "Dow Jones Futures: Market Needs Repair But Sandisk, Micron Broken; Apple, Amazon, Microsoft Strong",
-                "time": "2026-11-06T21:45:10.000Z",
+                "title": "Dow Jones Futures: Market Needs Repair But Sandisk, Micron Look Broken; Apple, Amazon, Microsoft Strong",
+                "time": "2026-11-06T23:41:36.000Z",
                 "source": "Yahoo Finance"
               }
             ]
@@ -11413,13 +11412,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 52,
+          "quality_score_pre_wisdom": 55,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"apple\" ×4.8 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"berkshire\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Applied Materials",
@@ -14600,7 +14599,7 @@
             282.57,
             284.78
           ],
-          "quality_score": 45,
+          "quality_score": 43,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -14633,13 +14632,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 56,
+          "quality_score_pre_wisdom": 54,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"data\" ×3.4 (8 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "EWZ Brazil ETF",
@@ -15049,17 +15048,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Anthropic&#x2019;s IPO is a high-stakes referendum on Big Tech &#x2014; and this chart proves it",
-                "time": "2026-11-03T21:04:00.000Z",
-                "source": "MarketWatch"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
@@ -18870,7 +18859,7 @@
             4211,
             4142
           ],
-          "quality_score": 45,
+          "quality_score": 43,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18903,13 +18892,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 56,
+          "quality_score_pre_wisdom": 54,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"strong\" ×4.5 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "MUFG",
@@ -19739,17 +19728,7 @@
           "stacked": false,
           "stacked_count": null,
           "stacked_patterns": null,
-          "news_context": {
-            "count": 1,
-            "risk": "normal",
-            "items": [
-              {
-                "title": "Retail Flows and Industry Consolidation Power KKR &amp; Co.’s (KKR) Growth Runway",
-                "time": "2026-11-03T16:47:14.000Z",
-                "source": "Yahoo Finance"
-              }
-            ]
-          },
+          "news_context": null,
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
@@ -20585,7 +20564,7 @@
             233.18,
             227.77
           ],
-          "quality_score": 45,
+          "quality_score": 43,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -20613,13 +20592,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 56,
+          "quality_score_pre_wisdom": 54,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"data\" ×3.4 (8 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "eBay",
@@ -21855,7 +21834,7 @@
             260.21,
             259.3
           ],
-          "quality_score": 33,
+          "quality_score": 36,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -21874,13 +21853,13 @@
             "risk": "alert",
             "items": [
               {
-                "title": "Dow Jones Futures: Market Needs Repair But Sandisk, Micron Look Broken; Apple, Amazon, Microsoft Strong",
-                "time": "2026-11-06T23:41:36.000Z",
+                "title": "Dow Jones Futures: Market Needs Repair But Apple, Amazon, Microsoft Strong; Berkshire Doubles Stock Buyback",
+                "time": "2026-11-07T16:19:28.000Z",
                 "source": "Yahoo Finance"
               },
               {
-                "title": "Dow Jones Futures: Market Needs Repair But Sandisk, Micron Broken; Apple, Amazon, Microsoft Strong",
-                "time": "2026-11-06T21:45:10.000Z",
+                "title": "Dow Jones Futures: Market Needs Repair But Sandisk, Micron Look Broken; Apple, Amazon, Microsoft Strong",
+                "time": "2026-11-06T23:41:36.000Z",
                 "source": "Yahoo Finance"
               }
             ]
@@ -21888,13 +21867,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 44,
+          "quality_score_pre_wisdom": 47,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"apple\" ×4.8 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"berkshire\" ×18 (3 mentions/24h)"
         },
         {
           "asset": "Tesla",
@@ -21994,14 +21973,14 @@
             "risk": "alert",
             "items": [
               {
+                "title": "Tesla to expand Cybertruck production in bid to fill orders before dismantling line next year",
+                "time": "2026-11-07T18:42:21.000Z",
+                "source": "Investing.com"
+              },
+              {
                 "title": "Tesla to wind down Cybertruck production in Texas next year to ramp Cybercab, Musk says",
                 "time": "2026-11-06T15:06:11.000Z",
                 "source": "CNBC"
-              },
-              {
-                "title": "Tesla to wind down Cybertruck production",
-                "time": "2026-11-06T12:13:51.000Z",
-                "source": "Hacker News"
               }
             ]
           },
@@ -22215,7 +22194,7 @@
             115.16,
             116.1
           ],
-          "quality_score": 32,
+          "quality_score": 33,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -22248,13 +22227,13 @@
           "wisdom_adjustment": -12,
           "wisdom_note": "Volatilité erratique, scalper avec stops serrés",
           "historical_analog": "Crise asiatique (devaluation baht) (1997)",
-          "quality_score_pre_wisdom": 43,
+          "quality_score_pre_wisdom": 44,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": null
+          "spike_theme_reason": "Spike theme \"microsoft\" ×3.6 (3 mentions/24h)"
         },
         {
           "asset": "Uber",
@@ -29737,12 +29716,12 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 75759.92999086644,
-      "change": "-0.02",
+      "price": 75688.10517117131,
+      "change": "-0.12",
       "rsi": "35",
       "maCross": "bear",
-      "macdHist": "-346.04",
-      "boll": "13%",
+      "macdHist": "-350.62",
+      "boll": "12%",
       "adx": "30",
       "atr": "1.6%",
       "verdict": "Baissier fort",
@@ -29752,14 +29731,14 @@
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 2235.234149305204,
-      "change": "-0.05",
+      "price": 2230.6710977737607,
+      "change": "-0.25",
       "rsi": "40",
       "maCross": "bear",
-      "macdHist": "0.88",
-      "boll": "21%",
-      "adx": "20",
-      "atr": "1.9%",
+      "macdHist": "0.59",
+      "boll": "19%",
+      "adx": "21",
+      "atr": "2.0%",
       "verdict": "Baissier fort",
       "score": 24,
       "cls": "bear"
@@ -29767,13 +29746,13 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 89.62878946851716,
-      "change": "-0.48",
+      "price": 89.19904424027588,
+      "change": "-0.96",
       "rsi": "26",
       "maCross": "bear",
-      "macdHist": "-0.66",
-      "boll": "12%",
-      "adx": "48",
+      "macdHist": "-0.69",
+      "boll": "10%",
+      "adx": "49",
       "atr": "2.1%",
       "verdict": "Baissier fort",
       "score": 30,
@@ -29782,12 +29761,12 @@
     {
       "label": "BNB",
       "kind": "crypto",
-      "price": 695.4029191991879,
-      "change": "0.40",
+      "price": 695.1255544893337,
+      "change": "0.36",
       "rsi": "37",
       "maCross": "bear",
-      "macdHist": "-2.43",
-      "boll": "21%",
+      "macdHist": "-2.45",
+      "boll": "20%",
       "adx": "25",
       "atr": "1.8%",
       "verdict": "Baissier fort",
@@ -29795,199 +29774,79 @@
       "cls": "bear"
     },
     {
-      "label": "XRP",
+      "label": "ADA",
       "kind": "crypto",
-      "price": 1.161263976803066,
-      "change": "-1.47",
-      "rsi": "31",
+      "price": 0.18049449163785283,
+      "change": "-1.87",
+      "rsi": "29",
       "maCross": "bear",
-      "macdHist": "-0.01",
-      "boll": "-6%",
-      "adx": "38",
+      "macdHist": "-0.00",
+      "boll": "12%",
+      "adx": "41",
+      "atr": "2.7%",
+      "verdict": "Baissier fort",
+      "score": 30,
+      "cls": "bear"
+    },
+    {
+      "label": "DOGE",
+      "kind": "crypto",
+      "price": 0.07128946894521498,
+      "change": "-1.49",
+      "rsi": "36",
+      "maCross": "bear",
+      "macdHist": "-0.00",
+      "boll": "5%",
+      "adx": "29",
       "atr": "2.2%",
       "verdict": "Baissier fort",
       "score": 13,
       "cls": "bear"
     },
     {
-      "label": "ADA",
-      "kind": "crypto",
-      "price": 0.1820807769320777,
-      "change": "-1.01",
-      "rsi": "30",
-      "maCross": "bear",
-      "macdHist": "-0.00",
-      "boll": "14%",
-      "adx": "40",
-      "atr": "2.6%",
-      "verdict": "Baissier fort",
-      "score": 13,
-      "cls": "bear"
-    },
-    {
-      "label": "DOGE",
-      "kind": "crypto",
-      "price": 0.07188434148882318,
-      "change": "-0.66",
-      "rsi": "37",
-      "maCross": "bear",
-      "macdHist": "-0.00",
-      "boll": "9%",
-      "adx": "27",
-      "atr": "2.1%",
-      "verdict": "Baissier fort",
-      "score": 13,
-      "cls": "bear"
-    },
-    {
-      "label": "AVAX",
-      "kind": "crypto",
-      "price": 8.249513322369669,
-      "change": "-1.03",
-      "rsi": "37",
-      "maCross": "bear",
-      "macdHist": "-0.04",
-      "boll": "19%",
-      "adx": "26",
-      "atr": "2.4%",
-      "verdict": "Baissier fort",
-      "score": 0,
-      "cls": "bear"
-    },
-    {
-      "label": "DOT",
-      "kind": "crypto",
-      "price": 0.9008555194891592,
-      "change": "-1.30",
-      "rsi": "29",
-      "maCross": "bear",
-      "macdHist": "-0.01",
-      "boll": "19%",
-      "adx": "41",
-      "atr": "2.8%",
-      "verdict": "Baissier fort",
-      "score": 17,
-      "cls": "bear"
-    },
-    {
       "label": "LINK",
       "kind": "crypto",
-      "price": 10.905825621356783,
-      "change": "0.52",
-      "rsi": "43",
+      "price": 10.768738634656353,
+      "change": "-0.74",
+      "rsi": "42",
       "maCross": "bear",
-      "macdHist": "-0.03",
-      "boll": "22%",
-      "adx": "14",
+      "macdHist": "-0.04",
+      "boll": "16%",
+      "adx": "17",
       "atr": "3.3%",
       "verdict": "Baissier fort",
       "score": 6,
       "cls": "bear"
     },
     {
-      "label": "LTC",
+      "label": "TRX",
       "kind": "crypto",
-      "price": 52.23058426572659,
-      "change": "-0.62",
-      "rsi": "37",
-      "maCross": "bear",
-      "macdHist": "-0.36",
-      "boll": "12%",
-      "adx": "25",
-      "atr": "2.6%",
-      "verdict": "Baissier fort",
-      "score": 13,
-      "cls": "bear"
-    },
-    {
-      "label": "ATOM",
-      "kind": "crypto",
-      "price": 1.3790121058411353,
-      "change": "-0.55",
-      "rsi": "28",
-      "maCross": "bear",
-      "macdHist": "-0.02",
-      "boll": "15%",
-      "adx": "43",
-      "atr": "3.1%",
-      "verdict": "Baissier fort",
-      "score": 30,
-      "cls": "bear"
-    },
-    {
-      "label": "NEAR",
-      "kind": "crypto",
-      "price": 3.6720656463548957,
-      "change": "-1.03",
-      "rsi": "35",
-      "maCross": "bear",
-      "macdHist": "-0.11",
-      "boll": "12%",
-      "adx": "31",
-      "atr": "5.2%",
-      "verdict": "Baissier fort",
-      "score": 13,
-      "cls": "bear"
-    },
-    {
-      "label": "ICP",
-      "kind": "crypto",
-      "price": 2.440582920268032,
-      "change": "0.41",
-      "rsi": "39",
+      "price": 0.31989980014581376,
+      "change": "0.61",
+      "rsi": "46",
       "maCross": "bear",
       "macdHist": "-0.00",
-      "boll": "24%",
-      "adx": "23",
-      "atr": "2.9%",
+      "boll": "35%",
+      "adx": "9",
+      "atr": "2.3%",
       "verdict": "Baissier fort",
-      "score": 6,
+      "score": 14,
       "cls": "bear"
     },
     {
-      "label": "RNDR",
+      "label": "ARB",
       "kind": "crypto",
-      "price": 1.5691650498225194,
-      "change": "-0.68",
-      "rsi": "40",
+      "price": 0.1673021976591688,
+      "change": "1.53",
+      "rsi": "49",
       "maCross": "bear",
-      "macdHist": "-0.01",
-      "boll": "32%",
-      "adx": "20",
-      "atr": "3.3%",
-      "verdict": "Baissier fort",
-      "score": 6,
-      "cls": "bear"
-    },
-    {
-      "label": "SUI",
-      "kind": "crypto",
-      "price": 0.861006325136078,
-      "change": "-0.86",
-      "rsi": "40",
-      "maCross": "bear",
-      "macdHist": "-0.01",
-      "boll": "20%",
-      "adx": "21",
-      "atr": "3.1%",
-      "verdict": "Baissier fort",
-      "score": 6,
-      "cls": "bear"
-    },
-    {
-      "label": "PEPE",
-      "kind": "crypto",
-      "price": 0.000004885246624929632,
-      "change": "-1.92",
-      "rsi": "57",
-      "maCross": "bull",
       "macdHist": "0.00",
-      "boll": "70%",
-      "adx": "14",
-      "atr": "4.0%",
-      "verdict": "Haussier fort",
-      "score": 80,
-      "cls": "bull"
+      "boll": "46%",
+      "adx": "3",
+      "atr": "2.8%",
+      "verdict": "Plutôt baissier",
+      "score": 37,
+      "cls": "bear"
     },
     {
       "label": "Apple",
@@ -33142,8 +33001,8 @@
     {
       "label": "Hilton",
       "kind": "action",
-      "price": 376.53,
-      "change": "1.86",
+      "price": 370.45,
+      "change": "0.22",
       "rsi": "65",
       "maCross": "bull",
       "macdHist": "1.27",
@@ -36218,6 +36077,89 @@
       "historical_analog": null
     },
     {
+      "asset": "TRX",
+      "kind": "crypto",
+      "type": "doji-haussier",
+      "label": "Doji — Retournement haussier",
+      "timeframe": "Swing · 3-10 jours (sortie sur Doji inverse)",
+      "confidence": "high",
+      "direction": "long",
+      "config": "Doji détecté après bougie rouge (-0.6%) puis bougie verte de confirmation (+0.6%). Combat acheteurs/vendeurs résolu côté acheteur.",
+      "rationale": "Stratégie Heikin Ashi adaptée : après une chute, un doji marque une hésitation (combat acheteur/vendeur). La bougie verte qui suit confirme que les acheteurs ont gagné. Stop technique au plus bas de la bougie rouge. Sortie discrétionnaire au prochain Doji baissier (doji après bougie verte).",
+      "entry": 0.31989980014581376,
+      "stop": 0.3173792279708209,
+      "tp1": 0.3344718281217824,
+      "tp2": 0.34904385609775107,
+      "rr1": "5.78",
+      "rr2": "11.56",
+      "currency": "USD",
+      "prices60": [
+        0.3388,
+        0.3399,
+        0.3385,
+        0.3399,
+        0.3383,
+        0.3381,
+        0.3328,
+        0.3355,
+        0.3347,
+        0.3383,
+        0.3398,
+        0.3425,
+        0.3446,
+        0.342,
+        0.3421,
+        0.3401,
+        0.3381,
+        0.3343,
+        0.3334,
+        0.3354,
+        0.3343,
+        0.3374,
+        0.3347,
+        0.3346,
+        0.3354,
+        0.3357,
+        0.3361,
+        0.3354,
+        0.3352,
+        0.3325,
+        0.3317,
+        0.3306,
+        0.3299,
+        0.3289,
+        0.3272,
+        0.3322,
+        0.3323,
+        0.3351,
+        0.3334,
+        0.3323,
+        0.3318,
+        0.3312,
+        0.3306,
+        0.3283,
+        0.3297,
+        0.3291,
+        0.3302,
+        0.329,
+        0.3312,
+        0.3294,
+        0.3521,
+        0.3286,
+        0.3028,
+        0.313,
+        0.319,
+        0.3214,
+        0.3198,
+        0.318,
+        0.318,
+        0.3199
+      ],
+      "news_context": null,
+      "wisdom_adjustment": 0,
+      "historical_analog": null
+    },
+    {
       "asset": "Argent (Silver)",
       "kind": "metal",
       "type": "doji-baissier",
@@ -37641,7 +37583,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 53
+    "matched_assets": 47
   },
   "macro": {
     "vix": 25.64,
@@ -37651,7 +37593,7 @@
     "cross_asset": {
       "sp500_change": 0.3145326640212812,
       "nasdaq_change": 1.087516707793543,
-      "btc_change": -0.02025924053426075,
+      "btc_change": -0.11504584941946404,
       "risk_off": false,
       "tech_risk_off": false,
       "crypto_dump": false,
@@ -37663,7 +37605,7 @@
     "current_state": {
       "vix": 25.64,
       "yield_curve": null,
-      "btc_30d_change": -8.24129144295163,
+      "btc_30d_change": -8.32828403518822,
       "sp500_30d_change": -3.993264700486401,
       "dominant_sectors": [
         "XLV",
@@ -37671,25 +37613,25 @@
         "XLP"
       ],
       "dominant_news_themes": [
-        "earnings",
         "tech",
+        "earnings",
         "geopolitical"
       ],
       "special_flags": []
     },
     "dominant_themes": [
-      "earnings",
       "tech",
+      "earnings",
       "geopolitical"
     ],
     "theme_counts": {
-      "crypto": 56,
-      "geopolitical": 101,
-      "fed": 51,
-      "earnings": 114,
-      "war": 40,
-      "tech": 108,
-      "oil": 26,
+      "geopolitical": 98,
+      "fed": 55,
+      "crypto": 57,
+      "tech": 106,
+      "earnings": 103,
+      "war": 41,
+      "oil": 25,
       "credit": 19
     },
     "top_sectors_60d": [
@@ -37828,15 +37770,15 @@
     },
     "tech_events_upcoming": [],
     "enriched_themes": {
-      "ev_battery": 83,
+      "ev_battery": 84,
+      "ai_breakthrough": 5,
       "biotech_fda": 1,
       "recession": 2,
       "semicon_supply": 3,
       "defi_growth": 2,
-      "ai_breakthrough": 5,
-      "crypto_hack": 6,
+      "crypto_hack": 4,
       "crypto_etf": 1,
-      "rate_pivot": 4
+      "rate_pivot": 3
     },
     "etf_flows": {
       "XLK Tech": {
@@ -37847,9 +37789,9 @@
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 40,
+      "war": 41,
       "credit": 19,
-      "geopol": 101
+      "geopol": 98
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -38100,7 +38042,7 @@
       "label": "BTC",
       "kind": "crypto",
       "rsi": 35,
-      "change": -0.02,
+      "change": -0.12,
       "adx": 30,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -38110,8 +38052,8 @@
       "label": "ETH",
       "kind": "crypto",
       "rsi": 40,
-      "change": -0.05,
-      "adx": 20,
+      "change": -0.25,
+      "adx": 21,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 24
@@ -38120,8 +38062,8 @@
       "label": "SOL",
       "kind": "crypto",
       "rsi": 26,
-      "change": -0.48,
-      "adx": 48,
+      "change": -0.96,
+      "adx": 49,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 30
@@ -38130,141 +38072,61 @@
       "label": "BNB",
       "kind": "crypto",
       "rsi": 37,
-      "change": 0.4,
+      "change": 0.36,
       "adx": 25,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 0
-    },
-    {
-      "label": "XRP",
-      "kind": "crypto",
-      "rsi": 31,
-      "change": -1.47,
-      "adx": 38,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 13
     },
     {
       "label": "ADA",
       "kind": "crypto",
-      "rsi": 30,
-      "change": -1.01,
-      "adx": 40,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 13
-    },
-    {
-      "label": "DOGE",
-      "kind": "crypto",
-      "rsi": 37,
-      "change": -0.66,
-      "adx": 27,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 13
-    },
-    {
-      "label": "AVAX",
-      "kind": "crypto",
-      "rsi": 37,
-      "change": -1.03,
-      "adx": 26,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 0
-    },
-    {
-      "label": "DOT",
-      "kind": "crypto",
       "rsi": 29,
-      "change": -1.3,
+      "change": -1.87,
       "adx": 41,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 17
-    },
-    {
-      "label": "LINK",
-      "kind": "crypto",
-      "rsi": 43,
-      "change": 0.52,
-      "adx": 14,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 6
-    },
-    {
-      "label": "LTC",
-      "kind": "crypto",
-      "rsi": 37,
-      "change": -0.62,
-      "adx": 25,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 13
-    },
-    {
-      "label": "ATOM",
-      "kind": "crypto",
-      "rsi": 28,
-      "change": -0.55,
-      "adx": 43,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 30
     },
     {
-      "label": "NEAR",
+      "label": "DOGE",
       "kind": "crypto",
-      "rsi": 35,
-      "change": -1.03,
-      "adx": 31,
+      "rsi": 36,
+      "change": -1.49,
+      "adx": 29,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 13
     },
     {
-      "label": "ICP",
+      "label": "LINK",
       "kind": "crypto",
-      "rsi": 39,
-      "change": 0.41,
-      "adx": 23,
+      "rsi": 42,
+      "change": -0.74,
+      "adx": 17,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 6
     },
     {
-      "label": "RNDR",
+      "label": "TRX",
       "kind": "crypto",
-      "rsi": 40,
-      "change": -0.68,
-      "adx": 20,
+      "rsi": 46,
+      "change": 0.61,
+      "adx": 9,
       "verdict": "Baissier fort",
       "cls": "bear",
-      "score": 6
+      "score": 14
     },
     {
-      "label": "SUI",
+      "label": "ARB",
       "kind": "crypto",
-      "rsi": 40,
-      "change": -0.86,
-      "adx": 21,
-      "verdict": "Baissier fort",
+      "rsi": 49,
+      "change": 1.53,
+      "adx": 3,
+      "verdict": "Plutôt baissier",
       "cls": "bear",
-      "score": 6
-    },
-    {
-      "label": "PEPE",
-      "kind": "crypto",
-      "rsi": 57,
-      "change": -1.92,
-      "adx": 14,
-      "verdict": "Haussier fort",
-      "cls": "bull",
-      "score": 80
+      "score": 37
     },
     {
       "label": "Apple",
@@ -40370,7 +40232,7 @@
       "label": "Hilton",
       "kind": "action",
       "rsi": 65,
-      "change": 1.86,
+      "change": 0.22,
       "adx": 31,
       "verdict": "Haussier fort",
       "cls": "bull",
