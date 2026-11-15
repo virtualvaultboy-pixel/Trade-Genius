@@ -1,15 +1,15 @@
 {
-  "generated": "2026-11-14T02:08:38.242Z",
-  "date": "2026-11-14",
-  "title": "Rapport du 14 novembre 2026",
-  "summary": "Plus de baisses que de hausses sur la journée, biais vendeur modéré.",
+  "generated": "2026-11-15T01:39:20.954Z",
+  "date": "2026-11-15",
+  "title": "Rapport du 15 novembre 2026",
+  "summary": "Séance largement négative — tous les actifs majeurs reculent.",
   "highlights": [
     "S&P 500 -0.40% · ↘ légère baisse",
     "Nasdaq -0.91% · ↘ légère baisse",
     "CAC 40 +0.09% · → stable",
     "Dow +0.10% · → stable",
-    "BTC -0.14% · → stable",
-    "ETH -0.34% · ↘ légère baisse"
+    "BTC -2.69% · ↓ baissier survendu",
+    "ETH -2.65% · ↓ baissier survendu"
   ],
   "items": [
     {
@@ -60,22 +60,22 @@
       "kind": "crypto",
       "symbol": "BTC",
       "name": "Bitcoin",
-      "price": 68214.75010929727,
-      "change": -0.14485952853236014,
-      "rsi": 26.6,
-      "verdict": "flat",
-      "verdictLabel": "→ stable",
+      "price": 62394.969601781726,
+      "change": -2.6906744386450154,
+      "rsi": 18.1,
+      "verdict": "oversold",
+      "verdictLabel": "↓ baissier survendu",
       "currency": "USD"
     },
     {
       "kind": "crypto",
       "symbol": "ETH",
       "name": "Ethereum",
-      "price": 1925.7615674223787,
-      "change": -0.33754939846891713,
-      "rsi": 27.9,
-      "verdict": "bear-soft",
-      "verdictLabel": "↘ légère baisse",
+      "price": 1721.649463224452,
+      "change": -2.6465262395513394,
+      "rsi": 20.2,
+      "verdict": "oversold",
+      "verdictLabel": "↓ baissier survendu",
       "currency": "USD"
     }
   ]
