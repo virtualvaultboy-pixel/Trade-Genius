@@ -6,7 +6,7 @@
   "icon": "⚡",
   "created_at": "2026-05-30T17:55:42.945Z",
   "capital_initial": 1000,
-  "cash": 735.6613351530951,
+  "cash": 792.8980962778154,
   "positions": [
     {
       "id": "pos-1793935052221-ci8l",
@@ -38,8 +38,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 172457.77,
-      "age_days": 6
+      "current_price": 169295.4,
+      "age_days": 7
     },
     {
       "id": "pos-1794454856168-5tou",
@@ -52,7 +52,7 @@
       "tp1": 246.33750457116884,
       "tp2": 255.07500303882205,
       "initial_stop": 235.50300647127887,
-      "high_since_entry": 243.08,
+      "high_since_entry": 246,
       "rr1": 4.17,
       "rr2": 8.33,
       "risk_pct": 0.008825755801214735,
@@ -71,39 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 243.08,
-      "age_days": 2
-    },
-    {
-      "id": "pos-1794625030877-3ihy",
-      "asset": "Nifty 50 India",
-      "kind": "index",
-      "agent": "kairo",
-      "type": "kairo-doji-short",
-      "entry": 25144.30078125,
-      "stop": 25305.5608828125,
-      "tp1": 24721.001129223627,
-      "tp2": 24297.701477197257,
-      "initial_stop": 25305.5608828125,
-      "high_since_entry": 25144.30078125,
-      "rr1": 2.62,
-      "rr2": 5.25,
-      "risk_pct": 0.006413385799248452,
-      "size_eur": 55.37235855991039,
-      "quality_score": 81,
-      "sizing_pct": 10,
-      "trailing_after_tp1": true,
-      "trailing_active": false,
-      "pyramiding_pct": 50,
-      "pyramided": false,
-      "stacked": false,
-      "opened_at": "2026-11-14T02:57:10.877Z",
-      "opened_at_cycle": 121,
-      "opened_at_date": "2026-11-14",
-      "status": "open",
-      "touched_tp1": false,
-      "closed_at": null,
-      "pnl_eur": null
+      "current_price": 246,
+      "age_days": 3
     }
   ],
   "closed_trades": [
@@ -3905,6 +3874,41 @@
       "age_days": 1,
       "closed_at_cycle": 121,
       "exit_price": 9147.258
+    },
+    {
+      "id": "pos-1794625030877-3ihy",
+      "asset": "Nifty 50 India",
+      "kind": "index",
+      "agent": "kairo",
+      "type": "kairo-doji-short",
+      "entry": 25144.30078125,
+      "stop": 25305.5608828125,
+      "tp1": 24721.001129223627,
+      "tp2": 24297.701477197257,
+      "initial_stop": 25305.5608828125,
+      "high_since_entry": 25406.6,
+      "rr1": 2.62,
+      "rr2": 5.25,
+      "risk_pct": 0.006413385799248452,
+      "size_eur": 55.37235855991039,
+      "quality_score": 81,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-11-14T02:57:10.877Z",
+      "opened_at_cycle": 121,
+      "opened_at_date": "2026-11-14",
+      "status": "win",
+      "touched_tp1": false,
+      "closed_at": "2026-11-17T04:59:17.238Z",
+      "pnl_eur": 1.8644025648098692,
+      "current_price": 25406.6,
+      "age_days": 1,
+      "closed_at_cycle": 122,
+      "exit_price": 24297.701477197257
     }
   ],
   "equity_history": [
@@ -4754,7 +4758,14 @@
       "equity": 967.75,
       "cash": 735.66,
       "positions_count": 3
+    },
+    {
+      "date": "2026-11-17",
+      "cycle": 122,
+      "equity": 969.11,
+      "cash": 792.9,
+      "positions_count": 2
     }
   ],
-  "last_cycle": "2026-11-14"
+  "last_cycle": "2026-11-17"
 }
