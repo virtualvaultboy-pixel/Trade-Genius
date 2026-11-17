@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-16T12:07:11.343Z",
+  "generated": "2026-11-17T12:32:29.370Z",
   "horizon_days": 14,
   "events": [
     {
@@ -15,7 +15,21 @@
       "label": "CPI US (inflation)",
       "impact": "high",
       "desc": "Indice des prix à la consommation US. Impact direct sur les anticipations de taux Fed → volatilité USD/crypto/indices."
+    },
+    {
+      "ts": "2026-12-16T19:00:00.000Z",
+      "country": "🇺🇸",
+      "label": "Décision FOMC (taux Fed)",
+      "impact": "high",
+      "desc": "Annonce de la décision sur les taux directeurs de la Fed. Impact majeur sur tous les actifs USD, crypto et indices."
+    },
+    {
+      "ts": "2026-12-17T12:15:00.000Z",
+      "country": "🇪🇺",
+      "label": "Décision BCE (taux)",
+      "impact": "high",
+      "desc": "Annonce de la décision sur les taux directeurs de la BCE. Impact majeur sur l'EUR, les indices européens et les actions EU."
     }
   ],
-  "count": 2
+  "count": 4
 }
