@@ -6,7 +6,7 @@
   "icon": "🔥",
   "created_at": "2026-05-30T17:55:42.943Z",
   "capital_initial": 1000,
-  "cash": 736.8831691799878,
+  "cash": 739.8684588973309,
   "positions": [
     {
       "id": "pos-1793327244735-boo6",
@@ -39,7 +39,7 @@
       "closed_at": null,
       "pnl_eur": null,
       "current_price": 166376.44,
-      "age_days": 15
+      "age_days": 16
     },
     {
       "id": "pos-1794974678155-ha6o",
@@ -52,7 +52,7 @@
       "tp1": 131.75392924964086,
       "tp2": 135.98786185621532,
       "initial_stop": 125.82642360043663,
-      "high_since_entry": 127.5199966430664,
+      "high_since_entry": 127.95,
       "rr1": 2.5,
       "rr2": 5,
       "risk_pct": 0.0132808429047419,
@@ -71,8 +71,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 126.04,
-      "age_days": 2
+      "current_price": 127.95,
+      "age_days": 3
     },
     {
       "id": "pos-1795060852241-4fym",
@@ -104,39 +104,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 572.04,
-      "age_days": 1
-    },
-    {
-      "id": "pos-1795146849804-it0f",
-      "asset": "IBM",
-      "kind": "action",
-      "agent": "nova",
-      "type": "grid-week-A",
-      "entry": 228.52999877929688,
-      "stop": 224.83320651022086,
-      "tp1": 237.77197945198694,
-      "tp2": 247.013960124677,
-      "initial_stop": 224.83320651022086,
-      "high_since_entry": 228.52999877929688,
-      "rr1": 2.5,
-      "rr2": 5,
-      "risk_pct": 0.016176398235779082,
-      "size_eur": 59.63905866874685,
-      "quality_score": 63,
-      "sizing_pct": 10,
-      "trailing_after_tp1": true,
-      "trailing_active": false,
-      "pyramiding_pct": 50,
-      "pyramided": false,
-      "stacked": false,
-      "opened_at": "2026-11-20T03:54:09.804Z",
-      "opened_at_cycle": 125,
-      "opened_at_date": "2026-11-20",
-      "status": "open",
-      "touched_tp1": false,
-      "closed_at": null,
-      "pnl_eur": null
+      "current_price": 570,
+      "age_days": 2
     },
     {
       "id": "pos-1795146849804-iy4f",
@@ -164,6 +133,39 @@
       "opened_at": "2026-11-20T03:54:09.804Z",
       "opened_at_cycle": 125,
       "opened_at_date": "2026-11-20",
+      "status": "open",
+      "touched_tp1": false,
+      "closed_at": null,
+      "pnl_eur": null,
+      "current_price": 273.24,
+      "age_days": 1
+    },
+    {
+      "id": "pos-1795233041517-bp55",
+      "asset": "Pfizer",
+      "kind": "action",
+      "agent": "nova",
+      "type": "grid-week-A",
+      "entry": 27.399999618530273,
+      "stop": 27.0135707801425,
+      "tp1": 28.366071714499704,
+      "tp2": 29.332143810469137,
+      "initial_stop": 27.0135707801425,
+      "high_since_entry": 27.399999618530273,
+      "rr1": 2.5,
+      "rr2": 5,
+      "risk_pct": 0.014103242473274895,
+      "size_eur": 55.689023787971145,
+      "quality_score": 73,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-11-21T03:50:41.517Z",
+      "opened_at_cycle": 126,
+      "opened_at_date": "2026-11-21",
       "status": "open",
       "touched_tp1": false,
       "closed_at": null,
@@ -6327,6 +6329,41 @@
       "age_days": 8,
       "closed_at_cycle": 125,
       "exit_price": 68.64243878173828
+    },
+    {
+      "id": "pos-1795146849804-it0f",
+      "asset": "IBM",
+      "kind": "action",
+      "agent": "nova",
+      "type": "grid-week-A",
+      "entry": 228.52999877929688,
+      "stop": 224.83320651022086,
+      "tp1": 237.77197945198694,
+      "tp2": 247.013960124677,
+      "initial_stop": 224.83320651022086,
+      "high_since_entry": 228.52999877929688,
+      "rr1": 2.5,
+      "rr2": 5,
+      "risk_pct": 0.016176398235779082,
+      "size_eur": 59.63905866874685,
+      "quality_score": 63,
+      "sizing_pct": 10,
+      "trailing_after_tp1": true,
+      "trailing_active": false,
+      "pyramiding_pct": 50,
+      "pyramided": false,
+      "stacked": false,
+      "opened_at": "2026-11-20T03:54:09.804Z",
+      "opened_at_cycle": 125,
+      "opened_at_date": "2026-11-20",
+      "status": "loss",
+      "touched_tp1": false,
+      "closed_at": "2026-11-21T03:50:41.434Z",
+      "pnl_eur": -0.9647451634326417,
+      "current_price": 224.44,
+      "age_days": 1,
+      "closed_at_cycle": 126,
+      "exit_price": 224.83320651022086
     }
   ],
   "equity_history": [
@@ -7204,7 +7241,14 @@
       "equity": 1115.07,
       "cash": 736.88,
       "positions_count": 5
+    },
+    {
+      "date": "2026-11-21",
+      "cycle": 126,
+      "equity": 1114.98,
+      "cash": 739.87,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-11-20"
+  "last_cycle": "2026-11-21"
 }
