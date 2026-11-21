@@ -1,14 +1,14 @@
 {
-  "generated": "2026-11-21T15:14:11.857Z",
+  "generated": "2026-11-21T20:55:56.814Z",
   "source": "Pollinations · openai",
   "date": "2026-11-21",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (36 indices · 11 crypto · 353 actions) : S&P 500 -3.70% (RSI 29, baissier fort) · Nasdaq -5.28% (RSI 31, baissier fort) · BTC +2.37% (RSI 15, baissier fort) · ETH +4.31% (RSI 18, baissier fort) · Apple -1.90% (RSI 53, indécis). Globalement, 53 actifs en biais haussier contre 321 en baissier. On observe une configuration plutôt favorable aux vendeurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (36 indices · 7 crypto · 353 actions) : S&P 500 -3.70% (RSI 29, baissier fort) · Nasdaq -5.28% (RSI 31, baissier fort) · BTC +2.57% (RSI 16, baissier fort) · DOGE +1.61% (RSI 20, baissier fort) · Apple -1.90% (RSI 53, indécis). Globalement, 53 actifs en biais haussier contre 318 en baissier. On observe une configuration plutôt favorable aux vendeurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : pression vendeuse persistante (RSI 29)",
     "Nasdaq : pression vendeuse persistante (RSI 31)",
-    "BTC : pression vendeuse persistante (RSI 15)",
-    "ETH : pression vendeuse persistante (RSI 18)",
+    "BTC : pression vendeuse persistante (RSI 16)",
+    "DOGE : pression vendeuse persistante (RSI 20)",
     "Apple : sans direction nette (RSI 53)"
   ],
   "plan_pedago": [
@@ -4929,7 +4929,7 @@
             86.13,
             77.8
           ],
-          "quality_score": 76,
+          "quality_score": 71,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -4957,13 +4957,13 @@
           "wisdom_adjustment": -6,
           "wisdom_note": "Attendre Fed pivot — environ 4-6 semaines",
           "historical_analog": "Sell-off Q4 2018 (Fed hawkish) (2018)",
-          "quality_score_pre_wisdom": 81,
+          "quality_score_pre_wisdom": 76,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"plunge\" ×9 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Affirm",
@@ -11975,7 +11975,7 @@
           "trailing_after_tp1": false,
           "macro_reason": "VIX panic 35.89",
           "earnings_reason": null,
-          "news_sentiment": null,
+          "news_sentiment": "neutral",
           "news_sentiment_reason": null,
           "macro_event_reason": null,
           "cross_asset_reason": null,
@@ -12209,7 +12209,7 @@
             2655.1101,
             2581.79
           ],
-          "quality_score": 60,
+          "quality_score": 57,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -12242,13 +12242,13 @@
           "wisdom_adjustment": -2,
           "wisdom_note": "V-shape attendu après capitulation",
           "historical_analog": "Sell-off Q4 2018 (Fed hawkish) (2018)",
-          "quality_score_pre_wisdom": 61,
+          "quality_score_pre_wisdom": 58,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"weekly\" ×24 (4 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"weekly\" ×9 (3 mentions/24h)"
         },
         {
           "asset": "Nikkei 225",
@@ -15369,7 +15369,7 @@
             690.44,
             594.51
           ],
-          "quality_score": 49,
+          "quality_score": 46,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -15402,13 +15402,13 @@
           "wisdom_adjustment": -2,
           "wisdom_note": "V-shape attendu après capitulation",
           "historical_analog": "Sell-off Q4 2018 (Fed hawkish) (2018)",
-          "quality_score_pre_wisdom": 50,
+          "quality_score_pre_wisdom": 47,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"plunges\" ×9 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Marvell Tech",
@@ -17179,7 +17179,7 @@
             330.48,
             339.85
           ],
-          "quality_score": 57,
+          "quality_score": 54,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -17212,13 +17212,13 @@
           "wisdom_adjustment": -2,
           "wisdom_note": "V-shape attendu après capitulation",
           "historical_analog": "Sell-off Q4 2018 (Fed hawkish) (2018)",
-          "quality_score_pre_wisdom": 58,
+          "quality_score_pre_wisdom": 55,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"investors\" ×6 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Citigroup",
@@ -23019,7 +23019,7 @@
             10452.7002,
             10346.2998
           ],
-          "quality_score": 55,
+          "quality_score": 53,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -23047,13 +23047,13 @@
           "wisdom_adjustment": -2,
           "wisdom_note": "V-shape attendu après capitulation",
           "historical_analog": "Sell-off Q4 2018 (Fed hawkish) (2018)",
-          "quality_score_pre_wisdom": 56,
+          "quality_score_pre_wisdom": 54,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"since\" ×12 (8 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"since\" ×6 (6 mentions/24h)"
         },
         {
           "asset": "Euro Stoxx 50",
@@ -27484,7 +27484,7 @@
             208.65,
             210
           ],
-          "quality_score": 53,
+          "quality_score": 50,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -27517,13 +27517,13 @@
           "wisdom_adjustment": -2,
           "wisdom_note": "V-shape attendu après capitulation",
           "historical_analog": "Sell-off Q4 2018 (Fed hawkish) (2018)",
-          "quality_score_pre_wisdom": 54,
+          "quality_score_pre_wisdom": 51,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"investors\" ×6 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Société Générale",
@@ -28339,7 +28339,7 @@
             30.1,
             29.13
           ],
-          "quality_score": 52,
+          "quality_score": 50,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -28372,13 +28372,13 @@
           "wisdom_adjustment": -2,
           "wisdom_note": "V-shape attendu après capitulation",
           "historical_analog": "Sell-off Q4 2018 (Fed hawkish) (2018)",
-          "quality_score_pre_wisdom": 53,
+          "quality_score_pre_wisdom": 51,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"shares\" ×3.4 (8 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Adidas",
@@ -33739,7 +33739,7 @@
             489.19,
             424.39
           ],
-          "quality_score": 41,
+          "quality_score": 39,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -33772,13 +33772,13 @@
           "wisdom_adjustment": -2,
           "wisdom_note": "V-shape attendu après capitulation",
           "historical_analog": "Sell-off Q4 2018 (Fed hawkish) (2018)",
-          "quality_score_pre_wisdom": 42,
+          "quality_score_pre_wisdom": 40,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"plunges\" ×9 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Intel",
@@ -34404,7 +34404,7 @@
             1135.8101,
             1101.72
           ],
-          "quality_score": 47,
+          "quality_score": 43,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -34437,13 +34437,13 @@
           "wisdom_adjustment": -2,
           "wisdom_note": "V-shape attendu après capitulation",
           "historical_analog": "Sell-off Q4 2018 (Fed hawkish) (2018)",
-          "quality_score_pre_wisdom": 48,
+          "quality_score_pre_wisdom": 44,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"below\" ×18 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Johnson & J.",
@@ -35049,7 +35049,7 @@
             361.73,
             343.32
           ],
-          "quality_score": 39,
+          "quality_score": 38,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -35082,13 +35082,13 @@
           "wisdom_adjustment": -2,
           "wisdom_note": "V-shape attendu après capitulation",
           "historical_analog": "Sell-off Q4 2018 (Fed hawkish) (2018)",
-          "quality_score_pre_wisdom": 40,
+          "quality_score_pre_wisdom": 39,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"shares\" ×3.4 (8 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Cloudflare",
@@ -35169,7 +35169,7 @@
             303.68,
             274.96
           ],
-          "quality_score": 40,
+          "quality_score": 39,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -35197,13 +35197,13 @@
           "wisdom_adjustment": -2,
           "wisdom_note": "V-shape attendu après capitulation",
           "historical_analog": "Sell-off Q4 2018 (Fed hawkish) (2018)",
-          "quality_score_pre_wisdom": 41,
+          "quality_score_pre_wisdom": 40,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"shares\" ×3.4 (8 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Roblox",
@@ -35829,7 +35829,7 @@
             80.04,
             80.84
           ],
-          "quality_score": 49,
+          "quality_score": 46,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -35857,13 +35857,13 @@
           "wisdom_adjustment": -2,
           "wisdom_note": "V-shape attendu après capitulation",
           "historical_analog": "Sell-off Q4 2018 (Fed hawkish) (2018)",
-          "quality_score_pre_wisdom": 50,
+          "quality_score_pre_wisdom": 47,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"investors\" ×6 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Humana",
@@ -35944,7 +35944,7 @@
             380,
             390
           ],
-          "quality_score": 49,
+          "quality_score": 46,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -35972,13 +35972,13 @@
           "wisdom_adjustment": -2,
           "wisdom_note": "V-shape attendu après capitulation",
           "historical_analog": "Sell-off Q4 2018 (Fed hawkish) (2018)",
-          "quality_score_pre_wisdom": 50,
+          "quality_score_pre_wisdom": 47,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"investors\" ×6 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Elevance Health",
@@ -41177,7 +41177,7 @@
             86.13,
             77.8
           ],
-          "quality_score": 81,
+          "quality_score": 76,
           "sizing_pct": 3,
           "sizing_label": "high",
           "trailing_after_tp1": true,
@@ -41219,7 +41219,7 @@
           },
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"plunge\" ×9 (3 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Affirm",
@@ -42605,167 +42605,107 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 60213.15421830475,
-      "change": "2.37",
-      "rsi": "15",
+      "price": 60328.27825735017,
+      "change": "2.57",
+      "rsi": "16",
       "maCross": "bear",
-      "macdHist": "-944.34",
+      "macdHist": "-936.99",
       "boll": "12%",
-      "adx": "70",
+      "adx": "69",
       "atr": "2.7%",
       "verdict": "Baissier fort",
       "score": 30,
       "cls": "bear"
     },
     {
-      "label": "ETH",
-      "kind": "crypto",
-      "price": 1689.2381519529977,
-      "change": "4.31",
-      "rsi": "18",
-      "maCross": "bear",
-      "macdHist": "-23.38",
-      "boll": "15%",
-      "adx": "64",
-      "atr": "3.6%",
-      "verdict": "Baissier fort",
-      "score": 17,
-      "cls": "bear"
-    },
-    {
-      "label": "SOL",
-      "kind": "crypto",
-      "price": 70.69143298533584,
-      "change": "2.81",
-      "rsi": "23",
-      "maCross": "bear",
-      "macdHist": "-0.27",
-      "boll": "19%",
-      "adx": "54",
-      "atr": "3.6%",
-      "verdict": "Baissier fort",
-      "score": 17,
-      "cls": "bear"
-    },
-    {
-      "label": "BNB",
-      "kind": "crypto",
-      "price": 546.1197745664633,
-      "change": "1.20",
-      "rsi": "16",
-      "maCross": "bear",
-      "macdHist": "-8.82",
-      "boll": "8%",
-      "adx": "69",
-      "atr": "2.8%",
-      "verdict": "Baissier fort",
-      "score": 30,
-      "cls": "bear"
-    },
-    {
-      "label": "XRP",
-      "kind": "crypto",
-      "price": 0.9296330626680093,
-      "change": "2.24",
-      "rsi": "24",
-      "maCross": "bear",
-      "macdHist": "-0.00",
-      "boll": "22%",
-      "adx": "52",
-      "atr": "3.5%",
-      "verdict": "Baissier fort",
-      "score": 17,
-      "cls": "bear"
-    },
-    {
       "label": "DOGE",
       "kind": "crypto",
-      "price": 0.05550020943713457,
-      "change": "2.23",
-      "rsi": "21",
+      "price": 0.05516204501872888,
+      "change": "1.61",
+      "rsi": "20",
       "maCross": "bear",
       "macdHist": "-0.00",
-      "boll": "14%",
-      "adx": "57",
+      "boll": "13%",
+      "adx": "59",
       "atr": "3.6%",
       "verdict": "Baissier fort",
       "score": 30,
       "cls": "bear"
     },
     {
-      "label": "AVAX",
+      "label": "LTC",
       "kind": "crypto",
-      "price": 6.654477506620012,
-      "change": "2.19",
-      "rsi": "32",
+      "price": 40.0202603927785,
+      "change": "-1.37",
+      "rsi": "17",
       "maCross": "bear",
-      "macdHist": "-0.08",
-      "boll": "9%",
-      "adx": "36",
-      "atr": "4.7%",
-      "verdict": "Baissier fort",
-      "score": 13,
-      "cls": "bear"
-    },
-    {
-      "label": "DOT",
-      "kind": "crypto",
-      "price": 0.6620335681552497,
-      "change": "0.04",
-      "rsi": "13",
-      "maCross": "bear",
-      "macdHist": "-0.01",
-      "boll": "10%",
-      "adx": "74",
-      "atr": "3.4%",
+      "macdHist": "-0.53",
+      "boll": "4%",
+      "adx": "65",
+      "atr": "3.3%",
       "verdict": "Baissier fort",
       "score": 30,
       "cls": "bear"
     },
     {
-      "label": "LINK",
+      "label": "ICP",
       "kind": "crypto",
-      "price": 8.646883757992061,
-      "change": "1.36",
-      "rsi": "23",
-      "maCross": "bear",
-      "macdHist": "-0.06",
-      "boll": "13%",
-      "adx": "53",
-      "atr": "3.4%",
-      "verdict": "Baissier fort",
-      "score": 30,
-      "cls": "bear"
-    },
-    {
-      "label": "ATOM",
-      "kind": "crypto",
-      "price": 1.1944280583483546,
-      "change": "-2.52",
+      "price": 1.914432245009113,
+      "change": "-5.35",
       "rsi": "35",
       "maCross": "bear",
-      "macdHist": "-0.00",
-      "boll": "-3%",
+      "macdHist": "-0.03",
+      "boll": "-10%",
       "adx": "30",
-      "atr": "3.6%",
+      "atr": "6.3%",
       "verdict": "Baissier fort",
       "score": 13,
       "cls": "bear"
     },
     {
-      "label": "PEPE",
+      "label": "INJ",
       "kind": "crypto",
-      "price": 0.000003413854876524201,
-      "change": "-1.62",
-      "rsi": "21",
-      "maCross": "bull",
-      "macdHist": "-0.00",
-      "boll": "8%",
+      "price": 6.080528719361119,
+      "change": "-4.46",
+      "rsi": "29",
+      "maCross": "bear",
+      "macdHist": "-0.14",
+      "boll": "-3%",
+      "adx": "42",
+      "atr": "6.1%",
+      "verdict": "Baissier fort",
+      "score": 30,
+      "cls": "bear"
+    },
+    {
+      "label": "RNDR",
+      "kind": "crypto",
+      "price": 1.3098604092092638,
+      "change": "2.88",
+      "rsi": "35",
+      "maCross": "bear",
+      "macdHist": "-0.01",
+      "boll": "7%",
+      "adx": "30",
+      "atr": "4.5%",
+      "verdict": "Baissier fort",
+      "score": 13,
+      "cls": "bear"
+    },
+    {
+      "label": "SUI",
+      "kind": "crypto",
+      "price": 0.6462761690046716,
+      "change": "-0.65",
+      "rsi": "22",
+      "maCross": "bear",
+      "macdHist": "-0.01",
+      "boll": "5%",
       "adx": "57",
-      "atr": "5.3%",
-      "verdict": "Indécis",
-      "score": 50,
-      "cls": "neutral"
+      "atr": "4.1%",
+      "verdict": "Baissier fort",
+      "score": 30,
+      "cls": "bear"
     },
     {
       "label": "Apple",
@@ -50057,7 +49997,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 68
+    "matched_assets": 63
   },
   "macro": {
     "vix": 35.89,
@@ -50067,7 +50007,7 @@
     "cross_asset": {
       "sp500_change": -3.6990834302978346,
       "nasdaq_change": -5.282709601959734,
-      "btc_change": 2.3721146343580655,
+      "btc_change": 2.567844146876198,
       "risk_off": true,
       "tech_risk_off": true,
       "crypto_dump": false,
@@ -50079,7 +50019,7 @@
     "current_state": {
       "vix": 35.89,
       "yield_curve": null,
-      "btc_30d_change": -25.756551363474433,
+      "btc_30d_change": -25.614602219792147,
       "sp500_30d_change": -11.487415152251252,
       "dominant_sectors": [
         "XLP",
@@ -50514,112 +50454,72 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "rsi": 15,
-      "change": 2.37,
-      "adx": 70,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 30
-    },
-    {
-      "label": "ETH",
-      "kind": "crypto",
-      "rsi": 18,
-      "change": 4.31,
-      "adx": 64,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 17
-    },
-    {
-      "label": "SOL",
-      "kind": "crypto",
-      "rsi": 23,
-      "change": 2.81,
-      "adx": 54,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 17
-    },
-    {
-      "label": "BNB",
-      "kind": "crypto",
       "rsi": 16,
-      "change": 1.2,
+      "change": 2.57,
       "adx": 69,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 30
     },
     {
-      "label": "XRP",
-      "kind": "crypto",
-      "rsi": 24,
-      "change": 2.24,
-      "adx": 52,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 17
-    },
-    {
       "label": "DOGE",
       "kind": "crypto",
-      "rsi": 21,
-      "change": 2.23,
-      "adx": 57,
+      "rsi": 20,
+      "change": 1.61,
+      "adx": 59,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 30
     },
     {
-      "label": "AVAX",
+      "label": "LTC",
       "kind": "crypto",
-      "rsi": 32,
-      "change": 2.19,
-      "adx": 36,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 13
-    },
-    {
-      "label": "DOT",
-      "kind": "crypto",
-      "rsi": 13,
-      "change": 0.04,
-      "adx": 74,
+      "rsi": 17,
+      "change": -1.37,
+      "adx": 65,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 30
     },
     {
-      "label": "LINK",
-      "kind": "crypto",
-      "rsi": 23,
-      "change": 1.36,
-      "adx": 53,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 30
-    },
-    {
-      "label": "ATOM",
+      "label": "ICP",
       "kind": "crypto",
       "rsi": 35,
-      "change": -2.52,
+      "change": -5.35,
       "adx": 30,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 13
     },
     {
-      "label": "PEPE",
+      "label": "INJ",
       "kind": "crypto",
-      "rsi": 21,
-      "change": -1.62,
+      "rsi": 29,
+      "change": -4.46,
+      "adx": 42,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 30
+    },
+    {
+      "label": "RNDR",
+      "kind": "crypto",
+      "rsi": 35,
+      "change": 2.88,
+      "adx": 30,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 13
+    },
+    {
+      "label": "SUI",
+      "kind": "crypto",
+      "rsi": 22,
+      "change": -0.65,
       "adx": 57,
-      "verdict": "Indécis",
-      "cls": "neutral",
-      "score": 50
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 30
     },
     {
       "label": "Apple",
