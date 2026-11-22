@@ -1,14 +1,14 @@
 {
-  "generated": "2026-11-22T08:01:56.686Z",
+  "generated": "2026-11-22T16:19:20.080Z",
   "source": "Pollinations · openai",
   "date": "2026-11-22",
   "title": "Marchés bien orientés sur les majeurs",
-  "summary": "Tour d'horizon multi-univers (36 indices · 8 crypto · 353 actions) : S&P 500 -3.70% (RSI 29, baissier fort) · Nasdaq -5.28% (RSI 31, baissier fort) · BTC -1.76% (RSI 15, baissier fort) · ETH -1.15% (RSI 19, baissier fort) · Apple -1.90% (RSI 53, indécis). Globalement, 54 actifs en biais haussier contre 318 en baissier. On observe une configuration plutôt favorable aux vendeurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
+  "summary": "Tour d'horizon multi-univers (36 indices · 9 crypto · 353 actions) : S&P 500 -3.70% (RSI 29, baissier fort) · Nasdaq -5.28% (RSI 31, baissier fort) · BTC +1.37% (RSI 19, baissier fort) · ETH +1.91% (RSI 23, baissier fort) · Apple -1.90% (RSI 53, indécis). Globalement, 54 actifs en biais haussier contre 319 en baissier. On observe une configuration plutôt favorable aux vendeurs. Un trader expérimenté surveillerait surtout les zones de surachat (RSI > 70) ou de survente (RSI < 30) pour timer une entrée, ainsi que la position du prix par rapport à la MA50 pour situer la tendance moyen terme.",
   "observations": [
     "S&P 500 : pression vendeuse persistante (RSI 29)",
     "Nasdaq : pression vendeuse persistante (RSI 31)",
-    "BTC : pression vendeuse persistante (RSI 15)",
-    "ETH : pression vendeuse persistante (RSI 19)",
+    "BTC : pression vendeuse persistante (RSI 19)",
+    "ETH : pression vendeuse persistante (RSI 23)",
     "Apple : sans direction nette (RSI 53)"
   ],
   "plan_pedago": [
@@ -2940,7 +2940,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"buys\" ×21 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"buys\" ×10.5 (7 mentions/24h)"
         },
         {
           "asset": "Boeing",
@@ -7738,7 +7738,7 @@
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"buys\" ×21 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"buys\" ×10.5 (7 mentions/24h)"
         },
         {
           "asset": "USD/INR",
@@ -7748,12 +7748,12 @@
           "timeframe": "Court terme · 1-3 jours",
           "confidence": "very-high",
           "direction": "long",
-          "config": "RSI 19 (vraie survente) · Bollinger -6% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j -0.9%).",
+          "config": "RSI 18 (vraie survente) · Bollinger -6% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j -0.9%).",
           "rationale": "Couple RSI<30 + bande basse Bollinger + MA20 au-dessus + plus de continuation baissière = setup contrarian classique. Stop 1.5 ATR sous l'entrée pour absorber la volatilité de survente. TP1 = retour à la MA20 (mean reversion). TP2 = +3 ATR.",
-          "entry": 92.66999816894531,
-          "stop": 92.31983511096622,
-          "tp1": 93.13688224625078,
-          "tp2": 93.3703242849035,
+          "entry": 92.66000366210938,
+          "stop": 92.30876978491244,
+          "tp1": 93.12831549837196,
+          "tp2": 93.36247141650325,
           "rr1": "1.33",
           "rr2": "2.00",
           "currency": "EUR",
@@ -7817,7 +7817,7 @@
             93.4746,
             93.4653,
             93.295,
-            92.67
+            92.66
           ],
           "quality_score": 45,
           "sizing_pct": 1,
@@ -11675,13 +11675,13 @@
             "risk": "alert",
             "items": [
               {
-                "title": "Dow Jones Futures: After Nvidia, Anthropic Fuel Worst Week Since Covid, Look For These 'Absolute Losers'",
-                "time": "2026-11-21T19:18:49.000Z",
+                "title": "3 Penny Stocks With Value Gaps Up To 81%",
+                "time": "2026-11-22T01:10:25.000Z",
                 "source": "Yahoo Finance"
               },
               {
-                "title": "3 Undervalued Stocks To Watch With Up To 27% DCF Discount",
-                "time": "2026-11-21T18:07:14.000Z",
+                "title": "Dow Jones Futures: After Nvidia, Anthropic Fuel Worst Week Since Covid, Look For These 'Absolute Losers'",
+                "time": "2026-11-21T19:18:49.000Z",
                 "source": "Yahoo Finance"
               }
             ]
@@ -12351,8 +12351,8 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 3,
-            "risk": "alert",
+            "count": 2,
+            "risk": "caution",
             "items": [
               {
                 "title": "Takaichi gets chilly reception in China on first Japan leader visit since 2019",
@@ -18641,7 +18641,7 @@
             21.98,
             19.63
           ],
-          "quality_score": 57,
+          "quality_score": 54,
           "sizing_pct": 1,
           "sizing_label": "medium",
           "trailing_after_tp1": false,
@@ -18669,13 +18669,13 @@
           "wisdom_adjustment": -2,
           "wisdom_note": "V-shape attendu après capitulation",
           "historical_analog": "Sell-off Q4 2018 (Fed hawkish) (2018)",
-          "quality_score_pre_wisdom": 58,
+          "quality_score_pre_wisdom": 55,
           "alpha_quality": null,
           "alpha_pattern": null,
           "alpha_rules": null,
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"director\" ×6 (5 mentions/24h)"
+          "spike_theme_reason": null
         },
         {
           "asset": "Sunrun",
@@ -28111,18 +28111,13 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 3,
-            "risk": "alert",
+            "count": 1,
+            "risk": "normal",
             "items": [
               {
                 "title": "Analysis-Deutsche Bank leaks test CEO Sewing’s pledge to reform",
                 "time": "2026-11-17T19:31:40.000Z",
                 "source": "Investing.com"
-              },
-              {
-                "title": "Here&#x2019;s how much of Deutsche Bank&#x2019;s market cap has been wiped away after reports on 15 million leaked do…",
-                "time": "2026-11-17T09:35:00.000Z",
-                "source": "MarketWatch"
               }
             ]
           },
@@ -28756,18 +28751,18 @@
           "stacked_count": null,
           "stacked_patterns": null,
           "news_context": {
-            "count": 2,
-            "risk": "caution",
+            "count": 3,
+            "risk": "alert",
             "items": [
+              {
+                "title": "Will economics continue to outweigh geopolitics?",
+                "time": "2026-11-22T07:27:01.000Z",
+                "source": "Yahoo Finance"
+              },
               {
                 "title": "Two Deals and a Higher Target: UBS’s Call on McKesson (MCK)",
                 "time": "2026-11-19T22:33:31.000Z",
                 "source": "Yahoo Finance"
-              },
-              {
-                "title": "Telix at UBS biopharma conference: diagnostics funds a bigger bet",
-                "time": "2026-11-17T10:14:12.000Z",
-                "source": "Investing.com"
               }
             ]
           },
@@ -40487,12 +40482,12 @@
           "timeframe": "ALPHA · 5-30 jours · hold max 30j",
           "confidence": "very-high",
           "direction": "long",
-          "config": "RSI 19 (<22 survente extrême) · Bollinger -6% · ADX 63 · stop 0.5 ATR · cible 7 ATR (R/R 14:1)",
+          "config": "RSI 18 (<22 survente extrême) · Bollinger -6% · ADX 63 · stop 0.5 ATR · cible 7 ATR (R/R 14:1)",
           "rationale": "Quality 93 : pattern contrarian validé 14 ans walk-forward. ALPHA détecte une survente extrême (RSI<22) avec contraction Bollinger et ADX en hausse. Position taken at quality ≥ 85 only.",
-          "entry": 92.66999816894531,
-          "stop": 92.55327715192523,
-          "tp1": 93.48704528808594,
-          "tp2": 94.30409240722656,
+          "entry": 92.66000366210938,
+          "stop": 92.54292569841657,
+          "tp1": 93.47954940795898,
+          "tp2": 94.2990951538086,
           "rr1": "7.00",
           "rr2": "14.00",
           "currency": "EUR",
@@ -40556,7 +40551,7 @@
             93.4746,
             93.4653,
             93.295,
-            92.67
+            92.66
           ],
           "quality_score": 69,
           "sizing_pct": 3,
@@ -41514,7 +41509,7 @@
           },
           "insider_signal": null,
           "insider_reason": null,
-          "spike_theme_reason": "Spike theme \"buys\" ×21 (7 mentions/24h)"
+          "spike_theme_reason": "Spike theme \"buys\" ×10.5 (7 mentions/24h)"
         },
         {
           "asset": "Boeing",
@@ -42222,28 +42217,28 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "price": 59061.18030509273,
-      "change": "-1.76",
-      "rsi": "15",
+      "price": 60942.69281465467,
+      "change": "1.37",
+      "rsi": "19",
       "maCross": "bear",
-      "macdHist": "-863.04",
-      "boll": "12%",
-      "adx": "70",
-      "atr": "2.7%",
+      "macdHist": "-742.96",
+      "boll": "18%",
+      "adx": "63",
+      "atr": "2.6%",
       "verdict": "Baissier fort",
-      "score": 30,
+      "score": 17,
       "cls": "bear"
     },
     {
       "label": "ETH",
       "kind": "crypto",
-      "price": 1663.4787369733237,
-      "change": "-1.15",
-      "rsi": "19",
+      "price": 1715.077611234393,
+      "change": "1.91",
+      "rsi": "23",
       "maCross": "bear",
-      "macdHist": "-19.86",
-      "boll": "16%",
-      "adx": "61",
+      "macdHist": "-16.57",
+      "boll": "21%",
+      "adx": "53",
       "atr": "3.2%",
       "verdict": "Baissier fort",
       "score": 17,
@@ -42252,89 +42247,104 @@
     {
       "label": "SOL",
       "kind": "crypto",
-      "price": 69.0910073193196,
-      "change": "-1.58",
+      "price": 70.25144921947854,
+      "change": "0.07",
       "rsi": "24",
       "maCross": "bear",
-      "macdHist": "-0.18",
-      "boll": "18%",
-      "adx": "53",
-      "atr": "3.4%",
+      "macdHist": "-0.11",
+      "boll": "21%",
+      "adx": "51",
+      "atr": "3.2%",
       "verdict": "Baissier fort",
       "score": 17,
-      "cls": "bear"
-    },
-    {
-      "label": "BNB",
-      "kind": "crypto",
-      "price": 539.7565850862735,
-      "change": "-1.45",
-      "rsi": "17",
-      "maCross": "bear",
-      "macdHist": "-8.16",
-      "boll": "10%",
-      "adx": "67",
-      "atr": "2.9%",
-      "verdict": "Baissier fort",
-      "score": 30,
       "cls": "bear"
     },
     {
       "label": "XRP",
       "kind": "crypto",
-      "price": 0.914435001884146,
-      "change": "-1.77",
-      "rsi": "26",
+      "price": 0.9251619989816477,
+      "change": "-0.62",
+      "rsi": "27",
       "maCross": "bear",
       "macdHist": "-0.00",
-      "boll": "21%",
-      "adx": "47",
-      "atr": "3.3%",
+      "boll": "23%",
+      "adx": "46",
+      "atr": "3.1%",
       "verdict": "Baissier fort",
       "score": 17,
       "cls": "bear"
     },
     {
-      "label": "DOGE",
+      "label": "ATOM",
       "kind": "crypto",
-      "price": 0.05419841465509818,
-      "change": "-1.84",
+      "price": 1.177605992897575,
+      "change": "0.66",
+      "rsi": "39",
+      "maCross": "bear",
+      "macdHist": "-0.01",
+      "boll": "2%",
+      "adx": "22",
+      "atr": "3.4%",
+      "verdict": "Baissier fort",
+      "score": 18,
+      "cls": "bear"
+    },
+    {
+      "label": "BCH",
+      "kind": "crypto",
+      "price": 198.09309953617003,
+      "change": "-0.68",
+      "rsi": "24",
+      "maCross": "bear",
+      "macdHist": "-1.09",
+      "boll": "22%",
+      "adx": "52",
+      "atr": "2.8%",
+      "verdict": "Baissier fort",
+      "score": 17,
+      "cls": "bear"
+    },
+    {
+      "label": "SHIB",
+      "kind": "crypto",
+      "price": 0.0000036123077035419823,
+      "change": "-0.44",
       "rsi": "22",
       "maCross": "bear",
       "macdHist": "-0.00",
-      "boll": "14%",
+      "boll": "13%",
       "adx": "56",
-      "atr": "3.4%",
+      "atr": "2.7%",
       "verdict": "Baissier fort",
       "score": 30,
       "cls": "bear"
     },
     {
-      "label": "LINK",
+      "label": "RNDR",
       "kind": "crypto",
-      "price": 8.553910014065021,
-      "change": "-0.53",
-      "rsi": "25",
+      "price": 1.3327593766386077,
+      "change": "2.15",
+      "rsi": "38",
       "maCross": "bear",
-      "macdHist": "-0.05",
-      "boll": "14%",
-      "adx": "50",
-      "atr": "3.1%",
+      "macdHist": "-0.01",
+      "boll": "17%",
+      "adx": "24",
+      "atr": "4.4%",
       "verdict": "Baissier fort",
-      "score": 30,
+      "score": 6,
       "cls": "bear"
     },
     {
-      "label": "NEAR",
+      "label": "SUI",
       "kind": "crypto",
-      "price": 2.8605408671235524,
-      "change": "-0.99",
-      "rsi": "30",
+      "price": 0.6588041161898917,
+      "change": "1.71",
+      "rsi": "26",
       "maCross": "bear",
-      "macdHist": "-0.02",
-      "boll": "8%",
-      "adx": "40",
-      "atr": "4.5%",
+      "macdHist": "-0.01",
+      "boll": "13%",
+      "adx": "47",
+      "atr": "3.7%",
       "verdict": "Baissier fort",
       "score": 30,
       "cls": "bear"
@@ -43347,9 +43357,9 @@
     {
       "label": "USD/CAD",
       "kind": "forex",
-      "price": 1.434,
-      "change": "-0.02",
-      "rsi": "92",
+      "price": 1.4339,
+      "change": "-0.03",
+      "rsi": "91",
       "maCross": "bull",
       "macdHist": "0.00",
       "boll": "85%",
@@ -43408,15 +43418,15 @@
       "label": "USD/MXN",
       "kind": "forex",
       "price": 19.143,
-      "change": "1.55",
-      "rsi": "57",
+      "change": "0.28",
+      "rsi": "65",
       "maCross": "bull",
-      "macdHist": "-0.01",
-      "boll": "119%",
-      "adx": "14",
-      "atr": "0.8%",
-      "verdict": "Plutôt haussier",
-      "score": 65,
+      "macdHist": "0.01",
+      "boll": "111%",
+      "adx": "30",
+      "atr": "0.7%",
+      "verdict": "Haussier fort",
+      "score": 87,
       "cls": "bull"
     },
     {
@@ -48072,7 +48082,7 @@
     {
       "label": "USD/ZAR",
       "kind": "forex",
-      "price": 17.5858,
+      "price": 17.5856,
       "change": "0.52",
       "rsi": "77",
       "maCross": "bull",
@@ -48087,13 +48097,13 @@
     {
       "label": "USD/BRL",
       "kind": "forex",
-      "price": 5.9074,
-      "change": "-0.44",
-      "rsi": "90",
+      "price": 5.9488,
+      "change": "0.26",
+      "rsi": "94",
       "maCross": "bull",
-      "macdHist": "0.03",
-      "boll": "95%",
-      "adx": "79",
+      "macdHist": "0.04",
+      "boll": "99%",
+      "adx": "88",
       "atr": "0.7%",
       "verdict": "Plutôt haussier",
       "score": 70,
@@ -48102,9 +48112,9 @@
     {
       "label": "USD/INR",
       "kind": "forex",
-      "price": 92.67,
-      "change": "-0.67",
-      "rsi": "19",
+      "price": 92.66,
+      "change": "-0.68",
+      "rsi": "18",
       "maCross": "bear",
       "macdHist": "-0.11",
       "boll": "-6%",
@@ -48118,12 +48128,12 @@
       "label": "USD/TRY",
       "kind": "forex",
       "price": 50.5142,
-      "change": "0.10",
-      "rsi": "95",
+      "change": "-0.10",
+      "rsi": "88",
       "maCross": "bull",
       "macdHist": "0.00",
-      "boll": "95%",
-      "adx": "89",
+      "boll": "87%",
+      "adx": "76",
       "atr": "0.1%",
       "verdict": "Plutôt haussier",
       "score": 70,
@@ -48555,12 +48565,12 @@
       "timeframe": "Court terme · 1-3 jours",
       "confidence": "very-high",
       "direction": "long",
-      "config": "RSI 19 (vraie survente) · Bollinger -6% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j -0.9%).",
+      "config": "RSI 18 (vraie survente) · Bollinger -6% (bande basse) · MA20 au-dessus du prix (cible mean reversion possible) · prix ne fait plus de plus bas (dérivée 3j -0.9%).",
       "rationale": "Couple RSI<30 + bande basse Bollinger + MA20 au-dessus + plus de continuation baissière = setup contrarian classique. Stop 1.5 ATR sous l'entrée pour absorber la volatilité de survente. TP1 = retour à la MA20 (mean reversion). TP2 = +3 ATR.",
-      "entry": 92.66999816894531,
-      "stop": 92.31983511096622,
-      "tp1": 93.13688224625078,
-      "tp2": 93.3703242849035,
+      "entry": 92.66000366210938,
+      "stop": 92.30876978491244,
+      "tp1": 93.12831549837196,
+      "tp2": 93.36247141650325,
       "rr1": "1.33",
       "rr2": "2.00",
       "currency": "EUR",
@@ -48624,7 +48634,7 @@
         93.4746,
         93.4653,
         93.295,
-        92.67
+        92.66
       ],
       "news_context": null,
       "wisdom_adjustment": 0,
@@ -49473,7 +49483,7 @@
   ],
   "news_summary": {
     "window_news": 400,
-    "matched_assets": 63
+    "matched_assets": 60
   },
   "macro": {
     "vix": 35.89,
@@ -49483,7 +49493,7 @@
     "cross_asset": {
       "sp500_change": -3.6990834302978346,
       "nasdaq_change": -5.282709601959734,
-      "btc_change": -1.7633041113293935,
+      "btc_change": 1.3662231222573744,
       "risk_off": true,
       "tech_risk_off": true,
       "crypto_dump": false,
@@ -49495,7 +49505,7 @@
     "current_state": {
       "vix": 35.89,
       "yield_curve": null,
-      "btc_30d_change": -26.91404147887232,
+      "btc_30d_change": -24.585741493662415,
       "sp500_30d_change": -11.487415152251252,
       "dominant_sectors": [
         "XLP",
@@ -49518,14 +49528,14 @@
       "fed"
     ],
     "theme_counts": {
-      "fed": 79,
-      "war": 61,
-      "geopolitical": 45,
-      "credit": 27,
-      "tech": 184,
-      "earnings": 104,
-      "crypto": 71,
-      "oil": 23
+      "fed": 78,
+      "geopolitical": 42,
+      "war": 57,
+      "tech": 181,
+      "earnings": 100,
+      "oil": 24,
+      "credit": 25,
+      "crypto": 67
     },
     "top_sectors_60d": [
       "XLP",
@@ -49665,7 +49675,7 @@
     "enriched_themes": {
       "ev_battery": 70,
       "defi_growth": 2,
-      "crypto_hack": 12,
+      "crypto_hack": 10,
       "crypto_etf": 1,
       "rate_pivot": 2
     },
@@ -49678,9 +49688,9 @@
     "geo_risk": {
       "index": 100,
       "level": "extreme",
-      "war": 61,
-      "credit": 27,
-      "geopol": 45
+      "war": 57,
+      "credit": 25,
+      "geopol": 42
     },
     "earnings_top_beats": [],
     "insider_top_buys": [],
@@ -49930,19 +49940,19 @@
     {
       "label": "BTC",
       "kind": "crypto",
-      "rsi": 15,
-      "change": -1.76,
-      "adx": 70,
+      "rsi": 19,
+      "change": 1.37,
+      "adx": 63,
       "verdict": "Baissier fort",
       "cls": "bear",
-      "score": 30
+      "score": 17
     },
     {
       "label": "ETH",
       "kind": "crypto",
-      "rsi": 19,
-      "change": -1.15,
-      "adx": 61,
+      "rsi": 23,
+      "change": 1.91,
+      "adx": 53,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 17
@@ -49951,58 +49961,68 @@
       "label": "SOL",
       "kind": "crypto",
       "rsi": 24,
-      "change": -1.58,
-      "adx": 53,
+      "change": 0.07,
+      "adx": 51,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 17
-    },
-    {
-      "label": "BNB",
-      "kind": "crypto",
-      "rsi": 17,
-      "change": -1.45,
-      "adx": 67,
-      "verdict": "Baissier fort",
-      "cls": "bear",
-      "score": 30
     },
     {
       "label": "XRP",
       "kind": "crypto",
-      "rsi": 26,
-      "change": -1.77,
-      "adx": 47,
+      "rsi": 27,
+      "change": -0.62,
+      "adx": 46,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 17
     },
     {
-      "label": "DOGE",
+      "label": "ATOM",
+      "kind": "crypto",
+      "rsi": 39,
+      "change": 0.66,
+      "adx": 22,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 18
+    },
+    {
+      "label": "BCH",
+      "kind": "crypto",
+      "rsi": 24,
+      "change": -0.68,
+      "adx": 52,
+      "verdict": "Baissier fort",
+      "cls": "bear",
+      "score": 17
+    },
+    {
+      "label": "SHIB",
       "kind": "crypto",
       "rsi": 22,
-      "change": -1.84,
+      "change": -0.44,
       "adx": 56,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 30
     },
     {
-      "label": "LINK",
+      "label": "RNDR",
       "kind": "crypto",
-      "rsi": 25,
-      "change": -0.53,
-      "adx": 50,
+      "rsi": 38,
+      "change": 2.15,
+      "adx": 24,
       "verdict": "Baissier fort",
       "cls": "bear",
-      "score": 30
+      "score": 6
     },
     {
-      "label": "NEAR",
+      "label": "SUI",
       "kind": "crypto",
-      "rsi": 30,
-      "change": -0.99,
-      "adx": 40,
+      "rsi": 26,
+      "change": 1.71,
+      "adx": 47,
       "verdict": "Baissier fort",
       "cls": "bear",
       "score": 30
@@ -50680,8 +50700,8 @@
     {
       "label": "USD/CAD",
       "kind": "forex",
-      "rsi": 92,
-      "change": -0.02,
+      "rsi": 91,
+      "change": -0.03,
       "adx": 83,
       "verdict": "Plutôt haussier",
       "cls": "bull",
@@ -50720,12 +50740,12 @@
     {
       "label": "USD/MXN",
       "kind": "forex",
-      "rsi": 57,
-      "change": 1.55,
-      "adx": 14,
-      "verdict": "Plutôt haussier",
+      "rsi": 65,
+      "change": 0.28,
+      "adx": 30,
+      "verdict": "Haussier fort",
       "cls": "bull",
-      "score": 65
+      "score": 87
     },
     {
       "label": "Or (Gold)",
@@ -53840,9 +53860,9 @@
     {
       "label": "USD/BRL",
       "kind": "forex",
-      "rsi": 90,
-      "change": -0.44,
-      "adx": 79,
+      "rsi": 94,
+      "change": 0.26,
+      "adx": 88,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 70
@@ -53850,8 +53870,8 @@
     {
       "label": "USD/INR",
       "kind": "forex",
-      "rsi": 19,
-      "change": -0.67,
+      "rsi": 18,
+      "change": -0.68,
       "adx": 63,
       "verdict": "Baissier fort",
       "cls": "bear",
@@ -53860,9 +53880,9 @@
     {
       "label": "USD/TRY",
       "kind": "forex",
-      "rsi": 95,
-      "change": 0.1,
-      "adx": 89,
+      "rsi": 88,
+      "change": -0.1,
+      "adx": 76,
       "verdict": "Plutôt haussier",
       "cls": "bull",
       "score": 70
