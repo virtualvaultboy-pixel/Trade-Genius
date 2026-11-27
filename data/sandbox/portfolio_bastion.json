@@ -39,7 +39,7 @@
       "closed_at": null,
       "pnl_eur": null,
       "current_price": 173.23,
-      "age_days": 8
+      "age_days": 9
     },
     {
       "id": "pos-1795233041219-xbzy",
@@ -72,7 +72,7 @@
       "closed_at": null,
       "pnl_eur": null,
       "current_price": 1086.81,
-      "age_days": 3
+      "age_days": 4
     },
     {
       "id": "pos-1795233041219-3cvg",
@@ -105,7 +105,7 @@
       "closed_at": null,
       "pnl_eur": null,
       "current_price": 28.46,
-      "age_days": 3
+      "age_days": 4
     },
     {
       "id": "pos-1795233041220-o0zj",
@@ -114,7 +114,7 @@
       "agent": "atlas",
       "type": "grid-month-A",
       "entry": 224.44000244140625,
-      "stop": 224.44000244140625,
+      "stop": 241.22985567622325,
       "tp1": 235.64072406029004,
       "tp2": 246.84144567917386,
       "initial_stop": 222.1998581176295,
@@ -138,7 +138,7 @@
       "closed_at": null,
       "pnl_eur": null,
       "current_price": 243.47,
-      "age_days": 3,
+      "age_days": 4,
       "size_eur_added": 29.91445892328736
     },
     {
@@ -171,8 +171,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 4974.44,
-      "age_days": 2
+      "current_price": 4973.21,
+      "age_days": 3
     }
   ],
   "closed_trades": [
@@ -6154,7 +6154,14 @@
       "equity": 1173.33,
       "cash": 792.11,
       "positions_count": 5
+    },
+    {
+      "date": "2026-11-27",
+      "cycle": 130,
+      "equity": 1173.32,
+      "cash": 792.11,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-11-26"
+  "last_cycle": "2026-11-27"
 }
