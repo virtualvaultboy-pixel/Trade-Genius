@@ -15,11 +15,11 @@
       "agent": "nova",
       "type": "grid-week-B",
       "entry": 127.5199966430664,
-      "stop": 130.6164269573702,
+      "stop": 131.4364269573702,
       "tp1": 131.75392924964086,
       "tp2": 135.98786185621532,
       "initial_stop": 125.82642360043663,
-      "high_since_entry": 132.31,
+      "high_since_entry": 133.13,
       "rr1": 2.5,
       "rr2": 5,
       "risk_pct": 0.0132808429047419,
@@ -38,8 +38,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 131.94,
-      "age_days": 7,
+      "current_price": 133.13,
+      "age_days": 8,
       "size_eur_added": 44.055745521806685
     },
     {
@@ -53,7 +53,7 @@
       "tp1": 589.9235688556275,
       "tp2": 605.2271425940675,
       "initial_stop": 568.4985656218115,
-      "high_since_entry": 579.32,
+      "high_since_entry": 580.79,
       "rr1": 2.5,
       "rr2": 5,
       "risk_pct": 0.010653004676817054,
@@ -72,8 +72,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 579.32,
-      "age_days": 6
+      "current_price": 580.79,
+      "age_days": 7
     },
     {
       "id": "pos-1795146849804-iy4f",
@@ -105,8 +105,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 283.5,
-      "age_days": 5,
+      "current_price": 282.62,
+      "age_days": 6,
       "size_eur_added": 27.732162280967284
     },
     {
@@ -116,11 +116,11 @@
       "agent": "nova",
       "type": "grid-week-A",
       "entry": 27.399999618530273,
-      "stop": 28.07357116161223,
+      "stop": 28.133571161612227,
       "tp1": 28.366071714499704,
       "tp2": 29.332143810469137,
       "initial_stop": 27.0135707801425,
-      "high_since_entry": 28.46,
+      "high_since_entry": 28.52,
       "rr1": 2.5,
       "rr2": 5,
       "risk_pct": 0.014103242473274895,
@@ -139,8 +139,8 @@
       "touched_tp1": true,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 28.46,
-      "age_days": 4,
+      "current_price": 28.52,
+      "age_days": 5,
       "size_eur_added": 27.844511893985572
     },
     {
@@ -154,7 +154,7 @@
       "tp1": 163.4607148679048,
       "tp2": 170.02143583932522,
       "initial_stop": 154.2757055079162,
-      "high_since_entry": 158.23,
+      "high_since_entry": 160.18,
       "rr1": 2.5,
       "rr2": 5,
       "risk_pct": 0.016725866734574657,
@@ -173,8 +173,8 @@
       "touched_tp1": false,
       "closed_at": null,
       "pnl_eur": null,
-      "current_price": 158.08,
-      "age_days": 3
+      "current_price": 160.18,
+      "age_days": 4
     }
   ],
   "closed_trades": [
@@ -7316,7 +7316,14 @@
       "equity": 1126.68,
       "cash": 678.21,
       "positions_count": 5
+    },
+    {
+      "date": "2026-11-28",
+      "cycle": 131,
+      "equity": 1128.81,
+      "cash": 678.21,
+      "positions_count": 5
     }
   ],
-  "last_cycle": "2026-11-27"
+  "last_cycle": "2026-11-28"
 }
